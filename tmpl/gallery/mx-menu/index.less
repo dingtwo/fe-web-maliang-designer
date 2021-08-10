@@ -1,0 +1,46 @@
+@import "../../assets/_vars.less";
+.container {
+    z-index: 3000;
+    max-height: calc(100vh - 64px);
+    max-width: calc(100vw - 44px);
+    overflow: auto;
+    background-color: #fff;
+    border: solid 1px @color-border;
+    border-radius: @border-radius;
+    padding: 4px;
+    box-shadow: rgba(0, 0, 0, 0.06) 0 0 3px 2px
+}
+
+.items-li {
+    height: @input-height + 2;
+    border-radius: @border-radius;
+    padding: 2px 8px 2px 4px;
+}
+
+.icon {
+    width: 14px;
+    height: 14px;
+}
+
+.items-li:not(.item-disabled):hover {
+    background-color: lighten(@color-brand, 30%);
+}
+
+.spliter {
+    height: 1px;
+    background: #eee;
+    margin: 4px 0;
+}
+
+.item-disabled, .item-disabled:hover {
+    color: @color-bg;
+    cursor: not-allowed;
+}
+
+.item-disabled .short {
+    color: @color-border;
+}
+
+.item-disabled .icon {
+    color: @color-border;
+}

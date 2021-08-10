@@ -1,0 +1,5 @@
+<i class="toolbar-spliter fl"></i>
+<i class="iconfont toolbar-item cursor-pointer align-items-center justify-content-center{{if !toTop}} toolbar-item-disabled{{/if}}" title="{{=i18n('@:{lang#menu.to.top}')}}(T)" mx-click="{{=toTop}}?@:{move.element}({to:3})">&#xe607;</i>
+<i class="iconfont toolbar-item cursor-pointer align-items-center justify-content-center{{if !toTop}} toolbar-item-disabled{{/if}}" title="{{=i18n('@:{lang#menu.move.up}')}}(U)" mx-click="{{=toTop}}?@:{move.element}({to:5})">&#xe632;</i>
+<i class="iconfont toolbar-item cursor-pointer align-items-center justify-content-center r180{{if !toBottom}} toolbar-item-disabled{{/if}}" title="{{=i18n('@:{lang#menu.move.down}')}}(D)" mx-click="{{=toBottom}}?@:{move.element}({to:6})">&#xe632;</i>
+<i class="iconfont toolbar-item cursor-pointer align-items-center justify-content-center r180{{if !toBottom}} toolbar-item-disabled{{/if}}" title="{{=i18n('@:{lang#menu.to.bottom}')}}(B)" mx-click="{{=toBottom}}?@:{move.element}({to:4})">&#xe607;</i>

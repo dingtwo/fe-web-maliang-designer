@@ -1,0 +1,61 @@
+<div class="pr flex" mx-pointerdown="@:{stage}()" mx-contextmenu="@:{stage}()" id="_rd_so">
+    <div style="{{if fs}}transform:scaleX({{=rx}}) scaleY({{=ry}});transform-origin:0 0;margin:{{=marginTop}}px 0 0 {{=marginLeft}}px{{else}}padding:{{=spad.join('px ')}}px{{/if}}">
+        <!--{{if page.grid}}background-size:{{=page.gridWidth*scale}}{{=unit}} {{=page.gridHeight*scale}}{{=unit}};{{else}}background:{{=page.background}};{{/if}}-->
+        <div class="stage-canvas pr touch-action-none" style="width:{{=page.width*scale}}{{=unit}};height:{{=page.height*scale*page.pages}}{{=unit}};background:{{=page.background}};" data-as="hod" id="_rd_sc">
+            {{set count=page.pages,headAndFooter=count?fhf(elements):0}}
+            {{for(let i=0;i<count;i++)}}
+            <div class="pa pointer-events-none{{if i}} page-top-line{{/if}}" style="top:{{=page.height*scale*i}}{{=unit}};width:{{=page.width*scale}}{{=unit}};height:{{=page.height*scale}}{{=unit}};{{if page.backgroundImage}}background-image:url({{=page.backgroundImage}});background-repeat:{{=page.backgroundRepeat=='full'?'no-repeat':page.backgroundRepeat}};background-size:{{if page.backgroundRepeat=='full'}}100% 100%{{else}}{{=page.backgroundWidth*scale}}{{=unit}} {{=page.backgroundHeight*scale}}{{=unit}};background-position:{{=page.backgroundXOffset}}{{=unit}} {{=page.backgroundYOffset}}{{=unit}}{{/if}}{{/if}}">
+                {{if page.xOffset!=0||page.yOffset!=0}}
+                    <div class="pa wp100 hp100 stage-offset" style="transform:translate({{=-page.xOffset}}{{=unit}},{{=-page.yOffset}}{{=unit}})">
+                        {{if i}}
+                        <i class="iconfont pa page-break-left-icon">&#xe67f;</i>
+                        <i class="iconfont pa page-break-right-icon">&#xe67f;</i>
+                        {{/if}}
+                    </div>
+                {{/if}}
+                {{if i}}
+                <i class="iconfont pa page-break-left-icon">&#xe67f;</i>
+                <i class="iconfont pa page-break-right-icon">&#xe67f;</i>
+                {{/if}}
+                <!-- {{if page.marginTop>0}}
+                <div class="pa margin" style="height:{{=page.marginTop*scale}}px;width:{{=page.width*scale}}px"></div>
+                {{/if}}
+                {{if page.marginBottom>0}}
+                <div class="pa margin" style="top:{{=page.height*scale-page.marginBottom*scale}}px;height:{{=page.marginBottom*scale}}px;width:{{=page.width*scale}}px"></div>
+                {{/if}}
+                {{if page.marginLeft>0}}
+                <div class="pa margin" style="top:{{=page.marginTop*scale}}px;height:{{=page.height*scale-page.marginTop*scale-page.marginBottom*scale}}px;width:{{=page.marginLeft*scale}}px"></div>
+                {{/if}}
+                {{if page.marginRight>0}}
+                <div class="pa margin" style="left:{{=page.width*scale-page.marginRight*scale}}px;top:{{=page.marginTop*scale}}px;height:{{=page.height*scale-page.marginTop*scale-page.marginBottom*scale}}px;width:{{=page.marginRight*scale}}px"></div>
+                {{/if}} -->
+                {{each headAndFooter as e}}
+                    {{if i&&e.type=='hod-header'}}
+                    <mx-vframe src="../elements/hod-header/stage" *props="{{# e.props}}" *unit="{{#unit}}"/>
+                    {{else if i<count-1 && e.type=='hod-footer'}}
+                    <mx-vframe src="../elements/hod-footer/stage" *props="{{# e.props}}" *unit="{{#unit}}"/>
+                    {{/if}}
+                {{/each}}
+            </div>
+            {{/for}}
+            <!-- {{if page.areas&&page.areas.length}}
+            <svg class="pa pointer-events-none" style="width:{{=page.width*scale}}px;height:{{=page.height*scale*count}}px">   
+                <defs>   
+                    <mask id="m_{{=$viewId}}">   
+                        <rect x="0" y="0" width="{{=page.width*scale}}px" height="{{=page.height*scale*count}}px" style="stroke:none;fill:#fffa"></rect>
+                        {{each page.areas as a}}
+                        <rect x="{{=a.x*scale}}" y="{{=a.y*scale}}" width="{{=a.width*scale}}" height="{{=a.height*scale}}" style="fill:#000" />
+                        {{/each}}
+                    </mask>   
+                </defs>   
+                <rect x="0" y="0" width="{{=page.width*scale}}px" height="{{=page.height*scale*count}}px" style="stroke:none;fill:#eee;mask:url(#m_{{=$viewId}})"></rect>   
+            </svg> 
+            {{/if}} -->
+            {{each elements as e}}
+                <mx-vframe id="{{=e.id}}" src="../elements/{{=e.type}}/designer" *element="{{#e}}" *owner-id="s" *fs="{{#fs}}" *unit="{{#unit}}" class="touch-action-none" mx-pointerdown="@:{element.start.drag}({element:{{#e}}})"/>
+            {{/each}}
+            <mx-vframe class="pointer-events-none" src="./align"/>
+        </div>
+    </div>
+</div>
+<div id="_rd_pole_{{=$viewId}}" style="margin-top:calc(-160px - {{=page.height*scale*page.pages}}{{=unit}});display:none"></div>

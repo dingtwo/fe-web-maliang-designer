@@ -1,0 +1,18 @@
+<mx-vframe src="./header" id="hd" class="header unselectable pr" mx-contextmenu="@:{prevent}()"/>
+<mx-vframe src="./toolbar" class="toolbar unselectable pr" mx-contextmenu="@:{prevent}()"/>
+<div class="axis-stage-wrapper overflow-hidden">
+    <mx-vframe src="./axis" id="_rd_axis" class="axis unselectable pr" mx-contextmenu="@:{prevent}()"/>
+    <div class="flex stage-wrapper">
+        <!--开启左右2侧的固定内容时，需要修改index.less中@stage-left及@stage-right宽度以下内容才有效果-->
+        <!-- 把 mx-view="../panels/tree/index" 属性添加到下面这个div上查看效果-->
+        <div class="stage-left scrollable background-color-fff overflow-scroll"><!--设置区左侧内容--></div>
+        <mx-vframe src="./stage" id="_rd_stage" class="stage scrollable unselectable pr flex-fill-rest overflow-scroll"/>
+        <!-- mx-view="../panels/props/index"-->
+        <div class="stage-right scrollable background-color-fff overflow-scroll"><!--设置区右侧内容--></div>
+    </div>
+    <div class="stage-drag-scroll-zone none unselectable pa pointer-events-none" id="_rd_sdsz"></div>
+</div>
+<div class="foot color-999 pr fontsize-12">
+    <div class="fl" x-html="{{=i18n('@:{lang#site.copy.right}')}}"></div>
+    <div class="fr mr10 unselectable" id="_rd_ss"></div>
+</div>

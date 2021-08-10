@@ -1,0 +1,46 @@
+<ul class="tag-ul props padding-4 unselectable props-padding-bottom">
+    <li class="props-item flex align-items-center">
+        <span class="props-item-title tr">{{=i18n('@:{lang#props.type}')}}</span>
+        <span>{{=i18n(ctrl.title)}}</span>
+    </li>
+    {{each ctrl.props as p}}
+    {{if p.type&&(!p['@:{if.show}']||p['@:{if.show}'](page))}}
+    {{if p.type==props['@:{eprops#spliter}']}}
+        <li class="item-spliter"></li>
+    {{else}}
+        {{set value=page[p.key]}}
+        {{if p.read}}
+            {{value=p.read(value)}}
+        {{/if}}
+    <li class="props-item flex {{if p['@:{dock.top}']}}align-items-flex-start{{else}}align-items-center{{/if}}">
+        {{if p.tip}}
+        <span class="props-item-title tr">{{=i18n(p.tip)}}</span>
+        {{/if}}
+        {{set readonly=page.readonly}}
+        {{if p.type==props['@:{eprops#label}']}}
+            <span class="{{if readonly}}color-999{{/if}}">{{=value}}</span>
+        {{else if p.type==props['@:{eprops#number}']}}
+            <mx-number class="width-140" disabled="{{=readonly}}?" *value="{{#value}}" *max="{{#p.max}}??" *step="{{#p.step}}??" *fixed="{{#p.fixed}}??" *min="{{#p.min}}??" mx-input="@:{update.prop}({key:'{{=p.key}}',write:{{#p.write}},use:'value'})"/>
+        {{else if p.type==props['@:{eprops#text.input}']}}
+            <input class="input" value="{{=value}}" mx-input="@:{update.prop}({key:'{{=p.key}}',native:'value'})" disabled="{{readonly}}?"/>
+        {{else if p.type==props['@:{eprops#color}']}}
+            <mx-color *clear="{{=p.clear}}" class="width-140" *color="{{#value}}" *align="right" *disabled="{{=readonly}}" *alpha="{{=p.alpha}}??" mx-input="@:{update.prop}({key:'{{=p.key}}',use:'color'})"/>
+        {{else if p.type==props['@:{eprops#image}']}}
+            <mx-picture class="width-140" *src="{{=value}}" *disabled="{{#readonly}}" mx-change="@:{update.prop}({key:'{{=p.key}}',use:'src',write:{{#p.write}}})"/>
+        {{else if p.type==props['@:{eprops#dropdown}']}}
+            <mx-dropdown class="width-140" *selected="{{=value}}" *list="{{#p.items}}" *text-key="text" *value-key="value" *disabled="{{#p.disabled||readonly}}" mx-change="@:{update.prop}({key:'{{=p.key}}',use:'value',write:'{{#p.write}}'})"/>
+        {{else if p.type==props['@:{eprops#boolean}']}}
+            <label class="tag-label mwp100 cursor-pointer flex align-items-center">
+                <input class="switch-input pa" type="checkbox" disabled="{{=readonly}}?" checked="{{=value}}?" mx-change="@:{update.prop}({key:'{{=p.key}}',native:'checked',write:'{{#p.write}}'})"/>
+                <i class="switch-button unselectable pr"></i>
+            </label>
+        {{else if p.type==props['@:{eprops#image.reset}']}}
+            <button class="btn tc cursor-pointer btn-brand" disabled="{{=readonly}}?" mx-click="@:{update.image.size}()">{{=i18n('@:{lang#elements.image.reset}')}}</button>
+        <!-- {{else if p.type==props['@:{page.area}']}}
+            <mx-page.area class="width-220" *areas="{{#value}}" mx-change="@:{update.prop}({key:'{{=p.key}}',use:'areas'})"/> -->
+        {{/if}}
+    </li>
+    {{/if}}
+    {{/if}}
+    {{/each}}
+</ul>

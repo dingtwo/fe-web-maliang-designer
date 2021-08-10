@@ -1,0 +1,35 @@
+@import "../../assets/_vars.less";
+
+.root{
+    border:solid 1px @color-border;
+    border-radius: 2px;
+    overflow-y:scroll;
+    height: 140px;
+    overscroll-behavior: contain;
+}
+.root:hover{
+    border-color: @color-border-hover;
+}
+.table-item{
+    width:116px;
+    margin:8px;
+    opacity: 0.8;
+    zoom: 0.5;
+}
+.table-item:hover{
+    opacity: 1;
+}
+.notallowed{
+    background: @color-disabled;
+    cursor: not-allowed;
+    &:hover{
+        border-color: @color-border;
+    }
+    .table-item{
+        cursor: not-allowed;
+        opacity: .4;
+    }
+    .table-item:hover{
+        opacity: 0.4;
+    }
+}

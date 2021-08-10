@@ -1,0 +1,11 @@
+<mx-number disabled="{{=disabled}}?" *step="{{#step}}" *fixed="{{#fixed}}" *min="{{#minWidth}}" *value="{{#read(cell.width)}}" class="margin-bottom-4" mx-change="@:{stop}()" mx-input="@:{update.cell.width}()"/>
+<mx-number disabled="{{=disabled}}?" *step="{{#step}}" *fixed="{{#fixed}}" *min="{{#minHeight}}" *value="{{#read(cell.height)}}" mx-change="@:{stop}()" mx-input="@:{update.cell.height}()"/>
+{{if useAH}}
+<div class="flex margin-top-4">
+    内容撑高：
+    <label class="tag-label mwp100 cursor-pointer flex align-items-center">
+        <input class="switch-input pa" type="checkbox" checked="{{=!cell.fixedHeight}}?" disabled="{{=disabled}}?" mx-change="@:{update.auto.height}()"/>
+        <i class="switch-button unselectable pr"></i>
+    </label>
+</div>
+{{/if}}

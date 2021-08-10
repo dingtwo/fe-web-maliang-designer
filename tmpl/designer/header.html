@@ -1,0 +1,110 @@
+{{if !mini}}
+<div class="flex align-items-center fl fontsize-16">
+    <i class="iconfont mr10">&#xe627;</i>
+    {{=i18n('@:{lang#site.name}')}}
+</div>
+{{/if}}
+<div class="flex align-items-center fl unselectable{{if !mini}} ml80{{/if}}">
+    {{each elements as e}}
+    {{if e.spliter}}
+    <div class="header-item-spliter fl width-1"></div>
+    {{else}}
+    {{if e.subs}}
+    <div class="header-item cursor-pointer align-items-center header-item-has-subs header-item-z-index pr">
+        <i class="iconfont header-item-icon" x-html="{{=e.icon}}"></i>
+        <b class="header-item-text fontsize-12">{{=i18n(e.title)}}</b>
+        <i class="header-item-arrow iconfont fontsize-10">&#xe73a;</i>
+        <div class="header-item-more padding-4 cursor-default pa none">
+            {{each e.subs as es}}
+            <div class="sub-item cursor-pointer align-items-center fl touch-action-none" mx-pointerdown="@:{add.element}({src:{{#es}},hide:true})">
+                {{if e.image}}
+                <img class="tag-img item-image mwp100" src="{{=es.image}}"/>
+                {{else}}
+                <i class="iconfont header-item-icon" x-html="{{=es.icon||es.ctrl.icon}}"></i>
+                {{/if}}
+                <b class="header-item-text fontsize-12">{{=i18n(es.title||es.ctrl.title)}}</b>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    {{else}}
+    <div class="header-item cursor-pointer align-items-center pr touch-action-none" mx-pointerdown="@:{add.element}({src:{{#e}}})">
+        <i class="iconfont header-item-icon" x-html="{{=e.icon||e.ctrl.icon}}"></i>
+        <b class="header-item-text fontsize-12">{{=i18n(e.title||e.ctrl.title)}}</b>
+    </div>
+    {{/if}}
+    {{/if}}
+    {{/each}}
+</div>
+<div class="flex align-items-center fr unselectable">
+    {{if template}}
+    <div class="header-item cursor-pointer align-items-center" mx-click="@:{show.examples}()">
+        <i class="iconfont">&#xe63f;</i>
+        <b class="header-item-text fontsize-12">示例</b>
+    </div>
+    {{/if}}
+    {{if su||cssc||cunf}}
+    <div class="header-item cursor-pointer align-items-center{{if dd}} header-item-z-index header-item-has-subs pr{{/if}}" mx-click="@:{save}()">
+        <i class="iconfont">&#xe64e;</i>
+        <b class="header-item-text fontsize-12">保存</b>
+        {{if dd}}
+            <i class="header-item-arrow iconfont fontsize-10">&#xe73a;</i>
+            <div class="header-item-more-menu padding-2 cursor-default pa none right-0" mx-click="@:{stop.event}()">
+                {{if su}}
+                    <div class="menu-item flex align-items-center" mx-click="@:{save}()">
+                        <i class="iconfont menu-icon fontsize-14">&#xe69e;</i>
+                        <span class="flex-fill-rest menu-text" title="{{=i18n('@:{lang#menu.save.to.remote}')}}">
+                            {{=i18n('@:{lang#menu.save.to.remote}')}}
+                        </span>
+                        <code class="short fontsize-12" title="快捷键:Ctrl+S">Ctrl+S</code>
+                    </div>
+                {{/if}}
+                {{if cssc}}
+                    <div class="menu-item flex align-items-center" mx-click="@:{show.stage.content}()">
+                        <i class="iconfont menu-icon fontsize-14">&#xe664;</i>
+                        <span class="flex-fill-rest menu-text" title="{{=i18n('@:{lang#save.content.title}')}}">
+                            {{=i18n('@:{lang#save.content.title}')}}
+                        </span>
+                        <code class="short" title="快捷键:Ctrl+{{if su}}Shift+{{/if}}S">Ctrl+{{if su}}Shift+{{/if}}S</code>
+                    </div>
+                {{/if}}
+                {{if cunf}}
+                    <div class="menu-item flex align-items-center" mx-click="@:{save.to.local}()">
+                        <i class="iconfont menu-icon fontsize-14">&#xe7e4;</i>
+                        <span class="flex-fill-rest menu-text" title="{{=i18n('@:{lang#menu.save.to.local}')}}">
+                            {{=i18n('@:{lang#menu.save.to.local}')}}
+                        </span>
+                    </div>
+                    <div class="menu-item flex align-items-center pr" mx-click="@:{read.from.local}()">
+                        <i class="iconfont menu-icon fontsize-14">&#xe807;</i>
+                        <span class="flex-fill-rest menu-text" title="{{=i18n('@:{lang#menu.import.from.local}')}}">
+                            {{=i18n('@:{lang#menu.import.from.local}')}}
+                        </span>
+                        {{if native}}
+                            <input type="file" accept=".rd" class="pa full-fill opacity-0" mx-change="@:{read.file.from.input}()"/>
+                        {{/if}}
+                    </div>
+                {{/if}}
+            </div>
+        {{/if}}
+    </div>
+    {{/if}}
+    {{if !mini}}
+    <div class="header-item-spliter fl width-1"></div>
+    <div class="header-item cursor-pointer align-items-center" mx-click="@:{preview}()">
+        <i class="iconfont">&#xe72e;</i>
+        <b class="header-item-text fontsize-12">大屏预览</b>
+    </div>
+    {{/if}}
+    <div class="header-item cursor-pointer align-items-center" mx-click="@:{print}()">
+        <i class="iconfont">&#xe70f;</i>
+        <b class="header-item-text fontsize-12">打印</b>
+    </div>
+    {{if help}}
+    <div class="header-item-spliter fl width-1"></div>
+    <div class="header-item cursor-pointer align-items-center" mx-click="@:{help}()">
+        <i class="iconfont">&#xe657;</i>
+        <b class="header-item-text fontsize-12">帮助</b>
+    </div>
+    {{/if}}
+</div>

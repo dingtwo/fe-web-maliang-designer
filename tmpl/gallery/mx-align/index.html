@@ -1,0 +1,5 @@
+<ul class="tag-ul unselectable{{if disabled}} notallowed{{/if}}">
+    {{each actions as a}}
+    <li title="{{=i18n(a['@:{g.align#title}'])}}" class="fl group-item tc cursor-pointer iconfont{{if a['@:{g.align#r90}']}} r90{{/if}}{{if value[a['@:{g.align#type}']]==a['@:{g.align#value}']}} active{{/if}}" mx-click="@:{set}({type:'{{=a['@:{g.align#type}']}}',v:'{{=a['@:{g.align#value}']}}'})" x-html="{{=a['@:{g.align#icon}']}}">&#xe687;</li>
+    {{/each}}
+</ul>

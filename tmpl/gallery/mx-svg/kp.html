@@ -1,0 +1,19 @@
+{{set total=points.length}}
+{{each points as p i}}
+<div class="flex align-items-center margin-bottom-4">
+    <span class="props-item-title tr{{if disabled}} cursor-not-allowed{{else}} cursor-pointer{{if props['@:{focus.ctrl}']==p}} props-item-title-selected{{/if}}{{/if}}" mx-pointerover="@:{focus.key.point}({key:'{{=p}}'})">
+        {{if total>3&&mod}}
+        <span class="iconfont mr5 fontsize-14{{if disabled}} color-999{{else}} gray{{/if}}" mx-click="{{=!disabled}}?@:{remove.key.point}({i:{{=i+1}}})" title="删除控制点">&#xe6b3;</span>
+        {{/if}}
+        控制点：
+    </span>
+    <mx-number class="width-140" disabled="{{=disabled}}?" *step="{{#step}}" *fixed="{{#fixed}}" *value="{{#read(props[p+'X'])}}" mx-change="@:{stop}()" mx-input="@:{update.key.point}({i:{{=i+1}},type:'X'})"/>
+</div>
+<div class="flex margin-bottom-4">
+    <span class="props-item-title tr"></span>
+    <mx-number class="width-140" disabled="{{=disabled}}?" *step="{{#step}}" *fixed="{{#fixed}}" *value="{{#read(props[p+'Y'])}}" mx-change="@:{stop}()" mx-input="@:{update.key.point}({i:{{=i+1}},type:'Y'})"/>
+</div>
+{{/each}}
+{{if mod}}
+<button class="btn tc cursor-pointer btn-brand fr" disabled="{{=disabled}}?" mx-click="@:{add.key.point}()">添加控制点</button>
+{{/if}}

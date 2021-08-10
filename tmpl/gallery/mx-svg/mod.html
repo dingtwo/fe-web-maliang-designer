@@ -1,0 +1,18 @@
+{{each points as p i}}
+{{if props[p+'X']!=null}}
+<div class="flex align-items-center margin-bottom-4">
+    <span class="props-item-title tr{{if disabled}} cursor-not-allowed{{else}} cursor-pointer{{if props['@:{focus.mod}']==p}} props-item-title-selected{{/if}}{{/if}}" mx-pointerover="@:{focus.mod.point}({key:'{{=p}}'})">调整点：</span>
+    <mx-number class="width-140" *min="{{=props[p+'Type']!='int'}}?0.00" *max="{{=props[p+'Type']!='int'}}?1.00" *step="{{#props[p+'Type']!='int'?0.01:step}}" *fixed="{{#props[p+'Type']!='int'?2:fixed}}" disabled="{{=disabled}}?" *value="{{#props[p+'Type']!='int'?props[p+'X']:read(props[p+'X'])}}" mx-change="@:{stop}()" mx-input="@:{update.mod.point}({i:{{=i+1}},type:'X'})"/>
+</div>
+{{/if}}
+{{if props[p+'Y']!=null}}
+<div class="flex align-items-center margin-bottom-4">
+    <span class="props-item-title tr{{if disabled}} cursor-not-allowed{{else}} cursor-pointer{{if props['@:{focus.mod}']==p&&props[p+'X']==null}} props-item-title-selected{{/if}}{{/if}}" mx-pointerover="{{=props[p+'X']==null}}?@:{focus.mod.point}({key:'{{=p}}'})">
+        {{if props[p+'X']==null}}
+        调整点：
+        {{/if}}
+    </span>
+    <mx-number class="width-140" *min="{{=props[p+'Type']!='int'}}?0.00" *max="{{=props[p+'Type']!='int'}}?1.00" *step="{{#props[p+'Type']!='int'?0.01:step}}" *fixed="{{#props[p+'Type']!='int'?2:fixed}}" disabled="{{=disabled}}?" *value="{{#props[p+'Type']!='int'?props[p+'Y']:read(props[p+'Y'])}}" mx-change="@:{stop}()" mx-input="@:{update.mod.point}({i:{{=i+1}},type:'Y'})"/>
+</div>
+{{/if}}
+{{/each}}

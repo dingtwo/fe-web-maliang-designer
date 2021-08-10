@@ -1,0 +1,23 @@
+<div class="overview unselectable">
+    <div class="stage-container anim pr overflow-hidden" style="width:{{=width}}px;height:{{=height}}px;margin:{{=centerMargin}}">
+        {{set count=page.pages}}
+        <div class="pointer-events-none" style="position:relative;background:{{=page.background}};width:{{=pageWidth}}{{=unit}};height:{{=pageHeight*count}}{{=unit}};margin:{{=canvasMargin}}">
+            {{for(let i=0;i<count;i++)}}
+            <div class="pa{{if i<count-1}} page-line{{/if}}" style="top:{{=pageHeight*i}}{{=unit}};width:{{=pageWidth}}{{=unit}};height:{{=pageHeight}}{{=unit}}"></div>
+            {{/for}}
+            {{each elements as {id:eId,props,type,ctrl}}}
+                {{set ew=props.width*ratio,
+                      eh=props.height*ratio,
+                      br=props.radius||0}}
+                {{if type=='circle'}}
+                    {{br='50%'}}
+                {{/if}}
+                <div id="{{=$viewId}}_{{=eId}}" class="item pa overflow-hidden flex justify-content-center align-items-center" style="left:{{=props.x*ratio}}{{=unit}};top:{{=props.y*ratio}}{{=unit}};width:{{=ew}}{{=unit}};height:{{=eh}}{{=unit}};{{if props.rotate}}transform:rotate({{=props.rotate}}deg);{{/if}}border-radius:{{=br}}{{=unit}}">
+                    <i class="iconfont inner-icon" x-html="{{=ctrl.icon}}"></i>
+                </div>
+            {{/each}}
+        </div>
+        <div class="stage-viewport anim-size pa touch-action-none" style="left:{{=left}}px;top:{{=top}}px;width:{{=viewportWidth}}px;height:{{=viewportHeight}}px;" mx-pointerdown="@:{move.viewport}()">
+        </div>
+    </div>
+</div>

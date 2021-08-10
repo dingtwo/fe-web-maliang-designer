@@ -1,0 +1,963 @@
+@import "./_vars.less";
+@font-face {
+    font-family: 'iconfont';
+    /* Project id 890516 */
+    src: url('//at.alicdn.com/t/font_890516_0d9vo6gyyqb6.woff2?t=1628133270767') format('woff2'), url('//at.alicdn.com/t/font_890516_0d9vo6gyyqb6.woff?t=1628133270767') format('woff'), url('//at.alicdn.com/t/font_890516_0d9vo6gyyqb6.ttf?t=1628133270767') format('truetype');
+}
+
+.designer-root {
+    all: initial;
+    display: block;
+    box-sizing: border-box;
+    font-size: @font-size;
+    line-height: @line-height;
+    font-family: Arial, sans-serif;
+}
+
+// Box sizing
+.box-sizing(@boxmodel) {
+    box-sizing: @boxmodel;
+}
+
+* {
+    .box-sizing(inherit);
+}
+
+*:before, *:after {
+    .box-sizing(inherit);
+}
+
+.iconfont {
+    font: 400 normal normal 16px/1 "iconfont";
+    display: inline-block;
+    speak: none;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.designer-root *::placeholder {
+    color: @color-third;
+}
+
+.designer-root *::selection {
+    background: fade(@color-brand, 20%);
+}
+
+.tag-input {
+    margin: 0;
+}
+
+.input, .textarea {
+    font-size: 100%;
+    margin: 0;
+    appearance: none;
+    caret-color: @color-brand;
+    display: inline-block;
+    height: @input-height;
+    padding: 1px 4px;
+    border-radius: @border-radius;
+    box-sizing: border-box;
+    box-shadow: none;
+    border: 1px solid @color-border;
+    background-color: #fff;
+    color: @color-primary;
+    width: @input-width;
+    max-width: 100%;
+    outline: 0;
+}
+
+.input:hover, .textarea:hover {
+    border-color: @color-border-hover;
+}
+
+.input:focus, .input-focus, .textarea:focus {
+    outline: 0;
+    border-color: @color-brand;
+}
+
+.textarea {
+    height: auto;
+    overflow: auto;
+    resize: none;
+    padding: 3px 4px;
+    font-family: Arial, sans-serif;
+    line-height: @line-height;
+}
+
+.outline-none {
+    outline: 0;
+}
+
+.input[disabled], .textarea[disabled] {
+    background-color: @color-disabled;
+    cursor: not-allowed;
+    color: @color-third;
+}
+
+
+/**
+* 修正 Firefox 19+ Placeholder 设置了opacity 的问题
+*/
+
+.input:-moz-placeholder, .textarea:-moz-placeholder {
+    color: #a9a9a9;
+    opacity: 1;
+}
+
+.input:-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+}
+
+.input[disabled]:hover, .textarea[disabled]:hover {
+    cursor: not-allowed;
+    border-color: @color-border;
+}
+
+.input-focus:hover {
+    border-color: @color-brand;
+}
+
+.btn {
+    margin: 0;
+    outline: 0;
+    display: inline-block;
+    font-weight: 400;
+    vertical-align: middle;
+    background-image: none;
+    background-color: @color-bg;
+    white-space: nowrap;
+    padding: ((@input-height - @font-size) / 2) 14px;
+    font-size: @font-size;
+    line-height: 1;
+    border: 0;
+    color: @color-primary;
+    border-radius: @border-radius;
+    user-select: none;
+}
+
+.font-weight-normal {
+    font-weight: 400;
+}
+
+.btn:hover, .btn:focus {
+    background-color: @color-bg-hover;
+    color: @color-primary;
+}
+
+.btn-brand {
+    background-color: @color-brand;
+    color: @contrast-color;
+}
+
+.btn-brand:hover, .btn-brand:focus {
+    background-color: darken(@color-brand, 5%);
+    color: @contrast-color;
+}
+
+.btn[disabled] {
+    background-color: @color-disabled;
+    color: @color-third;
+    cursor: not-allowed;
+}
+
+.btn[disabled]:hover {
+    border-color: @color-border;
+    color: @color-third;
+}
+
+
+/**
+  * 移除 Firefox 3+ 的内边距
+  */
+
+.btn:-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+}
+
+.dialog-header {
+    padding: 8px 25px;
+    border-bottom: 1px solid fade(@color-border, 40%);
+    color: @color-primary;
+    margin: 0;
+    line-height: @line-height;
+}
+
+.dialog-header-with-shadow {
+    margin-top: -20px;
+}
+
+.dialog-header-shadow {
+    height: 10px;
+    margin-top: 10px;
+    top: 28px;
+    box-shadow: 0 0 6px #ccc;
+}
+
+.line-height-1 {
+    line-height: 1.1;
+}
+
+.dialog-body {
+    padding: 18px 25px;
+}
+
+.dialog-footer-shadow {
+    height: 10px;
+    bottom: 28px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 6px #ccc;
+}
+
+.dialog-footer {
+    padding: 8px 25px;
+    border-top: 1px solid fade(@color-border, 40%);
+}
+
+.dialog-footer-with-shadow {
+    margin-bottom: -20px;
+}
+
+.loading {
+    padding: 150px 0;
+    margin: 0 auto;
+    width: 150px;
+    line-height: 0;
+}
+
+.loading-anim, .loading:after, .loading:before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    background-color: @color-bg;
+    border-radius: 100%;
+    display: inline-block;
+    animation: sk-bouncedelay 1s infinite ease-in-out both;
+}
+
+.loading:before {
+    animation-delay: -0.32s;
+}
+
+.loading-anim {
+    margin: 0 10px;
+    animation-delay: -0.16s;
+}
+
+@keyframes sk-bouncedelay {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1.0);
+    }
+}
+
+.tag-label {
+    display: inline-block;
+    font-weight: 400;
+}
+
+.tag-h5 {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+.tag-ul {
+    list-style-type: none;
+    list-style-image: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tag-a {
+    color: @color-brand;
+    text-decoration: none;
+    &:hover, &:focus {
+        color: darken(@color-brand, 12%);
+    }
+    &:hover, &:focus, &:active, &:visited {
+        outline: 0;
+    }
+}
+
+
+/**
+* 1. 去除 IE6-9 和 Firefox 3 中 a 内部 img 元素默认的边框
+* 2. 修正 IE8 图片消失bug
+* 3. 防止 img 指定「height」时图片高度不能按照宽度等比缩放，导致图片变形
+    http://jsbin.com/aJoTUca/2
+* 4. 让图片支持响应式
+* 5. 去除现代浏览器图片底部的空隙
+* 6. 修复 IE7 图片缩放失真
+*/
+
+.tag-img {
+    border-style: none;
+    height: auto;
+    vertical-align: top;
+}
+
+.mr2 {
+    margin-right: 2px;
+}
+
+.ml5 {
+    margin-left: 5px;
+}
+
+.r180 {
+    transform: rotate(180deg);
+}
+
+.r90 {
+    transform: rotate(90deg);
+}
+
+.r270 {
+    transform: rotate(270deg);
+}
+
+// .mt5 { margin-top: 5px; }
+// .mt10 { margin-top: 10px; }
+// .mt15 { margin-top: 15px; }
+// .mt20 { margin-top: 20px; }
+// .mt25 { margin-top: 25px; }
+// .mt30 { margin-top: 30px; }
+.mr5 {
+    margin-right: 5px;
+}
+
+.mr10 {
+    margin-right: 10px;
+}
+
+// .mr15 { margin-right: 15px; }
+// .mr20 { margin-right: 20px; }
+// .mr25 { margin-right: 25px; }
+// .mr30 { margin-right: 30px; }
+// .mb5 { margin-bottom: 5px; }
+// .mb10 { margin-bottom: 10px; }
+// .mb15 { margin-bottom: 15px; }
+// .mb20 { margin-bottom: 20px; }
+// .mb25 { margin-bottom: 25px; }
+// .mb30 { margin-bottom: 30px; }
+// .ml5 {
+//     margin-left: 5px;
+// }
+.ml10 {
+    margin-left: 10px;
+}
+
+// .ml15 { margin-left: 15px; }
+// .ml20 { margin-left: 20px; }
+// .ml25 { margin-left: 25px; }
+// .ml30 { margin-left: 30px; }
+// .pt5 { padding-top: 5px; }
+// .pt10 { padding-top: 10px; }
+// .pt15 { padding-top: 15px; }
+// .pt20 { padding-top: 20px; }
+// .pt25 { padding-top: 25px; }
+// .pt30 { padding-top: 30px; }
+// .pr5 { padding-right: 5px; }
+// .pr10 { padding-right: 10px; }
+// .pr15 { padding-right: 15px; }
+// .pr20 { padding-right: 20px; }
+// .pr25 { padding-right: 25px; }
+// .pr30 { padding-right: 30px; }
+// .pb5 { padding-bottom: 5px; }
+// .pb10 { padding-bottom: 10px; }
+// .pb15 { padding-bottom: 15px; }
+// .pb20 { padding-bottom: 20px; }
+// .pb25 { padding-bottom: 25px; }
+// .pb30 { padding-bottom: 30px; }
+// .pl5 { padding-left: 5px; }
+.pl10 {
+    padding-left: 10px;
+}
+
+// .pl15 { padding-left: 15px; }
+// .pl20 { padding-left: 20px; }
+// .pl25 { padding-left: 25px; }
+// .pl30 { padding-left: 30px; }
+.background-color-brand-a60 {
+    background-color: fade(@color-brand, 60%);
+}
+
+.background-color-fff {
+    background-color: #fff;
+}
+
+.wp100 {
+    width: 100%;
+}
+
+.hp100 {
+    height: 100%;
+}
+
+.mwp100 {
+    max-width: 100%;
+}
+
+.mhp100 {
+    max-height: 100%;
+}
+
+.tr {
+    text-align: right;
+}
+
+// .tl { text-align: left; }
+.tc {
+    text-align: center;
+}
+
+// .vt{vertical-align: top;}
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.pa {
+    position: absolute;
+}
+
+.pr {
+    position: relative;
+}
+
+.pointer-events-none {
+    pointer-events: none;
+}
+
+.pointer-events-all {
+    pointer-events: all;
+}
+
+.mt30 {
+    margin: 30px 0;
+}
+
+html .none {
+    display: none;
+}
+
+.display-block {
+    display: block;
+}
+
+.display-inline-block {
+    display: inline-block;
+}
+
+.unselectable {
+    user-select: none;
+}
+
+.scrollable {
+    &::-webkit-scrollbar {
+        height: 4px;
+        width: 4px;
+        background: @stage-background;
+    }
+    &::-webkit-scrollbar-corner {
+        height: 4px;
+        width: 4px;
+        background: @stage-background;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: @color-brand;
+        border-radius: 2px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background: darken(@color-brand, 10%);
+    }
+}
+
+.thin-scrollable {
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+    &::-webkit-scrollbar {
+        height: 2px;
+        width: 2px;
+        background: @panel-background;
+    }
+    &::-webkit-scrollbar-corner {
+        height: 2px;
+        width: 2px;
+        background: @panel-background;
+    }
+}
+
+.ellipsis {
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-spliter {
+    height: 1px;
+    margin: 5px 0;
+    background: linear-gradient(to right, #0000, #7d768454 50%, #0000);
+}
+
+.flex-fill-rest {
+    flex: 1;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-direction-column {
+    flex-direction: column;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.flipx {
+    transform: scaleX(-1);
+}
+
+.flipy {
+    transform: scaleY(-1);
+}
+
+.ml80 {
+    margin-left: 80px;
+}
+
+.position-sticky {
+    position: sticky;
+}
+
+.top-0 {
+    top: 0;
+}
+
+.margin-bottom-4 {
+    margin-bottom: 4px;
+}
+
+.margin-top-4 {
+    margin-top: 4px;
+}
+
+.width-60 {
+    width: 60px;
+}
+
+.width-140 {
+    width: 140px;
+}
+
+.width-113 {
+    width: 113px;
+}
+
+.width-220 {
+    width: 220px;
+}
+
+.height-100 {
+    height: 100px;
+}
+
+.height-1 {
+    height: 1px;
+}
+
+.height-4 {
+    height: 4px;
+}
+
+.width-1 {
+    width: 1px;
+}
+
+.width-4 {
+    width: 4px;
+}
+
+.justify-content-space-between {
+    justify-content: space-between;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-flex-end {
+    justify-content: flex-end;
+}
+
+.flex-wrap-wrap {
+    flex-wrap: wrap;
+}
+
+.fore-color-border {
+    color: @color-border;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.cursor-default {
+    cursor: default;
+}
+
+.cursor-text {
+    cursor: text;
+}
+
+.word-break-break-all {
+    word-break: break-all;
+}
+
+// .padding-10 {
+//     padding: 10px;
+// }
+// .hidden{
+//     visibility: hidden;
+// }
+.table {
+    border-collapse: collapse;
+}
+
+.table-cell {
+    border: 1px solid #000;
+    padding: 0;
+}
+
+.table-main-cell {
+    background: fade(@color-brand, 5%);
+}
+
+.text-pre-hidden {
+    overflow: hidden;
+    white-space: pre;
+}
+
+// .hod-normal{
+//     border:solid 1px #ddd6;
+// }
+.hod-focus-line {
+    border: solid 2px @color-brand;
+}
+
+.hod-right, .hod-left {
+    border-right: solid 6px @color-brand;
+    border-radius: @border-radius
+}
+
+.hod-right {
+    right: -4px;
+}
+
+.hod-left {
+    left: -4px;
+}
+
+.hod-bottom, .hod-top {
+    border-bottom: solid 6px @color-brand;
+    border-radius: @border-radius;
+}
+
+.hod-bottom {
+    bottom: -4px;
+}
+
+.hod-top {
+    top: -4px;
+}
+
+.hod-focus-div {
+    inset: -1px;
+}
+
+.full-fill {
+    inset: 0;
+}
+
+.hod-drop-tip {
+    box-shadow: inset 2px 2px 10px rgba(0, 0, 0, .2);
+    outline: @color-brand 2px solid;
+    background-color: fade(@color-brand, 10%);
+}
+
+.props-item-title {
+    width: 80px;
+}
+
+.props-item-title-selected {
+    background: fade(@color-brand, 20%);
+}
+
+.align-items-flex-start {
+    align-items: flex-start;
+}
+
+.switch-input {
+    visibility: hidden;
+}
+
+.switch-button {
+    width: @input-height * 2 - 12;
+    height: @input-height - 6;
+    display: inline-block;
+    border-radius: @input-height;
+    background: @color-bg;
+}
+
+.switch-button::before {
+    content: '';
+    width: @input-height - 4 - 6;
+    height: @input-height - 4 - 6;
+    position: absolute;
+    left: 0;
+    margin: 2px;
+    border-radius: 50%;
+    background: #fff;
+    transition: all @duration;
+}
+
+.transition {
+    transition: all @duration;
+}
+
+.switch-input:checked+.switch-button {
+    background: @color-brand;
+}
+
+.switch-input:checked+.switch-button::before {
+    left: 100%;
+    margin-left: -(@input-height - 4 - 4);
+}
+
+.switch-input:disabled+.switch-button {
+    background: @color-border;
+    cursor: not-allowed;
+}
+
+.group-item {
+    width: 20px;
+    margin: 0 1px;
+    height: 20px;
+    line-height: 20px;
+    background: #e0e0e0;
+    border-radius: @border-radius;
+}
+
+.group-item:hover {
+    background: @color-bg;
+}
+
+.active, .active:hover {
+    background: @color-brand;
+    color: @contrast-color;
+}
+
+.notallowed, .notallowed .group-item {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.notallowed .group-item, .notallowed .group-item:hover {
+    background: #e9e9e9;
+}
+
+.notallowed .active, .notallowed .active:hover {
+    background: lighten(@color-brand, 10%);
+}
+
+.cursor-not-allowed {
+    cursor: not-allowed;
+}
+
+.gray, .color-999 {
+    color: @color-third;
+}
+
+.color-fill-999 {
+    fill: @color-third;
+}
+
+.color-666 {
+    color: @color-secondary;
+}
+
+.gray:hover {
+    color: @color-secondary;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.overflow-visible {
+    overflow: visible;
+}
+
+.overflow-auto {
+    overflow: auto;
+}
+
+.overflow-scroll {
+    overflow: scroll;
+}
+
+.overflow-y-scroll {
+    overflow-y: scroll;
+}
+
+.fontsize-10 {
+    font-size: 10px;
+}
+
+.fontsize-12 {
+    font-size: 12px;
+}
+
+.fontsize-14 {
+    font-size: 14px;
+}
+
+.fontsize-16 {
+    font-size: 16px;
+}
+
+.fontsize-26 {
+    font-size: 26px;
+}
+
+.right-2 {
+    right: 2px;
+}
+
+.right-0 {
+    right: 0;
+}
+
+.top-2 {
+    top: 2px;
+}
+
+.bottom-2 {
+    bottom: 2px;
+}
+
+.bottom-0 {
+    bottom: 0;
+}
+
+.select-rect {
+    border: dashed 1px @color-brand;
+    display: none;
+    z-index: 2;
+}
+
+.border-dotted-999 {
+    border: dotted 1px @color-third;
+}
+
+.z-index-1 {
+    z-index: 1;
+}
+
+.z-index-5 {
+    z-index: 5;
+}
+
+.z-index-6 {
+    z-index: 6;
+}
+
+.z-index-7 {
+    z-index: 7;
+}
+
+.z-index-8 {
+    z-index: 8;
+}
+
+.chart-loading::before {
+    width: 100%;
+    height: 100%;
+    content: attr(data-tip);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.min-height-80 {
+    min-height: 80px;
+}
+
+.min-height-500 {
+    min-height: 500px;
+}
+
+.min-height-100vh {
+    min-height: 100vh;
+}
+
+.border-style-dashed {
+    border-style: dashed;
+}
+
+.contain-paint {
+    contain: paint;
+}
+
+.padding-4 {
+    padding: 4px;
+}
+
+.padding-2 {
+    padding: 2px;
+}
+
+.left-2 {
+    left: 2px;
+}
+
+.cell-icon {
+    border-radius: @border-radius;
+    padding: 2px;
+}
+
+.form-input {
+    opacity: 0;
+}
+
+.form-input:focus {
+    opacity: 1;
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+
+.transform-y-n50 {
+    transform: translateY(-50%);
+}
+
+.transform-x-n50 {
+    transform: translateX(-50%);
+}
+
+.touch-action-none {
+    touch-action: none;
+}

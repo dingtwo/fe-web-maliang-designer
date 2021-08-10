@@ -1,0 +1,41 @@
+@import "../../assets/_vars.less";
+.item-draggable {
+    border: solid 1px @color-border;
+    border-radius: 2px;
+    margin: 2px 0;
+    background-color: #fff;
+}
+
+.opacity-40 {
+    opacity: 0.4;
+}
+
+.branch-title {
+    height: @input-height;
+    line-height: @input-height;
+    border-radius: @border-radius;
+}
+
+.branch-title:hover {
+    background: @color-hover;
+}
+
+.search-input {
+    margin: -4px -4px 0;
+    top: 0;
+    padding: 4px;
+    z-index: 2;
+}
+
+.search-highlight {
+    color: @color-danger;
+}
+
+.search-remove {
+    right: 8px;
+    top: 8px;
+    opacity: 0.2;
+    &:hover {
+        opacity: 0.5;
+    }
+}

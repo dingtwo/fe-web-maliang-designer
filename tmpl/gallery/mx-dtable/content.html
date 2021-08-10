@@ -1,0 +1,39 @@
+{{each list as e i last}}
+{{if !e['@:{if.show}']||e['@:{if.show}'](cell,props)}}
+<div class="flex align-items-center margin-bottom-4">
+    <span class="props-item-title tr">
+        {{=i18n(e.tip)}}
+    </span>
+    {{set data=cell[e.key]}}
+    {{if e.read}}
+        {{data=e.read(data,cell);}}
+    {{/if}}
+    {{if e.type==ptype['@:{eprops#number}']}}
+        <mx-number class="width-140" *min="{{#e.min}}??" *max="{{#e.max}}??" *step="{{#e.step}}??" *fixed="{{#e.fixed}}??" disabled="{{=disabled}}?" *value="{{#data}}" mx-change="@:{stop}()" mx-input="@:{update.prop}({key:'{{=e.key}}',use:'value',write:{{#e.write}}})"/>
+    {{else if e.type==ptype['@:{eprops#dropdown}']}}
+        <mx-dropdown class="width-140 flex" *disabled="{{#disabled}}" *selected="{{=data}}" *list="{{#e.items}}" *text-key="text" *value-key="value" mx-change="@:{update.prop}({key:'{{=e.key}}',use:'value',omit:{{=e.omit}}})"/>
+    {{else if e.type==ptype['@:{eprops#align}']}}
+        <mx-align class="flex width-140" *disabled="{{#disabled}}" *value="{{#cell}}" mx-input="@:{update.prop}()"/>
+    {{else if e.type==ptype['@:{eprops#color}']}}
+        <mx-color *clear="{{=e.clear}}" class="width-140" *color="{{#data}}" *align="right" *disabled="{{=disabled}}" *alpha="{{=e.alpha}}" mx-input="@:{update.prop}({key:'{{=e.key}}',use:'color'})"/>
+    {{else if e.type==ptype['@:{eprops#font.style}']}}
+        <mx-font.style class="flex width-140" *disabled="{{#disabled}}" *value="{{#cell}}" *prefix="textStyle" mx-input="@:{update.prop}({use:'_'})"/>
+    {{else if e.type==ptype['@:{eprops#text.area}']}}
+        <textarea class="textarea width-140 height-100" disabled="{{=disabled}}?" mx-input="@:{update.prop}({key:'{{=e.key}}',native:'value'})">{{=data}}</textarea>
+    {{else if e.type==ptype['@:{eprops#text.input}']}}
+        <input class="input width-140" value="{{=data}}" disabled="{{=disabled}}?" mx-input="@:{update.prop}({key:'{{=e.key}}',native:'value'})"/>
+    {{else if e.type==ptype['@:{eprops#boolean}']}}
+        <label class="tag-label mwp100 cursor-pointer flex align-items-center">
+            <input class="switch-input pa" type="checkbox" checked="{{=data}}?" disabled="{{=disabled}}?" mx-change="@:{update.prop}({key:'{{=e.key}}',native:'checked'})"/>
+            <i class="switch-button unselectable pr"></i>
+        </label>
+    {{else if e.type==ptype['@:{eprops#image}']}}
+        <mx-picture class="width-140" *src="{{=data}}" *disabled="{{#disabled}}" mx-change="@:{update.prop}({key:'{{=e.key}}',use:'src'})"/>
+    {{else if e.type==ptype['@:{eprops#format}']}}
+        <mx-format class="width-140" *format="{{#data}}" *disabled="{{#disabled}}" mx-change="@:{update.prop}({key:'{{=e.key}}',use:'format'})"/>
+    {{else if e.type==ptype['@:{eprops#format.fx}']}}
+        <mx-format.fx class="width-140" *format="{{#data}}" *disabled="{{#disabled}}" mx-change="@:{update.prop}({key:'{{=e.key}}',use:'format'})"/>
+    {{/if}}
+</div>
+{{/if}}
+{{/each}}

@@ -1,0 +1,8 @@
+<div class="format cursor-pointer flex align-items-center{{if disabled}} notallowed{{/if}}" mx-click="{{=!disabled}}?@:{choose.format}()" title="{{=text}}??">
+    <div title="点击{{=format?'查看或编辑':'编辑'}}函数" class="flex-fill-rest ellipsis{{if !text}} color-999{{/if}}">
+        点击{{=format?'查看或编辑':'编辑'}}函数
+    </div>
+    {{if format}}
+    <i class="iconfont remove" mx-click="{{=!disabled}}?@:{clear.format}()" title="清除函数">&#xe624;</i>
+    {{/if}}
+</div>

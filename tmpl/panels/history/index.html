@@ -1,0 +1,20 @@
+<div class="history-wrap">
+    {{set title}}
+    {{each list as h i by desc}}
+    {{title=i18n(h['@:{history#description}'],h['@:{history#ext.description}'])}}
+    <div id="h_{{=$viewId}}_{{=i}}" class="history flex cursor-pointer align-items-center{{if i==index}} history-selected{{/if}}{{if i>index}} history-redo{{/if}}" title="{{=i18n('@:{lang#history.recover}',title)}}">
+        <i class="iconfont history-icon fontsize-12" x-html="{{=h['@:{history#icon}']}}" mx-click="{{i!=index}}?@:{set.history}({at:{{=i}}})"></i>
+        <div class="ellipsis flex-fill-rest" mx-click="{{i!=index}}?@:{set.history}({at:{{=i}}})">
+            {{=title}}
+        </div>
+        <i class="iconfont move fontsize-10 gray remove-icon" title="{{=i18n('@:{lang#remove.history}')}}" mx-click="@:{remove.history}({at:{{=i}}})">&#xe6b3;</i>
+    </div>
+    {{/each}}
+    {{title=i18n(bottom['@:{history#description}'],bottom['@:{history#ext.description}'])}}
+    <div id="h_{{=$viewId}}_-1" class="history flex cursor-pointer align-items-center{{if index==-1}} history-selected{{/if}}" mx-click="{{-1!=index}}?@:{set.history}({at:-1})" title="{{=i18n('@:{lang#history.recover}',title)}}">
+        <i class="iconfont history-icon fontsize-12" x-html="{{=bottom['@:{history#icon}']}}"></i>
+        <div class="ellipsis">
+            {{=title}}
+        </div>
+    </div>
+</div>

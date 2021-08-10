@@ -1,0 +1,5 @@
+{{each panels as p i}}
+    {{if p.icon}}
+        <i class="iconfont toolbar-item cursor-pointer align-items-center justify-content-center{{if p['@:{panel#opened}']}} toolbar-item-active{{/if}}" x-html="{{=p.icon}}" mx-click="@:{toggle.panel}({id:'{{=p.id}}'})" title="{{=i18n(p['@:{panel#opened}']?'@:{lang#panel.close.panel}':'@:{lang#panel.open.panel}',p.title,i+1)}}"></i>
+    {{/if}}
+{{/each}}

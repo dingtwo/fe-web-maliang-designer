@@ -1,0 +1,58 @@
+{{set {props,ctrl,type,id}=element}}
+<mx-vframe class="unselectable{{if props.readonly&&ctrl.as!='@:{element.as#hod}'}} pointer-events-none{{/if}}" src="{{=view}}" id="entity_{{=$viewId}}" *props="{{#props}}" *element="{{#element}}" *selected="{{#selected}}" *count="{{#count}}" *fs="{{#fs}}"/>
+{{set r=(props.rotate||0)%360}}
+{{set {min,max}=Math}}
+<!--非全屏的情况下才使用遮盖和显示相应的手柄-->
+{{if !fs}}
+    <div id="mask_{{=element.id}}" style="left:{{=props.x}}px;top:{{=props.y}}px;width:{{=props.width}}px;height:{{=props.height}}px;{{if r}}transform:rotate({{=r}}deg){{/if}}" class="z-index-1 pointer-events-none pa unselectable normal{{if selected}}{{if props.locked}} locked-line{{else}} focus-line{{/if}}{{if selfGrouped}} grouped-self{{/if}}{{/if}}{{if grouped}}{{if props.locked}} grouped-locked-line{{else}} grouped-line{{/if}}{{/if}}">
+        {{set modifier=ctrl['@:{modifier}']}}
+        {{if modifier&&modifier.icon&&!props.readonly}}
+            <!--如果需要显示icon且元素非只读，则显示icon-->
+            <i class="iconfont pa icon pointer-events-all" x-html="{{=ctrl.icon}}"></i>
+        {{/if}}
+        {{if !props.locked&&selected}}
+            <!--未编辑锁定且被选中的情况下，展示中间点十字-->
+            <div class="cross pa"></div>
+            {{if count==1&&modifier}}<!--当前元素被选中，且选中元素只有一个，则肯定为当前元素。有修改指示器-->
+                <!--支持旋转-->
+                {{if modifier.rotate}}
+                    <div class="rotate pa pointer-events-all" mx-mousedown="@:{start.rotate}()" title="{{=i18n('@:{lang#press.drag.rotate.element}')}}"></div>
+                {{/if}}
+                {{set height=0,
+                    　width=0,
+                    　top=0,
+                    　left=0,
+                    　size}}
+                {{if modifier.width}}<!--允许修改宽度-->
+                    {{height=(min(20,props.height-5)-4)}}
+                    {{top=(props.height-height)/2-2}}
+                {{/if}}
+                {{if modifier.height}}<!--允许修改高度-->
+                    {{width=(min(20,props.width-2)-4)}}
+                    {{left=(props.width-width)/2-2}}
+                {{/if}}
+                <!--计算拐角手柄的尺寸-->
+                {{size=min(max(0,min(props.height-height-top-6,props.width-width-left-4)),14)}}
+                {{if modifier.width}}
+                    <!--安装左右2个修改手柄-->
+                    <div class="pa left pointer-events-all" style="height:{{=max(height,0)}}px;top:{{=top}}px;cursor:{{=cursor(r,0)}}-resize" title="{{=i18n('@:{lang#press.drag.width.element}')}}" mx-mousedown="@:{start.resize}({key:'ml'})"></div>
+                    <div class="pa right pointer-events-all" style="height:{{=max(height,0)}}px;top:{{=top}}px;cursor:{{=cursor(r,0)}}-resize" title="{{=i18n('@:{lang#press.drag.width.element}')}}" mx-mousedown="@:{start.resize}({key:'mr'})"></div>
+                {{/if}}
+
+                {{if modifier.height}}
+                    <!--安装上下2个修改手柄-->
+                    <div class="pa top pointer-events-all" style="width:{{=max(width,0)}}px;left:{{=left}}px;cursor:{{=cursor(r,90)}}-resize" title="{{=i18n('@:{lang#press.drag.height.element}')}}" mx-mousedown="@:{start.resize}({key:'tm'})"></div>
+                    <div class="pa bottom pointer-events-all" style="width:{{=max(width,0)}}px;left:{{=left}}px;cursor:{{=cursor(r,90)}}-resize" title="{{=i18n('@:{lang#press.drag.height.element}')}}" mx-mousedown="@:{start.resize}({key:'bm'})"></div>
+                {{/if}}
+
+                {{if modifier.size||(modifier.width&&modifier.height)}}
+                    <!--宽高同时支持修改，安装4个拐角手柄-->
+                    <div class="pa right-bottom pointer-events-all" style="{{if size==0}}display:none;{{/if}}width:{{=size}}px;height:{{=size}}px;cursor:{{=cursor(r,45)}}-resize;" title="{{=i18n('@:{lang#press.drag.width.height.element}')}}" mx-mousedown="@:{start.resize}({key:'br'})"></div>
+                    <div class="pa left-bottom pointer-events-all{{if size<4}} none{{/if}}" style="width:{{=size}}px;height:{{=size}}px;cursor:{{=cursor(r,135)}}-resize;" title="{{=i18n('@:{lang#press.drag.width.height.element}')}}" mx-mousedown="@:{start.resize}({key:'bl'})"></div>
+                    <div class="pa left-top pointer-events-all{{if size<4}} none{{/if}}" style="width:{{=size}}px;height:{{=size}}px;cursor:{{=cursor(r,45)}}-resize;" title="{{=i18n('@:{lang#press.drag.width.height.element}')}}" mx-mousedown="@:{start.resize}({key:'tl'})"></div>
+                    <div class="pa right-top pointer-events-all{{if size<4}} none{{/if}}" style="width:{{=size}}px;height:{{=size}}px;cursor:{{=cursor(r,135)}}-resize;" title="{{=i18n('@:{lang#press.drag.width.height.element}')}}" mx-mousedown="@:{start.resize}({key:'tr'})"></div>
+                {{/if}}
+            {{/if}}
+        {{/if}}
+    </div>
+{{/if}}

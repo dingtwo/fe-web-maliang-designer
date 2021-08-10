@@ -1,0 +1,22 @@
+{{each borders as b i last}}
+<div class="flex align-items-center margin-bottom-4">
+    <span class="props-item-title tr">
+        {{=bt[i]}}{{=i18n('@:{lang#props.border}')}}
+    </span>
+    <mx-dropdown class="width-140 flex" *disabled="{{#disabled}}" *list="{{#borderTypes}}" *text-key="text" *value-key="value" *selected="{{=cell['border'+b+'Style']}}" mx-change="@:{change.border.style}({key:'{{=b}}'})"/>
+</div>
+<div class="flex align-items-center margin-bottom-4">
+    <span class="props-item-title tr"></span>
+    <mx-number class="width-113 mr5" disabled="{{=disabled}}?" *min="0" *max="{{#max}}" *step="{{#step}}" *fixed="{{#fixed}}" *value="{{#read(cell['border'+b+'Width'])}}" mx-change="@:{stop}()" mx-input="@:{update.border.width}({key:'{{=b}}'})"/>
+    <mx-color *disabled="{{#disabled}}" *align="right" *alpha="true" *color="{{#cell['border'+b+'Color']}}" mx-input="@:{update.border.color}({key:'{{=b}}'})"/>
+</div>
+{{/each}}
+
+{{each brs as b i last}}
+<div class="flex align-items-center{{if !last}} margin-bottom-4{{/if}}">
+    <span class="props-item-title tr">
+        {{=brt[i]}}{{=i18n('@:{lang#props.border.radius}')}}
+    </span>
+    <mx-number class="width-140" disabled="{{=disabled}}?" *min="0" *step="{{#step}}" *fixed="{{#fixed}}" *value="{{#read(cell['border'+b+'Radius'])}}" mx-change="@:{stop}()" mx-input="@:{update.border.radius}({key:'{{=b}}'})"/>
+</div>
+{{/each}}

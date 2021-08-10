@@ -1,0 +1,9 @@
+<div class="overflow-hidden z-index-1 pa{{if enter}} hod-drop-tip{{/if}}" style="left:{{=props.x}}{{=unit}};top:{{=props.y}}{{=unit}};height:{{=props.height}}{{=unit}};opacity:{{=props.alpha}};width:{{=props.width}}{{=unit}};transform:rotate({{=props.rotate}}deg)" mx-dragenter="@:{when.data.field.enter}()" mx-dragleave="@:{when.data.field.leave}()" mx-drop="@:{when.data.field.drop}()">
+    {{if props.image||props.webUrl}}
+        <img class="tag-img wp100 hp100 pointer-events-none" style="{{if props.rotateX||props.rotateY}}transform:{{if props.rotateX}}rotateX(180deg){{/if}}{{if props.rotateY}} rotateY(180deg){{/if}}{{/if}}" src="{{=props.image||props.webUrl}}" />
+    {{else}}
+        <div class="overflow-hidden pointer-events-none tc" style="font-size: {{=props.tfs}}{{=unit}};height:{{=props.height}}{{=unit}};line-height:{{=props.height}}{{=unit}};width:{{=props.width}}{{=unit}};">
+            {{=text||i18n('@:{lang#elements.image.select.image}')}}
+        </div>
+    {{/if}}
+</div>

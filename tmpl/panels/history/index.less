@@ -1,0 +1,41 @@
+@import "../../assets/_vars.less";
+.history-wrap {
+    padding: 5px 4px;
+}
+
+.history {
+    color: @color-primary;
+    margin: 1px 0;
+    height: @input-height;
+    line-height: @input-height;
+    border-radius: @border-radius;
+}
+
+.history:hover {
+    background: @color-hover;
+}
+
+.history-redo {
+    opacity: 0.6;
+}
+
+.history-selected, .history-selected:hover {
+    background: lighten(@color-brand, 30%);
+}
+
+.history-icon {
+    margin: 0 4px 0 2px;
+    width: 12px;
+}
+
+.remove-icon {
+    visibility: hidden;
+}
+
+.history:hover .remove-icon {
+    visibility: visible;
+}
+
+.move {
+    margin: 0 4px 0 2px;
+}

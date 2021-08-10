@@ -1,0 +1,47 @@
+@import "../assets/_vars.less";
+.toolbar-item {
+    height: 22px;
+    width: 22px;
+    margin: 0 2px;
+    display: inline-flex;
+    border-radius: @border-radius;
+}
+
+.toolbar-item:hover {
+    background: @color-border;
+    color: @color-primary;
+}
+
+.toolbar-item-active, .toolbar-item-active:hover {
+    background: #c4c4c4;
+}
+
+.toolbar-spliter, .toolbar-compact-spliter {
+    height: 16px;
+    width: 1px;
+    background: #eee;
+}
+
+.toolbar-spliter {
+    margin: 3px 12px;
+}
+
+.toolbar-compact-spliter {
+    margin: 3px 6px;
+}
+
+.toolbar-item-disabled {
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+.toolbar-item-disabled:hover {
+    color: #aaa;
+    background: transparent;
+}
+
+.toolbar-text {
+    font-weight: 400;
+    width: 40px;
+    display: inline-block;
+}

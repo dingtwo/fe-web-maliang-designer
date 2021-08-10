@@ -1,0 +1,65 @@
+{{let current}}
+<div class="y-axis-help pr{{if !show}} none{{/if}}" style="transform:translateY(-{{=sTop}}px)" id="_rd_{{=$viewId}}_y_help">
+    {{each yHelpers as yHelp yi}}
+        {{current=abs(yStart)+yHelp*scale+20}}
+        <div class="y-axis-help-line pa pointer-events-none transform-y-n50" style="width:{{=vWidth}}px;top:{{=current}}px;">
+            <i class="iconfont y-help-line-icon pa cursor-pointer pointer-events-all fontsize-10" title="{{=i18n('@:{lang#axis.delete.line}')}}" mx-click="@:{delete.help.line}({type:'y',i:{{=yi}}})">&#xe6b3;</i>
+            <span class="y-help-line-text color-666 pa fontsize-10 cursor-default">{{=toUnit(yHelp)}}</span>
+            <span class="y-help-line-move pa overflow-hidden pointer-events-all touch-action-none" mx-pointerdown="@:{drag.help.line}({type:'y',i:{{=yi}},c:{{=current}}})" title="{{=i18n('@:{lang#axis.move.line}')}}" tabindex="0" mx-keydown="@:{move.help.line}({type:'y',i:{{=yi}}})"></span>
+        </div>
+    {{/each}}
+</div>
+<div class="x-axis-help pr{{if !show}} none{{/if}}" style="transform:translateX(-{{=sLeft}}px)" id="_rd_{{=$viewId}}_x_help">
+    {{each xHelpers as xHelp xi}}
+        {{current=abs(xStart)+xHelp*scale}}
+        <div class="x-axis-help-line pa pointer-events-none transform-x-n50" style="height:{{=vHeight}}px;left:{{=current}}px;">
+            <i class="iconfont x-help-line-icon pa cursor-pointer pointer-events-all fontsize-10" title="{{=i18n('@:{lang#axis.delete.line}')}}" mx-click="@:{delete.help.line}({type:'x',i:{{=xi}}})">&#xe6b3;</i>
+            <span class="x-help-line-text color-666 pa fontsize-10 cursor-default">{{=toUnit(xHelp)}}</span>
+            <span class="x-help-line-move pa overflow-hidden pointer-events-all touch-action-none" mx-pointerdown="@:{drag.help.line}({type:'x',i:{{=xi}},c:{{=current}}})" title="{{=i18n('@:{lang#axis.move.line}')}}" tabindex="0" mx-keydown="@:{move.help.line}({type:'x',i:{{=xi}}})"></span>
+        </div>
+    {{/each}}
+</div> 
+<div mx-pointermove="@:{show.x.line}()" mx-pointerout="@:{hide.x.line}()" mx-click="@:{add.x.help.line}()">
+    <div class="axis-x background-color-fff overflow-hidden pr wp100 z-index-200" id="_rd_{{=$viewId}}_x">
+        <mx-vframe src="./axis-xrod" class="hp100" style="width:{{=width}}px;"
+        *decimals="{{#decimals}}"
+        *unit="{{=unit}}"
+        *width="{{#width}}"
+        *x-start="{{#xStart}}"
+        *x-end="{{#xEnd}}"
+        *step="{{#step}}"
+        *space="{{#space}}"
+        *scale="{{#scale}}"
+        *hbar="{{#hbar}}"
+        *bar="{{#bar}}"
+        *bar-color="{{#barColor}}"/>
+    </div>
+    <div class="axis-x-line pa pointer-events-none none z-index-200 width-1 transform-x-n50" id="_rd_{{=$viewId}}_x_line" style="height:{{=vHeight+20}}px">
+        <span class="axis-x-tip pa fontsize-10" id="_rd_{{=$viewId}}_x_tip">-</span>
+    </div>
+</div>
+<div mx-pointermove="@:{show.y.line}()" mx-pointerout="@:{hide.y.line}()" mx-click="@:{add.y.help.line}()">
+    <div class="axis-y background-color-fff overflow-hidden pr z-index-200" style="height:{{=vHeight}}px;" id="_rd_{{=$viewId}}_y">
+        <mx-vframe src="./axis-yrod" style="height:{{=height}}px;"
+        *decimals="{{#decimals}}"
+        *unit="{{=unit}}"
+        *height="{{#height}}"
+        *y-start="{{#yStart}}"
+        *y-end="{{#yEnd}}"
+        *step="{{#step}}"
+        *space="{{#space}}"
+        *scale="{{#scale}}"
+        *hbar="{{#hbar}}"
+        *bar="{{#bar}}"
+        *bar-color="{{#barColor}}"/>
+    </div>
+    <div class="axis-y-line pa pointer-events-none none z-index-200 transform-y-n50" id="_rd_{{=$viewId}}_y_line" style="width:{{=vWidth+20}}px">
+        <span class="axis-y-tip pa fontsize-10" id="_rd_{{=$viewId}}_y_tip">-</span>
+    </div>
+</div>
+{{set lines=xHelpers.length+yHelpers.length}}
+<div class="axis-corner pa background-color-fff flex align-items-center justify-content-center gray{{if lines}} cursor-pointer{{/if}}" title="{{if lines}}{{=i18n(show?'@:{lang#axis.hide.all.lines}':'@:{lang#axis.show.all.lines}')}}(H){{/if}}" mx-click="@:{toggle.help.lines}({lines:{{=lines}}})">
+    {{if lines}}
+    <i class="iconfont fontsize-14">{{if show}}&#xe676;{{else}}&#xe6f4;{{/if}}</i>
+    {{/if}}
+</div>

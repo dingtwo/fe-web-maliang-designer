@@ -1,0 +1,43 @@
+<div class="pa z-index-1" style="left:{{=props.x}}{{=unit}};top:{{=props.y}}{{=unit}};opacity:{{=props.alpha}};width:{{=props.width}}{{=unit}};height:{{=props.height}}{{=unit}}">
+    {{set {max,min}=Math}}
+    {{set {borderwidth,bordertype,bordercolor,borderdeed,rows,readonly}=props}}
+    {{set bwn=(borderdeed=='collapse'?1:2)*borderwidth}}
+    <table class="wp100 table" style="border-collapse:{{=borderdeed}}">
+        <tbody>
+        {{each rows as row ri}}
+        <tr>
+            {{each row.cols as col ci}}
+            <td class="table-cell word-break-break-all touch-action-none{{if selectRect&&srRow==ri&&srCol==ci}} overflow-hidden{{/if}}" colspan="{{=col.colspan}}??" rowspan="{{=col.rowspan}}??" style="position:relative;width:{{=col.width}}{{=unit}};height:{{=col.height}}{{=unit}};border-left:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bLeft?bordercolor:'#ddd6'}};border-top:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bTop?bordercolor:'#ddd6'}};border-right:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bRight?bordercolor:'#ddd6'}};border-bottom:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bBottom?bordercolor:'#ddd6'}}" mx-pointerdown="@:{active.cell}({row:{{=ri}},col:{{=ci}},elm:1})" id="_rd_h_{{=element.id}}_{{=ri}}_{{=ci}}">
+                <div class="wp100 hp100 pr overflow-hidden" data-as="hod" id="_rd_hm_{{=element.id}}_{{=ri}}_{{=ci}}" mx-contextmenu="@:{show.contxtmenu}({row:{{=ri}},col:{{=ci}}})">
+                    {{each col.elements as e}}
+                        <mx-vframe class="touch-action-none" id="{{=e.id}}" src="../{{=e.type}}/designer" *element="{{#e}}" *fs="{{#fs}}" *owner-id="_rd_h_{{=element.id}}_{{=ri}}_{{=ci}}" *mask-id="_rd_hm_{{=element.id}}_{{=ri}}_{{=ci}}" *unit="{{#unit}}" mx-pointerdown="@:{element.start.drag}({element:{{#e}},maskId:'_rd_hm_{{=element.id}}_{{=ri}}_{{=ci}}'})"/>
+                    {{/each}}
+                </div>
+                {{if !fs&&!props.locked}}
+                {{set focusCurrentCell=props.focusRow==ri&&props.focusCol==ci&&selected&&count==1}}
+                <div class="pa hod-focus-div z-index-1 pointer-events-none{{if focusCurrentCell}} hod-focus-line{{/if}}" style="{{if focusCurrentCell}}{{if !col.bLeft}}border-left-style:dotted;{{/if}}{{if !col.bTop}}border-top-style:dotted;{{/if}}{{if !col.bRight}}border-right-style:dotted;{{/if}}{{if !col.bBottom}}border-bottom-style:dotted;{{/if}}{{/if}}" id="_rd_dm_{{=element.id}}_{{=ri}}_{{=ci}}">
+                    {{if focusCurrentCell&&!grouped}}
+                    {{set height=(min(26,toPx(col.height)-6)-4)}}
+                    {{set width=(min(26,toPx(col.width)-6)-4)}}
+                    {{set top=(toPx(col.height)-height-bwn)/2-2}}
+                    {{set left=(toPx(col.width)-width-bwn)/2-2}}
+                    <div class="pa hod-right pointer-events-all touch-action-none" style="height:{{=max(height,0)}}px;top:{{=top}}px;cursor:ew-resize" title="{{=i18n('@:{lang#press.drag.cell.width}')}}" mx-pointerdown="@:{start.resize.table.cell}({key:'mr'})"></div>
+                    <div class="pa hod-left pointer-events-all touch-action-none" style="height:{{=max(height,0)}}px;top:{{=top}}px;cursor:ew-resize" title="{{=i18n('@:{lang#press.drag.cell.width}')}}" mx-pointerdown="@:{start.resize.table.cell}({key:'ml'})"></div>
+                    <div class="pa hod-bottom pointer-events-all touch-action-none" style="width:{{=max(width,0)}}px;left:{{=left}}px;cursor:ns-resize" title="{{=i18n('@:{lang#press.drag.cell.height}')}}" mx-pointerdown="@:{start.resize.table.cell}({key:'bm'})"></div>
+                    <div class="pa hod-top pointer-events-all touch-action-none" style="width:{{=max(width,0)}}px;left:{{=left}}px;cursor:ns-resize" title="{{=i18n('@:{lang#press.drag.cell.height}')}}" mx-pointerdown="@:{start.resize.table.cell}({key:'tm'})"></div>
+                    {{/if}}
+                </div>
+                {{/if}}
+                {{if !readonly && !fs && col.elements && col.elements.length}}
+                    <i class="pa z-index-1 left-2 top-2 cell-icon gray iconfont fontsize-10 cursor-pointer background-color-fff" title="{{=i18n('@:{lang#cell.select}')}}">&#xe647;</i>
+                {{/if}}
+                {{if selectRect && srRow==ri && srCol==ci}}
+                    <div class="select-rect pointer-events-none pa" style="display:block;left:{{=selectRect.x}}px;top:{{=selectRect.y}}px;width:{{=selectRect.width}}px;height:{{=selectRect.height}}px"></div>
+                {{/if}}
+            </td>
+            {{/each}}
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>

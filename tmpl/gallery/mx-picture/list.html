@@ -1,0 +1,40 @@
+<div class="dialog-header-shadow position-sticky z-index-7"></div>
+<div class="dialog-header position-sticky top-0 background-color-fff flex align-items-center dialog-header-with-shadow z-index-8">
+    <h5 class="tag-h5">{{=i18n('@:{lang#lib.images}')}}</h5>
+    <a class="tag-a ml10" href="https://github.com/xinglie/report-designer/issues/28" rel="noopener noreferrer" target="_blank">如何不显示或更换图片库接口?</a>
+</div>
+<div class="dialog-body min-height-100vh">
+    {{if error}}
+        <div class="tc mt30 fontsize-16">{{=error.message}}</div>
+    {{else}}
+    <div class="flex tabs">
+        {{each list as category ci}}
+            <div class="tabs-item tc cursor-pointer{{if ci==current}} tabs-active{{/if}}" mx-click="{{ci!=current}}?@:{change.tab}({to:{{=ci}}})">{{=category.title}}</div>
+        {{/each}}
+        <!-- <div class="tabs-item tc cursor-pointer{{if 'upload'==current}} tabs-active{{/if}}" mx-click="{{'upload'!=current}}?@:{change.tab}({to:'upload'})">本地上传</div> -->
+        <div class="tabs-item tc cursor-pointer{{if 'network'==current}} tabs-active{{/if}}" mx-click="{{'network'!=current}}?@:{change.tab}({to:'network'})">网络图片</div>
+    </div>
+        <!-- {{if current=='upload'}}
+            abc1
+        {{else  -->
+    {{if current=='network'}}
+        <div class="flex margin-100">
+            网络地址:
+            <input placeholder="请粘贴/输入网络图片地址" class="tag-input input ml10 flex-fill-rest" id="_rd_nw_{{=$viewId}}"/>
+            <button class="btn btn-brand ml10" mx-click="@:{apply.network.image}()">{{=i18n('@:{lang#btn.apply}')}}</button>
+        </div>
+    {{else}}
+        <div class="flex flex-wrap-wrap">
+            {{each list[current].list as p}}
+                <div title="{{=p.title}}">
+                    <div class="item-container padding-4 height-100 cursor-pointer overflow-hidden" mx-click="@:{use}({src:'{{=p.src}}'})">
+                        <div class="item hp100" style="background-image:url('{{=p.src}}')"></div>
+                    </div>
+                    <div class="tc item-title ellipsis">{{=p.title}}</div>
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
+    <!-- <mx-vframe class="flex justify-content-center align-items-center" style="height: 50px;" src="../mx-pager/index" *total="2000" *page="89" *size="20" mx-change="@:{page.change}()"/> -->
+    {{/if}}
+</div>

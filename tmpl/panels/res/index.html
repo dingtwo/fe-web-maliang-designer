@@ -1,0 +1,29 @@
+<div class="debug-wrap">
+    <div class="flex">
+        <mx-link class="tag-a" target="_blank" to="https://space.bilibili.com/1699691485">
+            B站源码讲解视频
+        </mx-link>
+        <mx-link class="tag-a ml10"  target="_blank" to="https://github.com/xinglie/report-designer/issues/36">
+            源码讲解文字版
+        </mx-link>
+        <mx-link class="tag-a ml10"  target="_blank" to="https://github.com/xinglie/report-designer/issues/44">
+            开发新的元素
+        </mx-link>
+    </div>
+    {{if d}}
+    <div class="item-spliter"></div>
+    <div class="color-999 fontsize-12">以下采用console.log输出，需要打开浏览器的调试工具，在console面板查看</div>
+    <div class="mt5">
+        <button class="btn btn-brand cursor-pointer" mx-click="@:{log.state}()">查看State对象</button>
+        <button class="btn btn-brand cursor-pointer ml10" mx-click="@:{log.state.data}()">查看State中的数据</button>
+        <button class="btn btn-brand cursor-pointer ml10" mx-click="@:{log.history.data}()">查看历史记录</button>
+        <button class="btn btn-brand cursor-pointer mt5" mx-click="@:{log.vom}()">查看组件结构</button>
+        <button class="btn btn-brand cursor-pointer mt5 ml10" mx-click="@:{log.stage.elements}()">查看设计区元素</button>
+        <button class="btn btn-brand cursor-pointer mt5 ml10" mx-click="@:{log.select.elements}()">查看设选中元素</button>
+        <button class="btn btn-brand cursor-pointer mt5" mx-click="@:{log.clipboard}()">查看剪切板</button>
+        <button class="btn btn-brand cursor-pointer mt5 ml10" mx-click="@:{clear.clipboard}()">清空剪切板</button>
+        <button class="btn btn-brand cursor-pointer mt5 ml10" mx-click="@:{add.text.to.cell}()">向格子内添加文本元素</button>
+        <button class="btn btn-brand cursor-pointer mt5" mx-click="@:{add.text.to.stage}()">添加到设计区</button>
+    </div>
+    {{/if}}
+</div>

@@ -1,0 +1,5 @@
+<i class="toolbar-spliter fl"></i>
+<i class="iconfont toolbar-item cursor-pointer align-items-center justify-content-center{{if !canDuplicate}} toolbar-item-disabled{{/if}}" title="{{=i18n('@:{lang#menu.duplicate}')}}(Ctrl+D)" mx-click="{{=canDuplicate}}?@:{duplicate}()">&#xe6b1;</i>
+<i class="iconfont toolbar-item cursor-pointer align-items-center justify-content-center{{if !canCopy}} toolbar-item-disabled{{/if}}" title="{{=i18n('@:{lang#menu.copy}')}}(Ctrl+C)" mx-click="{{=canCopy}}?@:{copy}()">&#xe69a;</i>
+<i class="iconfont toolbar-item cursor-pointer align-items-center justify-content-center{{if !canCut}} toolbar-item-disabled{{/if}}" title="{{=i18n('@:{lang#menu.cut}')}}(Ctrl+X)" mx-click="{{=canCut}}?@:{cut}()">&#xe6bf;</i>
+<i class="iconfont toolbar-item cursor-pointer align-items-center justify-content-center{{if !canPaste}} toolbar-item-disabled{{/if}}" title="{{=i18n('@:{lang#menu.paste}')}}(Ctrl+V)" mx-click="{{=canPaste}}?@:{paste}()">&#xe6c1;</i>

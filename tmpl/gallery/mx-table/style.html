@@ -1,0 +1,29 @@
+<div class="root background-color-fff scrollable thin-scrollable{{if disabled}} notallowed{{/if}}">
+{{each skins as s}}
+    <table class="table-item cursor-pointer table fl" style="border-color:{{=s.bordercolor}}" mx-click="{{=!disabled}}?@:{set.skin}({skin:{{#s}}})">
+        <thead>
+            <tr>
+                <th class="table-cell word-break-break-all" style="border-color:{{=s.bordercolor}};text-align:{{=s.cellAlign}};{{if s.theadRowBackground}}background:{{=s.theadRowBackground}}{{/if}}">
+                    <div class="text-pre-hidden" style="height:{{=s.theadRowHeight}}px;line-height:{{=s.theadRowHeight}}px;font-size:{{=s.theadFontsize}}px;color:{{=s.theadForecolor}}">表头</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="table-cell word-break-break-all" style="text-align:{{=s.cellAlign}};border-color:{{=s.bordercolor}};background:{{=s.tbodyOddRowBackground}}">
+                    <div class="text-pre-hidden" style="height:{{=s.tbodyRowHeight}}px;line-height:{{=s.tbodyRowHeight}}px;font-size:{{=s.tbodyFontsize}}px;color:{{=s.tbodyForecolor}}">
+                        奇数行
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-cell word-break-break-all" style="text-align:{{=s.cellAlign}};border-color:{{=s.bordercolor}};background:{{=s.tbodyEvenRowBackground}}">
+                    <div class="text-pre-hidden" style="height:{{=s.tbodyRowHeight}}px;line-height:{{=s.tbodyRowHeight}}px;font-size:{{=s.tbodyFontsize}}px;color:{{=s.tbodyForecolor}}">
+                        偶数行
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{{/each}}
+</div>

@@ -1,0 +1,96 @@
+.page-break {
+    page-break-after: auto;
+    page-break-inside: avoid;
+}
+
+.width-120 {
+    width: 120px;
+}
+
+.width-350 {
+    width: 350px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.pdf-ifm {
+    height: calc(100vh - 45px);
+}
+
+.progress-tip {
+    position: fixed;
+    bottom: 0;
+    padding: 4px;
+    background-color: #fff;
+    box-shadow: -1px -1px 4px #0000002b;
+}
+
+.spliter {
+    height: 30px;
+    background: linear-gradient(#ddd4, #ddd 30%, #ddd 70%, #ddd4);
+    margin: 4px 20px;
+}
+
+.need-auth {
+    left: 5px;
+    top: 5px;
+    color: red;
+    border: solid 1px red;
+    background-color: #fff;
+    padding: 4px;
+    display: none;
+    z-index: 10000;
+}
+
+@page {
+    margin: 0;
+}
+
+@media screen {
+    .header {
+        box-shadow: 0 0 6px 0 rgba(0, 0, 0, .3);
+        margin-bottom: 10px;
+        height: 34px;
+        justify-content: flex-end;
+        padding-right: 50px;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background-color: #fff;
+    }
+    .tip {
+        height: 120px;
+        line-height: 120px;
+    }
+    .page {
+        box-shadow: 0 0 6px 0 rgba(0, 0, 0, .3);
+        content-visibility: auto;
+        contain: paint;
+    }
+    .page-display {
+        margin: 20px auto;
+    }
+}
+
+@media print {
+    .header {
+        display: none;
+    }
+    body {
+        min-width: auto;
+    }
+    .page-display {
+        margin: 0;
+    }
+    .page {
+        box-shadow: none;
+    }
+    .wrap {
+        display: block;
+    }
+    .need-auth {
+        display: block;
+    }
+}

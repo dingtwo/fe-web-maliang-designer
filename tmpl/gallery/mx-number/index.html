@@ -1,0 +1,3 @@
+<input class="ipt display-block wp100 hp100" id="_mx_ipt_{{=$viewId}}" mx-focusin="@:{active}()" mx-focusout="@:{deactive}()" mx-change="@:{stop}()" mx-keydown="@:{press.check}()" disabled="{{=disabled}}?" autocomplete="off" mx-input="@:{input.check}()" mx-wheel="@:{wheel}()"/>
+<span class="up right-0 pa arrow unselectable cursor-pointer touch-action-none{{if disabled}} notallowed{{/if}}" mx-click="@:{key.num.change}({i:1})" mx-pointerdown="@:{fast.start}({i:1})" mx-contextmenu="@:{prevent}()"></span>
+<span class="down right-0 pa arrow unselectable cursor-pointer touch-action-none{{if disabled}} notallowed{{/if}}" mx-click="@:{key.num.change}()" mx-pointerdown="@:{fast.start}()" mx-contextmenu="@:{prevent}()"></span>

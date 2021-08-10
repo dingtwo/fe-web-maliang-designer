@@ -1,0 +1,21 @@
+<div class="fl flex align-items-center hp100">
+    <mx-vframe src="./toolbar-do"/>
+    {{if !mini}}
+    <mx-vframe src="./toolbar-start"/>
+    <mx-vframe src="./toolbar-cxv"/>
+    {{/if}}
+    <mx-vframe src="./toolbar-avg"/>
+    <mx-vframe src="./toolbar-align"/>
+    <!-- <mx-vframe src="./toolbar-space"/> -->
+    <mx-vframe src="./toolbar-layer"/>
+    <mx-vframe src="./toolbar-group"/>
+    <mx-vframe src="./toolbar-locker"/>
+    <mx-vframe src="./toolbar-del"/>
+</div>
+<div class="fr hp100 flex align-items-center">
+    <mx-vframe src="./toolbar-scale"/>
+    <i class="toolbar-compact-spliter fl"></i>
+    <mx-vframe src="./toolbar-panels"/>
+    <i class="toolbar-compact-spliter fl"></i>
+    <i class="iconfont toolbar-item cursor-pointer align-items-center justify-content-center{{if allOpen}} toolbar-item-active{{/if}}" mx-click="@:{close.all.panel}()" title="{{=i18n(allOpen?'@:{lang#panel.close.all}':'@:{lang#panel.open.all}')}}">&#xe651;</i>
+</div>

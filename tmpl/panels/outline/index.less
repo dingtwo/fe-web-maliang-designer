@@ -1,0 +1,35 @@
+@import "../../assets/_vars.less";
+.anim {
+    transition: all @duration;
+}
+
+.anim-size {
+    transition: width, height @duration;
+}
+
+.overview {
+    padding: 2px 0;
+}
+
+.stage-container {
+    background: @stage-background;
+    box-shadow: inset 1px 1px 6px 2px #dadada;
+}
+
+.stage-viewport {
+    box-shadow: inset 0px 0px 1px 1px @color-brand;
+    cursor: move;
+}
+
+.item {
+    background: lighten(@color-brand, 20%);
+}
+
+.inner-icon {
+    transform: scale(0.5);
+    color: @contrast-color;
+}
+
+.page-line {
+    border-bottom: dotted 1px #c8c8c8;
+}

@@ -1,0 +1,68 @@
+@import "../assets/_vars.less";
+.panel {
+    background: #fffe;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+    transform: translate3d(0, 0, 0);
+}
+
+.panel:hover {
+    will-change: left, top, right, bottom, transform;
+}
+
+.title {
+    height: 18px;
+    line-height: 18px;
+    background: @color-brand;
+    color: @contrast-color;
+}
+
+.title-text {
+    padding: 0 5px;
+    cursor: move;
+    width: calc(~"100% - 36px");
+}
+
+.title-icon {
+    width: 16px;
+    height: 14px;
+    margin: 0 1px;
+    display: inline-flex;
+    border-radius: @border-radius;
+}
+
+.title-icon:hover {
+    background: darken(@color-brand, 10%);
+}
+
+.anim-move {
+    transition-duration: @duration;
+}
+
+.content-outer {
+    transition: height @duration;
+}
+
+.content-outer-disable-anim {
+    transition: none;
+}
+
+.content {
+    overscroll-behavior: contain;
+    content-visibility: auto;
+}
+
+.hbar {
+    width: 3px;
+    cursor: ew-resize;
+    inset: 0 0 0 auto;
+}
+
+.foot {
+    height: 3px;
+    cursor: ns-resize;
+    inset: auto 0 0;
+}
+
+.foot:hover, .resize-hover, .hbar:hover {
+    background: lighten(@color-brand, 20%);
+}

@@ -1,0 +1,13 @@
+<div class="drop-zone background-color-fff{{if enter}} drop-zone-enter{{/if}}{{if disabled}} notallowed{{/if}}{{if !fields||!fields.length}} flex align-items-center{{/if}}" mx-dragleave="@:{drag.exit}()" mx-dragenter="@:{drag.enter}()" mx-contextmenu="@:{prevent}()">
+    {{if fields&&fields.length}}
+        {{each fields as field i}}
+            <div class="item-draggable background-color-fff pr fontsize-12{{if i==dragIndex}} item-dragged{{if outside}} item-removed{{/if}}{{else if i==index}} item--{{=onTop?'top':'bottom'}}{{/if}}" draggable="{{=!disabled}}?true" mx-dragstart="@:{drag.start}({index:{{=i}}})" mx-dragover="@:{drag.over}({index:{{=i}}})" mx-dragend="@:{drag.end}()">
+                <span class="iconfont fontsize-12">&#xe69c;</span>{{=field.name}}
+            </div>
+        {{/each}}
+    {{else}}
+        <div class="drop-tip color-999">
+            {{=i18n('@:{lang#mx-gallery.field.drag.tip}')}}
+        </div>
+    {{/if}}
+</div>

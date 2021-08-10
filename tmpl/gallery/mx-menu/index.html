@@ -1,0 +1,22 @@
+<div style="width:{{=width}}px;position:absolute;left:-10000px;top:-10000px"
+    class="container scrollable thin-scrollable"
+    id="_mx_cnt_{{=$viewId}}"
+    mx-contextmenu="@:{prevent}()">
+    <ul class="tag-ul unselectable cursor-default">
+        {{each list as one}}
+        {{if one.spliter}}
+        <li class="spliter"></li>
+        {{else}}
+        <li class="flex align-items-center items-li cursor-default{{if disabled[one.id]}} item-disabled{{/if}}" mx-click="{{=!disabled[one.id]}}?@:{select}({item:{{#one}}})">
+            <i class="iconfont mr5 icon overflow-hidden fontsize-14 color-666{{if one.r180}} r180{{else if one.r90}} r90{{/if}}" x-html="{{=one.icon}}??"></i>
+            <b class="flex-fill-rest font-weight-normal">
+                {{=one.text}}
+            </b>
+            {{if one.short}}
+                <code class="color-999 fontsize-12 short" title="快捷键:{{=one.short}}">{{=one.short}}</code>
+            {{/if}}
+        </li>
+        {{/if}}
+        {{/each}}
+    </ul>
+</div>

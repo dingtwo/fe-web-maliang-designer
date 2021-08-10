@@ -1,0 +1,37 @@
+<div class="pa z-index-1 flex flex-direction-column" style="left:{{=props.x}}{{=unit}};top:{{=props.y}}{{=unit}};opacity:{{=props.alpha}};width:{{=props.width}}{{=unit}};height:{{=props.height}}{{=unit}};">
+    {{set {max,min}=Math}}
+    {{each props.rows as row ri}}
+    <div class="flex">
+        {{each row.cols as col ci}}
+        <div style="position:relative;height:{{=row.height}}{{=unit}};width:{{=col.width}}{{=unit}};border-top:{{=col.borderTopStyle}} {{=col.borderTopWidth}}{{=unit}} {{=col.borderTopColor}};border-right:{{=col.borderRightStyle}} {{=col.borderRightWidth}}{{=unit}} {{=col.borderRightColor}};border-bottom:{{=col.borderBottomStyle}} {{=col.borderBottomWidth}}{{=unit}} {{=col.borderBottomColor}};border-left:{{=col.borderLeftStyle}} {{=col.borderLeftWidth}}{{=unit}} {{=col.borderLeftColor}};border-radius:{{=col.borderLeftTopRadius}}{{=unit}} {{=col.borderRightTopRadius}}{{=unit}} {{=col.borderRightBottomRadius}}{{=unit}} {{=col.borderLeftBottomRadius}}{{=unit}};{{if selectRect&&srRow==ri&&srCol==ci}}overflow:hidden{{/if}}" mx-pointerdown="@:{active.cell}({row:{{=ri}},col:{{=ci}},elm:1})" id="_rd_h_{{=element.id}}_{{=ri}}_{{=ci}}" class="touch-action-none">
+            <div class="wp100 hp100 pr overflow-hidden" data-as="hod" mx-contextmenu="@:{show.contxtmenu}({row:{{=ri}},col:{{=ci}}})" id="_rd_hm_{{=element.id}}_{{=ri}}_{{=ci}}">
+                {{each col.elements as e}}
+                    <mx-vframe class="touch-action-none" id="{{=e.id}}" src="../{{=e.type}}/designer" *element="{{#e}}" *fs="{{#fs}}" *owner-id="_rd_h_{{=element.id}}_{{=ri}}_{{=ci}}" *mask-id="_rd_hm_{{=element.id}}_{{=ri}}_{{=ci}}" *unit="{{#unit}}" mx-pointerdown="@:{element.start.drag}({element:{{#e}},maskId:'_rd_hm_{{=element.id}}_{{=ri}}_{{=ci}}'})"/>
+                {{/each}}
+            </div>
+            {{if !fs&&!props.locked}}
+            {{set focusCurrentCell=props.focusRow==ri&&props.focusCol==ci&&selected&&count==1}}
+            <div class="pa hod-focus-div z-index-1 pointer-events-none{{if focusCurrentCell}} hod-focus-line{{/if}}" id="_rd_dm_{{=element.id}}_{{=ri}}_{{=ci}}" style="{{if focusCurrentCell}}border-top-style:{{=col.borderTopStyle}};border-right-style:{{=col.borderRightStyle}};border-bottom-style:{{=col.borderBottomStyle}};border-left-style:{{=col.borderLeftStyle}}{{/if}}">
+                {{if focusCurrentCell&&!grouped}}
+                {{set height=(min(26,toPx(row.height)-2)-4)}}
+                {{set width=(min(26,toPx(col.width)-2)-4)}}
+                {{set top=(toPx(row.height)-height)/2-2}}
+                {{set left=(toPx(col.width)-width)/2-2}}
+                <div class="pa hod-right pointer-events-all touch-action-none" style="height:{{=max(height,0)}}px;top:{{=top}}px;cursor:ew-resize" title="{{=i18n('@:{lang#press.drag.cell.width}')}}" mx-pointerdown="@:{start.resize}({key:'mr'})"></div>
+                <div class="pa hod-left pointer-events-all touch-action-none" style="height:{{=max(height,0)}}px;top:{{=top}}px;cursor:ew-resize" title="{{=i18n('@:{lang#press.drag.cell.width}')}}" mx-pointerdown="@:{start.resize}({key:'ml'})"></div>
+                <div class="pa hod-bottom pointer-events-all touch-action-none" style="width:{{=max(width,0)}}px;left:{{=left}}px;cursor:ns-resize" title="{{=i18n('@:{lang#press.drag.cell.height}')}}" mx-pointerdown="@:{start.resize}({key:'bm'})"></div>
+                <div class="pa hod-top pointer-events-all touch-action-none" style="width:{{=max(width,0)}}px;left:{{=left}}px;cursor:ns-resize" title="{{=i18n('@:{lang#press.drag.cell.height}')}}" mx-pointerdown="@:{start.resize}({key:'tm'})"></div>
+                {{/if}}
+            </div>
+            {{/if}}
+            {{if !props.readonly && !fs && col.elements && col.elements.length}}
+                <i class="pa z-index-1 left-2 top-2 cell-icon gray iconfont fontsize-10 cursor-pointer background-color-fff" title="{{=i18n('@:{lang#cell.select}')}}">&#xe647;</i>
+            {{/if}}
+            {{if selectRect&&srRow==ri&&srCol==ci}}
+                <div class="select-rect pointer-events-none pa" style="display:block;left:{{=selectRect.x}}px;top:{{=selectRect.y}}px;width:{{=selectRect.width}}px;height:{{=selectRect.height}}px"></div>
+            {{/if}}
+        </div>
+        {{/each}}
+    </div>
+    {{/each}}
+</div>

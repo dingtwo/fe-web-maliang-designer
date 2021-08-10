@@ -1,0 +1,12 @@
+<div class="pa z-index-1 overflow-hidden{{if enter}} hod-drop-tip{{/if}}" style="left:{{=props.x}}{{=unit}};top:{{=props.y}}{{=unit}};height:{{=props.height}}{{=unit}};opacity:{{=props.alpha}};width:{{=props.width}}{{=unit}};transform:rotate({{=props.rotate}}deg)" mx-dragenter="@:{when.data.field.enter}()" mx-dragleave="@:{when.data.field.leave}()" mx-drop="@:{when.data.field.drop}()">
+    {{if !text||error}}
+        <div class="overflow-hidden pointer-events-none tc" style="font-size: {{=props.tfs}}{{=unit}};height:{{=props.height}}{{=unit}};line-height:{{=props.height}}{{=unit}};width:{{=props.width}}{{=unit}};">
+            {{if error}}
+                {{=error}}
+            {{else}}
+                {{=i18n('@:{lang#elements.qrcode.empty.tip}')}}
+            {{/if}}
+        </div>
+    {{/if}}
+    <div class="pointer-events-none" id="_rd_{{=$viewId}}_qr"></div>
+</div>

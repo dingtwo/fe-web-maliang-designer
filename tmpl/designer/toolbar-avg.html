@@ -1,0 +1,4 @@
+<i class="toolbar-spliter fl"></i>
+{{each actions as a}}
+<i class="iconfont toolbar-item cursor-pointer align-items-center justify-content-center{{if a.r180}} r180{{else if a.r90}} r90{{/if}}{{if !this[a.use]}} toolbar-item-disabled{{/if}}" title="{{=i18n(a.title)}}" mx-click="{{=this[a.use]}}?@:{align.elements}({to:'{{=a.to}}'})" x-html="{{=a.icon}}"></i>
+{{/each}}

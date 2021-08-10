@@ -1,0 +1,68 @@
+<div class="color flex align-items-center pr{{if disabled}} notallowed{{/if}}" mx-contextmenu="@:{prevent}()" id="_mx_root_{{=$viewId}}">
+    {{if text}}
+    <div class="text unselectable{{if !disabled}} cursor-pointer{{/if}}" style="{{if textWidth}}width:{{=textWidth}}px{{/if}}" mx-click="@:{toggle}()">{{=text}}</div>
+    {{/if}}
+    <div class="picker pr unselectable{{if !disabled}} cursor-pointer{{/if}}{{if !text}} wp100{{/if}}" mx-click="@:{toggle}()" style="{{if color}}background:{{=color}};{{/if}}">p</div>
+    {{if clear&&color}}
+    <i class="iconfont remove fontsize-12 pa{{if !disabled}} cursor-pointer{{/if}}" mx-click="@:{clear.color}()" title="{{=i18n('@:{lang#remove.color}')}}">&#xe624;</i>
+    {{/if}}
+    <div id="_mx_bd_{{=$viewId}}" class="color-zone unselectable none pa placement--{{=placement}}" style="{{=align}}:-1px">
+        {{if renderUI}}
+        <ul class="tag-ul shortcuts flex cursor-pointer flex-wrap-wrap" id="_mx_scs_{{=$viewId}}">
+            {{each shortcuts as sc}}
+            <li class="shortcuts-item pr fl" id="_mx_sc_{{=sc}}_{{=$viewId}}" style="background:#{{=sc}}" mx-click="@:{shortcuts.picked}({color:'#{{=sc}}'})"></li>
+            {{/each}}
+        </ul>
+        <div class="body">
+            <div class="cpicker pr fl touch-action-none" id="_mx_cz_{{=$viewId}}" mx-pointerdown="@:{color.zone.drag}()">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%">
+                    <defs>
+                        <lineargradient id="_mx_gb_{{=$viewId}}" x1="0%" y1="100%" x2="0%" y2="0%">
+                            <stop offset="0%" stop-color="#000000" stop-opacity="1"></stop>
+                            <stop offset="100%" stop-color="#CC9A81" stop-opacity="0"></stop>
+                        </lineargradient>
+                        <lineargradient id="_mx_gw_{{=$viewId}}" x1="0%" y1="100%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"></stop>
+                            <stop offset="100%" stop-color="#CC9A81" stop-opacity="0"></stop>
+                        </lineargradient>
+                    </defs>
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#_mx_gw_{{=$viewId}})"></rect>
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#_mx_gb_{{=$viewId}})"></rect>
+                </svg>
+                <div class="cpicker-indicator pa cursor-pointer" id="_mx_ci_{{=$viewId}}"></div>
+            </div>
+            <div class="slide pr fl touch-action-none" mx-pointerdown="@:{slide.drag}()">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%">
+                    <defs>
+                        <lineargradient id="_mx_ghsv_{{=$viewId}}" x1="0%" y1="100%" x2="0%" y2="0%">
+                            <stop offset="0%" stop-color="#FF0000" stop-opacity="1"></stop>
+                            <stop offset="13%" stop-color="#FF00FF" stop-opacity="1"></stop>
+                            <stop offset="25%" stop-color="#8000FF" stop-opacity="1"></stop>
+                            <stop offset="38%" stop-color="#0040FF" stop-opacity="1"></stop>
+                            <stop offset="50%" stop-color="#00FFFF" stop-opacity="1"></stop>
+                            <stop offset="63%" stop-color="#00FF40" stop-opacity="1"></stop>
+                            <stop offset="75%" stop-color="#0BED00" stop-opacity="1"></stop>
+                            <stop offset="88%" stop-color="#FFFF00" stop-opacity="1"></stop>
+                            <stop offset="100%" stop-color="#FF0000" stop-opacity="1"></stop>
+                        </lineargradient>
+                    </defs>
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#_mx_ghsv_{{=$viewId}})"></rect>
+                </svg>
+                <div class="slide-indicator left-2 pa cursor-pointer" id="_mx_si_{{=$viewId}}"></div>
+            </div>
+        </div>
+        {{if alpha}}
+        <div class="alpha pr">
+            <div class="hp100 pr touch-action-none" id="_mx_at_{{=$viewId}}" mx-pointerdown="@:{alpha.drag}()">
+                <div class="alpha-indicator pa cursor-pointer" id="_mx_ai_{{=$viewId}}"></div>
+            </div>
+        </div>
+        {{/if}}
+        <div class="foot">
+            <span class="bgcolor display-inline-block" id="_mx_bc_{{=$viewId}}"></span>
+            <input class="input color-value" readonly id="_mx_v_{{=$viewId}}" value="{{=current}}" />
+            <button class="btn tc cursor-pointer btn-brand width-56" type="button" mx-click="@:{enter}();">{{=i18n('@:{lang#mx-gallery.enter}')}}</button>
+        </div>
+        {{/if}}
+    </div>
+</div>

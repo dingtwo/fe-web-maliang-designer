@@ -1,0 +1,11 @@
+{{if error||text}}
+    <div class="pa overflow-hidden z-index-1" style="left:{{=props.x}}{{=unit}};top:{{=props.y}}{{=unit}};height:{{=props.height}}{{=unit}};opacity:{{=props.alpha}};width:{{=props.width}}{{=unit}};transform:rotate({{=props.rotate}}deg)">
+        {{if error}}
+            <div class="flex hp100 align-items-center justify-content-center">
+                {{=error}}
+            </div>
+        {{else}}
+            <img id="_rd_{{=$viewId}}_bar" class="tag-img mwp100 wp100 hp100"/>
+        {{/if}}
+    </div>
+{{/if}}

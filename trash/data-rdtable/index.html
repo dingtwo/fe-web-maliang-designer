@@ -1,0 +1,143 @@
+<div class="pa z-index-1" style="left:{{=props.x}}{{=unit}};top:{{=props.y}}{{=unit}};opacity:{{=props.alpha}};width:{{=props.width}}{{=unit}};">
+    {{set findLabelRow,findTotalRow}}
+    {{set {borderwidth,bordertype,bordercolor,borderdeed,rows,bind}=props}}
+    {{set bwn=(borderdeed=='collapse'?1:2)*borderwidth}}
+    {{set dataRowCols}}
+    <table class="wp100 table" style="border-collapse:{{=borderdeed}}">
+        <tbody>
+        {{each rows as row ri}}
+            {{if (row.label&&bind._data&&bind._data.length&&!props.hideLabel)||(!row.data&&!row.label&&!findLabelRow&&bind._showHead)||(findTotalRow&&!props.hideFoot&&bind._showFoot)||(row.total&&!props.hideTotal&&bind._showAcc&&bind._data&&bind._data.length)}}
+            <tr>
+                {{each row.cols as col ci}}
+                <td class="table-cell word-break-break-all overflow-hidden" colspan="{{=col.colspan!=1}}?{{=col.colspan}}" rowspan="{{=col.rowspan!=1}}?{{=col.rowspan}}" style="position:relative;width:{{=col.width}}{{=unit}};height:{{=col.height}}{{=unit}};border-left:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bLeft?bordercolor:'#0000'}};border-top:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bTop?bordercolor:'#0000'}};border-right:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bRight?bordercolor:'#0000'}};border-bottom:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bBottom?bordercolor:'#0000'}}">
+                    {{if bind._tip}}
+                        {{=bind._tip}}
+                    {{else}}
+                    {{if col.elements&&col.elements.length}}
+                        {{each col.elements as e}}
+                            <mx-vframe id="{{=e.id}}" src="../{{=e.type}}/index" *props="{{#e.props}}" *unit="{{=unit}}"/>
+                        {{/each}}
+                    {{else}}
+                    {{set {paddingTop,paddingBottom,paddingLeft,paddingRight}=col}}
+                    {{set realWidth=col.width-bwn-toUnit(1),realHeight=col.height-bwn-toUnit(1)}}
+                    {{if paddingTop>realHeight}}
+                        {{paddingTop=realHeight}}
+                    {{/if}}
+                    {{if paddingTop+paddingBottom>realHeight}}
+                        {{paddingBottom=realHeight-paddingTop}}
+                    {{/if}}
+                    {{if paddingLeft>realWidth}}
+                        {{paddingLeft=realWidth}}
+                    {{/if}}
+                    {{if paddingLeft+paddingRight>realWidth}}
+                        {{paddingRight=realWidth-paddingLeft}}
+                    {{/if}}
+                    <div class="overflow-hidden flex" style="padding:{{=paddingTop}}{{=unit}} {{=paddingRight}}{{=unit}} {{=paddingBottom}}{{=unit}} {{=paddingLeft}}{{=unit}};width:{{=realWidth}}{{=unit}};{{if col.textAutoReturn}}min-{{/if}}height:{{=realHeight}}{{=unit}};align-items:{{=col.vpos}};justify-content:{{=col.hpos}};opacity:{{=col.alpha}};{{if col.background}}background:{{=col.background}};{{/if}}{{if col.textFontsize!=null}}color:{{=col.textForecolor}};letter-spacing:{{=col.textLetterspacing}}{{=unit}};{{if col.textStyleBold}}font-weight:bold;{{/if}}{{if col.textStyleItalic}}font-style:italic;{{/if}}{{if col.textStyleUnderline||col.textStyleStrike||col.textStyleOverline}}text-decoration:{{if col.textStyleStrike}}line-through{{else if col.textStyleOverline}}overline{{else}}underline{{/if}};{{/if}}font-family:{{=col.textFontfamily}};font-size:{{=col.textFontsize}}{{=unit}};{{/if}}">
+                        {{if col.type=='text'}}
+                        <div class="{{=!col.textAutoReturn}}?ellipsis" x-html="{{=col.textContent}}"></div>
+                        {{else if col.type=='image'}}
+                            {{if col.imageContent}}
+                                <img class="tag-img mhp100 mwp100" style="{{if col.imageRotateX||col.imageRotateY}};transform:{{if col.imageRotateX}}rotateX(180deg){{/if}}{{if col.imageRotateY}} rotateY(180deg){{/if}}{{/if}}" src="{{=col.imageContent}}" />
+                            {{/if}}
+                        {{else if col.type=='barcode'}}
+                            {{if col.barcodeContent}}
+                                <mx-vframe class="flex"　style="height:{{=realHeight-paddingTop-paddingBottom}}{{=unit}};align-items:{{=col.vpos}};" src="../subs/barcode" *line-color="{{#col.barcodeColor}}" *line-width="{{#col.barcodeLineWidth}}" *show-text="{{#col.barcodeShowText}}" *format="{{#col.barcodeFormat}}" *value="{{=col.barcodeContent}}"/>
+                            {{/if}}
+                        {{else if col.type=='qrcode'}}
+                            {{if col.qrcodeContent}}
+                                <mx-vframe style="height:{{=realHeight-paddingTop-paddingBottom}}{{=unit}};" src="../subs/qrcode" *vpos="{{=col.vpos}}" *value="{{=col.qrcodeContent}}"/>
+                            {{/if}}
+                        {{else if row.total}}
+                            {{set dataCol=dataRowCols[ci]}}
+                            {{set cellType=ftu(col.type)}}
+                            {{if col.type=='text'}}
+                                <div class="{{=!col.textAutoReturn}}?ellipsis">{{=col.textContent}}</div>
+                            {{else if col.type=='custom'}}
+                                <div class="{{=!col.textAutoReturn}}?ellipsis">{{=format(col.textFormat,col.totalData,bind._data,bind._all)}}</div>
+                            {{else if col.totalData[dataCol.bindKey+cellType]!=null}}
+                                <div class="{{=!col.textAutoReturn}}?ellipsis">{{=format(col.textFormat,col.totalData[dataCol.bindKey+cellType],col.totalData)}}</div>
+                            {{/if}}
+                        {{/if}}
+                    </div>
+                    {{/if}}
+                    {{/if}}
+                </td>
+                {{/each}}
+            </tr>
+            {{/if}}
+            {{if row.data}}
+                {{dataRowCols=row.cols}}
+                {{if bind._data}}
+                    {{set realHeights=bind._rHeights}}
+                    {{each bind._data as data di}}
+                    {{set height=realHeights&&realHeights[di]}}
+                    <tr>
+                        {{each row.cols as col ci}}
+                        <td class="table-cell word-break-break-all" colspan="{{=col.colspan!=1}}?{{=col.colspan}}" rowspan="{{=col.rowspan!=1}}?{{=col.rowspan}}" style="position:relative;width:{{=col.width}}{{=unit}};border-left:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bLeft?bordercolor:'#0000'}};border-top:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bTop?bordercolor:'#0000'}};border-right:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bRight?bordercolor:'#0000'}};border-bottom:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bBottom?bordercolor:'#0000'}}">
+                            {{if bind._tip}}
+                                {{=bind._tip}}
+                            {{else}}
+                            {{set {paddingTop,paddingBottom,paddingLeft,paddingRight}=col}}
+                            {{set realWidth=col.width-bwn,realHeight=(height||col.height)-bwn}}
+                            {{if paddingTop>realHeight}}
+                                {{paddingTop=realHeight}}
+                            {{/if}}
+                            {{if paddingTop+paddingBottom>realHeight}}
+                                {{paddingBottom=realHeight-paddingTop}}
+                            {{/if}}
+                            {{if paddingLeft>realWidth}}
+                                {{paddingLeft=realWidth}}
+                            {{/if}}
+                            {{if paddingLeft+paddingRight>realWidth}}
+                                {{paddingRight=realWidth-paddingLeft}}
+                            {{/if}}
+                            <div class="overflow-hidden flex" style="padding:{{=paddingTop}}{{=unit}} {{=paddingRight}}{{=unit}} {{=paddingBottom}}{{=unit}} {{=paddingLeft}}{{=unit}};width:{{=realWidth}}{{=unit}};{{if col.textAutoReturn}}min-{{/if}}height:{{=realHeight}}{{=unit}};align-items:{{=col.vpos}};justify-content:{{=col.hpos}};opacity:{{=col.alpha}};{{if col.background}}background:{{=col.background}}{{/if}}{{if col.type=='text'}}color:{{=col.textForecolor}};letter-spacing:{{=col.textLetterspacing}}{{=unit}};{{if col.textStyleBold}}font-weight:bold;{{/if}}{{if col.textStyleItalic}}font-style:italic;{{/if}}{{if col.textStyleUnderline||col.textStyleStrike||col.textStyleOverline}}text-decoration:{{if col.textStyleStrike}}line-through{{else if col.textStyleOverline}}overline{{else}}underline{{/if}};{{/if}}font-family:{{=col.textFontfamily}};font-size:{{=col.textFontsize}}{{=unit}};{{/if}}">
+                                {{set value}}
+                                {{if col.type=='text'}}
+                                    {{if col.bindKey}}
+                                        {{value=data[col.bindKey]}}
+                                        {{value=format(col.textFormat,value,data)}}
+                                    {{/if}}
+                                    {{if value}}
+                                        <div class="{{=!col.textAutoReturn}}?ellipsis" x-html="{{=value}}"></div>
+                                    {{/if}}
+                                {{else if col.type=='image'}}
+                                    {{if col.bindKey}}
+                                        {{value=data[col.bindKey]}}
+                                    {{/if}}
+                                    {{if value}}
+                                        <img class="tag-img mwp100 mhp100" style="height:{{=realHeight-paddingTop-paddingBottom}}px;{{if col.imageRotateX||col.imageRotateY}};transform:{{if col.imageRotateX}}rotateX(180deg){{/if}}{{if col.imageRotateY}} rotateY(180deg){{/if}}{{/if}}" src="{{=value}}" />
+                                    {{/if}}
+                                {{else if col.type=='barcode'}}
+                                    {{if col.bindKey}}
+                                        {{value=data[col.bindKey]}}
+                                    {{/if}}
+                                    {{if value}}
+                                    <mx-vframe class="flex" style="height:{{=realHeight-paddingTop-paddingBottom}}{{=unit}};align-items:{{=col.vpos}};" src="../subs/barcode" *line-color="{{=col.barcodeColor}}" *line-width="{{=col.barcodeLineWidth}}" *show-text="{{=col.barcodeShowText}}" *format="{{=col.barcodeFormat}}" *value="{{=value}}"/>
+                                    {{/if}}
+                                {{else if col.type=='qrcode'}}
+                                    {{if col.bindKey}}
+                                        {{value=data[col.bindKey]}}
+                                    {{/if}}
+                                    {{if value}}
+                                    <mx-vframe style="height:{{=realHeight-paddingTop-paddingBottom}}{{=unit}};" src="../subs/qrcode" *vpos="{{=col.vpos}}" *value="{{=value}}"/>
+                                    {{/if}}
+                                {{else if col.bindKey}}
+                                    [未指定数据处理方式]{{=value}}
+                                {{/if}}
+                            </div>
+                            {{/if}}
+                        </td>
+                        {{/each}}
+                    </tr>
+                    {{/each}}
+                {{/if}}
+            {{else if row.total}}
+                {{findTotalRow=1}}
+            {{else if row.label}}
+                {{findLabelRow=1}}
+            {{/if}}
+        {{/each}}
+        </tbody>
+    </table>
+</div>

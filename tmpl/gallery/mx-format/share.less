@@ -1,0 +1,101 @@
+@import "../../assets/_vars.less";
+.format {
+    height: @input-height;
+    padding-left: 4px;
+    border-radius: @border-radius;
+    border: 1px solid @color-border;
+    background-color: #fff;
+    color: @color-primary;
+    width: @input-width;
+}
+
+.format:hover {
+    border-color: @color-border-hover;
+}
+
+.height-30 {
+    height: 30px;
+}
+
+.margin-2 {
+    margin: 2px;
+}
+
+.border-radius-2 {
+    border-radius: 2px;
+}
+
+.background-color-efefef {
+    background-color: #f9f9f9;
+    border: solid 1px transparent;
+}
+
+.background-color-efefef:hover, .data-src-selected {
+    border: solid 1px @color-brand;
+}
+
+.data-src-selected::after {
+    content: ' ';
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-top: solid 8px @color-brand;
+    border-left: solid 8px #0000;
+    width: 0;
+    height: 0;
+}
+
+.remove {
+    opacity: 0.2;
+    &:hover {
+        opacity: 0.5;
+    }
+}
+
+.notallowed {
+    background: @color-disabled;
+    cursor: not-allowed;
+    .remove {
+        opacity: 0.1;
+        &:hover {
+            opacity: 0.1;
+        }
+    }
+    &:hover {
+        border-color: @color-border;
+    }
+}
+
+.tabs {
+    margin-bottom: 10px;
+    border-bottom: solid 1px @color-brand;
+}
+
+.tabs-item {
+    height: 25px;
+    line-height: 25px;
+    margin: 0 5px;
+    padding: 0 4px;
+    margin-bottom: -1px;
+    min-width: 50px;
+    margin-bottom: -1px;
+    border: solid 1px transparent;
+    border-bottom: none;
+}
+
+.tabs-active {
+    border-radius: 2px 2px 0 0;
+    background: @contrast-color;
+    border-color: @color-brand;
+    color: @color-brand;
+}
+
+.codemirror {
+    border-radius: @border-radius;
+    border: solid 1px @color-border;
+    cursor: text;
+}
+
+.codemirror:focus-within {
+    border-color: @color-brand;
+}

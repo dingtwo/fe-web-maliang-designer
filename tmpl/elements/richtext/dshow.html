@@ -1,0 +1,9 @@
+<div class="pa z-index-1 touch-action-none" style="left:{{=props.x}}{{=unit}};top:{{=props.y}}{{=unit}};opacity:{{=props.alpha}};width:{{=props.width}}{{=unit}};height:{{=props.height}}{{=unit}}" mx-pointerdown="@:{stop}()" mx-contextmenu="@:{stop}()">
+    {{if !readonly}}
+    <i class="pa iconfont cursor-pointer" style="top:-19px;left:20px" title="{{=pv?'编辑':'预览'}}" mx-click="@:{toggle.state}()"　x-html="{{=pv?'&#xe638;':'&#xe75a;'}}"></i>
+    {{/if}}
+    <div id="{{=$viewId}}_pv" class="hp100 overflow-auto{{if !pv}} none{{/if}}" x-html="{{=text}}"></div>
+    <div id="{{=$viewId}}_e" class="hp100{{if pv}} none{{/if}}">
+        <div id="{{=$viewId}}_ed">正在加载编辑器插件...</div>
+    </div>
+</div>

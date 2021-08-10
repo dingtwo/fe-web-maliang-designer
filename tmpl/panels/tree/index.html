@@ -1,0 +1,23 @@
+<div class="items unselectable" mx-dragend="@:{drag.end}()">
+    {{each elements as e ei by desc}}
+    {{set {props,ctrl,id}=e}}
+    {{set {locked,readonly,rows,ename}=props}}
+    {{if !ename}}
+        {{ename=i18n(ctrl.title)}}
+    {{/if}}
+    <div id="te_{{=id}}" class="item background-color-fff flex flex-direction-column{{if current==ei}} item-dragged{{/if}}{{if drag&&ei==index}} item--{{=onTop?'top':'bottom'}}{{/if}}" mx-dragstart="@:{drag.start}({index:{{=ei}}})" mx-dragover="@:{drag.over}({index:{{=ei}}})" draggable="{{=!locked&&!readonly}}?true">
+        <div class="item-text cursor-pointer flex align-items-center{{if map[id]}} {{if locked}}item-locked-selected{{else}}item-selected{{/if}}{{/if}}" mx-pointerover="@:{show.rect}({element:{{#e}}})" mx-pointerout="@:{hide.rect}()" mx-click="{{=!readonly}}?@:{select.element}({element:{{#e}}})" title="{{=ename}}">
+            <i class="iconfont move fontsize-12" x-html="{{=ctrl.icon}}"></i>
+            <div class="ellipsis flex-fill-rest">
+                {{=ename}}
+            </div>
+            {{if !readonly && !locked}}
+                <i class="iconfont move fontsize-10 gray remove-icon" title="{{=i18n('@:{lang#remove.element}')}}" mx-click="@:{remove.element}({element:{{#e}}})">&#xe6b3;</i>
+            {{/if}}
+        </div>
+        {{if e.ctrl.as & hodEnum}}
+        <mx-vframe class="ml10" src="./branch" *rows="{{#rows}}" *map="{{#map}}"/>
+        {{/if}}
+    </div>
+    {{/each}}
+</div>

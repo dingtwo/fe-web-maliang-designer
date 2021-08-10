@@ -1,0 +1,39 @@
+<div class="dropdown wp100 unselectable pr display-inline-block{{if disabled}} notallowed{{else}} dropdown-enable{{/if}}" id="_mx_dd_{{=$viewId}}" tabindex="{{=!disabled}}?0">
+    <div
+        class="dropdown-toggle cursor-pointer pr wp100"
+        mx-click="@:{toggle}()"
+        title="{{=i18n(selectedText)}}">
+        <span class="dropdown-toggle-label display-block ellipsis{{if (selected===''||selected==emptyText)}}  color-999{{/if}}">
+            {{if selectedIcon}}
+                <i class="iconfont icon-text" x-html="{{=selectedIcon}}"></i>
+            {{/if}}
+            {{=i18n(selectedText)}}
+        </span>
+        <span class="arrow pa hp100 right-0"></span>
+    </div>
+    {{if rList}}
+    <div class="dropdown-menu-wrapper pa none overflow-auto scrollable thin-scrollable">
+        <ul class="tag-ul dropdown-menu" id="_mx_list_{{=$viewId}}">
+            {{each list as item}}
+            {{set text=item,value=item,icon}}
+            {{if textKey&&valueKey}}
+                {{text=i18n(item[textKey])}}
+                {{value=item[valueKey]}}
+                {{icon=item[iconKey]}}
+            {{/if}}
+            {{set equal=(value+'')===(selected+'')}}
+            <li title="{{=text}}" class="dropdown-item overflow-auto">
+                <span
+                    class="item-link display-block color-666 wp100 cursor-pointer ellipsis{{if equal}} active{{/if}}"
+                    mx-click="@:{select}({item:'{{#item}}'})">
+                    {{if icon}}
+                    <i class="iconfont icon-text fontsize-12" x-html="{{=icon}}"></i>
+                    {{/if}}
+                    {{=text}}
+                </span>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
+</div>

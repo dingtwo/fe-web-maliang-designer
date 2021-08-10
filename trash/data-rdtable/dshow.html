@@ -1,0 +1,236 @@
+<div class="pa z-index-1" style="left:{{=props.x}}{{=unit}};top:{{=props.y}}{{=unit}};opacity:{{=props.alpha}};width:{{=props.width}}{{=unit}};height:{{=props.height}}{{=unit}}" mx-drop="@:{when.data.field.drop}()">
+    {{set {max,min}=Math}}
+    {{set {borderwidth,bordertype,bordercolor,borderdeed,rows}=props}}
+    {{set bwn=(borderdeed=='collapse'?1:2)*borderwidth}}
+    <table class="wp100 table" style="border-collapse:{{=borderdeed}}">
+        <tbody>
+        {{set findTotalRow=0}}
+        {{set findLabelRow=0}}
+        {{each props.rows as row ri}}
+        {{if row.label}}
+            {{findLabelRow=1}}
+        {{/if}}
+        {{if ((!row.total||!props.hideTotal)&&(!findTotalRow||!props.hideFoot))&&(findLabelRow||!props.hideHead)&&(!row.label||!props.hideLabel)}}
+        <tr>
+            {{each row.cols as col ci}}
+            {{set hasContent=col[col.type+'Content']}}
+            {{set asHod=(col.elements&&col.elements.length)||(!hasContent&&(findTotalRow==1||!findLabelRow))}}
+            <td class="table-cell word-break-break-all{{if selectRect&&srRow==ri&&srCol==ci}} overflow-hidden{{/if}}" colspan="{{=col.colspan}}??" rowspan="{{=col.rowspan}}??" style="position:relative;width:{{=col.width}}{{=unit}};height:{{=col.height}}{{=unit}};border-left:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bLeft?bordercolor:'#ddd6'}};border-top:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bTop?bordercolor:'#ddd6'}};border-right:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bRight?bordercolor:'#ddd6'}};border-bottom:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bBottom?bordercolor:'#ddd6'}}" mx-mousedown="@:{active.cell}({row:{{=ri}},col:{{=ci}},elm:{{=asHod}}})" mx-dragenter="{{=row.data}}?@:{when.data.field.enter}({row:{{=ri}},col:{{=ci}}})" mx-dragleave="{{=row.data}}?@:{when.data.field.leave}({row:{{=ri}},col:{{=ci}}})" id="{{=asHod}}?hod_{{=element.id}}_{{=ri}}_{{=ci}}" mx-contextmenu="{{=asHod}}?@:{show.contxtmenu}({row:{{=ri}},col:{{=ci}}})">
+                <div class="wp100 hp100 pr overflow-hidden" data-as="hod" id="hm_{{=element.id}}_{{=ri}}_{{=ci}}">
+                {{if col.elements&&col.elements.length}}
+                    {{each col.elements as e}}
+                        <mx-vframe id="{{=e.id}}" src="../{{=e.type}}/designer" *element="{{#e}}" *fs="{{#fs}}" *owner-id="hod_{{=element.id}}_{{=ri}}_{{=ci}}" *unit="{{#unit}}" mx-mousedown="@:{element.start.drag}({element:{{#e}},maskId:'hm_{{=element.id}}_{{=ri}}_{{=ci}}'})"/>
+                    {{/each}}
+                {{else}}
+                    {{if col.type}}
+                        <i class="iconfont fontsize-10 right-2 bottom-2 pa color-999">
+                            {{if col.type=='text'}}
+                            &#xe6bc;
+                            {{else if col.type=='image'}}
+                            &#xe650;
+                            {{else if col.type=='barcode'}}
+                            &#xe6c8;
+                            {{else if col.type=='qrcode'}}
+                            &#xe61c;
+                            {{/if}}
+                        </i>
+                    {{/if}}
+                    {{set {paddingTop,paddingBottom,paddingLeft,paddingRight}=col}}
+                    {{set realWidth=col.width-bwn-toUnit(1),realHeight=col.height-bwn-toUnit(1)}}
+                    {{if paddingTop>realHeight}}
+                        {{paddingTop=realHeight}}
+                    {{/if}}
+                    {{if paddingTop+paddingBottom>realHeight}}
+                        {{paddingBottom=realHeight-paddingTop}}
+                    {{/if}}
+                    {{if paddingLeft>realWidth}}
+                        {{paddingLeft=realWidth}}
+                    {{/if}}
+                    {{if paddingLeft+paddingRight>realWidth}}
+                        {{paddingRight=realWidth-paddingLeft}}
+                    {{/if}}
+                    <div class="wp100 hp100 pr overflow-hidden flex" style="padding:{{=paddingTop}}{{=unit}} {{=paddingRight}}{{=unit}} {{=paddingBottom}}{{=unit}} {{=paddingLeft}}{{=unit}};width:{{=realWidth}}{{=unit}};height:{{=realHeight}}{{=unit}};align-items:{{=col.vpos}};justify-content:{{=col.hpos}};opacity:{{=col.alpha}};{{if col.background}}background:{{=col.background}};{{/if}}{{if col.textFontsize!=null}}color:{{=col.textForecolor}};letter-spacing:{{=col.textLetterspacing}}{{=unit}};{{if col.textStyleBold}}font-weight:bold;{{/if}}{{if col.textStyleItalic}}font-style:italic;{{/if}}{{if col.textStyleUnderline||col.textStyleStrike||col.textStyleOverline}}text-decoration:{{if col.textStyleStrike}}line-through{{else if col.textStyleOverline}}overline{{else}}underline{{/if}};{{/if}}font-family:{{=col.textFontfamily}};font-size:{{=col.textFontsize}}{{=unit}};{{/if}}">
+                        {{if col.bindKey}}
+                        {{if !fs&&!props.locked}}
+                            <i class="iconfont fontsize-10 right-2 top-2 pa gray cursor-pointer" mx-mousedown="@:{stop}()" mx-click="@:{delete.bind.field}({row:{{=ri}},col:{{=ci}}})" title="{{=i18n('@:{lang#elements.delete.bind.field}')}}">&#xe6b3;</i>
+                        {{/if}}
+                        [绑定:{{=col.bindName}}]{{if !col.type}}，未指定格子内容{{/if}}
+                        {{else if col.type=='text'}}
+                            {{if !row.data}}
+                                <input as="d-input" class="pa input form-input" value="{{=col.textContent}}" mx-input="@:{update.cell.text}({cell:{{#col}},key:'textContent'})" style="width:calc(100% - {{=paddingLeft+paddingRight}}{{=unit}});text-align:{{if col.hpos=='center'}}center{{else if col.hpos=='flex-end'}}right{{else}}left{{/if}}" mx-focusin="@:{active.cell.by.pos}({row:{{=ri}},col:{{=ci}}})"/>
+                            {{/if}}
+                            {{if col.textContent}}
+                            <div class="ellipsis" x-html="{{=col.textContent}}"></div>
+                            {{/if}}
+                        {{else if col.type=='image'}}
+                            {{if col.imageContent}}
+                            <img class="tag-img mhp100 mwp100" style="{{if col.imageRotateX||col.imageRotateY}};transform:{{if col.imageRotateX}}rotateX(180deg){{/if}}{{if col.imageRotateY}} rotateY(180deg){{/if}}{{/if}}" src="{{=col.imageContent}}"/>
+                            {{/if}}
+                        {{else if col.type=='barcode'}}
+                            {{if col.barcodeContent}}
+                            <mx-vframe class="flex" style="height:{{=realHeight-paddingTop-paddingBottom}}{{=unit}};align-items:{{=col.vpos}};" src="../subs/barcode" *line-color="{{=col.barcodeColor}}" *line-width="{{=col.barcodeLineWidth}}" *show-text="{{=col.barcodeShowText}}" *format="{{=col.barcodeFormat}}" *value="{{=col.barcodeContent}}"/>
+                            {{/if}}
+                        {{else if col.type=='qrcode'}}
+                            {{if col.qrcodeContent}}
+                            <mx-vframe style="height:{{=realHeight-paddingTop-paddingBottom}}{{=unit}};" src="../subs/qrcode" *vpos="{{=col.vpos}}" *value="{{=col.qrcodeContent}}"/>
+                            {{/if}}
+                        {{else if col.type=='sum'}}
+                            <div class="ellipsis">[计算:本单求和]</div>
+                        {{else if col.type=='sumpage'}}
+                            <div class="ellipsis">[计算:本页求和]</div>
+                        {{else if col.type=='acc'}}
+                            <div class="ellipsis">[计算:本页累计]</div>
+                        {{else if col.type=='avg'}}
+                            <div class="ellipsis">[计算:本单平均]</div>
+                        {{else if col.type=='avgpage'}}
+                            <div class="ellipsis">[计算:本页平均]</div>
+                        {{else if col.type=='avgacc'}}
+                            <div class="ellipsis">[计算:累计平均]</div>
+                        {{else if col.type=='custom'}}
+                            <div class="ellipsis">[计算:自定义函数]</div>
+                        {{else}}
+                            <div class="ellipsis">{{=col.type}}</div>
+                        {{/if}}
+                    </div>
+                {{/if}}
+                </div>
+                {{if !fs&&!props.locked}}
+                {{set focusCurrentCell=props.focusRow==ri&&props.focusCol==ci&&selected&&count==1}}
+                <div class="pa hod-focus-div z-index-1 pointer-events-none{{if focusCurrentCell}} hod-focus-line{{/if}}{{if fieldRow==ri&&fieldCol==ci}} hod-drop-tip full-fill{{/if}}" style="{{if focusCurrentCell}}{{if !col.bLeft}}border-left-style:dotted;{{/if}}{{if !col.bTop}}border-top-style:dotted;{{/if}}{{if !col.bRight}}border-right-style:dotted;{{/if}}{{if !col.bBottom}}border-bottom-style:dotted;{{/if}}{{/if}}" id="{{=asHod}}?mhod_{{=element.id}}_{{=ri}}_{{=ci}}">
+                    {{if focusCurrentCell&&!grouped}}
+                    {{set height=(min(26,toPx(col.height)-6)-4)}}
+                    {{set width=(min(26,toPx(col.width)-6)-4)}}
+                    {{set top=(toPx(col.height)-height-bwn)/2-1}}
+                    {{set left=(toPx(col.width)-width-bwn)/2-1}}
+                    <div class="pa hod-right pointer-events-all" style="height:{{=max(height,0)}}px;top:{{=top}}px;cursor:ew-resize" title="{{=i18n('@:{lang#press.drag.cell.width}')}}" mx-mousedown="@:{start.resize.table.cell}({key:'mr'})"></div>
+                    <div class="pa hod-left pointer-events-all" style="height:{{=max(height,0)}}px;top:{{=top}}px;cursor:ew-resize" title="{{=i18n('@:{lang#press.drag.cell.width}')}}" mx-mousedown="@:{start.resize.table.cell}({key:'ml'})"></div>
+                    <div class="pa hod-bottom pointer-events-all" style="width:{{=max(width,0)}}px;left:{{=left}}px;cursor:ns-resize" title="{{=i18n('@:{lang#press.drag.cell.height}')}}" mx-mousedown="@:{start.resize.table.cell}({key:'bm'})"></div>
+                    <div class="pa hod-top pointer-events-all" style="width:{{=max(width,0)}}px;left:{{=left}}px;cursor:ns-resize" title="{{=i18n('@:{lang#press.drag.cell.height}')}}" mx-mousedown="@:{start.resize.table.cell}({key:'tm'})"></div>
+                    {{/if}}
+                </div>
+                {{/if}}
+                {{if col.elements && col.elements.length}}
+                    <i class="pa z-index-1 left-2 top-2 cell-icon gray iconfont fontsize-10 cursor-pointer background-color-fff" title="{{=i18n('@:{lang#cell.select}')}}">&#xe647;</i>
+                {{/if}}
+                {{if selectRect&&srRow==ri&&srCol==ci}}
+                    <div class="select-rect pointer-events-none pa" style="display:block;left:{{=selectRect.x}}px;top:{{=selectRect.y}}px;width:{{=selectRect.width}}px;height:{{=selectRect.height}}px"></div>
+                {{/if}}
+            </td>
+            {{/each}}
+        </tr>
+        {{/if}}
+        {{if row.data}}
+            {{if props.bind.url&&props.bind._data}}
+                {{each props.bind._data as bd}}
+                <tr>
+                    {{each row.cols as col ci}}
+                    <td class="table-cell word-break-break-all" style="position:relative;width:{{=col.width}}{{=unit}};height:{{=col.height}}{{=unit}};border-left:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bLeft?bordercolor:'#ddd6'}};border-top:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bTop?bordercolor:'#ddd6'}};border-right:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bRight?bordercolor:'#ddd6'}};border-bottom:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bBottom?bordercolor:'#ddd6'}};background:#eeeeee80" colspan="{{=col.colspan}}??" rowspan="{{=col.rowspan}}??">
+                        {{set {paddingTop,paddingBottom,paddingLeft,paddingRight}=col}}
+                        {{set realWidth=col.width-bwn-toUnit(1),realHeight=col.height-bwn-toUnit(1)}}
+                        {{if paddingTop>realHeight}}
+                            {{paddingTop=realHeight}}
+                        {{/if}}
+                        {{if paddingTop+paddingBottom>realHeight}}
+                            {{paddingBottom=realHeight-paddingTop}}
+                        {{/if}}
+                        {{if paddingLeft>realWidth}}
+                            {{paddingLeft=realWidth}}
+                        {{/if}}
+                        {{if paddingLeft+paddingRight>realWidth}}
+                            {{paddingRight=realWidth-paddingLeft}}
+                        {{/if}}
+                        <div class="wp100 hp100 pr overflow-hidden flex" style="padding:{{=paddingTop}}{{=unit}} {{=paddingRight}}{{=unit}} {{=paddingBottom}}{{=unit}} {{=paddingLeft}}{{=unit}};width:{{=realWidth}}{{=unit}};height:{{=realHeight}}{{=unit}};align-items:{{=col.vpos}};justify-content:{{=col.hpos}};opacity:{{=col.alpha}};{{if col.background}}background:{{=col.background}};{{/if}}{{if col.textFontsize!=null}}color:{{=col.textForecolor}};letter-spacing:{{=col.textLetterspacing}}{{=unit}};{{if col.textStyleBold}}font-weight:bold;{{/if}}{{if col.textStyleItalic}}font-style:italic;{{/if}}{{if col.textStyleUnderline||col.textStyleStrike||col.textStyleOverline}}text-decoration:{{if col.textStyleStrike}}line-through{{else if col.textStyleOverline}}overline{{else}}underline{{/if}};{{/if}}font-family:{{=col.textFontfamily}};font-size:{{=col.textFontsize}}{{=unit}};{{/if}}">
+                        {{if col.type=='text'}}
+                            <div class="ellipsis" x-html="{{=bd[col.bindKey]}}"></div>
+                        {{else if col.type=='image'}}
+                            <img class="tag-img mhp100 mwp100" style="{{if col.imageRotateX||col.imageRotateY}};transform:{{if col.imageRotateX}}rotateX(180deg){{/if}}{{if col.imageRotateY}} rotateY(180deg){{/if}}{{/if}}" src="{{=bd[col.bindKey]}}"/>
+                        {{else if col.type=='barcode'}}
+                            <mx-vframe class="flex" style="height:{{=realHeight-paddingTop-paddingBottom}}{{=unit}};align-items:{{=col.vpos}};" src="../subs/barcode" *line-color="{{=col.barcodeColor}}" *line-width="{{=col.barcodeLineWidth}}" *show-text="{{=col.barcodeShowText}}" *format="{{=col.barcodeFormat}}" *value="{{=bd[col.bindKey]}}"/>
+                        {{else if col.type=='qrcode'}}
+                            <mx-vframe style="height:{{=realHeight-paddingTop-paddingBottom}}{{=unit}};" src="../subs/qrcode" *vpos="{{=col.vpos}}" *value="{{=bd[col.bindKey]}}"/>
+                        {{/if}}
+                        </div>
+                        {{if col.type=='text'&&col.bindKey}}
+                            <span class="pa right-2 bottom-0 fontsize-10 background-color-fff line-height-1 ellipsis" style="width:{{=min(col.width-bwn-toUnit(5),toUnit(40))}}{{=unit}}">{{=col.textAutoReturn?'自动换行':'超长省略'}}</span>
+                        {{/if}}
+                    </td>
+                    {{/each}}
+                </tr>
+                {{/each}}
+            {{else}}
+            {{for(let ti=0;ti<2;ti++)}}
+            <tr>
+                {{each row.cols as col ci}}
+                <td class="table-cell word-break-break-all" style="position:relative;width:{{=col.width}}{{=unit}};height:{{=col.height}}{{=unit}};border-left:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bLeft?bordercolor:'#ddd6'}};border-top:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bTop?bordercolor:'#ddd6'}};border-right:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bRight?bordercolor:'#ddd6'}};border-bottom:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bBottom?bordercolor:'#ddd6'}};background:#eeeeee80" colspan="{{=col.colspan}}??" rowspan="{{=col.rowspan}}??">
+                    {{=props.bind._tip}}
+                </td>
+                {{/each}}
+            </tr>
+            {{/for}}
+            {{/if}}
+        {{/if}}
+        {{if row.total}}
+            {{findTotalRow=1}}
+        {{/if}}
+        {{/each}}
+        </tbody>
+    </table>
+    {{if !fs&&props.tfootSpacing}}
+    <div class="border-dotted-999 pr" style="height:{{=props.tfootSpacing}}{{=unit}}" mx-mousedown="@:{active.cell}({row:-2,col:-2})">
+        {{if selected&&!props.locked&&props.focusRow==-2&&props.focusCol==-2}}
+        <div class="pa hod-focus-div z-index-1 pointer-events-none hod-focus-line">
+            {{set left=(toPx(props.width)-22-bwn)/2-1}}
+            <div class="pa hod-bottom pointer-events-all" style="width:22px;left:{{=left}}px;cursor:ns-resize" title="{{=i18n('@:{lang#press.drag.space.height}')}}" mx-mousedown="@:{start.resize.table.cell}({key:'bm'})"></div>
+        </div>
+        {{/if}}
+    </div>
+    {{/if}}
+    <div class="pa wp100 tc color-999" style="top:{{=props.tipTop}}{{=unit}};left:0;font-size:{{=props.tipFontsize}}{{=unit}};transform:translateY(-50%)">重复数据行</div>
+    {{if !fs&&selected&&count==1}}
+        {{set h=toPx(props.headHeight)}}
+        {{console.log(h,props.headHeight)}}
+        {{if !props.hideHead}}
+        <svg style="left:-15px;top:{{=props.headStart}}{{=unit}};width:15px;height:{{=h}}px" class="pa pointer-events-none overflow-visible">
+            <path d="M10 0C0 0 10 {{=h/2}} 0 {{=h/2}}C10 {{=h/2}} 0 {{=h}} 10 {{=h}}" style="fill:none;stroke:#999;"/>
+        </svg>
+        <div class="pa color-999 pointer-events-none" style="left:-15px;top:{{=h/2+toPx(props.headStart)}}px;transform:translate(-110%,-50%);width:20px;line-height:1">头</div>
+        {{/if}}
+        {{if !props.hideLabel}}
+        {{h=toPx(props.labelHeight)}}
+        <svg style="left:-15px;top:{{=props.labelStart}}{{=unit}};width:15px;height:{{=h}}px" class="pa pointer-events-none overflow-visible">
+            <path d="M10 0C0 0 10 {{=h/2}} 0 {{=h/2}}C10 {{=h/2}} 0 {{=h}} 10 {{=h}}" style="fill:none;stroke:#999;"/>
+        </svg>
+        <div class="pa color-999 pointer-events-none" style="left:-15px;top:{{=h/2+toPx(props.labelStart)}}px;transform:translate(-110%,-50%);width:20px;line-height:1">标题</div>
+        {{/if}}
+        {{h=toPx(props.bodyHeight)}}
+        <svg style="left:-15px;top:{{=props.bodyStart}}{{=unit}};width:15px;height:{{=h}}px" class="pa pointer-events-none overflow-visible">
+            <path d="M10 2C0 2 10 {{=h/2}} 0 {{=h/2}}C10 {{=h/2}} 0 {{=h}} 10 {{=h}}" style="fill:none;stroke:#999;"/>
+        </svg>
+        <div class="pa color-999 pointer-events-none" style="left:-15px;top:{{=h/2+toPx(props.bodyStart)}}px;transform:translate(-110%,-50%);width:20px;line-height:1">数据</div>
+        {{if !props.hideTotal}}
+        {{h=toPx(props.totalHeight)}}
+        <svg style="left:-15px;top:{{=props.totalStart}}{{=unit}};width:15px;height:{{=h}}px" class="pa pointer-events-none overflow-visible">
+            <path d="M10 2C0 2 10 {{=h/2}} 0 {{=h/2}}C10 {{=h/2}} 0 {{=h}} 10 {{=h}}" style="fill:none;stroke:#999;"/>
+        </svg>
+        <div class="pa color-999 pointer-events-none" style="left:-15px;top:{{=h/2+toPx(props.totalStart)}}px;transform:translate(-110%,-50%);width:20px;line-height:1">合计</div>
+        {{/if}}
+        {{if !props.hideFoot}}
+        {{h=props.footHeight}}
+        {{if h>0}}
+        {{h=toPx(h)}}
+        <svg style="left:-15px;top:{{=props.footStart}}{{=unit}};width:15px;height:{{=h}}px" class="pa pointer-events-none overflow-visible">
+            <path d="M10 2C0 2 10 {{=h/2}} 0 {{=h/2}}C10 {{=h/2}} 0 {{=h}} 10 {{=h}}" style="fill:none;stroke:#999;"/>
+        </svg>
+        <div class="pa color-999 pointer-events-none" style="left:-15px;top:{{=h/2+toPx(props.footStart)}}px;transform:translate(-110%,-50%);width:20px;line-height:1">尾</div>
+        {{/if}}
+        {{/if}}
+        {{h=props.spacingHeight}}
+        {{if h>0}}
+        {{h=toPx(h)}}
+        <svg style="left:-15px;top:{{=props.spacingStart}}{{=unit}};width:15px;height:{{=h}}px" class="pa pointer-events-none overflow-visible">
+            <path d="M10 2C0 2 10 {{=h/2}} 0 {{=h/2}}C10 {{=h/2}} 0 {{=h}} 10 {{=h}}" style="fill:none;stroke:#999;"/>
+        </svg>
+        <div class="pa color-999 pointer-events-none" style="left:-15px;top:{{=h/2+toPx(props.spacingStart)}}px;transform:translate(-110%,-50%);width:20px;line-height:1">留白</div>
+        {{/if}}
+    {{/if}}
+</div>

@@ -1,0 +1,120 @@
+@import "../assets/_vars.less";
+.z-index-200 {
+    z-index: 200;
+}
+
+.axis-x {
+    height: 20px;
+    border-bottom: 1px solid @box-bordercolor;
+}
+
+.axis-x-line {
+    top: 0;
+    background: @color-brand;
+}
+
+.axis-y-line {
+    left: 0;
+    background: @color-brand;
+    height: 1px;
+}
+
+.axis-y {
+    width: 20px;
+    border-right: solid 1px @box-bordercolor;
+}
+
+.axis-corner {
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-bottom: solid 1px @box-bordercolor;
+    border-right: solid 1px @box-bordercolor;
+    z-index: 201;
+}
+
+.axis-x-tip {
+    left: 5px;
+    top: 22px;
+}
+
+.axis-y-tip {
+    top: 2px;
+    left: 24px;
+}
+
+.y-axis-help, .x-axis-help {
+    z-index: 100;
+}
+
+.x-axis-help {
+    top: 20px;
+}
+
+.y-axis-help {
+    left: 20px;
+}
+
+.x-axis-help-line {
+    width: 1px;
+    border-left: solid 1px @color-brand;
+}
+
+.y-axis-help-line {
+    height: 1px;
+    background: @color-brand;
+}
+
+.x-help-line-icon {
+    left: -15px;
+    top: 4px;
+    opacity: 0.7;
+}
+
+.x-help-line-text {
+    left: 4px;
+    top: 2px;
+}
+
+.y-help-line-icon {
+    left: 4px;
+    top: -15px;
+    opacity: 0.7;
+}
+
+.x-help-line-icon:hover, .y-help-line-icon:hover {
+    opacity: 1;
+}
+
+.y-help-line-text {
+    left: 4px;
+    top: 2px;
+}
+
+.y-help-line-move {
+    width: 20px;
+    top: -1px;
+    height: 3px;
+    left: 30px;
+    background: @color-brand;
+    cursor: ns-resize;
+}
+
+.x-help-line-move {
+    width: 3px;
+    left: -2px;
+    height: 20px;
+    top: 20px;
+    background: @color-brand;
+    cursor: ew-resize;
+}
+
+.y-help-line-move:focus, .x-help-line-move:focus {
+    outline: solid 1px @color-brand;
+    background: #fff;
+}
+
+.shadow{
+    background: fade(@color-brand,30%);
+}

@@ -1,0 +1,6 @@
+<div class="pa z-index-1 flex align-items-center justify-content-center" style="left:{{=props.x}}{{=unit}};top:{{=props.y}}{{=unit}};opacity:{{=props.alpha}};width:{{=props.width}}{{=unit}};height:{{=props.height}}{{=unit}};transform:rotate({{=props.rotate}}deg);{{if props.startBorder}}border-left:1px {{=props.linetype}} {{=props.color}};{{/if}}{{if props.endBorder}}border-right:1px {{=props.linetype}} {{=props.color}};{{/if}}">
+    <!-- <div style="position:absolute;left:0;right:0;top:50%;border-top:1px {{=props.linetype}} {{=props.color}}"></div> -->
+    <span style="flex-grow:1;border-top:1px {{=props.linetype}} {{=props.color}}"></span>
+    <span style="padding:0 4px;transform:rotate({{=props.textRotate}}deg);color:{{=props.color}}">{{=props.text}}</span>
+    <span style="flex-grow:1;border-top:1px {{=props.linetype}} {{=props.color}}"></span>
+</div>

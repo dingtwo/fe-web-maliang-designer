@@ -1,0 +1,117 @@
+@import "../../assets/_vars.less";
+.dropdown {
+    min-width: 50px;
+    background-color: #fff;
+    border: solid 1px @color-border;
+    border-radius: @border-radius;
+    vertical-align: middle;
+    height: @input-height;
+    outline: 0;
+}
+
+.dropdown-enable:focus, .dropdown-enable:focus:hover {
+    border-color: @color-brand;
+}
+
+.dropdown:hover {
+    border-color: @color-border-hover;
+}
+
+.dropdown-toggle {
+    color: @color-primary;
+    padding: 0 (@input-height - 2) 0 3px;
+}
+
+.notallowed {
+    cursor: not-allowed;
+    background-color: @color-disabled;
+}
+
+.notallowed:hover {
+    border-color: @color-border;
+}
+
+.notallowed .dropdown-toggle {
+    cursor: not-allowed;
+    color: @color-third;
+}
+
+.arrow {
+    top: 0;
+    width: 20px;
+    color: @color-border-hover;
+    transition: all @duration;
+}
+
+.arrow::after {
+    width: 0;
+    height: 0;
+    position: absolute;
+    inset: 0;
+    border-left: 4px solid rgba(0, 0, 0, 0);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-top: 4px solid @color-border-hover;
+    content: '';
+    display: block;
+    margin: auto;
+}
+
+
+.open .arrow {
+    transform: rotate(180deg);
+}
+
+.open, .open:hover {
+    border-color: @color-brand;
+}
+
+.dropdown-toggle-label {
+    height: @input-height - 2;
+    line-height: @input-height - 1;
+}
+
+.dropdown-menu-wrapper {
+    top: 100%;
+    left: -1px;
+    right: -1px;
+    margin-top: 4px;
+    border-radius: @border-radius;
+    z-index: 300;
+    border: 1px solid @color-border-hover;
+    background-color: #fff;
+}
+
+.open .dropdown-menu-wrapper {
+    display: block;
+}
+
+.dropdown-menu {
+    max-height: 196px;
+    padding: 2px 0;
+}
+
+.dropdown-item {
+    padding: 0 2px;
+    margin: 2px 0;
+}
+
+.item-link {
+    padding: 0 5px;
+    height: @menu-item-height;
+    line-height: @menu-item-height;
+    border-radius: @border-radius;
+}
+
+.item-link:hover {
+    color: @color-primary;
+    background-color: @color-hover;
+}
+
+.active, .active:hover, .active:active, .active:focus {
+    color: #fff;
+    background-color: @color-brand;
+}
+
+.icon-text {
+    padding: 0 4px;
+}

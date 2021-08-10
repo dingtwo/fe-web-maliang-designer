@@ -1,0 +1,22 @@
+<div class="panel pa anim-move touch-action-none" style="width:{{=width}}px;{{if left!=null}}left:{{=left}}{{else}}right:{{=right}}{{/if}}px;{{if top!=null}}top:{{=top}}px{{else}}bottom:{{=bottom}}px{{/if}};z-index:{{=zIndex}};" id="_rdp_{{=$viewId}}" mx-pointerdown="@:{update.z-index}()" mx-pointerover="@:{hover.panel}()"  mx-pointerout="@:{hover.panel}()">
+    <div class="title unselectable flex fontsize-12" mx-contextmenu="@:{prevent}()">
+        <div class="title-text flex-fill-rest touch-action-none" title="{{=i18n('@:{lang#panel.drag}')}}" mx-pointerdown="@:{drag.move}()">
+            {{if icon}}
+                <i class="iconfont fontsize-12 mr2" x-html="{{=icon}}"></i>
+            {{/if}}
+            {{=i18n(title)}}
+        </div>
+        <div class="flex align-items-center hp100">
+            <i class="iconfont title-icon fontsize-10 cursor-pointer justify-content-center align-items-center{{if shrink}} r180{{/if}}" mx-click="@:{toggle.height}()" title="{{=i18n(shrink?'@:{lang#panel.expand.panel}':'@:{lang#panel.shrink.panel}',title,key)}}">&#xe73a;</i>
+            <i class="iconfont title-icon fontsize-10 cursor-pointer justify-content-center align-items-center" mx-click="@:{close}()" title="{{=i18n('@:{lang#panel.close.panel}',title,key)}}">&#xe712;</i>
+        </div>
+    </div>
+    <div class="content-outer overflow-hidden contain-paint" id="_rdc_{{=$viewId}}" style="height:{{=(shrink?0:fixedSize?`${height}px`:`calc(100vh - ${height}px)`)}}" mx-contextmenu="{{=cm==null}}?@:{prevent}()">
+        <div class="content scrollable thin-scrollable hp100 overflow-auto" mx-view="{{=view}}" id="_rd_{{=$viewId}}_v">
+        </div>
+        {{if resizeX}}
+        <div class="hbar unselectable hp100 pa touch-action-none" title="{{=i18n('@:{lang#panel.ew-resize}')}}" mx-pointerdown="@:{start.resize}({w:1})" mx-contextmenu="@:{prevent}()"></div>
+        {{/if}}
+    </div>
+    <div class="foot pa unselectable touch-action-none{{if shrink||!resizeY}} none{{/if}}" title="{{=i18n('@:{lang#panel.ns-resize}')}}" mx-contextmenu="@:{prevent}()" mx-pointerdown="@:{start.resize}({h:1})"></div>
+</div>

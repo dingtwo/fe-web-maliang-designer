@@ -1,0 +1,202 @@
+<div class="pa z-index-1" style="left:{{=props.x}}{{=unit}};top:{{=props.y}}{{=unit}};opacity:{{=props.alpha}};width:{{=props.width}}{{=unit}};height:{{=props.height}}{{=unit}}">
+    {{set {max,min}=Math}}
+    {{set {borderwidth,bordertype,bordercolor,borderdeed,rows,excel,excelLeft,excelTop,excelBackground,excelForecolor,readonly}=props}}
+    {{set rowIndex=0}}
+    {{set bwn=(borderdeed=='collapse'?1:2)*borderwidth}}
+    <table class="wp100 table{{if readonly}} pointer-events-none{{/if}}" style="border-collapse:{{=borderdeed}}">
+        <tbody>
+        {{if excel}}
+            <tr>
+                <td class="table-cell word-break-break-all pr touch-action-none" style="height:{{=excelTop}}{{=unit}};background:{{=excelBackground}};border:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=bordercolor}}" mx-pointerdown="@:{active.cell}({row:-3,col:-3})">
+                    {{if !fs&&selected&&!props.locked&&count==1&&props.focusRow==-3&&props.focusCol==-3}}
+                    <div class="pa hod-focus-div z-index-1 pointer-events-none hod-focus-line">
+                        {{set height=(min(26,toPx(excelTop)-6)-4)}}
+                        {{set width=(min(26,toPx(excelLeft)-6)-4)}}
+                        {{set top=(toPx(excelTop)-height-bwn)/2-1}}
+                        {{set left=(toPx(excelLeft)-width-bwn)/2-1}}
+                        <div class="pa hod-right pointer-events-all touch-action-none" style="height:{{=max(height,0)}}px;top:{{=top}}px;cursor:ew-resize" title="{{=i18n('@:{lang#press.drag.excel.cell.width}')}}" mx-pointerdown="@:{start.resize.table.cell}({key:'mr'})"></div>
+                        <div class="pa hod-left pointer-events-all touch-action-none" style="height:{{=max(height,0)}}px;top:{{=top}}px;cursor:ew-resize" title="{{=i18n('@:{lang#press.drag.excel.cell.width}')}}" mx-pointerdown="@:{start.resize.table.cell}({key:'ml'})"></div>
+                        <div class="pa hod-bottom pointer-events-all touch-action-none" style="width:{{=max(width,0)}}px;left:{{=left}}px;cursor:ns-resize" title="{{=i18n('@:{lang#press.drag.excel.cell.height}')}}" mx-pointerdown="@:{start.resize.table.cell}({key:'bm'})"></div>
+                        <div class="pa hod-top pointer-events-all touch-action-none" style="width:{{=max(width,0)}}px;left:{{=left}}px;cursor:ns-resize" title="{{=i18n('@:{lang#press.drag.excel.cell.height}')}}" mx-pointerdown="@:{start.resize.table.cell}({key:'tm'})"></div>
+                    </div>
+                    {{/if}}
+                </td>
+                {{set maxCol=getMaxCol(props)}}
+                {{for(let i=0;i<maxCol;i++)}}
+                <td class="table-cell word-break-break-all" style="height:{{=excelTop}}{{=unit}};background:{{=excelBackground}};border:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=bordercolor}};color:{{=excelForecolor}}">
+                    <div class="flex hp100 wp100 align-items-center justify-content-center height-1">{{=excelTitle(i)}}</div>
+                </td>
+                {{/for}}
+            </tr>
+        {{/if}}
+        {{set findTotalRow=0}}
+        {{set findLabelRow=0}}
+        {{each props.rows as row ri}}
+        {{if row.label}}
+            {{findLabelRow=1}}
+        {{/if}}
+        {{if ((!row.total||!props.hideTotal)&&(!findTotalRow||!props.hideFoot))&&(findLabelRow||!props.hideHead)&&(!row.label||!props.hideLabel)}}
+        <tr>
+            {{if excel}}
+            <td class="table-cell word-break-break-all" style="width:{{=excelLeft}}{{=unit}};background:{{=excelBackground}};border:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=bordercolor}};color:{{=excelForecolor}}">
+                <div class="flex hp100 wp100 align-items-center justify-content-center height-1">{{=++rowIndex}}</div>
+            </td>
+            {{/if}}
+            {{each row.cols as col ci}}
+            {{set hasContent=col[col.type+'Content']||col.type=='input'||col.type=='dropdown'}}
+            {{set hasElements=col.elements&&col.elements.length}}
+            {{set asHod=hasElements||(!hasContent&&(findTotalRow==1||!findLabelRow))}}
+            {{set hasInput=!hasElements&&!row.data&&col.type=='text'}}
+            <td class="table-cell word-break-break-all touch-action-none{{if selectRect&&srRow==ri&&srCol==ci}} overflow-hidden{{/if}}" colspan="{{=col.colspan}}??" rowspan="{{=col.rowspan}}??" style="position:relative;width:{{=col.width}}{{=unit}};height:{{=col.height}}{{=unit}};border-left:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bLeft?bordercolor:'#ddd6'}};border-top:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bTop?bordercolor:'#ddd6'}};border-right:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bRight?bordercolor:'#ddd6'}};border-bottom:{{=borderwidth?bordertype:'dotted'}} {{=borderwidth}}{{=unit}} {{=borderwidth&&col.bBottom?bordercolor:'#ddd6'}}" mx-pointerdown="@:{active.cell}({row:{{=ri}},col:{{=ci}},elm:{{=asHod}},input:{{=hasInput}}})" id="{{=asHod}}?_rd_h_{{=element.id}}_{{=ri}}_{{=ci}}" mx-contextmenu="{{=asHod}}?@:{show.contxtmenu}({row:{{=ri}},col:{{=ci}}})">
+                <div class="wp100 hp100 pr overflow-hidden" data-as="hod" id="_rd_hm_{{=element.id}}_{{=ri}}_{{=ci}}">
+                {{if col.elements&&col.elements.length}}
+                    {{each col.elements as e}}
+                        <mx-vframe class="touch-action-none" id="{{=e.id}}" src="../{{=e.type}}/designer" *element="{{#e}}" *fs="{{#fs}}" *owner-id="_rd_h_{{=element.id}}_{{=ri}}_{{=ci}}" *mask-id="_rd_hm_{{=element.id}}_{{=ri}}_{{=ci}}" *unit="{{#unit}}" mx-pointerdown="@:{element.start.drag}({element:{{#e}},maskId:'_rd_hm_{{=element.id}}_{{=ri}}_{{=ci}}'})"/>
+                    {{/each}}
+                {{else}}
+                    {{if !fs && col.type}}
+                        <i class="iconfont fontsize-10 right-2 bottom-2 pa color-999">
+                            {{if col.type=='text'}}
+                            &#xe6bc;
+                            {{else if col.type=='image'}}
+                            &#xe650;
+                            {{else if col.type=='barcode'}}
+                            &#xe6c8;
+                            {{else if col.type=='qrcode'}}
+                            &#xe61c;
+                            {{else if col.type=='input'}}
+                            &#xe6dc;
+                            {{/if}}
+                        </i>
+                    {{/if}}
+                    {{set {paddingTop,paddingBottom,paddingLeft,paddingRight}=col}}
+                    {{set realWidth=col.width-bwn-toUnit(1),realHeight=col.height-bwn-toUnit(1)}}
+                    {{if paddingTop>realHeight}}
+                        {{paddingTop=realHeight}}
+                    {{/if}}
+                    {{if paddingTop+paddingBottom>realHeight}}
+                        {{paddingBottom=realHeight-paddingTop}}
+                    {{/if}}
+                    {{if paddingLeft>realWidth}}
+                        {{paddingLeft=realWidth}}
+                    {{/if}}
+                    {{if paddingLeft+paddingRight>realWidth}}
+                        {{paddingRight=realWidth-paddingLeft}}
+                    {{/if}}
+                    <div class="pr overflow-hidden flex" style="padding:{{=paddingTop}}{{=unit}} {{=paddingRight}}{{=unit}} {{=paddingBottom}}{{=unit}} {{=paddingLeft}}{{=unit}};width:{{=realWidth}}{{=unit}};height:{{=realHeight}}{{=unit}};align-items:{{=col.vpos}};justify-content:{{=col.hpos}};opacity:{{=col.alpha}};{{if col.background}}background:{{=col.background}};{{/if}}{{if col.textFontsize!=null}}color:{{=col.textForecolor}};letter-spacing:{{=col.textLetterspacing}}{{=unit}};{{if col.textStyleBold}}font-weight:bold;{{/if}}{{if col.textStyleItalic}}font-style:italic;{{/if}}{{if col.textStyleUnderline||col.textStyleStrike||col.textStyleOverline}}text-decoration:{{if col.textStyleStrike}}line-through{{else if col.textStyleOverline}}overline{{else}}underline{{/if}};{{/if}}font-family:{{=col.textFontfamily}};font-size:{{=col.textFontsize}}{{=unit}};{{/if}}">
+                        {{if col.type=='text'}}
+                            <input as="d-input" class="pa input form-input" value="{{=col.textContent}}" mx-input="@:{update.cell.text}({cell:{{#col}},key:'textContent'})" style="width:calc(100% - {{=paddingLeft+paddingRight}}{{=unit}});text-align:{{if col.hpos=='center'}}center{{else if col.hpos=='flex-end'}}right{{else}}left{{/if}}" mx-focusin="@:{active.cell.by.pos}({row:{{=ri}},col:{{=ci}}})"/>
+                            {{if col.textContent}}
+                            <div class="ellipsis" x-html="{{=col.textContent}}"></div>
+                            {{/if}}
+                        {{else if col.type=='image'}}
+                            {{if col.imageContent}}
+                            <img class="tag-img mhp100 mwp100" style="{{if col.imageRotateX||col.imageRotateY}};transform:{{if col.imageRotateX}}rotateX(180deg){{/if}}{{if col.imageRotateY}} rotateY(180deg){{/if}}{{/if}}" src="{{=col.imageContent}}"/>
+                            {{/if}}
+                        {{else if col.type=='barcode'}}
+                            {{if col.barcodeContent}}
+                            <mx-vframe class="flex" style="height:{{=realHeight-paddingTop-paddingBottom}}{{=unit}};align-items:{{=col.vpos}};" src="../subs/barcode" *line-color="{{=col.barcodeColor}}" *line-width="{{=col.barcodeLineWidth}}" *show-text="{{=col.barcodeShowText}}" *format="{{=col.barcodeFormat}}" *value="{{=col.barcodeContent}}"/>
+                            {{/if}}
+                        {{else if col.type=='qrcode'}}
+                            {{if col.qrcodeContent}}
+                            <mx-vframe style="height:{{=realHeight-paddingTop-paddingBottom}}{{=unit}};" src="../subs/qrcode" *vpos="{{=col.vpos}}" *value="{{=col.qrcodeContent}}"/>
+                            {{/if}}
+                        {{else if col.type=='sum'}}
+                            [计算:求和]
+                        {{else if col.type=='avg'}}
+                            [计算:求平均]
+                        {{else if col.type=='custom'}}
+                            [计算:自定义函数]
+                        {{else if col.type=='input'}}
+                            {{if col.inputMultiline}}
+                                <textarea as="d-input" class="wp100 hp100 textarea{{if col.inputClassName}} {{=col.inputClassName}}{{/if}}" style="color:{{=col.inputForecolor}};font-size:{{=col.inputFontsize}}{{=unit}};letter-spacing:{{=col.inputLetterspacing}}{{=unit}};font-family:{{=col.inputFontfamily}};text-align:{{=col.inputTextAlign}}" placeholder="{{=col.inputplaceholder}}" mx-input="@:{update.cell.text}({cell:{{#col}},key:'inputText'})" mx-focusin="@:{active.cell.by.pos}({row:{{=ri}},col:{{=ci}}})">{{=col.inputText}}</textarea>
+                            {{else}}
+                                <input as="d-input" class="wp100 hp100 input{{if col.inputClassName}} {{=col.inputClassName}}{{/if}}" style="color:{{=col.inputForecolor}};font-size:{{=col.inputFontsize}}{{=unit}};letter-spacing:{{=col.inputLetterspacing}}{{=unit}};font-family:{{=col.inputFontfamily}};text-align:{{=col.inputTextAlign}}" placeholder="{{=col.inputPlaceholder}}" value="{{=col.inputText}}" mx-input="@:{update.cell.text}({cell:{{#col}},key:'inputText'})" mx-focusin="@:{active.cell.by.pos}({row:{{=ri}},col:{{=ci}}})"/>
+                            {{/if}}
+                        {{else if col.type=='dropdown'}}
+                            <select multiple="{{=col.dropdownMultipleSelect}}?" class="wp100 hp100{{if col.dropdownClassName}} {{=col.dropdownClassName}}{{/if}}" style="color:{{=col.dropdownForecolor}};font-size:{{=col.dropdownFontsize}}{{=unit}};letter-spacing:{{=col.dropdownLetterspacing}}{{=unit}};font-family:{{=col.dropdownFontfamily}}" name="{{=col.dropdownName}}" mx-change="@:{update.cell.dropdown}({cell:{{#col}}})">
+                                {{each col.dropdownItems as item}}
+                                <option disabled="{{=item.disabled}}?" selected="{{=item.checked}}?" value="{{=item.value}}">
+                                    {{=item.text}}
+                                </option>
+                                {{/each}}
+                            </select>
+                        {{else}}
+                            {{=col.type}}
+                        {{/if}}
+                    </div>
+                {{/if}}
+                </div>
+                <!-- {{if hasContent}}
+                <div class="pa full-fill z-index-1"></div>
+                {{/if}} -->
+                {{if !fs&&!props.locked}}
+                {{set focusCurrentCell=props.focusRow==ri&&props.focusCol==ci&&selected&&count==1}}
+                <div class="pa hod-focus-div z-index-1 pointer-events-none{{if focusCurrentCell}} hod-focus-line{{/if}}{{if fieldRow==ri&&fieldCol==ci}} hod-drop-tip{{/if}}" style="{{if focusCurrentCell}}{{if !col.bLeft}}border-left-style:dotted;{{/if}}{{if !col.bTop}}border-top-style:dotted;{{/if}}{{if !col.bRight}}border-right-style:dotted;{{/if}}{{if !col.bBottom}}border-bottom-style:dotted;{{/if}}{{/if}}" id="{{=asHod}}?_rd_dm_{{=element.id}}_{{=ri}}_{{=ci}}">
+                    {{if focusCurrentCell&&!grouped}}
+                    {{set height=(min(26,toPx(col.height)-6)-4)}}
+                    {{set width=(min(26,toPx(col.width)-6)-4)}}
+                    {{set top=(toPx(col.height)-height-bwn)/2-1}}
+                    {{set left=(toPx(col.width)-width-bwn)/2-1}}
+                    <div class="pa hod-right pointer-events-all touch-action-none" style="height:{{=max(height,0)}}px;top:{{=top}}px;cursor:ew-resize" title="{{=i18n('@:{lang#press.drag.cell.width}')}}" mx-pointerdown="@:{start.resize.table.cell}({key:'mr'})"></div>
+                    <div class="pa hod-left pointer-events-all touch-action-none" style="height:{{=max(height,0)}}px;top:{{=top}}px;cursor:ew-resize" title="{{=i18n('@:{lang#press.drag.cell.width}')}}" mx-pointerdown="@:{start.resize.table.cell}({key:'ml'})"></div>
+                    <div class="pa hod-bottom pointer-events-all touch-action-none" style="width:{{=max(width,0)}}px;left:{{=left}}px;cursor:ns-resize" title="{{=i18n('@:{lang#press.drag.cell.height}')}}" mx-pointerdown="@:{start.resize.table.cell}({key:'bm'})"></div>
+                    <div class="pa hod-top pointer-events-all touch-action-none" style="width:{{=max(width,0)}}px;left:{{=left}}px;cursor:ns-resize" title="{{=i18n('@:{lang#press.drag.cell.height}')}}" mx-pointerdown="@:{start.resize.table.cell}({key:'tm'})"></div>
+                    {{/if}}
+                </div>
+                {{/if}}
+                {{if !readonly && !fs && col.elements && col.elements.length}}
+                    <i class="pa z-index-1 left-2 top-2 cell-icon gray iconfont fontsize-10 cursor-pointer background-color-fff" title="{{=i18n('@:{lang#cell.select}')}}">&#xe647;</i>
+                {{/if}}
+                {{if selectRect&&srRow==ri&&srCol==ci}}
+                    <div class="select-rect pointer-events-none pa" style="display:block;left:{{=selectRect.x}}px;top:{{=selectRect.y}}px;width:{{=selectRect.width}}px;height:{{=selectRect.height}}px"></div>
+                {{/if}}
+            </td>
+            {{/each}}
+        </tr>
+        {{/if}}
+        {{if row.total}}
+            {{findTotalRow=1}}
+        {{/if}}
+        {{/each}}
+        </tbody>
+    </table>
+    {{if !fs&&selected&&count==1}}
+        {{set h=toPx(props.headHeight)}}
+        {{if !props.hideHead}}
+        <svg style="left:-15px;top:{{=props.headStart}}{{=unit}};width:15px;height:{{=h}}px" class="pa pointer-events-none overflow-visible">
+            <path d="M10 0C0 0 10 {{=h/2}} 0 {{=h/2}}C10 {{=h/2}} 0 {{=h}} 10 {{=h}}" style="fill:none;stroke:#999;"/>
+        </svg>
+        <div class="pa color-999 pointer-events-none" style="left:-15px;top:{{=h/2+toPx(props.headStart)}}px;transform:translate(-110%,-50%);width:20px;line-height:1">头</div>
+        {{/if}}
+        {{if !props.hideLabel}}
+        {{h=toPx(props.labelHeight)}}
+        <svg style="left:-15px;top:{{=props.labelStart}}{{=unit}};width:15px;height:{{=h}}px" class="pa pointer-events-none overflow-visible">
+            <path d="M10 0C0 0 10 {{=h/2}} 0 {{=h/2}}C10 {{=h/2}} 0 {{=h}} 10 {{=h}}" style="fill:none;stroke:#999;"/>
+        </svg>
+        <div class="pa color-999 pointer-events-none" style="left:-15px;top:{{=h/2+toPx(props.labelStart)}}px;transform:translate(-110%,-50%);width:20px;line-height:1">标题</div>
+        {{/if}}
+        {{h=toPx(props.bodyHeight)}}
+        <svg style="left:-15px;top:{{=props.bodyStart}}{{=unit}};width:15px;height:{{=h}}px" class="pa pointer-events-none overflow-visible">
+            <path d="M10 2C0 2 10 {{=h/2}} 0 {{=h/2}}C10 {{=h/2}} 0 {{=h}} 10 {{=h}}" style="fill:none;stroke:#999;"/>
+        </svg>
+        <div class="pa color-999 pointer-events-none" style="left:-15px;top:{{=h/2+toPx(props.bodyStart)}}px;transform:translate(-110%,-50%);width:20px;line-height:1">数据</div>
+        {{if !props.hideTotal}}
+        {{h=toPx(props.totalHeight)}}
+        <svg style="left:-15px;top:{{=props.totalStart}}{{=unit}};width:15px;height:{{=h}}px" class="pa pointer-events-none overflow-visible">
+            <path d="M10 2C0 2 10 {{=h/2}} 0 {{=h/2}}C10 {{=h/2}} 0 {{=h}} 10 {{=h}}" style="fill:none;stroke:#999;"/>
+        </svg>
+        <div class="pa color-999 pointer-events-none" style="left:-15px;top:{{=h/2+toPx(props.totalStart)}}px;transform:translate(-110%,-50%);width:20px;line-height:1">合计</div>
+        {{/if}}
+        {{if !props.hideFoot}}
+            {{h=props.footHeight}}
+            {{if h>0}}
+                {{h=toPx(h)}}
+                <svg style="left:-15px;top:{{=props.footStart}}{{=unit}};width:15px;height:{{=h}}px" class="pa pointer-events-none overflow-visible">
+                    <path d="M10 2C0 2 10 {{=h/2}} 0 {{=h/2}}C10 {{=h/2}} 0 {{=h}} 10 {{=h}}" style="fill:none;stroke:#999;"/>
+                </svg>
+                <div class="pa color-999 pointer-events-none" style="left:-15px;top:{{=h/2+toPx(props.footStart)}}px;transform:translate(-110%,-50%);width:20px;line-height:1">尾</div>
+            {{/if}}
+        {{/if}}
+    {{/if}}
+</div>

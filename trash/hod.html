@@ -1,0 +1,10 @@
+{{set {props,ctrl,type,id}=element}}
+<mx-vframe class="unselectable" src="{{=view}}" id="entity_{{=$viewId}}" *props="{{#props}}" *element="{{#element}}" *selected="{{#selected}}" *count="{{#count}}" *fs="{{#fs}}" *grouped="{{#[selfGrouped,grouped,selfGrouped||grouped]}}"/>
+{{if !fs}}
+<!-- <div id="mask_{{=element.id}}" style="left:{{=props.x}}px;top:{{=props.y}}px;width:{{=props.width}}px;height:{{=props.height}}px" class="pa unselectable pointer-events-none"></div> -->
+<div id="mask_{{=element.id}}" style="left:{{=props.x}}px;top:{{=props.y}}px;width:{{=props.width}}px;height:{{=props.height}}px" class="z-index-1 pointer-events-none pa unselectable normal{{if selected}}{{if props.locked}} locked-line{{else}} focus-line{{/if}}{{if selfGrouped}} grouped-self{{/if}}{{/if}}{{if grouped}}{{if props.locked}} grouped-locked-line{{else}} grouped-line{{/if}}{{/if}}">
+    {{if !props.readonly}}
+    <i class="iconfont pa icon pointer-events-all" x-html="{{=ctrl.icon}}"></i>
+    {{/if}}
+</div>
+{{/if}}

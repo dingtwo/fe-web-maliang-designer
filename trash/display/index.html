@@ -1,0 +1,14 @@
+<div class="flex justify-content-center">
+    {{if stage}}
+    {{let {elements,page}=stage;}}
+    <div style="position:relative;width:{{=page.width}}px;height:{{=page.height}}px;background:{{=page.background}};{{if page.backgroundImage}}background-image:url({{=page.backgroundImage}});background-repeat:{{=page.backgroundRepeat=='full'?'no-repeat':page.backgroundRepeat}};background-size:{{if page.backgroundRepeat=='full'}}100% 100%{{else}}{{=page.backgroundWidth}}px {{=page.backgroundHeight}}px;background-position:{{=page.positionXOffset}}% {{=page.positionXOffset}}%{{/if}}{{/if}}">
+        {{each elements as e}}
+            <mx-vframe src="../elements/{{=e.type}}/index" *props="{{#e.props}}"/>
+        {{/each}}
+    </div>
+    {{else}}
+    <div class="tip fontsize-16">
+        在通用设计器设计好页面后，点保存并复制设计好的 JSON 然后在该页面进行粘贴。该页面仅供还原参考使用，可与任意后端接口深度结合定制。
+    </div>
+    {{/if}}
+</div>

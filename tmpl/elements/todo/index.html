@@ -1,0 +1,38 @@
+<div class="pa z-index-1 todo outline touch-action-none" style="left:{{=props.x}}{{=unit}};top:{{=props.y}}{{=unit}};height:{{=props.height/scale}}{{=unit}};opacity:{{=props.alpha}};width:{{=props.width/scale}}{{=unit}};{{if scale!=1}}transform:scale({{=scale}});transform-origin:0 0;{{/if}}" mx-pointerdown="@:{stop}()" mx-contextmenu="@:{stop}()" id="todo_{{= $viewId }}">
+    <div class="padding-4px border-bottom-1px-solid-ccc9">
+        <input class="tag-input input wp100 height-26px" placeholder="准备做什么?回车添加待办事项" mx-keydown="@:{watch.key.down}()"/>
+    </div>
+    <div class="padding-4px min-height-40px background-color-fff{{if !props.todos.length}} color-999{{/if}}">
+        {{if props.todos.length}}
+            <div class="outline">
+                {{each props.todos as todo todoIndex}}
+                    <div class="todo-item flex align-items-center  border-bottom-1px-solid-ccc9">
+                        <label class="flex align-items-center flex-fill-rest ellipsis{{if todo.complete}} color-999 text-decoration-line-through{{/if}}">
+                            <input type="checkbox" checked="{{=todo.complete}}?" mx-change="@:{change.task.status}({index:{{=todoIndex}}})"/>
+                            {{=todo.task}}
+                        </label>
+                        <i class="iconfont fontsize-12 cursor-pointer gray remove-icon" mx-click="@:{remove.task.at}({index:{{=todoIndex}}})">&#xe6b3;</i>
+                    </div>
+                {{/each}}
+            </div>
+        {{else}}
+            暂无待办事项
+        {{/if}}
+        <!-- <div class="outline"> -->
+            <!-- <div class="todo-item border-bottom-1px-solid-ccc9 flex align-items-center">
+                <label class="flex align-items-center flex-fill-rest">
+                    <input type="checkbox"/>
+                    abcd
+                </label>
+                <i class="iconfont fontsize-12 cursor-pointer gray">&#xe6b3;</i>
+            </div>
+            <div class="todo-item flex align-items-center">
+                <label class="flex align-items-center flex-fill-rest">
+                    <input type="checkbox"/>
+                    abcd
+                </label>
+                <i class="iconfont fontsize-12 cursor-pointer gray">&#xe6b3;</i>
+            </div> -->
+        <!-- </div> -->
+    </div>
+</div>

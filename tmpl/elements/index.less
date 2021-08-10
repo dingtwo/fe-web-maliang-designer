@@ -1,0 +1,143 @@
+@import "../assets/_vars.less";
+.cross {
+    left: 50%;
+    top: 50%;
+}
+
+.cross:before {
+    content: ' ';
+    width: 1px;
+    height: 5px;
+    position: absolute;
+    background: @color-brand;
+    left: 0;
+    top: -2px;
+}
+
+.cross:after {
+    content: ' ';
+    width: 5px;
+    height: 1px;
+    position: absolute;
+    background: @color-brand;
+    left: -2px;
+    top: 0;
+}
+
+.normal {
+    border: dotted 1px #ddd6;
+}
+
+.focus-line {
+    border-color: @color-brand;
+    border-style: dashed;
+}
+
+.grouped-locked-line, .locked-line {
+    border-color: @color-third;
+}
+
+.locked-line {
+    border-style: dashed;
+}
+
+.grouped-line {
+    border-color: @color-brand;
+}
+
+.grouped-self {
+    border-style: solid;
+}
+
+.right {
+    border-right: solid 3px @color-brand;
+    right: -2px;
+}
+
+.left {
+    border-left: solid 3px @color-brand;
+    left: -2px;
+}
+
+.bottom {
+    border-bottom: solid 3px @color-brand;
+    bottom: -2px;
+}
+
+.top {
+    border-top: solid 3px @color-brand;
+    top: -2px;
+}
+
+.right-bottom {
+    border-right: solid 3px @color-brand;
+    border-bottom: solid 3px @color-brand;
+    right: -2px;
+    bottom: -2px;
+}
+
+.left-bottom {
+    border-left: solid 3px @color-brand;
+    border-bottom: solid 3px @color-brand;
+    left: -2px;
+    bottom: -2px;
+}
+
+.left-top {
+    border-left: solid 3px @color-brand;
+    border-top: solid 3px @color-brand;
+    left: -2px;
+    top: -2px;
+}
+
+.right-top {
+    border-right: solid 3px @color-brand;
+    border-top: solid 3px @color-brand;
+    right: -2px;
+    top: -2px;
+}
+
+.icon {
+    top: -20px;
+    cursor: move;
+}
+
+.rotate {
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: @color-brand;
+}
+
+.rotate::after {
+    content: ' ';
+    height: 12px;
+    width: 1px;
+    border-right: @color-brand dashed 1px;
+    position: absolute;
+    left: 3px;
+    top: 6px;
+}
+
+.div-circle-path {
+    border: dotted 1px @color-brand;
+    border-radius: 50%;
+}
+
+.svg-rect {
+    border: solid 1px @color-brand;
+    width: 5px;
+    height: 5px;
+    cursor: move;
+}
+
+.svg-rect-focus {
+    background: @color-brand;
+}
+
+.rotate {
+    cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABvUExURUdwTP///9XV1R0dHf///3Nzc////////////////1ZWVq+vr/T09PX19QQEBP///////8XFxf///////////wYGBv///+jo6P///4aGhqioqMzMzP///2BgYP///////////zExMf///wAAAP///xLps0AAAAAjdFJOUwCxxOdixRDmzSDMv8/Z+tz5wWpXWPk3zALCv8KnyXZVMNuNPnv3CwAAAJ1JREFUKM/NkckOwyAMRFkDBMhC9qWr+//fWCIV1WlzrjoXS36yxmMT8hdqqKoUvRAjMtw22kvecem1GjTuK1vApmI+wQMBbQFy5li+QQRaX4AtRX+vbntAJeRl9HTTx4TiwESs61DXNUPmVQeujzVrQwh43TTxpeRBslVfMUhbiXKWyiAwvnIsMcdyJkfJYdpNvG/ltDm+bjP+8KFP8ggL+zQLGxwAAAAASUVORK5CYII=') 14 14, alias;
+}

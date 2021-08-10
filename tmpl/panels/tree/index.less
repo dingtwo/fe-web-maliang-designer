@@ -1,0 +1,60 @@
+@import "../../assets/_vars.less";
+.items {
+    padding: 5px 4px;
+}
+
+.item {
+    color: @color-primary;
+    margin: 1px 0;
+}
+
+.item-text {
+    height: @input-height;
+    line-height: @input-height;
+    border-radius: @border-radius;
+}
+
+.remove-icon {
+    visibility: hidden;
+}
+
+.item-text:hover {
+    background: lighten(@color-hover, 2%);
+}
+
+.item-text:hover .remove-icon {
+    visibility: visible;
+}
+
+.item-selected, .item-selected:hover {
+    background: lighten(@color-brand, 30%);
+}
+
+.item-locked-selected, .item-locked-selected:hover {
+    background: lighten(@color-third, 30%);
+}
+
+.move {
+    margin: 0 4px 0 2px;
+}
+
+.rect {
+    background: @color-brand;
+    opacity: 0.4;
+}
+
+.item-dragged {
+    opacity: 0.4;
+}
+
+.item--top {
+    box-shadow: 0px -1px @color-brand
+}
+
+.item--bottom {
+    box-shadow: 0px 1px @color-brand
+}
+
+.col {
+    border-top: dotted 1px #f5f5f5;
+}

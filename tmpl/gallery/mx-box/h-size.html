@@ -1,0 +1,2 @@
+<mx-number disabled="{{=disabled}}?" *min="{{#minWidth}}" *fixed="{{#fixed}}" *step="{{#step}}" *value="{{# read(cell.width) }}" class="margin-bottom-4" mx-change="@:{stop}()" mx-input="@:{update.cell.width}()"/>
+<mx-number disabled="{{=disabled}}?" *min="{{#minHeight}}" *fixed="{{#fixed}}" *step="{{#step}}" *value="{{# read(row.height) }}" mx-change="@:{stop}()" mx-input="@:{update.row.height}()"/>

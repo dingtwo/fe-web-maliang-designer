@@ -1,0 +1,4 @@
+<i class="toolbar-spliter fl"></i>
+<i class="iconfont toolbar-item cursor-pointer align-items-center justify-content-center{{if !canGroup}} toolbar-item-disabled{{/if}}" title="{{=i18n('@:{lang#menu.group}')}}(Ctrl/Shift+G)" mx-click="{{=canGroup}}?@:{group.elements}()">&#xe669;</i>
+<i class="iconfont toolbar-item cursor-pointer align-items-center justify-content-center{{if !canUngroup}} toolbar-item-disabled{{/if}}" title="{{=i18n('@:{lang#menu.ungroup}')}}(Shift/Ctrl+G)" mx-click="{{=canUngroup}}?@:{group.elements}({un:1})">&#xe684;</i>
+<i class="iconfont toolbar-item cursor-pointer align-items-center justify-content-center{{if linkEnable}} toolbar-item-active{{/if}}" title="{{=i18n(linkEnable?'@:{lang#menu.group.unlinked}':'@:{lang#menu.group.linked}')}}" mx-click="@:{toggle.enable}()">&#xe6f3;</i>

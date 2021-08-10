@@ -1,0 +1,4 @@
+
+{{if image}}
+    <img class="tag-img pa z-index-1" style="left:{{=props.x}}{{=unit}};top:{{=props.y}}{{=unit}};height:{{=props.height}}{{=unit}};opacity:{{=props.alpha}};width:{{=props.width}}{{=unit}};transform:rotate({{=props.rotate}}deg);{{if props.rotateX||props.rotateY}};transform:{{if props.rotateX}}rotateX(180deg){{/if}}{{if props.rotateY}} rotateY(180deg){{/if}}{{/if}}" src="{{=image}}" />
+{{/if}}

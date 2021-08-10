@@ -1,0 +1,12 @@
+<div class="format cursor-pointer flex align-items-center{{if disabled}} notallowed{{/if}}" mx-click="{{=!disabled}}?@:{choose.format}()" title="{{=text}}??">
+    <div class="flex-fill-rest ellipsis{{if !text||disabled}} color-999{{/if}}">
+        {{if text}}
+            {{=text}}
+        {{else}}
+            点击选择显示格式
+        {{/if}}
+    </div>
+    {{if format}}
+    <i class="iconfont remove" mx-click="{{=!disabled}}?@:{clear.format}()" title="清除格式">&#xe624;</i>
+    {{/if}}
+</div>

@@ -1,0 +1,5 @@
+<div class="pa z-index-1 touch-action-none" style="left:{{=props.x}}{{=unit}};top:{{=props.y}}{{=unit}};height:{{=props.height}}{{=unit}};opacity:{{=props.alpha}};width:{{=props.width}}{{=unit}};" mx-pointerdown="@:{stop}()" mx-contextmenu="@:{stop}()">
+    <mx-codemirror style="border:solid 1px #ddd" class="overflow-scroll wp100 hp100 cursor-text" *type="html" *value="{{#props.value}}" mx-cmchange="@:{update.value}()">
+        loading...
+    </mx-codemirror>
+</div>

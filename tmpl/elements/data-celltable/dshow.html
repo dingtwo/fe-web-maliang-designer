@@ -1,0 +1,83 @@
+<div class="pa z-index-1" style="left:{{=props.x}}{{=unit}};top:{{=props.y}}{{=unit}};opacity:{{=props.alpha}};width:{{=props.width}}{{=unit}};height:{{=props.height}}{{=unit}};transform:rotate({{=props.rotate}}deg);" mx-drop="@:{when.data.field.drop}()">
+    {{set {max,min}=Math}}
+    {{set {borderwidth:bw,bordertype,bordercolor,borderdeed,rows}=props}}
+    {{set bwn=(borderdeed=='collapse'?1:2)*bw}}
+    <table class="wp100 table" style="border-collapse:{{=borderdeed}}">
+        <tbody>
+        {{each rows as row ri}}
+        <tr>
+            {{each row.cols as col ci}}
+            <td class="table-cell word-break-break-all touch-action-none" colspan="{{=col.colspan}}??" rowspan="{{=col.rowspan}}??" style="position:relative;width:{{=col.width}}{{=unit}};height:{{=col.height}}{{=unit}};border-left:{{=bw?bordertype:'dotted'}} {{=bw}}{{=unit}} {{=bw&&col.bLeft?bordercolor:'#ddd6'}};border-top:{{=bw?bordertype:'dotted'}} {{=bw}}{{=unit}} {{=bw&&col.bTop?bordercolor:'#ddd6'}};border-right:{{=bw?bordertype:'dotted'}} {{=bw}}{{=unit}} {{=bw&&col.bRight?bordercolor:'#ddd6'}};border-bottom:{{=bw?bordertype:'dotted'}} {{=bw}}{{=unit}} {{=bw&&col.bBottom?bordercolor:'#ddd6'}}" mx-pointerdown="@:{active.cell}({row:{{=ri}},col:{{=ci}}})" mx-dragenter="@:{when.data.field.enter}({row:{{=ri}},col:{{=ci}}})" mx-dragleave="@:{when.data.field.leave}({row:{{=ri}},col:{{=ci}}})">
+                {{if !fs && col.type}}
+                    <i class="iconfont fontsize-10 right-2 bottom-2 pa color-999 pointer-events-none">
+                        {{if col.type=='text'}}
+                        &#xe6bc;
+                        {{else if col.type=='image'}}
+                        &#xe650;
+                        {{else if col.type=='barcode'}}
+                        &#xe6c8;
+                        {{else if col.type=='qrcode'}}
+                        &#xe61c;
+                        {{/if}}
+                    </i>
+                {{/if}}
+                {{set {paddingTop,paddingBottom,paddingLeft,paddingRight}=col}}
+                {{set realWidth=col.width-bwn-toUnit(1),realHeight=col.height-bwn-toUnit(1)}}
+                {{if paddingTop>realHeight}}
+                    {{paddingTop=realHeight}}
+                {{/if}}
+                {{if paddingTop+paddingBottom>realHeight}}
+                    {{paddingBottom=realHeight-paddingTop}}
+                {{/if}}
+                {{if paddingLeft>realWidth}}
+                    {{paddingLeft=realWidth}}
+                {{/if}}
+                {{if paddingLeft+paddingRight>realWidth}}
+                    {{paddingRight=realWidth-paddingLeft}}
+                {{/if}}
+                <div class="pr overflow-hidden flex" style="padding:{{=paddingTop}}{{=unit}} {{=paddingRight}}{{=unit}} {{=paddingBottom}}{{=unit}} {{=paddingLeft}}{{=unit}};width:{{=realWidth}}{{=unit}};height:{{=realHeight}}{{=unit}};align-items:{{=col.vpos}};justify-content:{{=col.hpos}};opacity:{{=col.alpha}};{{if col.background}}background:{{=col.background}};{{/if}}{{if col.type=='text'}}color:{{=col.textForecolor}};letter-spacing:{{=col.textLetterspacing}}{{=unit}};{{if col.textStyleBold}}font-weight:bold;{{/if}}{{if col.textStyleItalic}}font-style:italic;{{/if}}{{if col.textStyleUnderline||col.textStyleStrike||col.textStyleOverline}}text-decoration:{{if col.textStyleStrike}}line-through{{else if col.textStyleOverline}}overline{{else}}underline{{/if}};{{/if}}font-family:{{=col.textFontfamily}};font-size:{{=col.textFontsize}}{{=unit}};{{/if}}">
+                    {{if col.bindKey}}
+                    {{if !fs&&!props.locked}}
+                        <i class="iconfont fontsize-10 right-2 top-2 pa gray cursor-pointer touch-action-none" mx-pointerdown="@:{stop}()" mx-click="@:{delete.bind.field}({row:{{=ri}},col:{{=ci}}})" title="{{=i18n('@:{lang#elements.delete.bind.field}')}}">&#xe6b3;</i>
+                    {{/if}}
+                    [绑定:{{=col.bindName}}]{{if !col.type}}，未指定格子内容{{/if}}
+                    {{else if col.type=='text'}}
+                        {{if col.textContent}}
+                        <div class="ellipsis" x-html="{{=col.textContent}}"></div>
+                        {{/if}}
+                    {{else if col.type=='image'}}
+                        {{if col.imageContent}}
+                        <img class="tag-img mwp100 mhp100" style="{{if col.imageRotateX||col.imageRotateY}};transform:{{if col.imageRotateX}}rotateX(180deg){{/if}}{{if col.imageRotateY}} rotateY(180deg){{/if}}{{/if}}" src="{{=col.imageContent}}"/>
+                        {{/if}}
+                    {{else if col.type=='barcode'}}
+                        {{if col.barcodeContent}}
+                        <mx-vframe class="flex" style="height:{{=realHeight-paddingTop-paddingBottom}}{{=unit}};align-items:{{=col.vpos}};" src="../subs/barcode" *line-color="{{=col.barcodeColor}}" *line-width="{{=col.barcodeLineWidth}}" *show-text="{{=col.barcodeShowText}}" *format="{{=col.barcodeFormat}}" *value="{{=col.barcodeContent}}"/>
+                        {{/if}}
+                    {{else if col.type=='qrcode'}}
+                        {{if col.qrcodeContent}}
+                        <mx-vframe style="height:{{=realHeight-paddingTop-paddingBottom}}{{=unit}};" src="../subs/qrcode" *vpos="{{=col.vpos}}" *value="{{=col.qrcodeContent}}"/>
+                        {{/if}}
+                    {{/if}}
+                </div>
+                {{if !fs&&!props.locked}}
+                {{set focusCurrentCell=props.focusRow==ri&&props.focusCol==ci&&selected&&count==1}}
+                <div class="pa hod-focus-div z-index-1 pointer-events-none{{if focusCurrentCell}} hod-focus-line{{/if}}{{if fieldRow==ri&&fieldCol==ci}} hod-drop-tip{{/if}}" style="{{if focusCurrentCell}}{{if !col.bLeft}}border-left-style:dotted;{{/if}}{{if !col.bTop}}border-top-style:dotted;{{/if}}{{if !col.bRight}}border-right-style:dotted;{{/if}}{{if !col.bBottom}}border-bottom-style:dotted;{{/if}}{{/if}}">
+                    {{if focusCurrentCell&&!grouped}}
+                    {{set height=(min(26,toPx(col.height)-6)-4)}}
+                    {{set width=(min(26,toPx(col.width)-6)-4)}}
+                    {{set top=(toPx(col.height)-height-bwn)/2-1}}
+                    {{set left=(toPx(col.width)-width-bwn)/2-1}}
+                    <div class="pa hod-right pointer-events-all touch-action-none" style="height:{{=max(height,0)}}px;top:{{=top}}px;cursor:{{=cursor(props.rotate,0)}}-resize" title="{{=i18n('@:{lang#press.drag.cell.width}')}}" mx-pointerdown="@:{start.resize.table.cell}({key:'mr'})"></div>
+                    <div class="pa hod-left pointer-events-all touch-action-none" style="height:{{=max(height,0)}}px;top:{{=top}}px;cursor:{{=cursor(props.rotate,0)}}-resize" title="{{=i18n('@:{lang#press.drag.cell.width}')}}" mx-pointerdown="@:{start.resize.table.cell}({key:'ml'})"></div>
+                    <div class="pa hod-bottom pointer-events-all touch-action-none" style="width:{{=max(width,0)}}px;left:{{=left}}px;cursor:{{=cursor(props.rotate,90)}}-resize" title="{{=i18n('@:{lang#press.drag.cell.height}')}}" mx-pointerdown="@:{start.resize.table.cell}({key:'bm'})"></div>
+                    <div class="pa hod-top pointer-events-all touch-action-none" style="width:{{=max(width,0)}}px;left:{{=left}}px;cursor:{{=cursor(props.rotate,90)}}-resize" title="{{=i18n('@:{lang#press.drag.cell.height}')}}" mx-pointerdown="@:{start.resize.table.cell}({key:'tm'})"></div>
+                    {{/if}}
+                </div>
+                {{/if}}
+            </td>
+            {{/each}}
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>

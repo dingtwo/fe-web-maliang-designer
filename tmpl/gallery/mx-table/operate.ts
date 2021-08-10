@@ -1,0 +1,242 @@
+/*
+    author:https://github.com/xinglie
+*/
+'ref@:./coperate.less';
+import Magix from 'magix';
+import Const from '../../designer/const';
+import TableContentConsts from '../../provider/cell';
+import TableProvider from '../../provider/table';
+import './coperate';
+let { View, dispatch } = Magix;
+let { max } = Math;
+let defaultCellProps = {
+    bLeft: true,
+    bTop: true,
+    bRight: true,
+    bBottom: true,
+};
+let toUnits = ['paddingBottom', 'paddingTop', 'paddingLeft', 'paddingRight', 'textFontsize'];
+let getDefaultProps = () => {
+    let defaultCellContentProps = {
+        paddingBottom: 5,
+        paddingTop: 5,
+        paddingLeft: 5,
+        paddingRight: 5,
+        hpos: 'flex-start',
+        vpos: 'flex-start',
+        alpha: 1,
+        type: 'text',
+        ...defaultCellProps,
+        ...TableContentConsts.text
+    };
+    for (let e of toUnits) {
+        defaultCellContentProps[e] = Const['@:{const#to.unit}'](defaultCellContentProps[e]);
+    }
+    return defaultCellContentProps;
+}
+let queryCellStatus = (table) => {
+    let { rows,
+        focusRow,
+        focusCol,
+        '@:{row.max}': rowMax,
+        '@:{col.max}': colMax } = table;
+    let canDeleteRow = false,
+        canDeleteCol = false,
+        canMergeLeft = false,
+        canMergeTop = false,
+        canMergeRight = false,
+        canMergeBottom = false;
+    if (focusRow > -1 && focusCol > -1) {
+        let destRow = rows[focusRow];
+        let dest = destRow.cols[focusCol];
+        let rowSpanned = dest['@:{end.row.index}'] - dest['@:{start.row.index}'] + 1;
+        let colSpanned = dest['@:{end.col.index}'] - dest['@:{start.col.index}'] + 1;
+
+        canDeleteRow = rowSpanned < rowMax;
+        canDeleteCol = colSpanned < colMax;
+        let maxRowIndex = dest['@:{end.row.index}'] + 1,
+            maxColIndex = dest['@:{end.col.index}'] + 1;
+        for (let rowIndex = 0; rowIndex <= maxRowIndex; rowIndex++) {
+            for (let colIndex = 0; colIndex <= maxColIndex; colIndex++) {
+                let row = rows[rowIndex];
+                if (row) {
+                    let cell = row.cols[colIndex];
+                    if (cell &&
+                        cell != dest) {
+                        if (cell['@:{start.col.index}'] == dest['@:{start.col.index}'] &&
+                            cell['@:{end.col.index}'] == dest['@:{end.col.index}']) {
+                            if (cell['@:{end.row.index}'] + 1 == dest['@:{start.row.index}']) {
+                                canMergeTop = true;
+                            } else if (dest['@:{end.row.index}'] + 1 == cell['@:{start.row.index}']) {
+                                canMergeBottom = true;
+                            }
+                        }
+                        if (cell['@:{start.row.index}'] == dest['@:{start.row.index}'] &&
+                            cell['@:{end.row.index}'] == dest['@:{end.row.index}']) {
+                            if (cell['@:{end.col.index}'] + 1 == dest['@:{start.col.index}']) {
+                                canMergeLeft = true;
+                            } else if (dest['@:{end.col.index}'] + 1 == cell['@:{start.col.index}']) {
+                                canMergeRight = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return {
+        '@:{table.cell#can.delete.row}': canDeleteRow,
+        '@:{table.cell#can.delete.col}': canDeleteCol,
+        '@:{table.cell#can.mrege.left}': canMergeLeft,
+        '@:{table.cell#can.merge.top}': canMergeTop,
+        '@:{table.cell#can.merge.right}': canMergeRight,
+        '@:{table.cell#can.merge.bottom}': canMergeBottom
+    };
+}
+export default View.extend({
+    tmpl: '@:./operate.html',
+    assign(data) {
+        TableProvider["@:{table.provider#add.ext.meta}"](data.props, 1);
+        let state = queryCellStatus(data.props);
+        this['@:{has.elements}'] = data.sub;
+        this.set({
+            props: data.props,
+            disabled: data.disabled,
+            deleteRow: state["@:{table.cell#can.delete.row}"],
+            deleteCol: state["@:{table.cell#can.delete.col}"],
+            mergeLeft: state["@:{table.cell#can.mrege.left}"],
+            mergeTop: state["@:{table.cell#can.merge.top}"],
+            mergeRight: state["@:{table.cell#can.merge.right}"],
+            mergeBottom: state["@:{table.cell#can.merge.bottom}"]
+        });
+    },
+    render() {
+        this.digest();
+    },
+    '@:{add.row}<click>'(e) {
+        let { to } = e.params;
+        let props = this.get('props');
+        let { focusRow, focusCol, rows } = props;
+        if (focusRow != -1 &&
+            focusCol != -1) {
+            let dest = rows[focusRow].cols[focusCol];
+            let startIndx = dest['@:{start.col.index}'];
+            let index = to == 'top' ? focusRow : dest['@:{end.row.index}'] + 1;
+            let cellProps;
+            if (this['@:{has.elements}']) {
+                cellProps = defaultCellProps;
+            } else {
+                cellProps = getDefaultProps();
+            }
+            TableProvider["@:{table.provider#insert.row.at}"](props, index, cellProps, Const['@:{const#to.unit}'](30));
+            TableProvider["@:{table.provider#add.ext.meta}"](props);
+            props.focusRow = index;
+            dest = rows[index];
+            for (let c of dest.cols) {
+                if (c['@:{start.col.index}'] >= startIndx) {
+                    props.focusCol = c['@:{col.index}'];
+                    break;
+                }
+            }
+            dispatch(this.root, 'change', {
+                rows
+            });
+        }
+    },
+    '@:{add.col}<click>'(e) {
+        let { to } = e.params;
+        let props = this.get('props');
+        let { focusRow, focusCol, rows } = props;
+        if (focusRow != -1 &&
+            focusCol != -1) {
+            let dest = rows[focusRow].cols[focusCol];
+            //let startIndx = dest['@:{start.col.index}'];
+            let index = to == 'left' ? focusCol : dest['@:{end.col.index}'] + 1;
+            let cellProps;
+            if (this['@:{has.elements}']) {
+                cellProps = defaultCellProps;
+            } else {
+                cellProps = getDefaultProps();
+            }
+            TableProvider["@:{table.provider#insert.col.at}"](props, index, cellProps, Const['@:{const#to.unit}'](150));
+            TableProvider["@:{table.provider#add.ext.meta}"](props);
+            dest = rows[focusRow];
+            if (to != 'left') {
+                //let ci = 0;
+                for (let c of dest.cols) {
+                    if (c['@:{start.col.index}'] >= index) {
+                        props.focusCol = c['@:{col.index}'];
+                        break;
+                    }
+                }
+            } else {
+                props.focusCol = index;
+            }
+            dispatch(this.root, 'change', {
+                rows
+            });
+        }
+    },
+    '@:{del.row}<click>'() {
+        let props = this.get('props');
+        let { focusRow, focusCol, rows } = props;
+        if (focusRow != -1 &&
+            focusCol != -1) {
+            TableProvider["@:{table.provider#delete.row}"](props);
+            TableProvider["@:{table.provider#add.ext.meta}"](props);
+            props.focusCol = 0;
+            if (focusRow >= props['@:{row.max}']) {
+                props.focusRow = props['@:{row.max}'] - 1;
+            }
+            dispatch(this.root, 'change', {
+                rows
+            });
+        }
+    },
+    '@:{del.col}<click>'() {
+        let props = this.get('props');
+        let { focusRow, focusCol, rows } = props;
+        if (focusRow != -1 &&
+            focusCol != -1) {
+            TableProvider["@:{table.provider#delete.col}"](props);
+            TableProvider["@:{table.provider#add.ext.meta}"](props);
+            props.focusCol = max(0, props.focusCol - 1);
+            dispatch(this.root, 'change', {
+                rows
+            });
+        }
+    },
+    '@:{merge.cell}<click>'(e) {
+        let { to } = e.params;
+        let props = this.get('props');
+        let { focusRow, focusCol, rows } = props;
+        if (focusRow != -1 &&
+            focusCol != -1) {
+            TableProvider["@:{table.provider#merge.cell}"](props, to);
+            TableProvider["@:{table.provider#add.ext.meta}"](props);
+            dispatch(this.root, 'change', {
+                rows
+            });
+        }
+    },
+    '@:{split.cell}<click>'(e) {
+        let props = this.get('props');
+        let { focusRow, focusCol, rows } = props;
+        if (focusRow != -1 &&
+            focusCol != -1) {
+            let { h } = e.params;
+            let cellProps;
+            if (this['@:{has.elements}']) {
+                cellProps = defaultCellProps;
+            } else {
+                cellProps = getDefaultProps();
+            }
+            let min = Const['@:{const#to.unit}'](20);
+            TableProvider["@:{table.provider#split.cell}"](props, h, cellProps, min, min);
+            TableProvider["@:{table.provider#add.ext.meta}"](props);
+            dispatch(this.root, 'change', {
+                rows
+            });
+        }
+    }
+});

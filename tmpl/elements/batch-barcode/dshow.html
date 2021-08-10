@@ -1,0 +1,13 @@
+<div class="pa overflow-hidden z-index-1{{if enter}} hod-drop-tip{{/if}}" style="left:{{=props.x}}{{=unit}};top:{{=props.y}}{{=unit}};height:{{=props.height}}{{=unit}};opacity:{{=props.alpha}};width:{{=props.width}}{{=unit}};transform:rotate({{=props.rotate}}deg)" mx-dragenter="@:{when.data.field.enter}()" mx-dragleave="@:{when.data.field.leave}()" mx-drop="@:{when.data.field.drop}()">
+    {{if !text||error}}
+        <div class="pointer-events-none tc overflow-hidden" style="font-size: {{=props.tfs}}{{=unit}};height:{{=props.height}}{{=unit}};line-height:{{=props.height}}{{=unit}};width:{{=props.width}}{{=unit}};">
+            {{if error}}
+                {{=error}}
+            {{else}}
+                {{=i18n('@:{lang#elements.data.bind.tip}')}}
+            {{/if}}
+        </div>
+    {{else}}
+        <img class="tag-img mwp100 wp100 hp100 pa pointer-events-none" style="left:0;top:0" id="_rd_{{=$viewId}}_bar"/>
+    {{/if}}
+</div>

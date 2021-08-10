@@ -1,0 +1,33 @@
+{{each items as d i last}}
+    <div class="flex align-items-flex-start margin-bottom-4">
+        <span class="props-item-title tr">
+            {{if items.length>1}}
+            <span class="iconfont mr5{{if disabled}} color-666 cursor-not-allowed{{else}} gray cursor-pointer{{/if}}" mx-click="{{=!disabled}}?@:{remove.item}({i:{{=i}}})" title="删除选项">&#xe6b3;</span>
+            {{/if}}
+            选项：
+        </span>
+        <input class="input width-140" disabled="{{=disabled}}?" mx-change="@:{stop}()" mx-input="@:{update.item}({i:{{=i}},key:'text'})" value="{{=d.text}}"/>
+    </div>
+    <div class="flex align-items-center margin-bottom-4">
+        <span class="props-item-title tr">值：</span>
+        <input class="input width-140" disabled="{{=disabled}}?" mx-change="@:{stop}()" mx-input="@:{update.item}({i:{{=i}},key:'value'})" value="{{=d.value}}"/>
+    </div>
+    <div class="flex align-items-center margin-bottom-4">
+        <span class="props-item-title tr">选中：</span>
+        <label class="tag-label mwp100 cursor-pointer flex align-items-center">
+            <input class="switch-input pa" type="checkbox" checked="{{=d.checked}}?" disabled="{{=disabled}}?" mx-change="@:{update.state}({i:{{=i}},key:'checked'})"/>
+            <i class="switch-button unselectable pr"></i>
+        </label>
+    </div>
+    <div class="flex align-items-center margin-bottom-4">
+        <span class="props-item-title tr">禁用：</span>
+        <label class="tag-label mwp100 cursor-pointer flex align-items-center">
+            <input class="switch-input pa" type="checkbox" checked="{{=d.disabled}}?" disabled="{{=disabled}}?" mx-change="@:{update.state}({i:{{=i}},key:'disabled'})"/>
+            <i class="switch-button unselectable pr"></i>
+        </label>
+    </div>
+    {{if !last}}
+    <div class="item-spliter"></div>
+    {{/if}}
+{{/each}}
+<button class="btn tc cursor-pointer btn-brand fr" disabled="{{=disabled}}?" mx-click="@:{add.item}()">添加选项</button>
