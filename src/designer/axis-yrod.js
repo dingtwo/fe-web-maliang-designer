@@ -1,0 +1,90 @@
+/*
+    generate by magix-composer@3.0.0
+    https://github.com/thx/magix-composer
+    author: https://github.com/xinglie
+    loader:cmd_es
+ */
+define("4d/4j",["4e","./4g"],(require,exports,module)=>{
+
+/*
+    author:https://github.com/xinglie
+*/
+/**
+ * 显示y标尺的view
+ */
+
+
+let magix_1 = require("4e");
+let const_1 = require("./4g");
+let { View, State } = magix_1;
+module.exports= View.extend({
+    tmpl: ($dataFromView, $createVNode,$viewId)=> { 
+let $temp_var,$vnode_0=[],
+{
+	height,
+	step,
+	yStart,
+	round,
+	scale,
+	enlarge,
+	space,
+	hbar,
+	barColor,
+	toUnit,
+	bar,
+	yEnd,
+	y,}=$dataFromView,
+$vnode_2,
+$vnode_1;
+$vnode_1=[];let temp;;
+for(let i=step;i<yStart;i+=step){
+temp=round(i/scale*enlarge);
+if(temp%(space*enlarge)===0){
+$vnode_1.push($createVNode('rect',{'width': (hbar),'height': 1,'x': (20-hbar),'y': (yStart-i),'style': 'fill:'+(barColor),},1));$vnode_2=[$createVNode(0,(-toUnit(temp/enlarge)))];$vnode_1.push($createVNode('text',{'x': 14,'y': (yStart-i+2),'class': 'rd-fo rd-fv','transform': 'rotate(-90,13,'+(yStart-i)+')',},$vnode_2));
+}else{
+$vnode_1.push($createVNode('rect',{'width': (bar),'height': 1,'x': (20-bar),'y': (yStart-i),'style': 'fill:'+(barColor),},1));
+}
+}
+for(let i=0;i<yEnd;i+=step){
+temp=round(i/scale*enlarge);
+if(temp%(space*enlarge)===0){
+$vnode_1.push($createVNode('rect',{'width': (hbar),'height': 1,'x': (20-hbar),'y': (yStart+i),'style': 'fill:'+(barColor),},1));$vnode_2=[$createVNode(0,(toUnit(temp/enlarge)))];$vnode_1.push($createVNode('text',{'x': 14,'y': (yStart+i),'class': 'rd-fo rd-fv','transform': 'rotate(-90,13,'+(yStart+i-2)+')',},$vnode_2));
+}else{
+$vnode_1.push($createVNode('rect',{'width': (bar),'height': 1,'x': (20-bar),'y': (yStart+i),'style': 'fill:'+(barColor),},1));
+}
+}$vnode_0.push($createVNode('svg',{'class': 'rd-eY rd-el','xmlns': 'http://www.w3.org/2000/svg','viewBox': '0 0 19 '+(height),'style': 'width:19px;height:'+(height)+'px',},$vnode_1));
+if(y){
+
+for(let $q_c_dnkyvso=y.length,$q_key_mobzjbphvq=0;$q_key_mobzjbphvq<$q_c_dnkyvso;$q_key_mobzjbphvq+=1){
+let t=y[$q_key_mobzjbphvq];
+$vnode_0.push($createVNode('div',{'class': 'rd-eR rd-el rd-fB rd-gi','style': 'top:'+(t[0]+yStart)+'px;height:'+(t[1]-t[0])+'px',}));
+}
+} 
+
+return $createVNode($viewId,0,$vnode_0); } ,
+    init() {
+        this.set({
+            enlarge: 10000,
+            round: Math.round,
+            toUnit: v => {
+                return const_1['dF'](v).toFixed(this['_dL']);
+            },
+        });
+        let updateShadow = e => {
+            this.digest({ y: e.y });
+        };
+        State.on('dF', updateShadow);
+        this.on('destroy', () => {
+            State.off('dF', updateShadow);
+        });
+    },
+    assign(data) {
+        this['_dL'] = data.decimals;
+        this.set(data);
+    },
+    render() {
+        this.digest();
+    }
+});
+
+});

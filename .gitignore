@@ -7,6 +7,5 @@ todo.md
 
 # Sublime Project files
 *.sublime-*
-src
 build
 types
