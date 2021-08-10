@@ -1,6 +1,581 @@
 {
     "data": [
         {
+            "name": "sql",
+            "url": "apis/sql.json",
+            "id": 10,
+            "fields": [
+                {
+                    "name": "id",
+                    "id": "id"
+                },
+                {
+                    "name": "source_system",
+                    "id": "source_system"
+                },
+                {
+                    "name": "super_class",
+                    "id": "super_class"
+                },
+                {
+                    "name": "order_type",
+                    "id": "order_type"
+                },
+                {
+                    "name": "order_code",
+                    "id": "order_code"
+                },
+                {
+                    "name": "shipped_type",
+                    "id": "shipped_type"
+                },
+                {
+                    "name": "business_type",
+                    "id": "business_type"
+                },
+                {
+                    "name": "return_flag",
+                    "id": "return_flag"
+                },
+                {
+                    "name": "direct_flag",
+                    "id": "direct_flag"
+                },
+                {
+                    "name": "shipper_code",
+                    "id": "shipper_code"
+                },
+                {
+                    "name": "shipper_name",
+                    "id": "shipper_name"
+                },
+                {
+                    "name": "supplier_code",
+                    "id": "supplier_code"
+                },
+                {
+                    "name": "supplier_name",
+                    "id": "supplier_name"
+                },
+                {
+                    "name": "send_location_code",
+                    "id": "send_location_code"
+                },
+                {
+                    "name": "send_location_name",
+                    "id": "send_location_name"
+                },
+                {
+                    "name": "receive_location_code",
+                    "id": "receive_location_code"
+                },
+                {
+                    "name": "receive_location_name",
+                    "id": "receive_location_name"
+                },
+                {
+                    "name": "transfer_location_code",
+                    "id": "transfer_location_code"
+                },
+                {
+                    "name": "transfer_location_name",
+                    "id": "transfer_location_name"
+                },
+                {
+                    "name": "customer_code",
+                    "id": "customer_code"
+                },
+                {
+                    "name": "customer_name",
+                    "id": "customer_name"
+                },
+                {
+                    "name": "sub_customer_code",
+                    "id": "sub_customer_code"
+                },
+                {
+                    "name": "sub_customer_address",
+                    "id": "sub_customer_address"
+                },
+                {
+                    "name": "shop_type",
+                    "id": "shop_type"
+                },
+                {
+                    "name": "shop_code",
+                    "id": "shop_code"
+                },
+                {
+                    "name": "shop_name",
+                    "id": "shop_name"
+                },
+                {
+                    "name": "shop_address",
+                    "id": "shop_address"
+                },
+                {
+                    "name": "station_code",
+                    "id": "station_code"
+                },
+                {
+                    "name": "station_name",
+                    "id": "station_name"
+                },
+                {
+                    "name": "receive_name",
+                    "id": "receive_name"
+                },
+                {
+                    "name": "receive_phone_number",
+                    "id": "receive_phone_number"
+                },
+                {
+                    "name": "receive_province_code",
+                    "id": "receive_province_code"
+                },
+                {
+                    "name": "receive_province_name",
+                    "id": "receive_province_name"
+                },
+                {
+                    "name": "receive_city_code",
+                    "id": "receive_city_code"
+                },
+                {
+                    "name": "receive_city_name",
+                    "id": "receive_city_name"
+                },
+                {
+                    "name": "receive_area_code",
+                    "id": "receive_area_code"
+                },
+                {
+                    "name": "receive_area_name",
+                    "id": "receive_area_name"
+                },
+                {
+                    "name": "receive_address",
+                    "id": "receive_address"
+                },
+                {
+                    "name": "delivery_code",
+                    "id": "delivery_code"
+                },
+                {
+                    "name": "delivery_name",
+                    "id": "delivery_name"
+                },
+                {
+                    "name": "settlement_dc",
+                    "id": "settlement_dc"
+                },
+                {
+                    "name": "settlement_dc_name",
+                    "id": "settlement_dc_name"
+                },
+                {
+                    "name": "status",
+                    "id": "status"
+                },
+                {
+                    "name": "entrucking_flag",
+                    "id": "entrucking_flag"
+                },
+                {
+                    "name": "can_entrucking_flag",
+                    "id": "can_entrucking_flag"
+                },
+                {
+                    "name": "wave_code",
+                    "id": "wave_code"
+                },
+                {
+                    "name": "all_shipped_flag",
+                    "id": "all_shipped_flag"
+                },
+                {
+                    "name": "distribute_shortage_flag",
+                    "id": "distribute_shortage_flag"
+                },
+                {
+                    "name": "all_received_flag",
+                    "id": "all_received_flag"
+                },
+                {
+                    "name": "print_times",
+                    "id": "print_times"
+                },
+                {
+                    "name": "packages_number",
+                    "id": "packages_number"
+                },
+                {
+                    "name": "link_operate_order_code",
+                    "id": "link_operate_order_code"
+                },
+                {
+                    "name": "origin_order_code",
+                    "id": "origin_order_code"
+                },
+                {
+                    "name": "link_in_out_order_code",
+                    "id": "link_in_out_order_code"
+                },
+                {
+                    "name": "link_order_code",
+                    "id": "link_order_code"
+                },
+                {
+                    "name": "external_order_code",
+                    "id": "external_order_code"
+                },
+                {
+                    "name": "send_time",
+                    "id": "send_time"
+                },
+                {
+                    "name": "plan_date",
+                    "id": "plan_date"
+                },
+                {
+                    "name": "remark",
+                    "id": "remark"
+                },
+                {
+                    "name": "auto_status",
+                    "id": "auto_status"
+                },
+                {
+                    "name": "sale_channel",
+                    "id": "sale_channel"
+                },
+                {
+                    "name": "compensation_type",
+                    "id": "compensation_type"
+                },
+                {
+                    "name": "picking_sort_number",
+                    "id": "picking_sort_number"
+                },
+                {
+                    "name": "actual_location_code",
+                    "id": "actual_location_code"
+                },
+                {
+                    "name": "no_send_flag",
+                    "id": "no_send_flag"
+                },
+                {
+                    "name": "actual_location_name",
+                    "id": "actual_location_name"
+                },
+                {
+                    "name": "double_flag",
+                    "id": "double_flag"
+                },
+                {
+                    "name": "sign_date",
+                    "id": "sign_date"
+                },
+                {
+                    "name": "price_fix_flag",
+                    "id": "price_fix_flag"
+                },
+                {
+                    "name": "sign_url",
+                    "id": "sign_url"
+                },
+                {
+                    "name": "driver_sign_flag",
+                    "id": "driver_sign_flag"
+                },
+                {
+                    "name": "check_time",
+                    "id": "check_time"
+                },
+                {
+                    "name": "check_by",
+                    "id": "check_by"
+                },
+                {
+                    "name": "sign_by",
+                    "id": "sign_by"
+                },
+                {
+                    "name": "create_time",
+                    "id": "create_time"
+                },
+                {
+                    "name": "create_by",
+                    "id": "create_by"
+                },
+                {
+                    "name": "update_time",
+                    "id": "update_time"
+                },
+                {
+                    "name": "update_by",
+                    "id": "update_by"
+                },
+                {
+                    "name": "merchant_name",
+                    "id": "merchant_name"
+                },
+                {
+                    "name": "order_time",
+                    "id": "order_time"
+                },
+                {
+                    "name": "sub_customer_name",
+                    "id": "sub_customer_name"
+                },
+                {
+                    "name": "cust_con",
+                    "id": "cust_con"
+                },
+                {
+                    "name": "con_tel",
+                    "id": "con_tel"
+                },
+                {
+                    "name": "contact_person",
+                    "id": "contact_person"
+                },
+                {
+                    "name": "phone",
+                    "id": "phone"
+                },
+                {
+                    "name": "buyer_remark",
+                    "id": "buyer_remark"
+                },
+                {
+                    "name": "scale_status",
+                    "id": "scale_status"
+                },
+                {
+                    "name": "delivery_time",
+                    "id": "delivery_time"
+                },
+                {
+                    "name": "driver_name",
+                    "id": "driver_name"
+                },
+                {
+                    "name": "driver_phone",
+                    "id": "driver_phone"
+                },
+                {
+                    "name": "closed_order",
+                    "id": "closed_order"
+                },
+                {
+                    "name": "link_scm_order_code",
+                    "id": "link_scm_order_code"
+                },
+                {
+                    "name": "split_order_code",
+                    "id": "split_order_code"
+                },
+                {
+                    "name": "product_code",
+                    "id": "product_code"
+                },
+                {
+                    "name": "product_bar_code",
+                    "id": "product_bar_code"
+                },
+                {
+                    "name": "product_name",
+                    "id": "product_name"
+                },
+                {
+                    "name": "customer_product_name",
+                    "id": "customer_product_name"
+                },
+                {
+                    "name": "unit",
+                    "id": "unit"
+                },
+                {
+                    "name": "sale_unit",
+                    "id": "sale_unit"
+                },
+                {
+                    "name": "split_group_code",
+                    "id": "split_group_code"
+                },
+                {
+                    "name": "split_group_name",
+                    "id": "split_group_name"
+                },
+                {
+                    "name": "plan_qty",
+                    "id": "plan_qty"
+                },
+                {
+                    "name": "shipped_qty",
+                    "id": "shipped_qty"
+                },
+                {
+                    "name": "picking_side_qty",
+                    "id": "picking_side_qty"
+                },
+                {
+                    "name": "store_location_qty",
+                    "id": "store_location_qty"
+                },
+                {
+                    "name": "receive_qty",
+                    "id": "receive_qty"
+                },
+                {
+                    "name": "sign_qty",
+                    "id": "sign_qty"
+                },
+                {
+                    "name": "pass_qty",
+                    "id": "pass_qty"
+                },
+                {
+                    "name": "reject_qty",
+                    "id": "reject_qty"
+                },
+                {
+                    "name": "price",
+                    "id": "price"
+                },
+                {
+                    "name": "add_price_percent",
+                    "id": "add_price_percent"
+                },
+                {
+                    "name": "amount",
+                    "id": "amount"
+                },
+                {
+                    "name": "direct_price",
+                    "id": "direct_price"
+                },
+                {
+                    "name": "price_exclude_tax",
+                    "id": "price_exclude_tax"
+                },
+                {
+                    "name": "direct_amount",
+                    "id": "direct_amount"
+                },
+                {
+                    "name": "location_code",
+                    "id": "location_code"
+                },
+                {
+                    "name": "location_name",
+                    "id": "location_name"
+                },
+                {
+                    "name": "reservoir_area_code",
+                    "id": "reservoir_area_code"
+                },
+                {
+                    "name": "reservoir_area_name",
+                    "id": "reservoir_area_name"
+                },
+                {
+                    "name": "store_location_code",
+                    "id": "store_location_code"
+                },
+                {
+                    "name": "store_location_name",
+                    "id": "store_location_name"
+                },
+                {
+                    "name": "all_send_flag",
+                    "id": "all_send_flag"
+                },
+                {
+                    "name": "running_model",
+                    "id": "running_model"
+                },
+                {
+                    "name": "picking_type",
+                    "id": "picking_type"
+                },
+                {
+                    "name": "tc_picking_flag",
+                    "id": "tc_picking_flag"
+                },
+                {
+                    "name": "picking_time",
+                    "id": "picking_time"
+                },
+                {
+                    "name": "kit_flag",
+                    "id": "kit_flag"
+                },
+                {
+                    "name": "specs_remark",
+                    "id": "specs_remark"
+                },
+                {
+                    "name": "handle_remark",
+                    "id": "handle_remark"
+                },
+                {
+                    "name": "assess_type",
+                    "id": "assess_type"
+                },
+                {
+                    "name": "assess_type_name",
+                    "id": "assess_type_name"
+                },
+                {
+                    "name": "tax_type",
+                    "id": "tax_type"
+                },
+                {
+                    "name": "tax_rate",
+                    "id": "tax_rate"
+                },
+                {
+                    "name": "tax_code",
+                    "id": "tax_code"
+                },
+                {
+                    "name": "price_type",
+                    "id": "price_type"
+                },
+                {
+                    "name": "local_purchase",
+                    "id": "local_purchase"
+                },
+                {
+                    "name": "origin_price",
+                    "id": "origin_price"
+                },
+                {
+                    "name": "tax_rate_percent",
+                    "id": "tax_rate_percent"
+                },
+                {
+                    "name": "out_product_code",
+                    "id": "out_product_code"
+                },
+                {
+                    "name": "big_category_code",
+                    "id": "big_category_code"
+                },
+                {
+                    "name": "sale_qty",
+                    "id": "sale_qty"
+                },
+                {
+                    "name": "discount_rate",
+                    "id": "discount_rate"
+                }
+            ]
+        },
+        {
             "name": "地区测试",
             "url": "apis/area.json",
             "id": 1,

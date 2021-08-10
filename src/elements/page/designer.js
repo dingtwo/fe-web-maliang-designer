@@ -4,25 +4,25 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("53/page/designer",["4e","../../4d/4g","../../4d/5e"],(require,exports,module)=>{
+define("elements/page/designer",["magix5","../../designer/const","../../designer/props"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("4e");
-let const_1 = require("../../4d/4g");
-let props_1 = require("../../4d/5e");
+let magix_1 = require("magix5");
+let const_1 = require("../../designer/const");
+let props_1 = require("../../designer/props");
 let { config } = magix_1;
 let emptySize = '400x500'; //选择为空时的默认尺寸
 let { round } = Math;
 module.exports= {
-    title: 'h7',
-    '_eE'() {
-        let size = const_1["dU"] + 'x' + const_1["dV"];
+    title: '@:{lang#elements.page~rs}',
+    '@:{get.props~rs}'() {
+        let size = const_1["@:{const#page.width~rs}"] + 'x' + const_1["@:{const#page.height~rs}"];
         return {
-            width: const_1['dF'](const_1["dU"]),
-            height: const_1['dF'](const_1["dV"]),
+            width: const_1['@:{const#to.unit~rs}'](const_1["@:{const#page.width~rs}"]),
+            height: const_1['@:{const#to.unit~rs}'](const_1["@:{const#page.height~rs}"]),
             background: '#ffffff',
             backgroundImage: '',
             backgroundRepeat: 'full',
@@ -34,7 +34,7 @@ module.exports= {
             marginBottom: 0,
             marginLeft: 0,
             preformat: false,
-            unit: magix_1.State.get('dG'),
+            unit: magix_1.State.get('@:{global#stage.unit~rs}'),
             //grid: false,
             //snapGrid: false,
             readonly: false,
@@ -46,7 +46,7 @@ module.exports= {
             yOffset: 0,
             backgroundXOffset: 0,
             backgroundYOffset: 0,
-            snapElement: const_1['d0'] ? true : false,
+            snapElement: const_1['@:{const#page.enable.snap.align.elements~rs}'] ? true : false,
             pages: 1,
             title: ''
         };
@@ -55,65 +55,65 @@ module.exports= {
             key: 'readonly',
             json: 1
         }, {
-            tip: 'h8',
+            tip: '@:{lang#props.page.unit~rs}',
             key: 'unit',
-            type: props_1['dL'],
+            type: props_1['@:{eprops#dropdown~rs}'],
             items: [{
-                    text: 'h9',
+                    text: '@:{lang#unit.human.mm~rs}',
                     value: 'mm'
                 }, {
-                    text: 'i_',
+                    text: '@:{lang#unit.human.cm~rs}',
                     value: 'cm'
                 }, {
-                    text: 'ia',
+                    text: '@:{lang#unit.human.px~rs}',
                     value: 'px'
                 }, {
-                    text: 'ib',
+                    text: '@:{lang#unit.human.pt~rs}',
                     value: 'pt'
                 }, {
-                    text: 'ic',
+                    text: '@:{lang#unit.human.in~rs}',
                     value: 'in'
                 }, {
-                    text: 'id',
+                    text: '@:{lang#unit.human.pc~rs}',
                     value: 'pc'
                 }, {
-                    text: 'ie',
+                    text: '@:{lang#unit.human.q~rs}',
                     value: 'q'
                 }],
-            disabled: const_1['ei'] ? false : true
+            disabled: const_1['@:{const#unit.allow.change~rs}'] ? false : true
         }, {
-            tip: 'ft',
+            tip: '@:{lang#props.width~rs}',
             key: 'width',
-            type: props_1["dE"],
+            type: props_1["@:{eprops#number~rs}"],
             min: 0,
-            max: () => const_1['dF'](const_1['dW']),
-            step: const_1["ej"],
-            fixed: const_1["ek"],
-            '_fc': 1,
+            max: () => const_1['@:{const#to.unit~rs}'](const_1['@:{const#page.max.width~rs}']),
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            '@:{is.scale.and.unit.field~rs}': 1,
             json: 1
         }, {
-            tip: 'fu',
+            tip: '@:{lang#props.height~rs}',
             key: 'height',
-            type: props_1["dE"],
+            type: props_1["@:{eprops#number~rs}"],
             min: 0,
-            max: () => const_1['dF'](const_1['dX']),
-            step: const_1["ej"],
-            fixed: const_1["ek"],
-            '_fc': 1,
+            max: () => const_1['@:{const#to.unit~rs}'](const_1['@:{const#page.max.height~rs}']),
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            '@:{is.scale.and.unit.field~rs}': 1,
             json: 1
         }, {
-            tip: 'if',
+            tip: '@:{lang#props.pages~rs}',
             key: 'pages',
-            type: props_1["dE"],
+            type: props_1["@:{eprops#number~rs}"],
             min: 1,
             max: 5,
             json: 1
         }, {
-            tip: 'ig',
-            type: props_1["dL"],
+            tip: '@:{lang#props.page.paper.size~rs}',
+            type: props_1["@:{eprops#dropdown~rs}"],
             key: 'paper',
             items: [{
-                    text: 'ih',
+                    text: '@:{lang#please.select~rs}',
                     value: ''
                 }, {
                     text: 'A1',
@@ -181,7 +181,7 @@ module.exports= {
                 }],
             read(v) {
                 let [width, height] = v.split('x');
-                return `${round(const_1['eo'](width))}x${round(const_1['eo'](height))}`;
+                return `${round(const_1['@:{const#to.px~rs}'](width))}x${round(const_1['@:{const#to.px~rs}'](height))}`;
             },
             write(v, props) {
                 if (!v) {
@@ -189,36 +189,36 @@ module.exports= {
                 }
                 if (v) {
                     let [width, height] = v.split('x');
-                    props.width = const_1['dF'](width | 0);
-                    props.height = const_1['dF'](height | 0);
+                    props.width = const_1['@:{const#to.unit~rs}'](width | 0);
+                    props.height = const_1['@:{const#to.unit~rs}'](height | 0);
                 }
                 return v;
             },
         }, {
-            tip: 'ii',
+            tip: '@:{lang#props.x.offset~rs}',
             key: 'xOffset',
-            type: props_1["dE"],
-            step: const_1["ej"],
-            fixed: const_1["ek"],
-            '_fc': 1,
+            type: props_1["@:{eprops#number~rs}"],
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            '@:{is.scale.and.unit.field~rs}': 1,
             json: 1
         }, {
-            tip: 'ij',
+            tip: '@:{lang#props.y.offset~rs}',
             key: 'yOffset',
-            type: props_1["dE"],
-            step: const_1["ej"],
-            fixed: const_1["ek"],
-            '_fc': 1,
+            type: props_1["@:{eprops#number~rs}"],
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            '@:{is.scale.and.unit.field~rs}': 1,
             json: 1
         },
         {
-            type: props_1["d5"],
+            type: props_1["@:{eprops#spliter~rs}"],
         }, {
-            tip: 'ik',
+            tip: '@:{lang#props.screen.size~rs}',
             key: 'screen',
-            type: props_1["dL"],
+            type: props_1["@:{eprops#dropdown~rs}"],
             items: [{
-                    text: 'ih',
+                    text: '@:{lang#please.select~rs}',
                     value: ''
                 }, {
                     text: '1024x600',
@@ -250,7 +250,7 @@ module.exports= {
                 }],
             read(v) {
                 let [width, height] = v.split('x');
-                return `${round(const_1['eo'](width))}x${round(const_1['eo'](height))}`;
+                return `${round(const_1['@:{const#to.px~rs}'](width))}x${round(const_1['@:{const#to.px~rs}'](height))}`;
             },
             write(v, props) {
                 if (!v) {
@@ -258,36 +258,36 @@ module.exports= {
                 }
                 if (v) {
                     let [width, height] = v.split('x');
-                    props.width = const_1['dF'](width | 0);
-                    props.height = const_1['dF'](height | 0);
+                    props.width = const_1['@:{const#to.unit~rs}'](width | 0);
+                    props.height = const_1['@:{const#to.unit~rs}'](height | 0);
                 }
                 return v;
             },
         }, {
-            tip: 'il',
+            tip: '@:{lang#props.page.scale~rs}',
             key: 'scaleType',
-            type: props_1["dL"],
+            type: props_1["@:{eprops#dropdown~rs}"],
             items: [{
-                    text: 'im',
+                    text: '@:{lang#props.scale.auto~rs}',
                     value: 'auto'
                 }, {
-                    text: 'in',
+                    text: '@:{lang#props.scale.full~rs}',
                     value: 'full'
                 }],
         },
         {
-            type: props_1["d5"],
+            type: props_1["@:{eprops#spliter~rs}"],
         }, {
-            tip: 'io',
+            tip: '@:{lang#props.page.title~rs}',
             key: 'title',
-            type: props_1['dN'],
+            type: props_1['@:{eprops#text.input~rs}'],
             json: 1
         }, {
-            tip: 'ip',
+            tip: '@:{lang#props.element.snap~rs}',
             key: 'snapElement',
-            type: props_1['dG'],
-            '_ha'() {
-                return const_1['d0'];
+            type: props_1['@:{eprops#boolean~rs}'],
+            '@:{if.show~rs}'() {
+                return const_1['@:{const#page.enable.snap.align.elements~rs}'];
             }
         } /*, {
             tip: '@:{lang#props.page.grid}',
@@ -324,21 +324,21 @@ module.exports= {
             }
         }*/,
         {
-            tip: 'fU',
+            tip: '@:{lang#props.background~rs}',
             key: 'background',
-            type: props_1["dF"],
+            type: props_1["@:{eprops#color~rs}"],
             // '@:{if.show}'(page) {
             //     return !page.grid;
             // },
             json: 1
         }, {
-            tip: 'iq',
+            tip: '@:{lang#props.background.image~rs}',
             //dockTop: true,
             key: 'backgroundImage',
-            type: props_1["dK"],
+            type: props_1["@:{eprops#image~rs}"],
             write(v, props, e) {
-                props.backgroundWidth = const_1['dF'](e.width);
-                props.backgroundHeight = const_1['dF'](e.height);
+                props.backgroundWidth = const_1['@:{const#to.unit~rs}'](e.width);
+                props.backgroundHeight = const_1['@:{const#to.unit~rs}'](e.height);
                 if (props.preformat &&
                     v) {
                     props.width = props.backgroundWidth;
@@ -346,14 +346,14 @@ module.exports= {
                 }
                 return v;
             },
-            '_ha'() {
+            '@:{if.show~rs}'() {
                 return config('getImageUrl'); // && !page.grid;
             },
             json: 1
         }, {
-            tip: 'ir',
+            tip: '@:{lang#props.preformat~rs}',
             key: 'preformat',
-            type: props_1['dG'],
+            type: props_1['@:{eprops#boolean~rs}'],
             json: 1,
             write(v, props) {
                 if (v) {
@@ -363,42 +363,42 @@ module.exports= {
                 }
                 return v;
             },
-            '_ha'(props) {
+            '@:{if.show~rs}'(props) {
                 return props.backgroundImage;
             }
         }, {
-            tip: 'is',
+            tip: '@:{lang#props.background.repeat~rs}',
             key: 'backgroundRepeat',
-            type: props_1["dL"],
+            type: props_1["@:{eprops#dropdown~rs}"],
             items: [{
-                    text: 'it',
+                    text: '@:{lang#props.full~rs}',
                     value: 'full'
                 }, {
-                    text: 'iu',
+                    text: '@:{lang#props.no.repeat~rs}',
                     value: 'no-repeat'
                 }, {
-                    text: 'iv',
+                    text: '@:{lang#props.repeat.x~rs}',
                     value: 'repeat-x'
                 }, {
-                    text: 'iw',
+                    text: '@:{lang#props.repeat.y~rs}',
                     value: 'repeat-y'
                 }, {
-                    text: 'ix',
+                    text: '@:{lang#props.repeat~rs}',
                     value: 'repeat'
                 }],
-            '_ha'(page) {
+            '@:{if.show~rs}'(page) {
                 return page.backgroundImage && !page.preformat; //&&!page.grid;
             },
             json: 1
         }, {
-            tip: 'iy',
+            tip: '@:{lang#props.image.width~rs}',
             key: 'backgroundWidth',
-            type: props_1["dE"],
+            type: props_1["@:{eprops#number~rs}"],
             min: 0,
-            step: const_1["ej"],
-            fixed: const_1["ek"],
-            '_fc': 1,
-            '_ha'(props) {
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            '@:{is.scale.and.unit.field~rs}': 1,
+            '@:{if.show~rs}'(props) {
                 let img = props.backgroundImage;
                 let repeat = props.backgroundRepeat;
                 let support = repeat !== 'full';
@@ -406,14 +406,14 @@ module.exports= {
             },
             json: 1
         }, {
-            tip: 'iz',
+            tip: '@:{lang#props.image.height~rs}',
             key: 'backgroundHeight',
-            type: props_1["dE"],
+            type: props_1["@:{eprops#number~rs}"],
             min: 0,
-            step: const_1["ej"],
-            fixed: const_1["ek"],
-            '_fc': 1,
-            '_ha'(props) {
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            '@:{is.scale.and.unit.field~rs}': 1,
+            '@:{if.show~rs}'(props) {
                 let img = props.backgroundImage;
                 let repeat = props.backgroundRepeat;
                 let support = repeat != 'full';
@@ -421,38 +421,38 @@ module.exports= {
             },
             json: 1
         }, {
-            tip: 'hK',
-            type: props_1["dM"],
-            '_ha'(props) {
+            tip: '@:{lang#props.image.reset~rs}',
+            type: props_1["@:{eprops#image.reset~rs}"],
+            '@:{if.show~rs}'(props) {
                 let img = props.backgroundImage;
                 let repeat = props.backgroundRepeat;
                 let support = repeat != 'full';
                 return img && support;
             }
         }, {
-            tip: 'iA',
+            tip: '@:{lang#props.offset.hor~rs}',
             key: 'backgroundXOffset',
-            type: props_1["dE"],
-            min: () => -const_1['dF'](const_1['dW']),
-            max: () => const_1['dF'](const_1['dW']),
-            step: const_1["ej"],
-            fixed: const_1["ek"],
-            '_fc': 1,
-            '_ha'(props) {
+            type: props_1["@:{eprops#number~rs}"],
+            min: () => -const_1['@:{const#to.unit~rs}'](const_1['@:{const#page.max.width~rs}']),
+            max: () => const_1['@:{const#to.unit~rs}'](const_1['@:{const#page.max.width~rs}']),
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            '@:{is.scale.and.unit.field~rs}': 1,
+            '@:{if.show~rs}'(props) {
                 return props.backgroundImage &&
                     props.backgroundRepeat != 'full';
             },
             json: 1
         }, {
-            tip: 'iB',
+            tip: '@:{lang#props.offset.ver~rs}',
             key: 'backgroundYOffset',
-            type: props_1["dE"],
-            '_fc': 1,
-            min: () => -const_1['dF'](const_1['dX']),
-            max: () => const_1['dF'](const_1['dX']),
-            step: const_1["ej"],
-            fixed: const_1["ek"],
-            '_ha'(props) {
+            type: props_1["@:{eprops#number~rs}"],
+            '@:{is.scale.and.unit.field~rs}': 1,
+            min: () => -const_1['@:{const#to.unit~rs}'](const_1['@:{const#page.max.height~rs}']),
+            max: () => const_1['@:{const#to.unit~rs}'](const_1['@:{const#page.max.height~rs}']),
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            '@:{if.show~rs}'(props) {
                 return props.backgroundImage &&
                     props.backgroundRepeat != 'full';
             },

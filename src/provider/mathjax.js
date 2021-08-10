@@ -4,7 +4,7 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4t/mathjax",[],(require,exports,module)=>{
+define("provider/mathjax",[],(require,exports,module)=>{
 
 
 let dest = '//unpkg.com/mathjax@3.2.0/es5/tex-svg.js';

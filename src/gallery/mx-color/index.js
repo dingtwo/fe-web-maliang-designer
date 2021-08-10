@@ -4,36 +4,36 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4l/62/index",["4e","../4m/index","../68/index"],(require,exports,module)=>{
-let $quick_en_static_text;
-let $quick_eo_static_text;
-let $quick_fm_2_static_node;
-let $quick_fm_3_static_node;
-let $quick_fm_4_static_node;
-let $quick_fm_5_static_node;
-let $quick_fm_6_static_node;
-let $quick_fm_7_static_node;
-let $quick_fm_8_static_node;
-let $quick_fm_9_static_node;
-let $quick_fm_10_static_node;
-let $quick_fm_11_static_node;
-let $quick_fm_12_static_node;
-let $quick_fm_13_static_node;
-let $quick_fm_0_static_attr={'class': 'rd-hW',};
-let $quick_fm_1_static_attr={'xmlns': 'http://www.w3.org/2000/svg','version': 1.1,'width': '100%','height': '100%',};
-let $quick_fm_14_static_attr={'class': 'rd-em rd-hO',};
-let $quick_fm_15_static_attr={'class': 'rd-h1',};
+define("gallery/mx-color/index",["magix5","../mx-dragdrop/index","../mx-monitor/index"],(require,exports,module)=>{
+let $quick_ej_static_text;
+let $quick_ek_static_text;
+let $quick_fi_2_static_node;
+let $quick_fi_3_static_node;
+let $quick_fi_4_static_node;
+let $quick_fi_5_static_node;
+let $quick_fi_6_static_node;
+let $quick_fi_7_static_node;
+let $quick_fi_8_static_node;
+let $quick_fi_9_static_node;
+let $quick_fi_10_static_node;
+let $quick_fi_11_static_node;
+let $quick_fi_12_static_node;
+let $quick_fi_13_static_node;
+let $quick_fi_0_static_attr={'class': 'rd-_gallery_mx-color_index_less_-body',};
+let $quick_fi_1_static_attr={'xmlns': 'http://www.w3.org/2000/svg','version': 1.1,'width': '100%','height': '100%',};
+let $quick_fi_14_static_attr={'class': 'rd-_assets_index_less_-pr rd-_gallery_mx-color_index_less_-alpha',};
+let $quick_fi_15_static_attr={'class': 'rd-_gallery_mx-color_index_less_-foot',};
 let $special_2={'value':'value',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("4e");
-let index_1 = require("../4m/index");
-let index_2 = require("../68/index");
+let magix_1 = require("magix5");
+let index_1 = require("../mx-dragdrop/index");
+let index_2 = require("../mx-monitor/index");
 let { node, View, applyStyle, dispatch, inside } = magix_1;
 let { abs, min, max, round } = Math;
-applyStyle("rd-dU",".rd-hM{border:1px solid #e6e6e6;border-radius:2px;height:22px;padding:1px}.rd-hM:hover{border-color:#ccc}.rd-hN,.rd-hN:hover{border-color:#fa742b}.rd-hO,.rd-hP{background:#fff;background-image:linear-gradient(45deg,#eee 25%,#0000 0,#0000 75%,#eee 0),linear-gradient(45deg,#eee 25%,#0000 0,#0000 75%,#eee 0);background-position:0 0,6px 6px;background-size:12px 12px}.rd-hP{border:1px solid #ccc;height:18px;min-width:18px;text-indent:-100000em}.rd-hQ{padding:3px 4px}.rd-hP:after{border-color:#0000 #ccc;border-style:solid;border-width:6px 6px 0 0;bottom:0;content:\" \";display:block;position:absolute;right:0}.rd-hR{background-color:#fff;border:1px solid #ccc;border-radius:2px;padding:2px;z-index:300}.rd-hS-bottom{margin-top:4px;top:100%}.rd-hS-top{bottom:100%;margin-bottom:4px}.rd-hT{width:176px}.rd-hU{border:1px solid #000;height:12px;margin:-1px 0 0 -1px;width:12px}.rd-hV:before{border:1px inset #e8e8e8;content:\" \";height:6px;left:2px;position:absolute;top:2px;width:6px}.rd-hW{height:150px;margin:5px 0}.rd-hX{height:148px;width:148px}.rd-hY{border-radius:50%;box-shadow:0 0 0 1.5px #fff,inset 0 0 1px 1px rgba(0,0,0,.3),0 0 1px 2px rgba(0,0,0,.4);height:8px;left:-4px;top:-4px;width:8px}.rd-hZ{height:148px;margin-left:10px;width:18px}.rd-h0{background:#fff;box-shadow:0 0 0 1.5px #fff,inset 0 0 1px 1px rgba(0,0,0,.3),0 0 1px 2px rgba(0,0,0,.4);height:4px;top:-2px;width:14px}.rd-h1{height:25px}.rd-h2{width:80px}.rd-h3,.rd-h2{margin-right:5px;vertical-align:middle}.rd-h3{border:1px solid #ddd;border-radius:2px;height:22px;width:30px}.rd-h4{opacity:.2;right:5px;top:4px}.rd-h4:hover{opacity:.5}.rd-hO{height:12px;margin-bottom:5px;width:174px}.rd-h5{background:#fff;box-shadow:0 0 0 1.5px #fff,inset 0 0 1px 1px rgba(0,0,0,.3),0 0 1px 2px rgba(0,0,0,.4);height:8px;left:-2px;top:2px;width:4px}.rd-h6{background-color:#f5f5f5;cursor:not-allowed}.rd-h6:hover{border-color:#e6e6e6}.rd-h6:hover .rd-h4{opacity:.1}.rd-h6 .rd-hP{opacity:.4}.rd-h6 .rd-h4{opacity:.1}.rd-h7{width:56px}");
+applyStyle("rd-_gallery_mx-color_index_less_","\n.rd-_gallery_mx-color_index_less_-color {\nheight:22px;\nborder:solid 1px #e6e6e6;\nborder-radius:2px;\npadding:1px;\n}\n.rd-_gallery_mx-color_index_less_-color:hover {\nborder-color:#ccc;\n}\n.rd-_gallery_mx-color_index_less_-color-focus,\n.rd-_gallery_mx-color_index_less_-color-focus:hover {\nborder-color:#47B34E;\n}\n.rd-_gallery_mx-color_index_less_-picker,\n.rd-_gallery_mx-color_index_less_-alpha {\nbackground:#fff;\nbackground-image:linear-gradient(45deg, #eee 25%, #0000 0, #0000 75%, #eee 0), linear-gradient(45deg, #eee 25%, #0000 0, #0000 75%, #eee 0);\nbackground-position:0px 0, 6px 6px;\nbackground-size:12px 12px;\n}\n.rd-_gallery_mx-color_index_less_-picker {\nmin-width:18px;\nheight:18px;\ntext-indent:-100000em;\nborder:solid 1px #ccc;\n}\n.rd-_gallery_mx-color_index_less_-text {\npadding:3px 4px;\n}\n.rd-_gallery_mx-color_index_less_-picker::after {\ncontent:' ';\ndisplay:block;\nright:0;\nbottom:0;\nposition:absolute;\nborder-width:6px 6px 0 0;\nborder-style:solid;\nborder-color:#0000 #ccc;\n}\n.rd-_gallery_mx-color_index_less_-color-zone {\nborder-radius:2px;\nz-index:300;\nborder:1px solid #ccc;\nbackground-color:#fff;\npadding:2px;\n}\n.rd-_gallery_mx-color_index_less_-placement--bottom {\ntop:100%;\nmargin-top:4px;\n}\n.rd-_gallery_mx-color_index_less_-placement--top {\nbottom:100%;\nmargin-bottom:4px;\n}\n.rd-_gallery_mx-color_index_less_-shortcuts {\nwidth:176px;\n}\n.rd-_gallery_mx-color_index_less_-shortcuts-item {\nborder:1px solid #000;\nwidth:12px;\nheight:12px;\nmargin:-1px 0px 0 -1px;\n}\n.rd-_gallery_mx-color_index_less_-selected::before {\ncontent:' ';\nposition:absolute;\nleft:2px;\ntop:2px;\nborder:solid 1px #e8e8e8;\nborder-style:inset;\nwidth:6px;\nheight:6px;\n}\n.rd-_gallery_mx-color_index_less_-body {\nmargin:5px 0;\nheight:150px;\n}\n.rd-_gallery_mx-color_index_less_-cpicker {\nwidth:148px;\nheight:148px;\n}\n.rd-_gallery_mx-color_index_less_-cpicker-indicator {\nwidth:8px;\nheight:8px;\nbox-shadow:0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0, 0, 0, 0.3), 0 0 1px 2px rgba(0, 0, 0, 0.4);\nborder-radius:50%;\nleft:-4px;\ntop:-4px;\n}\n.rd-_gallery_mx-color_index_less_-slide {\nwidth:18px;\nheight:148px;\nmargin-left:10px;\n}\n.rd-_gallery_mx-color_index_less_-slide-indicator {\ntop:-2px;\nheight:4px;\nwidth:14px;\nbox-shadow:0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0, 0, 0, 0.3), 0 0 1px 2px rgba(0, 0, 0, 0.4);\nbackground:#fff;\n}\n.rd-_gallery_mx-color_index_less_-foot {\nheight:25px;\n}\n.rd-_gallery_mx-color_index_less_-color-value {\nwidth:80px;\nmargin-right:5px;\nvertical-align:middle;\n}\n.rd-_gallery_mx-color_index_less_-bgcolor {\nwidth:30px;\nborder-radius:2px;\nheight:22px;\nmargin-right:5px;\nvertical-align:middle;\nborder:1px solid #ddd;\n}\n.rd-_gallery_mx-color_index_less_-remove {\nright:5px;\ntop:4px;\nopacity:0.2;\n}\n.rd-_gallery_mx-color_index_less_-remove:hover {\nopacity:0.5;\n}\n.rd-_gallery_mx-color_index_less_-alpha {\nwidth:174px;\nheight:12px;\nmargin-bottom:5px;\n}\n.rd-_gallery_mx-color_index_less_-alpha-indicator {\nleft:-2px;\ntop:2px;\nheight:8px;\nwidth:4px;\nbox-shadow:0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0, 0, 0, 0.3), 0 0 1px 2px rgba(0, 0, 0, 0.4);\nbackground:#fff;\n}\n.rd-_gallery_mx-color_index_less_-notallowed {\ncursor:not-allowed;\nbackground-color:#f5f5f5;\n}\n.rd-_gallery_mx-color_index_less_-notallowed:hover {\nborder-color:#e6e6e6;\n}\n.rd-_gallery_mx-color_index_less_-notallowed:hover .rd-_gallery_mx-color_index_less_-remove {\nopacity:0.1;\n}\n.rd-_gallery_mx-color_index_less_-notallowed .rd-_gallery_mx-color_index_less_-picker {\nopacity:0.4;\n}\n.rd-_gallery_mx-color_index_less_-notallowed .rd-_gallery_mx-color_index_less_-remove {\nopacity:0.1;\n}\n.rd-_gallery_mx-color_index_less_-width-56 {\nwidth:56px;\n}\n");
 let ShortCuts = ['d81e06', 'f4ea2a', '1afa29', '1296db', '13227a', 'd4237a', 'ffffff', 'e6e6e6', 'dbdbdb', 'cdcdcd', 'bfbfbf', '8a8a8a', '707070', '515151', '2c2c2c', '000000', 'ea986c', 'eeb174', 'f3ca7e', 'f9f28b', 'c8db8c', 'aad08f', '87c38f', '83c6c2', '7dc5eb', '87a7d6', '8992c8', 'a686ba', 'bd8cbb', 'be8dbd', 'e89abe', 'e8989a', 'e16632', 'e98f36', 'efb336', 'f6ef37', 'afcd51', '7cba59', '36ab60', '1baba8', '17ace3', '3f81c1', '4f68b0', '594d9c', '82529d', 'a4579d', 'db649b', 'dd6572', 'd84e06', 'e0620d', 'ea9518', 'f4ea2a', '8cbb1a', '2ba515', '0e932e', '0c9890', '1295db', '0061b2', '0061b0', '004198', '122179', '88147f', 'd3227b', 'd6204b'];
 let HSV2RGB = (h, s, v) => {
     let R, G, B, X, C;
@@ -73,7 +73,7 @@ let RGB2HSV = (r, g, b) => {
 };
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf,$encodeQuote)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	disabled,
 	text,
@@ -96,118 +96,119 @@ $vnode_6,
 $vnode_5,
 $vnode_4,
 $vnode_1;
-$vnode_1=[];
+$vnode_1=[];$__line=2;$__art="{{if text}}";$__ctrl="if(text){";
 if(text){
-$vnode_2=[$createVNode(0,(text))];;$$_class='rd-hQ rd-et';if(!disabled){;$$_class+=' rd-eX';};$$_style='';if(textWidth){;$$_style+='width:'+(textWidth)+'px';};$vnode_1.push($createVNode('div',{'mx5-click': $viewId+'_dQ()','class': $$_class,'style': $$_style,},$vnode_2));
-}$vnode_2=[$quick_en_static_text||($quick_en_static_text=$createVNode(0,'p'))];;$$_class='rd-hP rd-em rd-et';if(!disabled){;$$_class+=' rd-eX';};if(!text){;$$_class+=' rd-ed';};$$_style='';if(color){;$$_style+='background:'+(color)+';';};$vnode_1.push($createVNode('div',{'mx5-click': $viewId+'_dQ()','class': $$_class,'style': $$_style,},$vnode_2));
+$vnode_2=[$createVNode(0,($__line=3,$__art='{{=text}}',$__ctrl='<%=text%>',(text)))];;$$_class='rd-_gallery_mx-color_index_less_-text rd-_assets_index_less_-unselectable'+($__line=3,$__art='{{if !disabled}}','');$__ctrl='<%if(!disabled){%>';if(!disabled){;$$_class+=' rd-_assets_index_less_-cursor-pointer'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_style=($__line=3,$__art='{{if textWidth}}','');$__ctrl='<%if(textWidth){%>';if(textWidth){;$$_style+='width:'+($__line=3,$__art='{{=textWidth}}',$__ctrl='<%=textWidth%>',(textWidth))+'px'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'mx5-click': $viewId+'@:{toggle~rs}()','class': $$_class,'style': $$_style,},$vnode_2));
+}$vnode_2=[$quick_ej_static_text||($quick_ej_static_text=$createVNode(0,'p'))];;$$_class='rd-_gallery_mx-color_index_less_-picker rd-_assets_index_less_-pr rd-_assets_index_less_-unselectable'+($__line=5,$__art='{{if !disabled}}','');$__ctrl='<%if(!disabled){%>';if(!disabled){;$$_class+=' rd-_assets_index_less_-cursor-pointer'+($__line=5,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_class+=''+($__line=5,$__art='{{if !text}}','');$__ctrl='<%if(!text){%>';if(!text){;$$_class+=' rd-_assets_index_less_-wp100'+($__line=5,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_style=($__line=5,$__art='{{if color}}','');$__ctrl='<%if(color){%>';if(color){;$$_style+='background:'+($__line=5,$__art='{{=color}}',$__ctrl='<%=color%>',(color))+';'+($__line=5,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'mx5-click': $viewId+'@:{toggle~rs}()','class': $$_class,'style': $$_style,},$vnode_2));$__line=6;$__art="{{if clear&&color}}";$__ctrl="if(clear&&color){";
 if(clear&&color){
-$vnode_2=[$quick_eo_static_text||($quick_eo_static_text=$createVNode(0,''))];;$$_class='rd-dF rd-h4 rd-fw rd-el';if(!disabled){;$$_class+=' rd-eX';};$vnode_1.push($createVNode('i',{'mx5-click': $viewId+'_jj()','title': (i18n('jS')),'class': $$_class,},$vnode_2));
-}$vnode_2=[];
+$vnode_2=[$quick_ek_static_text||($quick_ek_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_gallery_mx-color_index_less_-remove rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-pa'+($__line=7,$__art='{{if !disabled}}','');$__ctrl='<%if(!disabled){%>';if(!disabled){;$$_class+=' rd-_assets_index_less_-cursor-pointer'+($__line=7,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'mx5-click': $viewId+'@:{clear.color~rs}()','title': ($__line=7,$__art='{{=i18n(\'@:{lang#remove.color~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#remove.color~rs}\')%>',(i18n('@:{lang#remove.color~rs}'))),'class': $$_class,},$vnode_2));
+}$vnode_2=[];$__line=10;$__art="{{if renderUI}}";$__ctrl="if(renderUI){";
 if(renderUI){
-$vnode_3=[];
-for(let $q_c_aupsum=shortcuts.length,$q_key_rgareajg=0;$q_key_rgareajg<$q_c_aupsum;$q_key_rgareajg+=1){
-let sc=shortcuts[$q_key_rgareajg];
-$vnode_3.push($createVNode('li',{'class': 'rd-ej rd-em rd-hU','id': '_mx_sc_'+(sc)+'_'+$viewId,'style': 'background:#'+(sc),'mx5-click': $viewId+'_jf({color:\'#'+($encodeQuote(sc))+'\'})',}));
-}$vnode_2.push($createVNode('ul',{'class': 'rd-d0 rd-eV rd-eX rd-ez rd-hT','id': '_mx_scs_'+$viewId,},$vnode_3));
-if($quick_fm_2_static_node){
-$vnode_7=[$quick_fm_2_static_node];
+$vnode_3=[];$__line=12;$__art="{{each shortcuts as sc}}";$__ctrl="for(let $q_c_qfhedjrxej=shortcuts.length,$q_key_juazjtj=0;$q_key_juazjtj<$q_c_qfhedjrxej;$q_key_juazjtj++){let sc=shortcuts[$q_key_juazjtj];";
+for(let $q_c_qfhedjrxej=shortcuts.length,$q_key_juazjtj=0;$q_key_juazjtj<$q_c_qfhedjrxej;$q_key_juazjtj+=1){
+let sc=shortcuts[$q_key_juazjtj];
+$vnode_3.push($createVNode('li',{'class': 'rd-_assets_index_less_-fl rd-_assets_index_less_-pr rd-_gallery_mx-color_index_less_-shortcuts-item','id': '_mx_sc_'+($__line=13,$__art='{{=sc}}',$__ctrl='<%=sc%>',(sc))+'_'+($__line=13,$__art='{{=$viewId}}','')+$viewId,'style': 'background:#'+($__line=13,$__art='{{=sc}}',$__ctrl='<%=sc%>',(sc)),'mx5-click': $viewId+'@:{shortcuts.picked~rs}({color:\'#'+($__line=13,$__art='{{=sc}}',$__ctrl='<%=$encodeQuote(sc)%>',($encodeQuote(sc)))+'\'})',}));
+}$vnode_2.push($createVNode('ul',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-flex rd-_assets_index_less_-flex-wrap-wrap rd-_assets_index_less_-tag-ul rd-_gallery_mx-color_index_less_-shortcuts','id': '_mx_scs_'+($__line=11,$__art='{{=$viewId}}','')+$viewId,},$vnode_3));
+if($quick_fi_2_static_node){
+$vnode_7=[$quick_fi_2_static_node];
 }else{
-$vnode_7=[$quick_fm_2_static_node=$createVNode('stop',{'_': 'cH','offset': '0%','stop-color': '#000000','stop-opacity': 1,})];
+$vnode_7=[$quick_fi_2_static_node=$createVNode('stop',{'_': 'cD','offset': '0%','stop-color': '#000000','stop-opacity': 1,})];
 }
 
-if($quick_fm_3_static_node){
-$vnode_7.push($quick_fm_3_static_node);
+if($quick_fi_3_static_node){
+$vnode_7.push($quick_fi_3_static_node);
 }else{
-$vnode_7.push($quick_fm_3_static_node=$createVNode('stop',{'_': 'cI','offset': '100%','stop-color': '#CC9A81','stop-opacity': 0,}));
+$vnode_7.push($quick_fi_3_static_node=$createVNode('stop',{'_': 'cE','offset': '100%','stop-color': '#CC9A81','stop-opacity': 0,}));
 }
-$vnode_6=[$createVNode('lineargradient',{'id': '_mx_gb_'+$viewId,'x1': '0%','y1': '100%','x2': '0%','y2': '0%',},$vnode_7)];
-if($quick_fm_4_static_node){
-$vnode_7=[$quick_fm_4_static_node];
+$vnode_6=[$createVNode('lineargradient',{'id': '_mx_gb_'+($__line=20,$__art='{{=$viewId}}','')+$viewId,'x1': '0%','y1': '100%','x2': '0%','y2': '0%',},$vnode_7)];
+if($quick_fi_4_static_node){
+$vnode_7=[$quick_fi_4_static_node];
 }else{
-$vnode_7=[$quick_fm_4_static_node=$createVNode('stop',{'_': 'cJ','offset': '0%','stop-color': '#FFFFFF','stop-opacity': 1,})];
-}
-
-if($quick_fm_3_static_node){
-$vnode_7.push($quick_fm_3_static_node);
-}else{
-$vnode_7.push($quick_fm_3_static_node=$createVNode('stop',{'_': 'cI','offset': '100%','stop-color': '#CC9A81','stop-opacity': 0,}));
-}
-$vnode_6.push($createVNode('lineargradient',{'id': '_mx_gw_'+$viewId,'x1': '0%','y1': '100%','x2': '100%','y2': '100%',},$vnode_7));$vnode_5=[$createVNode('defs',0,$vnode_6),$createVNode('rect',{'x': 0,'y': 0,'width': '100%','height': '100%','fill': 'url(#_mx_gw_'+$viewId+')',}),$createVNode('rect',{'x': 0,'y': 0,'width': '100%','height': '100%','fill': 'url(#_mx_gb_'+$viewId+')',})];$vnode_4=[$createVNode('svg',$quick_fm_1_static_attr,$vnode_5),$createVNode('div',{'class': 'rd-eX rd-el rd-hY','id': '_mx_ci_'+$viewId,})];$vnode_3=[$createVNode('div',{'class': 'rd-ej rd-em rd-f0 rd-hX','id': '_mx_cz_'+$viewId,'mx5-pointerdown': $viewId+'_jb()',},$vnode_4)];
-if($quick_fm_5_static_node){
-$vnode_7=[$quick_fm_5_static_node];
-}else{
-$vnode_7=[$quick_fm_5_static_node=$createVNode('stop',{'_': 'cK','offset': '0%','stop-color': '#FF0000','stop-opacity': 1,})];
+$vnode_7=[$quick_fi_4_static_node=$createVNode('stop',{'_': 'cF','offset': '0%','stop-color': '#FFFFFF','stop-opacity': 1,})];
 }
 
-if($quick_fm_6_static_node){
-$vnode_7.push($quick_fm_6_static_node);
+if($quick_fi_3_static_node){
+$vnode_7.push($quick_fi_3_static_node);
 }else{
-$vnode_7.push($quick_fm_6_static_node=$createVNode('stop',{'_': 'cL','offset': '13%','stop-color': '#FF00FF','stop-opacity': 1,}));
+$vnode_7.push($quick_fi_3_static_node=$createVNode('stop',{'_': 'cE','offset': '100%','stop-color': '#CC9A81','stop-opacity': 0,}));
+}
+$vnode_6.push($createVNode('lineargradient',{'id': '_mx_gw_'+($__line=24,$__art='{{=$viewId}}','')+$viewId,'x1': '0%','y1': '100%','x2': '100%','y2': '100%',},$vnode_7));$vnode_5=[$createVNode('defs',0,$vnode_6),$createVNode('rect',{'x': 0,'y': 0,'width': '100%','height': '100%','fill': 'url(#_mx_gw_'+($__line=29,$__art='{{=$viewId}}','')+$viewId+')',}),$createVNode('rect',{'x': 0,'y': 0,'width': '100%','height': '100%','fill': 'url(#_mx_gb_'+($__line=30,$__art='{{=$viewId}}','')+$viewId+')',})];$vnode_4=[$createVNode('svg',$quick_fi_1_static_attr,$vnode_5),$createVNode('div',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-pa rd-_gallery_mx-color_index_less_-cpicker-indicator','id': '_mx_ci_'+($__line=32,$__art='{{=$viewId}}','')+$viewId,})];$vnode_3=[$createVNode('div',{'class': 'rd-_assets_index_less_-fl rd-_assets_index_less_-pr rd-_assets_index_less_-touch-action-none rd-_gallery_mx-color_index_less_-cpicker','id': '_mx_cz_'+($__line=17,$__art='{{=$viewId}}','')+$viewId,'mx5-pointerdown': $viewId+'@:{color.zone.drag~rs}()',},$vnode_4)];
+if($quick_fi_5_static_node){
+$vnode_7=[$quick_fi_5_static_node];
+}else{
+$vnode_7=[$quick_fi_5_static_node=$createVNode('stop',{'_': 'cG','offset': '0%','stop-color': '#FF0000','stop-opacity': 1,})];
 }
 
-if($quick_fm_7_static_node){
-$vnode_7.push($quick_fm_7_static_node);
+if($quick_fi_6_static_node){
+$vnode_7.push($quick_fi_6_static_node);
 }else{
-$vnode_7.push($quick_fm_7_static_node=$createVNode('stop',{'_': 'cM','offset': '25%','stop-color': '#8000FF','stop-opacity': 1,}));
+$vnode_7.push($quick_fi_6_static_node=$createVNode('stop',{'_': 'cH','offset': '13%','stop-color': '#FF00FF','stop-opacity': 1,}));
 }
 
-if($quick_fm_8_static_node){
-$vnode_7.push($quick_fm_8_static_node);
+if($quick_fi_7_static_node){
+$vnode_7.push($quick_fi_7_static_node);
 }else{
-$vnode_7.push($quick_fm_8_static_node=$createVNode('stop',{'_': 'cN','offset': '38%','stop-color': '#0040FF','stop-opacity': 1,}));
+$vnode_7.push($quick_fi_7_static_node=$createVNode('stop',{'_': 'cI','offset': '25%','stop-color': '#8000FF','stop-opacity': 1,}));
 }
 
-if($quick_fm_9_static_node){
-$vnode_7.push($quick_fm_9_static_node);
+if($quick_fi_8_static_node){
+$vnode_7.push($quick_fi_8_static_node);
 }else{
-$vnode_7.push($quick_fm_9_static_node=$createVNode('stop',{'_': 'cO','offset': '50%','stop-color': '#00FFFF','stop-opacity': 1,}));
+$vnode_7.push($quick_fi_8_static_node=$createVNode('stop',{'_': 'cJ','offset': '38%','stop-color': '#0040FF','stop-opacity': 1,}));
 }
 
-if($quick_fm_10_static_node){
-$vnode_7.push($quick_fm_10_static_node);
+if($quick_fi_9_static_node){
+$vnode_7.push($quick_fi_9_static_node);
 }else{
-$vnode_7.push($quick_fm_10_static_node=$createVNode('stop',{'_': 'cP','offset': '63%','stop-color': '#00FF40','stop-opacity': 1,}));
+$vnode_7.push($quick_fi_9_static_node=$createVNode('stop',{'_': 'cK','offset': '50%','stop-color': '#00FFFF','stop-opacity': 1,}));
 }
 
-if($quick_fm_11_static_node){
-$vnode_7.push($quick_fm_11_static_node);
+if($quick_fi_10_static_node){
+$vnode_7.push($quick_fi_10_static_node);
 }else{
-$vnode_7.push($quick_fm_11_static_node=$createVNode('stop',{'_': 'cQ','offset': '75%','stop-color': '#0BED00','stop-opacity': 1,}));
+$vnode_7.push($quick_fi_10_static_node=$createVNode('stop',{'_': 'cL','offset': '63%','stop-color': '#00FF40','stop-opacity': 1,}));
 }
 
-if($quick_fm_12_static_node){
-$vnode_7.push($quick_fm_12_static_node);
+if($quick_fi_11_static_node){
+$vnode_7.push($quick_fi_11_static_node);
 }else{
-$vnode_7.push($quick_fm_12_static_node=$createVNode('stop',{'_': 'cR','offset': '88%','stop-color': '#FFFF00','stop-opacity': 1,}));
+$vnode_7.push($quick_fi_11_static_node=$createVNode('stop',{'_': 'cM','offset': '75%','stop-color': '#0BED00','stop-opacity': 1,}));
 }
 
-if($quick_fm_13_static_node){
-$vnode_7.push($quick_fm_13_static_node);
+if($quick_fi_12_static_node){
+$vnode_7.push($quick_fi_12_static_node);
 }else{
-$vnode_7.push($quick_fm_13_static_node=$createVNode('stop',{'_': 'cS','offset': '100%','stop-color': '#FF0000','stop-opacity': 1,}));
+$vnode_7.push($quick_fi_12_static_node=$createVNode('stop',{'_': 'cN','offset': '88%','stop-color': '#FFFF00','stop-opacity': 1,}));
 }
-$vnode_6=[$createVNode('lineargradient',{'id': '_mx_ghsv_'+$viewId,'x1': '0%','y1': '100%','x2': '0%','y2': '0%',},$vnode_7)];$vnode_5=[$createVNode('defs',0,$vnode_6),$createVNode('rect',{'x': 0,'y': 0,'width': '100%','height': '100%','fill': 'url(#_mx_ghsv_'+$viewId+')',})];$vnode_4=[$createVNode('svg',$quick_fm_1_static_attr,$vnode_5),$createVNode('div',{'class': 'rd-eX rd-el rd-fU rd-h0','id': '_mx_si_'+$viewId,})];$vnode_3.push($createVNode('div',{'class': 'rd-ej rd-em rd-f0 rd-hZ','mx5-pointerdown': $viewId+'_jc()',},$vnode_4));$vnode_2.push($createVNode('div',$quick_fm_0_static_attr,$vnode_3));
+
+if($quick_fi_13_static_node){
+$vnode_7.push($quick_fi_13_static_node);
+}else{
+$vnode_7.push($quick_fi_13_static_node=$createVNode('stop',{'_': 'cO','offset': '100%','stop-color': '#FF0000','stop-opacity': 1,}));
+}
+$vnode_6=[$createVNode('lineargradient',{'id': '_mx_ghsv_'+($__line=37,$__art='{{=$viewId}}','')+$viewId,'x1': '0%','y1': '100%','x2': '0%','y2': '0%',},$vnode_7)];$vnode_5=[$createVNode('defs',0,$vnode_6),$createVNode('rect',{'x': 0,'y': 0,'width': '100%','height': '100%','fill': 'url(#_mx_ghsv_'+($__line=49,$__art='{{=$viewId}}','')+$viewId+')',})];$vnode_4=[$createVNode('svg',$quick_fi_1_static_attr,$vnode_5),$createVNode('div',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-left-2 rd-_assets_index_less_-pa rd-_gallery_mx-color_index_less_-slide-indicator','id': '_mx_si_'+($__line=51,$__art='{{=$viewId}}','')+$viewId,})];$vnode_3.push($createVNode('div',{'class': 'rd-_assets_index_less_-fl rd-_assets_index_less_-pr rd-_assets_index_less_-touch-action-none rd-_gallery_mx-color_index_less_-slide','mx5-pointerdown': $viewId+'@:{slide.drag~rs}()',},$vnode_4));$vnode_2.push($createVNode('div',$quick_fi_0_static_attr,$vnode_3));$__line=54;$__art="{{if alpha}}";$__ctrl="if(alpha){";
 if(alpha){
-$vnode_4=[$createVNode('div',{'class': 'rd-eX rd-el rd-h5','id': '_mx_ai_'+$viewId,})];$vnode_3=[$createVNode('div',{'class': 'rd-ee rd-em rd-f0','id': '_mx_at_'+$viewId,'mx5-pointerdown': $viewId+'_jd()',},$vnode_4)];$vnode_2.push($createVNode('div',$quick_fm_14_static_attr,$vnode_3));
-}$vnode_3=[$createVNode('span',{'class': 'rd-es rd-h3','id': '_mx_bc_'+$viewId,}),$createVNode('input',{'class': 'rd-dH rd-h2','readonly': true,'id': '_mx_v_'+$viewId,'value': (current),},1,$special_2)];$vnode_4=[$createVNode(0,(i18n('jT')))];$vnode_3.push($createVNode('button',{'class': 'rd-dL rd-dN rd-eX rd-ei rd-h7','type': 'button','mx5-click': $viewId+'_je()',},$vnode_4));$vnode_2.push($createVNode('div',$quick_fm_15_static_attr,$vnode_3));
-}$vnode_1.push($createVNode('div',{'id': '_mx_bd_'+$viewId,'class': 'rd-hR rd-et rd-eq rd-el rd-hS-'+(placement),'style': (align)+':-1px',},$vnode_2));;$$_class='rd-hM rd-ez rd-eB rd-em';if(disabled){;$$_class+=' rd-h6';};$vnode_0=[$createVNode('div',{'mx5-contextmenu': $viewId+'_fv()','id': '_mx_root_'+$viewId,'class': $$_class,},$vnode_1)]; 
+$vnode_4=[$createVNode('div',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-pa rd-_gallery_mx-color_index_less_-alpha-indicator','id': '_mx_ai_'+($__line=57,$__art='{{=$viewId}}','')+$viewId,})];$vnode_3=[$createVNode('div',{'class': 'rd-_assets_index_less_-hp100 rd-_assets_index_less_-pr rd-_assets_index_less_-touch-action-none','id': '_mx_at_'+($__line=56,$__art='{{=$viewId}}','')+$viewId,'mx5-pointerdown': $viewId+'@:{alpha.drag~rs}()',},$vnode_4)];$vnode_2.push($createVNode('div',$quick_fi_14_static_attr,$vnode_3));
+}$vnode_3=[$createVNode('span',{'class': 'rd-_assets_index_less_-display-inline-block rd-_gallery_mx-color_index_less_-bgcolor','id': '_mx_bc_'+($__line=62,$__art='{{=$viewId}}','')+$viewId,}),$createVNode('input',{'class': 'rd-_assets_index_less_-input rd-_gallery_mx-color_index_less_-color-value','readonly': true,'id': '_mx_v_'+($__line=63,$__art='{{=$viewId}}','')+$viewId,'value': ($__line=63,$__art='{{=current}}',$__ctrl='<%=current%>',(current)),},1,$special_2)];$vnode_4=[$createVNode(0,($__line=64,$__art='{{=i18n(\'@:{lang#mx-gallery.enter~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.enter~rs}\')%>',(i18n('@:{lang#mx-gallery.enter~rs}'))))];$vnode_3.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc rd-_gallery_mx-color_index_less_-width-56','type': 'button','mx5-click': $viewId+'@:{enter~rs}()',},$vnode_4));$vnode_2.push($createVNode('div',$quick_fi_15_static_attr,$vnode_3));
+}$vnode_1.push($createVNode('div',{'id': '_mx_bd_'+($__line=9,$__art='{{=$viewId}}','')+$viewId,'class': 'rd-_gallery_mx-color_index_less_-color-zone rd-_assets_index_less_-unselectable rd-_assets_index_less_-none rd-_assets_index_less_-pa rd-_gallery_mx-color_index_less_-placement--'+($__line=9,$__art='{{=placement}}',$__ctrl='<%=placement%>',(placement)),'style': ($__line=9,$__art='{{=align}}',$__ctrl='<%=align%>',(align))+':-1px',},$vnode_2));;$$_class='rd-_gallery_mx-color_index_less_-color rd-_assets_index_less_-flex rd-_assets_index_less_-align-items-center rd-_assets_index_less_-pr'+($__line=1,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-color_index_less_-notallowed'+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0=[$createVNode('div',{'mx5-contextmenu': $viewId+'@:{prevent~rs}()','id': '_mx_root_'+($__line=1,$__art='{{=$viewId}}','')+$viewId,'class': $$_class,},$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-color/index.html'; throw msg; }  } ,
     init() {
         this.set({
             shortcuts: ShortCuts
         });
-        index_2["_i1"]();
+        index_2["@:{setup~rs}"]();
         this.on('destroy', () => {
-            index_2['_gQ'](this);
-            index_2['_i2']();
+            index_2['@:{remove~rs}'](this);
+            index_2['@:{teardown~rs}']();
         });
     },
     assign(data) {
         let me = this;
-        me['_i3'] = data.color || '';
-        me['_i4'] = (data.alpha + '') == 'true';
-        me['_i5'] = {
+        me['@:{color~rs}'] = data.color || '';
+        me['@:{show.alpha~rs}'] = (data.alpha + '') == 'true';
+        me['@:{hsv.info~rs}'] = {
             h: 0,
             s: 1,
             v: 1
@@ -223,14 +224,14 @@ return $createVNode($viewId,0,$vnode_0); } ,
     },
     render() {
         this.digest({
-            alpha: this['_i4'],
-            color: this['_i3'],
-            current: this['_i3']
+            alpha: this['@:{show.alpha~rs}'],
+            color: this['@:{color~rs}'],
+            current: this['@:{color~rs}']
         });
     },
-    '_i8'(hsv, hex, ignoreSyncUI) {
+    '@:{set.hsv~rs}'(hsv, hex, ignoreSyncUI) {
         let me = this;
-        let selfHSV = me['_i5'];
+        let selfHSV = me['@:{hsv.info~rs}'];
         selfHSV.h = hsv.h;
         selfHSV.s = hsv.s;
         selfHSV.v = hsv.v;
@@ -240,13 +241,13 @@ return $createVNode($viewId,0,$vnode_0); } ,
         let pickerZone = cpickerNode.clientWidth;
         let colorZone = HSV2RGB(hsv.h, 1, 1);
         cpickerNode.style.background = colorZone.hex;
-        me['_i6'] = hex;
-        me['_i7']();
+        me['@:{hex.color~rs}'] = hex;
+        me['@:{sync.color~rs}']();
         if (!ignoreSyncUI) {
-            let selected = node('_mx_scs_' + me.id).querySelector('li[class$="rd-hV"]');
+            let selected = node('_mx_scs_' + me.id).querySelector('li[class$="rd-_gallery_mx-color_index_less_-selected"]');
             //debugger;
             if (selected) {
-                selected.classList.remove('rd-hV');
+                selected.classList.remove('rd-_gallery_mx-color_index_less_-selected');
             }
             let snode = node('_mx_si_' + me.id);
             let slider = snode.clientHeight / 2;
@@ -261,10 +262,10 @@ return $createVNode($viewId,0,$vnode_0); } ,
         }
         let sc = node('_mx_sc_' + hex.substr(1, 6) + '_' + me.id);
         if (sc) {
-            sc.classList.add('rd-hV');
+            sc.classList.add('rd-_gallery_mx-color_index_less_-selected');
         }
     },
-    '_ja'(hex) {
+    '@:{set.color~rs}'(hex) {
         let me = this;
         let r = parseInt(hex.substr(1, 2), 16);
         if (isNaN(r))
@@ -280,13 +281,13 @@ return $createVNode($viewId,0,$vnode_0); } ,
         if (isNaN(a)) {
             a = 255;
         }
-        me['_i9'] = ('0' + a.toString(16)).slice(-2);
-        me['_i8'](hsv, hex);
-        if (me['_i4']) {
-            me['_j_'](a);
+        me['@:{hex.alpha~rs}'] = ('0' + a.toString(16)).slice(-2);
+        me['@:{set.hsv~rs}'](hsv, hex);
+        if (me['@:{show.alpha~rs}']) {
+            me['@:{set.alpha~rs}'](a);
         }
     },
-    '_j_'(a) {
+    '@:{set.alpha~rs}'(a) {
         let me = this;
         let ai = node('_mx_ai_' + me.id);
         let alphaWidth = node('_mx_at_' + me.id).clientWidth;
@@ -296,22 +297,22 @@ return $createVNode($viewId,0,$vnode_0); } ,
         a -= slider;
         ai.style.left = a + 'px';
     },
-    '_i7'() {
+    '@:{sync.color~rs}'() {
         let me = this;
         let n = node('_mx_bc_' + me.id);
-        let hex = me['_i6'];
-        if (me['_i4']) {
+        let hex = me['@:{hex.color~rs}'];
+        if (me['@:{show.alpha~rs}']) {
             node('_mx_at_' + me.id).style.background = 'linear-gradient(to right, ' + hex + '00 0%,' + hex + ' 100%)';
-            hex += me['_i9'];
+            hex += me['@:{hex.alpha~rs}'];
         }
         n.style.background = hex;
         let n1 = node('_mx_v_' + me.id);
         n1.value = hex;
     },
-    '_jb<pointerdown>'(e) {
+    '@:{color.zone.drag~rs}<pointerdown>'(e) {
         let me = this, pickerZone = node('_mx_cz_' + me.id).clientWidth, pickerIndicator = node('_mx_ci_' + me.id).clientWidth / 2, offset = e.eventTarget.getBoundingClientRect(), left = e.pageX - offset.x - window.pageXOffset, top = e.pageY - offset.y - window.pageYOffset, s = left / pickerZone, v = (pickerZone - top) / pickerZone;
-        me['_i8']({
-            h: me['_i5'].h,
+        me['@:{set.hsv~rs}']({
+            h: me['@:{hsv.info~rs}'].h,
             s: s,
             v: v
         });
@@ -322,7 +323,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
         let startX = parseInt(sleft, 10);
         let startY = parseInt(stop, 10);
         let pos = e;
-        me['_eb'](e, (event) => {
+        me['@:{drag.drop~rs}'](e, (event) => {
             let offsetY = event.pageY - pos.pageY;
             let offsetX = event.pageX - pos.pageX;
             offsetY += startY;
@@ -339,27 +340,27 @@ return $createVNode($viewId,0,$vnode_0); } ,
             current.style.top = offsetY + 'px';
             let s = (offsetX + pickerIndicator) / pickerZone;
             let v = (pickerZone - (offsetY + pickerIndicator)) / pickerZone;
-            me['_i8']({
-                h: me['_i5'].h,
+            me['@:{set.hsv~rs}']({
+                h: me['@:{hsv.info~rs}'].h,
                 s: s,
                 v: v
             });
         });
     },
-    '_jc<pointerdown>'(e) {
+    '@:{slide.drag~rs}<pointerdown>'(e) {
         let me = this;
         let current = e.eventTarget;
         let indicator = node('_mx_si_' + me.id);
         let pickerZone = node('_mx_cz_' + me.id).clientWidth;
         let slider = indicator.clientHeight / 2;
         let offset = current.getBoundingClientRect(), top = e.pageY - offset.y - window.scrollY, h = top / pickerZone * 360;
-        me['_i8']({
+        me['@:{set.hsv~rs}']({
             h: h,
-            s: me['_i5'].s,
-            v: me['_i5'].v
+            s: me['@:{hsv.info~rs}'].s,
+            v: me['@:{hsv.info~rs}'].v
         });
         let startY = parseInt(getComputedStyle(indicator).top, 10);
-        me['_eb'](e, event => {
+        me['@:{drag.drop~rs}'](e, event => {
             let offsetY = event.pageY - e.pageY;
             offsetY += startY;
             if (offsetY <= -slider)
@@ -368,26 +369,26 @@ return $createVNode($viewId,0,$vnode_0); } ,
                 offsetY = pickerZone - slider;
             indicator.style.top = offsetY + 'px';
             let h = (offsetY + slider) / pickerZone * 360;
-            me['_i8']({
+            me['@:{set.hsv~rs}']({
                 h: h,
-                s: me['_i5'].s,
-                v: me['_i5'].v
+                s: me['@:{hsv.info~rs}'].s,
+                v: me['@:{hsv.info~rs}'].v
             }, null, true);
         });
     },
-    '_jd<pointerdown>'(e) {
+    '@:{alpha.drag~rs}<pointerdown>'(e) {
         let current = e.eventTarget;
         let me = this;
         let indicator = node('_mx_ai_' + me.id);
         let alphaWidth = node('_mx_at_' + me.id).clientWidth;
         let slider = indicator.clientWidth / 2;
         let offset = current.getBoundingClientRect(), left = e.pageX - offset.x, a = (left / alphaWidth * 255) | 0;
-        me['_i9'] = ('0' + a.toString(16)).slice(-2);
-        me['_j_'](a);
-        me['_i7']();
+        me['@:{hex.alpha~rs}'] = ('0' + a.toString(16)).slice(-2);
+        me['@:{set.alpha~rs}'](a);
+        me['@:{sync.color~rs}']();
         let styles = getComputedStyle(indicator);
         let startX = parseInt(styles.left, 10);
-        me['_eb'](e, (event) => {
+        me['@:{drag.drop~rs}'](e, (event) => {
             let offsetX = event.pageX - e.pageX;
             offsetX += startX;
             if (offsetX <= -slider)
@@ -396,76 +397,76 @@ return $createVNode($viewId,0,$vnode_0); } ,
                 offsetX = alphaWidth - slider;
             indicator.style.left = offsetX + 'px';
             let a = round((offsetX + slider) / alphaWidth * 255);
-            me['_i9'] = ('0' + a.toString(16)).slice(-2);
-            me['_i7']();
+            me['@:{hex.alpha~rs}'] = ('0' + a.toString(16)).slice(-2);
+            me['@:{sync.color~rs}']();
         });
     },
-    '_je<click>'() {
+    '@:{enter~rs}<click>'() {
         let me = this;
-        me['_ed']();
+        me['@:{hide~rs}']();
         let n = node('_mx_v_' + me.id);
         let c = n.value;
-        if (c != me['_i3']) {
+        if (c != me['@:{color~rs}']) {
             me.digest({
                 color: c,
                 current: c
             });
             dispatch(me.root, 'input', {
-                color: me['_i3'] = c
+                color: me['@:{color~rs}'] = c
             });
         }
     },
-    '_jf<click>'(e) {
-        this['_ja'](e.params.color);
-        e.eventTarget.classList.add('rd-hV');
+    '@:{shortcuts.picked~rs}<click>'(e) {
+        this['@:{set.color~rs}'](e.params.color);
+        e.eventTarget.classList.add('rd-_gallery_mx-color_index_less_-selected');
     },
-    '_jg'(node) {
+    '@:{inside~rs}'(node) {
         return inside(node, this.root);
     },
-    async '_ec'() {
+    async '@:{show~rs}'() {
         let n = node('_mx_bd_' + this.id);
         let d = getComputedStyle(n).display;
         if (d == 'none') {
             n.style.display = 'block';
-            index_2["_jh"](this);
-            node('_mx_root_' + this.id).classList.add('rd-hN');
-            if (!this['_ji']) {
+            index_2["@:{add~rs}"](this);
+            node('_mx_root_' + this.id).classList.add('rd-_gallery_mx-color_index_less_-color-focus');
+            if (!this['@:{init.sync.color~rs}']) {
                 await this.digest({
                     renderUI: true
                 });
-                this['_ji'] = 1;
+                this['@:{init.sync.color~rs}'] = 1;
             }
-            this['_ja'](this['_i3']);
+            this['@:{set.color~rs}'](this['@:{color~rs}']);
         }
     },
-    '_ed'() {
+    '@:{hide~rs}'() {
         let n = node('_mx_bd_' + this.id);
         let d = getComputedStyle(n).display;
         if (d != 'none') {
-            node('_mx_root_' + this.id).classList.remove('rd-hN');
+            node('_mx_root_' + this.id).classList.remove('rd-_gallery_mx-color_index_less_-color-focus');
             n.style.display = 'none';
-            index_2["_gQ"](this);
+            index_2["@:{remove~rs}"](this);
         }
     },
-    '_dQ<click>'() {
+    '@:{toggle~rs}<click>'() {
         if (this.get('disabled'))
             return;
         let n = node('_mx_bd_' + this.id);
         let d = getComputedStyle(n).display;
         if (d == 'none') {
-            this['_ec']();
+            this['@:{show~rs}']();
         }
         else {
-            this['_ed']();
+            this['@:{hide~rs}']();
         }
     },
-    '_jj<click>'() {
+    '@:{clear.color~rs}<click>'() {
         if (this.get('disabled'))
             return;
         let me = this, c = '';
-        if (me['_ji']) {
+        if (me['@:{init.sync.color~rs}']) {
             let cr = node('_mx_v_' + me.id).value;
-            me['_ed']();
+            me['@:{hide~rs}']();
             me.digest({
                 color: '',
                 current: cr
@@ -477,7 +478,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
             });
         }
         dispatch(me.root, 'input', {
-            color: me['_i3'] = c
+            color: me['@:{color~rs}'] = c
         });
     }
 }).merge(index_1);

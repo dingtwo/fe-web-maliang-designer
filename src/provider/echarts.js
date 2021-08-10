@@ -4,7 +4,7 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4t/echarts",[],(require,exports,module)=>{
+define("provider/echarts",[],(require,exports,module)=>{
 
 
 let dest = '//cdn.bootcss.com/echarts/4.2.0-rc.2/echarts.min.js';

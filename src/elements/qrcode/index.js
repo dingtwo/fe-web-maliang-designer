@@ -4,18 +4,18 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("53/qrcode/index",["4e","../../4t/qrcode"],(require,exports,module)=>{
-let $quick_eZ_0_static_attr={'class': 'rd-eB rd-eT rd-ee rd-ez',};
+define("elements/qrcode/index",["magix5","../../provider/qrcode"],(require,exports,module)=>{
+let $quick_eV_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-hp100 rd-_assets_index_less_-justify-content-center',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("4e");
-let qrcode_1 = require("../../4t/qrcode");
+let magix_1 = require("magix5");
+let qrcode_1 = require("../../provider/qrcode");
 let { View, mark, node, task, isArray } = magix_1;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $temp_var,$vnode_0=[],
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0=[],
 {
 	error,
 	text,
@@ -23,15 +23,16 @@ let $temp_var,$vnode_0=[],
 	unit,}=$dataFromView,
 $vnode_2,
 $vnode_1;
-
+$__line=1;$__art="{{if error||text}}";$__ctrl="if(error||text){";
 if(error||text){
-$vnode_1=[];
+$vnode_1=[];$__line=3;$__art="{{if error}}";$__ctrl="if(error){";
 if(error){
-$vnode_2=[$createVNode(0,(error))];$vnode_1.push($createVNode('div',$quick_eZ_0_static_attr,$vnode_2));
-}$vnode_1.push($createVNode('div',{'id': '_rd_'+$viewId+'_qr',}));$vnode_0.push($createVNode('div',{'class': 'rd-el rd-fH rd-fq','style': 'left:'+(props.x)+(unit)+';top:'+(props.y)+(unit)+';height:'+(props.height)+(unit)+';opacity:'+(props.alpha)+';width:'+(props.width)+(unit)+';transform:rotate('+(props.rotate)+'deg)',},$vnode_1));
+$vnode_2=[$createVNode(0,($__line=5,$__art='{{=error}}',$__ctrl='<%=error%>',(error)))];$vnode_1.push($createVNode('div',$quick_eV_0_static_attr,$vnode_2));
+}$vnode_1.push($createVNode('div',{'id': '_rd_'+($__line=8,$__art='{{=$viewId}}','')+$viewId+'_qr',}));$vnode_0.push($createVNode('div',{'class': 'rd-_assets_index_less_-overflow-hidden rd-_assets_index_less_-pa rd-_assets_index_less_-z-index-1','style': 'left:'+($__line=2,$__art='{{=props.x}}',$__ctrl='<%=props.x%>',(props.x))+($__line=2,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';top:'+($__line=2,$__art='{{=props.y}}',$__ctrl='<%=props.y%>',(props.y))+($__line=2,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=2,$__art='{{=props.height}}',$__ctrl='<%=props.height%>',(props.height))+($__line=2,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';opacity:'+($__line=2,$__art='{{=props.alpha}}',$__ctrl='<%=props.alpha%>',(props.alpha))+';width:'+($__line=2,$__art='{{=props.width}}',$__ctrl='<%=props.width%>',(props.width))+($__line=2,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';transform:rotate('+($__line=2,$__art='{{=props.rotate}}',$__ctrl='<%=props.rotate%>',(props.rotate))+'deg)',},$vnode_1));
 } 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:elements/qrcode/index.html'; throw msg; }  } ,
     assign(data) {
         this.set(data);
         let { props } = data;
@@ -57,7 +58,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
         });
     },
     async render() {
-        let m = mark(this, '_dU');
+        let m = mark(this, '@:{render~rs}');
         await this.digest({
             error: null
         });
@@ -66,19 +67,19 @@ return $createVNode($viewId,0,$vnode_0); } ,
             if (m()) {
                 let text = this.get('text') + '';
                 if (text &&
-                    text != this['_hd']) {
-                    let entity = this['_hm'];
+                    text != this['@:{cached.text~rs}']) {
+                    let entity = this['@:{qrcode.entity~rs}'];
                     if (!entity) {
                         let n = node(`_rd_${this.id}_qr`);
                         entity = new QRCode(n);
-                        this['_hm'] = entity;
+                        this['@:{qrcode.entity~rs}'] = entity;
                     }
-                    m = mark(this, '_hn');
+                    m = mark(this, '@:{render.qrcode~rs}');
                     task(() => {
                         if (m()) {
-                            entity.makeCode(this['_hd'] = text);
+                            entity.makeCode(this['@:{cached.text~rs}'] = text);
                             let img = this.root.querySelector('img');
-                            img.classList.add('rd-ed');
+                            img.classList.add('rd-_assets_index_less_-wp100');
                         }
                     });
                 }

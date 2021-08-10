@@ -4,7 +4,7 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4t/underscore",[],(require,exports,module)=>{
+define("provider/underscore",[],(require,exports,module)=>{
 
 
 let dest = '//cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js';

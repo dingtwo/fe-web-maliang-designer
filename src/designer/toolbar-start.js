@@ -4,21 +4,21 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4d/5q",["4e","./57"],(require,exports,module)=>{
-let $quick_dZ_0_static_node;
-let $quick_dU_static_text;
-let $quick_dV_static_text;
+define("designer/toolbar-start",["magix5","./stage-generic"],(require,exports,module)=>{
+let $quick_dV_0_static_node;
+let $quick_dQ_static_text;
+let $quick_dR_static_text;
 /*
     author:https://github.com/xinglie
 */
 
 
-let magix_1 = require("4e");
-let stage_generic_1 = require("./57");
+let magix_1 = require("magix5");
+let stage_generic_1 = require("./stage-generic");
 let { State, View } = magix_1;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	canCreate,
 	i18n,
@@ -26,43 +26,44 @@ let $temp_var,$vnode_0,
 $$_class,
 $vnode_1;
 
-if($quick_dZ_0_static_node){
-$vnode_0=[$quick_dZ_0_static_node];
+if($quick_dV_0_static_node){
+$vnode_0=[$quick_dV_0_static_node];
 }else{
-$vnode_0=[$quick_dZ_0_static_node=$createVNode('i',{'_': 'cH','class': 'rd-ej rd-gZ',})];
+$vnode_0=[$quick_dV_0_static_node=$createVNode('i',{'_': 'cD','class': 'rd-_assets_index_less_-fl rd-_designer_toolbar_less_-toolbar-spliter',})];
 }
-$vnode_1=[$quick_dU_static_text||($quick_dU_static_text=$createVNode(0,''))];;$$_class='rd-dF rd-gW rd-eX rd-eB rd-eT';if(!canCreate){;$$_class+=' rd-g0';};$vnode_0.push($createVNode('i',{'title': (i18n('ec'))+'(N)','mx5-click': ((canCreate))&&($viewId+'_g9()'),'class': $$_class,},$vnode_1));$vnode_1=[$quick_dV_static_text||($quick_dV_static_text=$createVNode(0,''))];;$$_class='rd-dF rd-gW rd-eX rd-eB rd-eT';if(!canClear){;$$_class+=' rd-g0';};$vnode_0.push($createVNode('i',{'title': (i18n('eb'))+'(C)','mx5-click': ((canClear))&&($viewId+'_g8()'),'class': $$_class,},$vnode_1)); 
+$vnode_1=[$quick_dQ_static_text||($quick_dQ_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=2,$__art='{{if !canCreate}}','');$__ctrl='<%if(!canCreate){%>';if(!canCreate){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-disabled'+($__line=2,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('i',{'title': ($__line=2,$__art='{{=i18n(\'@:{lang#menu.new~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.new~rs}\')%>',(i18n('@:{lang#menu.new~rs}')))+'(N)','mx5-click': (($temp_var=($__line=2,$__art='{{=canCreate}}',$__ctrl='<%=canCreate%>',canCreate),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:designer/toolbar-start.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{new.page~rs}()'),'class': $$_class,},$vnode_1));$vnode_1=[$quick_dR_static_text||($quick_dR_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=3,$__art='{{if !canClear}}','');$__ctrl='<%if(!canClear){%>';if(!canClear){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-disabled'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('i',{'title': ($__line=3,$__art='{{=i18n(\'@:{lang#menu.clear~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.clear~rs}\')%>',(i18n('@:{lang#menu.clear~rs}')))+'(C)','mx5-click': (($temp_var=($__line=3,$__art='{{=canClear}}',$__ctrl='<%=canClear%>',canClear),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:designer/toolbar-start.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{clear.elements~rs}()'),'class': $$_class,},$vnode_1)); 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/toolbar-start.html'; throw msg; }  } ,
     init() {
         let update = this.render.bind(this);
-        State.on('dJ', update);
-        State.on('dH', update);
-        State.on('dO', update);
-        State.on('d2', update);
-        State.on('dM', update);
-        State.on('dK', update);
+        State.on('@:{event#history.shift.change~rs}', update);
+        State.on('@:{event#stage.select.elements.change~rs}', update);
+        State.on('@:{event#stage.axis.help.lines.change~rs}', update);
+        State.on('@:{event#stage.elements.change~rs}', update);
+        State.on('@:{event#stage.page.and.elements.change~rs}', update);
+        State.on('@:{event#stage.page.change~rs}', update);
         this.on('destroy', () => {
-            State.off('dJ', update);
-            State.off('dH', update);
-            State.off('dO', update);
-            State.off('d2', update);
-            State.off('dM', update);
-            State.off('dK', update);
+            State.off('@:{event#history.shift.change~rs}', update);
+            State.off('@:{event#stage.select.elements.change~rs}', update);
+            State.off('@:{event#stage.axis.help.lines.change~rs}', update);
+            State.off('@:{event#stage.elements.change~rs}', update);
+            State.off('@:{event#stage.page.and.elements.change~rs}', update);
+            State.off('@:{event#stage.page.change~rs}', update);
         });
     },
     render() {
         this.digest({
-            canClear: stage_generic_1['dI'](),
-            canCreate: stage_generic_1['dJ']()
+            canClear: stage_generic_1['@:{generic#query.can.clear.stage~rs}'](),
+            canCreate: stage_generic_1['@:{generic#query.can.create.new.page~rs}']()
         });
     },
-    '_g8<click>'() {
-        State.fire('dY');
+    '@:{clear.elements~rs}<click>'() {
+        State.fire('@:{event#stage.clear.elements~rs}');
     },
-    '_g9<click>'() {
-        State.fire('dY', {
-            'dE': 'dF'
+    '@:{new.page~rs}<click>'() {
+        State.fire('@:{event#stage.clear.elements~rs}', {
+            '@:{clear.events#action~rs}': '@:{clear.events#new~rs}'
         });
     }
 });

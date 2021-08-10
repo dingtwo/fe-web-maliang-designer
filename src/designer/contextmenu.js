@@ -4,14 +4,14 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4d/4v",["4e","../4p/index"],(require,exports,module)=>{
+define("designer/contextmenu",["magix5","../i18n/index"],(require,exports,module)=>{
 
 
 /**
  * 右键菜单配置及管理对象
  */
-let magix_1 = require("4e");
-let index_1 = require("../4p/index");
+let magix_1 = require("magix5");
+let index_1 = require("../i18n/index");
 let { guid } = magix_1;
 let MenuSpliter = {
     spliter: true
@@ -19,161 +19,161 @@ let MenuSpliter = {
 let MenuAll = {
     id: 0,
     icon: '&#xe6b2;',
-    text: 'd2',
+    text: '@:{lang#menu.select.all~rs}',
     short: 'Ctrl+A'
 };
 let MenuCopy = {
     id: 1,
     icon: '&#xe69a;',
-    text: 'd3',
+    text: '@:{lang#menu.copy~rs}',
     short: 'Ctrl+C'
 };
 let MenuCut = {
     id: 2,
     icon: '&#xe6bf;',
-    text: 'd4',
+    text: '@:{lang#menu.cut~rs}',
     short: 'Ctrl+X'
 };
 let MenuTop = {
     id: 3,
     icon: '&#xe607;',
-    text: 'd5',
+    text: '@:{lang#menu.to.top~rs}',
     short: 'T'
 };
 let MenuBottom = {
     id: 4,
     icon: '&#xe607;',
     r180: 1,
-    text: 'd6',
+    text: '@:{lang#menu.to.bottom~rs}',
     short: 'B'
 };
 let MenuUp = {
     id: 5,
     icon: '&#xe632;',
-    text: 'd7',
+    text: '@:{lang#menu.move.up~rs}',
     short: 'U'
 };
 let MenuDown = {
     id: 6,
     icon: '&#xe632;',
     r180: 1,
-    text: 'd8',
+    text: '@:{lang#menu.move.down~rs}',
     short: 'D'
 };
 let MenuDuplicate = {
     id: 7,
     icon: '&#xe6b1;',
-    text: 'd9',
+    text: '@:{lang#menu.duplicate~rs}',
     short: 'Ctrl+D'
 };
 let MenuPaste = {
     id: 8,
     icon: '&#xe6c1;',
-    text: 'e_',
+    text: '@:{lang#menu.paste~rs}',
     short: 'Ctrl+V'
 };
 let MenuDelete = {
     id: 9,
     icon: '&#xe6b3;',
-    text: 'ea',
+    text: '@:{lang#menu.delete~rs}',
     short: 'Delete'
 };
 let MenuClear = {
     id: 10,
     icon: '&#xe7db;',
-    text: 'eb',
+    text: '@:{lang#menu.clear~rs}',
     short: 'C'
 };
 let MenuNew = {
     id: 11,
     icon: '&#xe612;',
-    text: 'ec',
+    text: '@:{lang#menu.new~rs}',
     short: 'N'
 };
 let MenuReverse = {
     id: 12,
     icon: '&#xe678;',
-    text: 'ed',
+    text: '@:{lang#menu.reverse~rs}',
     short: 'Ctrl+Shift+I'
 };
 let MenuAlignLeft = {
     id: 20,
     icon: '&#xe70b;',
-    text: 'ee',
+    text: '@:{lang#align.left~rs}',
     to: 'left'
 };
 let MenuAlignRight = {
     id: 21,
     icon: '&#xe70b;',
     r180: 1,
-    text: 'ef',
+    text: '@:{lang#align.right~rs}',
     to: 'right'
 };
 let MenuAlignCenter = {
     id: 22,
     icon: '&#xe711;',
     r90: 1,
-    text: 'eg',
+    text: '@:{lang#align.center~rs}',
     to: 'center'
 };
 let MenuAlignTop = {
     id: 23,
     icon: '&#xe70d;',
-    text: 'eh',
+    text: '@:{lang#align.top~rs}',
     to: 'top'
 };
 let MenuAlignBottom = {
     id: 24,
     icon: '&#xe70d;',
     r180: 1,
-    text: 'ei',
+    text: '@:{lang#align.bottom~rs}',
     to: 'bottom'
 };
 let MenuAlignMiddle = {
     id: 25,
     icon: '&#xe711;',
-    text: 'ej',
+    text: '@:{lang#align.middle~rs}',
     to: 'middle'
 };
 let MenuGroup = {
     id: 31,
     icon: '&#xe669;',
-    text: 'ek',
+    text: '@:{lang#menu.context.group~rs}',
     short: 'Ctrl/Shift+G'
 };
 let MenuUngroup = {
     id: 32,
     icon: '&#xe684;',
-    text: 'el',
+    text: '@:{lang#menu.context.ungroup~rs}',
     short: 'Shift/Ctrl+G'
 };
 let MenuSyncWidthAsHeight = {
     id: 41,
-    text: 'em'
+    text: '@:{lang#menu.sync.width.as.height~rs}'
 };
 let MenuSyncHeightAsWidth = {
     id: 42,
-    text: 'en'
+    text: '@:{lang#menu.sync.height.as.width~rs}'
 };
 let MenuSyncWidth = {
     id: 43,
-    text: 'eo'
+    text: '@:{lang#menu.sync.width~rs}'
 };
 let MenuSyncHeight = {
     id: 44,
-    text: 'ep'
+    text: '@:{lang#menu.sync.height~rs}'
 };
 let MenuClearHodStage = {
     id: 50,
-    text: 'eq'
+    text: '@:{lang#menu.clear.hod.stage~rs}'
 };
 let Cache = {};
 let TranslateMenu = menus => {
     return lang => {
-        if (!menus['dE']) { //给菜单列表临时增加id，用于缓存
-            menus['dE'] = guid('m_');
+        if (!menus['@:{menu#u.id~rs}']) { //给菜单列表临时增加id，用于缓存
+            menus['@:{menu#u.id~rs}'] = guid('m_');
         }
-        let key = lang + menus['dE'];
+        let key = lang + menus['@:{menu#u.id~rs}'];
         if (!Cache[key]) {
             let a = [];
             for (let m of menus) { //根据菜单内容翻译相应的菜单显示
@@ -198,42 +198,42 @@ let TranslateMenu = menus => {
     };
 };
 module.exports= {
-    'dE': MenuAll.id,
-    'dF': MenuPaste.id,
-    'dG': MenuTop.id,
-    'dH': MenuUp.id,
-    'dI': MenuBottom.id,
-    'dJ': MenuDown.id,
-    'dK': MenuCut.id,
-    'dL': MenuCopy.id,
-    'dM': MenuDuplicate.id,
-    'dN': MenuDelete.id,
-    'dO': MenuClear.id,
-    'dP': MenuNew.id,
-    'dQ': MenuUngroup.id,
-    'dR': MenuGroup.id,
-    'dS': MenuSyncWidthAsHeight.id,
-    'dT': MenuSyncHeightAsWidth.id,
-    'dU': MenuSyncWidth.id,
-    'dV': MenuSyncHeight.id,
-    'dW': MenuAlignBottom.id,
-    'dX': MenuAlignCenter.id,
-    'dY': MenuAlignLeft.id,
-    'dZ': MenuAlignMiddle.id,
-    'd0': MenuAlignRight.id,
-    'd1': MenuAlignTop.id,
-    'd2': MenuClearHodStage.id,
-    'd3': MenuReverse.id,
+    '@:{cm#all.id~rs}': MenuAll.id,
+    '@:{cm#paste.id~rs}': MenuPaste.id,
+    '@:{cm#top.id~rs}': MenuTop.id,
+    '@:{cm#up.id~rs}': MenuUp.id,
+    '@:{cm#bottom.id~rs}': MenuBottom.id,
+    '@:{cm#down.id~rs}': MenuDown.id,
+    '@:{cm#cut.id~rs}': MenuCut.id,
+    '@:{cm#copy.id~rs}': MenuCopy.id,
+    '@:{cm#duplicate.id~rs}': MenuDuplicate.id,
+    '@:{cm#delete.id~rs}': MenuDelete.id,
+    '@:{cm#clear.id~rs}': MenuClear.id,
+    '@:{cm#new.id~rs}': MenuNew.id,
+    '@:{cm#ungroup.id~rs}': MenuUngroup.id,
+    '@:{cm#group.id~rs}': MenuGroup.id,
+    '@:{cm#sync.width.as.height.id~rs}': MenuSyncWidthAsHeight.id,
+    '@:{cm#sync.height.as.width.id~rs}': MenuSyncHeightAsWidth.id,
+    '@:{cm#sync.width.id~rs}': MenuSyncWidth.id,
+    '@:{cm#sync.height.id~rs}': MenuSyncHeight.id,
+    '@:{cm#align.bottom.id~rs}': MenuAlignBottom.id,
+    '@:{cm#align.center.id~rs}': MenuAlignCenter.id,
+    '@:{cm#align.left.id~rs}': MenuAlignLeft.id,
+    '@:{cm#align.middle.id~rs}': MenuAlignMiddle.id,
+    '@:{cm#align.right.id~rs}': MenuAlignRight.id,
+    '@:{cm#align.top.id~rs}': MenuAlignTop.id,
+    '@:{cm#clear.hod.stage.id~rs}': MenuClearHodStage.id,
+    '@:{cm#reverse.id~rs}': MenuReverse.id,
     //单个元素的右键菜单
-    'd4': TranslateMenu([MenuCopy, MenuDuplicate, MenuCut, MenuDelete, MenuSpliter, MenuTop, MenuUp, MenuDown, MenuBottom, MenuSpliter, MenuGroup, MenuUngroup, MenuSpliter, MenuReverse]),
+    '@:{cm#single.element~rs}': TranslateMenu([MenuCopy, MenuDuplicate, MenuCut, MenuDelete, MenuSpliter, MenuTop, MenuUp, MenuDown, MenuBottom, MenuSpliter, MenuGroup, MenuUngroup, MenuSpliter, MenuReverse]),
     //2个元素
-    'd5': TranslateMenu([MenuCopy, MenuDuplicate, MenuCut, MenuDelete, MenuSpliter, MenuAlignLeft, MenuAlignCenter, MenuAlignRight, MenuAlignTop, MenuAlignMiddle, MenuAlignBottom, MenuSpliter, MenuSyncWidth, MenuSyncHeight, MenuSyncWidthAsHeight, MenuSyncHeightAsWidth, MenuSpliter, MenuGroup, MenuUngroup, MenuSpliter, MenuReverse]),
+    '@:{cm#double.element~rs}': TranslateMenu([MenuCopy, MenuDuplicate, MenuCut, MenuDelete, MenuSpliter, MenuAlignLeft, MenuAlignCenter, MenuAlignRight, MenuAlignTop, MenuAlignMiddle, MenuAlignBottom, MenuSpliter, MenuSyncWidth, MenuSyncHeight, MenuSyncWidthAsHeight, MenuSyncHeightAsWidth, MenuSpliter, MenuGroup, MenuUngroup, MenuSpliter, MenuReverse]),
     //多选元素时的右键菜单
-    'd6': TranslateMenu([MenuCopy, MenuDuplicate, MenuCut, MenuDelete, MenuSpliter, MenuAlignLeft, MenuAlignCenter, MenuAlignRight, MenuAlignTop, MenuAlignMiddle, MenuAlignBottom, MenuSpliter, MenuGroup, MenuUngroup, MenuSpliter, MenuReverse]),
+    '@:{cm#multiple.element~rs}': TranslateMenu([MenuCopy, MenuDuplicate, MenuCut, MenuDelete, MenuSpliter, MenuAlignLeft, MenuAlignCenter, MenuAlignRight, MenuAlignTop, MenuAlignMiddle, MenuAlignBottom, MenuSpliter, MenuGroup, MenuUngroup, MenuSpliter, MenuReverse]),
     //在设计区时的右键菜单
-    'd7': TranslateMenu([MenuAll, MenuPaste, MenuSpliter, MenuCopy, MenuDuplicate, MenuCut, MenuDelete, MenuSpliter, MenuClear, MenuNew]),
+    '@:{cm#stage~rs}': TranslateMenu([MenuAll, MenuPaste, MenuSpliter, MenuCopy, MenuDuplicate, MenuCut, MenuDelete, MenuSpliter, MenuClear, MenuNew]),
     //在容器上时的右键菜单
-    'd8': TranslateMenu([MenuAll, MenuPaste, MenuClearHodStage, MenuSpliter, MenuCopy, MenuDuplicate, MenuCut, MenuDelete, MenuSpliter, MenuUp, MenuTop, MenuDown, MenuBottom, MenuSpliter, MenuReverse])
+    '@:{cm#hod.stage~rs}': TranslateMenu([MenuAll, MenuPaste, MenuClearHodStage, MenuSpliter, MenuCopy, MenuDuplicate, MenuCut, MenuDelete, MenuSpliter, MenuUp, MenuTop, MenuDown, MenuBottom, MenuSpliter, MenuReverse])
 };
 
 });

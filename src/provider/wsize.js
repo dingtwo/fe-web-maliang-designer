@@ -4,14 +4,14 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4t/wsize",["4e","../4l/4o/index"],(require,exports,module)=>{
+define("provider/wsize",["magix5","../gallery/mx-runner/index"],(require,exports,module)=>{
 
 
 /**
  * 尺寸变化插件
  */
-let magix_1 = require("4e");
-let index_1 = require("../4l/4o/index");
+let magix_1 = require("magix5");
+let index_1 = require("../gallery/mx-runner/index");
 let { State, node } = magix_1;
 let stage, cachedWidth, cachedHeight, cachedOffsetWidth, cachedOffsetHeight, cachedPageWidth, cachedPageHeight;
 let watchSizeChange = () => {
@@ -19,7 +19,7 @@ let watchSizeChange = () => {
     let stageRealHeight = stage.scrollHeight;
     let stageOffsetWidth = stage.offsetWidth;
     let stageOffsetHeight = stage.offsetHeight;
-    let page = State.get('dN');
+    let page = State.get('@:{global#stage.page~rs}');
     let changed;
     if (stageRealHeight) {
         if (stageRealWidth != cachedWidth) {
@@ -48,18 +48,18 @@ let watchSizeChange = () => {
         }
     }
     if (changed) {
-        State.fire('dL');
+        State.fire('@:{event#stage.size.change~rs}');
     }
 };
 module.exports= {
-    'dE': watchSizeChange,
-    'dF'() {
+    '@:{wsize#update~rs}': watchSizeChange,
+    '@:{wsize#setup~rs}'() {
         stage = node('_rd_stage');
-        index_1["_d4"](500, watchSizeChange);
+        index_1["@:{task.add~rs}"](500, watchSizeChange);
     },
-    'dG'() {
+    '@:{wsize#teardown~rs}'() {
         stage = null;
-        index_1['_d3'](watchSizeChange);
+        index_1['@:{task.remove~rs}'](watchSizeChange);
     }
 };
 

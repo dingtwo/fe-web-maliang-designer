@@ -4,12 +4,12 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4l/4s/index",["4e"],(require,exports,module)=>{
+define("gallery/mx-toast/index",["magix5"],(require,exports,module)=>{
 
 
-let magix_1 = require("4e");
+let magix_1 = require("magix5");
 let { applyStyle, guid, node } = magix_1;
-applyStyle("rd-e_",".rd-jq{background:#0008;border-radius:5px;color:#fff;left:50%;min-width:15%;padding:6px;position:fixed;text-align:center;top:50%;transform:translate(-50%,-50%);z-index:2000}");
+applyStyle("rd-_gallery_mx-toast_index_css_",".rd-_gallery_mx-toast_index_css_-toast{\nposition:fixed;\nborder-radius:5px;\nbackground:#0008;\nleft:50%;\ntop:50%;\npadding:6px;\ncolor:#fff;\nmin-width:15%;\ntext-align:center;\ntransform:translate(-50%,-50%);\nz-index:2000;\n}");
 let toastId = guid('_mx_toast_');
 let timer;
 module.exports= {
@@ -18,7 +18,7 @@ module.exports= {
         if (!n) {
             n = document.createElement('div');
             n.id = toastId;
-            n.className = 'rd-jq rd-dE';
+            n.className = 'rd-_gallery_mx-toast_index_css_-toast rd-_assets_index_less_-designer-root';
             document.body.appendChild(n);
         }
         n.style.display = 'block';

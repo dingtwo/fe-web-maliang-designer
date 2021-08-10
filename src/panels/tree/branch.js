@@ -4,20 +4,20 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("58/tree/branch",["4e","../../4d/enum","../../4d/4q","./rect"],(require,exports,module)=>{
-let $quick_dE_static_text;
-let $quick_f6_0_static_attr={'class': 'rd-dF rd-fw rd-kc',};
-let $quick_f6_1_static_attr={'class': 'rd-ew rd-ey',};
+define("panels/tree/branch",["magix5","../../designer/enum","../../designer/history","./rect"],(require,exports,module)=>{
+let $quick_dA_static_text;
+let $quick_f2_0_static_attr={'class': 'rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-iconfont rd-_panels_tree_index_less_-move',};
+let $quick_f2_1_static_attr={'class': 'rd-_assets_index_less_-ellipsis rd-_assets_index_less_-flex-fill-rest',};
 
-let magix_1 = require("4e");
-let enum_1 = require("../../4d/enum");
-let history_1 = require("../../4d/4q");
+let magix_1 = require("magix5");
+let enum_1 = require("../../designer/enum");
+let history_1 = require("../../designer/history");
 let rect_1 = require("./rect");
 let { State, View } = magix_1;
 
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf,$encodeQuote)=> { 
-let $temp_var,$vnode_0=[],
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0=[],
 {
 	rows,
 	i18n,
@@ -35,36 +35,37 @@ $vnode_4,
 $vnode_3,
 $vnode_2,
 $vnode_1;
-
-for(let $q_c_aprfro=rows.length,ri=0;ri<$q_c_aprfro;ri+=1){
+$__line=1;$__art="{{each rows as row ri}}";$__ctrl="for(let $q_c_bkdzwds=rows.length,ri=0;ri<$q_c_bkdzwds;ri++){let row=rows[ri];";
+for(let $q_c_bkdzwds=rows.length,ri=0;ri<$q_c_bkdzwds;ri+=1){
 let row=rows[ri];
-
-for(let $q_a_ieuvoisbhfq=row.cols,$q_c_dryorseh=$q_a_ieuvoisbhfq.length,ci=0;ci<$q_c_dryorseh;ci+=1){
-let {elements:elements}=$q_a_ieuvoisbhfq[ci];
-
+$__line=2;$__art="{{each row.cols as {elements} ci}}";$__ctrl="for(let $q_a_ojyilaj=row.cols,$q_c_oogu=$q_a_ojyilaj.length,ci=0;ci<$q_c_oogu;ci++){let {elements:elements}=$q_a_ojyilaj[ci];";
+for(let $q_a_ojyilaj=row.cols,$q_c_oogu=$q_a_ojyilaj.length,ci=0;ci<$q_c_oogu;ci+=1){
+let {elements:elements}=$q_a_ojyilaj[ci];
+$__line=3;$__art="{{if elements&&elements.length}}";$__ctrl="if(elements&&elements.length){";
 if(elements&&elements.length){
-$vnode_1=[];
+$vnode_1=[];$__line=5;$__art="{{each elements as e ei by desc}}";$__ctrl="for(let ei=elements.length;ei--;){let e=elements[ei];";
 for(let ei=elements.length;ei--;){
 let e=elements[ei];
-$text='';let props=e.props,ctrl=e.ctrl,id=e.id;;$text+=' ';let locked=props.locked,readonly=props.readonly,eRows=props.rows,ename=props.ename;;
+$text=($__line=6,$__art='{{set {props,ctrl,id}=e}}','');$__ctrl='<%let props=e.props,ctrl=e.ctrl,id=e.id;%>';let props=e.props,ctrl=e.ctrl,id=e.id;;$text+=' '+($__line=7,$__art='{{set {locked,readonly,rows:eRows,ename}=props}}','');$__ctrl='<%let locked=props.locked,readonly=props.readonly,eRows=props.rows,ename=props.ename;%>';let locked=props.locked,readonly=props.readonly,eRows=props.rows,ename=props.ename;;$__line=8;$__art="{{if !ename}}";$__ctrl="if(!ename){";
 if(!ename){
-ename=i18n(ctrl.title);
-}$vnode_2=[];$vnode_3=[];$vnode_4=[$createVNode(0,(ctrl.icon),1)];$vnode_3.push($createVNode('i',$quick_f6_0_static_attr,$vnode_4));$vnode_4=[$createVNode(0,(ename))];$vnode_3.push($createVNode('div',$quick_f6_1_static_attr,$vnode_4));
+($__line=9,$__art='{{ename=i18n(ctrl.title)}}','');$__ctrl='<%ename=i18n(ctrl.title)%>';ename=i18n(ctrl.title);
+}$vnode_2=[];$vnode_3=[];$vnode_4=[$createVNode(0,($__line=13,$__art='{{=ctrl.icon}}',$__ctrl='<%=ctrl.icon%>',(ctrl.icon)),1)];$vnode_3.push($createVNode('i',$quick_f2_0_static_attr,$vnode_4));$vnode_4=[$createVNode(0,($__line=15,$__art='{{=ename}}',$__ctrl='<%=ename%>',(ename)))];$vnode_3.push($createVNode('div',$quick_f2_1_static_attr,$vnode_4));$__line=17;$__art="{{if !readonly && !locked}}";$__ctrl="if(!readonly && !locked){";
 if(!readonly && !locked){
-$vnode_4=[$quick_dE_static_text||($quick_dE_static_text=$createVNode(0,''))];$vnode_3.push($createVNode('i',{'class': 'rd-dF rd-fm rd-fv rd-k_ rd-kc','title': (i18n('lQ')),'mx5-click': $viewId+'_mw({element:\''+$keyOf($refData,e,'cH.'+(ri)+'.cI.'+(ci)+'.cJ.'+(ei)+'.cK')+'\'})',},$vnode_4));
-};$$_class='rd-j9 rd-eX rd-ez rd-eB';if(map[id]){;$$_class+=' ';if(locked){;$$_class+='rd-kb';}else{;$$_class+='rd-ka';};};$vnode_2.push($createVNode('div',{'mx5-pointerover': $viewId+'_mt({element:\''+$keyOf($refData,e,'cH.'+(ri)+'.cI.'+(ci)+'.cJ.'+(ei)+'.cK')+'\',dest:\'_rdm_'+($encodeQuote(id))+'\'})','mx5-pointerout': $viewId+'_mu()','mx5-click': ((!readonly))&&($viewId+'_mv({element:\''+$keyOf($refData,e,'cH.'+(ri)+'.cI.'+(ci)+'.cJ.'+(ei)+'.cK')+'\',dest:\'_rdm_'+($encodeQuote(id))+'\'})'),'title': (ename),'class': $$_class,},$vnode_3));
+$vnode_4=[$quick_dA_static_text||($quick_dA_static_text=$createVNode(0,''))];$vnode_3.push($createVNode('i',{'class': 'rd-_assets_index_less_-fontsize-10 rd-_assets_index_less_-gray rd-_assets_index_less_-iconfont rd-_panels_tree_index_less_-move rd-_panels_tree_index_less_-remove-icon','title': ($__line=18,$__art='{{=i18n(\'@:{lang#remove.element~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#remove.element~rs}\')%>',(i18n('@:{lang#remove.element~rs}'))),'mx5-click': $viewId+'@:{remove.element~rs}({element:\''+($__line=18,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_rows.\'+(ri)+\'.cols.\'+(ci)+\'.elements.\'+(ei)+\'.e\'%>',$keyOf($refData,e,'auto_key_rows.'+(ri)+'.cols.'+(ci)+'.elements.'+(ei)+'.e'))+'\'})',},$vnode_4));
+};$$_class='rd-_panels_tree_index_less_-item-text rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-flex rd-_assets_index_less_-align-items-center'+($__line=12,$__art='{{if map[id]}}','');$__ctrl='<%if(map[id]){%>';if(map[id]){;$$_class+=' '+($__line=12,$__art='{{if locked}}','');$__ctrl='<%if(locked){%>';if(locked){;$$_class+='rd-_panels_tree_index_less_-item-locked-selected'+($__line=12,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$$_class+='rd-_panels_tree_index_less_-item-selected'+($__line=12,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_class+=''+($__line=12,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2.push($createVNode('div',{'mx5-pointerover': $viewId+'@:{show.rect~rs}({element:\''+($__line=12,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_rows.\'+(ri)+\'.cols.\'+(ci)+\'.elements.\'+(ei)+\'.e\'%>',$keyOf($refData,e,'auto_key_rows.'+(ri)+'.cols.'+(ci)+'.elements.'+(ei)+'.e'))+'\',dest:\'_rdm_'+($__line=12,$__art='{{=id}}',$__ctrl='<%=$encodeQuote(id)%>',($encodeQuote(id)))+'\'})','mx5-pointerout': $viewId+'@:{hide.rect~rs}()','mx5-click': (($temp_var=($__line=12,$__art='{{=!readonly}}',$__ctrl='<%=!readonly%>',!readonly),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:panels/tree/branch.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{select.element~rs}({element:\''+($__line=12,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_rows.\'+(ri)+\'.cols.\'+(ci)+\'.elements.\'+(ei)+\'.e\'%>',$keyOf($refData,e,'auto_key_rows.'+(ri)+'.cols.'+(ci)+'.elements.'+(ei)+'.e'))+'\',dest:\'_rdm_'+($__line=12,$__art='{{=id}}',$__ctrl='<%=$encodeQuote(id)%>',($encodeQuote(id)))+'\'})'),'title': ($__line=12,$__art='{{=ename}}',$__ctrl='<%=ename%>',(ename)),'class': $$_class,},$vnode_3));$__line=21;$__art="{{if e.ctrl.as & hodEnum}}";$__ctrl="if(e.ctrl.as & hodEnum){";
 if(e.ctrl.as & hodEnum){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'rows,map','class': 'rd-e_','mx5-view': '58/tree/branch?hid='+($encodeUrl(id))+'&rows='+$keyOf($refData,eRows,'cH.'+(ri)+'.cI.'+(ci)+'.cJ.'+(ei)+'.cL')+'&map='+$keyOf($refData,map,'cM'),}));
-};$$_class='rd-j8 rd-ec rd-ez rd-eA';if(rowIndex==ri&&colIndex==ci&&current==ei){;$$_class+=' rd-ke';};if(drag&&rowIndex==ri&&colIndex==ci&&ei==index){;$$_class+=' rd-kf-'+(onTop?'top':'bottom');};$vnode_1.push($createVNode('div',{'id': 'te_'+(id),'mx5-dragstart': $viewId+'_jT({index:'+(ei)+',row:'+(ri)+',col:'+(ci)+'})','mx5-dragover': $viewId+'_jU({index:'+(ei)+',row:'+(ri)+',col:'+(ci)+'})','draggable': ((!locked&&!readonly))&&('true'),'class': $$_class,},$vnode_2));
-}$vnode_0.push($createVNode('div',{'class': 'rd-kg','mx5-dragend': $viewId+'_jB()',},$vnode_1));
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'rows,map','class': 'rd-_assets_index_less_-ml10','mx5-view': 'panels/tree/branch?hid='+($__line=22,$__art='{{=id}}',$__ctrl='<%=$encodeUrl(id)%>',($encodeUrl(id)))+'&rows='+($__line=22,$__art='{{#eRows}}',$__ctrl='<%#eRows,\'auto_key_rows.\'+(ri)+\'.cols.\'+(ci)+\'.elements.\'+(ei)+\'.props.rows.eRows\'%>',$keyOf($refData,eRows,'auto_key_rows.'+(ri)+'.cols.'+(ci)+'.elements.'+(ei)+'.props.rows.eRows'))+'&map='+($__line=22,$__art='{{#map}}',$__ctrl='<%#map,\'auto_key_map\'%>',$keyOf($refData,map,'auto_key_map')),}));
+};$$_class='rd-_panels_tree_index_less_-item rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-flex rd-_assets_index_less_-flex-direction-column'+($__line=11,$__art='{{if rowIndex==ri&&colIndex==ci&&current==ei}}','');$__ctrl='<%if(rowIndex==ri&&colIndex==ci&&current==ei){%>';if(rowIndex==ri&&colIndex==ci&&current==ei){;$$_class+=' rd-_panels_tree_index_less_-item-dragged'+($__line=11,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_class+=''+($__line=11,$__art='{{if drag&&rowIndex==ri&&colIndex==ci&&ei==index}}','');$__ctrl='<%if(drag&&rowIndex==ri&&colIndex==ci&&ei==index){%>';if(drag&&rowIndex==ri&&colIndex==ci&&ei==index){;$$_class+=' rd-_panels_tree_index_less_-item--'+($__line=11,$__art='{{=onTop?\'top\':\'bottom\'}}',$__ctrl='<%=onTop?\'top\':\'bottom\'%>',(onTop?'top':'bottom'))+($__line=11,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'id': 'te_'+($__line=11,$__art='{{=id}}',$__ctrl='<%=id%>',(id)),'mx5-dragstart': $viewId+'@:{drag.start~rs}({index:'+($__line=11,$__art='{{=ei}}',$__ctrl='<%=ei%>',(ei))+',row:'+($__line=11,$__art='{{=ri}}',$__ctrl='<%=ri%>',(ri))+',col:'+($__line=11,$__art='{{=ci}}',$__ctrl='<%=ci%>',(ci))+'})','mx5-dragover': $viewId+'@:{drag.over~rs}({index:'+($__line=11,$__art='{{=ei}}',$__ctrl='<%=ei%>',(ei))+',row:'+($__line=11,$__art='{{=ri}}',$__ctrl='<%=ri%>',(ri))+',col:'+($__line=11,$__art='{{=ci}}',$__ctrl='<%=ci%>',(ci))+'})','draggable': (($__line=11,$__art='{{=!locked&&!readonly}}',$__ctrl='<%=!locked&&!readonly%>',!locked&&!readonly))&&('true'),'class': $$_class,},$vnode_2));
+}$vnode_0.push($createVNode('div',{'class': 'rd-_panels_tree_index_less_-col','mx5-dragend': $viewId+'@:{drag.end~rs}()',},$vnode_1));
 }
 }
 } 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:panels/tree/branch.html'; throw msg; }  } ,
     init() {
         this.set({
-            hodEnum: enum_1['dH']
+            hodEnum: enum_1['@:{enum#as.hod~rs}']
         });
     },
     assign(data) {
@@ -73,19 +74,19 @@ return $createVNode($viewId,0,$vnode_0); } ,
     render() {
         this.digest();
     },
-    '_jT<dragstart>'(e) {
-        let dest = State.get('d3');
+    '@:{drag.start~rs}<dragstart>'(e) {
+        let dest = State.get('@:{global#panels.elements.drag.view~rs}');
         if (dest && dest != this.id)
             return;
         State.set({
-            'd3': this.id
+            '@:{global#panels.elements.drag.view~rs}': this.id
         });
         let me = this;
         let { params, dataTransfer } = e;
         let { index, row, col } = params;
-        me['_jN'] = index;
-        me['_mp'] = row;
-        me['_mq'] = col;
+        me['@:{drag.index~rs}'] = index;
+        me['@:{drag.row.index~rs}'] = row;
+        me['@:{drag.col.index~rs}'] = col;
         this.digest({
             current: index,
             rowIndex: row,
@@ -93,18 +94,18 @@ return $createVNode($viewId,0,$vnode_0); } ,
         });
         //dataTransfer.effectAllowed = 'move';
         //firefox required setData
-        dataTransfer.setData('text/plain', '_jS');
+        dataTransfer.setData('text/plain', '@:{fix.firefox.cursor~rs}');
     },
-    '_jU<dragover>'(e) {
-        let dest = State.get('d3');
+    '@:{drag.over~rs}<dragover>'(e) {
+        let dest = State.get('@:{global#panels.elements.drag.view~rs}');
         if (dest && dest != this.id)
             return;
         let me = this;
         let { params, eventTarget, pageY } = e;
         let { index, row, col } = params;
-        let currentIndex = me['_jN'];
-        if (me['_mp'] === row &&
-            me['_mq'] === col &&
+        let currentIndex = me['@:{drag.index~rs}'];
+        if (me['@:{drag.row.index~rs}'] === row &&
+            me['@:{drag.col.index~rs}'] === col &&
             currentIndex != index) {
             let rect = eventTarget.getBoundingClientRect();
             let onTop = (rect.y + rect.height / 2) > pageY;
@@ -142,16 +143,16 @@ return $createVNode($viewId,0,$vnode_0); } ,
             });
         }
     },
-    '_jB<dragend>'() {
-        let dest = State.get('d3');
+    '@:{drag.end~rs}<dragend>'() {
+        let dest = State.get('@:{global#panels.elements.drag.view~rs}');
         if (dest && dest != this.id)
             return;
         let me = this;
-        me['_mp'] = -1;
-        me['_mq'] = -1;
+        me['@:{drag.row.index~rs}'] = -1;
+        me['@:{drag.col.index~rs}'] = -1;
         let data = me.get();
         if (data.drag) {
-            let startIndex = me['_jN'];
+            let startIndex = me['@:{drag.index~rs}'];
             let { rowIndex, colIndex, rows, index, onTop } = data;
             let elements = rows[rowIndex].cols[colIndex].elements;
             let drag = elements[startIndex];
@@ -165,19 +166,19 @@ return $createVNode($viewId,0,$vnode_0); } ,
             me.set({
                 rows
             });
-            State.fire('d2', {
-                '_gR': '_mr'
+            State.fire('@:{event#stage.elements.change~rs}', {
+                '@:{extra~rs}': '@:{dragsort.from.tree.panel~rs}'
             });
-            history_1['dE'](history_1['d5'], drag.props.ename);
+            history_1['@:{history#save~rs}'](history_1['@:{history#element.z.index~rs}'], drag.props.ename);
         }
         me.digest({
             current: -1,
             drag: 0
         });
         State.set({
-            'd3': null
+            '@:{global#panels.elements.drag.view~rs}': null
         });
-        this['_ms']();
+        this['@:{hide.pole~rs}']();
     }
 }).merge(rect_1);
 

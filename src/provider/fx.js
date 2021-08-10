@@ -4,7 +4,7 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4t/fx",[],(require,exports,module)=>{
+define("provider/fx",[],(require,exports,module)=>{
 
 
 let dest = '//cdn.jsdelivr.net/npm/function-plot/dist/function-plot.js';

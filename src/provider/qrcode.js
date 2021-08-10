@@ -4,7 +4,7 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4t/qrcode",[],(require,exports,module)=>{
+define("provider/qrcode",[],(require,exports,module)=>{
 
 
 let dest = '//unpkg.com/@keeex/qrcodejs-kx@1.0.2/qrcode.min.js';

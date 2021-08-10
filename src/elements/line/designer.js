@@ -4,134 +4,134 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("53/line/designer",["../../4d/4g","../../4d/enum","../../4d/5e","../../4d/4h","../5r"],(require,exports,module)=>{
+define("elements/line/designer",["../../designer/const","../../designer/enum","../../designer/props","../../designer/transform","../normal"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let const_1 = require("../../4d/4g");
-let enum_1 = require("../../4d/enum");
-let props_1 = require("../../4d/5e");
-let transform_1 = require("../../4d/4h");
-let normal_1 = require("../5r");
+let const_1 = require("../../designer/const");
+let enum_1 = require("../../designer/enum");
+let props_1 = require("../../designer/props");
+let transform_1 = require("../../designer/transform");
+let normal_1 = require("../normal");
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "53/line/index"
+            view: "elements/line/index"
         });
     }
 }).static({
     type: 'line',
-    title: 'hO',
+    title: '@:{lang#elements.line~rs}',
     icon: '&#xe601;',
-    '_gi': enum_1['dO'] |
-        enum_1['dP'] |
-        enum_1['dR'] |
-        enum_1['dX'],
-    '_fW': [{
+    '@:{modifier~rs}': enum_1['@:{enum#modifier.width~rs}'] |
+        enum_1['@:{enum#modifier.height~rs}'] |
+        enum_1['@:{enum#modifier.rotate~rs}'] |
+        enum_1['@:{enum#modifier.selected.show.icon~rs}'],
+    '@:{move.props~rs}': [{
             key: 'x',
             use: 'x'
         }, {
             key: 'y',
             use: 'y'
         }],
-    '_eE'(x, y) {
+    '@:{get.props~rs}'(x, y) {
         return {
-            height: const_1['dF'](1),
+            height: const_1['@:{const#to.unit~rs}'](1),
             alpha: 1,
-            x: const_1['dF'](x),
-            y: const_1['dF'](y),
+            x: const_1['@:{const#to.unit~rs}'](x),
+            y: const_1['@:{const#to.unit~rs}'](y),
             rotate: 0,
-            width: const_1['dF'](200),
+            width: const_1['@:{const#to.unit~rs}'](200),
             linetype: 'solid',
             color: '#000000',
             locked: false
         };
     },
     props: [{
-            tip: 'fr',
-            type: props_1["dE"],
+            tip: '@:{lang#props.x~rs}',
+            type: props_1["@:{eprops#number~rs}"],
             key: 'x',
-            '_fc': 1,
-            fixed: const_1["ek"],
-            step: const_1["ej"],
-            read: transform_1["dH"],
-            write: transform_1["dM"],
+            '@:{is.scale.and.unit.field~rs}': 1,
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            step: const_1["@:{const#unit.step~rs}"],
+            read: transform_1["@:{transform#to.show.value~rs}"],
+            write: transform_1["@:{transform#to.real.value~rs}"],
             json: 1
         }, {
-            tip: 'fs',
-            type: props_1["dE"],
+            tip: '@:{lang#props.y~rs}',
+            type: props_1["@:{eprops#number~rs}"],
             key: 'y',
-            '_fc': 1,
-            fixed: const_1["ek"],
-            step: const_1["ej"],
-            read: transform_1["dH"],
-            write: transform_1["dM"],
+            '@:{is.scale.and.unit.field~rs}': 1,
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            step: const_1["@:{const#unit.step~rs}"],
+            read: transform_1["@:{transform#to.show.value~rs}"],
+            write: transform_1["@:{transform#to.real.value~rs}"],
             json: 1
         }, {
-            tip: 'hP',
-            type: props_1["dE"],
+            tip: '@:{lang#props.long~rs}',
+            type: props_1["@:{eprops#number~rs}"],
             key: 'width',
-            '_fc': 1,
+            '@:{is.scale.and.unit.field~rs}': 1,
             min: () => 0,
-            fixed: const_1["ek"],
-            step: const_1["ej"],
-            read: transform_1["dH"],
-            write: transform_1["dM"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            step: const_1["@:{const#unit.step~rs}"],
+            read: transform_1["@:{transform#to.show.value~rs}"],
+            write: transform_1["@:{transform#to.real.value~rs}"],
             json: 1
         }, {
-            tip: 'fv',
-            type: props_1["dE"],
+            tip: '@:{lang#props.rotate~rs}',
+            type: props_1["@:{eprops#number~rs}"],
             key: 'rotate',
             min: -360,
             max: 360,
             json: 1
         }, {
-            type: props_1["d5"]
+            type: props_1["@:{eprops#spliter~rs}"]
         }, {
-            tip: 'fw',
+            tip: '@:{lang#props.alpha~rs}',
             key: 'alpha',
-            type: props_1["dE"],
+            type: props_1["@:{eprops#number~rs}"],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
             json: 1
         }, {
-            tip: 'fu',
+            tip: '@:{lang#props.height~rs}',
             key: 'height',
-            '_fc': 1,
-            type: props_1["dE"],
+            '@:{is.scale.and.unit.field~rs}': 1,
+            type: props_1["@:{eprops#number~rs}"],
             min: () => 0,
-            max: () => const_1["dF"](100),
-            fixed: const_1["ek"],
-            step: const_1["ej"],
-            read: transform_1["dH"],
-            write: transform_1["dM"],
+            max: () => const_1["@:{const#to.unit~rs}"](100),
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            step: const_1["@:{const#unit.step~rs}"],
+            read: transform_1["@:{transform#to.show.value~rs}"],
+            write: transform_1["@:{transform#to.real.value~rs}"],
             json: 1
         }, {
-            tip: 'hQ',
+            tip: '@:{lang#props.line.type~rs}',
             key: 'linetype',
-            type: props_1["dL"],
-            items: const_1['eg'],
+            type: props_1["@:{eprops#dropdown~rs}"],
+            items: const_1['@:{const#border.types~rs}'],
             json: 1
         }, {
-            tip: 'hR',
+            tip: '@:{lang#props.color~rs}',
             key: 'color',
-            type: props_1["dF"],
+            type: props_1["@:{eprops#color~rs}"],
             json: 1
         }, {
-            type: props_1["d5"]
+            type: props_1["@:{eprops#spliter~rs}"]
         }, {
-            tip: 'fF',
+            tip: '@:{lang#props.title~rs}',
             key: 'ename',
-            type: props_1["dN"],
+            type: props_1["@:{eprops#text.input~rs}"],
             json: 1
         }, {
-            tip: 'fG',
+            tip: '@:{lang#props.locked~rs}',
             key: 'locked',
-            type: props_1["dG"],
+            type: props_1["@:{eprops#boolean~rs}"],
             free: true,
             json: 1
         }]

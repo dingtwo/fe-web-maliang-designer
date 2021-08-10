@@ -224,7 +224,7 @@ let convertToUnit = (elements: Report.StageElement[],
 //反调试
 //rd#need-register-code
 //以下这个if语句完成在发布模式下的反调试功能，如果需要发布调试，可删除这个if语句
-if (!DEBUG) {
+if (!DEBUG && false) {
     let F = Function,
         FS = F + '',
         FUS = F[FS] + '';

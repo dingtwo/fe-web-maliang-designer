@@ -4,76 +4,76 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("6l/index",["4e","../4d/4g","../4d/51","../4l/54/index","../4l/4o/index","../4l/4s/index","../4p/index","../4t/fs","../4t/html2canvas","../4t/jspdf","./6m/index","./6m/resource","./6n/index","./6o/batch","./6o/common","./6o/data-celltable","./6o/data-coltable","./6o/data-dtable","./6o/data-ftable","./6o/data-repeater","./6o/pager","./6o/richtext","4l/61/index"],(require,exports,module)=>{
-require("4l/61/index");
+define("printer/index",["magix5","../designer/const","../designer/service","../gallery/mx-dialog/index","../gallery/mx-runner/index","../gallery/mx-toast/index","../i18n/index","../provider/fs","../provider/html2canvas","../provider/jspdf","./generic/index","./generic/resource","./rds/index","./unit/batch","./unit/common","./unit/data-celltable","./unit/data-coltable","./unit/data-dtable","./unit/data-ftable","./unit/data-repeater","./unit/pager","./unit/richtext","gallery/mx-dropdown/index"],(require,exports,module)=>{
+require("gallery/mx-dropdown/index");
+let $quick_eZ_static_text;
+let $quick_e0_static_text;
+let $quick_f4_1_static_node;
+let $quick_f4_2_static_node;
+let $quick_e1_static_text;
+let $quick_e2_static_text;
 let $quick_e3_static_text;
 let $quick_e4_static_text;
-let $quick_f8_1_static_node;
-let $quick_f8_2_static_node;
-let $quick_e5_static_text;
-let $quick_e6_static_text;
-let $quick_e7_static_text;
-let $quick_e8_static_text;
-let $quick_f8_4_static_node;
-let $quick_f8_5_static_node;
-let $quick_f8_6_static_node;
-let $quick_f8_7_static_node;
-let $quick_f8_0_static_attr={'class': 'rd-eB rd-ez rd-kp',};
-let $quick_f8_3_static_attr={'class': 'rd-eA rd-eB rd-ez rd-kt',};
+let $quick_f4_4_static_node;
+let $quick_f4_5_static_node;
+let $quick_f4_6_static_node;
+let $quick_f4_7_static_node;
+let $quick_f4_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_printer_index_less_-header',};
+let $quick_f4_3_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-flex-direction-column rd-_printer_index_less_-wrap',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("4e");
-let const_1 = require("../4d/4g");
-let service_1 = require("../4d/51");
-let index_1 = require("../4l/54/index");
-let index_2 = require("../4l/4o/index");
-let index_3 = require("../4l/4s/index");
-let index_4 = require("../4p/index");
-let fs_1 = require("../4t/fs");
-let html2canvas_1 = require("../4t/html2canvas");
-let jspdf_1 = require("../4t/jspdf");
-let index_5 = require("./6m/index");
-let resource_1 = require("./6m/resource");
+let magix_1 = require("magix5");
+let const_1 = require("../designer/const");
+let service_1 = require("../designer/service");
+let index_1 = require("../gallery/mx-dialog/index");
+let index_2 = require("../gallery/mx-runner/index");
+let index_3 = require("../gallery/mx-toast/index");
+let index_4 = require("../i18n/index");
+let fs_1 = require("../provider/fs");
+let html2canvas_1 = require("../provider/html2canvas");
+let jspdf_1 = require("../provider/jspdf");
+let index_5 = require("./generic/index");
+let resource_1 = require("./generic/resource");
 /**
  * Lodop打印对象可以从 root/trash/lodop中拿出来放到./目录下即可
  */
-//import Lodop from './6p/index';
-let index_6 = require("./6n/index");
-let batch_1 = require("./6o/batch");
-let common_1 = require("./6o/common");
-let data_celltable_1 = require("./6o/data-celltable");
-let data_coltable_1 = require("./6o/data-coltable");
-let data_dtable_1 = require("./6o/data-dtable");
-let data_ftable_1 = require("./6o/data-ftable");
-let data_repeater_1 = require("./6o/data-repeater");
-let pager_1 = require("./6o/pager");
-let richtext_1 = require("./6o/richtext");
+//import Lodop from './lodop/index';
+let index_6 = require("./rds/index");
+let batch_1 = require("./unit/batch");
+let common_1 = require("./unit/common");
+let data_celltable_1 = require("./unit/data-celltable");
+let data_coltable_1 = require("./unit/data-coltable");
+let data_dtable_1 = require("./unit/data-dtable");
+let data_ftable_1 = require("./unit/data-ftable");
+let data_repeater_1 = require("./unit/data-repeater");
+let pager_1 = require("./unit/pager");
+let richtext_1 = require("./unit/richtext");
 let { State, View, lowTaskFinale, type, has, applyStyle, parseUrl, config, mark, guid, unboot, delay, task } = magix_1;
 /**
  * 反调试
  */
 //rd#need-register-code
 //以下这个if语句完成在发布模式下的反调试功能，如果需要发布调试，可删除这个if语句
-if (!DEBUG) {
+if (!DEBUG && false) {
     let F = Function, FS = F + '', FUS = F[FS] + '';
     let now = performance.now.bind(performance);
     let task = t1 => {
         t1 = now();
         F(`${FUS.slice(2, 4)}b${FS[1]}gg${FUS[3]}r`)();
         if (now() - t1 > 100) {
-            index_2['_d3'](task);
+            index_2['@:{task.remove~rs}'](task);
             unboot();
         }
     };
-    index_2["_d4"](2000, task);
+    index_2["@:{task.add~rs}"](2000, task);
 }
 let { random } = Math;
-applyStyle("rd-ej",".rd-kh{page-break-after:auto;page-break-inside:avoid}.rd-ki{width:120px}.rd-kj{width:350px}.rd-kk{margin-top:20px}.rd-kl{height:calc(100vh - 45px)}.rd-km{background-color:#fff;bottom:0;box-shadow:-1px -1px 4px #0000002b;padding:4px;position:fixed}.rd-kn{background:linear-gradient(#ddd4,#ddd 30%,#ddd 70%,#ddd4);height:30px;margin:4px 20px}.rd-ko{background-color:#fff;border:1px solid red;color:red;display:none;left:5px;padding:4px;top:5px;z-index:10000}@page{margin:0}@media screen{.rd-kp{background-color:#fff;box-shadow:0 0 6px 0 rgba(0,0,0,.3);height:34px;justify-content:flex-end;margin-bottom:10px;padding-right:50px;position:sticky;top:0;z-index:2}.rd-kq{height:120px;line-height:120px}.rd-kr{content-visibility:auto;box-shadow:0 0 6px 0 rgba(0,0,0,.3);contain:paint}.rd-ks{margin:20px auto}}@media print{.rd-kp{display:none}body{min-width:auto}.rd-ks{margin:0}.rd-kr{box-shadow:none}.rd-ko,.rd-kt{display:block}}");
+applyStyle("rd-_printer_index_less_",".rd-_printer_index_less_-page-break {\npage-break-after:auto;\npage-break-inside:avoid;\n}\n.rd-_printer_index_less_-width-120 {\nwidth:120px;\n}\n.rd-_printer_index_less_-width-350 {\nwidth:350px;\n}\n.rd-_printer_index_less_-mt-20 {\nmargin-top:20px;\n}\n.rd-_printer_index_less_-pdf-ifm {\nheight:calc(100vh - 45px);\n}\n.rd-_printer_index_less_-progress-tip {\nposition:fixed;\nbottom:0;\npadding:4px;\nbackground-color:#fff;\nbox-shadow:-1px -1px 4px #0000002b;\n}\n.rd-_printer_index_less_-spliter {\nheight:30px;\nbackground:linear-gradient(#ddd4, #ddd 30%, #ddd 70%, #ddd4);\nmargin:4px 20px;\n}\n.rd-_printer_index_less_-need-auth {\nleft:5px;\ntop:5px;\ncolor:red;\nborder:solid 1px red;\nbackground-color:#fff;\npadding:4px;\ndisplay:none;\nz-index:10000;\n}\n@page {\nmargin:0;\n}\n@media screen {\n  .rd-_printer_index_less_-header {\nbox-shadow:0 0 6px 0 rgba(0, 0, 0, 0.3);\nmargin-bottom:10px;\nheight:34px;\njustify-content:flex-end;\npadding-right:50px;\nposition:sticky;\ntop:0;\nz-index:2;\nbackground-color:#fff;\n  }\n  .rd-_printer_index_less_-tip {\nheight:120px;\nline-height:120px;\n  }\n  .rd-_printer_index_less_-page {\nbox-shadow:0 0 6px 0 rgba(0, 0, 0, 0.3);\ncontent-visibility:auto;\ncontain:paint;\n  }\n  .rd-_printer_index_less_-page-display {\nmargin:20px auto;\n  }\n}\n@media print {\n  .rd-_printer_index_less_-header {\ndisplay:none;\n  }\n  body {\nmin-width:auto;\n  }\n  .rd-_printer_index_less_-page-display {\nmargin:0;\n  }\n  .rd-_printer_index_less_-page {\nbox-shadow:none;\n  }\n  .rd-_printer_index_less_-wrap {\ndisplay:block;\n  }\n  .rd-_printer_index_less_-need-auth {\ndisplay:block;\n  }\n}\n");
 let doc = document;
-doc.documentElement.classList.add('rd-eu');
-doc.body.classList.add('rd-fu');
+doc.documentElement.classList.add('rd-_assets_index_less_-scrollable');
+doc.body.classList.add('rd-_assets_index_less_-overflow-y-scroll');
 /**
  * 是否进行深层数据绑定的容器元素
  */
@@ -142,17 +142,17 @@ let fetchOneAPI = (api) => {
         if (!dest) {
             dest = DataCenter[api] = {};
         }
-        if (dest['_mJ']) {
+        if (dest['@:{loaded~rs}']) {
             resolve();
         }
-        else if (dest['_mK']) {
-            dest['_mK'].push(resolve);
+        else if (dest['@:{loading~rs}']) {
+            dest['@:{loading~rs}'].push(resolve);
         }
         else {
-            dest['_mK'] = [resolve];
+            dest['@:{loading~rs}'] = [resolve];
             let s = new service_1();
             s.all({
-                name: '_fA',
+                name: '@:{get.by.url~rs}',
                 url: api
             }, (err, bag) => {
                 let list = bag.get('data', []);
@@ -188,13 +188,13 @@ let fetchOneAPI = (api) => {
                     bag.set('data', newList);
                     list = newList;
                 }
-                dest['_fx'] = list;
-                dest['_mJ'] = 1;
-                dest['_fw'] = err === null || err === void 0 ? void 0 : err.message;
-                for (let resolve of dest['_mK']) {
+                dest['@:{data~rs}'] = list;
+                dest['@:{loaded~rs}'] = 1;
+                dest['@:{error~rs}'] = err === null || err === void 0 ? void 0 : err.message;
+                for (let resolve of dest['@:{loading~rs}']) {
                     resolve();
                 }
-                delete dest['_mK'];
+                delete dest['@:{loading~rs}'];
             });
         }
     });
@@ -212,7 +212,7 @@ let fetchAllAPI = (apis) => {
 };
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	inner,
 	empty,
@@ -235,95 +235,96 @@ $vnode_1,
 $vnode_3,
 $$_class,
 $$_style;
-$vnode_1=[];
+$vnode_1=[];$__line=2;$__art="{{if inner}}";$__ctrl="if(inner){";
 if(inner){
-$vnode_2=[$quick_e3_static_text||($quick_e3_static_text=$createVNode(0,'独立使用打印页面'))];$vnode_1.push($createVNode('button',{'class': 'rd-d9 rd-dL rd-eX rd-ei','mx5-click': $viewId+'_m7()',},$vnode_2));
-}$vnode_2=[$quick_e4_static_text||($quick_e4_static_text=$createVNode(0,'第三方静默打印'))];$vnode_1.push($createVNode('button',{'class': 'rd-d9 rd-dL rd-eX rd-ei','mx5-click': $viewId+'_m2()',},$vnode_2));
-if($quick_f8_1_static_node){
-$vnode_1.push($quick_f8_1_static_node);
+$vnode_2=[$quick_eZ_static_text||($quick_eZ_static_text=$createVNode(0,'独立使用打印页面'))];$vnode_1.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-mr10 rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{open.with.id~rs}()',},$vnode_2));
+}$vnode_2=[$quick_e0_static_text||($quick_e0_static_text=$createVNode(0,'第三方静默打印'))];$vnode_1.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-mr10 rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{silent.print~rs}()',},$vnode_2));
+if($quick_f4_1_static_node){
+$vnode_1.push($quick_f4_1_static_node);
 }else{
-$vnode_1.push($quick_f8_1_static_node=$createVNode('div',{'_': 'cH','class': 'rd-eQ rd-kn',}));
+$vnode_1.push($quick_f4_1_static_node=$createVNode('div',{'_': 'cD','class': 'rd-_assets_index_less_-width-1 rd-_printer_index_less_-spliter',}));
 }
 
-if($quick_f8_2_static_node){
-$vnode_1.push($quick_f8_2_static_node);
+if($quick_f4_2_static_node){
+$vnode_1.push($quick_f4_2_static_node);
 }else{
-$vnode_2=[$createVNode(0,'转换内容为：')];$vnode_1.push($quick_f8_2_static_node=$createVNode('div',{'_': 'cI',},$vnode_2));
+$vnode_2=[$createVNode(0,'转换内容为：')];$vnode_1.push($quick_f4_2_static_node=$createVNode('div',{'_': 'cE',},$vnode_2));
 }
-;$$_mx5$_view='4l/61/index?';if(($temp_var=empty)){;$$_mx5$_view+='disabled='+($encodeUrl($temp_var));};$$_mx5$_view+='&list='+$keyOf($refData,format,'cH')+'&textKey=text&valueKey=value&selected='+($encodeUrl(sf));$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'format','class': 'rd-d9 rd-ki','mx5-change': $viewId+'_m1()','mx5-view': $$_mx5$_view,}));$vnode_2=[$quick_e5_static_text||($quick_e5_static_text=$createVNode(0,'导出为本地文件'))];$vnode_1.push($createVNode('button',{'disabled': (sf!='pdf' && sf!='rdPdf' &&!enable),'class': 'rd-dL rd-dN rd-eX rd-ei','mx5-click': $viewId+'_m9()',},$vnode_2));
-if($quick_f8_1_static_node){
-$vnode_1.push($quick_f8_1_static_node);
+;$$_mx5$_view='gallery/mx-dropdown/index?'+($__line=8,$__art='{{=empty}}','');$__ctrl='<%if(($temp_var=empty)){%>';if(($temp_var=empty)){;$$_mx5$_view+='disabled='+($__ctrl='<%=$encodeUrl($temp_var)%>',($encodeUrl($temp_var)));$__ctrl='<%}%>';};$$_mx5$_view+='&list='+($__line=8,$__art='{{#format}}',$__ctrl='<%#format,\'auto_key_format\'%>',$keyOf($refData,format,'auto_key_format'))+'&textKey=text&valueKey=value&selected='+($__line=8,$__art='{{=sf}}',$__ctrl='<%=$encodeUrl(sf)%>',($encodeUrl(sf)));$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'format','class': 'rd-_assets_index_less_-mr10 rd-_printer_index_less_-width-120','mx5-change': $viewId+'@:{change.format~rs}()','mx5-view': $$_mx5$_view,}));$vnode_2=[$quick_e1_static_text||($quick_e1_static_text=$createVNode(0,'导出为本地文件'))];$vnode_1.push($createVNode('button',{'disabled': ($temp_var=($__line=9,$__art='{{= sf!=\'pdf\' && sf!=\'rdPdf\' &&!enable}}',$__ctrl='<%= sf!=\'pdf\' && sf!=\'rdPdf\' &&!enable%>',sf!='pdf' && sf!='rdPdf' &&!enable),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:printer/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{export.to.native.file~rs}()',},$vnode_2));
+if($quick_f4_1_static_node){
+$vnode_1.push($quick_f4_1_static_node);
 }else{
-$vnode_1.push($quick_f8_1_static_node=$createVNode('div',{'_': 'cH','class': 'rd-eQ rd-kn',}));
+$vnode_1.push($quick_f4_1_static_node=$createVNode('div',{'_': 'cD','class': 'rd-_assets_index_less_-width-1 rd-_printer_index_less_-spliter',}));
 }
-$vnode_2=[$quick_e6_static_text||($quick_e6_static_text=$createVNode(0,'RDS设置'))];$vnode_1.push($createVNode('button',{'disabled': (!enable),'class': 'rd-d9 rd-dL rd-eX rd-ei','mx5-click': $viewId+'_m3()',},$vnode_2));$vnode_2=[$quick_e7_static_text||($quick_e7_static_text=$createVNode(0,'RDS打印'))];$vnode_1.push($createVNode('button',{'disabled': (!enable),'class': 'rd-dL rd-dN rd-eX rd-ei','mx5-click': $viewId+'_m6()',},$vnode_2));
-if($quick_f8_1_static_node){
-$vnode_1.push($quick_f8_1_static_node);
+$vnode_2=[$quick_e2_static_text||($quick_e2_static_text=$createVNode(0,'RDS设置'))];$vnode_1.push($createVNode('button',{'disabled': ($temp_var=($__line=13,$__art='{{=!enable}}',$__ctrl='<%=!enable%>',!enable),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:printer/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-mr10 rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{rds.setting~rs}()',},$vnode_2));$vnode_2=[$quick_e3_static_text||($quick_e3_static_text=$createVNode(0,'RDS打印'))];$vnode_1.push($createVNode('button',{'disabled': ($temp_var=($__line=14,$__art='{{=!enable}}',$__ctrl='<%=!enable%>',!enable),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:printer/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{rds.print~rs}()',},$vnode_2));
+if($quick_f4_1_static_node){
+$vnode_1.push($quick_f4_1_static_node);
 }else{
-$vnode_1.push($quick_f8_1_static_node=$createVNode('div',{'_': 'cH','class': 'rd-eQ rd-kn',}));
+$vnode_1.push($quick_f4_1_static_node=$createVNode('div',{'_': 'cD','class': 'rd-_assets_index_less_-width-1 rd-_printer_index_less_-spliter',}));
 }
-$vnode_2=[$quick_e8_static_text||($quick_e8_static_text=$createVNode(0,'浏览器打印'))];$vnode_1.push($createVNode('button',{'disabled': (!enable),'class': 'rd-dL rd-dN rd-eX rd-ei','mx5-click': $viewId+'_ew()',},$vnode_2));$vnode_0=[$createVNode('div',$quick_f8_0_static_attr,$vnode_1)];$vnode_1=[];
+$vnode_2=[$quick_e4_static_text||($quick_e4_static_text=$createVNode(0,'浏览器打印'))];$vnode_1.push($createVNode('button',{'disabled': ($temp_var=($__line=16,$__art='{{=!enable}}',$__ctrl='<%=!enable%>',!enable),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:printer/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{print~rs}()',},$vnode_2));$vnode_0=[$createVNode('div',$quick_f4_0_static_attr,$vnode_1)];$vnode_1=[];$__line=20;$__art="{{if hasData}}";$__ctrl="if(hasData){";
 if(hasData){
-
+$__line=21;$__art="{{if loading}}";$__ctrl="if(loading){";
 if(loading){
 
-if($quick_f8_4_static_node){
-$vnode_2=[$quick_f8_4_static_node];
+if($quick_f4_4_static_node){
+$vnode_2=[$quick_f4_4_static_node];
 }else{
-$vnode_3=[$createVNode(0,'正在准备基础页面...')];$vnode_2=[$quick_f8_4_static_node=$createVNode('div',{'_': 'cJ','class': 'rd-fy rd-kq',},$vnode_3)];
+$vnode_3=[$createVNode(0,'正在准备基础页面...')];$vnode_2=[$quick_f4_4_static_node=$createVNode('div',{'_': 'cF','class': 'rd-_assets_index_less_-fontsize-16 rd-_printer_index_less_-tip',},$vnode_3)];
 }
-$vnode_1.push($createVNode('div',{'class': 'rd-eT rd-em rd-ez rd-fq rd-kr rd-ks','style': 'width:'+(page.width)+(unit)+';height:'+(page.height)+(unit)+';background:'+(page.background),},$vnode_2));
+$vnode_1.push($createVNode('div',{'class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-justify-content-center rd-_assets_index_less_-overflow-hidden rd-_assets_index_less_-pr rd-_printer_index_less_-page rd-_printer_index_less_-page-display','style': 'width:'+($__line=22,$__art='{{=page.width}}',$__ctrl='<%=page.width%>',(page.width))+($__line=22,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=22,$__art='{{=page.height}}',$__ctrl='<%=page.height%>',(page.height))+($__line=22,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';background:'+($__line=22,$__art='{{=page.background}}',$__ctrl='<%=page.background%>',(page.background)),},$vnode_2));
 }else{
-
+$__line=26;$__art="{{if sf==\\'pdf\\'}}";$__ctrl="if(sf=='pdf'){";
 if(sf=='pdf'){
-$vnode_1.push($createVNode('embed',{'src': (pdf),'class': 'rd-ed rd-kl','type': 'application/pdf',},1));
-}else if(sf=='rdPdf'){
-$vnode_1.push($createVNode('embed',{'src': (rdPdf),'class': 'rd-ed rd-kl','type': 'application/pdf',},1));
+$vnode_1.push($createVNode('embed',{'src': ($__line=27,$__art='{{=pdf}}',$__ctrl='<%=pdf%>',(pdf)),'class': 'rd-_assets_index_less_-wp100 rd-_printer_index_less_-pdf-ifm','type': 'application/pdf',},1));
+}else if(($__line=28,$__art="{{else if sf==\\'rdPdf\\'}}",$__ctrl="else if(sf=='rdPdf'){"),sf=='rdPdf'){
+$vnode_1.push($createVNode('embed',{'src': ($__line=29,$__art='{{=rdPdf}}',$__ctrl='<%=rdPdf%>',(rdPdf)),'class': 'rd-_assets_index_less_-wp100 rd-_printer_index_less_-pdf-ifm','type': 'application/pdf',},1));
 }else{
-
-for(let $q_c_gdzixiooh=pages.length,$q_lc_ngywg=$q_c_gdzixiooh-1,pageIndex=0;pageIndex<$q_c_gdzixiooh;pageIndex+=1){
-let item=pages[pageIndex];let last=pageIndex===$q_lc_ngywg;
-$vnode_2=[];
+$__line=31;$__art="{{each pages as item pageIndex last}}";$__ctrl="for(let $q_c_llgwjmszn=pages.length,$q_lc_kdmajo=$q_c_llgwjmszn-1,pageIndex=0;pageIndex<$q_c_llgwjmszn;pageIndex++){let item=pages[pageIndex];let last=pageIndex===$q_lc_kdmajo;";
+for(let $q_c_llgwjmszn=pages.length,$q_lc_kdmajo=$q_c_llgwjmszn-1,pageIndex=0;pageIndex<$q_c_llgwjmszn;pageIndex+=1){
+let item=pages[pageIndex];let last=pageIndex===$q_lc_kdmajo;
+$vnode_2=[];$__line=33;$__art="{{if sf==\\'web\\'}}";$__ctrl="if(sf=='web'){";
 if(sf=='web'){
-
-for(let $q_c_jjeydve=item.length,$q_key_ymipaspbjg=0;$q_key_ymipaspbjg<$q_c_jjeydve;$q_key_ymipaspbjg+=1){
-let e=item[$q_key_ymipaspbjg];
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'pages,unit','mx5-view': '53/'+(e.type)+'/index?props='+$keyOf($refData,e.props,'cI.'+(pageIndex)+'.cJ.'+($q_key_ymipaspbjg)+'.cK')+'&unit='+$keyOf($refData,unit,'cL'),}));
+$__line=34;$__art="{{each item as e}}";$__ctrl="for(let $q_c_vvefnzwzh=item.length,$q_key_emnrrdtxs=0;$q_key_emnrrdtxs<$q_c_vvefnzwzh;$q_key_emnrrdtxs++){let e=item[$q_key_emnrrdtxs];";
+for(let $q_c_vvefnzwzh=item.length,$q_key_emnrrdtxs=0;$q_key_emnrrdtxs<$q_c_vvefnzwzh;$q_key_emnrrdtxs+=1){
+let e=item[$q_key_emnrrdtxs];
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'pages,unit','mx5-view': 'elements/'+($__line=35,$__art='{{=e.type}}',$__ctrl='<%=e.type%>',(e.type))+'/index?props='+($__line=35,$__art='{{#e.props}}',$__ctrl='<%#e.props,\'auto_key_pages.\'+(pageIndex)+\'.\'+($q_key_emnrrdtxs)+\'.e.props\'%>',$keyOf($refData,e.props,'auto_key_pages.'+(pageIndex)+'.'+($q_key_emnrrdtxs)+'.e.props'))+'&unit='+($__line=35,$__art='{{#unit}}',$__ctrl='<%#unit,\'auto_key_unit\'%>',$keyOf($refData,unit,'auto_key_unit')),}));
 }
-}else if(sf=='image' && images){
-$vnode_2.push($createVNode('img',{'class': 'rd-d2 rd-ef','src': (images[pageIndex]),},1));
-}else if(sf=='rdImage' && rdImages){
-$vnode_2.push($createVNode('img',{'class': 'rd-d2 rd-ef','src': (rdImages[pageIndex]),},1));
-}
+}else if(($__line=37,$__art="{{else if sf==\\'image\\' && images}}",$__ctrl="else if(sf=='image' && images){"),sf=='image' && images){
+$vnode_2.push($createVNode('img',{'class': 'rd-_assets_index_less_-mwp100 rd-_assets_index_less_-tag-img','src': ($__line=38,$__art='{{=images[pageIndex]}}',$__ctrl='<%=images[pageIndex]%>',(images[pageIndex])),},1));
+}else if(($__line=39,$__art="{{else if sf==\\'rdImage\\' && rdImages}}",$__ctrl="else if(sf=='rdImage' && rdImages){"),sf=='rdImage' && rdImages){
+$vnode_2.push($createVNode('img',{'class': 'rd-_assets_index_less_-mwp100 rd-_assets_index_less_-tag-img','src': ($__line=40,$__art='{{=rdImages[pageIndex]}}',$__ctrl='<%=rdImages[pageIndex]%>',(rdImages[pageIndex])),},1));
+}$__line=44;$__art="{{if auth}}";$__ctrl="if(auth){";
 if(auth){
 
-if($quick_f8_5_static_node){
-$vnode_2.push($quick_f8_5_static_node);
+if($quick_f4_5_static_node){
+$vnode_2.push($quick_f4_5_static_node);
 }else{
-$vnode_3=[$createVNode(0,'当前report-designer未取得授权，域名及IP地址已记录')];$vnode_2.push($quick_f8_5_static_node=$createVNode('div',{'_': 'cK','class': 'rd-el rd-ko',},$vnode_3));
+$vnode_3=[$createVNode(0,'当前report-designer未取得授权，域名及IP地址已记录')];$vnode_2.push($quick_f4_5_static_node=$createVNode('div',{'_': 'cG','class': 'rd-_assets_index_less_-pa rd-_printer_index_less_-need-auth',},$vnode_3));
 }
 
-};$$_class='rd-dE rd-em rd-kr rd-ks rd-fq';if(!last){;$$_class+=' rd-kh';};$$_style='width:'+(page.width)+(unit)+';height:'+(page.height)+(unit)+';background:'+(page.background)+';';if(!page.preformat&&page.backgroundImage){;$$_style+='background-image:url('+(page.backgroundImage)+');background-repeat:'+(page.backgroundRepeat=='full'?'no-repeat':page.backgroundRepeat)+';background-size:';if(page.backgroundRepeat=='full'){;$$_style+='100% 100%';}else{;$$_style+=''+(page.backgroundWidth)+(unit)+' '+(page.backgroundHeight)+(unit)+';background-position:'+(page.backgroundXOffset)+(unit)+' '+(page.backgroundYOffset)+(unit);};};$vnode_1.push($createVNode('div',{'class': $$_class,'style': $$_style,},$vnode_2));
+};$$_class='rd-_assets_index_less_-designer-root rd-_assets_index_less_-pr rd-_printer_index_less_-page rd-_printer_index_less_-page-display rd-_assets_index_less_-overflow-hidden'+($__line=32,$__art='{{if !last}}','');$__ctrl='<%if(!last){%>';if(!last){;$$_class+=' rd-_printer_index_less_-page-break'+($__line=32,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_style='width:'+($__line=32,$__art='{{=page.width}}',$__ctrl='<%=page.width%>',(page.width))+($__line=32,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=32,$__art='{{=page.height}}',$__ctrl='<%=page.height%>',(page.height))+($__line=32,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';background:'+($__line=32,$__art='{{=page.background}}',$__ctrl='<%=page.background%>',(page.background))+';'+($__line=32,$__art='{{if !page.preformat&&page.backgroundImage}}','');$__ctrl='<%if(!page.preformat&&page.backgroundImage){%>';if(!page.preformat&&page.backgroundImage){;$$_style+='background-image:url('+($__line=32,$__art='{{=page.backgroundImage}}',$__ctrl='<%=page.backgroundImage%>',(page.backgroundImage))+');background-repeat:'+($__line=32,$__art='{{=page.backgroundRepeat==\'full\'?\'no-repeat\':page.backgroundRepeat}}',$__ctrl='<%=page.backgroundRepeat==\'full\'?\'no-repeat\':page.backgroundRepeat%>',(page.backgroundRepeat=='full'?'no-repeat':page.backgroundRepeat))+';background-size:'+($__line=32,$__art='{{if page.backgroundRepeat==\'full\'}}','');$__ctrl='<%if(page.backgroundRepeat==\'full\'){%>';if(page.backgroundRepeat=='full'){;$$_style+='100% 100%'+($__line=32,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$$_style+=''+($__line=32,$__art='{{=page.backgroundWidth}}',$__ctrl='<%=page.backgroundWidth%>',(page.backgroundWidth))+($__line=32,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+' '+($__line=32,$__art='{{=page.backgroundHeight}}',$__ctrl='<%=page.backgroundHeight%>',(page.backgroundHeight))+($__line=32,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';background-position:'+($__line=32,$__art='{{=page.backgroundXOffset}}',$__ctrl='<%=page.backgroundXOffset%>',(page.backgroundXOffset))+($__line=32,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+' '+($__line=32,$__art='{{=page.backgroundYOffset}}',$__ctrl='<%=page.backgroundYOffset%>',(page.backgroundYOffset))+($__line=32,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+($__line=32,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_style+=''+($__line=32,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'class': $$_class,'style': $$_style,},$vnode_2));
 }
 }
 }
 }else{
 
-if($quick_f8_6_static_node){
-$vnode_1.push($quick_f8_6_static_node);
+if($quick_f4_6_static_node){
+$vnode_1.push($quick_f4_6_static_node);
 }else{
-$vnode_2=[$createVNode(0,'请传递打印 id 或在设计器中打开该页面')];$vnode_1.push($quick_f8_6_static_node=$createVNode('div',{'_': 'cL','class': 'rd-fy rd-kq',},$vnode_2));
+$vnode_2=[$createVNode(0,'请传递打印 id 或在设计器中打开该页面')];$vnode_1.push($quick_f4_6_static_node=$createVNode('div',{'_': 'cH','class': 'rd-_assets_index_less_-fontsize-16 rd-_printer_index_less_-tip',},$vnode_2));
 }
 
-}$vnode_0.push($createVNode('div',$quick_f8_3_static_attr,$vnode_1));
-if($quick_f8_7_static_node){
-$vnode_0.push($quick_f8_7_static_node);
+}$vnode_0.push($createVNode('div',$quick_f4_3_static_attr,$vnode_1));
+if($quick_f4_7_static_node){
+$vnode_0.push($quick_f4_7_static_node);
 }else{
-$vnode_0.push($quick_f8_7_static_node=$createVNode('div',{'_': 'cM','id': '_rd_tip','class': 'rd-eq rd-fB rd-km',}));
+$vnode_0.push($quick_f4_7_static_node=$createVNode('div',{'_': 'cI','id': '_rd_tip','class': 'rd-_assets_index_less_-none rd-_assets_index_less_-right-0 rd-_printer_index_less_-progress-tip',}));
 }
  
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:printer/index.html'; throw msg; }  } ,
     async render() {
         /**
          * 先渲染界面
@@ -347,12 +348,12 @@ return $createVNode($viewId,0,$vnode_0); } ,
             contentUrl) {
             let s = new service_1();
             s.all({
-                name: '_ft',
-                '_fh': params
+                name: '@:{get.content~rs}',
+                '@:{query~rs}': params
             }, (ex, bag) => {
                 if (!ex) { //如果请求未有异常，则根据请求回来的数据进行渲染界面
                     let stage = bag.get('data');
-                    this['_mL'](stage);
+                    this['@:{render.page.by.json~rs}'](stage);
                 }
             });
         }
@@ -367,14 +368,14 @@ return $createVNode($viewId,0,$vnode_0); } ,
      * @param oy 垂直偏移
      * @param footerHeight 页脚高度
      */
-    async '_mN'(elements, page, pages, pagers, ox, oy, footerHeight) {
+    async '@:{fill.page~rs}'(elements, page, pages, pagers, ox, oy, footerHeight) {
         let logicCurrentPage = 0;
-        let resLoader = this['_mM'];
+        let resLoader = this['@:{resources~rs}'];
         let unit = this.get('unit');
         for (let e of elements) {
             if (e.type == 'data-dtable' ||
                 e.type == 'data-ftable') {
-                index_5['_mE'](e, DataCenter);
+                index_5['@:{recast.table.by.data~rs}'](e, DataCenter);
             }
         }
         /**
@@ -410,7 +411,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
         while (logicCurrentPage < page.pages) {
             let offsetY = logicCurrentPage * page.height;
             //查找当前在设计区里，属于当前分页的元素
-            let pageElements = index_5['_mB'](page, logicCurrentPage, elements, oy);
+            let pageElements = index_5['@:{find.current.page.elements~rs}'](page, logicCurrentPage, elements, oy);
             logicCurrentPage++;
             let indexesCache = {};
             /**
@@ -426,7 +427,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
                     let newElement = inHod ? e : {
                         type: e.type,
                         id: e.id,
-                        props: const_1['er'](e.props)
+                        props: const_1['@:{const#clone~rs}'](e.props)
                     };
                     if (!inHod) {
                         //如果页头和页脚不偏移，则放开if语句
@@ -519,18 +520,18 @@ return $createVNode($viewId,0,$vnode_0); } ,
              * 根据数据的多少，一直填充元素数据，直到所有数据均填充完
              */
             do {
-                index_5['_my'](`正在计算第${pages.length + 1}页`);
+                index_5['@:{show.msg~rs}'](`正在计算第${pages.length + 1}页`);
                 let newPage = await generatePage(pageElements, page);
                 pages.push(newPage);
             } while (hasNextPage(pageElements, indexesCache));
         }
-        index_5['_mz']();
+        index_5['@:{hide.msg~rs}']();
     },
     /**
      * 根据json对象渲染页面
      * @param stage 设计器产出的json对象
      */
-    async '_mL'(stage) {
+    async '@:{render.page.by.json~rs}'(stage) {
         if (!stage)
             return;
         let { page, elements, unit } = stage;
@@ -567,16 +568,16 @@ return $createVNode($viewId,0,$vnode_0); } ,
          * 所以这里需要把计算后的偏移量进行设置，以供需要的元素使用
          */
         State.set({
-            'dG': unit,
-            'd4': ox,
-            'd5': oy
+            '@:{global#stage.unit~rs}': unit,
+            '@:{global#stage.page.x.offset~rs}': ox,
+            '@:{global#stage.page.y.offset~rs}': oy
         });
         let pages = []; //分页对象
         let apis = []; //所有绑定元素的接口地址，在渲染前，需要通过接口地址一次性把所有数据拿回来
         let pagers = []; //页码器对象，需要根据分页多少设置每个页码器的当前页码及总共页码
         let footerHeight = 0; //页脚高度
         let resourcesLoader = new resource_1(); //资源加载收集器
-        this['_mM'] = resourcesLoader;
+        this['@:{resources~rs}'] = resourcesLoader;
         /**
          * 收集所有元素的接口地址
          * @param elements 元素列表
@@ -608,7 +609,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
                 if (type == 'data-richtext') {
                     type = 'richtext';
                 }
-                resourcesLoader['_jh']('_mI', type);
+                resourcesLoader['@:{add~rs}']('@:{script~rs}', type);
                 if (type == 'hod-footer') { //页脚
                     footerHeight = props.height;
                 }
@@ -629,13 +630,13 @@ return $createVNode($viewId,0,$vnode_0); } ,
                     else if (type.startsWith('batch-')) {
                         type = type.substring(6);
                     }
-                    resourcesLoader['_jh']('_mH', type);
+                    resourcesLoader['@:{add~rs}']('@:{provider~rs}', type);
                 }
                 else if (type == 'richtext') {
-                    resourcesLoader['_jh']('_mH', 'html2canvas');
+                    resourcesLoader['@:{add~rs}']('@:{provider~rs}', 'html2canvas');
                 }
                 else if (type == 'html') {
-                    resourcesLoader['_jh']('_mH', 'underscore');
+                    resourcesLoader['@:{add~rs}']('@:{provider~rs}', 'underscore');
                 }
             }
         };
@@ -643,10 +644,10 @@ return $createVNode($viewId,0,$vnode_0); } ,
         //先加载数据
         await fetchAllAPI(apis);
         index_3.show('正在准备资源...');
-        await resourcesLoader['_ev'](); //等资源加载
+        await resourcesLoader['@:{load~rs}'](); //等资源加载
         index_3.show('正在计算分页...');
         //再进行分页处理
-        await this['_mN'](elements, page, pages, pagers, ox, oy, footerHeight);
+        await this['@:{fill.page~rs}'](elements, page, pages, pagers, ox, oy, footerHeight);
         //设置页码器的总页数
         for (let pager of pagers) {
             pager.props.ext._totalPage = pages.length;
@@ -665,7 +666,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
         await delay(500); //延迟等子组件
         await lowTaskFinale(); //等待所有任务完成
         index_3.show('正在检查图片状态...');
-        await index_5['_mC'](this.root); //检查页面上的图片是否就绪
+        await index_5['@:{double.check.images~rs}'](this.root); //检查页面上的图片是否就绪
         index_3.show('马上就好...');
         this.digest({
             enable: true,
@@ -675,7 +676,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
         index_3.hide();
         // this['@:{to.pdf}']();
     },
-    '_ew<click>'() {
+    '@:{print~rs}<click>'() {
         window.print();
     },
     // '@:{lodop.setting}<click>'() {
@@ -724,10 +725,10 @@ return $createVNode($viewId,0,$vnode_0); } ,
     /**
      * 转换内容到图片
      */
-    '_mP'() {
+    '@:{get.content.as.images~rs}'() {
         return new Promise(async (resolve) => {
             let images = this.get('images');
-            let m = mark(this, '_mO');
+            let m = mark(this, '@:{image.client.convert~rs}');
             if (images) { //已经转换过了
                 resolve(images);
             }
@@ -747,14 +748,14 @@ return $createVNode($viewId,0,$vnode_0); } ,
                     useCORS: true,
                     scale: 2
                 };
-                let pages = this.root.querySelectorAll('.rd-kr'), pageIndex = 0;
+                let pages = this.root.querySelectorAll('.rd-_printer_index_less_-page'), pageIndex = 0;
                 let total = pages.length;
                 let thread = 4; //一次转换4个分页内容，太多会卡
                 let work = async () => {
                     if (m()) {
                         window.scrollTo(0, 0);
                         let start = pageIndex + 1, end = Math.min(start + thread - 1, total);
-                        index_5['_my'](`转换进度：[${start}~${end}] / ${total}`);
+                        index_5['@:{show.msg~rs}'](`转换进度：[${start}~${end}] / ${total}`);
                         let promises = [], count = 0;
                         if (pageIndex < total) {
                             while (count < thread) {
@@ -781,7 +782,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
                             pageIndex += count;
                         }
                         else {
-                            index_5['_mz']();
+                            index_5['@:{hide.msg~rs}']();
                             this.set({
                                 images
                             });
@@ -796,15 +797,15 @@ return $createVNode($viewId,0,$vnode_0); } ,
     /**
      * 转图片
      */
-    async '_mR'() {
+    async '@:{to.image~rs}'() {
         let images = this.get('images');
         if (!images) {
-            let m = mark(this, '_mQ');
+            let m = mark(this, '@:{to.image.transform.mark~rs}');
             index_3.show('正在转换为图片...');
             try {
                 await html2canvas_1();
                 if (m()) {
-                    images = await this['_mP']();
+                    images = await this['@:{get.content.as.images~rs}']();
                 }
                 if (m()) {
                     index_3.show('转换图片成功～', 2e3);
@@ -830,10 +831,10 @@ return $createVNode($viewId,0,$vnode_0); } ,
     /**
      * 使用rd服务转图片
      */
-    '_mU'() {
+    '@:{to.rd.image~rs}'() {
         let images = this.get('rdImages');
         if (!images) {
-            let m = mark(this, '_mS');
+            let m = mark(this, '@:{to.rd.image.transform.mark~rs}');
             index_3.show(`正在转换为图片...`);
             let page = this.get('page');
             let data = {
@@ -841,19 +842,19 @@ return $createVNode($viewId,0,$vnode_0); } ,
                 width: page.width,
                 height: page.height,
                 location: location.href,
-                selector: 'div.rd-kr',
+                selector: 'div.rd-_printer_index_less_-page',
                 stage: JSON.stringify(this.get('stage'))
             };
             let s = new service_1();
             s.save({
-                name: '_fB',
+                name: '@:{post.by.url~rs}',
                 url: config('rds') + 'image',
-                '_fg': JSON.stringify(data)
+                '@:{body~rs}': JSON.stringify(data)
             }, (ex, bag) => {
                 if (m()) {
                     if (ex) {
                         index_3.hide();
-                        this.alert(index_6["_mT"](ex));
+                        this.alert(index_6["@:{format.ex.message~rs}"](ex));
                         this.digest({
                             sf: 'rdImage',
                         });
@@ -879,10 +880,10 @@ return $createVNode($viewId,0,$vnode_0); } ,
     /**
      * 使用rd服务转pdf
      */
-    '_mW'() {
+    '@:{to.rd.pdf~rs}'() {
         let pdf = this.get('rdPdf');
         if (!pdf) {
-            let m = mark(this, '_mV');
+            let m = mark(this, '@:{to.rd.pdf.transform.mark~rs}');
             //let pages = this.get('pages');
             index_3.show(`正在转换为pdf...`);
             let page = this.get('page');
@@ -896,14 +897,14 @@ return $createVNode($viewId,0,$vnode_0); } ,
             };
             let s = new service_1();
             s.save({
-                name: '_fB',
+                name: '@:{post.by.url~rs}',
                 url: config('rds') + 'pdf',
-                '_fg': JSON.stringify(data)
+                '@:{body~rs}': JSON.stringify(data)
             }, (ex, bag) => {
                 if (m()) {
                     if (ex) {
                         index_3.hide();
-                        this.alert(index_6["_mT"](ex));
+                        this.alert(index_6["@:{format.ex.message~rs}"](ex));
                         this.digest({
                             sf: 'rdPdf',
                         });
@@ -938,33 +939,33 @@ return $createVNode($viewId,0,$vnode_0); } ,
     /**
      * 转pdf
      */
-    async '_mZ'() {
+    async '@:{to.pdf~rs}'() {
         let pdf = this.get('pdf');
         let page = this.get('page');
         if (!pdf &&
             page) {
-            let m = mark(this, '_mX');
+            let m = mark(this, '@:{to.pdf.transform.mark~rs}');
             try {
                 let images = this.get('rdImages');
                 if (!images) {
                     index_3.show('先转换为图片...');
                     await html2canvas_1();
-                    images = await this['_mP']();
+                    images = await this['@:{get.content.as.images~rs}']();
                 }
                 index_3.show('正在加载PDF插件...');
                 await jspdf_1();
                 index_3.show('正在生成PDF...');
-                let width = const_1['eo'](page.width), height = const_1['eo'](page.height);
+                let width = const_1['@:{const#to.px~rs}'](page.width), height = const_1['@:{const#to.px~rs}'](page.height);
                 let doc = new jspdf.jsPDF({
                     unit: 'px',
                     hotfixes: ['px_scaling'],
                     format: [width, width > height ? width + 1 : height]
                 });
-                this['_mY'] = doc;
+                this['@:{js.pdf.document~rs}'] = doc;
                 doc.setDocumentProperties({
                     //rd#need-register-code
                     //需删除<未注册版>字样
-                    title: index_4('dX') + '<未注册版>',
+                    title: index_4('@:{lang#site.name~rs}') + '<未注册版>',
                     subject: '打印页面',
                     author: 'kooboy_li@163.com',
                     keywords: '打印、可视化、编辑器',
@@ -972,7 +973,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
                 });
                 let total = images.length;
                 let toPdf = index => {
-                    index_5['_my'](`生成进度：${index + 1} / ${total}`);
+                    index_5['@:{show.msg~rs}'](`生成进度：${index + 1} / ${total}`);
                     if (index) {
                         doc.addPage();
                     }
@@ -983,7 +984,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
                     task(toPdf, [i]);
                 }
                 await lowTaskFinale();
-                index_5['_mz']();
+                index_5['@:{hide.msg~rs}']();
                 if (m()) {
                     index_3.show('转换PDF成功～', 2e3);
                     this.digest({
@@ -1009,21 +1010,21 @@ return $createVNode($viewId,0,$vnode_0); } ,
     /**
      * 用户在转换格式间切换时，前一个任务有可能未完成，需要标识为已取消
      */
-    '_m0'() {
+    '@:{canceled.prev.task~rs}'() {
         index_3.hide();
-        mark(this, '_mO');
-        mark(this, '_mQ');
-        mark(this, '_mS');
-        mark(this, '_mX');
-        mark(this, '_mV');
-        index_5['_mz']();
+        mark(this, '@:{image.client.convert~rs}');
+        mark(this, '@:{to.image.transform.mark~rs}');
+        mark(this, '@:{to.rd.image.transform.mark~rs}');
+        mark(this, '@:{to.pdf.transform.mark~rs}');
+        mark(this, '@:{to.rd.pdf.transform.mark~rs}');
+        index_5['@:{hide.msg~rs}']();
     },
     /**
      * 切换转换格式
      * @param e 事件对象
      */
-    '_m1<change>'(e) {
-        this['_m0']();
+    '@:{change.format~rs}<change>'(e) {
+        this['@:{canceled.prev.task~rs}']();
         this.digest({
             enable: false
         });
@@ -1031,16 +1032,16 @@ return $createVNode($viewId,0,$vnode_0); } ,
             sf: e.value
         });
         if (e.value == 'image') {
-            this['_mR']();
+            this['@:{to.image~rs}']();
         }
         else if (e.value == 'pdf') {
-            this['_mZ']();
+            this['@:{to.pdf~rs}']();
         }
         else if (e.value == 'rdImage') {
-            this['_mU']();
+            this['@:{to.rd.image~rs}']();
         }
         else if (e.value == 'rdPdf') {
-            this['_mW']();
+            this['@:{to.rd.pdf~rs}']();
         }
         else {
             this.digest({
@@ -1048,44 +1049,44 @@ return $createVNode($viewId,0,$vnode_0); } ,
             });
         }
     },
-    '_m2<click>'() {
+    '@:{silent.print~rs}<click>'() {
         window.open('//github.com/xinglie/report-designer/issues/49');
     },
     /**
      * rd服务设置
      */
-    '_m3<click>'() {
-        this.mxDialog("6l/6n/setting", {
+    '@:{rds.setting~rs}<click>'() {
+        this.mxDialog("printer/rds/setting", {
             width: 500
         });
     },
     /**
      * rd服务的打印
      */
-    '_m6<click>'() {
-        let m = mark(this, '_m4');
+    '@:{rds.print~rs}<click>'() {
+        let m = mark(this, '@:{rd.printer.mask~rs}');
         index_3.show(`正在调用RDS打印服务...`);
         let page = this.get('page');
-        let printer = index_6["_m5"]();
+        let printer = index_6["@:{get.config~rs}"]();
         let data = {
             width: page.width,
             height: page.height,
             location: location.href,
-            selector: 'div.rd-kr',
+            selector: 'div.rd-_printer_index_less_-page',
             printer,
             unit: this.get('unit'),
             stage: JSON.stringify(this.get('stage'))
         };
         let s = new service_1();
         s.save({
-            name: '_fB',
+            name: '@:{post.by.url~rs}',
             url: config('rds') + 'print',
-            '_fg': JSON.stringify(data)
+            '@:{body~rs}': JSON.stringify(data)
         }, (ex, bag) => {
             if (m()) {
                 if (ex) {
                     index_3.hide();
-                    this.alert(index_6["_mT"](ex));
+                    this.alert(index_6["@:{format.ex.message~rs}"](ex));
                 }
                 else {
                     index_3.show('打印成功～', 2e3);
@@ -1093,20 +1094,20 @@ return $createVNode($viewId,0,$vnode_0); } ,
             }
         });
     },
-    '_m7<click>'() {
+    '@:{open.with.id~rs}<click>'() {
         window.open(DEBUG ? './print-debug.html?id=xl' : './print.html?id=xl');
     },
-    async '_m9<click>'() {
+    async '@:{export.to.native.file~rs}<click>'() {
         let selectFormat = this.get('sf');
-        let exportMark = mark(this, '_m8');
+        let exportMark = mark(this, '@:{export.async~rs}');
         try {
-            await fs_1['_eo']();
+            await fs_1['@:{prepare~rs}']();
         }
         catch (ex) {
             return this.alert(ex.message);
         }
         let fileName, fileContent, accept;
-        index_3.show(index_4('dW'));
+        index_3.show(index_4('@:{lang#export.file.processing~rs}'));
         if (selectFormat == 'web') {
             let htmlStyles = [], htmlPages = [];
             let domStyles = document.getElementsByTagName('style');
@@ -1116,17 +1117,17 @@ return $createVNode($viewId,0,$vnode_0); } ,
                     htmlStyles.push(`<style>${s}</style>`);
                 }
             }
-            let domPages = document.querySelectorAll('.rd-kr');
+            let domPages = document.querySelectorAll('.rd-_printer_index_less_-page');
             for (let i = 0; i < domPages.length; i++) {
                 htmlPages.push(cleanHTML(domPages[i].outerHTML));
             }
             accept = ['.html'];
-            fileName = `${index_4('dX')}-web.html`;
-            fileContent = `<!DOCTYPE html><html><head><meta charset="utf-8" /><title>${index_4('dX')}-web</title>${htmlStyles.join('')}</head><body>${htmlPages.join('')}</body></html>`;
+            fileName = `${index_4('@:{lang#site.name~rs}')}-web.html`;
+            fileContent = `<!DOCTYPE html><html><head><meta charset="utf-8" /><title>${index_4('@:{lang#site.name~rs}')}-web</title>${htmlStyles.join('')}</head><body>${htmlPages.join('')}</body></html>`;
             try {
                 if (exportMark()) {
-                    await fs_1['_ep'](fileName, fileContent, accept);
-                    index_3.show(index_4('dY'), 3e3);
+                    await fs_1['@:{save.file~rs}'](fileName, fileContent, accept);
+                    index_3.show(index_4('@:{lang#export.success~rs}'), 3e3);
                 }
             }
             catch (ex) {
@@ -1137,14 +1138,14 @@ return $createVNode($viewId,0,$vnode_0); } ,
             }
         }
         else if (selectFormat == 'pdf' &&
-            this['_mY']) {
-            this['_mY'].save(`${index_4('dX')}.pdf`);
-            index_3.show(index_4('dY'), 3e3);
+            this['@:{js.pdf.document~rs}']) {
+            this['@:{js.pdf.document~rs}'].save(`${index_4('@:{lang#site.name~rs}')}.pdf`);
+            index_3.show(index_4('@:{lang#export.success~rs}'), 3e3);
         }
         else if (selectFormat == 'rdPdf' &&
             this.get('rdPdf')) {
             let link = document.createElement('a');
-            link.download = `${index_4('dX')}.pdf`;
+            link.download = `${index_4('@:{lang#site.name~rs}')}.pdf`;
             link.href = this.get('rdPdf');
             link.click();
         }
@@ -1212,14 +1213,14 @@ return $createVNode($viewId,0,$vnode_0); } ,
      */
     '$doc<paste>'(e) {
         let data = e.clipboardData.getData('text/plain');
-        this['_mL'](index_5['_mD'](data));
+        this['@:{render.page.by.json~rs}'](index_5['@:{try.parse.json~rs}'](data));
     },
     /**
      * 通过window派发render事件时，为rds提供的接口
      * @param e 渲染事件对象
      */
     '$win<render>'(e) {
-        this['_mL'](index_5['_mD'](e.json));
+        this['@:{render.page.by.json~rs}'](index_5['@:{try.parse.json~rs}'](e.json));
     },
     /**
      * 通过postMessage进行数据通讯
@@ -1228,12 +1229,12 @@ return $createVNode($viewId,0,$vnode_0); } ,
     '$win<message>'(e) {
         let origin = location.protocol + '//' + location.host;
         if (e.source != window) { //防止自己向自己postMessage
-            e.source.postMessage('_e1', origin);
+            e.source.postMessage('@:{printer.message.received~rs}', origin);
         }
         if (e.origin == origin &&
             e.data &&
-            e.data != '_e1') {
-            this['_mL'](index_5['_mD'](e.data));
+            e.data != '@:{printer.message.received~rs}') {
+            this['@:{render.page.by.json~rs}'](index_5['@:{try.parse.json~rs}'](e.data));
         }
     }
 }).merge(index_1);

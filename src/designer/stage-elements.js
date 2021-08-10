@@ -4,23 +4,23 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4d/56",["4e","../4l/5f/index","../4l/4n/cursor","../4p/index","./4g","./4v","./enum","./4q","./55","./5a","./57","./5b","./4h","../4l/4n/tip"],(require,exports,module)=>{
+define("designer/stage-elements",["magix5","../gallery/mx-menu/index","../gallery/mx-pointer/cursor","../i18n/index","./const","./contextmenu","./enum","./history","./stage-align","./stage-clipboard","./stage-generic","./stage-selection","./transform","../gallery/mx-pointer/tip"],(require,exports,module)=>{
 
 
-let magix_1 = require("4e");
-let index_1 = require("../4l/5f/index");
-let cursor_1 = require("../4l/4n/cursor");
-let index_2 = require("../4p/index");
-let const_1 = require("./4g");
-let contextmenu_1 = require("./4v");
+let magix_1 = require("magix5");
+let index_1 = require("../gallery/mx-menu/index");
+let cursor_1 = require("../gallery/mx-pointer/cursor");
+let index_2 = require("../i18n/index");
+let const_1 = require("./const");
+let contextmenu_1 = require("./contextmenu");
 let enum_1 = require("./enum");
-let history_1 = require("./4q");
-let stage_align_1 = require("./55");
-let stage_clipboard_1 = require("./5a");
-let stage_generic_1 = require("./57");
-let stage_selection_1 = require("./5b");
-let transform_1 = require("./4h");
-let tip_1 = require("../4l/4n/tip");
+let history_1 = require("./history");
+let stage_align_1 = require("./stage-align");
+let stage_clipboard_1 = require("./stage-clipboard");
+let stage_generic_1 = require("./stage-generic");
+let stage_selection_1 = require("./stage-selection");
+let transform_1 = require("./transform");
+let tip_1 = require("../gallery/mx-pointer/tip");
 //window.$C = Const;
 //let sleep = time => new Promise(resolve => setTimeout(resolve, time));
 let { random, abs, round, floor, min, max } = Math;
@@ -136,7 +136,7 @@ let GetDisatance = (scaledProps, key, diff /*, hodOffset, rest*/) => {
  * @param e 元素
  */
 let recoreHodElements = (e, movedMap, parentHods) => {
-    if (e.ctrl.as & enum_1['dH']) {
+    if (e.ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
         for (let row of e.props.rows) {
             for (let col of row.cols) {
                 if (col.elements) {
@@ -163,7 +163,7 @@ module.exports= {
      * 添加元素
      * @param e 添加元素时额外的信息
      */
-    'dG'(e) {
+    '@:{elements#add.element~rs}'(e) {
         /**
          * 元素允许添加的个数
          * '@:{allowed.total.count}':2,//总共允许多少个
@@ -179,16 +179,16 @@ module.exports= {
          * }
          */
         //从内存中取出缓存的元素对象
-        let srcArray = State.get('dO');
+        let srcArray = State.get('@:{global#memory.cache.element~rs}');
         if (srcArray) {
             //用完即删
             State.set({
-                'dO': null
+                '@:{global#memory.cache.element~rs}': null
             });
             let returned = [];
             let selected = [];
-            let scale = State.get('dF');
-            let page = State.get('dN');
+            let scale = State.get('@:{global#stage.scale~rs}');
+            let page = State.get('@:{global#stage.page~rs}');
             if (!page.readonly) {
                 let index = 0;
                 for (let src of srcArray) {
@@ -197,30 +197,30 @@ module.exports= {
                     //     hodOffsetY = 0;
                     let cell;
                     if (e.node) { //如果有参考节点，则表示鼠标拖动添加元素，此时需要获取当前鼠标下可能存在的容器，以便把拖动的元素放进容器格子里
-                        cell = this['dE'](e.node, ctrl);
+                        cell = this['@:{elements#get.best.hod~rs}'](e.node, ctrl);
                     }
                     //获取元素需要放置到的集合对象，设计区、容器的每一个格子用来存放子元素的地方均是互相独立的集合
-                    let dest = this['dF'](e, silent, cell, ctrl);
-                    let coll = dest['_fR'];
+                    let dest = this['@:{elements#get.best.collection~rs}'](e, silent, cell, ctrl);
+                    let coll = dest['@:{collection~rs}'];
                     if (!coll)
                         continue;
                     //总共允许几个
-                    let total = ctrl['_eI'];
+                    let total = ctrl['@:{allowed.total.count~rs}'];
                     if (total >= 0) {
-                        let { 'dE': allElements } = stage_generic_1["dE"]();
-                        let all = stage_generic_1["dF"](allElements, ctrl.type);
+                        let { '@:{generic.all#elements~rs}': allElements } = stage_generic_1["@:{generic#get.all.elements.and.map~rs}"]();
+                        let all = stage_generic_1["@:{generic#filter.elements~rs}"](allElements, ctrl.type);
                         if (all.length >= total)
                             continue;
                     }
                     //一个编辑区允许几个
-                    let count = ctrl['_eJ'];
+                    let count = ctrl['@:{allowed.stage.count~rs}'];
                     if (count >= 0) {
-                        let all = stage_generic_1["dF"](coll, ctrl.type);
+                        let all = stage_generic_1["@:{generic#filter.elements~rs}"](coll, ctrl.type);
                         if (all.length >= count)
                             continue;
                     }
-                    let pos = dest['_g_'];
-                    let props = ctrl['_eE'](pos.x + index * const_1['ec'], pos.y + index * const_1['ec']);
+                    let pos = dest['@:{position.xy~rs}'];
+                    let props = ctrl['@:{get.props~rs}'](pos.x + index * const_1['@:{const#element.same.position.offset~rs}'], pos.y + index * const_1['@:{const#element.same.position.offset~rs}']);
                     if (!has(props, 'ename')) { //补充组件树名称
                         props.ename = index_2(ctrl.title);
                     }
@@ -233,10 +233,10 @@ module.exports= {
                     //缩放属性处理
                     let scaledProps = {};
                     for (let s of ctrl.props) {
-                        if (isFunction(s['_ga'])) {
-                            s['_ga'](props, scale, scaledProps);
+                        if (isFunction(s['@:{stage.scale~rs}'])) {
+                            s['@:{stage.scale~rs}'](props, scale, scaledProps);
                         }
-                        else if (s['_fc']) {
+                        else if (s['@:{is.scale.and.unit.field~rs}']) {
                             scaledProps[s.key] = props[s.key] * scale;
                         }
                     }
@@ -264,9 +264,9 @@ module.exports= {
                     //hasXAP = 0,
                     // hasYAP = 0;
                     //元素自身的有哪些位置信息属性
-                    let moveProps = ctrl['_fW'];
-                    if (ctrl['_fX']) {
-                        moveProps = ctrl['_fW'](props);
+                    let moveProps = ctrl['@:{move.props~rs}'];
+                    if (ctrl['@:{move.props.is.function~rs}']) {
+                        moveProps = ctrl['@:{move.props~rs}'](props);
                     }
                     //查找参考点进行平移
                     //像svg有多个点，只需要计算一次
@@ -300,8 +300,8 @@ module.exports= {
                         props[p] = scaledProps[p];
                     }
                     //如果元素自身有其它更新属性的逻辑，则调用
-                    if (ctrl['_eF']) {
-                        ctrl['_eF'](props);
+                    if (ctrl['@:{update.props~rs}']) {
+                        ctrl['@:{update.props~rs}'](props);
                     }
                     // let area = dest['@:{area}'];
                     // if (area) {
@@ -334,7 +334,7 @@ module.exports= {
                         coll.push(em);
                     }
                     //如果允许对新增加的元素聚焦
-                    if (dest['_gb']) {
+                    if (dest['@:{focus.add.element~rs}']) {
                         selected.push(em);
                         //StageSelection["@:{selection#set}"](em);
                         //StageGeneric["@:{generic#scroll.into.view}"](em.id);
@@ -342,15 +342,15 @@ module.exports= {
                     let currentBind = props.bind;
                     if (currentBind &&
                         currentBind.id) { //如果添加的元素有绑定数据源
-                        let { '_gc': pElement, '_gd': atRow, '_ge': atCol } = stage_generic_1['dR'](em);
+                        let { '@:{element~rs}': pElement, '@:{at.row~rs}': atRow, '@:{at.col~rs}': atCol } = stage_generic_1['@:{generic#query.element.parent~rs}'](em);
                         if (pElement) { //检查父元素是否为数据容器
                             let { ctrl: pCtrl, props: pProps } = pElement;
-                            if (pCtrl.as & enum_1['dI']) {
-                                let bindAdded = pCtrl['_gf'];
+                            if (pCtrl.as & enum_1['@:{enum#as.data.hod~rs}']) {
+                                let bindAdded = pCtrl['@:{bind.data.added~rs}'];
                                 if (bindAdded) {
                                     bindAdded(pProps, em, atRow, atCol);
                                 }
-                                let updateProps = pCtrl['_eF'];
+                                let updateProps = pCtrl['@:{update.props~rs}'];
                                 if (updateProps) {
                                     updateProps(pProps);
                                 }
@@ -362,8 +362,8 @@ module.exports= {
                 }
             }
             return {
-                '_gg': returned,
-                '_gh': selected
+                '@:{add.elements~rs}': returned,
+                '@:{select.elements~rs}': selected
             };
         }
     },
@@ -373,16 +373,16 @@ module.exports= {
      * @param isMulti 是否多选
      * @param scrollToElement 是否滚动到元素位置
      */
-    'dH'(element, isMulti, scrollToElement = true) {
-        let { 'dF': allMap } = stage_generic_1['dE']();
+    '@:{elements#single.or.multi.select~rs}'(element, isMulti, scrollToElement = true) {
+        let { '@:{generic.all#map~rs}': allMap } = stage_generic_1['@:{generic#get.all.elements.and.map~rs}']();
         if (!allMap[element.id])
             return;
         if (isMulti) { //多选逻辑
             //if (!element.props.locked) {
-            let elements = State.get('dE');
+            let elements = State.get('@:{global#stage.select.elements~rs}');
             let exists, map = {}, elementsToHods = {}, hods = [];
             //容器元素需要处理自身和内容元素的关系
-            if (element.ctrl.as & enum_1['dH']) {
+            if (element.ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
                 hods.push(element);
             }
             for (let i = elements.length; i--;) {
@@ -390,18 +390,18 @@ module.exports= {
                 if (m.id == element.id) {
                     exists = 1;
                 }
-                if (m.ctrl.as & enum_1['dH']) {
+                if (m.ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
                     hods.push(m);
                 }
             }
             //取消选择
             if (exists && elements.length > 1) {
-                if (stage_selection_1['dH'](element)) {
-                    history_1["dE"](history_1['dU'], element.props.ename);
+                if (stage_selection_1['@:{selection#remove~rs}'](element)) {
+                    history_1["@:{history#save~rs}"](history_1['@:{history#element.lost.focus~rs}'], element.props.ename);
                 }
                 return;
             }
-            let groups = State.get('dP');
+            let groups = State.get('@:{global#stage.elements.groups~rs}');
             let added = {}, selectAndCurrentElements = [...elements, element];
             for (let e of selectAndCurrentElements) {
                 let list = groups[e.id];
@@ -410,7 +410,7 @@ module.exports= {
                         if (!added[g]) {
                             added[g] = 1;
                             let dest = allMap[g];
-                            if (dest.ctrl.as & enum_1['dH']) {
+                            if (dest.ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
                                 hods.push(dest);
                             }
                         }
@@ -428,7 +428,7 @@ module.exports= {
                         map[c.id] = 1;
                         elementsToHods[c.id] = hodId;
                     }
-                    if (c.ctrl.as & enum_1['dH']) {
+                    if (c.ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
                         for (let r of c.props.rows) {
                             for (let d of r.cols) {
                                 if (d.elements) {
@@ -465,17 +465,17 @@ module.exports= {
                     elements.splice(i, 1);
                 }
             }
-            if (stage_selection_1['dI'](element)) {
-                history_1["dE"](history_1['dV'], element.props.ename);
+            if (stage_selection_1['@:{selection#add~rs}'](element)) {
+                history_1["@:{history#save~rs}"](history_1['@:{history#element.get.focus~rs}'], element.props.ename);
             }
             //}
             //如果是单选且当前未选中该元素
         }
-        else if (stage_selection_1["dF"](element)) {
+        else if (stage_selection_1["@:{selection#set~rs}"](element)) {
             if (scrollToElement) {
-                stage_generic_1["dS"](element.id);
+                stage_generic_1["@:{generic#scroll.into.view~rs}"](element.id);
             }
-            history_1["dE"](history_1['dV'], element.props.ename);
+            history_1["@:{history#save~rs}"](history_1['@:{history#element.get.focus~rs}'], element.props.ename);
         }
     },
     /**
@@ -483,24 +483,24 @@ module.exports= {
      * @param m 处理行为的元素
      * @param e 键盘事件
      */
-    async 'dI'(m, e) {
+    async '@:{elements#space.or.double.click.action~rs}'(m, e) {
         let { props, ctrl, id } = m;
-        let modifier = ctrl['_gi'];
+        let modifier = ctrl['@:{modifier~rs}'];
         if (modifier) { //元素上有修改指示器
             let find; //查没查到相应的处理方式
-            if (modifier & enum_1['dU']) { //如果有双击行为
+            if (modifier & enum_1['@:{enum#modifier.dblclick~rs}']) { //如果有双击行为
                 find = 1;
-                props['_gj'] = 1;
+                props['@:{dblclick~rs}'] = 1;
             }
-            else if ((modifier & enum_1['dT']) && //如果有显示文本输入框的行为
-                (!ctrl['_gk'] ||
-                    ctrl['_gk'](props))) {
+            else if ((modifier & enum_1['@:{enum#modifier.text~rs}']) && //如果有显示文本输入框的行为
+                (!ctrl['@:{can.show.text~rs}'] ||
+                    ctrl['@:{can.show.text~rs}'](props))) {
                 find = 1;
-                props['_gl'] = 1;
+                props['@:{show.text~rs}'] = 1;
             }
             if (find &&
                 e) { //查找到就阻止默认行为，阻止页面滚动
-                e['dL']();
+                e['@:{keypress#prevent.default~rs}']();
             }
             if (find) {
                 let vf = Vframe.byNode(node(id));
@@ -516,7 +516,7 @@ module.exports= {
      * @param event pointerdown事件对象
      * @param view 调用该方法的Magix.View对象
      */
-    'dL'(event, view) {
+    '@:{elements#select.or.move.elements~rs}'(event, view) {
         let { params, button, shiftKey, ctrlKey, metaKey, altKey, target } = event;
         let { element, maskId } = params;
         let { props: elementProps, id } = element;
@@ -527,19 +527,19 @@ module.exports= {
             if (elementNode) {
                 let elementVframe = Vframe.byNode(elementNode);
                 if (elementVframe) {
-                    elementVframe.invoke('_gm', [element]);
+                    elementVframe.invoke('@:{icon.pointer.down~rs}', [element]);
                 }
             }
         }
-        let { 'dF': elementsMap, 
+        let { '@:{generic.all#map~rs}': elementsMap, 
         //'@:{stage.elements.map}': stageElementsMap,
-        'dE': allElements, 'dG': parentHods, } = stage_generic_1['dE']();
+        '@:{generic.all#elements~rs}': allElements, '@:{generic.all#element.hods~rs}': parentHods, } = stage_generic_1['@:{generic#get.all.elements.and.map~rs}']();
         if (!elementsMap[id])
             return;
-        let elements = State.get('dE');
-        let flowProvider = State.get('dR');
+        let elements = State.get('@:{global#stage.select.elements~rs}');
+        let flowProvider = State.get('@:{global#provider.of.flow~rs}');
         State.set({
-            'dX': null
+            '@:{global#stage.contextmenu.under.item~rs}': null
         });
         let exist = 0;
         for (let m of elements) {
@@ -550,20 +550,20 @@ module.exports= {
         }
         if (button) { //如果不是左键
             if (!exist) { //如果在当前选中的元素内找不到当前的，则激活当前
-                if (stage_selection_1["dF"](element)) {
-                    history_1["dE"](history_1['dV'], element.props.ename);
+                if (stage_selection_1["@:{selection#set~rs}"](element)) {
+                    history_1["@:{history#save~rs}"](history_1['@:{history#element.get.focus~rs}'], element.props.ename);
                 }
             }
             State.set({
-                'dX': element
+                '@:{global#stage.contextmenu.under.item~rs}': element
             });
             return;
         }
         if (shiftKey || ctrlKey || metaKey) { //多选
-            this["dH"](element, 1, false);
+            this["@:{elements#single.or.multi.select~rs}"](element, 1, false);
         }
         else {
-            cursor_1["_gn"]('move');
+            cursor_1["@:{show.by.type~rs}"]('move');
             let startInfos = [], movedMap = {}, 
             //currentProps,
             //currentCtrl,
@@ -572,21 +572,21 @@ module.exports= {
             //hodOffsetX = 0,
             //hodOffsetY = 0;//容器偏移量，对于吸附格子，格子内要进行修正才能对应到背景网格上
             if (!exist) {
-                isNowAdded = stage_selection_1["dF"](element);
+                isNowAdded = stage_selection_1["@:{selection#set~rs}"](element);
                 elements.length = 0;
                 elements.push(element);
             }
-            let groups = State.get('dP');
+            let groups = State.get('@:{global#stage.elements.groups~rs}');
             let nearestElements = [];
             let newElements = [];
-            let moveInfo, offsetInfo, page = State.get('dN'), scale = State.get('dF');
-            let snapElement = page.snapElement, supportSnapElement = const_1['d0'];
+            let moveInfo, offsetInfo, page = State.get('@:{global#stage.page~rs}'), scale = State.get('@:{global#stage.scale~rs}');
+            let snapElement = page.snapElement, supportSnapElement = const_1['@:{const#page.enable.snap.align.elements~rs}'];
             //snapGrid = page.grid && page.snapGrid;
             for (let e of elements) {
                 if (!movedMap[e.id]) {
                     if (!flowProvider ||
-                        !flowProvider['dE'](e)) {
-                        movedMap[e.id] = enum_1['dE'];
+                        !flowProvider['@:{flow.provider#is.connector~rs}'](e)) {
+                        movedMap[e.id] = enum_1['@:{enum#follow.align.selected~rs}'];
                         newElements.push(e);
                         if (supportSnapElement) {
                             recoreHodElements(e, movedMap, parentHods);
@@ -599,8 +599,8 @@ module.exports= {
                         if (!movedMap[n]) {
                             let e = elementsMap[n];
                             if (!flowProvider ||
-                                !flowProvider['dE'](e)) {
-                                movedMap[n] = enum_1['dL'];
+                                !flowProvider['@:{flow.provider#is.connector~rs}'](e)) {
+                                movedMap[n] = enum_1['@:{enum#follow.align.grouped~rs}'];
                                 newElements.push(e);
                                 if (supportSnapElement) {
                                     recoreHodElements(e, movedMap, parentHods);
@@ -635,12 +635,12 @@ module.exports= {
                     }
                 }
                 let i = {};
-                let moveProps = ctrl['_fW'];
-                if (ctrl['_fX']) {
-                    moveProps = ctrl['_fW'](props);
+                let moveProps = ctrl['@:{move.props~rs}'];
+                if (ctrl['@:{move.props.is.function~rs}']) {
+                    moveProps = ctrl['@:{move.props~rs}'](props);
                 }
                 for (let m of moveProps) {
-                    i[m.key] = const_1['eo'](props[m.key]);
+                    i[m.key] = const_1['@:{const#to.px~rs}'](props[m.key]);
                 }
                 // if (id == element.id) {
                 //     currentProps = props;
@@ -682,22 +682,22 @@ module.exports= {
             //         hodOffsetY = h - offset.y;
             //     }
             // }
-            let elementMoved = 0, moveMinSize = const_1['ep'](), startX, startY, sizesMap, testX, testY, altPressed = snapElement ? altKey : !altKey, snapOffset = const_1['e_'] * scale;
-            State.fire('d3', {
+            let elementMoved = 0, moveMinSize = const_1['@:{const#unit.px.aberration~rs}'](), startX, startY, sizesMap, testX, testY, altPressed = snapElement ? altKey : !altKey, snapOffset = const_1['@:{const#drag.snap.to.other.element.offset~rs}'] * scale;
+            State.fire('@:{event#stage.toggle.scroll~rs}', {
                 show: 1,
                 size: 1
             });
             if (supportSnapElement) {
-                let alignElements = stage_align_1['dE'](allElements, maskId, element, movedMap);
-                nearestElements = alignElements['dE'];
-                startX = alignElements['dQ'];
-                startY = alignElements['dR'];
-                let others = alignElements['dP'];
-                let sInfo = stage_generic_1['dG'](startX, startY, others);
+                let alignElements = stage_align_1['@:{align#query.align.elements~rs}'](allElements, maskId, element, movedMap);
+                nearestElements = alignElements['@:{align.queried#align.elements.sizes~rs}'];
+                startX = alignElements['@:{align.queried#start.x~rs}'];
+                startY = alignElements['@:{align.queried#start.y~rs}'];
+                let others = alignElements['@:{align.queried#together.elements.sizes~rs}'];
+                let sInfo = stage_generic_1['@:{generic#query.test.position.and.sizes~rs}'](startX, startY, others);
                 //console.log(sInfo);
-                testX = sInfo['_eK'];
-                testY = sInfo['_eL'];
-                sizesMap = sInfo['_eM'];
+                testX = sInfo['@:{test.x~rs}'];
+                testY = sInfo['@:{test.y~rs}'];
+                sizesMap = sInfo['@:{sizes.map~rs}'];
                 //console.log(testX);
             }
             //console.log(testX, fixTestX);
@@ -712,8 +712,8 @@ module.exports= {
                 offsetY = moveInfo.pageY - event.pageY;
                 //console.log('real move', offsetX, offsetY);
                 if (offsetInfo) {
-                    offsetY += offsetInfo['dE'];
-                    offsetX += offsetInfo['dF'];
+                    offsetY += offsetInfo['@:{interval.move.event#y~rs}'];
+                    offsetX += offsetInfo['@:{interval.move.event#x~rs}'];
                 }
                 // if (snapGrid) {
                 //     let s = startInfos[currentIndex],
@@ -767,39 +767,39 @@ module.exports= {
                 //吸附逻辑可参考./header.ts中的注释
                 if (supportSnapElement &&
                     testX) {
-                    let snapInfo = stage_align_1['dF'](nearestElements, startX, offsetX, startY, offsetY, sizesMap, testX, testY, pinX, pinY, altPressed, snapOffset, moveMinSize);
-                    offsetX = snapInfo['dG'];
-                    offsetY = snapInfo['dH'];
+                    let snapInfo = stage_align_1['@:{align#find.and.fire.align.position~rs}'](nearestElements, startX, offsetX, startY, offsetY, sizesMap, testX, testY, pinX, pinY, altPressed, snapOffset, moveMinSize);
+                    offsetX = snapInfo['@:{align#new.offset.x~rs}'];
+                    offsetY = snapInfo['@:{align#new.offset.y~rs}'];
                     //console.log('y',offsetY);
                 }
                 let index = 0, ids = {}, types = {}, absX = abs(offsetX), absY = abs(offsetY);
-                if (const_1['em'](absX, moveMinSize) ||
-                    const_1['em'](absY, moveMinSize) ||
+                if (const_1['@:{const#great.than.or.approach~rs}'](absX, moveMinSize) ||
+                    const_1['@:{const#great.than.or.approach~rs}'](absY, moveMinSize) ||
                     elementMoved) {
                     //console.log('moved', offsetX, offsetY);
                     for (let e of newElements) {
                         let s = startInfos[index++];
                         let { props, id, ctrl, type } = e;
-                        let moveProps = ctrl['_fW'];
-                        if (ctrl['_fX']) {
-                            moveProps = ctrl['_fW'](props);
+                        let moveProps = ctrl['@:{move.props~rs}'];
+                        if (ctrl['@:{move.props.is.function~rs}']) {
+                            moveProps = ctrl['@:{move.props~rs}'](props);
                         }
                         for (let m of moveProps) {
                             let offset = (m.use == 'x' ? offsetX : offsetY);
-                            props[m.key] = const_1['dF'](s[m.key] + offset);
+                            props[m.key] = const_1['@:{const#to.unit~rs}'](s[m.key] + offset);
                             elementMoved = 1;
                         }
                         if (e.id == element.id) {
-                            let tipMsg = `${transform_1['dH'](props.x)} , ${transform_1['dH'](props.y)}`;
-                            tip_1['_gl'](tipMsg);
-                            tip_1['_go'](moveInfo.pageX, moveInfo.pageY);
+                            let tipMsg = `${transform_1['@:{transform#to.show.value~rs}'](props.x)} , ${transform_1['@:{transform#to.show.value~rs}'](props.y)}`;
+                            tip_1['@:{show.text~rs}'](tipMsg);
+                            tip_1['@:{update.position~rs}'](moveInfo.pageX, moveInfo.pageY);
                         }
                         let vf = Vframe.byNode(node(id));
                         if (vf) {
                             ids[id] = 1;
                             types[type] = 1;
-                            if (ctrl['_eF']) {
-                                ctrl['_eF'](props);
+                            if (ctrl['@:{update.props~rs}']) {
+                                ctrl['@:{update.props~rs}'](props);
                             }
                             let r = await vf.invoke('assign', [{
                                     element: e
@@ -809,17 +809,17 @@ module.exports= {
                             }
                         }
                     }
-                    if (offsetInfo && !offsetInfo['dG']) {
-                        offsetInfo['dG'] = 1;
+                    if (offsetInfo && !offsetInfo['@:{interval.move.event#called~rs}']) {
+                        offsetInfo['@:{interval.move.event#called~rs}'] = 1;
                         await taskFinale();
                         //await sleep(3000);
-                        offsetInfo['dH']();
+                        offsetInfo['@:{interval.move.event#ready~rs}']();
                     }
-                    State.fire('dG', {
-                        '_fm': ids,
-                        '_fn': types,
-                        '_dF': {
-                            '_dG': 1
+                    State.fire('@:{event#stage.select.element.props.change~rs}', {
+                        '@:{ids~rs}': ids,
+                        '@:{types~rs}': types,
+                        '@:{props~rs}': {
+                            '@:{position~rs}': 1
                         }
                     });
                 }
@@ -837,93 +837,93 @@ module.exports= {
              * @param e 按键按下抬起事件
              */
             let watchKeypress = (e) => {
-                altPressed = snapElement ? e['dK'] : !e['dK'];
+                altPressed = snapElement ? e['@:{keypress#alt.key~rs}'] : !e['@:{keypress#alt.key~rs}'];
                 moveElements();
             };
             //处理按键
-            State.on('dN', watchKeypress);
+            State.on('@:{event#stage.key.press~rs}', watchKeypress);
             //处理贴边滚动
-            State.on('dT', watchIntervalMove);
-            view['_eb'](event, evt => {
-                State.fire('dS', evt);
+            State.on('@:{event#stage.interval.move~rs}', watchIntervalMove);
+            view['@:{drag.drop~rs}'](event, evt => {
+                State.fire('@:{event#drag.element.move~rs}', evt);
                 moveInfo = evt;
                 moveElements();
             }, () => {
-                State.off('dN', watchKeypress);
-                State.off('dT', watchIntervalMove);
+                State.off('@:{event#stage.key.press~rs}', watchKeypress);
+                State.off('@:{event#stage.interval.move~rs}', watchIntervalMove);
                 //console.log(offsetX, offsetY)
                 if (elementMoved) {
-                    delete this['dJ'];
-                    if (const_1['em'](abs(offsetX), moveMinSize) ||
-                        const_1['em'](abs(offsetY), moveMinSize)) {
-                        let ename = stage_generic_1['dQ'](newElements);
-                        history_1["dE"](history_1['dW'], ename);
+                    delete this['@:{elements#last.pointer.down.event~rs}'];
+                    if (const_1['@:{const#great.than.or.approach~rs}'](abs(offsetX), moveMinSize) ||
+                        const_1['@:{const#great.than.or.approach~rs}'](abs(offsetY), moveMinSize)) {
+                        let ename = stage_generic_1['@:{generic#query.element.name~rs}'](newElements);
+                        history_1["@:{history#save~rs}"](history_1['@:{history#element.moved~rs}'], ename);
                     }
                 }
                 else if (!exist &&
                     isNowAdded) {
-                    history_1["dE"](history_1['dV'], element.props.ename);
+                    history_1["@:{history#save~rs}"](history_1['@:{history#element.get.focus~rs}'], element.props.ename);
                 }
                 if (!elementMoved) {
-                    let lastEvent = this['dJ'];
+                    let lastEvent = this['@:{elements#last.pointer.down.event~rs}'];
                     if (lastEvent) {
                         //检测鼠标位置是否移动过
                         let distanceDiff = event.pageX - lastEvent.pageX + event.pageY - lastEvent.pageY;
                         //检测两次时间差
-                        let timeDiff = nowTime() - this['dK'];
+                        let timeDiff = nowTime() - this['@:{elements#last.pointer.down.time~rs}'];
                         if (!distanceDiff && //未移动过
-                            timeDiff < const_1['ee']) { //2次间隔
-                            this['dI'](element);
+                            timeDiff < const_1['@:{const#element.dblclick.interval.ms.time~rs}']) { //2次间隔
+                            this['@:{elements#space.or.double.click.action~rs}'](element);
                         }
                     }
-                    this['dJ'] = event;
-                    this['dK'] = nowTime();
+                    this['@:{elements#last.pointer.down.event~rs}'] = event;
+                    this['@:{elements#last.pointer.down.time~rs}'] = nowTime();
                 }
-                State.fire('d3', {
+                State.fire('@:{event#stage.toggle.scroll~rs}', {
                     hide: 1
                 });
-                State.fire('dV');
+                State.fire('@:{event#drag.element.stop~rs}');
                 if (supportSnapElement) {
-                    State.fire('dE');
+                    State.fire('@:{event#stage.find.snap.element~rs}');
                 }
-                cursor_1["_ed"]();
-                tip_1['_ed']();
+                cursor_1["@:{hide~rs}"]();
+                tip_1['@:{hide~rs}']();
             });
         }
     },
     /**
      * 聚焦选择元素的格子
      */
-    'dM'() {
-        let stages = stage_generic_1['dT']();
+    '@:{elements#focus.select.element.hod~rs}'() {
+        let stages = stage_generic_1['@:{generic#query.select.elements.stage~rs}']();
         if (stages.length === 1) {
             let f = stages[0];
-            if (f['_gp'] == '_gq') {
-                let table = f['_gq'];
+            if (f['@:{stage.type~rs}'] == '@:{hod~rs}') {
+                let table = f['@:{hod~rs}'];
                 let { props } = table;
                 if (!props.readonly) {
-                    props.focusRow = f['_gr'];
-                    props.focusCol = f['_gs'];
-                    State.fire('dG', {
-                        '_fm': {
+                    props.focusRow = f['@:{row.index~rs}'];
+                    props.focusCol = f['@:{col.index~rs}'];
+                    State.fire('@:{event#stage.select.element.props.change~rs}', {
+                        '@:{ids~rs}': {
                             [table.id]: 1
                         },
-                        '_fn': {
+                        '@:{types~rs}': {
                             [table.type]: 1
                         },
-                        '_dF': {
-                            '_gt': 1
+                        '@:{props~rs}': {
+                            '@:{focus.hod~rs}': 1
                         }
                     });
                     let n = node(table.id);
                     if (n) {
                         let vf = Vframe.byNode(n);
                         if (vf) {
-                            vf.invoke('_fY', [table]);
+                            vf.invoke('@:{update~rs}', [table]);
                         }
                     }
-                    if (stage_selection_1["dF"](table)) {
-                        history_1["dE"](history_1['dV'], props.ename);
+                    if (stage_selection_1["@:{selection#set~rs}"](table)) {
+                        history_1["@:{history#save~rs}"](history_1['@:{history#element.get.focus~rs}'], props.ename);
                     }
                 }
             }
@@ -934,14 +934,14 @@ module.exports= {
      * @param to 移动方向
      * @param element 移动的元素
      */
-    'dN'(to, element) {
+    '@:{elements#modify.element.z.index~rs}'(to, element) {
         //3 top 4 bottom 5 to up 6 to down
-        let selectElements = State.get('dE');
+        let selectElements = State.get('@:{global#stage.select.elements~rs}');
         let index = -1;
         if (element &&
             !element.props.locked &&
             selectElements.length) {
-            let elements = stage_generic_1["dU"](selectElements[0]);
+            let elements = stage_generic_1["@:{generic#find.element.owner.collection~rs}"](selectElements[0]);
             let topElement = elements[elements.length - 1], bottomElement = elements[0];
             if (((to == 4 || to == 6) &&
                 element.id != bottomElement.id) ||
@@ -968,8 +968,8 @@ module.exports= {
                         index = 1;
                     elements.splice(index - 1, 0, element);
                 }
-                history_1["dE"](history_1['d5'], element.props.ename);
-                State.fire('d2');
+                history_1["@:{history#save~rs}"](history_1['@:{history#element.z.index~rs}'], element.props.ename);
+                State.fire('@:{event#stage.elements.change~rs}');
             }
         }
     },
@@ -977,9 +977,9 @@ module.exports= {
      * tab按键选择元素
      * @param revert 是否反向选择
      */
-    'dO'(revert) {
-        let selectElements = State.get('dE');
-        let c = selectElements.length, current, select, stageElements = State.get('dM'), newElements = stage_generic_1['dV'](stageElements, 1);
+    '@:{elements#handle.key.tab~rs}'(revert) {
+        let selectElements = State.get('@:{global#stage.select.elements~rs}');
+        let c = selectElements.length, current, select, stageElements = State.get('@:{global#stage.elements~rs}'), newElements = stage_generic_1['@:{generic#query.all.without.readonly.elements~rs}'](stageElements, 1);
         //未选或多选2个以上的我们取消多选，然后从头选择一个
         if (c != 1) {
             let first = newElements[revert ? 0 : newElements.length - 1];
@@ -1013,9 +1013,9 @@ module.exports= {
         if (select &&
             (!current ||
                 select.id != current.id)) {
-            stage_generic_1["dS"](select.id);
-            stage_selection_1["dF"](select);
-            history_1["dE"](history_1['dV'], select.props.ename);
+            stage_generic_1["@:{generic#scroll.into.view~rs}"](select.id);
+            stage_selection_1["@:{selection#set~rs}"](select);
+            history_1["@:{history#save~rs}"](history_1['@:{history#element.get.focus~rs}'], select.props.ename);
         }
     },
     /**
@@ -1026,8 +1026,8 @@ module.exports= {
      * @param ids id对象，用于记录哪些元素进行了移动
      * @param groupListIsElement 指示groupList是否为元素数组
      */
-    'dP'(groupList, use, diff, ids, groupListIsElement) {
-        let { 'dF': elementsMap } = stage_generic_1['dE']();
+    '@:{elements#move.elements.by.ids~rs}'(groupList, use, diff, ids, groupListIsElement) {
+        let { '@:{generic.all#map~rs}': elementsMap } = stage_generic_1['@:{generic#get.all.elements.and.map~rs}']();
         //diff = Const['@:{const#to.unit}'](diff);
         for (let ge of groupList) {
             let m = groupListIsElement ? ge : elementsMap[ge];
@@ -1041,17 +1041,17 @@ module.exports= {
                 if (ids) {
                     ids[id] = 1;
                 }
-                let moveProps = ctrl['_fW'];
-                if (ctrl['_fX']) {
-                    moveProps = ctrl['_fW'](props);
+                let moveProps = ctrl['@:{move.props~rs}'];
+                if (ctrl['@:{move.props.is.function~rs}']) {
+                    moveProps = ctrl['@:{move.props~rs}'](props);
                 }
                 for (let x of moveProps) {
                     if (x.use == use) {
                         props[x.key] += diff;
                     }
                 }
-                if (ctrl['_eF']) {
-                    ctrl['_eF'](props);
+                if (ctrl['@:{update.props~rs}']) {
+                    ctrl['@:{update.props~rs}'](props);
                 }
                 vf.invoke('assign', [{ element: m }]).then(r => {
                     if (r !== false) {
@@ -1065,13 +1065,13 @@ module.exports= {
      * 对齐元素
      * @param to 对齐方式
      */
-    'dQ'(to) {
-        let elements = State.get('dE');
-        let underElement = State.get('dX');
-        let selectedElementsMap = stage_selection_1['dJ']();
-        let groups = State.get('dP');
-        let { 'dF': elementsMap, 'dE': stageElements } = stage_generic_1['dE']();
-        let flowProvider = State.get('dR');
+    '@:{elements#align.elements~rs}'(to) {
+        let elements = State.get('@:{global#stage.select.elements~rs}');
+        let underElement = State.get('@:{global#stage.contextmenu.under.item~rs}');
+        let selectedElementsMap = stage_selection_1['@:{selection#get.selected.map~rs}']();
+        let groups = State.get('@:{global#stage.elements.groups~rs}');
+        let { '@:{generic.all#map~rs}': elementsMap, '@:{generic.all#elements~rs}': stageElements } = stage_generic_1['@:{generic#get.all.elements.and.map~rs}']();
+        let flowProvider = State.get('@:{global#provider.of.flow~rs}');
         let maxRight = MinNum;
         let minLeft = MaxNum;
         let minTop = MaxNum;
@@ -1080,10 +1080,10 @@ module.exports= {
         let minHCenter = MaxNum;
         let compareId;
         State.set({
-            'dX': null
+            '@:{global#stage.contextmenu.under.item~rs}': null
         });
         if (flowProvider) {
-            elements = flowProvider["dI"](elements, 1);
+            elements = flowProvider["@:{flow.provider#remove.connector.from.elements~rs}"](elements, 1);
         }
         //console.log(underElement);
         let sizes = {};
@@ -1091,12 +1091,12 @@ module.exports= {
             let n = node('_rdm_' + m.id);
             let b = n.getBoundingClientRect();
             sizes[m.id] = {
-                left: const_1['dF'](b.x),
-                top: const_1['dF'](b.y),
-                right: const_1['dF'](b.right),
-                bottom: const_1['dF'](b.bottom),
-                width: const_1['dF'](b.width),
-                height: const_1['dF'](b.height)
+                left: const_1['@:{const#to.unit~rs}'](b.x),
+                top: const_1['@:{const#to.unit~rs}'](b.y),
+                right: const_1['@:{const#to.unit~rs}'](b.right),
+                bottom: const_1['@:{const#to.unit~rs}'](b.bottom),
+                width: const_1['@:{const#to.unit~rs}'](b.width),
+                height: const_1['@:{const#to.unit~rs}'](b.height)
             };
         }
         if (underElement) {
@@ -1213,25 +1213,25 @@ module.exports= {
                 diff = minHCenter - (bound.left + bound.width / 2);
                 use = 'x';
             }
-            let mDiff = const_1['dG'](diff);
+            let mDiff = const_1['@:{const#scale.to.unit~rs}'](diff);
             //console.log(mDiff);
             if (mDiff) {
                 ids[m.id] = 1;
                 types[m.type] = 1;
                 isChanged = 1;
                 let groupList = moveWithGroup && groups[m.id] || [m.id];
-                this['dP'](groupList, use, diff, ids);
+                this['@:{elements#move.elements.by.ids~rs}'](groupList, use, diff, ids);
             }
         }
         if (isChanged) {
-            State.fire('dG', {
-                '_fm': ids,
-                '_fn': types,
-                '_dF': {
-                    '_dG': 1
+            State.fire('@:{event#stage.select.element.props.change~rs}', {
+                '@:{ids~rs}': ids,
+                '@:{types~rs}': types,
+                '@:{props~rs}': {
+                    '@:{position~rs}': 1
                 }
             });
-            history_1["dE"](history_1['dX']);
+            history_1["@:{history#save~rs}"](history_1['@:{history#element.aligned~rs}']);
         }
     },
     // async '@:{same.size.elements}'(to, shiftKey) {
@@ -1317,14 +1317,14 @@ module.exports= {
      * @param from from为1时代表宽，否则为高
      * @param to to为1时代表宽，否则为高
      */
-    async 'dR'(from, to) {
-        let elements = State.get('dE');
+    async '@:{elements#sync.or.reverse.size.elements~rs}'(from, to) {
+        let elements = State.get('@:{global#stage.select.elements~rs}');
         if (elements.length == 2) {
-            let underElement = State.get('dX');
+            let underElement = State.get('@:{global#stage.contextmenu.under.item~rs}');
             let [first, second] = elements;
             let source = first == underElement ? second : first;
             State.set({
-                'dX': null
+                '@:{global#stage.contextmenu.under.item~rs}': null
             });
             let { props: destProps, ctrl, id } = underElement;
             let fromKey = from == 1 ? 'width' : 'height';
@@ -1332,10 +1332,10 @@ module.exports= {
             //console.log(fromKey, destKey);
             let sourceProps = source.props;
             if (sourceProps[fromKey] != destProps[destKey]) {
-                let oldRotatedRect = transform_1['dF'](destProps);
-                let old = oldRotatedRect['_fE'][0];
+                let oldRotatedRect = transform_1['@:{transform#rotate.rect~rs}'](destProps);
+                let old = oldRotatedRect['@:{point~rs}'][0];
                 let r;
-                if (ctrl['_gi'] & enum_1['dW']) {
+                if (ctrl['@:{modifier~rs}'] & enum_1['@:{enum#modifier.sync.size~rs}']) {
                     r = destProps.height ? destProps.width / destProps.height : 0;
                 }
                 destProps[destKey] = sourceProps[fromKey];
@@ -1347,13 +1347,13 @@ module.exports= {
                         destProps.width = destProps.height * r;
                     }
                 }
-                let newRotated = transform_1['dF'](destProps);
-                let n = newRotated['_fE'][0];
+                let newRotated = transform_1['@:{transform#rotate.rect~rs}'](destProps);
+                let n = newRotated['@:{point~rs}'][0];
                 //console.log(old, n);
                 destProps.x += old.x - n.x;
                 destProps.y += old.y - n.y;
-                if (ctrl['_eF']) {
-                    ctrl['_eF'](destProps);
+                if (ctrl['@:{update.props~rs}']) {
+                    ctrl['@:{update.props~rs}'](destProps);
                 }
                 let vf = Vframe.byNode(node(id));
                 if (vf) {
@@ -1372,12 +1372,12 @@ module.exports= {
      * @param to 如何均分
      * @param shift 是否使用元素中心点
      */
-    'dS'(to, shift) {
-        let elements = State.get('dE');
-        let flowProvider = State.get('dR');
-        let groups = State.get('dP');
+    '@:{elements#avg.elements~rs}'(to, shift) {
+        let elements = State.get('@:{global#stage.select.elements~rs}');
+        let flowProvider = State.get('@:{global#provider.of.flow~rs}');
+        let groups = State.get('@:{global#stage.elements.groups~rs}');
         if (flowProvider) {
-            elements = flowProvider["dI"](elements, 1);
+            elements = flowProvider["@:{flow.provider#remove.connector.from.elements~rs}"](elements, 1);
         }
         let avgY;
         let avgX;
@@ -1464,8 +1464,8 @@ module.exports= {
         else {
             let totalInnerWidth = 0, totalInnerHeight = 0, maxHeight = maxBottom - minCY, maxWith = maxRight - minCX;
             for (let e of tempArray) {
-                if ((vertical && const_1['en'](maxHeight, e[4])) ||
-                    (!vertical && const_1['en'](maxWith, e[3]))) {
+                if ((vertical && const_1['@:{const#approach~rs}'](maxHeight, e[4])) ||
+                    (!vertical && const_1['@:{const#approach~rs}'](maxWith, e[3]))) {
                     canAvg = 0;
                     break;
                 }
@@ -1505,25 +1505,25 @@ module.exports= {
                     }
                 }
                 prev = now;
-                let d = const_1['dG'](const_1['dF'](dest - current));
+                let d = const_1['@:{const#scale.to.unit~rs}'](const_1['@:{const#to.unit~rs}'](dest - current));
                 if (d) {
                     ids[m.id] = 1;
                     types[m.type] = 1;
                     isChanged = 1;
                     let groupList = moveWithGroup && groups[m.id] || [m.id];
-                    this['dP'](groupList, use, d, ids);
+                    this['@:{elements#move.elements.by.ids~rs}'](groupList, use, d, ids);
                 }
             }
         }
         if (isChanged) {
-            State.fire('dG', {
-                '_fm': ids,
-                '_fn': types,
-                '_dF': {
-                    '_dG': 1
+            State.fire('@:{event#stage.select.element.props.change~rs}', {
+                '@:{ids~rs}': ids,
+                '@:{types~rs}': types,
+                '@:{props~rs}': {
+                    '@:{position~rs}': 1
                 }
             });
-            history_1['dE'](vertical ? history_1['ee'] : history_1['ed']);
+            history_1['@:{history#save~rs}'](vertical ? history_1['@:{history#element.avg.v~rs}'] : history_1['@:{history#element.avg.h~rs}']);
         }
     },
     /**
@@ -1531,12 +1531,12 @@ module.exports= {
      * @param to 如何均分
      * @param shift 是否使用元素中心点
      */
-    'dT'(to, shift, control) {
-        let stages = stage_generic_1['dT']();
-        let groups = State.get('dP');
-        let flowProvider = State.get('dR');
-        let page = State.get('dN');
-        let selectElementsMap = stage_selection_1['dJ']();
+    '@:{elements#stage.avg.elements~rs}'(to, shift, control) {
+        let stages = stage_generic_1['@:{generic#query.select.elements.stage~rs}']();
+        let groups = State.get('@:{global#stage.elements.groups~rs}');
+        let flowProvider = State.get('@:{global#provider.of.flow~rs}');
+        let page = State.get('@:{global#stage.page~rs}');
+        let selectElementsMap = stage_selection_1['@:{selection#get.selected.map~rs}']();
         let isChanged;
         let ids = {}, types = {}, vertical = to == 'sv', maxPages = page.pages;
         if (control) {
@@ -1544,19 +1544,19 @@ module.exports= {
         }
         let newStages = [], elementInPages = {};
         for (let stage of stages) {
-            let rootBound = node(stage['_fS']).getBoundingClientRect();
+            let rootBound = node(stage['@:{container~rs}']).getBoundingClientRect();
             let one = {
-                '_gu': rootBound.x,
-                '_gv': rootBound.y,
-                '_gw': rootBound.width,
-                '_gx': rootBound.height,
-                '_gy': 1,
-                '_f7': [],
-                '_gz': 0
+                '@:{bound.x~rs}': rootBound.x,
+                '@:{bound.y~rs}': rootBound.y,
+                '@:{bound.width~rs}': rootBound.width,
+                '@:{bound.height~rs}': rootBound.height,
+                '@:{move.with.group~rs}': 1,
+                '@:{selected~rs}': [],
+                '@:{offset.y~rs}': 0
             };
-            let selectedElements = stage['_f7'];
+            let selectedElements = stage['@:{selected~rs}'];
             if (flowProvider) {
-                selectedElements = flowProvider["dI"](selectedElements, 1);
+                selectedElements = flowProvider["@:{flow.provider#remove.connector.from.elements~rs}"](selectedElements, 1);
             }
             let differentGroups = 0, sameGroupCount = 0, fullSelected = 0, queried = {};
             for (let e of selectedElements) {
@@ -1582,44 +1582,44 @@ module.exports= {
             }
             if (differentGroups == 1 &&
                 fullSelected == 1) {
-                one['_gy'] = 0;
+                one['@:{move.with.group~rs}'] = 0;
             }
             let pre = one;
             for (let e of selectedElements) {
                 let bound = node('_rdm_' + e.id).getBoundingClientRect();
-                if (stage['_gp'] == '_gA') {
+                if (stage['@:{stage.type~rs}'] == '@:{stage~rs}') {
                     let single = (rootBound.height / maxPages);
                     let whichPages = floor((bound.y - rootBound.y) / single);
                     whichPages = max(min(whichPages, maxPages - 1), 0);
                     let inPage = whichPages * single;
                     if (!has(elementInPages, inPage)) {
-                        pre = const_1['er'](one);
-                        pre['_gz'] = inPage;
-                        pre['_gx'] = single;
+                        pre = const_1['@:{const#clone~rs}'](one);
+                        pre['@:{offset.y~rs}'] = inPage;
+                        pre['@:{bound.height~rs}'] = single;
                         newStages.push(elementInPages[inPage] = pre);
                     }
                     else {
                         pre = elementInPages[inPage];
                     }
                 }
-                pre['_f7'].push({
-                    '_gB': bound,
-                    '_gc': e
+                pre['@:{selected~rs}'].push({
+                    '@:{bound~rs}': bound,
+                    '@:{element~rs}': e
                 });
             }
-            if (stage['_gp'] == '_gq') {
+            if (stage['@:{stage.type~rs}'] == '@:{hod~rs}') {
                 newStages.push(pre);
             }
         }
         for (let stage of newStages) {
-            let rootBoundX = stage['_gu'];
-            let rootBoundY = stage['_gv'];
-            let stageWidth = stage['_gw'];
-            let stageHeight = stage['_gx'];
-            let prev = [rootBoundX, rootBoundY + stage['_gz'], 0, 0, 0];
-            let selectedElements = stage['_f7'];
-            let maxCX = MinNum, minCX = MaxNum, maxCY = MinNum, minCY = MaxNum, maxRight = MinNum, maxBottom = MinNum, moveWithGroup = stage['_gy'], tempArray = [];
-            for (let { '_gB': bound, '_gc': m } of selectedElements) {
+            let rootBoundX = stage['@:{bound.x~rs}'];
+            let rootBoundY = stage['@:{bound.y~rs}'];
+            let stageWidth = stage['@:{bound.width~rs}'];
+            let stageHeight = stage['@:{bound.height~rs}'];
+            let prev = [rootBoundX, rootBoundY + stage['@:{offset.y~rs}'], 0, 0, 0];
+            let selectedElements = stage['@:{selected~rs}'];
+            let maxCX = MinNum, minCX = MaxNum, maxCY = MinNum, minCY = MaxNum, maxRight = MinNum, maxBottom = MinNum, moveWithGroup = stage['@:{move.with.group~rs}'], tempArray = [];
+            for (let { '@:{bound~rs}': bound, '@:{element~rs}': m } of selectedElements) {
                 let { x, y, width, height, right, bottom } = bound;
                 let mx = x, my = y;
                 if (shift) {
@@ -1720,26 +1720,26 @@ module.exports= {
                         }
                     }
                     prev = now;
-                    let d = const_1['dG'](const_1['dF'](dest - current));
+                    let d = const_1['@:{const#scale.to.unit~rs}'](const_1['@:{const#to.unit~rs}'](dest - current));
                     if (d) {
                         ids[m.id] = 1;
                         types[m.type] = 1;
                         isChanged = 1;
                         let groupList = moveWithGroup && groups[m.id] || [m.id];
-                        this['dP'](groupList, use, d, ids);
+                        this['@:{elements#move.elements.by.ids~rs}'](groupList, use, d, ids);
                     }
                 }
             }
         }
         if (isChanged) {
-            State.fire('dG', {
-                '_fm': ids,
-                '_fn': types,
-                '_dF': {
-                    '_dG': 1
+            State.fire('@:{event#stage.select.element.props.change~rs}', {
+                '@:{ids~rs}': ids,
+                '@:{types~rs}': types,
+                '@:{props~rs}': {
+                    '@:{position~rs}': 1
                 }
             });
-            history_1['dE'](vertical ? history_1['ee'] : history_1['ed']);
+            history_1['@:{history#save~rs}'](vertical ? history_1['@:{history#element.avg.v~rs}'] : history_1['@:{history#element.avg.h~rs}']);
         }
     },
     /**
@@ -1749,28 +1749,28 @@ module.exports= {
      * @param cell 格子对象
      * @param srcCtrl 当前元素的ctrl对象
      */
-    'dF'(e, silent, cell, srcCtrl) {
-        let current = State.get('dE');
+    '@:{elements#get.best.collection~rs}'(e, silent, cell, srcCtrl) {
+        let current = State.get('@:{global#stage.select.elements~rs}');
         let clicked = !e.node;
         //let { areas } = State.get('@:{global#stage.page}');
         // let collectionType = '@:{stage}';
         // let area;
-        let first = current[0], xy = transform_1["dI"]({
+        let first = current[0], xy = transform_1["@:{transform#real.to.stage.coord~rs}"]({
             x: e.pageX,
             y: e.pageY
-        }), collection = State.get('dM'), find = 0, focus = 1; //,
+        }), collection = State.get('@:{global#stage.elements~rs}'), find = 0, focus = 1; //,
         //collType = '@:{stage}';
         if (clicked &&
             current.length == 1 &&
-            (first.ctrl.as & enum_1['dH']) &&
+            (first.ctrl.as & enum_1['@:{enum#as.hod~rs}']) &&
             first.props.focusRow > -1) {
             let { rows, focusRow, focusCol } = first.props;
             let row = rows[focusRow];
             if (row &&
-                (!first.ctrl['_fT'] ||
-                    first.ctrl['_fT'][srcCtrl.type]) &&
-                (!srcCtrl['_fV'] ||
-                    srcCtrl['_fV'][first.type])) {
+                (!first.ctrl['@:{allowed.elements~rs}'] ||
+                    first.ctrl['@:{allowed.elements~rs}'][srcCtrl.type]) &&
+                (!srcCtrl['@:{allowed.to.hod~rs}'] ||
+                    srcCtrl['@:{allowed.to.hod~rs}'][first.type])) {
                 let cell = row.cols[focusCol];
                 if (cell) {
                     collection = cell.elements;
@@ -1786,23 +1786,23 @@ module.exports= {
             }
         }
         else if (!clicked && cell) {
-            let maskNode = node(cell['_eO']);
+            let maskNode = node(cell['@:{mask.id~rs}']);
             if (maskNode) {
                 let bound = maskNode.getBoundingClientRect();
                 xy = {
                     x: e.pageX - bound.x,
                     y: e.pageY - bound.y
                 };
-                collection = cell['_gC'];
+                collection = cell['@:{elements~rs}'];
                 find = 1;
             }
         }
         if (!find) {
             if (clicked) {
-                xy = transform_1["dJ"](xy);
+                xy = transform_1["@:{transform#stage.to.real.coord~rs}"](xy);
             }
-            if (srcCtrl['_fV'] &&
-                !srcCtrl['_fV'].root) {
+            if (srcCtrl['@:{allowed.to.hod~rs}'] &&
+                !srcCtrl['@:{allowed.to.hod~rs}'].root) {
                 collection = 0;
             }
             // if (collection &&
@@ -1823,9 +1823,9 @@ module.exports= {
             focus = 0;
         }
         return {
-            '_fR': collection,
-            '_g_': xy,
-            '_gb': focus,
+            '@:{collection~rs}': collection,
+            '@:{position.xy~rs}': xy,
+            '@:{focus.add.element~rs}': focus,
             //'@:{collection.type}': collectionType,
             //'@:{area}': area
         };
@@ -1835,18 +1835,18 @@ module.exports= {
      * @param testNode 待检测dom节点
      * @param ctrl 当前元素的ctrl对象
      */
-    'dE'(testNode, ctrl) {
-        let elements = State.get('dM'), cell = null;
+    '@:{elements#get.best.hod~rs}'(testNode, ctrl) {
+        let elements = State.get('@:{global#stage.elements~rs}'), cell = null;
         let walk = es => {
             for (let e of es) {
                 let { type, id, ctrl: elementCtrl, props } = e;
                 let n = node(id);
                 if (inside(testNode, n)) {
                     //consolex.log(elementCtrl['@:{allowed.elements}'],ctrl.type);
-                    if ((elementCtrl.as & enum_1['dH']) &&
+                    if ((elementCtrl.as & enum_1['@:{enum#as.hod~rs}']) &&
                         (!ctrl ||
-                            !elementCtrl['_fT'] ||
-                            elementCtrl['_fT'][ctrl.type])) {
+                            !elementCtrl['@:{allowed.elements~rs}'] ||
+                            elementCtrl['@:{allowed.elements~rs}'][ctrl.type])) {
                         let rows = props.rows;
                         for (let i = rows.length; i--;) {
                             let row = rows[i];
@@ -1858,11 +1858,11 @@ module.exports= {
                                 if (inside(testNode, n) &&
                                     !props.locked) {
                                     if (!ctrl ||
-                                        !ctrl['_fV'] ||
-                                        ctrl['_fV'][type]) {
+                                        !ctrl['@:{allowed.to.hod~rs}'] ||
+                                        ctrl['@:{allowed.to.hod~rs}'][type]) {
                                         let canGenerateCell = true;
                                         if (ctrl) {
-                                            let counter = ctrl['_eJ'];
+                                            let counter = ctrl['@:{allowed.stage.count~rs}'];
                                             if (counter >= 0) {
                                                 let t = 0;
                                                 if (elements) {
@@ -1877,11 +1877,11 @@ module.exports= {
                                         }
                                         if (canGenerateCell) {
                                             cell = {
-                                                '_gD': type,
-                                                '_gE': n,
-                                                '_gF': `_rd_dm${cellId}`,
-                                                '_eO': `_rd_hm${cellId}`,
-                                                '_gC': elements
+                                                '@:{owner.type~rs}': type,
+                                                '@:{node~rs}': n,
+                                                '@:{dashed.id~rs}': `_rd_dm${cellId}`,
+                                                '@:{mask.id~rs}': `_rd_hm${cellId}`,
+                                                '@:{elements~rs}': elements
                                             };
                                         }
                                     }
@@ -1907,13 +1907,13 @@ module.exports= {
      * @param hodId 格子id
      * @param picked 右键菜单点击时的回调
      */
-    'dU'(view, event, collection, hodId, picked) {
+    '@:{elements#show.contextmenu~rs}'(view, event, collection, hodId, picked) {
         //右键菜单
         let lang = config('lang');
         let list;
         let disabled = {};
-        let selectElements = State.get('dE');
-        let selectElementsMap = stage_selection_1['dJ']();
+        let selectElements = State.get('@:{global#stage.select.elements~rs}');
+        let selectElementsMap = stage_selection_1['@:{selection#get.selected.map~rs}']();
         let selectCount = selectElements.length;
         //element : 右键时，处于右键下的文件
         let element = selectElements[0] || view.get('element');
@@ -1928,17 +1928,17 @@ module.exports= {
             selectCount = 0;
         }
         if (selectCount == 1) { //只有一个元素处于选中状态
-            list = contextmenu_1["d4"](lang); //获取相应的菜单列表
+            list = contextmenu_1["@:{cm#single.element~rs}"](lang); //获取相应的菜单列表
             let topElement = collection[collection.length - 1]; //处理z轴关系
             let bottomElement = collection[0];
             let atTop = topElement.id == element.id;
             let atBottom = bottomElement.id == element.id;
-            let enable = stage_generic_1['dW'](selectElementsMap);
-            disabled[contextmenu_1["dH"]] = locked || atTop;
-            disabled[contextmenu_1["dG"]] = locked || atTop;
-            disabled[contextmenu_1["dI"]] = locked || atBottom;
-            disabled[contextmenu_1["dJ"]] = locked || atBottom;
-            disabled[contextmenu_1['dN']] = enable != 1 || locked;
+            let enable = stage_generic_1['@:{generic#query.in.enable.hod~rs}'](selectElementsMap);
+            disabled[contextmenu_1["@:{cm#up.id~rs}"]] = locked || atTop;
+            disabled[contextmenu_1["@:{cm#top.id~rs}"]] = locked || atTop;
+            disabled[contextmenu_1["@:{cm#bottom.id~rs}"]] = locked || atBottom;
+            disabled[contextmenu_1["@:{cm#down.id~rs}"]] = locked || atBottom;
+            disabled[contextmenu_1['@:{cm#delete.id~rs}']] = enable != 1 || locked;
         }
         else if (selectCount > 1) { //多选
             let syncDisabled, syncWidth = 1, syncHeight = 1, syncWidthAsHeight = 1, syncHeightAsWidth = 1;
@@ -1946,38 +1946,38 @@ module.exports= {
                 //开启尺寸同步功能
                 syncDisabled = 0;
                 //2个元素显示的右键菜单
-                list = contextmenu_1['d5'](lang);
+                list = contextmenu_1['@:{cm#double.element~rs}'](lang);
             }
             else {
                 syncDisabled = 1;
                 //3个元素
-                list = contextmenu_1["d6"](lang);
+                list = contextmenu_1["@:{cm#multiple.element~rs}"](lang);
             }
-            let underElement = State.get('dX');
+            let underElement = State.get('@:{global#stage.contextmenu.under.item~rs}');
             if (!syncDisabled) { //正好有2个元素
                 let [first, second] = selectElements;
                 let from = first == underElement ? second : first;
-                let fromCtrlModifier = from.ctrl['_gi'], toCtrlModifier = underElement.ctrl['_gi'];
+                let fromCtrlModifier = from.ctrl['@:{modifier~rs}'], toCtrlModifier = underElement.ctrl['@:{modifier~rs}'];
                 let fromFlag = 1, toFlag = 1;
                 //根据元素控制器提供的相应的能否修改宽高能力，决定元素之间的宽高菜单项能否工作
-                if (fromCtrlModifier & enum_1['dO']) {
+                if (fromCtrlModifier & enum_1['@:{enum#modifier.width~rs}']) {
                     fromFlag |= 2;
                 }
-                if (fromCtrlModifier & enum_1['dP']) {
+                if (fromCtrlModifier & enum_1['@:{enum#modifier.height~rs}']) {
                     fromFlag |= 4;
                 }
-                if (fromCtrlModifier & enum_1['dN']) {
+                if (fromCtrlModifier & enum_1['@:{enum#modifier.size~rs}']) {
                     fromFlag = 7;
                 }
                 //鼠标下的元素未处于锁定状态
                 if (!underElement.props.locked) {
-                    if (toCtrlModifier & enum_1['dO']) {
+                    if (toCtrlModifier & enum_1['@:{enum#modifier.width~rs}']) {
                         toFlag |= 2;
                     }
-                    if (toCtrlModifier & enum_1['dP']) {
+                    if (toCtrlModifier & enum_1['@:{enum#modifier.height~rs}']) {
                         toFlag |= 4;
                     }
-                    if (toCtrlModifier & enum_1['dN']) {
+                    if (toCtrlModifier & enum_1['@:{enum#modifier.size~rs}']) {
                         toFlag = 7;
                     }
                 }
@@ -1999,58 +1999,58 @@ module.exports= {
                     }
                 }
             }
-            let alignInfo = stage_generic_1['dX'](underElement), xCanotAlign = !alignInfo['dE'], yCanotAlign = !alignInfo['dF'];
-            let enable = stage_generic_1['dW'](selectElementsMap);
-            let hasDisabled = stage_generic_1['dY'](selectElements);
-            disabled[contextmenu_1["dT"]] = syncHeightAsWidth;
-            disabled[contextmenu_1["dS"]] = syncWidthAsHeight;
-            disabled[contextmenu_1["dV"]] = syncHeight;
-            disabled[contextmenu_1["dU"]] = syncWidth;
-            disabled[contextmenu_1["dW"]] = yCanotAlign;
-            disabled[contextmenu_1["dY"]] = xCanotAlign;
-            disabled[contextmenu_1["d1"]] = yCanotAlign;
-            disabled[contextmenu_1["d0"]] = xCanotAlign;
-            disabled[contextmenu_1["dX"]] = xCanotAlign;
-            disabled[contextmenu_1["dZ"]] = yCanotAlign;
-            disabled[contextmenu_1['dN']] = enable != 1 || hasDisabled;
+            let alignInfo = stage_generic_1['@:{generic#query.can.align~rs}'](underElement), xCanotAlign = !alignInfo['@:{generic.align#x.can.align~rs}'], yCanotAlign = !alignInfo['@:{generic.align#y.can.align~rs}'];
+            let enable = stage_generic_1['@:{generic#query.in.enable.hod~rs}'](selectElementsMap);
+            let hasDisabled = stage_generic_1['@:{generic#query.has.disabled~rs}'](selectElements);
+            disabled[contextmenu_1["@:{cm#sync.height.as.width.id~rs}"]] = syncHeightAsWidth;
+            disabled[contextmenu_1["@:{cm#sync.width.as.height.id~rs}"]] = syncWidthAsHeight;
+            disabled[contextmenu_1["@:{cm#sync.height.id~rs}"]] = syncHeight;
+            disabled[contextmenu_1["@:{cm#sync.width.id~rs}"]] = syncWidth;
+            disabled[contextmenu_1["@:{cm#align.bottom.id~rs}"]] = yCanotAlign;
+            disabled[contextmenu_1["@:{cm#align.left.id~rs}"]] = xCanotAlign;
+            disabled[contextmenu_1["@:{cm#align.top.id~rs}"]] = yCanotAlign;
+            disabled[contextmenu_1["@:{cm#align.right.id~rs}"]] = xCanotAlign;
+            disabled[contextmenu_1["@:{cm#align.center.id~rs}"]] = xCanotAlign;
+            disabled[contextmenu_1["@:{cm#align.middle.id~rs}"]] = yCanotAlign;
+            disabled[contextmenu_1['@:{cm#delete.id~rs}']] = enable != 1 || hasDisabled;
         }
         else {
             if (hodId) { //容器格子的右键菜单需要查询z轴
-                list = contextmenu_1["d8"](lang);
-                let ownerColl = stage_generic_1["dU"](element);
+                list = contextmenu_1["@:{cm#hod.stage~rs}"](lang);
+                let ownerColl = stage_generic_1["@:{generic#find.element.owner.collection~rs}"](element);
                 let topElement = ownerColl[ownerColl.length - 1];
                 let bottomElement = ownerColl[0];
                 let atTop = topElement.id == element.id;
                 let atBottom = bottomElement.id == element.id;
-                disabled[contextmenu_1["dH"]] = locked || atTop;
-                disabled[contextmenu_1["dG"]] = locked || atTop;
-                disabled[contextmenu_1["dI"]] = locked || atBottom;
-                disabled[contextmenu_1["dJ"]] = locked || atBottom;
-                let nonreadonlyElements = stage_generic_1['dV'](collection);
-                disabled[contextmenu_1['d2']] = !nonreadonlyElements.length;
-                disabled[contextmenu_1['d3']] = readonly;
+                disabled[contextmenu_1["@:{cm#up.id~rs}"]] = locked || atTop;
+                disabled[contextmenu_1["@:{cm#top.id~rs}"]] = locked || atTop;
+                disabled[contextmenu_1["@:{cm#bottom.id~rs}"]] = locked || atBottom;
+                disabled[contextmenu_1["@:{cm#down.id~rs}"]] = locked || atBottom;
+                let nonreadonlyElements = stage_generic_1['@:{generic#query.all.without.readonly.elements~rs}'](collection);
+                disabled[contextmenu_1['@:{cm#clear.hod.stage.id~rs}']] = !nonreadonlyElements.length;
+                disabled[contextmenu_1['@:{cm#reverse.id~rs}']] = readonly;
             }
             else {
-                list = contextmenu_1["d7"](lang);
-                disabled[contextmenu_1['dO']] = !stage_generic_1['dI']();
-                disabled[contextmenu_1['dP']] = !stage_generic_1['dJ']();
-                currentCollection = State.get('dM');
+                list = contextmenu_1["@:{cm#stage~rs}"](lang);
+                disabled[contextmenu_1['@:{cm#clear.id~rs}']] = !stage_generic_1['@:{generic#query.can.clear.stage~rs}']();
+                disabled[contextmenu_1['@:{cm#new.id~rs}']] = !stage_generic_1['@:{generic#query.can.create.new.page~rs}']();
+                currentCollection = State.get('@:{global#stage.elements~rs}');
             }
-            collection = stage_generic_1['dF'](collection, 0, 1);
-            disabled[contextmenu_1["dE"]] = !collection.length;
-            disabled[contextmenu_1["dN"]] = !hodId || readonly || locked;
+            collection = stage_generic_1['@:{generic#filter.elements~rs}'](collection, 0, 1);
+            disabled[contextmenu_1["@:{cm#all.id~rs}"]] = !collection.length;
+            disabled[contextmenu_1["@:{cm#delete.id~rs}"]] = !hodId || readonly || locked;
         }
         if (selectCount) {
-            let { '_gG': canUngroup, '_gH': canGroup } = stage_generic_1["dZ"]();
-            disabled[contextmenu_1["dR"]] = !canGroup;
-            disabled[contextmenu_1["dQ"]] = !canUngroup;
+            let { '@:{can.ungroup~rs}': canUngroup, '@:{can.group~rs}': canGroup } = stage_generic_1["@:{generic#query.group.state~rs}"]();
+            disabled[contextmenu_1["@:{cm#group.id~rs}"]] = !canGroup;
+            disabled[contextmenu_1["@:{cm#ungroup.id~rs}"]] = !canUngroup;
         }
-        let copyElements = stage_clipboard_1["_f2"]();
-        let cxvInfo = stage_generic_1['d0'](copyElements, element, currentCollection);
-        disabled[contextmenu_1['dK']] = !cxvInfo['_gI'];
-        disabled[contextmenu_1['dL']] = !cxvInfo['_gJ'];
-        disabled[contextmenu_1['dM']] = !cxvInfo['_gJ'] || !cxvInfo['_gK'];
-        disabled[contextmenu_1['dF']] = !cxvInfo['_gL'];
+        let copyElements = stage_clipboard_1["@:{get.copy.list~rs}"]();
+        let cxvInfo = stage_generic_1['@:{generic#query.can.cxv~rs}'](copyElements, element, currentCollection);
+        disabled[contextmenu_1['@:{cm#cut.id~rs}']] = !cxvInfo['@:{can.cut~rs}'];
+        disabled[contextmenu_1['@:{cm#copy.id~rs}']] = !cxvInfo['@:{can.copy~rs}'];
+        disabled[contextmenu_1['@:{cm#duplicate.id~rs}']] = !cxvInfo['@:{can.copy~rs}'] || !cxvInfo['@:{can.duplicate~rs}'];
+        disabled[contextmenu_1['@:{cm#paste.id~rs}']] = !cxvInfo['@:{can.paste~rs}'];
         index_1.show(view, event, contextMenuId, {
             list: list,
             disabled,

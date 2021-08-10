@@ -4,22 +4,22 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4t/ebase",["4e","../4d/4g","../4d/enum","../4d/4q","../4d/55","../4d/57","../4d/4h","../4l/4n/cursor","../4l/4n/tip"],(require,exports,module)=>{
+define("provider/ebase",["magix5","../designer/const","../designer/enum","../designer/history","../designer/stage-align","../designer/stage-generic","../designer/transform","../gallery/mx-pointer/cursor","../gallery/mx-pointer/tip"],(require,exports,module)=>{
 
 "use strict";
 /**
  * svg操作对象
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-let magix_1 = require("4e");
-let const_1 = require("../4d/4g");
-let enum_1 = require("../4d/enum");
-let history_1 = require("../4d/4q");
-let stage_align_1 = require("../4d/55");
-let stage_generic_1 = require("../4d/57");
-let transform_1 = require("../4d/4h");
-let cursor_1 = require("../4l/4n/cursor");
-let tip_1 = require("../4l/4n/tip");
+let magix_1 = require("magix5");
+let const_1 = require("../designer/const");
+let enum_1 = require("../designer/enum");
+let history_1 = require("../designer/history");
+let stage_align_1 = require("../designer/stage-align");
+let stage_generic_1 = require("../designer/stage-generic");
+let transform_1 = require("../designer/transform");
+let cursor_1 = require("../gallery/mx-pointer/cursor");
+let tip_1 = require("../gallery/mx-pointer/tip");
 let { atan2, PI, sin, cos, max, min } = Math;
 let { node, State, has, inside, } = magix_1;
 let { MAX_VALUE } = Number;
@@ -34,9 +34,9 @@ module.exports= {
         //     element.id = guid('fix_');
         // }
         this.set(data);
-        this['_im']();
+        this['@:{check.status~rs}']();
     },
-    async '_fY'(element) {
+    async '@:{update~rs}'(element) {
         await this.digest({
             element
         });
@@ -46,8 +46,8 @@ module.exports= {
      * @param props svg元素属性
      * @returns 控制点列表
      */
-    '_kX'(props) {
-        if (!props['_kZ']) {
+    '@:{get.key.point~rs}'(props) {
+        if (!props['@:{cached.key.points~rs}']) {
             let points = [], index = 1;
             while (true) {
                 let key = 'ctrl' + index++;
@@ -58,17 +58,17 @@ module.exports= {
                     break;
                 }
             }
-            props['_kZ'] = points;
+            props['@:{cached.key.points~rs}'] = points;
         }
-        return props['_kZ'];
+        return props['@:{cached.key.points~rs}'];
     },
     /**
      * 获取以mod开头的所有修改点
      * @param props svg元素属性
      * @returns 修改点列表
      */
-    '_k6'(props) {
-        if (!props['_nk']) {
+    '@:{get.mod.point~rs}'(props) {
+        if (!props['@:{cached.mod.points~rs}']) {
             let points = [], index = 1;
             while (true) {
                 let key = 'mod' + index++;
@@ -80,21 +80,21 @@ module.exports= {
                     break;
                 }
             }
-            props['_nk'] = points;
+            props['@:{cached.mod.points~rs}'] = points;
         }
-        return props['_nk'];
+        return props['@:{cached.mod.points~rs}'];
     },
-    '_ip<pointerdown>'(e) {
-        e['_ey'] = 1;
+    '@:{start.rotate~rs}<pointerdown>'(e) {
+        e['@:{halt~rs}'] = 1;
         let me = this;
         let element = me.get('element');
         let { props, ctrl } = element;
         let { rotate, x, y, width, height } = props;
-        width = const_1['eo'](width);
-        height = const_1['eo'](height);
-        x = const_1['eo'](x);
-        y = const_1['eo'](y);
-        State.fire('d3', {
+        width = const_1['@:{const#to.px~rs}'](width);
+        height = const_1['@:{const#to.px~rs}'](height);
+        x = const_1['@:{const#to.px~rs}'](x);
+        y = const_1['@:{const#to.px~rs}'](y);
+        State.fire('@:{event#stage.toggle.scroll~rs}', {
             show: 1,
             size: 1
         });
@@ -102,19 +102,19 @@ module.exports= {
             x: x + width / 2,
             y: y + height / 2
         };
-        let pos = transform_1["dL"](me.root, {
+        let pos = transform_1["@:{transform#real.to.nearest.coord~rs}"](me.root, {
             x: e.pageX,
             y: e.pageY,
             f: 1
         });
         let sdeg = atan2(pos.y - c.y, pos.x - c.x) - rotate * PI / 180, moved;
         let eventTarget = e.eventTarget;
-        me['_eb'](e, (evt) => {
+        me['@:{drag.drop~rs}'](e, (evt) => {
             if (!moved) {
-                cursor_1["_ec"](eventTarget);
+                cursor_1["@:{show~rs}"](eventTarget);
             }
             moved = 1;
-            pos = transform_1["dL"](me.root, {
+            pos = transform_1["@:{transform#real.to.nearest.coord~rs}"](me.root, {
                 x: evt.pageX,
                 y: evt.pageY,
                 f: 1
@@ -122,47 +122,47 @@ module.exports= {
             let deg = atan2(pos.y - c.y, pos.x - c.x);
             deg = (deg - sdeg) * 180 / PI;
             props.rotate = (360 + (deg | 0)) % 360;
-            if (ctrl['_eF']) {
-                ctrl['_eF'](props);
+            if (ctrl['@:{update.props~rs}']) {
+                ctrl['@:{update.props~rs}'](props);
             }
             this.digest({
                 element
             });
-            State.fire('dG', {
-                '_fm': {
+            State.fire('@:{event#stage.select.element.props.change~rs}', {
+                '@:{ids~rs}': {
                     [element.id]: 1
                 },
-                '_fn': {
+                '@:{types~rs}': {
                     [element.type]: 1
                 },
-                '_dF': {
-                    '_dI': 1
+                '@:{props~rs}': {
+                    '@:{rotate~rs}': 1
                 }
             });
-            tip_1['_gl'](`${props.rotate}°`);
-            tip_1['_go'](evt.pageX, evt.pageY);
+            tip_1['@:{show.text~rs}'](`${props.rotate}°`);
+            tip_1['@:{update.position~rs}'](evt.pageX, evt.pageY);
         }, () => {
             if (moved) {
-                cursor_1["_ed"]();
+                cursor_1["@:{hide~rs}"]();
                 if (rotate != props.rotate) {
-                    history_1["dE"](history_1['d7'], props.ename);
+                    history_1["@:{history#save~rs}"](history_1['@:{history#element.rotated~rs}'], props.ename);
                 }
             }
-            State.fire('d3', {
+            State.fire('@:{event#stage.toggle.scroll~rs}', {
                 hide: 1
             });
-            tip_1['_ed']();
+            tip_1['@:{hide~rs}']();
         });
     },
-    '_hQ<pointerdown>'(e) {
-        if (e.button || e['_ey'])
+    '@:{start.resize~rs}<pointerdown>'(e) {
+        if (e.button || e['@:{halt~rs}'])
             return;
-        e['_ey'] = 1;
+        e['@:{halt~rs}'] = 1;
         //https://github.com/a7650/h5-editor/blob/master/src/views/posterEditor/components/dragable/components/vue-draggable-resizable.vue
         let me = this;
         let element = me.get('element');
         let { props, ctrl } = element;
-        State.fire('d3', {
+        State.fire('@:{event#stage.toggle.scroll~rs}', {
             show: 1,
             size: 1
         });
@@ -172,11 +172,11 @@ module.exports= {
         }
         let { params, pageX, pageY, shiftKey: isShiftKeyStillPressed, altKey, eventTarget } = e;
         let { key } = params;
-        let rotatedRect = transform_1['dF'](props);
+        let rotatedRect = transform_1['@:{transform#rotate.rect~rs}'](props);
         let [handY, handX] = key;
-        let useFixIndex = transform_1['dO'](key);
-        let beginFixed = rotatedRect['_fE'][useFixIndex];
-        let scale = State.get('dF');
+        let useFixIndex = transform_1['@:{transform#handle.to.fixed.point~rs}'](key);
+        let beginFixed = rotatedRect['@:{point~rs}'][useFixIndex];
+        let scale = State.get('@:{global#stage.scale~rs}');
         let minWidth = 0, minHeight = 0, maxWidth = MAX_VALUE, maxHeight = MAX_VALUE, findWidth, findHeight;
         for (let p of ctrl.props) {
             if (p.key == 'width') {
@@ -214,17 +214,17 @@ module.exports= {
         let oppsiteHeight = handY == 't' ? -1 : 1;
         let minRatio = max(minWidth / beginWidth, minHeight / beginHeight);
         let maxRatio = min(maxWidth / beginWidth, maxHeight / beginHeight);
-        let syncSize = ctrl['_gi'] & enum_1['dW'];
-        let supportSnapElement = const_1['d0'], alignElements, page = State.get('dN'), snapElement = page.snapElement, altPressed = snapElement ? altKey : !altKey, snapThreshold, maskLeft, maskTop;
+        let syncSize = ctrl['@:{modifier~rs}'] & enum_1['@:{enum#modifier.sync.size~rs}'];
+        let supportSnapElement = const_1['@:{const#page.enable.snap.align.elements~rs}'], alignElements, page = State.get('@:{global#stage.page~rs}'), snapElement = page.snapElement, altPressed = snapElement ? altKey : !altKey, snapThreshold, maskLeft, maskTop;
         if (supportSnapElement) {
             let maskId = this.get('maskId');
-            let { 'dE': allElements } = stage_generic_1['dE']();
-            let find = stage_align_1['dE'](allElements, maskId, element);
-            alignElements = find['dE'];
-            snapThreshold = const_1['e_'] * scale;
+            let { '@:{generic.all#elements~rs}': allElements } = stage_generic_1['@:{generic#get.all.elements.and.map~rs}']();
+            let find = stage_align_1['@:{align#query.align.elements~rs}'](allElements, maskId, element);
+            alignElements = find['@:{align.queried#align.elements.sizes~rs}'];
+            snapThreshold = const_1['@:{const#drag.snap.to.other.element.offset~rs}'] * scale;
             if (maskId) {
-                let maskBound = find['dS'];
-                let rootBound = find['dF'];
+                let maskBound = find['@:{align.queried#mask.bound~rs}'];
+                let rootBound = find['@:{align.queried#root.bound~rs}'];
                 maskLeft = maskBound.x - rootBound.x;
                 maskTop = maskBound.y - rootBound.y;
             }
@@ -235,7 +235,7 @@ module.exports= {
             if (!moveEvent)
                 return;
             if (!moved) {
-                cursor_1["_ec"](eventTarget);
+                cursor_1["@:{show~rs}"](eventTarget);
                 moved = 1;
             }
             let nowPoint = {
@@ -243,14 +243,14 @@ module.exports= {
                 y: moveEvent.pageY
             };
             if (nearsideScrollOffset) {
-                nowPoint.y += nearsideScrollOffset['dE'];
-                nowPoint.x += nearsideScrollOffset['dF'];
+                nowPoint.y += nearsideScrollOffset['@:{interval.move.event#y~rs}'];
+                nowPoint.x += nearsideScrollOffset['@:{interval.move.event#x~rs}'];
             }
-            let angle = transform_1['dN'](nowPoint, beginPoint);
-            let dis = transform_1['dS'](nowPoint, beginPoint);
+            let angle = transform_1['@:{transform#get.point.deg~rs}'](nowPoint, beginPoint);
+            let dis = transform_1['@:{transform#get.point.distance~rs}'](nowPoint, beginPoint);
             let rad = (PI / 180) * (angle - rotate);
-            let diffY = const_1['dF'](sin(rad) * dis);
-            let diffX = const_1['dF'](cos(rad) * dis);
+            let diffY = const_1['@:{const#to.unit~rs}'](sin(rad) * dis);
+            let diffX = const_1['@:{const#to.unit~rs}'](cos(rad) * dis);
             let newWidth = beginWidth + (modifyWidth ? diffX : 0) * oppsiteWidth;
             let newHeight = beginHeight + (modifyHeight ? diffY : 0) * oppsiteHeight;
             if (newWidth < minWidth) {
@@ -310,10 +310,10 @@ module.exports= {
                 newHeight = beginHeight * r;
             }
             if (supportSnapElement) {
-                let snapInfo = stage_align_1['dL'](alignElements, beginFixed, key, rotate, newWidth, newHeight, snapThreshold, minWidth, maxWidth, minHeight, maxHeight, syncFlag, beginWidth, beginHeight, minRatio, maxRatio, altPressed, maskLeft, maskTop);
-                if (snapInfo['_fM']) {
-                    newWidth = snapInfo['_fN'];
-                    newHeight = snapInfo['_fO'];
+                let snapInfo = stage_align_1['@:{align#query.snap.info~rs}'](alignElements, beginFixed, key, rotate, newWidth, newHeight, snapThreshold, minWidth, maxWidth, minHeight, maxHeight, syncFlag, beginWidth, beginHeight, minRatio, maxRatio, altPressed, maskLeft, maskTop);
+                if (snapInfo['@:{snapped~rs}']) {
+                    newWidth = snapInfo['@:{snap.width~rs}'];
+                    newHeight = snapInfo['@:{snap.height~rs}'];
                 }
             }
             if (props.width != newWidth ||
@@ -321,38 +321,38 @@ module.exports= {
                 moved = (newWidth != beginWidth || newHeight != beginHeight) ? 2 : 1;
                 props.width = newWidth;
                 props.height = newHeight;
-                let newRotatedRect = transform_1['dF'](props);
-                let newFixed = newRotatedRect['_fE'][useFixIndex];
+                let newRotatedRect = transform_1['@:{transform#rotate.rect~rs}'](props);
+                let newFixed = newRotatedRect['@:{point~rs}'][useFixIndex];
                 let x = beginFixed.x - newFixed.x;
                 let y = beginFixed.y - newFixed.y;
                 props.x += x;
                 props.y += y;
-                if (ctrl['_eF']) {
-                    ctrl['_eF'](props);
+                if (ctrl['@:{update.props~rs}']) {
+                    ctrl['@:{update.props~rs}'](props);
                 }
                 await me.digest({
                     element
                 });
-                State.fire('dG', {
-                    '_fm': {
+                State.fire('@:{event#stage.select.element.props.change~rs}', {
+                    '@:{ids~rs}': {
                         [element.id]: 1
                     },
-                    '_fn': {
+                    '@:{types~rs}': {
                         [element.type]: 1
                     },
-                    '_dF': {
-                        '_dH': 1
+                    '@:{props~rs}': {
+                        '@:{size~rs}': 1
                     }
                 });
             }
             if (nearsideScrollOffset &&
-                !nearsideScrollOffset['dG']) {
-                nearsideScrollOffset['dG'] = 1;
-                nearsideScrollOffset['dH']();
+                !nearsideScrollOffset['@:{interval.move.event#called~rs}']) {
+                nearsideScrollOffset['@:{interval.move.event#called~rs}'] = 1;
+                nearsideScrollOffset['@:{interval.move.event#ready~rs}']();
             }
-            let tipWidth = transform_1['dH'](newWidth), tipHeight = transform_1['dH'](newHeight), tipMsg = `${tipWidth} x ${tipHeight}`;
-            tip_1['_gl'](tipMsg);
-            tip_1['_go'](moveEvent.pageX, moveEvent.pageY);
+            let tipWidth = transform_1['@:{transform#to.show.value~rs}'](newWidth), tipHeight = transform_1['@:{transform#to.show.value~rs}'](newHeight), tipMsg = `${tipWidth} x ${tipHeight}`;
+            tip_1['@:{show.text~rs}'](tipMsg);
+            tip_1['@:{update.position~rs}'](moveEvent.pageX, moveEvent.pageY);
         };
         /**
          * 监听设计器贴边滚动事件
@@ -363,26 +363,26 @@ module.exports= {
             moveCallback();
         };
         let watchKeypress = e => {
-            isShiftKeyStillPressed = e['dI'];
-            altPressed = snapElement ? e['dK'] : !e['dK'];
+            isShiftKeyStillPressed = e['@:{keypress#shift.key~rs}'];
+            altPressed = snapElement ? e['@:{keypress#alt.key~rs}'] : !e['@:{keypress#alt.key~rs}'];
             moveCallback();
         };
-        State.on('dN', watchKeypress);
+        State.on('@:{event#stage.key.press~rs}', watchKeypress);
         //处理贴边滚动
-        State.on('dT', watchIntervalMove);
-        me['_eb'](e, evt => {
-            State.fire('dS', evt);
+        State.on('@:{event#stage.interval.move~rs}', watchIntervalMove);
+        me['@:{drag.drop~rs}'](e, evt => {
+            State.fire('@:{event#drag.element.move~rs}', evt);
             moveEvent = evt;
             moveCallback();
         }, () => {
-            State.off('dN', watchKeypress);
-            State.off('dT', watchIntervalMove);
-            State.fire('dV');
+            State.off('@:{event#stage.key.press~rs}', watchKeypress);
+            State.off('@:{event#stage.interval.move~rs}', watchIntervalMove);
+            State.fire('@:{event#drag.element.stop~rs}');
             if (moved) {
-                cursor_1["_ed"]();
+                cursor_1["@:{hide~rs}"]();
             }
             if (moved == 2) {
-                history_1["dE"](history_1['e_'], props.ename);
+                history_1["@:{history#save~rs}"](history_1['@:{history#element.modified.size~rs}'], props.ename);
             }
             // let rect = Transform["@:{transform#rotate.rect}"](props, props.rotate);
             // console.log(rect);
@@ -403,21 +403,21 @@ module.exports= {
             //         element
             //     });
             // }
-            State.fire('d3', {
+            State.fire('@:{event#stage.toggle.scroll~rs}', {
                 hide: 1
             });
             if (supportSnapElement) {
-                State.fire('dE');
+                State.fire('@:{event#stage.find.snap.element~rs}');
             }
-            tip_1['_ed']();
+            tip_1['@:{hide~rs}']();
         });
     },
-    '_nn<pointerdown>'(e) {
-        e['_ey'] = 1;
+    '@:{drag.svg.key.point~rs}<pointerdown>'(e) {
+        e['@:{halt~rs}'] = 1;
         let me = this;
         let element = me.get('element');
         let { props, ctrl } = element;
-        State.fire('d3', {
+        State.fire('@:{event#stage.toggle.scroll~rs}', {
             show: 1,
             size: 1
         });
@@ -426,197 +426,197 @@ module.exports= {
         let { key } = params;
         let { x, y, width, height, rotate } = props;
         let startX = props[`${key}X`], startY = props[`${key}Y`];
-        width = const_1['eo'](width);
-        height = const_1['eo'](height);
-        x = const_1['eo'](x);
-        y = const_1['eo'](y);
+        width = const_1['@:{const#to.px~rs}'](width);
+        height = const_1['@:{const#to.px~rs}'](height);
+        x = const_1['@:{const#to.px~rs}'](x);
+        y = const_1['@:{const#to.px~rs}'](y);
         rotate = rotate || 0;
         let c = {
             x: x + width / 2,
             y: y + height / 2
         };
-        let scale = State.get('dF');
-        props['_k3'] = key;
+        let scale = State.get('@:{global#stage.scale~rs}');
+        props['@:{focus.ctrl~rs}'] = key;
         this.digest({
             element
         });
-        State.fire('dG', {
-            '_fm': {
+        State.fire('@:{event#stage.select.element.props.change~rs}', {
+            '@:{ids~rs}': {
                 [element.id]: 1
             },
-            '_fn': {
+            '@:{types~rs}': {
                 [element.type]: 1
             },
-            '_dF': {
-                '_nl': 1
+            '@:{props~rs}': {
+                '@:{focus.kp~rs}': 1
             }
         });
-        let supportSnapElement = const_1['d0'], alignElements, page = State.get('dN'), snapElement = page.snapElement, altPressed = snapElement ? altKey : !altKey, snapThreshold;
+        let supportSnapElement = const_1['@:{const#page.enable.snap.align.elements~rs}'], alignElements, page = State.get('@:{global#stage.page~rs}'), snapElement = page.snapElement, altPressed = snapElement ? altKey : !altKey, snapThreshold;
         if (supportSnapElement) {
-            let { 'dE': allElements } = stage_generic_1['dE']();
-            let find = stage_align_1['dE'](allElements, null, element);
-            alignElements = find['dE'];
-            snapThreshold = const_1['e_'] * scale;
+            let { '@:{generic.all#elements~rs}': allElements } = stage_generic_1['@:{generic#get.all.elements.and.map~rs}']();
+            let find = stage_align_1['@:{align#query.align.elements~rs}'](allElements, null, element);
+            alignElements = find['@:{align.queried#align.elements.sizes~rs}'];
+            snapThreshold = const_1['@:{const#drag.snap.to.other.element.offset~rs}'] * scale;
         }
         let moveEvent;
-        let nearsideScrollOffset, stageBound = transform_1['dE']();
+        let nearsideScrollOffset, stageBound = transform_1['@:{transform#get.stage.dom.rect~rs}']();
         let moveCallback = async () => {
             if (!moveEvent)
                 return;
             if (!moved) {
-                cursor_1["_ec"](eventTarget);
+                cursor_1["@:{show~rs}"](eventTarget);
             }
             let mpos = {
                 x: moveEvent.pageX - stageBound.x,
                 y: moveEvent.pageY - stageBound.y
             };
             if (nearsideScrollOffset) {
-                mpos.y += nearsideScrollOffset['dE'];
-                mpos.x += nearsideScrollOffset['dF'];
+                mpos.y += nearsideScrollOffset['@:{interval.move.event#y~rs}'];
+                mpos.x += nearsideScrollOffset['@:{interval.move.event#x~rs}'];
             }
             moved = 1;
-            let current = transform_1["dN"](mpos, c);
-            let { y: newY, x: newX } = transform_1["dP"](mpos, c, current - rotate);
+            let current = transform_1["@:{transform#get.point.deg~rs}"](mpos, c);
+            let { y: newY, x: newX } = transform_1["@:{transform#get.rotated.point~rs}"](mpos, c, current - rotate);
             if (supportSnapElement) {
-                let snapInfo = stage_align_1['dN'](alignElements, newX, newY, snapThreshold, altPressed);
-                if (snapInfo['_fM']) {
-                    newX = snapInfo['_fP'];
-                    newY = snapInfo['_fQ'];
+                let snapInfo = stage_align_1['@:{align#query.svg.point.snap.info~rs}'](alignElements, newX, newY, snapThreshold, altPressed);
+                if (snapInfo['@:{snapped~rs}']) {
+                    newX = snapInfo['@:{snap.x~rs}'];
+                    newY = snapInfo['@:{snap.y~rs}'];
                 }
             }
-            props[`${key}X`] = const_1['dF'](newX);
-            props[`${key}Y`] = const_1['dF'](newY);
+            props[`${key}X`] = const_1['@:{const#to.unit~rs}'](newX);
+            props[`${key}Y`] = const_1['@:{const#to.unit~rs}'](newY);
             await this.digest({
                 element
             });
-            State.fire('dG', {
-                '_fm': {
+            State.fire('@:{event#stage.select.element.props.change~rs}', {
+                '@:{ids~rs}': {
                     [element.id]: 1
                 },
-                '_fn': {
+                '@:{types~rs}': {
                     [element.type]: 1
                 },
-                '_dF': {
-                    '_nm': 1
+                '@:{props~rs}': {
+                    '@:{kp~rs}': 1
                 }
             });
             if (nearsideScrollOffset &&
-                !nearsideScrollOffset['dG']) {
-                nearsideScrollOffset['dG'] = 1;
-                nearsideScrollOffset['dH']();
+                !nearsideScrollOffset['@:{interval.move.event#called~rs}']) {
+                nearsideScrollOffset['@:{interval.move.event#called~rs}'] = 1;
+                nearsideScrollOffset['@:{interval.move.event#ready~rs}']();
             }
-            let tipMsg = `${transform_1['dH'](props[`${key}X`])} , ${transform_1['dH'](props[`${key}Y`])}`;
-            tip_1['_gl'](tipMsg);
-            tip_1['_go'](moveEvent.pageX, moveEvent.pageY);
+            let tipMsg = `${transform_1['@:{transform#to.show.value~rs}'](props[`${key}X`])} , ${transform_1['@:{transform#to.show.value~rs}'](props[`${key}Y`])}`;
+            tip_1['@:{show.text~rs}'](tipMsg);
+            tip_1['@:{update.position~rs}'](moveEvent.pageX, moveEvent.pageY);
         };
         let watchIntervalMove = (e) => {
             nearsideScrollOffset = e;
             moveCallback();
         };
         let watchKeypress = e => {
-            altPressed = snapElement ? e['dK'] : !e['dK'];
+            altPressed = snapElement ? e['@:{keypress#alt.key~rs}'] : !e['@:{keypress#alt.key~rs}'];
             moveCallback();
         };
-        State.on('dN', watchKeypress);
-        State.on('dT', watchIntervalMove);
-        me['_eb'](e, (evt) => {
-            State.fire('dS', evt);
+        State.on('@:{event#stage.key.press~rs}', watchKeypress);
+        State.on('@:{event#stage.interval.move~rs}', watchIntervalMove);
+        me['@:{drag.drop~rs}'](e, (evt) => {
+            State.fire('@:{event#drag.element.move~rs}', evt);
             moveEvent = evt;
             moveCallback();
         }, () => {
-            State.off('dN', watchKeypress);
-            State.off('dT', watchIntervalMove);
-            State.fire('dV');
-            cursor_1["_ed"]();
+            State.off('@:{event#stage.key.press~rs}', watchKeypress);
+            State.off('@:{event#stage.interval.move~rs}', watchIntervalMove);
+            State.fire('@:{event#drag.element.stop~rs}');
+            cursor_1["@:{hide~rs}"]();
             if (moved) {
-                ctrl['_eF'](props);
+                ctrl['@:{update.props~rs}'](props);
                 this.digest({
                     element
                 });
-                State.fire('dG', {
-                    '_fm': {
+                State.fire('@:{event#stage.select.element.props.change~rs}', {
+                    '@:{ids~rs}': {
                         [element.id]: 1
                     },
-                    '_fn': {
+                    '@:{types~rs}': {
                         [element.type]: 1
                     },
-                    '_dF': {
-                        '_dK': 1
+                    '@:{props~rs}': {
+                        '@:{kped~rs}': 1
                     }
                 });
                 if (props[`${key}X`] != startX ||
                     props[`${key}Y`] != startY) {
-                    history_1["dE"](history_1['d8'], props.ename);
+                    history_1["@:{history#save~rs}"](history_1['@:{history#element.modified.ctrl.point~rs}'], props.ename);
                 }
             }
-            State.fire('d3', {
+            State.fire('@:{event#stage.toggle.scroll~rs}', {
                 hide: 1
             });
             if (supportSnapElement) {
-                State.fire('dE');
+                State.fire('@:{event#stage.find.snap.element~rs}');
             }
-            tip_1['_ed']();
+            tip_1['@:{hide~rs}']();
         });
     },
-    '_no<pointerover>'(e) {
+    '@:{show.title~rs}<pointerover>'(e) {
         let titleNode = node(`_rd_t_${this.id}`);
         if (titleNode) {
             titleNode.innerHTML = e.eventTarget.getAttribute('title');
         }
     },
-    '_np<pointerout>'() {
+    '@:{hide.title~rs}<pointerout>'() {
         let titleNode = node(`_rd_t_${this.id}`);
         if (titleNode) {
             titleNode.innerHTML = '';
         }
     },
-    '_iq<input>'(e) {
+    '@:{update.text~rs}<input>'(e) {
         let element = this.get('element');
         let { props } = element;
         props.text = e.eventTarget.value; //.trim();
-        this['_fY'](element);
-        State.fire('dG', {
-            '_fm': {
+        this['@:{update~rs}'](element);
+        State.fire('@:{event#stage.select.element.props.change~rs}', {
+            '@:{ids~rs}': {
                 [element.id]: 1
             },
-            '_fn': {
+            '@:{types~rs}': {
                 [element.type]: 1
             },
-            '_dF': {
-                '_nq': 1
+            '@:{props~rs}': {
+                '@:{content~rs}': 1
             }
         });
-        history_1["dE"](history_1['ea'], props.ename, element.id, 500);
+        history_1["@:{history#save~rs}"](history_1['@:{history#element.modified.props~rs}'], props.ename, element.id, 500);
     },
-    '_ir<pointerover>'(e) {
-        this['_no<pointerover>'](e);
+    '@:{focus.mod.point~rs}<pointerover>'(e) {
+        this['@:{show.title~rs}<pointerover>'](e);
         if (!inside(e.relatedTarget, e.eventTarget)) {
             let element = this.get('element');
             let { props } = element;
-            props['_il'] = e.params.key;
-            this['_fY'](element);
-            State.fire('dG', {
-                '_fm': {
+            props['@:{focus.mod~rs}'] = e.params.key;
+            this['@:{update~rs}'](element);
+            State.fire('@:{event#stage.select.element.props.change~rs}', {
+                '@:{ids~rs}': {
                     [element.id]: 1
                 },
-                '_fn': {
+                '@:{types~rs}': {
                     [element.type]: 1
                 },
-                '_dF': {
-                    '_il': 1
+                '@:{props~rs}': {
+                    '@:{focus.mod~rs}': 1
                 }
             });
         }
     },
-    '_is<pointerdown>'(e) {
-        e['_ey'] = 1;
+    '@:{drag.mod.point~rs}<pointerdown>'(e) {
+        e['@:{halt~rs}'] = 1;
         let element = this.get('element');
         let { ctrl } = element;
         let { key } = e.params;
-        ctrl['_is'](element, e, key, this);
+        ctrl['@:{drag.mod.point~rs}'](element, e, key, this);
     },
-    '_hE<pointerdown,contextmenu>'(e) {
-        e['_ey'] = 1;
+    '@:{stop~rs}<pointerdown,contextmenu>'(e) {
+        e['@:{halt~rs}'] = 1;
     }
 };
 

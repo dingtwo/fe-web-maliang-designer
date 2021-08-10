@@ -4,10 +4,10 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4d/51",["4e"],(require,exports,module)=>{
+define("designer/service",["magix5"],(require,exports,module)=>{
 
 
-let magix_1 = require("4e");
+let magix_1 = require("magix5");
 let { Service, toUrl, config, guid } = magix_1;
 /**
  * 提取错误和数据
@@ -18,15 +18,15 @@ let { Service, toUrl, config, guid } = magix_1;
 let extractErrorAndData = (response, url) => {
     let error;
     let data;
-    if (response.status == 1) {
+    if (response.status == 1 || response.code === 200000) {
         data = response.data;
     }
     else {
         error = response.message || `接口${url}错误`;
     }
     return {
-        '_fw': error,
-        '_fx': data
+        '@:{error~rs}': error,
+        '@:{data~rs}': data
     };
 };
 /**
@@ -77,9 +77,9 @@ let send = (sendUrl, options) => {
  * 与后端接口交互对象
  */
 let RDService = Service.extend((bag, callback) => {
-    let method = bag.get('_fy') || 'GET';
-    let query = bag.get('_fh');
-    let body = bag.get('_fg');
+    let method = bag.get('@:{method~rs}') || 'GET';
+    let query = bag.get('@:{query~rs}');
+    let body = bag.get('@:{body~rs}');
     let url = bag.get('url');
     let options = {
         method,
@@ -107,7 +107,7 @@ let RDService = Service.extend((bag, callback) => {
     //对于jsonp，只有get方法，没有post方法，所以在jsonp里，会把body中的参数拼接到url里，超长会被截断，这里需要注意
     //所以优先使用fetch方法进行跨域请求
     send(url, options).then(res => {
-        let { '_fw': error, '_fx': data } = extractErrorAndData(res, url);
+        let { '@:{error~rs}': error, '@:{data~rs}': data } = extractErrorAndData(res, url);
         if (error) {
             callback({
                 message: error
@@ -131,32 +131,32 @@ let RDService = Service.extend((bag, callback) => {
  * 其它均可以自定义设置
  */
 RDService.add([{
-        name: '_fz',
+        name: '@:{get.images~rs}',
         url: config('getImageUrl'),
         cache: 30 * 60 * 1000
     }, {
-        name: '_fq',
+        name: '@:{get.fields~rs}',
         url: config('getFieldUrl'),
         cache: 30 * 60 * 1000
     }, {
-        name: '_fA',
+        name: '@:{get.by.url~rs}',
         cache: 30 * 60 * 1000
     }, {
-        name: '_er',
+        name: '@:{get.templates~rs}',
         url: config('getTemplateUrl'),
         cache: 30 * 60 * 1000
     }, {
-        name: '_ff',
+        name: '@:{save.content~rs}',
         url: config('saveContentUrl'),
-        '_fy': 'post'
+        '@:{method~rs}': 'post'
     }, {
-        name: '_ft',
+        name: '@:{get.content~rs}',
         url: config('getContentUrl')
     }, {
-        name: '_fB',
-        '_fy': 'post'
+        name: '@:{post.by.url~rs}',
+        '@:{method~rs}': 'post'
     }]);
-RDService['_fC'] = extractErrorAndData;
+RDService['@:{extract.error.and.data~rs}'] = extractErrorAndData;
 module.exports= RDService;
 
 });

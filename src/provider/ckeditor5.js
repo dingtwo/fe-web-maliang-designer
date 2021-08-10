@@ -4,7 +4,7 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4t/ckeditor5",[],(require,exports,module)=>{
+define("provider/ckeditor5",[],(require,exports,module)=>{
 
 
 let dest = '//ckeditor.com/assets/libs/ckeditor5/29.0.0/ckeditor.js';

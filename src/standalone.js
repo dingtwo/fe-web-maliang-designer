@@ -426,37 +426,37 @@ if (typeof DEBUG == 'undefined')
 
   let STATUS = {
     // 1 - The `module.uri` is being fetched
-    '_ld': 1,
+    '@:{FETCHING~rs}': 1,
     // 2 - The meta data has been saved to cachedMods
-    '_le': 2,
+    '@:{SAVED~rs}': 2,
     // 3 - The `module['@:{deps}']` are being loaded
-    '_lf': 3,
+    '@:{LOADING~rs}': 3,
     // 4 - The module are ready to execute
-    '_lg': 4,
+    '@:{LOADED~rs}': 4,
     // 5 - The module is being executed
-    '_lh': 5,
+    '@:{EXECUTING~rs}': 5,
     // 6 - The `module.exports` is available
-    '_li': 6
+    '@:{EXECUTED~rs}': 6
   }
 
 
   function Module(uri, deps) {
     this.uri = uri
-    this['_lj'] = deps || []
+    this['@:{deps~rs}'] = deps || []
     this.exports = null
     this.status = 0
 
     // Who depends on me
-    this['_lk'] = {}
+    this['@:{waitings~rs}'] = {}
 
     // The number of unloaded dependencies
-    this['_ll'] = 0
+    this['@:{remains~rs}'] = 0
   }
 
   // Resolve module['@:{deps}']
   Module.prototype.resolve = function () {
     let mod = this
-    let ids = mod['_lj']
+    let ids = mod['@:{deps~rs}']
     let uris = []
 
     for (let i = 0, len = ids.length; i < len; i++) {
@@ -470,33 +470,33 @@ if (typeof DEBUG == 'undefined')
     let mod = this
 
     // If the module is being loaded, just wait it onload call
-    if (mod.status >= STATUS['_lf']) {
+    if (mod.status >= STATUS['@:{LOADING~rs}']) {
       return
     }
 
-    mod.status = STATUS['_lf']
+    mod.status = STATUS['@:{LOADING~rs}']
 
     // Emit `load` event for plugins such as combo plugin
     let uris = mod.resolve()
     //emit("load", uris)
 
-    let len = mod['_ll'] = uris.length
+    let len = mod['@:{remains~rs}'] = uris.length
 
     let m;
     // Initialize modules and register waitings
     for (let i = 0; i < len; i++) {
       m = Module.get(uris[i])
 
-      if (m.status < STATUS['_lg']) {
+      if (m.status < STATUS['@:{LOADED~rs}']) {
         // Maybe duplicate: When module has dupliate dependency, it should be it's count, not 1
-        m['_lk'][mod.uri] = (m['_lk'][mod.uri] || 0) + 1
+        m['@:{waitings~rs}'][mod.uri] = (m['@:{waitings~rs}'][mod.uri] || 0) + 1
       }
       else {
-        mod['_ll']--
+        mod['@:{remains~rs}']--
       }
     }
 
-    if (mod['_ll'] === 0) {
+    if (mod['@:{remains~rs}'] === 0) {
       mod.onload()
       return
     }
@@ -507,10 +507,10 @@ if (typeof DEBUG == 'undefined')
     for (let i = 0; i < len; i++) {
       m = cachedMods[uris[i]]
 
-      if (m.status < STATUS['_ld']) {
+      if (m.status < STATUS['@:{FETCHING~rs}']) {
         m.fetch(requestCache)
       }
-      else if (m.status === STATUS['_le']) {
+      else if (m.status === STATUS['@:{SAVED~rs}']) {
         m.load()
       }
     }
@@ -526,29 +526,29 @@ if (typeof DEBUG == 'undefined')
   // Call this method when module is loaded
   Module.prototype.onload = function () {
     let mod = this
-    mod.status = STATUS['_lg']
+    mod.status = STATUS['@:{LOADED~rs}']
 
-    if (mod['_lm']) {
-      mod['_lm']()
+    if (mod['@:{callback~rs}']) {
+      mod['@:{callback~rs}']()
     }
 
     // Notify waiting modules to fire onload
-    let waitings = mod['_lk']
+    let waitings = mod['@:{waitings~rs}']
     let uri, m
 
     for (uri in waitings) {
       if (waitings.hasOwnProperty(uri)) {
         m = cachedMods[uri]
-        m['_ll'] -= waitings[uri]
-        if (m['_ll'] === 0) {
+        m['@:{remains~rs}'] -= waitings[uri]
+        if (m['@:{remains~rs}'] === 0) {
           m.onload()
         }
       }
     }
 
     // Reduce memory taken
-    delete mod['_lk']
-    delete mod['_ll']
+    delete mod['@:{waitings~rs}']
+    delete mod['@:{remains~rs}']
   }
 
   // Fetch a module
@@ -556,7 +556,7 @@ if (typeof DEBUG == 'undefined')
     let mod = this
     let requestUri = mod.uri
 
-    mod.status = STATUS['_ld']
+    mod.status = STATUS['@:{FETCHING~rs}']
 
     // Emit `fetch` event for plugins such as combo plugin
     //let emitData = { uri: uri }
@@ -609,11 +609,11 @@ if (typeof DEBUG == 'undefined')
     // When module is executed, DO NOT execute it again. When module
     // is being executed, just return `module.exports` too, for avoiding
     // circularly calling
-    if (mod.status >= STATUS['_lh']) {
+    if (mod.status >= STATUS['@:{EXECUTING~rs}']) {
       return mod.exports
     }
 
-    mod.status = STATUS['_lh']
+    mod.status = STATUS['@:{EXECUTING~rs}']
 
     // Create require
     let uri = mod.uri
@@ -627,7 +627,7 @@ if (typeof DEBUG == 'undefined')
     }
 
     require.async = (ids, callback) => {
-      Module.use(ids, callback, uri + "__ln_" + cid())
+      Module.use(ids, callback, uri + "_@:{async~rs}_" + cid())
       return require
     }
 
@@ -646,7 +646,7 @@ if (typeof DEBUG == 'undefined')
     delete mod.factory
 
     mod.exports = exports
-    mod.status = STATUS['_li']
+    mod.status = STATUS['@:{EXECUTED~rs}']
 
     // Emit `exec` event
     //emit("exec", mod)
@@ -714,11 +714,11 @@ if (typeof DEBUG == 'undefined')
     let mod = Module.get(uri)
 
     // Do NOT override already saved modules
-    if (mod.status < STATUS['_le']) {
+    if (mod.status < STATUS['@:{SAVED~rs}']) {
       mod.id = meta.id || uri
-      mod['_lj'] = meta.deps || []
+      mod['@:{deps~rs}'] = meta.deps || []
       mod.factory = meta.factory
-      mod.status = STATUS['_le']
+      mod.status = STATUS['@:{SAVED~rs}']
     }
   }
 
@@ -731,7 +731,7 @@ if (typeof DEBUG == 'undefined')
   Module.use = (ids, callback, uri) => {
     let mod = Module.get(uri, isArray(ids) ? ids : [ids])
 
-    mod['_lm'] = () => {
+    mod['@:{callback~rs}'] = () => {
       let exports = []
       let uris = mod.resolve()
 
@@ -743,7 +743,7 @@ if (typeof DEBUG == 'undefined')
         callback.apply(global, exports)
       }
 
-      delete mod['_lm'];
+      delete mod['@:{callback~rs}'];
     }
 
     mod.load()
@@ -753,7 +753,7 @@ if (typeof DEBUG == 'undefined')
   // Public API
 
   seajs.use = (ids, callback) => {
-    Module.use(ids, callback, data.cwd + "__es_" + cid())
+    Module.use(ids, callback, data.cwd + "_@:{use~rs}_" + cid())
   }
 
   //Module.define.cmd = {}
@@ -768,7 +768,7 @@ if (typeof DEBUG == 'undefined')
 
   seajs.require = (id) => {
     let mod = Module.get(id2Uri(id))
-    if (mod.status < STATUS['_lh']) {
+    if (mod.status < STATUS['@:{EXECUTING~rs}']) {
       mod.onload()
       mod.exec()
     }
@@ -847,7 +847,7 @@ if (typeof DEBUG == 'undefined')
     window.DEBUG = true;
 (factory => {
     if (window.define) {
-        define('4e', factory);
+        define('magix5', factory);
     }
     else {
         window.Magix = factory();
@@ -915,7 +915,7 @@ if (typeof DEBUG == 'undefined')
         return r;
     };
     let Mark = (me, key, host, m, k) => {
-        k = Spliter + 'dE';
+        k = Spliter + '@:{mark#object~rs}';
         if (me[k] != 0) {
             host = me[k] || (me[k] = {});
             if (!Has(host, key)) {
@@ -926,7 +926,7 @@ if (typeof DEBUG == 'undefined')
         return t => (t = me[k], t && m === t[key]);
     };
     let Unmark = me => {
-        me[Spliter + 'dE'] = 0;
+        me[Spliter + '@:{mark#object~rs}'] = 0;
     };
     let { assign: Assign, keys: Keys, hasOwnProperty: HasProp, prototype: ObjectProto } = Object;
     let ToString = ObjectProto.toString;
@@ -1000,61 +1000,61 @@ if (typeof DEBUG == 'undefined')
         }
         return params;
     };
-    let CacheSort = (a, b) => b['dE'] - a['dE'];
+    let CacheSort = (a, b) => b['@:{cache-item#fre~rs}'] - a['@:{cache-item#fre~rs}'];
     //let CacheCounter = 0;
     function MxCache(max, buffer /*, remove?: (item: any) => void*/, me) {
         me = this;
-        me['dE'] = [];
-        me['dF'] = buffer || 20; //buffer先取整，如果为0则再默认5
-        me['dG'] = me['dF'] + (max || 50);
+        me['@:{cache#list~rs}'] = [];
+        me['@:{cache#buffer.count~rs}'] = buffer || 20; //buffer先取整，如果为0则再默认5
+        me['@:{cache#max.count~rs}'] = me['@:{cache#buffer.count~rs}'] + (max || 50);
         //me['@:{cache#remove.callback}'] = remove;
     }
     Assign(MxCache[Prototype], {
         get(key) {
             let me = this;
-            let c = me['dE'];
+            let c = me['@:{cache#list~rs}'];
             let r = c[Spliter + key];
             if (r) {
-                r['dE']++;
+                r['@:{cache-item#fre~rs}']++;
                 //r['@:{cache-item#add.time}'] = CacheCounter++;
-                r = r['dF'];
+                r = r['@:{cache-item#entity~rs}'];
             }
             return r;
         },
         set(okey, value) {
             let me = this;
-            let c = me['dE'];
+            let c = me['@:{cache#list~rs}'];
             let key = Spliter + okey;
             let r = c[key];
-            let t = me['dF'];
+            let t = me['@:{cache#buffer.count~rs}'];
             if (!r) {
-                if (c.length > me['dG']) {
+                if (c.length > me['@:{cache#max.count~rs}']) {
                     c.sort(CacheSort);
                     while (t--) {
                         r = c.pop();
-                        if (r['dE']) { //important
-                            me.del(r['dG']); //如果没有引用，则删除
+                        if (r['@:{cache-item#fre~rs}']) { //important
+                            me.del(r['@:{cache-item#origin.key~rs}']); //如果没有引用，则删除
                         }
                     }
                 }
                 r = {
-                    'dG': okey
+                    '@:{cache-item#origin.key~rs}': okey
                 };
                 c.push(r);
                 c[key] = r;
             }
-            r['dF'] = value;
-            r['dE'] = 1;
+            r['@:{cache-item#entity~rs}'] = value;
+            r['@:{cache-item#fre~rs}'] = 1;
             //r['@:{cache-item#add.time}'] = CacheCounter++;
         },
         del(k) {
             k = Spliter + k;
-            let c = this['dE'];
+            let c = this['@:{cache#list~rs}'];
             let r = c[k] /*,
             m = this['@:{cache#remove.callback}']*/;
             if (r) {
-                r['dE'] = 0;
-                r['dF'] = Empty;
+                r['@:{cache-item#fre~rs}'] = 0;
+                r['@:{cache-item#entity~rs}'] = Empty;
                 delete c[k]; // = Null;
                 //if (m) {
                 //ToTry(m, r['@:{cache-item#origin.key}']);
@@ -1062,7 +1062,7 @@ if (typeof DEBUG == 'undefined')
             }
         },
         has(k) {
-            return Has(this['dE'], Spliter + k);
+            return Has(this['@:{cache#list~rs}'], Spliter + k);
         }
     });
     let EventDefaultOptions = {
@@ -1080,11 +1080,11 @@ if (typeof DEBUG == 'undefined')
     let EventUnlisten = (element, type, fn, options) => element.removeEventListener(type, fn, options);
     let AddEventListener = (element, type, fn, eventOptions, viewId, view) => {
         let h = {
-            'dE': viewId,
-            'dF': fn,
-            'dG': type,
-            'dH': element,
-            'dI'(e) {
+            '@:{dom#view.id~rs}': viewId,
+            '@:{dom#real.fn~rs}': fn,
+            '@:{dom#type~rs}': type,
+            '@:{dom#element~rs}': element,
+            '@:{dom#event.proxy~rs}'(e) {
                 if (viewId) {
                     ToTry(fn, e, view);
                 }
@@ -1094,17 +1094,17 @@ if (typeof DEBUG == 'undefined')
             }
         };
         AttachEventHandlers.push(h);
-        EventListen(element, type, h['dI'], eventOptions);
+        EventListen(element, type, h['@:{dom#event.proxy~rs}'], eventOptions);
     };
     let RemoveEventListener = (element, type, cb, eventOptions, viewId) => {
         for (let c, i = AttachEventHandlers.length; i--;) {
             c = AttachEventHandlers[i];
-            if (c['dG'] == type &&
-                c['dE'] == viewId &&
-                c['dH'] == element &&
-                c['dF'] === cb) {
+            if (c['@:{dom#type~rs}'] == type &&
+                c['@:{dom#view.id~rs}'] == viewId &&
+                c['@:{dom#element~rs}'] == element &&
+                c['@:{dom#real.fn~rs}'] === cb) {
                 AttachEventHandlers.splice(i, 1);
-                EventUnlisten(element, type, c['dI'], eventOptions);
+                EventUnlisten(element, type, c['@:{dom#event.proxy~rs}'], eventOptions);
                 break;
             }
         }
@@ -1215,24 +1215,24 @@ if (typeof DEBUG == 'undefined')
         for (;;) {
             if (CallCurrent) { //有待执行的任务
                 if (DEBUG) {
-                    CallFunction['dE']++;
+                    CallFunction['@:{call.fn#current~rs}']++;
                 }
                 if (CallLogicTail == CallCurrent) { //如果当前节点是逻辑末尾，则删除逻辑末尾
                     CallLogicTail = Null;
                 }
                 CallCurrentExec = CallCurrent; //当前正在执行的任务，先保存一下，有可能在fn中再追加新的任务，需要使用该节点进行调整关系
-                context = CallCurrent['dE'];
-                args = CallCurrent['dF'];
-                fn = CallCurrent['dG'];
+                context = CallCurrent['@:{call#context~rs}'];
+                args = CallCurrent['@:{call#args~rs}'];
+                fn = CallCurrent['@:{call#function~rs}'];
                 ToTry(fn, args, context);
-                CallCurrent = CallCurrent['dH'];
+                CallCurrent = CallCurrent['@:{call#next~rs}'];
                 CallCurrentExec = Null; //clear current;
                 if (CallCurrent && ((Date_Now() > out) ||
                     (ns && ns.isInputPending()))) {
                     if (lastWaitState != 1) {
                         wait(lastWaitState = 1);
                     }
-                    console.log(`CF take a break at ${CallFunction['dE']} of ${CallFunction['dF']}`);
+                    console.log(`CF take a break at ${CallFunction['@:{call.fn#current~rs}']} of ${CallFunction['@:{call.fn#total~rs}']}`);
                     Timeout(StartCall);
                     break;
                 }
@@ -1240,8 +1240,8 @@ if (typeof DEBUG == 'undefined')
             else {
                 CallRealTail = CallWorked = Null;
                 if (DEBUG) {
-                    delete CallFunction['dF'];
-                    delete CallFunction['dE'];
+                    delete CallFunction['@:{call.fn#total~rs}'];
+                    delete CallFunction['@:{call.fn#current~rs}'];
                 }
                 if (lastWaitState != 0) {
                     wait(lastWaitState = 0);
@@ -1252,11 +1252,11 @@ if (typeof DEBUG == 'undefined')
     };
     let CallFunction = (fn, args, context, /*id?,*/ last, current) => {
         if (DEBUG) {
-            if (!CallFunction['dF']) {
-                CallFunction['dF'] = 0;
-                CallFunction['dE'] = 0;
+            if (!CallFunction['@:{call.fn#total~rs}']) {
+                CallFunction['@:{call.fn#total~rs}'] = 0;
+                CallFunction['@:{call.fn#current~rs}'] = 0;
             }
-            CallFunction['dF']++;
+            CallFunction['@:{call.fn#total~rs}']++;
         }
         // if (id &&
         //     CallCurrent) {
@@ -1273,13 +1273,13 @@ if (typeof DEBUG == 'undefined')
         // }
         current = {
             //'@:{call#id}': id,
-            'dG': fn,
-            'dE': context,
-            'dF': args
+            '@:{call#function~rs}': fn,
+            '@:{call#context~rs}': context,
+            '@:{call#args~rs}': args
         };
         if (last) { //指明放在真正的末尾
             if (CallRealTail) { //如果有，则直接追加
-                CallRealTail['dH'] = current;
+                CallRealTail['@:{call#next~rs}'] = current;
             }
             else { //没有，则把当前待执行的头指定当前元素
                 CallCurrent = current;
@@ -1291,14 +1291,14 @@ if (typeof DEBUG == 'undefined')
             //不存在逻辑末尾，但当前正在执行中，1种情况：执行已过逻辑末尾，此时需要把执行节点的下一个指向当前节点，以提高优先级
             if (last) { //有节点则更新
                 //prev = last['@:{call#next}'];
-                current['dH'] = last['dH'];
-                last['dH'] = current;
+                current['@:{call#next~rs}'] = last['@:{call#next~rs}'];
+                last['@:{call#next~rs}'] = current;
                 if (CallRealTail == last) { //如果逻辑末尾或当前执行的与真实是同一个节点，则真实末尾节点需要移动
                     CallRealTail = current;
                 }
             }
             else if (CallCurrent) { //即不存在逻辑末尾，也不在执行中，比如先调用lastTask，再调用普通的task，则需要把普通的任务放在最前面
-                current['dH'] = CallCurrent;
+                current['@:{call#next~rs}'] = CallCurrent;
                 CallCurrent = current;
             }
             else { //初始化的情况
@@ -1422,14 +1422,14 @@ if (typeof DEBUG == 'undefined')
             if (list) {
                 for (len = list.length; idx < len; idx++) {
                     t = list[idx];
-                    if (t['dE']) {
-                        t['dF'] = 1;
-                        ToTry(t['dE'], data, me);
-                        if (!t['dE']) {
+                    if (t['@:{mx-event#fn~rs}']) {
+                        t['@:{mx-event#processing~rs}'] = 1;
+                        ToTry(t['@:{mx-event#fn~rs}'], data, me);
+                        if (!t['@:{mx-event#fn~rs}']) {
                             list.splice(idx--, 1);
                             len--;
                         }
-                        t['dF'] = Null;
+                        t['@:{mx-event#processing~rs}'] = Null;
                     }
                 }
             }
@@ -1443,11 +1443,11 @@ if (typeof DEBUG == 'undefined')
             let me = this;
             let key = Spliter + name;
             let list = me[key] || (me[key] = []), added, len, i, definition = {
-                'dE': fn,
-                'dG': priority
+                '@:{mx-event#fn~rs}': fn,
+                '@:{mx-event#priority~rs}': priority
             };
             for (i = 0, len = list.length; i < len; i++) {
-                if (list[i]['dG'] < priority) {
+                if (list[i]['@:{mx-event#priority~rs}'] < priority) {
                     list.splice(i, 0, definition);
                     added = 1;
                     break;
@@ -1465,9 +1465,9 @@ if (typeof DEBUG == 'undefined')
                     (t = list.length)) {
                     for (; t--;) {
                         key = list[t];
-                        if (key['dE'] == fn) {
-                            if (key['dF']) {
-                                key['dE'] = Null;
+                        if (key['@:{mx-event#fn~rs}'] == fn) {
+                            if (key['@:{mx-event#processing~rs}']) {
+                                key['@:{mx-event#fn~rs}'] = Null;
                             }
                             else {
                                 list.splice(t, 1);
@@ -1490,7 +1490,7 @@ if (typeof DEBUG == 'undefined')
     let Vframe_TranslateQuery = (pId, src, params, pVf) => {
         if (src.includes(Spliter) &&
             (pVf = Vframe_Vframes[pId])) {
-            TranslateData(pVf['dE'], params);
+            TranslateData(pVf['@:{vframe#ref.data~rs}'], params);
         }
     };
     let Vframe_Root = (rootId, e) => {
@@ -1527,12 +1527,12 @@ if (typeof DEBUG == 'undefined')
         if (vframe) {
             delete Vframe_Vframes[id];
             root = vframe.root;
-            root['dE'] = 0;
-            root['dF'] = 0;
+            root['@:{node#mounted.vframe~rs}'] = 0;
+            root['@:{node#vframe.id~rs}'] = 0;
             // Vframe.fire('remove', {
             //     vframe
             // });
-            vframe.id = vframe.root = vframe.pId = vframe['dF'] = Null; //清除引用,防止被移除的view内部通过setTimeout之类的异步操作有关的界面，影响真正渲染的view
+            vframe.id = vframe.root = vframe.pId = vframe['@:{vframe#children~rs}'] = Null; //清除引用,防止被移除的view内部通过setTimeout之类的异步操作有关的界面，影响真正渲染的view
             if (DEBUG) {
                 let nodes = Doc_Document.querySelectorAll('#' + id);
                 if (nodes.length > 1) {
@@ -1542,8 +1542,8 @@ if (typeof DEBUG == 'undefined')
         }
     };
     let Vframe_RunInvokes = (vf, list, name, resolve, view, fn, args) => {
-        list = vf['dG']; //invokeList
-        view = vf['dH'];
+        list = vf['@:{vframe#invoke.list~rs}']; //invokeList
+        view = vf['@:{vframe#view.entity~rs}'];
         while (list.length) {
             [name, args, resolve] = list.shift();
             CallFunction(resolve, (fn = view[name]) && ToTry(fn, args, view));
@@ -1551,7 +1551,7 @@ if (typeof DEBUG == 'undefined')
     };
     let Vframe_UnmountZone = (owner, root, onlyInnerView) => {
         let p, vf, unmount;
-        for (p in owner['dF']) {
+        for (p in owner['@:{vframe#children~rs}']) {
             if (root) {
                 vf = Vframe_Vframes[p];
                 unmount = vf && NodeIn(vf.root, root) && (!onlyInnerView || vf.root != root);
@@ -1584,8 +1584,8 @@ if (typeof DEBUG == 'undefined')
         //me['@:{vframe#hold.fire}'] = 1; //hold fire creted
         //me.unmountZone(zoneId, 1); 不去清理，详情见：https://github.com/thx/magix/issues/27
         for (it of vframes) {
-            if (!it['dE']) { //防止嵌套的情况下深层的view被反复实例化
-                it['dE'] = 1;
+            if (!it['@:{node#mounted.vframe~rs}']) { //防止嵌套的情况下深层的view被反复实例化
+                it['@:{node#mounted.vframe~rs}'] = 1;
                 owner.mount(it, GetAttribute(it, MX_View));
             }
         }
@@ -1595,30 +1595,30 @@ if (typeof DEBUG == 'undefined')
       * 销毁对应的view
       */
     let Vframe_unmountView = owner => {
-        let { 'dH': v, 'dG': list, root } = owner;
+        let { '@:{vframe#view.entity~rs}': v, '@:{vframe#invoke.list~rs}': list, root } = owner;
         list.length = 0;
         if (v) {
-            owner['dH'] = 0; //unmountView时，尽可能早的删除vframe上的$v对象，防止$v销毁时，再调用该 vfrmae的类似unmountZone方法引起的多次created
-            if (v['dE']) {
-                v['dE'] = 0;
+            owner['@:{vframe#view.entity~rs}'] = 0; //unmountView时，尽可能早的删除vframe上的$v对象，防止$v销毁时，再调用该 vfrmae的类似unmountZone方法引起的多次created
+            if (v['@:{view#sign~rs}']) {
+                v['@:{view#sign~rs}'] = 0;
                 Unmark(v);
                 Vframe_UnmountZone(owner);
                 v.fire('destroy');
                 View_DelegateEvents(v, 1);
                 //v.owner = v.root = Null;
-                if (root && owner['dI'] /*&&!keepPreHTML*/) { //如果$v本身是没有模板的，也需要把节点恢复到之前的状态上：只有保留模板且$v有模板的情况下，这条if才不执行，否则均需要恢复节点的html，即$v安装前什么样，销毁后把节点恢复到安装前的情况
-                    SetInnerHTML(root, owner['dJ']);
+                if (root && owner['@:{vframe#alter.node~rs}'] /*&&!keepPreHTML*/) { //如果$v本身是没有模板的，也需要把节点恢复到之前的状态上：只有保留模板且$v有模板的情况下，这条if才不执行，否则均需要恢复节点的html，即$v安装前什么样，销毁后把节点恢复到安装前的情况
+                    SetInnerHTML(root, owner['@:{vframe#template~rs}']);
                 }
             }
         }
-        owner['dK']++; //增加signature，阻止相应的回调，见mountView
+        owner['@:{vframe#sign~rs}']++; //增加signature，阻止相应的回调，见mountView
     };
     let Vframe_mountView = (owner, viewPath, viewInitParams /*,keepPreHTML*/) => {
         let { id, root } = owner;
         let po, sign, view, params, pId;
-        if (!owner['dI'] && root) { //alter
-            owner['dI'] = 1;
-            owner['dJ'] = root.innerHTML;
+        if (!owner['@:{vframe#alter.node~rs}'] && root) { //alter
+            owner['@:{vframe#alter.node~rs}'] = 1;
+            owner['@:{vframe#template~rs}'] = root.innerHTML;
         }
         Vframe_unmountView(owner);
         if (root && viewPath) {
@@ -1628,11 +1628,11 @@ if (typeof DEBUG == 'undefined')
             params = po[Params];
             pId = GetAttribute(root, MX_OWNER);
             Vframe_TranslateQuery(pId, viewPath, params);
-            owner['dL'] = view;
+            owner['@:{vframe#view.path~rs}'] = view;
             Assign(params, viewInitParams);
-            sign = owner['dK'];
+            sign = owner['@:{vframe#sign~rs}'];
             Async_Require(view, TView => {
-                if (sign == owner['dK']) { //有可能在view载入后，vframe已经卸载了
+                if (sign == owner['@:{vframe#sign~rs}']) { //有可能在view载入后，vframe已经卸载了
                     if (TView) {
                         View_Prepare(TView);
                         view = new TView(id, root, owner, params);
@@ -1642,11 +1642,11 @@ if (typeof DEBUG == 'undefined')
                                 id: 1,
                                 owner: 1,
                                 root: 1,
-                                'dF': 1,
-                                'dG': 1,
-                                'dE': 1,
-                                'dH': 1,
-                                'dI': 1
+                                '@:{view#observe.router~rs}': 1,
+                                '@:{view#resource~rs}': 1,
+                                '@:{view#sign~rs}': 1,
+                                '@:{view#updater.data~rs}': 1,
+                                '@:{view#updater.digesting.list~rs}': 1
                             };
                             for (let p in view) {
                                 if (Has(view, p) && viewProto[p]) {
@@ -1656,19 +1656,19 @@ if (typeof DEBUG == 'undefined')
                             view = Safeguard(view, true, (key, value) => {
                                 if (Has(viewProto, key) ||
                                     (Has(importantProps, key) &&
-                                        (key != 'dE' || !isFinite(value)) &&
+                                        (key != '@:{view#sign~rs}' || !isFinite(value)) &&
                                         ((key != 'owner' && key != 'root') || value !== Null))) {
                                     throw new Error(`avoid write ${key} at file ${viewPath}!`);
                                 }
                             });
                         }
-                        owner['dH'] = view;
+                        owner['@:{vframe#view.entity~rs}'] = view;
                         View_DelegateEvents(view);
                         ToTry(view.init, params, view);
-                        ToTry(view['dJ'], [params, owner['dJ']], view);
-                        view['dK']();
-                        if (!view['dL'] &&
-                            !view['dM']) { //无模板且未触发渲染
+                        ToTry(view['@:{view#assign.fn~rs}'], [params, owner['@:{vframe#template~rs}']], view);
+                        view['@:{view#render.short~rs}']();
+                        if (!view['@:{view#template~rs}'] &&
+                            !view['@:{view#rendered~rs}']) { //无模板且未触发渲染
                             View_EndUpdate(view);
                         }
                     }
@@ -1681,17 +1681,17 @@ if (typeof DEBUG == 'undefined')
             });
         }
     };
-    let Vframe_GetVfId = node => node['dF'] || (node['dF'] = GUID(Vframe_RootId));
+    let Vframe_GetVfId = node => node['@:{node#vframe.id~rs}'] || (node['@:{node#vframe.id~rs}'] = GUID(Vframe_RootId));
     function Vframe(root, pId) {
         let me = this;
         let vfId = Vframe_GetVfId(root);
         me.id = vfId;
         me.root = root;
-        me['dK'] = 1; //signature
-        me['dF'] = {}; //childrenMap
+        me['@:{vframe#sign~rs}'] = 1; //signature
+        me['@:{vframe#children~rs}'] = {}; //childrenMap
         me.pId = pId;
-        me['dG'] = []; //invokeList
-        me['dE'] = new Map();
+        me['@:{vframe#invoke.list~rs}'] = []; //invokeList
+        me['@:{vframe#ref.data~rs}'] = new Map();
         Vframe_AddVframe(vfId, me);
     }
     Assign(Vframe, {
@@ -1705,18 +1705,18 @@ if (typeof DEBUG == 'undefined')
             return Vframe_Vframes[id];
         },
         byNode(node) {
-            return Vframe_Vframes[node['dF']];
+            return Vframe_Vframes[node['@:{node#vframe.id~rs}']];
         }
     });
     //    , MxEvent
     Assign(Vframe[Prototype], {
         mount(node, viewPath, viewInitParams) {
-            let me = this, vf, id = me.id, c = me['dF'];
+            let me = this, vf, id = me.id, c = me['@:{vframe#children~rs}'];
             let vfId = Vframe_GetVfId(node);
             vf = Vframe_Vframes[vfId];
             if (!vf) {
                 if (!Has(c, vfId)) { //childrenMap,当前子vframe不包含这个id
-                    me['dM'] = 0; //childrenList 清空缓存的子列表
+                    me['@:{vframe#children.list~rs}'] = 0; //childrenList 清空缓存的子列表
                 }
                 c[vfId] = vfId; //map
                 vf = new Vframe(node, id);
@@ -1726,21 +1726,21 @@ if (typeof DEBUG == 'undefined')
         },
         unmount(node, isVframeId) {
             let me = this, vf, pId;
-            node = node ? me['dF'][isVframeId ? node : node['dF']] : me.id;
+            node = node ? me['@:{vframe#children~rs}'][isVframeId ? node : node['@:{node#vframe.id~rs}']] : me.id;
             vf = Vframe_Vframes[node];
             if (vf) {
                 pId = vf.pId;
                 Vframe_unmountView(vf);
                 Vframe_RemoveVframe(node);
                 vf = Vframe_Vframes[pId];
-                if (vf && Has(vf['dF'], node)) { //childrenMap
-                    delete vf['dF'][node]; //childrenMap
-                    vf['dM'] = 0;
+                if (vf && Has(vf['@:{vframe#children~rs}'], node)) { //childrenMap
+                    delete vf['@:{vframe#children~rs}'][node]; //childrenMap
+                    vf['@:{vframe#children.list~rs}'] = 0;
                 }
             }
         },
         children() {
-            return this['dM'] || (this['dM'] = Keys(this['dF']));
+            return this['@:{vframe#children.list~rs}'] || (this['@:{vframe#children.list~rs}'] = Keys(this['@:{vframe#children~rs}']));
         },
         parent(level, vf) {
             vf = this;
@@ -1751,10 +1751,10 @@ if (typeof DEBUG == 'undefined')
             return vf;
         },
         invoke(name, args) {
-            let vf = this, view, fn, list = vf['dG'];
+            let vf = this, view, fn, list = vf['@:{vframe#invoke.list~rs}'];
             return new GPromise(resolve => {
-                if ((view = vf['dH']) &&
-                    view['dM']) { //view rendered
+                if ((view = vf['@:{vframe#view.entity~rs}']) &&
+                    view['@:{view#rendered~rs}']) { //view rendered
                     resolve((fn = view[name]) && ToTry(fn, args, view));
                 }
                 else {
@@ -1845,22 +1845,22 @@ if (typeof DEBUG == 'undefined')
         }
         //如果有匹配但没有处理的vframe或者事件在要搜索的选择器事件里
         if ((match && !match.v) || Body_SearchSelectorEvents[eventType]) {
-            selectorVfId = begin['dG'];
+            selectorVfId = begin['@:{node#owner.vframe~rs}'];
             if (selectorVfId == Null) { //先找最近的vframe
                 vfs = [begin];
                 while (begin != Doc_Body && (begin = begin.parentNode)) {
-                    if (Vframe_Vframes[tempId = begin['dF']] ||
-                        (tempId = begin['dG'])) {
+                    if (Vframe_Vframes[tempId = begin['@:{node#vframe.id~rs}']] ||
+                        (tempId = begin['@:{node#owner.vframe~rs}'])) {
                         selectorVfId = tempId;
                         break;
                     }
                     vfs.push(begin);
                 }
                 for (info of vfs) {
-                    info['dG'] = selectorVfId || Empty;
+                    info['@:{node#owner.vframe~rs}'] = selectorVfId || Empty;
                 }
             }
-            begin = current['dF'];
+            begin = current['@:{node#vframe.id~rs}'];
             if (Vframe_Vframes[begin]) {
                 /*
                     如果当前节点是vframe的根节点，则把当前的vf置为该vframe
@@ -1883,8 +1883,8 @@ if (typeof DEBUG == 'undefined')
             if (selectorVfId) { //从最近的vframe向上查找带有选择器事件的view
                 do {
                     vf = Vframe_Vframes[selectorVfId];
-                    if (vf && (view = vf['dH'])) {
-                        selectorObject = view['dN'];
+                    if (vf && (view = vf['@:{vframe#view.entity~rs}'])) {
+                        selectorObject = view['@:{view#selector.events.object~rs}'];
                         eventSelector = selectorObject[eventType];
                         if (eventSelector) {
                             for (begin = eventSelector.length; begin--;) {
@@ -1909,7 +1909,7 @@ if (typeof DEBUG == 'undefined')
                             }
                         }
                         //防止跨view选中，到带模板的view时就中止或未指定
-                        if (view['dL'] && !backtrace) {
+                        if (view['@:{view#template~rs}'] && !backtrace) {
                             break; //带界面的中止
                         }
                         backtrace = 0;
@@ -1932,7 +1932,7 @@ if (typeof DEBUG == 'undefined')
         while (target &&
             target != Doc_Body &&
             !domEvent.cancelBubble &&
-            (!(ignore = target['dH']) || !ignore[type])) {
+            (!(ignore = target['@:{node#ignore.events~rs}']) || !ignore[type])) {
             offset = 1;
             if (target.nodeType == offset) {
                 eventInfos = Body_FindVframeInfo(target, type);
@@ -1950,15 +1950,15 @@ if (typeof DEBUG == 'undefined')
                         //     lastVfId = v;
                         // }
                         vframe = Vframe_Vframes[v];
-                        view = vframe && vframe['dH'];
+                        view = vframe && vframe['@:{vframe#view.entity~rs}'];
                         if (view) {
-                            if (view['dM'] &&
-                                view['dE']) {
+                            if (view['@:{view#rendered~rs}'] &&
+                                view['@:{view#sign~rs}']) {
                                 eventName = n + Spliter + type;
                                 fn = view[eventName];
                                 if (fn) {
                                     domEvent.eventTarget = target;
-                                    params = i ? ParseExpr(i, vframe['dE']) : Empty_Object;
+                                    params = i ? ParseExpr(i, vframe['@:{vframe#ref.data~rs}']) : Empty_Object;
                                     domEvent[Params] = params;
                                     ToTry(fn, domEvent, view);
                                 }
@@ -1968,7 +1968,7 @@ if (typeof DEBUG == 'undefined')
                                     }
                                 }
                                 if (target != view.root &&
-                                    !view['dN'][type]) {
+                                    !view['@:{view#selector.events.object~rs}'][type]) {
                                     if (t) {
                                         offset = b || offset;
                                     }
@@ -1992,12 +1992,12 @@ if (typeof DEBUG == 'undefined')
                     arr.push(target);
                 }
                 if (offset) {
-                    vframe = target['dF'];
+                    vframe = target['@:{node#vframe.id~rs}'];
                     if (vframe) {
                         vframe = Vframe_Vframes[vframe];
-                        view = vframe && vframe['dH'];
+                        view = vframe && vframe['@:{vframe#view.entity~rs}'];
                         if (view &&
-                            view['dO'][type]) {
+                            view['@:{view#events.object~rs}'][type]) {
                             arr.length = 0;
                         }
                     }
@@ -2007,7 +2007,7 @@ if (typeof DEBUG == 'undefined')
                 target = target.parentNode;
         }
         for (target of arr) {
-            ignore = target['dH'] || (target['dH'] = {});
+            ignore = target['@:{node#ignore.events~rs}'] || (target['@:{node#ignore.events~rs}'] = {});
             ignore[type] = 1;
         }
     };
@@ -2098,7 +2098,7 @@ if (typeof DEBUG == 'undefined')
                     console.error(`map has different value for same key:${k},current value:${v},previous value:${$$.get(k)}`);
                 }
             }
-            k = Spliter + (k || $$['dE']++);
+            k = Spliter + (k || $$['@:{vframe-data-map#index~rs}']++);
             if (!$$.has(k)) {
                 $$.set(v, k);
                 $$.set(k, v);
@@ -2141,43 +2141,43 @@ if (typeof DEBUG == 'undefined')
     //     }
     // };
     let Updater_Digest = (view, fire, tmpl) => {
-        if (view['dE'] &&
-            (tmpl = view['dL'])) {
-            let keys = view['dP'], viewId = view.id, vf = Vframe_Vframes[viewId], ref = {
-                'dE': [],
-                'dF': [],
-                'dG': 0
-            }, vdom, data = view['dH'], refData = vf['dE'];
-            view['dQ'] = 0;
-            view['dP'] = {};
+        if (view['@:{view#sign~rs}'] &&
+            (tmpl = view['@:{view#template~rs}'])) {
+            let keys = view['@:{view#updater.keys~rs}'], viewId = view.id, vf = Vframe_Vframes[viewId], ref = {
+                '@:{updater-ref#view.renders~rs}': [],
+                '@:{updater-ref#node.props~rs}': [],
+                '@:{updater-ref#async.count~rs}': 0
+            }, vdom, data = view['@:{view#updater.data~rs}'], refData = vf['@:{vframe#ref.data~rs}'];
+            view['@:{view#updater.data.changed~rs}'] = 0;
+            view['@:{view#updater.keys~rs}'] = {};
             if (fire) {
                 view.fire('dompatch');
             }
-            refData['dE'] = 0;
+            refData['@:{vframe-data-map#index~rs}'] = 0;
             refData.clear();
             vdom = tmpl(data, Q_Create, viewId, Updater_EncodeURI, refData, Updater_Ref, Updater_EncodeQ, IsArray);
             if (DEBUG) {
-                Updater_CheckInput(view, vdom['dE']);
+                Updater_CheckInput(view, vdom['@:{v#node.outer.html~rs}']);
             }
             let ready = () => {
-                view['dR'] = vdom;
-                if (view['dE']) {
-                    tmpl = ref['dH'] || !view['dM'];
+                view['@:{view#updater.vdom~rs}'] = vdom;
+                if (view['@:{view#sign~rs}']) {
+                    tmpl = ref['@:{updater-ref#changed~rs}'] || !view['@:{view#rendered~rs}'];
                     if (tmpl) {
                         View_EndUpdate(view);
                     }
-                    for (vdom of ref['dE']) {
-                        CallFunction(vdom['dK'], Empty_Array, vdom);
+                    for (vdom of ref['@:{updater-ref#view.renders~rs}']) {
+                        CallFunction(vdom['@:{view#render.short~rs}'], Empty_Array, vdom);
                         //CallFunction(View_CheckAssign, [vdom]);
                     }
                 }
-                if (view['dS'] > 1) {
-                    view['dS'] = 1;
-                    ref['dF'].length = 0;
+                if (view['@:{view#async.count~rs}'] > 1) {
+                    view['@:{view#async.count~rs}'] = 1;
+                    ref['@:{updater-ref#node.props~rs}'].length = 0;
                     Updater_Digest(view);
                 }
                 else {
-                    view['dS'] = 0;
+                    view['@:{view#async.count~rs}'] = 0;
                     /*
                         在dom diff patch时，如果已渲染的vframe有变化，则会在vom tree上先派发created事件，同时传递inner标志，vom tree处理alter事件派发状态，未进入created事件派发状态
             
@@ -2185,13 +2185,13 @@ if (typeof DEBUG == 'undefined')
             
                         有可能不需要endUpdate，所以hold fire要视情况而定
                     */
-                    for ([vdom, viewId, refData] of ref["dF"]) {
+                    for ([vdom, viewId, refData] of ref["@:{updater-ref#node.props~rs}"]) {
                         if (vdom[viewId] != refData) {
                             vdom[viewId] = refData;
                         }
                     }
                     view.fire('domready');
-                    keys = view['dT'];
+                    keys = view['@:{view#async.resolves~rs}'];
                     for (vdom of keys) {
                         vdom();
                     }
@@ -2201,7 +2201,7 @@ if (typeof DEBUG == 'undefined')
             // Updater_Ready_List.push({
             //     '@:{ready#callback}': ready
             // });
-            CallFunction(V_SetChildNodes, [view.root, view['dR'], vdom, ref, vf, keys, view, ready]);
+            CallFunction(V_SetChildNodes, [view.root, view['@:{view#updater.vdom~rs}'], vdom, ref, vf, keys, view, ready]);
             //V_SetChildNodes(view.root, view['@:{view#updater.vdom}'], vdom, ref, vf, keys, view, ready);
         }
     };
@@ -2217,12 +2217,12 @@ if (typeof DEBUG == 'undefined')
             if (children &&
                 children != 1) {
                 for (c of children) {
-                    if (c['dF']) {
-                        value = c['dF'] + (c['dG'] ? '/>' : `>${c['dH']}</${c['dI']}>`);
+                    if (c['@:{v#node.attrs~rs}']) {
+                        value = c['@:{v#node.attrs~rs}'] + (c['@:{v#node.self.close~rs}'] ? '/>' : `>${c['@:{v#node.html~rs}']}</${c['@:{v#node.tag~rs}']}>`);
                     }
                     else {
-                        value = c['dH'];
-                        if (c['dI'] == V_TEXT_NODE) {
+                        value = c['@:{v#node.html~rs}'];
+                        if (c['@:{v#node.tag~rs}'] == V_TEXT_NODE) {
                             if (value) {
                                 value = Updater_Encode(value);
                             }
@@ -2234,21 +2234,21 @@ if (typeof DEBUG == 'undefined')
                     innerHTML += value;
                     //merge text node
                     if (prevNode &&
-                        c['dI'] == V_TEXT_NODE &&
-                        prevNode['dI'] == V_TEXT_NODE) {
+                        c['@:{v#node.tag~rs}'] == V_TEXT_NODE &&
+                        prevNode['@:{v#node.tag~rs}'] == V_TEXT_NODE) {
                         //prevNode['@:{v#node.html}'] += c['@:{v#node.html}'];
-                        prevNode['dH'] += c['dH'];
+                        prevNode['@:{v#node.html~rs}'] += c['@:{v#node.html~rs}'];
                     }
                     else {
                         //reused node if new node key equal old node key
-                        if (c['dJ']) {
+                        if (c['@:{v#node.compare.key~rs}']) {
                             if (!reused)
                                 reused = {};
-                            reused[c['dJ']] = (reused[c['dJ']] || 0) + 1;
+                            reused[c['@:{v#node.compare.key~rs}']] = (reused[c['@:{v#node.compare.key~rs}']] || 0) + 1;
                             reusedTotal++;
                         }
                         //force diff children
-                        mxvKeys = mxvKeys || c['dK'];
+                        mxvKeys = mxvKeys || c['@:{v#node.mxv.keys~rs}'];
                         prevNode = c;
                         if (!newChildren)
                             newChildren = [];
@@ -2304,25 +2304,25 @@ if (typeof DEBUG == 'undefined')
             //attrs += outerHTML;
             //outerHTML += unary ? '/>' : `>${innerHTML}</${tag}>`;
             token = {
-                'dH': innerHTML,
-                'dJ': compareKey,
-                'dI': tag,
-                'dL': mxView,
-                'dK': mxvKeys,
-                'dM': specials,
-                'dN': hasSpecials,
-                'dF': attrs,
-                'dO': props,
-                'dP': newChildren,
-                'dQ': reused,
-                'dR': reusedTotal,
-                'dG': unary
+                '@:{v#node.html~rs}': innerHTML,
+                '@:{v#node.compare.key~rs}': compareKey,
+                '@:{v#node.tag~rs}': tag,
+                '@:{v#node.is.mx.view~rs}': mxView,
+                '@:{v#node.mxv.keys~rs}': mxvKeys,
+                '@:{v#node.attrs.specials~rs}': specials,
+                '@:{v#node.attrs.has.specials~rs}': hasSpecials,
+                '@:{v#node.attrs~rs}': attrs,
+                '@:{v#node.attrs.map~rs}': props,
+                '@:{v#node.children~rs}': newChildren,
+                '@:{v#node.reused~rs}': reused,
+                '@:{v#node.reused.total~rs}': reusedTotal,
+                '@:{v#node.self.close~rs}': unary
             };
         }
         else {
             token = {
-                'dI': children ? Spliter : V_TEXT_NODE,
-                'dH': props + Empty
+                '@:{v#node.tag~rs}': children ? Spliter : V_TEXT_NODE,
+                '@:{v#node.html~rs}': props + Empty
             };
         }
         return token;
@@ -2331,9 +2331,9 @@ if (typeof DEBUG == 'undefined')
         var CheckNodes = (realNodes, vNodes) => {
             let index = 0;
             if (vNodes.length &&
-                vNodes[0]['dI'] != Spliter) {
+                vNodes[0]['@:{v#node.tag~rs}'] != Spliter) {
                 for (let e of realNodes) {
-                    if (e.nodeName.toLowerCase() != vNodes[index]['dI'].toLowerCase()) {
+                    if (e.nodeName.toLowerCase() != vNodes[index]['@:{v#node.tag~rs}'].toLowerCase()) {
                         console.error('real not match virtual!');
                     }
                     index++;
@@ -2352,16 +2352,16 @@ if (typeof DEBUG == 'undefined')
         math: `${V_W3C}1998/Math/MathML`
     };
     let V_SetAttributes = (oldNode, newVDOM, lastVDOM, ref) => {
-        let key, value, changed = 0, nsMap = newVDOM['dM'], nMap = newVDOM['dO'], osMap, oMap, sValue;
+        let key, value, changed = 0, nsMap = newVDOM['@:{v#node.attrs.specials~rs}'], nMap = newVDOM['@:{v#node.attrs.map~rs}'], osMap, oMap, sValue;
         if (lastVDOM) {
-            osMap = lastVDOM['dM'];
-            oMap = lastVDOM['dO'];
+            osMap = lastVDOM['@:{v#node.attrs.specials~rs}'];
+            oMap = lastVDOM['@:{v#node.attrs.map~rs}'];
             for (key in oMap) {
                 if (!Has(nMap, key)) { //如果旧有新木有
                     changed = 1;
                     if ((sValue = osMap[key])) {
                         if (ref) {
-                            ref['dF'].push([oldNode, sValue, Empty]);
+                            ref['@:{updater-ref#node.props~rs}'].push([oldNode, sValue, Empty]);
                         }
                         else {
                             oldNode[sValue] = Empty;
@@ -2379,7 +2379,7 @@ if (typeof DEBUG == 'undefined')
                 if (!lastVDOM || oldNode[sValue] != value) {
                     changed = 1;
                     if (ref) {
-                        ref['dF'].push([oldNode, sValue, value]);
+                        ref['@:{updater-ref#node.props~rs}'].push([oldNode, sValue, value]);
                     }
                     else {
                         oldNode[sValue] = value;
@@ -2394,14 +2394,14 @@ if (typeof DEBUG == 'undefined')
         return changed;
     };
     let V_CreateNode = (vnode, owner, ref) => {
-        let tag = vnode['dI'], c;
+        let tag = vnode['@:{v#node.tag~rs}'], c;
         if (tag == V_TEXT_NODE) {
-            c = Doc_Document.createTextNode(vnode['dH']);
+            c = Doc_Document.createTextNode(vnode['@:{v#node.html~rs}']);
         }
         else {
             c = Doc_Document.createElementNS(V_NSMap[tag] || owner.namespaceURI, tag);
             V_SetAttributes(c, vnode);
-            SetInnerHTML(c, vnode['dH']);
+            SetInnerHTML(c, vnode['@:{v#node.html~rs}']);
         }
         return c;
     };
@@ -2409,7 +2409,7 @@ if (typeof DEBUG == 'undefined')
         let keyedNodes = {}, i, oc, cKey; //, iKey;
         for (i = end; i >= start; i--, realEnd--) {
             oc = list[i];
-            cKey = oc['dJ'];
+            cKey = oc['@:{v#node.compare.key~rs}'];
             if (cKey) {
                 //iKey = Spliter + cKey;
                 //keyedNodes[iKey] = (keyedNodes[iKey] || 0) + 1;
@@ -2420,17 +2420,17 @@ if (typeof DEBUG == 'undefined')
         return keyedNodes;
     };
     let V_IsSameVNode = (aVNode, bVNode) => {
-        return (aVNode['dJ'] &&
-            bVNode['dJ'] == aVNode['dJ']) ||
-            (!aVNode['dJ'] &&
-                !bVNode['dJ'] &&
-                aVNode['dI'] == bVNode['dI']) ||
-            aVNode['dI'] == Spliter ||
-            bVNode['dI'] == Spliter;
+        return (aVNode['@:{v#node.compare.key~rs}'] &&
+            bVNode['@:{v#node.compare.key~rs}'] == aVNode['@:{v#node.compare.key~rs}']) ||
+            (!aVNode['@:{v#node.compare.key~rs}'] &&
+                !bVNode['@:{v#node.compare.key~rs}'] &&
+                aVNode['@:{v#node.tag~rs}'] == bVNode['@:{v#node.tag~rs}']) ||
+            aVNode['@:{v#node.tag~rs}'] == Spliter ||
+            bVNode['@:{v#node.tag~rs}'] == Spliter;
     };
     let V_Remove_Vframe_By_Node = (node, parentVf, elementNode, vf) => {
         if (elementNode) {
-            vf = Vframe_Vframes[node['dF']];
+            vf = Vframe_Vframes[node['@:{node#vframe.id~rs}']];
             if (vf) {
                 vf.unmount();
             }
@@ -2440,7 +2440,7 @@ if (typeof DEBUG == 'undefined')
         }
     };
     let V_Remove_Node_Task = (node, parent, parentVf, ref, view, ready) => {
-        if (view['dE']) {
+        if (view['@:{view#sign~rs}']) {
             V_Remove_Vframe_By_Node(node, parentVf, node.nodeType == 1);
             if (DEBUG) {
                 if (!node.parentNode) {
@@ -2448,21 +2448,21 @@ if (typeof DEBUG == 'undefined')
                 }
             }
             parent.removeChild(node);
-            if (!(--ref['dG'])) {
+            if (!(--ref['@:{updater-ref#async.count~rs}'])) {
                 CallFunction(ready);
             }
         }
     };
     let V_Insert_Node_Task = (realNode, oc, nodes, offset, view, ref, ready) => {
-        if (view['dE']) {
-            if (oc['dI'] == Spliter) {
+        if (view['@:{view#sign~rs}']) {
+            if (oc['@:{v#node.tag~rs}'] == Spliter) {
                 Vframe_UnmountZone(realNode);
-                SetInnerHTML(realNode, oc['dH']);
+                SetInnerHTML(realNode, oc['@:{v#node.html~rs}']);
             }
             else {
                 realNode.insertBefore(V_CreateNode(oc, realNode, ref), nodes[offset]);
             }
-            if (!(--ref['dG'])) {
+            if (!(--ref['@:{updater-ref#async.count~rs}'])) {
                 CallFunction(ready);
             }
         }
@@ -2480,13 +2480,13 @@ if (typeof DEBUG == 'undefined')
     //     return [resuedTotal, keyedNodes];
     // };
     let V_SetChildNodes = (realNode, lastVDOM, newVDOM, ref, vframe, keys, view, ready) => {
-        if (view['dE']) {
+        if (view['@:{view#sign~rs}']) {
             if (lastVDOM) { //view首次初始化，通过innerHTML快速更新
-                if (lastVDOM['dK'] ||
-                    lastVDOM['dH'] != newVDOM['dH']) {
-                    let i, oi, oc, oldChildren = lastVDOM['dP'] || Empty_Array, newChildren = newVDOM['dP'] || Empty_Array, reused = newVDOM['dQ'] || Empty_Object, resuedTotal = newVDOM['dR'], oldReusedTotal = lastVDOM['dR'], nodes = realNode.childNodes, compareKey, keyedNodes, oldRangeStart = 0, newCount = newChildren.length, oldRangeEnd = oldChildren.length - 1, newRangeStart = 0, newRangeEnd = newCount - 1;
+                if (lastVDOM['@:{v#node.mxv.keys~rs}'] ||
+                    lastVDOM['@:{v#node.html~rs}'] != newVDOM['@:{v#node.html~rs}']) {
+                    let i, oi, oc, oldChildren = lastVDOM['@:{v#node.children~rs}'] || Empty_Array, newChildren = newVDOM['@:{v#node.children~rs}'] || Empty_Array, reused = newVDOM['@:{v#node.reused~rs}'] || Empty_Object, resuedTotal = newVDOM['@:{v#node.reused.total~rs}'], oldReusedTotal = lastVDOM['@:{v#node.reused.total~rs}'], nodes = realNode.childNodes, compareKey, keyedNodes, oldRangeStart = 0, newCount = newChildren.length, oldRangeEnd = oldChildren.length - 1, newRangeStart = 0, newRangeEnd = newCount - 1;
                     if (DEBUG &&
-                        lastVDOM['dI'] != Q_TEXTAREA) {
+                        lastVDOM['@:{v#node.tag~rs}'] != Q_TEXTAREA) {
                         CheckNodes(nodes, oldChildren);
                     }
                     // let newCount = newChildren.length - 1;
@@ -2617,13 +2617,13 @@ if (typeof DEBUG == 'undefined')
                             oldEndNode = oldChildren[--oldRangeEnd];
                         }
                         else if (V_IsSameVNode(newStartNode, oldStartNode)) {
-                            if (newStartNode['dI'] == Spliter ||
-                                oldStartNode['dI'] == Spliter) {
-                                ref['dH'] = 1;
+                            if (newStartNode['@:{v#node.tag~rs}'] == Spliter ||
+                                oldStartNode['@:{v#node.tag~rs}'] == Spliter) {
+                                ref['@:{updater-ref#changed~rs}'] = 1;
                                 Vframe_UnmountZone(realNode);
-                                if (newStartNode['dI'] == Spliter) {
+                                if (newStartNode['@:{v#node.tag~rs}'] == Spliter) {
                                     realNodeRangeEnd = 0;
-                                    SetInnerHTML(realNode, newStartNode['dH']);
+                                    SetInnerHTML(realNode, newStartNode['@:{v#node.html~rs}']);
                                 }
                                 else {
                                     SetInnerHTML(realNode, Empty);
@@ -2631,19 +2631,19 @@ if (typeof DEBUG == 'undefined')
                                 }
                             }
                             else {
-                                ref['dG']++;
+                                ref['@:{updater-ref#async.count~rs}']++;
                                 CallFunction(V_SetNode, [nodes[realNodeRangeStart], realNode, oldStartNode, newStartNode, ref, vframe, keys, view, ready]);
                             }
                             //更新需要保留的节点，加速对节点索引
                             //如果当前节点已经在索引中，则要按顺序移除
                             //[resuedTotal, keyedNodes] = V_DecreaseUsed(reused, resuedTotal, oldStartNode, keyedNodes);
-                            if (reused[oldStartNode['dJ']]) {
-                                reused[oldStartNode['dJ']]--;
+                            if (reused[oldStartNode['@:{v#node.compare.key~rs}']]) {
+                                reused[oldStartNode['@:{v#node.compare.key~rs}']]--;
                                 resuedTotal--;
                                 compareKey = keyedNodes &&
-                                    keyedNodes[oldStartNode['dJ']];
+                                    keyedNodes[oldStartNode['@:{v#node.compare.key~rs}']];
                                 if (compareKey) {
-                                    --keyedNodes[oldStartNode['dJ']];
+                                    --keyedNodes[oldStartNode['@:{v#node.compare.key~rs}']];
                                 }
                             }
                             realNodeRangeStart++;
@@ -2651,11 +2651,11 @@ if (typeof DEBUG == 'undefined')
                             newStartNode = newChildren[++newRangeStart];
                         }
                         else if (V_IsSameVNode(newEndNode, oldEndNode)) {
-                            ref['dG']++;
+                            ref['@:{updater-ref#async.count~rs}']++;
                             CallFunction(V_SetNode, [nodes[realNodeRangeEnd], realNode, oldEndNode, newEndNode, ref, vframe, keys, view, ready]);
                             //[resuedTotal, keyedNodes] = V_DecreaseUsed(reused, resuedTotal, oldEndNode, keyedNodes);
-                            if (reused[oldEndNode['dJ']]) {
-                                reused[oldEndNode['dJ']]--;
+                            if (reused[oldEndNode['@:{v#node.compare.key~rs}']]) {
+                                reused[oldEndNode['@:{v#node.compare.key~rs}']]--;
                                 resuedTotal--;
                             }
                             realNodeRangeEnd--;
@@ -2665,11 +2665,11 @@ if (typeof DEBUG == 'undefined')
                         else if (V_IsSameVNode(newEndNode, oldStartNode)) {
                             oi = nodes[realNodeRangeStart];
                             realNode.insertBefore(oi, nodes[realNodeRangeEnd + 1]);
-                            ref['dG']++;
+                            ref['@:{updater-ref#async.count~rs}']++;
                             CallFunction(V_SetNode, [oi, realNode, oldStartNode, newEndNode, ref, vframe, keys, view, ready]);
                             //[resuedTotal, keyedNodes] = V_DecreaseUsed(reused, resuedTotal, oldStartNode, keyedNodes);
-                            if (reused[oldStartNode['dJ']]) {
-                                reused[oldStartNode['dJ']]--;
+                            if (reused[oldStartNode['@:{v#node.compare.key~rs}']]) {
+                                reused[oldStartNode['@:{v#node.compare.key~rs}']]--;
                                 resuedTotal--;
                             }
                             realNodeRangeEnd--;
@@ -2679,10 +2679,10 @@ if (typeof DEBUG == 'undefined')
                         else if (V_IsSameVNode(newStartNode, oldEndNode)) {
                             oi = nodes[realNodeRangeEnd];
                             realNode.insertBefore(oi, nodes[realNodeRangeStart++]);
-                            ref['dG']++;
+                            ref['@:{updater-ref#async.count~rs}']++;
                             CallFunction(V_SetNode, [oi, realNode, oldEndNode, newStartNode, ref, vframe, keys, view, ready]);
-                            if (reused[oldEndNode['dJ']]) {
-                                reused[oldEndNode['dJ']]--;
+                            if (reused[oldEndNode['@:{v#node.compare.key~rs}']]) {
+                                reused[oldEndNode['@:{v#node.compare.key~rs}']]--;
                                 resuedTotal--;
                             }
                             //[resuedTotal, keyedNodes] = V_DecreaseUsed(reused, resuedTotal, oldEndNode, keyedNodes);
@@ -2697,7 +2697,7 @@ if (typeof DEBUG == 'undefined')
                             }
                             currentNode = nodes[realNodeRangeStart];
                             compareKey = keyedNodes &&
-                                keyedNodes[newStartNode['dJ']];
+                                keyedNodes[newStartNode['@:{v#node.compare.key~rs}']];
                             /**
                              * <div>{{=f}}</div>   =>  <div>aa</div>
                              * <div>aa</div>
@@ -2725,10 +2725,10 @@ if (typeof DEBUG == 'undefined')
                                     oldRangeStart--;
                                     realNode.insertBefore(compareKey, currentNode);
                                 }
-                                if (reused[oc['dJ']]) {
-                                    reused[oc['dJ']]--;
+                                if (reused[oc['@:{v#node.compare.key~rs}']]) {
+                                    reused[oc['@:{v#node.compare.key~rs}']]--;
                                 }
-                                ref['dG']++;
+                                ref['@:{updater-ref#async.count~rs}']++;
                                 CallFunction(V_SetNode, [compareKey, realNode, oc, newStartNode, ref, vframe, keys, view, ready]);
                             }
                             else {
@@ -2738,17 +2738,17 @@ if (typeof DEBUG == 'undefined')
                                  *                        <div>bb</div>
                                  */
                                 if ((keyedNodes &&
-                                    keyedNodes[oldStartNode['dJ']] &&
-                                    reused[oldStartNode['dJ']]) ||
-                                    (Vframe_Vframes[currentNode['dF']] &&
-                                        !newStartNode['dL'])) {
-                                    ref['dH'] = 1;
+                                    keyedNodes[oldStartNode['@:{v#node.compare.key~rs}']] &&
+                                    reused[oldStartNode['@:{v#node.compare.key~rs}']]) ||
+                                    (Vframe_Vframes[currentNode['@:{node#vframe.id~rs}']] &&
+                                        !newStartNode['@:{v#node.is.mx.view~rs}'])) {
+                                    ref['@:{updater-ref#changed~rs}'] = 1;
                                     realNode.insertBefore(V_CreateNode(newStartNode, realNode, ref), currentNode);
                                     oldRangeStart--;
                                     realNodeRangeEnd++;
                                 }
                                 else {
-                                    ref['dG']++;
+                                    ref['@:{updater-ref#async.count~rs}']++;
                                     CallFunction(V_SetNode, [currentNode, realNode, oldStartNode, newStartNode, ref, vframe, keys, view, ready]);
                                 }
                             }
@@ -2759,8 +2759,8 @@ if (typeof DEBUG == 'undefined')
                     }
                     for (i = newRangeStart, oi = 1; i <= newRangeEnd; i++, oi++) {
                         oc = newChildren[i];
-                        ref['dH'] = 1;
-                        ref['dG']++;
+                        ref['@:{updater-ref#changed~rs}'] = 1;
+                        ref['@:{updater-ref#async.count~rs}']++;
                         CallFunction(V_Insert_Node_Task, [realNode, oc, nodes, realNodeRangeEnd + oi, view, ref, ready]);
                         // if (oc['@:{v#node.tag}'] == Spliter) {
                         //     Vframe_UnmountZone(realNode);
@@ -2771,19 +2771,19 @@ if (typeof DEBUG == 'undefined')
                     }
                     if (!newCount &&
                         oldStartNode &&
-                        oldStartNode['dI'] == Spliter) {
+                        oldStartNode['@:{v#node.tag~rs}'] == Spliter) {
                         realNodeRangeEnd = nodes.length - 1;
                     }
                     for (i = realNodeRangeEnd; i >= realNodeRangeStart; i--) { //删除多余的旧节点
-                        ref['dH'] = 1;
-                        ref['dG']++;
+                        ref['@:{updater-ref#changed~rs}'] = 1;
+                        ref['@:{updater-ref#async.count~rs}']++;
                         CallFunction(V_Remove_Node_Task, [nodes[i], realNode, vframe, ref, view, ready]);
                     }
                 }
             }
             else {
-                ref['dH'] = 1;
-                SetInnerHTML(realNode, newVDOM['dH']);
+                ref['@:{updater-ref#changed~rs}'] = 1;
+                SetInnerHTML(realNode, newVDOM['@:{v#node.html~rs}']);
                 if (DEBUG) {
                     if (vframe.root.nodeType == 1 && !vframe.root.parentNode) {
                         throw new Error(`unsupport mount "${vframe.path}". the root element is removed by other views`);
@@ -2796,8 +2796,8 @@ if (typeof DEBUG == 'undefined')
                             if (c != vframe.id) {
                                 let nv = Vframe_Vframes[c];
                                 if (nv &&
-                                    nv['dH'] &&
-                                    nv['dH']['dL'] &&
+                                    nv['@:{vframe#view.entity~rs}'] &&
+                                    nv['@:{vframe#view.entity~rs}']['@:{view#template~rs}'] &&
                                     NodeIn(vframe.root, nv.root)) {
                                     throw new Error(`unsupport nest "${vframe.path}" within "${nv.path}"`);
                                 }
@@ -2807,38 +2807,38 @@ if (typeof DEBUG == 'undefined')
                 }
             }
         }
-        if (!ref['dG']) {
+        if (!ref['@:{updater-ref#async.count~rs}']) {
             CallFunction(ready);
         }
     };
     let V_SetNode = (realNode, oldParent, lastVDOM, newVDOM, ref, vframe, keys, rootView, ready) => {
-        if (rootView['dE']) {
+        if (rootView['@:{view#sign~rs}']) {
             if (DEBUG) {
-                if (lastVDOM['dI'] != Spliter &&
-                    newVDOM['dI'] != Spliter) {
+                if (lastVDOM['@:{v#node.tag~rs}'] != Spliter &&
+                    newVDOM['@:{v#node.tag~rs}'] != Spliter) {
                     if (oldParent.nodeName == 'TEMPLATE') {
                         console.error('unsupport template tag');
                     }
                     if ((realNode.nodeName == '#text' &&
-                        lastVDOM['dI'] != '#text') ||
+                        lastVDOM['@:{v#node.tag~rs}'] != '#text') ||
                         (realNode.nodeName != '#text' &&
-                            realNode.nodeName.toLowerCase() != lastVDOM['dI'].toLowerCase())) {
-                        console.error('Your code is not match the DOM tree generated by the browser. near:' + lastVDOM['dH'] + '. Is that you lost some tags or modified the DOM tree?');
+                            realNode.nodeName.toLowerCase() != lastVDOM['@:{v#node.tag~rs}'].toLowerCase())) {
+                        console.error('Your code is not match the DOM tree generated by the browser. near:' + lastVDOM['@:{v#node.html~rs}'] + '. Is that you lost some tags or modified the DOM tree?');
                     }
                 }
             }
-            let lastAMap = lastVDOM['dO'], newAMap = newVDOM['dO'];
-            if (lastVDOM['dK'] ||
-                lastVDOM['dF'] != newVDOM['dF'] ||
-                lastVDOM['dH'] != newVDOM['dH']) {
-                if (lastVDOM['dI'] == newVDOM['dI']) {
-                    if (lastVDOM['dI'] == V_TEXT_NODE) {
-                        ref['dH'] = 1;
-                        realNode.nodeValue = newVDOM['dH'];
+            let lastAMap = lastVDOM['@:{v#node.attrs.map~rs}'], newAMap = newVDOM['@:{v#node.attrs.map~rs}'];
+            if (lastVDOM['@:{v#node.mxv.keys~rs}'] ||
+                lastVDOM['@:{v#node.attrs~rs}'] != newVDOM['@:{v#node.attrs~rs}'] ||
+                lastVDOM['@:{v#node.html~rs}'] != newVDOM['@:{v#node.html~rs}']) {
+                if (lastVDOM['@:{v#node.tag~rs}'] == newVDOM['@:{v#node.tag~rs}']) {
+                    if (lastVDOM['@:{v#node.tag~rs}'] == V_TEXT_NODE) {
+                        ref['@:{updater-ref#changed~rs}'] = 1;
+                        realNode.nodeValue = newVDOM['@:{v#node.html~rs}'];
                     }
                     else if (!lastAMap[Tag_Static_Key] ||
                         lastAMap[Tag_Static_Key] != newAMap[Tag_Static_Key]) {
-                        let newMxView = newAMap[MX_View], newHTML = newVDOM['dH'], updateAttribute = lastVDOM['dF'] != newVDOM['dF'] || newVDOM['dN'], updateChildren, unmountOld, oldVf = Vframe_Vframes[realNode['dF']], assign, view, uri = newMxView && ParseUri(newMxView), params, htmlChanged, paramsChanged;
+                        let newMxView = newAMap[MX_View], newHTML = newVDOM['@:{v#node.html~rs}'], updateAttribute = lastVDOM['@:{v#node.attrs~rs}'] != newVDOM['@:{v#node.attrs~rs}'] || newVDOM['@:{v#node.attrs.has.specials~rs}'], updateChildren, unmountOld, oldVf = Vframe_Vframes[realNode['@:{node#vframe.id~rs}']], assign, view, uri = newMxView && ParseUri(newMxView), params, htmlChanged, paramsChanged;
                         /*
                             如果存在新旧view，则考虑路径一致，避免渲染的问题
                          */
@@ -2852,16 +2852,16 @@ if (typeof DEBUG == 'undefined')
                         if (updateAttribute) {
                             updateAttribute = V_SetAttributes(realNode, newVDOM, lastVDOM, ref);
                             if (updateAttribute) {
-                                ref['dH'] = 1;
+                                ref['@:{updater-ref#changed~rs}'] = 1;
                             }
                         }
                         //旧节点有view,新节点有view,且是同类型的view
                         if (newMxView && oldVf &&
-                            oldVf['dL'] == uri[Path] &&
-                            (view = oldVf['dH'])) {
-                            htmlChanged = newHTML != lastVDOM['dH'];
+                            oldVf['@:{vframe#view.path~rs}'] == uri[Path] &&
+                            (view = oldVf['@:{vframe#view.entity~rs}'])) {
+                            htmlChanged = newHTML != lastVDOM['@:{v#node.html~rs}'];
                             paramsChanged = newMxView != oldVf[Path];
-                            assign = newVDOM['dK'];
+                            assign = newVDOM['@:{v#node.mxv.keys~rs}'];
                             if (!htmlChanged && !paramsChanged && assign) {
                                 params = assign.split(Comma);
                                 for (assign of params) {
@@ -2873,14 +2873,14 @@ if (typeof DEBUG == 'undefined')
                             }
                             if (paramsChanged ||
                                 htmlChanged) {
-                                assign = view['dJ'];
+                                assign = view['@:{view#assign.fn~rs}'];
                                 //如果有assign方法,且有参数或html变化
                                 //if (assign) {
                                 params = uri[Params];
                                 //处理引用赋值
                                 Vframe_TranslateQuery(newAMap[MX_OWNER], newMxView, params);
                                 oldVf[Path] = newMxView; //update ref
-                                oldVf['dJ'] = newHTML;
+                                oldVf['@:{vframe#template~rs}'] = newHTML;
                                 //如果需要更新，则进行更新的操作
                                 // uri = {
                                 //     //node: newVDOM,//['@:{v#node.children}'],
@@ -2899,15 +2899,15 @@ if (typeof DEBUG == 'undefined')
                                         if (assign == View.prototype.assign) {
                                             console.error(`override ${uri[Path]} "assign" method and make sure returned true or false value`);
                                         }
-                                        ref['dE'].push(view);
+                                        ref['@:{updater-ref#view.renders~rs}'].push(view);
                                     }
                                 }
                                 else if (ToTry(assign, [params, newHTML], /*[params, uri],*/ view) !== false) {
-                                    ref['dE'].push(view);
+                                    ref['@:{updater-ref#view.renders~rs}'].push(view);
                                 }
                                 //默认当一个组件有assign方法时，由该方法及该view上的render方法完成当前区域内的节点更新
                                 //而对于不渲染界面的控制类型的组件来讲，它本身更新后，有可能需要继续由magix更新内部的子节点，此时通过deep参数控制
-                                updateChildren = !view['dL']; //uri.deep;
+                                updateChildren = !view['@:{view#template~rs}']; //uri.deep;
                                 // } else {
                                 //     unmountOld = 1;
                                 //     updateChildren = 1;
@@ -2926,25 +2926,25 @@ if (typeof DEBUG == 'undefined')
                             unmountOld = oldVf;
                         }
                         if (unmountOld) {
-                            ref['dH'] = 1;
+                            ref['@:{updater-ref#changed~rs}'] = 1;
                             oldVf.unmount();
                         }
                         // Update all children (and subchildren).
                         //自闭合标签不再检测子节点
                         if (updateChildren &&
-                            !newVDOM['dG']) {
+                            !newVDOM['@:{v#node.self.close~rs}']) {
                             V_SetChildNodes(realNode, lastVDOM, newVDOM, ref, vframe, keys, rootView, ready);
                         }
                     }
                 }
                 else {
-                    ref['dH'] = 1;
+                    ref['@:{updater-ref#changed~rs}'] = 1;
                     V_Remove_Vframe_By_Node(realNode, vframe, 1);
                     oldParent.replaceChild(V_CreateNode(newVDOM, oldParent, ref), realNode);
                 }
             }
         }
-        if (!(--ref['dG'])) {
+        if (!(--ref['@:{updater-ref#async.count~rs}'])) {
             CallFunction(ready);
         }
     };
@@ -2964,26 +2964,26 @@ if (typeof DEBUG == 'undefined')
     //like 'login<click>' or '$<click>' or '$win<scroll>' or '$win<scroll>&{capture:true}'
     let View_EvtMethodReg = /^(\$?)([^<]*)<([^>]+)>(?:\s*&(.+))?$/;
     let processMixinsSameEvent = (exist, additional, temp) => {
-        if (exist['dE']) {
+        if (exist['@:{viewmixin#list~rs}']) {
             temp = exist;
         }
         else {
             temp = function (e, f) {
-                for (f of temp['dE']) {
+                for (f of temp['@:{viewmixin#list~rs}']) {
                     ToTry(f, e, this);
                 }
             };
-            temp['dE'] = [exist];
-            temp['dF'] = 1;
+            temp['@:{viewmixin#list~rs}'] = [exist];
+            temp['@:{viewmixin#is.mixin~rs}'] = 1;
         }
-        temp['dE'] = temp['dE'].concat(additional['dE'] || additional);
+        temp['@:{viewmixin#list~rs}'] = temp['@:{viewmixin#list~rs}'].concat(additional['@:{viewmixin#list~rs}'] || additional);
         return temp;
     };
     let View_EndUpdate = view => {
         let o, f;
-        if (view['dE']) {
-            f = view['dM'];
-            view['dM'] = 1;
+        if (view['@:{view#sign~rs}']) {
+            f = view['@:{view#rendered~rs}'];
+            view['@:{view#rendered~rs}'] = 1;
             o = view.owner;
             Vframe_MountZone(o);
             if (!f) {
@@ -2992,13 +2992,13 @@ if (typeof DEBUG == 'undefined')
         }
     };
     let View_DelegateEvents = (me, destroy) => {
-        let e, { 'dO': eventsObject, 'dN': selectorObject, 'dU': eventsList, id } = me; //eventsObject
+        let e, { '@:{view#events.object~rs}': eventsObject, '@:{view#selector.events.object~rs}': selectorObject, '@:{view#events.list~rs}': eventsList, id } = me; //eventsObject
         for (e in eventsObject) {
             Body_DOMEventBind(e, selectorObject[e], destroy, eventsObject[e]);
         }
         eventsObject = destroy ? RemoveEventListener : AddEventListener;
         for (e of eventsList) {
-            eventsObject(e['dE'], e['dF'], e['dG'], e['dH'], id, me);
+            eventsObject(e['@:{xevent#element~rs}'], e['@:{xevent#name~rs}'], e['@:{xevent#callback~rs}'], e['@:{xevent#modifier~rs}'], id, me);
         }
     };
     let View_Globals = {
@@ -3024,7 +3024,7 @@ if (typeof DEBUG == 'undefined')
                         fn = processMixinsSameEvent(exist, fn);
                     }
                     else {
-                        fn['dF'] = 1;
+                        fn['@:{viewmixin#is.mixin~rs}'] = 1;
                     }
                 }
                 else if (DEBUG &&
@@ -3045,11 +3045,11 @@ if (typeof DEBUG == 'undefined')
         }
     };
     function merge(...args) {
-        let me = this, _ = me['dE'] || (me['dE'] = []);
+        let me = this, _ = me['@:{view-factory#ctors~rs}'] || (me['@:{view-factory#ctors~rs}'] = []);
         View_MergeMixins(args, me[Prototype], _);
         return me;
     }
-    let safeRender = render => function (...args) { return this['dE'] && ToTry(render, args, this); };
+    let safeRender = render => function (...args) { return this['@:{view#sign~rs}'] && ToTry(render, args, this); };
     let execCtors = (list, params, me, cx) => {
         if (list) {
             for (cx of list) {
@@ -3065,7 +3065,7 @@ if (typeof DEBUG == 'undefined')
             me.call(z = this, viewId, rootNode, ownerVf, initParams);
             if (ctor)
                 ToTry(ctor, initParams, z);
-            execCtors(NView['dE'], initParams, z);
+            execCtors(NView['@:{view-factory#ctors~rs}'], initParams, z);
         }
         NView.merge = merge;
         NView.extend = extend;
@@ -3095,10 +3095,10 @@ if (typeof DEBUG == 'undefined')
                         if (isSelector) {
                             if (node) {
                                 eventsList.push({
-                                    'dG': currentFn,
-                                    'dE': node,
-                                    'dF': item,
-                                    'dH': mod
+                                    '@:{xevent#callback~rs}': currentFn,
+                                    '@:{xevent#element~rs}': node,
+                                    '@:{xevent#name~rs}': item,
+                                    '@:{xevent#modifier~rs}': mod
                                 });
                                 continue;
                             }
@@ -3122,8 +3122,8 @@ if (typeof DEBUG == 'undefined')
                         if (!node) { //未设置过
                             prop[item] = currentFn;
                         }
-                        else if (node['dF']) { //现有的方法是mixins上的
-                            if (currentFn['dF']) { //2者都是mixins上的事件，则合并
+                        else if (node['@:{viewmixin#is.mixin~rs}']) { //现有的方法是mixins上的
+                            if (currentFn['@:{viewmixin#is.mixin~rs}']) { //2者都是mixins上的事件，则合并
                                 prop[item] = processMixinsSameEvent(currentFn, node);
                             }
                             else if (Has(prop, p)) { //currentFn方法不是mixin上的，也不是继承来的，在当前view上，优先级最高
@@ -3133,12 +3133,12 @@ if (typeof DEBUG == 'undefined')
                     }
                 }
             }
-            prop['dK'] = prop.render = safeRender(prop.render);
-            prop['dO'] = eventsObject;
-            prop['dU'] = eventsList;
-            prop['dN'] = selectorObject;
-            prop['dJ'] = prop.assign;
-            prop['dL'] = prop.tmpl;
+            prop['@:{view#render.short~rs}'] = prop.render = safeRender(prop.render);
+            prop['@:{view#events.object~rs}'] = eventsObject;
+            prop['@:{view#events.list~rs}'] = eventsList;
+            prop['@:{view#selector.events.object~rs}'] = selectorObject;
+            prop['@:{view#assign.fn~rs}'] = prop.assign;
+            prop['@:{view#template~rs}'] = prop.tmpl;
         }
     };
     function View(id, root, owner, params, me) {
@@ -3147,14 +3147,14 @@ if (typeof DEBUG == 'undefined')
         me.owner = owner;
         me.id = id;
         //me[Spliter] = id;
-        me['dE'] = 1; //标识view是否刷新过，对于托管的函数资源，在回调这个函数时，不但要确保view没有销毁，而且要确保view没有刷新过，如果刷新过则不回调
-        me['dQ'] = 1;
-        me['dH'] = {};
-        me['dP'] = {};
+        me['@:{view#sign~rs}'] = 1; //标识view是否刷新过，对于托管的函数资源，在回调这个函数时，不但要确保view没有销毁，而且要确保view没有刷新过，如果刷新过则不回调
+        me['@:{view#updater.data.changed~rs}'] = 1;
+        me['@:{view#updater.data~rs}'] = {};
+        me['@:{view#updater.keys~rs}'] = {};
         //me['@:{view#assign.sign}'] = 0;
-        me['dS'] = 0;
-        me['dT'] = [];
-        execCtors(View['dE'], params, me);
+        me['@:{view#async.count~rs}'] = 0;
+        me['@:{view#async.resolves~rs}'] = [];
+        execCtors(View['@:{view-factory#ctors~rs}'], params, me);
     }
     Assign(View, {
         merge,
@@ -3165,15 +3165,15 @@ if (typeof DEBUG == 'undefined')
         render: Noop,
         assign: Noop,
         get(key, result) {
-            result = this['dH'];
+            result = this['@:{view#updater.data~rs}'];
             if (key) {
                 result = result[key];
             }
             return result;
         },
         set(newData, force) {
-            let me = this, oldData = me['dH'], keys = me['dP'];
-            let changed = me['dQ'], now, old, p;
+            let me = this, oldData = me['@:{view#updater.data~rs}'], keys = me['@:{view#updater.keys~rs}'];
+            let changed = me['@:{view#updater.data.changed~rs}'], now, old, p;
             for (p in newData) {
                 now = newData[p];
                 old = oldData[p];
@@ -3185,7 +3185,7 @@ if (typeof DEBUG == 'undefined')
                 }
                 oldData[p] = now;
             }
-            me['dQ'] = changed;
+            me['@:{view#updater.data.changed~rs}'] = changed;
             return me;
         },
         digest(data, force) {
@@ -3206,15 +3206,15 @@ if (typeof DEBUG == 'undefined')
                 如果在digest的过程中，多次调用自身的digest，则后续的进行排队。前面的执行完成后，排队中的一次执行完毕
             */
             return new GPromise(resolve => {
-                if (data['dQ']) {
-                    data['dS']++;
-                    data['dT'].push(resolve);
-                    if (data['dS'] == 1) {
+                if (data['@:{view#updater.data.changed~rs}']) {
+                    data['@:{view#async.count~rs}']++;
+                    data['@:{view#async.resolves~rs}'].push(resolve);
+                    if (data['@:{view#async.count~rs}'] == 1) {
                         Updater_Digest(data, 1);
                     }
                 }
-                else if (data['dS']) {
-                    data['dT'].push(resolve);
+                else if (data['@:{view#async.count~rs}']) {
+                    data['@:{view#async.resolves~rs}'].push(resolve);
                 }
                 else {
                     resolve();
@@ -3224,8 +3224,8 @@ if (typeof DEBUG == 'undefined')
         finale() {
             let me = this;
             return new GPromise(resolve => {
-                if (me['dS']) {
-                    me['dT'].push(resolve);
+                if (me['@:{view#async.count~rs}']) {
+                    me['@:{view#async.resolves~rs}'].push(resolve);
                 }
                 else {
                     resolve();
@@ -3233,7 +3233,7 @@ if (typeof DEBUG == 'undefined')
             });
         },
         parse(origin) {
-            return ParseExpr(origin, this.owner['dE']);
+            return ParseExpr(origin, this.owner['@:{vframe#ref.data~rs}']);
         }
     });
     /*
@@ -3279,7 +3279,7 @@ if (typeof DEBUG == 'undefined')
      */
     function Bag() {
         this.id = GUID('b');
-        this['dE'] = {};
+        this['@:{bag#attrs~rs}'] = {};
     }
     Assign(Bag[Prototype], {
         get(key, dValue) {
@@ -3300,7 +3300,7 @@ if (typeof DEBUG == 'undefined')
     
                 或者key本身就是数组
              */
-            let attrs = me['dE'];
+            let attrs = me['@:{bag#attrs~rs}'];
             if (key) {
                 let tks = IsArray(key) ? key.slice() : (key + Empty).split('.'), tk;
                 while ((tk = tks.shift()) && attrs) {
@@ -3317,13 +3317,13 @@ if (typeof DEBUG == 'undefined')
                 }
                 attrs = dValue;
             }
-            if (DEBUG && me['dF'] && me['dF']['dE']) { //缓存中的接口不让修改数据
+            if (DEBUG && me['@:{bag#meta.info~rs}'] && me['@:{bag#meta.info~rs}']['@:{meta#cache.key~rs}']) { //缓存中的接口不让修改数据
                 attrs = Safeguard(attrs);
             }
             return attrs;
         },
         set(data) {
-            Assign(this['dE'], data);
+            Assign(this['@:{bag#attrs~rs}'], data);
         }
     });
     let Service_FetchFlags_ONE = 1;
@@ -3333,7 +3333,7 @@ if (typeof DEBUG == 'undefined')
         if (fns) {
             delete bagCacheKeys[cacheKey]; //先删除掉信息
             for (let fn of fns) {
-                ToTry(fn, error, fns['dE']); //执行所有的回调
+                ToTry(fn, error, fns['@:{service-cache-list#entity~rs}']); //执行所有的回调
             }
         }
     };
@@ -3351,8 +3351,8 @@ if (typeof DEBUG == 'undefined')
         return (bag, idx, error) => {
             currentDoneCount++; //当前完成加1.
             let newBag;
-            let mm = bag['dF'];
-            let cacheKey = mm['dE'], temp;
+            let mm = bag['@:{bag#meta.info~rs}'];
+            let cacheKey = mm['@:{meta#cache.key~rs}'], temp;
             doneArr[idx + 1] = bag; //完成的bag
             if (error) { //出错
                 errorArgs = error;
@@ -3365,17 +3365,17 @@ if (typeof DEBUG == 'undefined')
                     bagCache.set(cacheKey, bag); //缓存
                 }
                 //bag.set(data);
-                mm['dF'] = Date_Now(); //记录当前完成的时间
-                temp = mm['dG'];
+                mm['@:{meta#cache.time~rs}'] = Date_Now(); //记录当前完成的时间
+                temp = mm['@:{meta#after~rs}'];
                 if (temp) { //有after
                     ToTry(temp, bag, bag);
                 }
                 newBag = 1;
             }
-            if (!service['dE']) { //service['@:{service#destroyed}'] 当前请求被销毁
+            if (!service['@:{service#destroyed~rs}']) { //service['@:{service#destroyed}'] 当前请求被销毁
                 let finish = currentDoneCount == total;
                 if (finish) {
-                    service['dF'] = 0;
+                    service['@:{service#busy~rs}'] = 0;
                     if (flag == Service_FetchFlags_ALL) { //all
                         doneArr[0] = errorArgs;
                         ToTry(done, doneArr, service);
@@ -3394,23 +3394,23 @@ if (typeof DEBUG == 'undefined')
         };
     };
     let Service_Send = (me, attrs, done, flag, save) => {
-        if (me['dE'])
+        if (me['@:{service#destroyed~rs}'])
             return me; //如果已销毁，返回
-        if (me['dF']) { //繁忙，后续请求入队
+        if (me['@:{service#busy~rs}']) { //繁忙，后续请求入队
             return me.enqueue(Service_Send.bind(me, me, attrs, done, flag, save));
         }
-        me['dF'] = 1; //标志繁忙
+        me['@:{service#busy~rs}'] = 1; //标志繁忙
         if (!IsArray(attrs)) {
             attrs = [attrs];
         }
         let host = me.constructor, requestCount = 0;
         //let bagCache = host['@:{service#cache}']; //存放bag的Cache对象
-        let bagCacheKeys = host['dG']; //可缓存的bag key
-        let removeComplete = Service_Task(done, host, me, attrs.length, flag, host['dH']);
+        let bagCacheKeys = host['@:{service#request.keys~rs}']; //可缓存的bag key
+        let removeComplete = Service_Task(done, host, me, attrs.length, flag, host['@:{service#cache~rs}']);
         for (let bag of attrs) {
             if (bag) {
                 let [bagEntity, update] = host.get(bag, save); //获取bag信息
-                let cacheKey = bagEntity['dF']['dE']; //从实体上获取缓存key
+                let cacheKey = bagEntity['@:{bag#meta.info~rs}']['@:{meta#cache.key~rs}']; //从实体上获取缓存key
                 let complete = removeComplete.bind(bagEntity, bagEntity, requestCount++);
                 let cacheList;
                 if (cacheKey && bagCacheKeys[cacheKey]) { //如果需要缓存，并且请求已发出
@@ -3419,11 +3419,11 @@ if (typeof DEBUG == 'undefined')
                 else if (update) { //需要更新
                     if (cacheKey) { //需要缓存
                         cacheList = [complete];
-                        cacheList['dE'] = bagEntity;
+                        cacheList['@:{service-cache-list#entity~rs}'] = bagEntity;
                         bagCacheKeys[cacheKey] = cacheList;
                         complete = Service_Cache_Done(bagCacheKeys, cacheKey); //替换回调，详见Service_CacheDone
                     }
-                    host['dI'](bagEntity, complete);
+                    host['@:{service#send~rs}'](bagEntity, complete);
                 }
                 else { //不需要更新时，直接回调
                     complete();
@@ -3435,7 +3435,7 @@ if (typeof DEBUG == 'undefined')
     function Service() {
         let me = this;
         me.id = GUID('s');
-        me['dJ'] = [];
+        me['@:{service#list~rs}'] = [];
     }
     Assign(Service[Prototype], {
         all(attrs, done) {
@@ -3449,22 +3449,22 @@ if (typeof DEBUG == 'undefined')
         },
         enqueue(callback) {
             let me = this;
-            if (!me['dE']) {
-                me['dJ'].push(callback);
-                me.dequeue(me['dK']);
+            if (!me['@:{service#destroyed~rs}']) {
+                me['@:{service#list~rs}'].push(callback);
+                me.dequeue(me['@:{service#last.arguments~rs}']);
             }
             return me;
         },
         dequeue(...a) {
             let me = this, one;
-            if (!me['dF'] && !me['dE']) {
-                me['dF'] = 1;
+            if (!me['@:{service#busy~rs}'] && !me['@:{service#destroyed~rs}']) {
+                me['@:{service#busy~rs}'] = 1;
                 Timeout(() => {
-                    me['dF'] = 0;
-                    if (!me['dE']) { //不清除setTimeout,但在回调中识别是否调用了destroy方法
-                        one = me['dJ'].shift();
+                    me['@:{service#busy~rs}'] = 0;
+                    if (!me['@:{service#destroyed~rs}']) { //不清除setTimeout,但在回调中识别是否调用了destroy方法
+                        one = me['@:{service#list~rs}'].shift();
                         if (one) {
-                            ToTry(one, me['dK'] = a);
+                            ToTry(one, me['@:{service#last.arguments~rs}'] = a);
                         }
                     }
                 });
@@ -3472,8 +3472,8 @@ if (typeof DEBUG == 'undefined')
         },
         destroy(me) {
             me = this;
-            me['dE'] = 1; //只需要标记及清理即可，其它的不需要
-            me['dJ'] = 0;
+            me['@:{service#destroyed~rs}'] = 1; //只需要标记及清理即可，其它的不需要
+            me['@:{service#list~rs}'] = 0;
         }
     });
     let Manager_DefaultCacheKey = (meta, attrs, arr) => {
@@ -3483,7 +3483,7 @@ if (typeof DEBUG == 'undefined')
     let Service_Manager = Assign({
         add(attrs) {
             let me = this;
-            let metas = me['dL'], bag;
+            let metas = me['@:{service#metas~rs}'], bag;
             if (!IsArray(attrs)) {
                 attrs = [attrs];
             }
@@ -3504,9 +3504,9 @@ if (typeof DEBUG == 'undefined')
             let cache = (attrs.cache | 0) || meta.cache;
             let entity = new Bag();
             entity.set(meta);
-            entity['dF'] = {
-                'dG': meta.after,
-                'dE': cache && Manager_DefaultCacheKey(meta, attrs)
+            entity['@:{bag#meta.info~rs}'] = {
+                '@:{meta#after~rs}': meta.after,
+                '@:{meta#cache.key~rs}': cache && Manager_DefaultCacheKey(meta, attrs)
             };
             if (IsObject(attrs)) {
                 entity.set(attrs);
@@ -3522,7 +3522,7 @@ if (typeof DEBUG == 'undefined')
         },
         meta(attrs) {
             let me = this;
-            let metas = me['dL'];
+            let metas = me['@:{service#metas~rs}'];
             let name = attrs.name || attrs;
             let ma = metas[name];
             return ma || attrs;
@@ -3541,7 +3541,7 @@ if (typeof DEBUG == 'undefined')
         },
         cached(attrs) {
             let me = this;
-            let bagCache = me['dH'];
+            let bagCache = me['@:{service#cache~rs}'];
             let entity;
             let cacheKey;
             let meta = me.meta(attrs);
@@ -3550,14 +3550,14 @@ if (typeof DEBUG == 'undefined')
                 cacheKey = Manager_DefaultCacheKey(meta, attrs);
             }
             if (cacheKey) {
-                let requestCacheKeys = me['dG'];
+                let requestCacheKeys = me['@:{service#request.keys~rs}'];
                 let info = requestCacheKeys[cacheKey];
                 if (info) { //处于请求队列中的
-                    entity = info['dE'];
+                    entity = info['@:{service-cache-list#entity~rs}'];
                 }
                 else { //缓存
                     entity = bagCache.get(cacheKey);
-                    if (entity && Date_Now() - entity['dF']['dF'] > cache) {
+                    if (entity && Date_Now() - entity['@:{bag#meta.info~rs}']['@:{meta#cache.time~rs}'] > cache) {
                         bagCache.del(cacheKey);
                         entity = 0;
                     }
@@ -3570,10 +3570,10 @@ if (typeof DEBUG == 'undefined')
         function NService() {
             Service.call(this);
         }
-        NService['dI'] = sync;
-        NService['dH'] = new MxCache(cacheMax, cacheBuffer);
-        NService['dG'] = {};
-        NService['dL'] = {};
+        NService['@:{service#send~rs}'] = sync;
+        NService['@:{service#cache~rs}'] = new MxCache(cacheMax, cacheBuffer);
+        NService['@:{service#request.keys~rs}'] = {};
+        NService['@:{service#metas~rs}'] = {};
         Assign(NService, Service_Manager);
         return Extend(NService, Service);
     };
@@ -3665,7 +3665,7 @@ if (typeof DEBUG == 'undefined')
 (() => {
     let filter = (key, value) => key.startsWith('_') ? undefined : value;
     let init = (ops) => {
-        if (!init['_nt']) {
+        if (!init['@:{inited.promise~rs}']) {
             if (DEBUG) {
                 let node = document.getElementById('boot');
                 // let node = document.currentScript as HTMLScriptElement;
@@ -3680,13 +3680,13 @@ if (typeof DEBUG == 'undefined')
                         standalone: src + 'standalone'
                     },
                     alias: {
-                        magix: '4e'
+                        magix: 'magix5'
                     }
                 });
             }
-            init['_nt'] = new Promise(resolve => {
-                seajs.use(['4e', '4p/index'], ({ applyStyle, config, View, guid, boot }, I18n) => {
-                    applyStyle("rd-dE","@font-face{font-family:rd-dE;src:url(//at.alicdn.com/t/font_890516_0d9vo6gyyqb6.woff2?t=1628133270767) format(\"woff2\"),url(//at.alicdn.com/t/font_890516_0d9vo6gyyqb6.woff?t=1628133270767) format(\"woff\"),url(//at.alicdn.com/t/font_890516_0d9vo6gyyqb6.ttf?t=1628133270767) format(\"truetype\")}.rd-dE{all:initial;box-sizing:border-box;display:block;font-family:Arial,sans-serif;font-size:14px;line-height:1.5}*,:after,:before{box-sizing:inherit}.rd-dF{speak:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;display:inline-block;font:400 normal normal 16px/1 rd-dE;position:relative}.rd-dE ::-moz-placeholder{color:#999}.rd-dE :-ms-input-placeholder{color:#999}.rd-dE ::placeholder{color:#999}.rd-dE ::-moz-selection{background:rgba(250,116,43,.2)}.rd-dE ::selection{background:rgba(250,116,43,.2)}.rd-dG{margin:0}.rd-dH,.rd-dI{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:#fff;border:1px solid #e6e6e6;border-radius:2px;box-shadow:none;box-sizing:border-box;caret-color:#fa742b;color:#333;display:inline-block;font-size:100%;height:22px;margin:0;max-width:100%;outline:0;padding:1px 4px;width:140px}.rd-dH:hover,.rd-dI:hover{border-color:#ccc}.rd-dH:focus,.rd-dI:focus,.rd-dJ{border-color:#fa742b;outline:0}.rd-dI{font-family:Arial,sans-serif;height:auto;line-height:1.5;overflow:auto;padding:3px 4px;resize:none}.rd-dK{outline:0}.rd-dH[disabled],.rd-dI[disabled]{background-color:#f5f5f5;color:#999;cursor:not-allowed}.rd-dH:-moz-placeholder,.rd-dI:-moz-placeholder{color:#a9a9a9;opacity:1}.rd-dH:-moz-focus-inner{border-style:none;padding:0}.rd-dH[disabled]:hover,.rd-dI[disabled]:hover{border-color:#e6e6e6;cursor:not-allowed}.rd-dJ:hover{border-color:#fa742b}.rd-dL{background-color:#ccc;background-image:none;border:0;border-radius:2px;color:#333;display:inline-block;font-size:14px;line-height:1;margin:0;outline:0;padding:4px 14px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;vertical-align:middle;white-space:nowrap}.rd-dL,.rd-dM{font-weight:400}.rd-dL:focus,.rd-dL:hover{background-color:#bbb;color:#333}.rd-dN{background-color:#fa742b;color:#fff}.rd-dN:focus,.rd-dN:hover{background-color:#f96412;color:#fff}.rd-dL[disabled]{background-color:#f5f5f5;color:#999;cursor:not-allowed}.rd-dL[disabled]:hover{border-color:#e6e6e6;color:#999}.rd-dL:-moz-focus-inner{border-style:none;padding:0}.rd-dO{border-bottom:1px solid hsla(0,0%,90%,.4);color:#333;line-height:1.5;margin:0;padding:8px 25px}.rd-dP{margin-top:-20px}.rd-dQ{box-shadow:0 0 6px #ccc;height:10px;margin-top:10px;top:28px}.rd-dR{line-height:1.1}.rd-dS{padding:18px 25px}.rd-dT{bottom:28px;box-shadow:0 0 6px #ccc;height:10px;margin-bottom:10px}.rd-dU{border-top:1px solid hsla(0,0%,90%,.4);padding:8px 25px}.rd-dV{margin-bottom:-20px}.rd-dW{line-height:0;margin:0 auto;padding:150px 0;width:150px}.rd-dW:after,.rd-dW:before,.rd-dX{-webkit-animation:rd-dE 1s ease-in-out infinite both;animation:rd-dE 1s ease-in-out infinite both;background-color:#ccc;border-radius:100%;content:\"\";display:inline-block;height:14px;width:14px}.rd-dW:before{-webkit-animation-delay:-.32s;animation-delay:-.32s}.rd-dX{-webkit-animation-delay:-.16s;animation-delay:-.16s;margin:0 10px}@-webkit-keyframes rd-dE{0%,80%,to{transform:scale(0)}40%{transform:scale(1)}}@keyframes rd-dE{0%,80%,to{transform:scale(0)}40%{transform:scale(1)}}.rd-dY{display:inline-block;font-weight:400}.rd-dZ{font-size:14px}.rd-d0,.rd-dZ{margin:0;padding:0}.rd-d0{list-style-image:none;list-style-type:none}.rd-d1{color:#fa742b;text-decoration:none}.rd-d1:focus,.rd-d1:hover{color:#e25305}.rd-d1:active,.rd-d1:focus,.rd-d1:hover,.rd-d1:visited{outline:0}.rd-d2{border-style:none;height:auto;vertical-align:top}.rd-d3{margin-right:2px}.rd-d4{margin-left:5px}.rd-d5{transform:rotate(180deg)}.rd-d6{transform:rotate(90deg)}.rd-d7{transform:rotate(270deg)}.rd-d8{margin-right:5px}.rd-d9{margin-right:10px}.rd-e_{margin-left:10px}.rd-ea{padding-left:10px}.rd-eb{background-color:rgba(250,116,43,.6)}.rd-ec{background-color:#fff}.rd-ed{width:100%}.rd-ee{height:100%}.rd-ef{max-width:100%}.rd-eg{max-height:100%}.rd-eh{text-align:right}.rd-ei{text-align:center}.rd-ej{float:left}.rd-ek{float:right}.rd-el{position:absolute}.rd-em{position:relative}.rd-en{pointer-events:none}.rd-eo{pointer-events:all}.rd-ep{margin:30px 0}html .rd-eq{display:none}.rd-er{display:block}.rd-es{display:inline-block}.rd-et{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.rd-eu::-webkit-scrollbar,.rd-eu::-webkit-scrollbar-corner{background:#edeef3;height:4px;width:4px}.rd-eu::-webkit-scrollbar-thumb{background:#fa742b;border-radius:2px}.rd-eu::-webkit-scrollbar-thumb:hover{background:#ec5706}.rd-ev{scroll-behavior:smooth;scrollbar-width:thin}.rd-ev::-webkit-scrollbar,.rd-ev::-webkit-scrollbar-corner{background:#fafafa;height:2px;width:2px}.rd-ew{word-wrap:normal;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rd-ex{background:linear-gradient(90deg,#0000,#7d768454 50%,#0000);height:1px;margin:5px 0}.rd-ey{flex:1}.rd-ez{display:flex}.rd-eA{flex-direction:column}.rd-eB{align-items:center}.rd-eC{transform:scaleX(-1)}.rd-eD{transform:scaleY(-1)}.rd-eE{margin-left:80px}.rd-eF{position:sticky}.rd-eG{top:0}.rd-eH{margin-bottom:4px}.rd-eI{margin-top:4px}.rd-eJ{width:60px}.rd-eK{width:140px}.rd-eL{width:113px}.rd-eM{width:220px}.rd-eN{height:100px}.rd-eO{height:1px}.rd-eP{height:4px}.rd-eQ{width:1px}.rd-eR{width:4px}.rd-eS{justify-content:space-between}.rd-eT{justify-content:center}.rd-eU{justify-content:flex-end}.rd-eV{flex-wrap:wrap}.rd-eW{color:#e6e6e6}.rd-eX{cursor:pointer}.rd-eY{cursor:default}.rd-eZ{cursor:text}.rd-e0{word-break:break-all}.rd-e1{border-collapse:collapse}.rd-e2{border:1px solid #000;padding:0}.rd-e3{background:rgba(250,116,43,.05)}.rd-e4{overflow:hidden;white-space:pre}.rd-e5{border:2px solid #fa742b}.rd-e6,.rd-e7{border-radius:2px;border-right:6px solid #fa742b}.rd-e6{right:-4px}.rd-e7{left:-4px}.rd-e8,.rd-e9{border-bottom:6px solid #fa742b;border-radius:2px}.rd-e8{bottom:-4px}.rd-e9{top:-4px}.rd-f_{inset:-1px}.rd-fa{inset:0}.rd-fb{background-color:rgba(250,116,43,.1);box-shadow:inset 2px 2px 10px rgba(0,0,0,.2);outline:2px solid #fa742b}.rd-fc{width:80px}.rd-fd{background:rgba(250,116,43,.2)}.rd-fe{align-items:flex-start}.rd-ff{visibility:hidden}.rd-fg{background:#ccc;border-radius:22px;display:inline-block;height:16px;width:32px}.rd-fg:before{background:#fff;border-radius:50%;content:\"\";height:12px;left:0;margin:2px;position:absolute;width:12px}.rd-fg:before,.rd-fh{transition:all .25s}.rd-ff:checked+.rd-fg{background:#fa742b}.rd-ff:checked+.rd-fg:before{left:100%;margin-left:-14px}.rd-ff:disabled+.rd-fg{background:#e6e6e6;cursor:not-allowed}.rd-fi{background:#e0e0e0;border-radius:2px;height:20px;line-height:20px;margin:0 1px;width:20px}.rd-fi:hover{background:#ccc}.rd-fj,.rd-fj:hover{background:#fa742b;color:#fff}.rd-fk,.rd-fk .rd-fi{cursor:not-allowed;opacity:.7}.rd-fk .rd-fi,.rd-fk .rd-fi:hover{background:#e9e9e9}.rd-fk .rd-fj,.rd-fk .rd-fj:hover{background:#fb955d}.rd-fl{cursor:not-allowed}.rd-fm,.rd-fn{color:#999}.rd-fo{fill:#999}.rd-fm:hover,.rd-fp{color:#666}.rd-fq{overflow:hidden}.rd-fr{overflow:visible}.rd-fs{overflow:auto}.rd-ft{overflow:scroll}.rd-fu{overflow-y:scroll}.rd-fv{font-size:10px}.rd-fw{font-size:12px}.rd-fx{font-size:14px}.rd-fy{font-size:16px}.rd-fz{font-size:26px}.rd-fA{right:2px}.rd-fB{right:0}.rd-fC{top:2px}.rd-fD{bottom:2px}.rd-fE{bottom:0}.rd-fF{border:1px dashed #fa742b;display:none;z-index:2}.rd-fG{border:1px dotted #999}.rd-fH{z-index:1}.rd-fI{z-index:5}.rd-fJ{z-index:6}.rd-fK{z-index:7}.rd-fL{z-index:8}.rd-fM:before{align-items:center;content:attr(data-tip);display:flex;height:100%;justify-content:center;position:absolute;width:100%}.rd-fN{min-height:80px}.rd-fO{min-height:500px}.rd-fP{min-height:100vh}.rd-fQ{border-style:dashed}.rd-fR{contain:paint}.rd-fS{padding:4px}.rd-fT{padding:2px}.rd-fU{left:2px}.rd-fV{border-radius:2px;padding:2px}.rd-fW{opacity:0}.rd-fW:focus{opacity:1}.rd-fX{opacity:0}.rd-fY{transform:translateY(-50%)}.rd-fZ{transform:translateX(-50%)}.rd-f0{touch-action:none}");
+            init['@:{inited.promise~rs}'] = new Promise(resolve => {
+                seajs.use(['magix5', 'i18n/index'], ({ applyStyle, config, View, guid, boot }, I18n) => {
+                    applyStyle(["rd-_assets__vars_less_","\n","rd-_assets_index_less_","\n@font-face{\nfont-family:rd-_assets_index_less_-iconfont;\n  \nsrc:url('//at.alicdn.com/t/font_890516_0d9vo6gyyqb6.woff2?t=1628133270767') format('woff2'), url('//at.alicdn.com/t/font_890516_0d9vo6gyyqb6.woff?t=1628133270767') format('woff'), url('//at.alicdn.com/t/font_890516_0d9vo6gyyqb6.ttf?t=1628133270767') format('truetype');\n}\n.rd-_assets_index_less_-designer-root {\nall:initial;\ndisplay:block;\nbox-sizing:border-box;\nfont-size:14px;\nline-height:1.5;\nfont-family:Arial, sans-serif;\n}\n* {\nbox-sizing:inherit;\n}\n*:before,\n*:after {\nbox-sizing:inherit;\n}\n.rd-_assets_index_less_-iconfont {\nfont:400 normal normal 16px/1 rd-_assets_index_less_-iconfont;\ndisplay:inline-block;\nspeak:none;\nposition:relative;\n-webkit-font-smoothing:antialiased;\n-moz-osx-font-smoothing:grayscale;\n}\n.rd-_assets_index_less_-designer-root *::-moz-placeholder {\ncolor:#999;\n}\n.rd-_assets_index_less_-designer-root *:-ms-input-placeholder {\ncolor:#999;\n}\n.rd-_assets_index_less_-designer-root *::placeholder {\ncolor:#999;\n}\n.rd-_assets_index_less_-designer-root *::-moz-selection {\nbackground:rgba(71, 179, 78, 0.2);\n}\n.rd-_assets_index_less_-designer-root *::selection {\nbackground:rgba(71, 179, 78, 0.2);\n}\n.rd-_assets_index_less_-tag-input {\nmargin:0;\n}\n.rd-_assets_index_less_-input,\n.rd-_assets_index_less_-textarea {\nfont-size:100%;\nmargin:0;\n-webkit-appearance:none;\n-moz-appearance:none;\nappearance:none;\ncaret-color:#47B34E;\ndisplay:inline-block;\nheight:22px;\npadding:1px 4px;\nborder-radius:2px;\nbox-sizing:border-box;\nbox-shadow:none;\nborder:1px solid #e6e6e6;\nbackground-color:#fff;\ncolor:#333;\nwidth:140px;\nmax-width:100%;\noutline:0;\n}\n.rd-_assets_index_less_-input:hover,\n.rd-_assets_index_less_-textarea:hover {\nborder-color:#ccc;\n}\n.rd-_assets_index_less_-input:focus,\n.rd-_assets_index_less_-input-focus,\n.rd-_assets_index_less_-textarea:focus {\noutline:0;\nborder-color:#47B34E;\n}\n.rd-_assets_index_less_-textarea {\nheight:auto;\noverflow:auto;\nresize:none;\npadding:3px 4px;\nfont-family:Arial, sans-serif;\nline-height:1.5;\n}\n.rd-_assets_index_less_-outline-none {\noutline:0;\n}\n.rd-_assets_index_less_-input[disabled],\n.rd-_assets_index_less_-textarea[disabled] {\nbackground-color:#f5f5f5;\ncursor:not-allowed;\ncolor:#999;\n}\n\n.rd-_assets_index_less_-input:-moz-placeholder,\n.rd-_assets_index_less_-textarea:-moz-placeholder {\ncolor:#a9a9a9;\nopacity:1;\n}\n.rd-_assets_index_less_-input:-moz-focus-inner {\nborder-style:none;\npadding:0;\n}\n.rd-_assets_index_less_-input[disabled]:hover,\n.rd-_assets_index_less_-textarea[disabled]:hover {\ncursor:not-allowed;\nborder-color:#e6e6e6;\n}\n.rd-_assets_index_less_-input-focus:hover {\nborder-color:#47B34E;\n}\n.rd-_assets_index_less_-btn {\nmargin:0;\noutline:0;\ndisplay:inline-block;\nfont-weight:400;\nvertical-align:middle;\nbackground-image:none;\nbackground-color:#ccc;\nwhite-space:nowrap;\npadding:4px 14px;\nfont-size:14px;\nline-height:1;\nborder:0;\ncolor:#333;\nborder-radius:2px;\n-webkit-user-select:none;\n-moz-user-select:none;\n-ms-user-select:none;\nuser-select:none;\n}\n.rd-_assets_index_less_-font-weight-normal {\nfont-weight:400;\n}\n.rd-_assets_index_less_-btn:hover,\n.rd-_assets_index_less_-btn:focus {\nbackground-color:#bbb;\ncolor:#333;\n}\n.rd-_assets_index_less_-btn-brand {\nbackground-color:#47B34E;\ncolor:#ffffff;\n}\n.rd-_assets_index_less_-btn-brand:hover,\n.rd-_assets_index_less_-btn-brand:focus {\nbackground-color:#40a146;\ncolor:#ffffff;\n}\n.rd-_assets_index_less_-btn[disabled] {\nbackground-color:#f5f5f5;\ncolor:#999;\ncursor:not-allowed;\n}\n.rd-_assets_index_less_-btn[disabled]:hover {\nborder-color:#e6e6e6;\ncolor:#999;\n}\n\n.rd-_assets_index_less_-btn:-moz-focus-inner {\nborder-style:none;\npadding:0;\n}\n.rd-_assets_index_less_-dialog-header {\npadding:8px 25px;\nborder-bottom:1px solid rgba(230, 230, 230, 0.4);\ncolor:#333;\nmargin:0;\nline-height:1.5;\n}\n.rd-_assets_index_less_-dialog-header-with-shadow {\nmargin-top:-20px;\n}\n.rd-_assets_index_less_-dialog-header-shadow {\nheight:10px;\nmargin-top:10px;\ntop:28px;\nbox-shadow:0 0 6px #ccc;\n}\n.rd-_assets_index_less_-line-height-1 {\nline-height:1.1;\n}\n.rd-_assets_index_less_-dialog-body {\npadding:18px 25px;\n}\n.rd-_assets_index_less_-dialog-footer-shadow {\nheight:10px;\nbottom:28px;\nmargin-bottom:10px;\nbox-shadow:0 0 6px #ccc;\n}\n.rd-_assets_index_less_-dialog-footer {\npadding:8px 25px;\nborder-top:1px solid rgba(230, 230, 230, 0.4);\n}\n.rd-_assets_index_less_-dialog-footer-with-shadow {\nmargin-bottom:-20px;\n}\n.rd-_assets_index_less_-loading {\npadding:150px 0;\nmargin:0 auto;\nwidth:150px;\nline-height:0;\n}\n.rd-_assets_index_less_-loading-anim,\n.rd-_assets_index_less_-loading:after,\n.rd-_assets_index_less_-loading:before {\ncontent:\"\";\nwidth:14px;\nheight:14px;\nbackground-color:#ccc;\nborder-radius:100%;\ndisplay:inline-block;\n-webkit-animation:rd-_assets_index_less_-sk-bouncedelay 1s infinite ease-in-out both;\nanimation:rd-_assets_index_less_-sk-bouncedelay 1s infinite ease-in-out both;\n}\n.rd-_assets_index_less_-loading:before {\n-webkit-animation-delay:-0.32s;\nanimation-delay:-0.32s;\n}\n.rd-_assets_index_less_-loading-anim {\nmargin:0 10px;\n-webkit-animation-delay:-0.16s;\nanimation-delay:-0.16s;\n}\n@-webkit-keyframes rd-_assets_index_less_-sk-bouncedelay {\n  0%,\n  80%,\n  100% {\ntransform:scale(0);\n  }\n  40% {\ntransform:scale(1);\n  }\n}\n@keyframes rd-_assets_index_less_-sk-bouncedelay {\n  0%,\n  80%,\n  100% {\ntransform:scale(0);\n  }\n  40% {\ntransform:scale(1);\n  }\n}\n.rd-_assets_index_less_-tag-label {\ndisplay:inline-block;\nfont-weight:400;\n}\n.rd-_assets_index_less_-tag-h5 {\nfont-size:14px;\nmargin:0;\npadding:0;\n}\n.rd-_assets_index_less_-tag-ul {\nlist-style-type:none;\nlist-style-image:none;\nmargin:0;\npadding:0;\n}\n.rd-_assets_index_less_-tag-a {\ncolor:#47B34E;\ntext-decoration:none;\n}\n.rd-_assets_index_less_-tag-a:hover,\n.rd-_assets_index_less_-tag-a:focus {\ncolor:#36873b;\n}\n.rd-_assets_index_less_-tag-a:hover,\n.rd-_assets_index_less_-tag-a:focus,\n.rd-_assets_index_less_-tag-a:active,\n.rd-_assets_index_less_-tag-a:visited {\noutline:0;\n}\n\n.rd-_assets_index_less_-tag-img {\nborder-style:none;\nheight:auto;\nvertical-align:top;\n}\n.rd-_assets_index_less_-mr2 {\nmargin-right:2px;\n}\n.rd-_assets_index_less_-ml5 {\nmargin-left:5px;\n}\n.rd-_assets_index_less_-r180 {\ntransform:rotate(180deg);\n}\n.rd-_assets_index_less_-r90 {\ntransform:rotate(90deg);\n}\n.rd-_assets_index_less_-r270 {\ntransform:rotate(270deg);\n}\n.rd-_assets_index_less_-mr5 {\nmargin-right:5px;\n}\n.rd-_assets_index_less_-mr10 {\nmargin-right:10px;\n}\n.rd-_assets_index_less_-ml10 {\nmargin-left:10px;\n}\n.rd-_assets_index_less_-pl10 {\npadding-left:10px;\n}\n.rd-_assets_index_less_-background-color-brand-a60 {\nbackground-color:rgba(71, 179, 78, 0.6);\n}\n.rd-_assets_index_less_-background-color-fff {\nbackground-color:#fff;\n}\n.rd-_assets_index_less_-wp100 {\nwidth:100%;\n}\n.rd-_assets_index_less_-hp100 {\nheight:100%;\n}\n.rd-_assets_index_less_-mwp100 {\nmax-width:100%;\n}\n.rd-_assets_index_less_-mhp100 {\nmax-height:100%;\n}\n.rd-_assets_index_less_-tr {\ntext-align:right;\n}\n.rd-_assets_index_less_-tc {\ntext-align:center;\n}\n.rd-_assets_index_less_-fl {\nfloat:left;\n}\n.rd-_assets_index_less_-fr {\nfloat:right;\n}\n.rd-_assets_index_less_-pa {\nposition:absolute;\n}\n.rd-_assets_index_less_-pr {\nposition:relative;\n}\n.rd-_assets_index_less_-pointer-events-none {\npointer-events:none;\n}\n.rd-_assets_index_less_-pointer-events-all {\npointer-events:all;\n}\n.rd-_assets_index_less_-mt30 {\nmargin:30px 0;\n}\nhtml .rd-_assets_index_less_-none {\ndisplay:none;\n}\n.rd-_assets_index_less_-display-block {\ndisplay:block;\n}\n.rd-_assets_index_less_-display-inline-block {\ndisplay:inline-block;\n}\n.rd-_assets_index_less_-unselectable {\n-webkit-user-select:none;\n-moz-user-select:none;\n-ms-user-select:none;\nuser-select:none;\n}\n.rd-_assets_index_less_-scrollable::-webkit-scrollbar {\nheight:4px;\nwidth:4px;\nbackground:#edeef3;\n}\n.rd-_assets_index_less_-scrollable::-webkit-scrollbar-corner {\nheight:4px;\nwidth:4px;\nbackground:#edeef3;\n}\n.rd-_assets_index_less_-scrollable::-webkit-scrollbar-thumb {\nbackground:#47B34E;\nborder-radius:2px;\n}\n.rd-_assets_index_less_-scrollable::-webkit-scrollbar-thumb:hover {\nbackground:#398e3e;\n}\n.rd-_assets_index_less_-thin-scrollable {\nscrollbar-width:thin;\nscroll-behavior:smooth;\n}\n.rd-_assets_index_less_-thin-scrollable::-webkit-scrollbar {\nheight:2px;\nwidth:2px;\nbackground:#fafafa;\n}\n.rd-_assets_index_less_-thin-scrollable::-webkit-scrollbar-corner {\nheight:2px;\nwidth:2px;\nbackground:#fafafa;\n}\n.rd-_assets_index_less_-ellipsis {\nwhite-space:nowrap;\nword-wrap:normal;\noverflow:hidden;\ntext-overflow:ellipsis;\n}\n.rd-_assets_index_less_-item-spliter {\nheight:1px;\nmargin:5px 0;\nbackground:linear-gradient(to right, #0000, #7d768454 50%, #0000);\n}\n.rd-_assets_index_less_-flex-fill-rest {\nflex:1;\n}\n.rd-_assets_index_less_-flex {\ndisplay:flex;\n}\n.rd-_assets_index_less_-flex-direction-column {\nflex-direction:column;\n}\n.rd-_assets_index_less_-align-items-center {\nalign-items:center;\n}\n.rd-_assets_index_less_-flipx {\ntransform:scaleX(-1);\n}\n.rd-_assets_index_less_-flipy {\ntransform:scaleY(-1);\n}\n.rd-_assets_index_less_-ml80 {\nmargin-left:80px;\n}\n.rd-_assets_index_less_-position-sticky {\nposition:sticky;\n}\n.rd-_assets_index_less_-top-0 {\ntop:0;\n}\n.rd-_assets_index_less_-margin-bottom-4 {\nmargin-bottom:4px;\n}\n.rd-_assets_index_less_-margin-top-4 {\nmargin-top:4px;\n}\n.rd-_assets_index_less_-width-60 {\nwidth:60px;\n}\n.rd-_assets_index_less_-width-140 {\nwidth:140px;\n}\n.rd-_assets_index_less_-width-113 {\nwidth:113px;\n}\n.rd-_assets_index_less_-width-220 {\nwidth:220px;\n}\n.rd-_assets_index_less_-height-100 {\nheight:100px;\n}\n.rd-_assets_index_less_-height-1 {\nheight:1px;\n}\n.rd-_assets_index_less_-height-4 {\nheight:4px;\n}\n.rd-_assets_index_less_-width-1 {\nwidth:1px;\n}\n.rd-_assets_index_less_-width-4 {\nwidth:4px;\n}\n.rd-_assets_index_less_-justify-content-space-between {\njustify-content:space-between;\n}\n.rd-_assets_index_less_-justify-content-center {\njustify-content:center;\n}\n.rd-_assets_index_less_-justify-content-flex-end {\njustify-content:flex-end;\n}\n.rd-_assets_index_less_-flex-wrap-wrap {\nflex-wrap:wrap;\n}\n.rd-_assets_index_less_-fore-color-border {\ncolor:#e6e6e6;\n}\n.rd-_assets_index_less_-cursor-pointer {\ncursor:pointer;\n}\n.rd-_assets_index_less_-cursor-default {\ncursor:default;\n}\n.rd-_assets_index_less_-cursor-text {\ncursor:text;\n}\n.rd-_assets_index_less_-word-break-break-all {\nword-break:break-all;\n}\n.rd-_assets_index_less_-table {\nborder-collapse:collapse;\n}\n.rd-_assets_index_less_-table-cell {\nborder:1px solid #000;\npadding:0;\n}\n.rd-_assets_index_less_-table-main-cell {\nbackground:rgba(71, 179, 78, 0.05);\n}\n.rd-_assets_index_less_-text-pre-hidden {\noverflow:hidden;\nwhite-space:pre;\n}\n.rd-_assets_index_less_-hod-focus-line {\nborder:solid 2px #47B34E;\n}\n.rd-_assets_index_less_-hod-right,\n.rd-_assets_index_less_-hod-left {\nborder-right:solid 6px #47B34E;\nborder-radius:2px;\n}\n.rd-_assets_index_less_-hod-right {\nright:-4px;\n}\n.rd-_assets_index_less_-hod-left {\nleft:-4px;\n}\n.rd-_assets_index_less_-hod-bottom,\n.rd-_assets_index_less_-hod-top {\nborder-bottom:solid 6px #47B34E;\nborder-radius:2px;\n}\n.rd-_assets_index_less_-hod-bottom {\nbottom:-4px;\n}\n.rd-_assets_index_less_-hod-top {\ntop:-4px;\n}\n.rd-_assets_index_less_-hod-focus-div {\ninset:-1px;\n}\n.rd-_assets_index_less_-full-fill {\ninset:0;\n}\n.rd-_assets_index_less_-hod-drop-tip {\nbox-shadow:inset 2px 2px 10px rgba(0, 0, 0, 0.2);\noutline:#47B34E 2px solid;\nbackground-color:rgba(71, 179, 78, 0.1);\n}\n.rd-_assets_index_less_-props-item-title {\nwidth:80px;\n}\n.rd-_assets_index_less_-props-item-title-selected {\nbackground:rgba(71, 179, 78, 0.2);\n}\n.rd-_assets_index_less_-align-items-flex-start {\nalign-items:flex-start;\n}\n.rd-_assets_index_less_-switch-input {\nvisibility:hidden;\n}\n.rd-_assets_index_less_-switch-button {\nwidth:32px;\nheight:16px;\ndisplay:inline-block;\nborder-radius:22px;\nbackground:#ccc;\n}\n.rd-_assets_index_less_-switch-button::before {\ncontent:'';\nwidth:12px;\nheight:12px;\nposition:absolute;\nleft:0;\nmargin:2px;\nborder-radius:50%;\nbackground:#fff;\ntransition:all 0.25s;\n}\n.rd-_assets_index_less_-transition {\ntransition:all 0.25s;\n}\n.rd-_assets_index_less_-switch-input:checked + .rd-_assets_index_less_-switch-button {\nbackground:#47B34E;\n}\n.rd-_assets_index_less_-switch-input:checked + .rd-_assets_index_less_-switch-button::before {\nleft:100%;\nmargin-left:-14px;\n}\n.rd-_assets_index_less_-switch-input:disabled + .rd-_assets_index_less_-switch-button {\nbackground:#e6e6e6;\ncursor:not-allowed;\n}\n.rd-_assets_index_less_-group-item {\nwidth:20px;\nmargin:0 1px;\nheight:20px;\nline-height:20px;\nbackground:#e0e0e0;\nborder-radius:2px;\n}\n.rd-_assets_index_less_-group-item:hover {\nbackground:#ccc;\n}\n.rd-_assets_index_less_-active,\n.rd-_assets_index_less_-active:hover {\nbackground:#47B34E;\ncolor:#ffffff;\n}\n.rd-_assets_index_less_-notallowed,\n.rd-_assets_index_less_-notallowed .rd-_assets_index_less_-group-item {\ncursor:not-allowed;\nopacity:0.7;\n}\n.rd-_assets_index_less_-notallowed .rd-_assets_index_less_-group-item,\n.rd-_assets_index_less_-notallowed .rd-_assets_index_less_-group-item:hover {\nbackground:#e9e9e9;\n}\n.rd-_assets_index_less_-notallowed .rd-_assets_index_less_-active,\n.rd-_assets_index_less_-notallowed .rd-_assets_index_less_-active:hover {\nbackground:#69c46f;\n}\n.rd-_assets_index_less_-cursor-not-allowed {\ncursor:not-allowed;\n}\n.rd-_assets_index_less_-gray,\n.rd-_assets_index_less_-color-999 {\ncolor:#999;\n}\n.rd-_assets_index_less_-color-fill-999 {\nfill:#999;\n}\n.rd-_assets_index_less_-color-666 {\ncolor:#666;\n}\n.rd-_assets_index_less_-gray:hover {\ncolor:#666;\n}\n.rd-_assets_index_less_-overflow-hidden {\noverflow:hidden;\n}\n.rd-_assets_index_less_-overflow-visible {\noverflow:visible;\n}\n.rd-_assets_index_less_-overflow-auto {\noverflow:auto;\n}\n.rd-_assets_index_less_-overflow-scroll {\noverflow:scroll;\n}\n.rd-_assets_index_less_-overflow-y-scroll {\noverflow-y:scroll;\n}\n.rd-_assets_index_less_-fontsize-10 {\nfont-size:10px;\n}\n.rd-_assets_index_less_-fontsize-12 {\nfont-size:12px;\n}\n.rd-_assets_index_less_-fontsize-14 {\nfont-size:14px;\n}\n.rd-_assets_index_less_-fontsize-16 {\nfont-size:16px;\n}\n.rd-_assets_index_less_-fontsize-26 {\nfont-size:26px;\n}\n.rd-_assets_index_less_-right-2 {\nright:2px;\n}\n.rd-_assets_index_less_-right-0 {\nright:0;\n}\n.rd-_assets_index_less_-top-2 {\ntop:2px;\n}\n.rd-_assets_index_less_-bottom-2 {\nbottom:2px;\n}\n.rd-_assets_index_less_-bottom-0 {\nbottom:0;\n}\n.rd-_assets_index_less_-select-rect {\nborder:dashed 1px #47B34E;\ndisplay:none;\nz-index:2;\n}\n.rd-_assets_index_less_-border-dotted-999 {\nborder:dotted 1px #999;\n}\n.rd-_assets_index_less_-z-index-1 {\nz-index:1;\n}\n.rd-_assets_index_less_-z-index-5 {\nz-index:5;\n}\n.rd-_assets_index_less_-z-index-6 {\nz-index:6;\n}\n.rd-_assets_index_less_-z-index-7 {\nz-index:7;\n}\n.rd-_assets_index_less_-z-index-8 {\nz-index:8;\n}\n.rd-_assets_index_less_-chart-loading::before {\nwidth:100%;\nheight:100%;\ncontent:attr(data-tip);\nposition:absolute;\ndisplay:flex;\njustify-content:center;\nalign-items:center;\n}\n.rd-_assets_index_less_-min-height-80 {\nmin-height:80px;\n}\n.rd-_assets_index_less_-min-height-500 {\nmin-height:500px;\n}\n.rd-_assets_index_less_-min-height-100vh {\nmin-height:100vh;\n}\n.rd-_assets_index_less_-border-style-dashed {\nborder-style:dashed;\n}\n.rd-_assets_index_less_-contain-paint {\ncontain:paint;\n}\n.rd-_assets_index_less_-padding-4 {\npadding:4px;\n}\n.rd-_assets_index_less_-padding-2 {\npadding:2px;\n}\n.rd-_assets_index_less_-left-2 {\nleft:2px;\n}\n.rd-_assets_index_less_-cell-icon {\nborder-radius:2px;\npadding:2px;\n}\n.rd-_assets_index_less_-form-input {\nopacity:0;\n}\n.rd-_assets_index_less_-form-input:focus {\nopacity:1;\n}\n.rd-_assets_index_less_-opacity-0 {\nopacity:0;\n}\n.rd-_assets_index_less_-transform-y-n50 {\ntransform:translateY(-50%);\n}\n.rd-_assets_index_less_-transform-x-n50 {\ntransform:translateX(-50%);\n}\n.rd-_assets_index_less_-touch-action-none {\ntouch-action:none;\n}\n"]);
                     let lang = navigator.language.toLowerCase();
                     try {
                         let store = window.localStorage;
@@ -3759,16 +3759,16 @@ if (typeof DEBUG == 'undefined')
                             });
                             this.render();
                         },
-                        '_if': safeHTML,
-                        '_hR'(e) {
+                        '@:{safe.html~rs}': safeHTML,
+                        '@:{stop.propagation~rs}'(e) {
                             e.stopPropagation();
                         },
-                        '_hE<change>'(e) {
-                            this['_hR'](e);
+                        '@:{stop~rs}<change>'(e) {
+                            this['@:{stop.propagation~rs}'](e);
                         },
                     });
                     let rootId = guid();
-                    define('6q/~', () => {
+                    define('standalone/~', () => {
                         return View.extend();
                     });
                     if (!document.body.id) {
@@ -3776,7 +3776,7 @@ if (typeof DEBUG == 'undefined')
                     }
                     boot({
                         defaultPath: '/index',
-                        defaultView: '6q/~',
+                        defaultView: 'standalone/~',
                         rootId: document.body.id,
                         error(e) {
                             setTimeout(() => {
@@ -3788,16 +3788,16 @@ if (typeof DEBUG == 'undefined')
                 });
             });
         }
-        return init['_nt'];
+        return init['@:{inited.promise~rs}'];
     };
-    let rootSelector = 'rd-dE';
+    let rootSelector = 'rd-_assets_index_less_-designer-root';
     let mountView = async (nodeOrId, path, params) => {
         await init();
-        let { config, node, type, Vframe, State } = seajs.require('4e');
+        let { config, node, type, Vframe, State } = seajs.require('magix');
         let rootId = config('rootId');
         let rootNode = node(rootId);
         State.set({
-            'dG': params.unit || 'px'
+            '@:{global#stage.unit~rs}': params.unit || 'px'
         });
         let rootVframe = Vframe.byNode(rootNode);
         let destNode = nodeOrId;
@@ -3822,13 +3822,13 @@ if (typeof DEBUG == 'undefined')
     window.designer = {
         config: init,
         element(nodeOrId, elementJSON) {
-            mountView(nodeOrId, `53/${elementJSON.type}/index`, elementJSON);
+            mountView(nodeOrId, `elements/${elementJSON.type}/index`, elementJSON);
         },
         getVframe(nodeOrId) {
             return new Promise((resolve, reject) => {
                 let tryTimes = 20;
                 let destNode = nodeOrId;
-                let { type, node, Vframe, isString } = seajs.require('4e');
+                let { type, node, Vframe, isString } = seajs.require('magix');
                 if (isString(destNode)) {
                     destNode = node(destNode.replace(/^#/, ''));
                 }
@@ -3856,11 +3856,11 @@ if (typeof DEBUG == 'undefined')
             });
         },
         page(nodeOrId, pageJSON) {
-            mountView(nodeOrId, `6q/page`, pageJSON);
+            mountView(nodeOrId, `standalone/page`, pageJSON);
         },
         remove(nodeOrId) {
             let destNode = nodeOrId;
-            let { node, Vframe, isString } = seajs.require('4e');
+            let { node, Vframe, isString } = seajs.require('magix');
             if (isString(destNode)) {
                 destNode = node(destNode.replace(/^#/, ''));
             }

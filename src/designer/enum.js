@@ -4,7 +4,7 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4d/enum",[],(require,exports,module)=>{
+define("designer/enum",[],(require,exports,module)=>{
 
 
 /**
@@ -12,29 +12,29 @@ define("4d/enum",[],(require,exports,module)=>{
  */
 module.exports= {
     //角色类型
-    'dH': 1,
-    'dI': 2,
-    'dJ': 4,
+    '@:{enum#as.hod~rs}': 1,
+    '@:{enum#as.data.hod~rs}': 2,
+    '@:{enum#as.cells~rs}': 4,
     //对齐
-    'dG': 1,
-    'dK': 2,
-    'dF': 2 << 1,
+    '@:{enum#align.coners~rs}': 1,
+    '@:{enum#align.line.middles~rs}': 2,
+    '@:{enum#align.centers~rs}': 2 << 1,
     //拖动对齐跟随元素
-    'dL': 1,
-    'dE': 2,
+    '@:{enum#follow.align.grouped~rs}': 1,
+    '@:{enum#follow.align.selected~rs}': 2,
     //修改器类型
-    'dM': 1,
-    'dN': 2,
-    'dO': 2 << 1,
-    'dP': 2 << 2,
-    'dQ': 2 << 3,
-    'dR': 2 << 4,
-    'dS': 2 << 5,
-    'dT': 2 << 6,
-    'dU': 2 << 7,
-    'dV': 2 << 8,
-    'dW': 2 << 9,
-    'dX': 2 << 10, //选中显示icon
+    '@:{enum#modifier.icon~rs}': 1,
+    '@:{enum#modifier.size~rs}': 2,
+    '@:{enum#modifier.width~rs}': 2 << 1,
+    '@:{enum#modifier.height~rs}': 2 << 2,
+    '@:{enum#modifier.protate~rs}': 2 << 3,
+    '@:{enum#modifier.rotate~rs}': 2 << 4,
+    '@:{enum#modifier.nomask~rs}': 2 << 5,
+    '@:{enum#modifier.text~rs}': 2 << 6,
+    '@:{enum#modifier.dblclick~rs}': 2 << 7,
+    '@:{enum#modifier.dheight~rs}': 2 << 8,
+    '@:{enum#modifier.sync.size~rs}': 2 << 9,
+    '@:{enum#modifier.selected.show.icon~rs}': 2 << 10, //选中显示icon
 };
 
 });

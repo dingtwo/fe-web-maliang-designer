@@ -4,19 +4,19 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4t/cell",["4e"],(require,exports,module)=>{
+define("provider/cell",["magix5"],(require,exports,module)=>{
 
 
 /**
  * 提供格子所需要的默认属性
  */
-let magix_1 = require("4e");
+let magix_1 = require("magix5");
 let { guid } = magix_1;
 module.exports= {
-    '_hP': 300,
-    '_hO': 100,
-    '_iF': 20,
-    '_iH': 20,
+    '@:{default.width~rs}': 300,
+    '@:{default.height~rs}': 100,
+    '@:{min.width~rs}': 20,
+    '@:{min.height~rs}': 20,
     text: {
         textLetterspacing: 0,
         textForecolor: '#000000',

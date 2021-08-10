@@ -4,13 +4,13 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4t/pole",["4e"],(require,exports,module)=>{
+define("provider/pole",["magix5"],(require,exports,module)=>{
 
 
 /**
  * 撑杆插件
  */
-let magix_1 = require("4e");
+let magix_1 = require("magix5");
 let { State, node } = magix_1;
 let ownerView;
 let togglePole = e => {
@@ -24,12 +24,12 @@ let togglePole = e => {
     if (e.show) {
         ps.display = 'block';
         State.set({
-            'dK': 1
+            '@:{global#stage.prevent.actions~rs}': 1
         });
     }
     if (e.hide) {
         State.set({
-            'dK': 0
+            '@:{global#stage.prevent.actions~rs}': 0
         });
         let before = o.scrollTop;
         ps.display = 'none';
@@ -41,15 +41,15 @@ let togglePole = e => {
     }
 };
 module.exports= {
-    'dE'(view) {
+    '@:{pole#setup~rs}'(view) {
         ownerView = view;
-        State.on('d3', togglePole);
+        State.on('@:{event#stage.toggle.scroll~rs}', togglePole);
     },
-    'dF'() {
+    '@:{pole#teardown~rs}'() {
         ownerView = null;
-        State.off('d3', togglePole);
+        State.off('@:{event#stage.toggle.scroll~rs}', togglePole);
     },
-    'dG': togglePole
+    '@:{pole#update~rs}': togglePole
 };
 
 });

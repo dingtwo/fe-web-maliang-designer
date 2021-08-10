@@ -4,10 +4,10 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4d/4r",["4e"],(require,exports,module)=>{
+define("designer/keyboard",["magix5"],(require,exports,module)=>{
 
 
-let magix_1 = require("4e");
+let magix_1 = require("magix5");
 let { State, attach, detach } = magix_1;
 let Doc = document;
 /**
@@ -26,15 +26,15 @@ let htmlNodeIsInputElement = (element) => {
 let WatchKeypress = (e) => {
     let { shiftKey, metaKey, ctrlKey, code, altKey, type } = e;
     //console.log(e);
-    State.fire('dN', {
-        'dF': type == 'keydown',
-        'dH': code,
-        'dI': shiftKey,
-        'dJ': metaKey || ctrlKey,
-        'dK': altKey,
-        'dG': htmlNodeIsInputElement(Doc.activeElement),
-        'dE': State.get('dK'),
-        'dL'() {
+    State.fire('@:{event#stage.key.press~rs}', {
+        '@:{keypress#is.key.down~rs}': type == 'keydown',
+        '@:{keypress#code~rs}': code,
+        '@:{keypress#shift.key~rs}': shiftKey,
+        '@:{keypress#ctrl.key~rs}': metaKey || ctrlKey,
+        '@:{keypress#alt.key~rs}': altKey,
+        '@:{keypress#active.is.input~rs}': htmlNodeIsInputElement(Doc.activeElement),
+        '@:{keypress#is.prevent.actions~rs}': State.get('@:{global#stage.prevent.actions~rs}'),
+        '@:{keypress#prevent.default~rs}'() {
             e.preventDefault();
         }
     });
@@ -43,46 +43,46 @@ module.exports= {
     /**
      * 以下导出code供外部统一使用
      */
-    'dU': 'Escape',
-    'dH': 'Backspace',
-    'dF': 'Tab',
-    'dI': 'ArrowLeft',
-    'dK': 'ArrowUp',
-    'dJ': 'ArrowRight',
-    'dL': 'ArrowDown',
-    'dG': 'Delete',
-    'dV': 'KeyA',
-    'dW': 'KeyB',
-    'dQ': 'KeyC',
-    'dX': 'KeyD',
-    'dY': 'KeyF',
-    'dZ': 'KeyG',
-    'dE': 'KeyH',
-    'd0': 'KeyL',
-    'd1': 'KeyI',
-    'dR': 'KeyN',
-    'dM': 'KeyP',
-    'dP': 'KeyS',
-    'd2': 'KeyT',
-    'd3': 'KeyU',
-    'd4': 'KeyV',
-    'd5': 'KeyX',
-    'd6': 'KeyY',
-    'dO': 'KeyZ',
-    'd7': 'Space',
-    'd8': 'Equal',
-    'd9': 'Minus',
-    'e_': 'Digit0',
-    'dN': 'Slash',
-    'dS'() {
+    '@:{key#escape~rs}': 'Escape',
+    '@:{key#backspace~rs}': 'Backspace',
+    '@:{key#tab~rs}': 'Tab',
+    '@:{key#left~rs}': 'ArrowLeft',
+    '@:{key#up~rs}': 'ArrowUp',
+    '@:{key#right~rs}': 'ArrowRight',
+    '@:{key#down~rs}': 'ArrowDown',
+    '@:{key#delete~rs}': 'Delete',
+    '@:{key#a~rs}': 'KeyA',
+    '@:{key#b~rs}': 'KeyB',
+    '@:{key#c~rs}': 'KeyC',
+    '@:{key#d~rs}': 'KeyD',
+    '@:{key#f~rs}': 'KeyF',
+    '@:{key#g~rs}': 'KeyG',
+    '@:{key#h~rs}': 'KeyH',
+    '@:{key#l~rs}': 'KeyL',
+    '@:{key#i~rs}': 'KeyI',
+    '@:{key#n~rs}': 'KeyN',
+    '@:{key#p~rs}': 'KeyP',
+    '@:{key#s~rs}': 'KeyS',
+    '@:{key#t~rs}': 'KeyT',
+    '@:{key#u~rs}': 'KeyU',
+    '@:{key#v~rs}': 'KeyV',
+    '@:{key#x~rs}': 'KeyX',
+    '@:{key#y~rs}': 'KeyY',
+    '@:{key#z~rs}': 'KeyZ',
+    '@:{key#space~rs}': 'Space',
+    '@:{key#ctrl.plus~rs}': 'Equal',
+    '@:{key#ctrl.minus~rs}': 'Minus',
+    '@:{key#num.zero~rs}': 'Digit0',
+    '@:{key#slash~rs}': 'Slash',
+    '@:{key#setup.monitor~rs}'() {
         attach(Doc, 'keydown', WatchKeypress);
         attach(Doc, 'keyup', WatchKeypress);
     },
-    'dT'() {
+    '@:{key#teardown.monitor~rs}'() {
         detach(Doc, 'keydown', WatchKeypress);
         detach(Doc, 'keyup', WatchKeypress);
     },
-    'ea': htmlNodeIsInputElement
+    '@:{key#is.input.element~rs}': htmlNodeIsInputElement
 };
 
 });

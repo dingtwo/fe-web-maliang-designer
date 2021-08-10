@@ -4,45 +4,45 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("53/todo/designer",["../../4d/4g","../../4d/5e","../../4d/4h","../5r","../../4d/enum"],(require,exports,module)=>{
+define("elements/todo/designer",["../../designer/const","../../designer/props","../../designer/transform","../normal","../../designer/enum"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let const_1 = require("../../4d/4g");
-let props_1 = require("../../4d/5e");
-let transform_1 = require("../../4d/4h");
-let normal_1 = require("../5r");
-let enum_1 = require("../../4d/enum");
+let const_1 = require("../../designer/const");
+let props_1 = require("../../designer/props");
+let transform_1 = require("../../designer/transform");
+let normal_1 = require("../normal");
+let enum_1 = require("../../designer/enum");
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "53/todo/dshow"
+            view: "elements/todo/dshow"
         });
     }
 }).static({
     type: 'todo',
     title: 'Todo',
     icon: '&#xe66f;',
-    '_gi': enum_1['dO'] |
-        enum_1['dM'] |
-        enum_1['dS'],
-    '_fW': [{
+    '@:{modifier~rs}': enum_1['@:{enum#modifier.width~rs}'] |
+        enum_1['@:{enum#modifier.icon~rs}'] |
+        enum_1['@:{enum#modifier.nomask~rs}'],
+    '@:{move.props~rs}': [{
             key: 'x',
             use: 'x'
         }, {
             key: 'y',
             use: 'y'
         }],
-    '_eE'(x, y) {
+    '@:{get.props~rs}'(x, y) {
         return {
             alpha: 1,
-            width: const_1['dF'](300),
-            height: const_1['dF'](77),
+            width: const_1['@:{const#to.unit~rs}'](300),
+            height: const_1['@:{const#to.unit~rs}'](77),
             todos: [],
-            x: const_1['dF'](x),
-            y: const_1['dF'](y),
+            x: const_1['@:{const#to.unit~rs}'](x),
+            y: const_1['@:{const#to.unit~rs}'](y),
             locked: false
         };
     },
@@ -50,63 +50,63 @@ module.exports= normal_1.extend({
             key: 'todos',
             json: 1
         }, {
-            tip: 'fr',
-            type: props_1["dE"],
+            tip: '@:{lang#props.x~rs}',
+            type: props_1["@:{eprops#number~rs}"],
             key: 'x',
-            '_fc': 1,
-            step: const_1["ej"],
-            fixed: const_1["ek"],
-            read: transform_1["dH"],
-            write: transform_1["dM"],
+            '@:{is.scale.and.unit.field~rs}': 1,
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            read: transform_1["@:{transform#to.show.value~rs}"],
+            write: transform_1["@:{transform#to.real.value~rs}"],
             json: 1
         }, {
-            tip: 'fs',
-            type: props_1["dE"],
+            tip: '@:{lang#props.y~rs}',
+            type: props_1["@:{eprops#number~rs}"],
             key: 'y',
-            '_fc': 1,
-            step: const_1["ej"],
-            fixed: const_1["ek"],
-            read: transform_1["dH"],
-            write: transform_1["dM"],
+            '@:{is.scale.and.unit.field~rs}': 1,
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            read: transform_1["@:{transform#to.show.value~rs}"],
+            write: transform_1["@:{transform#to.real.value~rs}"],
             json: 1
         }, {
-            tip: 'ft',
-            type: props_1["dE"],
+            tip: '@:{lang#props.width~rs}',
+            type: props_1["@:{eprops#number~rs}"],
             key: 'width',
-            '_fc': 1,
-            min: () => const_1['dF'](200),
-            step: const_1["ej"],
-            fixed: const_1["ek"],
-            read: transform_1["dH"],
-            write: transform_1["dM"],
+            '@:{is.scale.and.unit.field~rs}': 1,
+            min: () => const_1['@:{const#to.unit~rs}'](200),
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            read: transform_1["@:{transform#to.show.value~rs}"],
+            write: transform_1["@:{transform#to.real.value~rs}"],
             json: 1
         }, {
-            tip: 'fu',
+            tip: '@:{lang#props.height~rs}',
             key: 'height',
-            '_fc': 1,
-            type: props_1["dQ"],
-            read: transform_1["dH"],
+            '@:{is.scale.and.unit.field~rs}': 1,
+            type: props_1["@:{eprops#label~rs}"],
+            read: transform_1["@:{transform#to.show.value~rs}"],
             json: 1
         }, {
-            tip: 'fw',
+            tip: '@:{lang#props.alpha~rs}',
             key: 'alpha',
-            type: props_1["dE"],
+            type: props_1["@:{eprops#number~rs}"],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
             json: 1
         }, {
-            type: props_1["d5"]
+            type: props_1["@:{eprops#spliter~rs}"]
         }, {
-            tip: 'fF',
+            tip: '@:{lang#props.title~rs}',
             key: 'ename',
-            type: props_1["dN"],
+            type: props_1["@:{eprops#text.input~rs}"],
             json: 1
         }, {
-            tip: 'fG',
+            tip: '@:{lang#props.locked~rs}',
             key: 'locked',
-            type: props_1["dG"],
+            type: props_1["@:{eprops#boolean~rs}"],
             free: true,
             json: 1
         }]

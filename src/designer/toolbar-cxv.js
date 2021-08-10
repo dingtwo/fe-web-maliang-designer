@@ -4,24 +4,24 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4d/5i",["4e","./5a","./57"],(require,exports,module)=>{
-let $quick_dR_0_static_node;
-let $quick_dG_static_text;
-let $quick_dH_static_text;
-let $quick_dI_static_text;
-let $quick_dJ_static_text;
+define("designer/toolbar-cxv",["magix5","./stage-clipboard","./stage-generic"],(require,exports,module)=>{
+let $quick_dN_0_static_node;
+let $quick_dC_static_text;
+let $quick_dD_static_text;
+let $quick_dE_static_text;
+let $quick_dF_static_text;
 /*
     author:https://github.com/xinglie
 */
 
 
-let magix_1 = require("4e");
-let stage_clipboard_1 = require("./5a");
-let stage_generic_1 = require("./57");
+let magix_1 = require("magix5");
+let stage_clipboard_1 = require("./stage-clipboard");
+let stage_generic_1 = require("./stage-generic");
 let { State, View } = magix_1;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	canDuplicate,
 	i18n,
@@ -31,61 +31,62 @@ let $temp_var,$vnode_0,
 $$_class,
 $vnode_1;
 
-if($quick_dR_0_static_node){
-$vnode_0=[$quick_dR_0_static_node];
+if($quick_dN_0_static_node){
+$vnode_0=[$quick_dN_0_static_node];
 }else{
-$vnode_0=[$quick_dR_0_static_node=$createVNode('i',{'_': 'cH','class': 'rd-ej rd-gZ',})];
+$vnode_0=[$quick_dN_0_static_node=$createVNode('i',{'_': 'cD','class': 'rd-_assets_index_less_-fl rd-_designer_toolbar_less_-toolbar-spliter',})];
 }
-$vnode_1=[$quick_dG_static_text||($quick_dG_static_text=$createVNode(0,''))];;$$_class='rd-dF rd-gW rd-eX rd-eB rd-eT';if(!canDuplicate){;$$_class+=' rd-g0';};$vnode_0.push($createVNode('i',{'title': (i18n('d9'))+'(Ctrl+D)','mx5-click': ((canDuplicate))&&($viewId+'_gZ()'),'class': $$_class,},$vnode_1));$vnode_1=[$quick_dH_static_text||($quick_dH_static_text=$createVNode(0,''))];;$$_class='rd-dF rd-gW rd-eX rd-eB rd-eT';if(!canCopy){;$$_class+=' rd-g0';};$vnode_0.push($createVNode('i',{'title': (i18n('d3'))+'(Ctrl+C)','mx5-click': ((canCopy))&&($viewId+'_gY()'),'class': $$_class,},$vnode_1));$vnode_1=[$quick_dI_static_text||($quick_dI_static_text=$createVNode(0,''))];;$$_class='rd-dF rd-gW rd-eX rd-eB rd-eT';if(!canCut){;$$_class+=' rd-g0';};$vnode_0.push($createVNode('i',{'title': (i18n('d4'))+'(Ctrl+X)','mx5-click': ((canCut))&&($viewId+'_g0()'),'class': $$_class,},$vnode_1));$vnode_1=[$quick_dJ_static_text||($quick_dJ_static_text=$createVNode(0,''))];;$$_class='rd-dF rd-gW rd-eX rd-eB rd-eT';if(!canPaste){;$$_class+=' rd-g0';};$vnode_0.push($createVNode('i',{'title': (i18n('e_'))+'(Ctrl+V)','mx5-click': ((canPaste))&&($viewId+'_g1()'),'class': $$_class,},$vnode_1)); 
+$vnode_1=[$quick_dC_static_text||($quick_dC_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=2,$__art='{{if !canDuplicate}}','');$__ctrl='<%if(!canDuplicate){%>';if(!canDuplicate){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-disabled'+($__line=2,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('i',{'title': ($__line=2,$__art='{{=i18n(\'@:{lang#menu.duplicate~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.duplicate~rs}\')%>',(i18n('@:{lang#menu.duplicate~rs}')))+'(Ctrl+D)','mx5-click': (($temp_var=($__line=2,$__art='{{=canDuplicate}}',$__ctrl='<%=canDuplicate%>',canDuplicate),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:designer/toolbar-cxv.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{duplicate~rs}()'),'class': $$_class,},$vnode_1));$vnode_1=[$quick_dD_static_text||($quick_dD_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=3,$__art='{{if !canCopy}}','');$__ctrl='<%if(!canCopy){%>';if(!canCopy){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-disabled'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('i',{'title': ($__line=3,$__art='{{=i18n(\'@:{lang#menu.copy~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.copy~rs}\')%>',(i18n('@:{lang#menu.copy~rs}')))+'(Ctrl+C)','mx5-click': (($temp_var=($__line=3,$__art='{{=canCopy}}',$__ctrl='<%=canCopy%>',canCopy),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:designer/toolbar-cxv.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{copy~rs}()'),'class': $$_class,},$vnode_1));$vnode_1=[$quick_dE_static_text||($quick_dE_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=4,$__art='{{if !canCut}}','');$__ctrl='<%if(!canCut){%>';if(!canCut){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-disabled'+($__line=4,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('i',{'title': ($__line=4,$__art='{{=i18n(\'@:{lang#menu.cut~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.cut~rs}\')%>',(i18n('@:{lang#menu.cut~rs}')))+'(Ctrl+X)','mx5-click': (($temp_var=($__line=4,$__art='{{=canCut}}',$__ctrl='<%=canCut%>',canCut),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:designer/toolbar-cxv.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{cut~rs}()'),'class': $$_class,},$vnode_1));$vnode_1=[$quick_dF_static_text||($quick_dF_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=5,$__art='{{if !canPaste}}','');$__ctrl='<%if(!canPaste){%>';if(!canPaste){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-disabled'+($__line=5,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('i',{'title': ($__line=5,$__art='{{=i18n(\'@:{lang#menu.paste~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.paste~rs}\')%>',(i18n('@:{lang#menu.paste~rs}')))+'(Ctrl+V)','mx5-click': (($temp_var=($__line=5,$__art='{{=canPaste}}',$__ctrl='<%=canPaste%>',canPaste),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:designer/toolbar-cxv.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{paste~rs}()'),'class': $$_class,},$vnode_1)); 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/toolbar-cxv.html'; throw msg; }  } ,
     init() {
-        let update = this['_dO'](this.render, 30);
-        let checkEnable = ({ '_dF': changedProps }) => {
+        let update = this['@:{debounce~rs}'](this.render, 30);
+        let checkEnable = ({ '@:{props~rs}': changedProps }) => {
             if (changedProps.locked ||
-                changedProps['_gX']) {
+                changedProps['@:{focus.cell~rs}']) {
                 update();
             }
         };
-        State.on('dJ', update);
-        State.on('dH', update);
+        State.on('@:{event#history.shift.change~rs}', update);
+        State.on('@:{event#stage.select.elements.change~rs}', update);
         //State.on('@:{event#stage.page.and.elements.change}', update);
-        State.on('dG', checkEnable);
-        State.on('d1', update);
+        State.on('@:{event#stage.select.element.props.change~rs}', checkEnable);
+        State.on('@:{event#stage.clipboard.change~rs}', update);
         // State.on('@:{event#stage.elements.change}', update);
         this.on('destroy', () => {
-            State.off('dJ', update);
-            State.off('dH', update);
+            State.off('@:{event#history.shift.change~rs}', update);
+            State.off('@:{event#stage.select.elements.change~rs}', update);
             //State.off('@:{event#stage.page.and.elements.change}', update);
-            State.off('dG', checkEnable);
-            State.off('d1', update);
+            State.off('@:{event#stage.select.element.props.change~rs}', checkEnable);
+            State.off('@:{event#stage.clipboard.change~rs}', update);
             // State.off('@:{event#stage.elements.change}', update);
         });
     },
     render() {
-        let copyList = stage_clipboard_1['_f2']();
-        let canInfo = stage_generic_1['d0'](copyList);
+        let copyList = stage_clipboard_1['@:{get.copy.list~rs}']();
+        let canInfo = stage_generic_1['@:{generic#query.can.cxv~rs}'](copyList);
         this.digest({
-            canCopy: canInfo['_gJ'] > 0,
-            canCut: canInfo['_gI'] > 0,
-            canPaste: canInfo['_gL'] > 0,
-            canDuplicate: canInfo['_gJ'] > 0 &&
-                canInfo['_gK'] > 0
+            canCopy: canInfo['@:{can.copy~rs}'] > 0,
+            canCut: canInfo['@:{can.cut~rs}'] > 0,
+            canPaste: canInfo['@:{can.paste~rs}'] > 0,
+            canDuplicate: canInfo['@:{can.copy~rs}'] > 0 &&
+                canInfo['@:{can.duplicate~rs}'] > 0
         });
     },
-    '_gY<click>'() {
-        stage_clipboard_1['_f5']();
+    '@:{copy~rs}<click>'() {
+        stage_clipboard_1['@:{copy.elements~rs}']();
     },
-    '_gZ<click>'() {
-        let stages = stage_generic_1['dT']();
-        stage_clipboard_1['_f8'](stages);
+    '@:{duplicate~rs}<click>'() {
+        let stages = stage_generic_1['@:{generic#query.select.elements.stage~rs}']();
+        stage_clipboard_1['@:{duplicate.elements~rs}'](stages);
     },
-    '_g0<click>'() {
-        stage_clipboard_1['_f6']();
+    '@:{cut~rs}<click>'() {
+        stage_clipboard_1['@:{cut.elements~rs}']();
     },
-    '_g1<click>'() {
-        let stage = stage_generic_1['e_']();
-        stage_clipboard_1['_f9'](stage);
+    '@:{paste~rs}<click>'() {
+        let stage = stage_generic_1['@:{generic#query.nearest.stage~rs}']();
+        stage_clipboard_1['@:{paste.elements~rs}'](stage);
     }
 });
 

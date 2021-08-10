@@ -4,24 +4,24 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("58/6k/index",["4e","../../4d/4g","../../4l/4m/index","../../4l/4n/cursor"],(require,exports,module)=>{
-let $quick_fZ_0_static_attr={'class': 'rd-et rd-jK',};
-let $quick_fZ_1_static_attr={'class': 'rd-dF rd-jO',};
+define("panels/outline/index",["magix5","../../designer/const","../../gallery/mx-dragdrop/index","../../gallery/mx-pointer/cursor"],(require,exports,module)=>{
+let $quick_fV_0_static_attr={'class': 'rd-_assets_index_less_-unselectable rd-_panels_outline_index_less_-overview',};
+let $quick_fV_1_static_attr={'class': 'rd-_assets_index_less_-iconfont rd-_panels_outline_index_less_-inner-icon',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("4e");
-let const_1 = require("../../4d/4g");
-let index_1 = require("../../4l/4m/index");
-let cursor_1 = require("../../4l/4n/cursor");
+let magix_1 = require("magix5");
+let const_1 = require("../../designer/const");
+let index_1 = require("../../gallery/mx-dragdrop/index");
+let cursor_1 = require("../../gallery/mx-pointer/cursor");
 let { State, node, View, applyStyle, mark, attach, detach } = magix_1;
 let { min } = Math;
-applyStyle("rd-ed",".rd-jI{transition:all .25s}.rd-jJ{transition:width,height .25s}.rd-jK{padding:2px 0}.rd-jL{background:#edeef3;box-shadow:inset 1px 1px 6px 2px #dadada}.rd-jM{box-shadow:inset 0 0 1px 1px #fa742b;cursor:move}.rd-jN{background:#fcb58f}.rd-jO{color:#fff;transform:scale(.5)}.rd-jP{border-bottom:1px dotted #c8c8c8}");
+applyStyle("rd-_panels_outline_index_less_","\n.rd-_panels_outline_index_less_-anim {\ntransition:all 0.25s;\n}\n.rd-_panels_outline_index_less_-anim-size {\ntransition:width, height 0.25s;\n}\n.rd-_panels_outline_index_less_-overview {\npadding:2px 0;\n}\n.rd-_panels_outline_index_less_-stage-container {\nbackground:#edeef3;\nbox-shadow:inset 1px 1px 6px 2px #dadada;\n}\n.rd-_panels_outline_index_less_-stage-viewport {\nbox-shadow:inset 0px 0px 1px 1px #47B34E;\ncursor:move;\n}\n.rd-_panels_outline_index_less_-item {\nbackground:#8ed292;\n}\n.rd-_panels_outline_index_less_-inner-icon {\ntransform:scale(0.5);\ncolor:#ffffff;\n}\n.rd-_panels_outline_index_less_-page-line {\nborder-bottom:dotted 1px #c8c8c8;\n}\n");
 let OverviewSize = [210, 120];
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	width,
 	height,
@@ -44,46 +44,47 @@ $vnode_4,
 $vnode_3,
 $vnode_2,
 $vnode_1;
-let count=page.pages;;$vnode_3=[];
+($__line=3,$__art='{{set count=page.pages}}','');$__ctrl='<%let count=page.pages;%>';let count=page.pages;;$vnode_3=[];$__line=5;$__art="{{for (let i=0;i<count;i++)}}";$__ctrl="for(let i=0;i<count;i++){";
 for(let i=0;i<count;i++){
-;$$_class='rd-el';if(i<count-1){;$$_class+=' rd-jP';};$vnode_3.push($createVNode('div',{'style': 'top:'+(pageHeight*i)+(unit)+';width:'+(pageWidth)+(unit)+';height:'+(pageHeight)+(unit),'class': $$_class,}));
-}
-for(let $q_c_aaqjg=elements.length,$q_key_gcwdwcv=0;$q_key_gcwdwcv<$q_c_aaqjg;$q_key_gcwdwcv+=1){
-let {id:eId,props:props,type:type,ctrl:ctrl}=elements[$q_key_gcwdwcv];
-let ew=props.width*ratio,
+;$$_class='rd-_assets_index_less_-pa'+($__line=6,$__art='{{if i<count-1}}','');$__ctrl='<%if(i<count-1){%>';if(i<count-1){;$$_class+=' rd-_panels_outline_index_less_-page-line'+($__line=6,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_3.push($createVNode('div',{'style': 'top:'+($__line=6,$__art='{{=pageHeight*i}}',$__ctrl='<%=pageHeight*i%>',(pageHeight*i))+($__line=6,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';width:'+($__line=6,$__art='{{=pageWidth}}',$__ctrl='<%=pageWidth%>',(pageWidth))+($__line=6,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=6,$__art='{{=pageHeight}}',$__ctrl='<%=pageHeight%>',(pageHeight))+($__line=6,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit)),'class': $$_class,}));
+}$__line=8;$__art="{{each elements as {id:eId,props,type,ctrl}}}";$__ctrl="for(let $q_c_rhrrqljxmo=elements.length,$q_key_eckbne=0;$q_key_eckbne<$q_c_rhrrqljxmo;$q_key_eckbne++){let {id:eId,props:props,type:type,ctrl:ctrl}=elements[$q_key_eckbne];";
+for(let $q_c_rhrrqljxmo=elements.length,$q_key_eckbne=0;$q_key_eckbne<$q_c_rhrrqljxmo;$q_key_eckbne+=1){
+let {id:eId,props:props,type:type,ctrl:ctrl}=elements[$q_key_eckbne];
+($__line=9,$__art='{{set ew=props.width*ratio,\n                      eh=props.height*ratio,\n                      br=props.radius||0}}','');$__ctrl='<%let ew=props.width*ratio,\n                      eh=props.height*ratio,\n                      br=props.radius||0;%>';let ew=props.width*ratio,
                       eh=props.height*ratio,
-                      br=props.radius||0;;
+                      br=props.radius||0;;$__line=12;$__art="{{if type==\\'circle\\'}}";$__ctrl="if(type=='circle'){";
 if(type=='circle'){
-br='50%';
-}$vnode_5=[$createVNode(0,(ctrl.icon),1)];$vnode_4=[$createVNode('i',$quick_fZ_1_static_attr,$vnode_5)];;$$_style='left:'+(props.x*ratio)+(unit)+';top:'+(props.y*ratio)+(unit)+';width:'+(ew)+(unit)+';height:'+(eh)+(unit)+';';if(props.rotate){;$$_style+='transform:rotate('+(props.rotate)+'deg);';};$$_style+='border-radius:'+(br)+(unit);$vnode_3.push($createVNode('div',{'id': $viewId+'_'+(eId),'class': 'rd-eB rd-eT rd-el rd-ez rd-fq rd-jN','style': $$_style,},$vnode_4));
-}$vnode_2=[$createVNode('div',{'class': 'rd-en','style': 'position:relative;background:'+(page.background)+';width:'+(pageWidth)+(unit)+';height:'+(pageHeight*count)+(unit)+';margin:'+(canvasMargin),},$vnode_3),$createVNode('div',{'class': 'rd-el rd-f0 rd-jJ rd-jM','style': 'left:'+(left)+'px;top:'+(top)+'px;width:'+(viewportWidth)+'px;height:'+(viewportHeight)+'px','mx5-pointerdown': $viewId+'_lL()',})];$vnode_1=[$createVNode('div',{'class': 'rd-em rd-fq rd-jI rd-jL','style': 'width:'+(width)+'px;height:'+(height)+'px;margin:'+(centerMargin),},$vnode_2)];$vnode_0=[$createVNode('div',$quick_fZ_0_static_attr,$vnode_1)]; 
+($__line=13,$__art='{{br=\'50%\'}}','');$__ctrl='<%br=\'50%\'%>';br='50%';
+}$vnode_5=[$createVNode(0,($__line=16,$__art='{{=ctrl.icon}}',$__ctrl='<%=ctrl.icon%>',(ctrl.icon)),1)];$vnode_4=[$createVNode('i',$quick_fV_1_static_attr,$vnode_5)];;$$_style='left:'+($__line=15,$__art='{{=props.x*ratio}}',$__ctrl='<%=props.x*ratio%>',(props.x*ratio))+($__line=15,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';top:'+($__line=15,$__art='{{=props.y*ratio}}',$__ctrl='<%=props.y*ratio%>',(props.y*ratio))+($__line=15,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';width:'+($__line=15,$__art='{{=ew}}',$__ctrl='<%=ew%>',(ew))+($__line=15,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=15,$__art='{{=eh}}',$__ctrl='<%=eh%>',(eh))+($__line=15,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';'+($__line=15,$__art='{{if props.rotate}}','');$__ctrl='<%if(props.rotate){%>';if(props.rotate){;$$_style+='transform:rotate('+($__line=15,$__art='{{=props.rotate}}',$__ctrl='<%=props.rotate%>',(props.rotate))+'deg);'+($__line=15,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_style+='border-radius:'+($__line=15,$__art='{{=br}}',$__ctrl='<%=br%>',(br))+($__line=15,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit));$vnode_3.push($createVNode('div',{'id': ($__line=15,$__art='{{=$viewId}}','')+$viewId+'_'+($__line=15,$__art='{{=eId}}',$__ctrl='<%=eId%>',(eId)),'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-justify-content-center rd-_assets_index_less_-overflow-hidden rd-_assets_index_less_-pa rd-_panels_outline_index_less_-item','style': $$_style,},$vnode_4));
+}$vnode_2=[$createVNode('div',{'class': 'rd-_assets_index_less_-pointer-events-none','style': 'position:relative;background:'+($__line=4,$__art='{{=page.background}}',$__ctrl='<%=page.background%>',(page.background))+';width:'+($__line=4,$__art='{{=pageWidth}}',$__ctrl='<%=pageWidth%>',(pageWidth))+($__line=4,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=4,$__art='{{=pageHeight*count}}',$__ctrl='<%=pageHeight*count%>',(pageHeight*count))+($__line=4,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';margin:'+($__line=4,$__art='{{=canvasMargin}}',$__ctrl='<%=canvasMargin%>',(canvasMargin)),},$vnode_3),$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-touch-action-none rd-_panels_outline_index_less_-anim-size rd-_panels_outline_index_less_-stage-viewport','style': 'left:'+($__line=20,$__art='{{=left}}',$__ctrl='<%=left%>',(left))+'px;top:'+($__line=20,$__art='{{=top}}',$__ctrl='<%=top%>',(top))+'px;width:'+($__line=20,$__art='{{=viewportWidth}}',$__ctrl='<%=viewportWidth%>',(viewportWidth))+'px;height:'+($__line=20,$__art='{{=viewportHeight}}',$__ctrl='<%=viewportHeight%>',(viewportHeight))+'px','mx5-pointerdown': $viewId+'@:{move.viewport~rs}()',})];$vnode_1=[$createVNode('div',{'class': 'rd-_assets_index_less_-overflow-hidden rd-_assets_index_less_-pr rd-_panels_outline_index_less_-anim rd-_panels_outline_index_less_-stage-container','style': 'width:'+($__line=2,$__art='{{=width}}',$__ctrl='<%=width%>',(width))+'px;height:'+($__line=2,$__art='{{=height}}',$__ctrl='<%=height%>',(height))+'px;margin:'+($__line=2,$__art='{{=centerMargin}}',$__ctrl='<%=centerMargin%>',(centerMargin)),},$vnode_2)];$vnode_0=[$createVNode('div',$quick_fV_0_static_attr,$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:panels/outline/index.html'; throw msg; }  } ,
     init() {
         let stage = node('_rd_stage');
-        let updateOverview = this['_dO'](this.render);
-        State.on('dJ', updateOverview);
+        let updateOverview = this['@:{debounce~rs}'](this.render);
+        State.on('@:{event#history.shift.change~rs}', updateOverview);
         // State.on('@:{event#stage.scale.change}', updateOverview);
-        State.on('dK', updateOverview);
-        State.on('dL', updateOverview);
-        State.on('dM', updateOverview);
-        State.on('d2', updateOverview);
-        State.on('dG', updateOverview);
-        let updatePos = this['_lI'].bind(this);
+        State.on('@:{event#stage.page.change~rs}', updateOverview);
+        State.on('@:{event#stage.size.change~rs}', updateOverview);
+        State.on('@:{event#stage.page.and.elements.change~rs}', updateOverview);
+        State.on('@:{event#stage.elements.change~rs}', updateOverview);
+        State.on('@:{event#stage.select.element.props.change~rs}', updateOverview);
+        let updatePos = this['@:{update.viewport.pos~rs}'].bind(this);
         //State.on('@:{event#stage.select.element.props.update}', updateOverview);
         attach(stage, 'scroll', updatePos);
-        this['_lJ'] = updateOverview;
+        this['@:{update.overview~rs}'] = updateOverview;
         this.on('destroy', () => {
-            State.off('dJ', updateOverview);
-            State.off('dK', updateOverview);
-            State.off('dL', updateOverview);
-            State.off('d2', updateOverview);
-            State.off('dG', updateOverview);
-            State.off('dM', updateOverview);
+            State.off('@:{event#history.shift.change~rs}', updateOverview);
+            State.off('@:{event#stage.page.change~rs}', updateOverview);
+            State.off('@:{event#stage.size.change~rs}', updateOverview);
+            State.off('@:{event#stage.elements.change~rs}', updateOverview);
+            State.off('@:{event#stage.select.element.props.change~rs}', updateOverview);
+            State.off('@:{event#stage.page.and.elements.change~rs}', updateOverview);
             detach(stage, 'scroll', updatePos);
         });
     },
-    '_lI'() {
+    '@:{update.viewport.pos~rs}'() {
         let stage = node('_rd_stage');
         let ratio = this.get('ratio');
         if (ratio) {
@@ -98,15 +99,15 @@ return $createVNode($viewId,0,$vnode_0); } ,
         }
     },
     render() {
-        let m = mark(this, '_dU');
+        let m = mark(this, '@:{render~rs}');
         let draw = () => {
             if (m()) {
                 if (!node('_rd_sc')) {
                     setTimeout(draw, 20);
                     return;
                 }
-                let page = State.get('dN');
-                let scale = State.get('dF');
+                let page = State.get('@:{global#stage.page~rs}');
+                let scale = State.get('@:{global#stage.scale~rs}');
                 let stage = node('_rd_stage');
                 let stageRealWidth = stage.scrollWidth;
                 let stageRealHeight = stage.scrollHeight;
@@ -121,38 +122,38 @@ return $createVNode($viewId,0,$vnode_0); } ,
                 let pageWidth = ratio * page.width * scale;
                 let pageHeight = ratio * page.height * scale;
                 let canvasMargin = '';
-                for (let e of const_1['dT']) {
+                for (let e of const_1['@:{const#stage.padding~rs}']) {
                     canvasMargin += ratio * e + 'px ';
                 }
                 let centerMargin = `${(OverviewSize[1] - height) / 2}px ${(OverviewSize[0] - width) / 2}px`;
                 let viewportWidth = min(stage.clientWidth, stageRealWidth) * ratio; //for border
                 let viewportHeight = min(stage.clientHeight, stageRealHeight) * ratio;
                 this.set({
-                    unit: State.get('dG'),
+                    unit: State.get('@:{global#stage.unit~rs}'),
                     width,
                     height,
                     page,
                     pageWidth,
                     pageHeight,
                     ratio,
-                    elements: State.get('dM'),
+                    elements: State.get('@:{global#stage.elements~rs}'),
                     viewportHeight,
                     viewportWidth,
                     canvasMargin,
                     centerMargin
                 });
-                this['_lI']();
+                this['@:{update.viewport.pos~rs}']();
             }
         };
         setTimeout(draw, 20);
     },
-    '_lL<pointerdown>'(e) {
+    '@:{move.viewport~rs}<pointerdown>'(e) {
         let startX = this.get('left'), startY = this.get('top'), viewportWidth = this.get('viewportWidth'), viewportHeight = this.get('viewportHeight'), width = this.get('width'), height = this.get('height'), stage = node('_rd_stage'), ratio = this.get('ratio');
         State.set({
-            'dK': 1
+            '@:{global#stage.prevent.actions~rs}': 1
         });
-        cursor_1["_eH"]('move');
-        this['_eb'](e, ex => {
+        cursor_1["@:{root.show.by.type~rs}"]('move');
+        this['@:{drag.drop~rs}'](e, ex => {
             let x = startX + ex.pageX - e.pageX;
             let y = startY + ex.pageY - e.pageY;
             if (x < 0) {
@@ -169,16 +170,16 @@ return $createVNode($viewId,0,$vnode_0); } ,
             }
             stage.scrollLeft = x / ratio;
             stage.scrollTop = y / ratio;
-            this['_lK'] = 1;
+            this['@:{viewport.moved~rs}'] = 1;
         }, () => {
             State.set({
-                'dK': 0
+                '@:{global#stage.prevent.actions~rs}': 0
             });
-            cursor_1["_eP"]();
+            cursor_1["@:{root.hide~rs}"]();
         });
     },
     '$win<resize>'() {
-        this['_lJ']();
+        this['@:{update.overview~rs}']();
     }
 }).merge(index_1);
 

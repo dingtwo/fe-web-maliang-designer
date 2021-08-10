@@ -4,46 +4,47 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("53/html/dshow",["4e","../../4d/4q","../../4d/5b","4l/5s/index"],(require,exports,module)=>{
-require("4l/5s/index");
-let $quick_ee_static_text;
+define("elements/html/dshow",["magix5","../../designer/history","../../designer/stage-selection","gallery/mx-codemirror/index"],(require,exports,module)=>{
+require("gallery/mx-codemirror/index");
+let $quick_ea_static_text;
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("4e");
-let history_1 = require("../../4d/4q");
-let stage_selection_1 = require("../../4d/5b");
+let magix_1 = require("magix5");
+let history_1 = require("../../designer/history");
+let stage_selection_1 = require("../../designer/stage-selection");
 module.exports= magix_1.View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	props,
 	unit,}=$dataFromView,
 $vnode_2,
 $vnode_1;
-$vnode_2=[$quick_ee_static_text||($quick_ee_static_text=$createVNode(0,'loading...'))];$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'$': 'props','style': 'border:solid 1px #ddd','class': 'rd-eZ rd-ed rd-ee rd-ft','mx5-cmchange': $viewId+'_hS()','mx5-view': '4l/5s/index?type=html&value='+$keyOf($refData,props.value,'cH'),},$vnode_2)];$vnode_0=[$createVNode('div',{'class': 'rd-el rd-f0 rd-fH','style': 'left:'+(props.x)+(unit)+';top:'+(props.y)+(unit)+';height:'+(props.height)+(unit)+';opacity:'+(props.alpha)+';width:'+(props.width)+(unit),'mx5-pointerdown': $viewId+'_hE()','mx5-contextmenu': $viewId+'_hE()',},$vnode_1)]; 
+$vnode_2=[$quick_ea_static_text||($quick_ea_static_text=$createVNode(0,'loading...'))];$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'$': 'props','style': 'border:solid 1px #ddd','class': 'rd-_assets_index_less_-cursor-text rd-_assets_index_less_-hp100 rd-_assets_index_less_-overflow-scroll rd-_assets_index_less_-wp100','mx5-cmchange': $viewId+'@:{update.value~rs}()','mx5-view': 'gallery/mx-codemirror/index?type=html&value='+($__line=2,$__art='{{#props.value}}',$__ctrl='<%#props.value,\'auto_key_props.props.value\'%>',$keyOf($refData,props.value,'auto_key_props.props.value')),},$vnode_2)];$vnode_0=[$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-touch-action-none rd-_assets_index_less_-z-index-1','style': 'left:'+($__line=1,$__art='{{=props.x}}',$__ctrl='<%=props.x%>',(props.x))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';top:'+($__line=1,$__art='{{=props.y}}',$__ctrl='<%=props.y%>',(props.y))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=1,$__art='{{=props.height}}',$__ctrl='<%=props.height%>',(props.height))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';opacity:'+($__line=1,$__art='{{=props.alpha}}',$__ctrl='<%=props.alpha%>',(props.alpha))+';width:'+($__line=1,$__art='{{=props.width}}',$__ctrl='<%=props.width%>',(props.width))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit)),'mx5-pointerdown': $viewId+'@:{stop~rs}()','mx5-contextmenu': $viewId+'@:{stop~rs}()',},$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:elements/html/dshow.html'; throw msg; }  } ,
     assign(data) {
         this.set(data);
     },
     render() {
         this.digest();
     },
-    '_hS<cmchange>'(e) {
+    '@:{update.value~rs}<cmchange>'(e) {
         let props = this.get('props');
         props.value = e.value;
     },
-    '_hE<pointerdown,contextmenu>'(e) {
-        if (e['_ey'])
+    '@:{stop~rs}<pointerdown,contextmenu>'(e) {
+        if (e['@:{halt~rs}'])
             return;
         // let { target } = e;
         // if (target.id != `${this.id}_pv`) {
-        e['_ey'] = 1;
+        e['@:{halt~rs}'] = 1;
         let element = this.get('element');
-        if (stage_selection_1["dF"](element)) {
-            history_1["dE"](history_1['dV'], element.props.ename);
+        if (stage_selection_1["@:{selection#set~rs}"](element)) {
+            history_1["@:{history#save~rs}"](history_1['@:{history#element.get.focus~rs}'], element.props.ename);
         }
         //}
     }

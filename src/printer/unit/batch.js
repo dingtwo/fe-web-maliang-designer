@@ -4,13 +4,13 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("6l/6o/batch",["4e","../../4d/4g","../../4d/4h","../6m/index"],(require,exports,module)=>{
+define("printer/unit/batch",["magix5","../../designer/const","../../designer/transform","../generic/index"],(require,exports,module)=>{
 
 
-let magix_1 = require("4e");
-let const_1 = require("../../4d/4g");
-let transform_1 = require("../../4d/4h");
-let index_1 = require("../6m/index");
+let magix_1 = require("magix5");
+let const_1 = require("../../designer/const");
+let transform_1 = require("../../designer/transform");
+let index_1 = require("../generic/index");
 let { guid, isArray } = magix_1;
 let { max, abs } = Math;
 /**
@@ -33,25 +33,25 @@ module.exports= async (dataCenter, element, fromIndex, page, pageFooterHeight, c
     //计算页面可用区域高度
     let validHeight = page.height - pageFooterHeight;
     //旋转后的元素使用外接矩形进行计算
-    let rotatedRect = transform_1['dF'](props);
-    let realHeight = rotatedRect['_e4'];
-    let realWidth = rotatedRect['_e3'];
-    let realX = rotatedRect['_fH'];
-    let realY = rotatedRect['_fJ'];
-    let fixedPoint = rotatedRect['_fE'][0], //默认左上角进行固定计算
+    let rotatedRect = transform_1['@:{transform#rotate.rect~rs}'](props);
+    let realHeight = rotatedRect['@:{height~rs}'];
+    let realWidth = rotatedRect['@:{width~rs}'];
+    let realX = rotatedRect['@:{left~rs}'];
+    let realY = rotatedRect['@:{top~rs}'];
+    let fixedPoint = rotatedRect['@:{point~rs}'][0], //默认左上角进行固定计算
     diffX = realX - x, diffY = realY - y, nextY = y, nextX = x, maxHeightOfLine = 0, //以下特为高度不固定的文本使用 当前行最大高度
     prevRightX, //上一个元素最右侧的坐标
     prevBottomY, //上一个元素最底部坐标
     nextLineStart = currentPage.length, //换行后从哪个下标开始的
     fillOneLine, maxDataLines = 0; //是否填充了一行，如果页面太小不中以放下元素，则至少放一行
-    let { '_fw': err, '_fx': data } = dataCenter[bind.url];
+    let { '@:{error~rs}': err, '@:{data~rs}': data } = dataCenter[bind.url];
     if (!isArray(data)) {
         data = [data];
     }
     maxDataLines = data.length;
     for (;;) {
         //属性需要克隆
-        let clonedProps = const_1['er'](props);
+        let clonedProps = const_1['@:{const#clone~rs}'](props);
         let bind = clonedProps.bind;
         if (err) {
             bind._tip = err;
@@ -84,14 +84,14 @@ module.exports= async (dataCenter, element, fromIndex, page, pageFooterHeight, c
                 /**
                  * 文本我们采用先放进来再进行检测是否需要换行和换页操作
                  */
-                let root = await index_1['_mA'](type, {
+                let root = await index_1['@:{mount.display.of.element~rs}'](type, {
                     props: clonedProps,
                     unit
                 });
                 //先拿动态高度
-                let textHeight = const_1['dF'](root.firstElementChild.offsetHeight);
+                let textHeight = const_1['@:{const#to.unit~rs}'](root.firstElementChild.offsetHeight);
                 //计算旋转后的矩形
-                let rect = transform_1['dF']({
+                let rect = transform_1['@:{transform#rotate.rect~rs}']({
                     x,
                     y,
                     width,
@@ -99,18 +99,18 @@ module.exports= async (dataCenter, element, fromIndex, page, pageFooterHeight, c
                     height: textHeight
                 });
                 //固定点
-                let newFixed = rect['_fE'][0];
+                let newFixed = rect['@:{point~rs}'][0];
                 //计算旋转后的矩形放到合适位置上的水平及垂直位置
-                let offsetX = fixedPoint.x - newFixed.x + nextX - x + (prevRightX ? prevRightX - rect['_fH'] + hspace : 0), offsetY = fixedPoint.y - newFixed.y + nextY - y + (prevBottomY ? prevBottomY - rect['_fJ'] + vspace : 0);
+                let offsetX = fixedPoint.x - newFixed.x + nextX - x + (prevRightX ? prevRightX - rect['@:{left~rs}'] + hspace : 0), offsetY = fixedPoint.y - newFixed.y + nextY - y + (prevBottomY ? prevBottomY - rect['@:{top~rs}'] + vspace : 0);
                 clonedProps.x += offsetX;
                 clonedProps.y += offsetY;
                 //更新右侧坐标
-                realX = rect['_fK'] + offsetX;
+                realX = rect['@:{right~rs}'] + offsetX;
                 if (realX > page.width) { //如果右侧超出了页面，需要换行显示
                     fillOneLine = 1; //填充了一行
                     nextLineStart = currentPage.length; //更新索引
                     //计算垂直及水平移动元素的距离
-                    let movedY = realY - (rect['_fJ'] + offsetY) + vspace;
+                    let movedY = realY - (rect['@:{top~rs}'] + offsetY) + vspace;
                     let movedX = clonedProps.x - x;
                     //更新元素坐标
                     clonedProps.y += movedY;
@@ -121,13 +121,13 @@ module.exports= async (dataCenter, element, fromIndex, page, pageFooterHeight, c
                     prevBottomY = realY;
                     prevRightX = realX;
                     //更新最大高度及y真实坐标
-                    maxHeightOfLine = rect['_e4'];
-                    realY = rect['_e8'] + offsetY + movedY;
+                    maxHeightOfLine = rect['@:{height~rs}'];
+                    realY = rect['@:{bottom~rs}'] + offsetY + movedY;
                 }
                 else {
                     //在计算中，有可能出现突然变高的元素
-                    realY = max(realY, rect['_e8'] + offsetY);
-                    maxHeightOfLine = max(maxHeightOfLine, rect['_e4']);
+                    realY = max(realY, rect['@:{bottom~rs}'] + offsetY);
+                    maxHeightOfLine = max(maxHeightOfLine, rect['@:{height~rs}']);
                     prevRightX = realX;
                 }
                 if (fillOneLine &&
@@ -144,7 +144,7 @@ module.exports= async (dataCenter, element, fromIndex, page, pageFooterHeight, c
                 nextX = realX - diffX;
                 if (realX + realWidth > page.width) { //如果坐标+宽度超出打印页面宽度，则换行
                     //nextX = x;//下一行起始位置是设计器中指定的位置
-                    realX = rotatedRect['_fH'];
+                    realX = rotatedRect['@:{left~rs}'];
                     nextX = realX - diffX;
                     //nextY += realHeight + vspace;//更新垂直坐标
                     realY += realHeight + vspace;

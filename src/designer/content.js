@@ -4,25 +4,25 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4d/content",["4e","../4l/4s/index","../4p/index","../4t/fs","./4q","./4u"],(require,exports,module)=>{
-let $quick_dI_0_static_node;
-let $quick_dI_3_static_node;
-let $quick_dI_6_static_node;
-let $quick_dI_1_static_attr={'class': 'rd-dO rd-dP rd-eB rd-eF rd-eG rd-ec rd-ez rd-fL',};
-let $quick_dI_2_static_attr={'class': 'rd-dZ',};
-let $quick_dI_4_static_attr={'class': 'rd-dS',};
-let $quick_dI_5_static_attr={'class': 'rd-dU rd-dV rd-eB rd-eF rd-eU rd-ec rd-ez rd-fE rd-fJ',};
+define("designer/content",["magix5","../gallery/mx-toast/index","../i18n/index","../provider/fs","./history","./tojson"],(require,exports,module)=>{
+let $quick_dE_0_static_node;
+let $quick_dE_3_static_node;
+let $quick_dE_6_static_node;
+let $quick_dE_1_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-dialog-header rd-_assets_index_less_-dialog-header-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-position-sticky rd-_assets_index_less_-top-0 rd-_assets_index_less_-z-index-8',};
+let $quick_dE_2_static_attr={'class': 'rd-_assets_index_less_-tag-h5',};
+let $quick_dE_4_static_attr={'class': 'rd-_assets_index_less_-dialog-body',};
+let $quick_dE_5_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-bottom-0 rd-_assets_index_less_-dialog-footer rd-_assets_index_less_-dialog-footer-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-justify-content-flex-end rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-6',};
 let $special_2={'value':'value',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("4e");
-let index_1 = require("../4l/4s/index");
-let index_2 = require("../4p/index");
-let fs_1 = require("../4t/fs");
-let history_1 = require("./4q");
-let tojson_1 = require("./4u");
+let magix_1 = require("magix5");
+let index_1 = require("../gallery/mx-toast/index");
+let index_2 = require("../i18n/index");
+let fs_1 = require("../provider/fs");
+let history_1 = require("./history");
+let tojson_1 = require("./tojson");
 let padStart = (str, n, char) => {
     str += '';
     if (str.length < n) {
@@ -31,7 +31,7 @@ let padStart = (str, n, char) => {
     return str;
 };
 let { node, State, applyStyle, View, Vframe, mark } = magix_1;
-applyStyle("rd-dG",".rd-gj{height:calc(100vh - 180px)}");
+applyStyle("rd-_designer_content_less_","\n.rd-_designer_content_less_-content-area {\nheight:calc(100vh - 180px);\n}\n");
 let prefix = atob('LyohUmVwb3J0IERlc2lnbmVyIEZpbGUKRnJvbTpodHRwczovL2dpdGh1Yi5jb20veGluZ2xpZS9yZXBvcnQtZGVzaWduZXIKQXV0aG9yOmtvb2JveV9saUAxNjMuY29tKi8K');
 let alertMsg = msg => {
     Vframe.root().invoke('alert', [msg]);
@@ -46,63 +46,64 @@ let tryApplyContent = (content) => {
         json = JSON.parse(content);
     }
     catch (ex) {
-        alertMsg(index_2('dV') + ex.message);
+        alertMsg(index_2('@:{lang#read.failure~rs}') + ex.message);
         return;
     }
-    State.fire('dP', {
-        'dE': json,
-        'dF': history_1['dJ'],
-        'dG': ''
+    State.fire('@:{event#example.change~rs}', {
+        '@:{excample.change.event#stage~rs}': json,
+        '@:{excample.change.event#type~rs}': history_1['@:{history#example.from.custom~rs}'],
+        '@:{excample.change.event#title~rs}': ''
     });
     return 1;
 };
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	i18n,
 	body,}=$dataFromView,
 $vnode_2,
 $vnode_1;
 
-if($quick_dI_0_static_node){
-$vnode_0=[$quick_dI_0_static_node];
+if($quick_dE_0_static_node){
+$vnode_0=[$quick_dE_0_static_node];
 }else{
-$vnode_0=[$quick_dI_0_static_node=$createVNode('div',{'_': 'cH','class': 'rd-dQ rd-eF rd-fK',})];
+$vnode_0=[$quick_dE_0_static_node=$createVNode('div',{'_': 'cD','class': 'rd-_assets_index_less_-dialog-header-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-7',})];
 }
-$vnode_2=[$createVNode(0,(i18n('dZ')))];$vnode_1=[$createVNode('h5',$quick_dI_2_static_attr,$vnode_2)];
-if($quick_dI_3_static_node){
-$vnode_1.push($quick_dI_3_static_node);
+$vnode_2=[$createVNode(0,($__line=3,$__art='{{=i18n(\'@:{lang#save.content.title~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#save.content.title~rs}\')%>',(i18n('@:{lang#save.content.title~rs}'))))];$vnode_1=[$createVNode('h5',$quick_dE_2_static_attr,$vnode_2)];
+if($quick_dE_3_static_node){
+$vnode_1.push($quick_dE_3_static_node);
 }else{
-$vnode_2=[$createVNode(0,'如何保存数据到数据库?')];$vnode_1.push($quick_dI_3_static_node=$createVNode('a',{'_': 'cI','class': 'rd-d1 rd-e_','href': 'https://github.com/xinglie/report-designer/issues/29','rel': 'noopener noreferrer','target': '_blank',},$vnode_2));
+$vnode_2=[$createVNode(0,'如何保存数据到数据库?')];$vnode_1.push($quick_dE_3_static_node=$createVNode('a',{'_': 'cE','class': 'rd-_assets_index_less_-ml10 rd-_assets_index_less_-tag-a','href': 'https://github.com/xinglie/report-designer/issues/29','rel': 'noopener noreferrer','target': '_blank',},$vnode_2));
 }
-$vnode_0.push($createVNode('div',$quick_dI_1_static_attr,$vnode_1));$vnode_1=[$createVNode('textarea',{'class': 'rd-dI rd-ed rd-gj','spellcheck': 'false','id': '_rd_ta_'+$viewId,'value': (body),},0,$special_2)];$vnode_0.push($createVNode('div',$quick_dI_4_static_attr,$vnode_1));$vnode_2=[$createVNode(0,(i18n('d0')))];$vnode_1=[$createVNode('button',{'mx5-click': $viewId+'_el()','class': 'rd-dL rd-dN rd-eX rd-ei','type': 'button',},$vnode_2)];$vnode_2=[$createVNode(0,(i18n('d1')))];$vnode_1.push($createVNode('button',{'mx5-click': $viewId+'_ek()','class': 'rd-dL rd-eX rd-e_ rd-ei','type': 'button',},$vnode_2));$vnode_0.push($createVNode('div',$quick_dI_5_static_attr,$vnode_1));
-if($quick_dI_6_static_node){
-$vnode_0.push($quick_dI_6_static_node);
+$vnode_0.push($createVNode('div',$quick_dE_1_static_attr,$vnode_1));$vnode_1=[$createVNode('textarea',{'class': 'rd-_assets_index_less_-textarea rd-_assets_index_less_-wp100 rd-_designer_content_less_-content-area','spellcheck': 'false','id': '_rd_ta_'+($__line=7,$__art='{{=$viewId}}','')+$viewId,'value': ($__line=7,$__art='{{=body}}',$__ctrl='<%=body%>',(body)),},0,$special_2)];$vnode_0.push($createVNode('div',$quick_dE_4_static_attr,$vnode_1));$vnode_2=[$createVNode(0,($__line=10,$__art='{{=i18n(\'@:{lang#btn.apply~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#btn.apply~rs}\')%>',(i18n('@:{lang#btn.apply~rs}'))))];$vnode_1=[$createVNode('button',{'mx5-click': $viewId+'@:{apply~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','type': 'button',},$vnode_2)];$vnode_2=[$createVNode(0,($__line=11,$__art='{{=i18n(\'@:{lang#btn.cancel~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#btn.cancel~rs}\')%>',(i18n('@:{lang#btn.cancel~rs}'))))];$vnode_1.push($createVNode('button',{'mx5-click': $viewId+'@:{cancel~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-ml10 rd-_assets_index_less_-tc','type': 'button',},$vnode_2));$vnode_0.push($createVNode('div',$quick_dE_5_static_attr,$vnode_1));
+if($quick_dE_6_static_node){
+$vnode_0.push($quick_dE_6_static_node);
 }else{
-$vnode_0.push($quick_dI_6_static_node=$createVNode('div',{'_': 'cJ','class': 'rd-dT rd-eF rd-fI',}));
+$vnode_0.push($quick_dE_6_static_node=$createVNode('div',{'_': 'cF','class': 'rd-_assets_index_less_-dialog-footer-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-5',}));
 }
  
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/content.html'; throw msg; }  } ,
     init(data) {
-        this['_ej'] = data.dialog;
+        this['@:{dialog~rs}'] = data.dialog;
     },
     render() {
         this.digest({
             body: tojson_1()
         });
     },
-    '_ek<click>'() {
-        this['_ej'].close();
+    '@:{cancel~rs}<click>'() {
+        this['@:{dialog~rs}'].close();
     },
-    '_el<click>'() {
+    '@:{apply~rs}<click>'() {
         //rd#need-register-code
         //保留if逻辑体中的代码，删除if条件及else代码即可删除相应的未授权提示
         if (DEBUG) {
             let value = node('_rd_ta_' + this.id).value.trim();
             if (tryApplyContent(value)) {
-                this['_ej'].close();
+                this['@:{dialog~rs}'].close();
             }
         }
         else {
@@ -110,13 +111,13 @@ return $createVNode($viewId,0,$vnode_0); } ,
         }
     }
 }).static({
-    async '_en'(target) {
+    async '@:{read.file~rs}'(target) {
         //rd#need-register-code
         //保留if逻辑体中的代码，删除if条件及else代码即可删除相应的未授权提示
         if (DEBUG) {
-            let readMark = mark(this, '_em');
+            let readMark = mark(this, '@:{save.async~rs}');
             try {
-                let content = await fs_1['_en'](target);
+                let content = await fs_1['@:{read.file~rs}'](target);
                 tryApplyContent(content);
             }
             catch (ex) {
@@ -129,17 +130,17 @@ return $createVNode($viewId,0,$vnode_0); } ,
             alertMsg('未授权版本不支持该功能');
         }
     },
-    async '_eq'() {
-        let saveMark = mark(this, '_em');
+    async '@:{save~rs}'() {
+        let saveMark = mark(this, '@:{save.async~rs}');
         try {
-            await fs_1['_eo']();
+            await fs_1['@:{prepare~rs}']();
         }
         catch (ex) {
             Vframe.root().invoke('alert', [ex.message]);
             return;
         }
         if (saveMark()) {
-            index_1.show(index_2('dW'));
+            index_1.show(index_2('@:{lang#export.file.processing~rs}'));
             let now = new Date();
             let time = [
                 now.getFullYear(),
@@ -152,8 +153,8 @@ return $createVNode($viewId,0,$vnode_0); } ,
             let value = tojson_1();
             try {
                 value = prefix + btoa(encodeURIComponent(value));
-                await fs_1['_ep'](`${index_2('dX')}-${time}.rd`, value);
-                index_1.show(index_2('dY'), 3e3);
+                await fs_1['@:{save.file~rs}'](`${index_2('@:{lang#site.name~rs}')}-${time}.rd`, value);
+                index_1.show(index_2('@:{lang#export.success~rs}'), 3e3);
             }
             catch (ex) {
                 index_1.hide();

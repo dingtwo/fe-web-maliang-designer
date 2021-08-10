@@ -4,10 +4,10 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("58/index",["4e"],(require,exports,module)=>{
+define("panels/index",["magix5"],(require,exports,module)=>{
 
 
-let magix_1 = require("4e");
+let magix_1 = require("magix5");
 let { State, node, Vframe, guid, config, toMap } = magix_1;
 let Panels = [];
 let PanelsMap;
@@ -15,11 +15,11 @@ module.exports= {
     /**
      * 检测是否所有面板均已打开
      */
-    '_fi'() {
+    '@:{is.all.opened~rs}'() {
         let result = true;
         for (let p of Panels) {
             let info = PanelsMap[p.id];
-            if (!info['dE']) {
+            if (!info['@:{panel#opened~rs}']) {
                 result = false;
                 break;
             }
@@ -29,40 +29,40 @@ module.exports= {
     /**
      * 一键关闭所有面板
      */
-    '_fj'() {
+    '@:{close.all.panels~rs}'() {
         for (let p of Panels) {
-            this['_lE'](p.id, true);
+            this['@:{close.panel~rs}'](p.id, true);
         }
-        State.fire('d4');
+        State.fire('@:{event#panel.change~rs}');
     },
     /**
      * 一键打开所有面板
      */
-    '_fk'() {
+    '@:{open.all.panels~rs}'() {
         for (let p of Panels) {
-            this['_lF'](p.id, true);
+            this['@:{open.panel~rs}'](p.id, true);
         }
-        State.fire('d4');
+        State.fire('@:{event#panel.change~rs}');
     },
     /**
      * 根据面板的初始条件打开相应面板
      */
-    '_fs'() {
+    '@:{open.panels~rs}'() {
         for (let p of Panels) {
             if (p.show) {
-                this['_lF'](p.id, true);
+                this['@:{open.panel~rs}'](p.id, true);
             }
         }
-        State.fire('d4');
+        State.fire('@:{event#panel.change~rs}');
     },
     /**
      * 销毁所有面板
      */
-    '_fp'() {
+    '@:{destroy~rs}'() {
         for (let p of Panels) {
             let info = PanelsMap[p.id];
-            delete info['dE'];
-            delete info['_lG'];
+            delete info['@:{panel#opened~rs}'];
+            delete info['@:{node.id~rs}'];
         }
     },
     /**
@@ -70,28 +70,28 @@ module.exports= {
      * @param id 面板id
      * @param prevent 是否阻止事件派发
      */
-    '_lF'(id, prevent) {
+    '@:{open.panel~rs}'(id, prevent) {
         let info = PanelsMap[id];
-        if (!info['dE']) {
-            info['dE'] = 1;
-            if (!info['_lG']) {
-                info['_lG'] = guid('_rdp_');
+        if (!info['@:{panel#opened~rs}']) {
+            info['@:{panel#opened~rs}'] = 1;
+            if (!info['@:{node.id~rs}']) {
+                info['@:{node.id~rs}'] = guid('_rdp_');
                 let app = node(config('rootId'));
-                app.insertAdjacentHTML('beforeend', `<div id="${info['_lG']}"></div>`);
+                app.insertAdjacentHTML('beforeend', `<div id="${info['@:{node.id~rs}']}"></div>`);
                 let root = Vframe.byNode(app);
                 info.close = () => {
-                    this['_lE'](info.id);
+                    this['@:{close.panel~rs}'](info.id);
                 };
-                root.mount(node(info['_lG']), "58/6j", info);
+                root.mount(node(info['@:{node.id~rs}']), "panels/panel", info);
             }
             else {
-                let panelRoot = node(info['_lG']);
+                let panelRoot = node(info['@:{node.id~rs}']);
                 panelRoot.style.display = 'block';
                 let vf = Vframe.byNode(panelRoot);
-                vf.invoke('_ec');
+                vf.invoke('@:{show~rs}');
             }
             if (!prevent) {
-                State.fire('d4');
+                State.fire('@:{event#panel.change~rs}');
             }
         }
     },
@@ -100,16 +100,16 @@ module.exports= {
      * @param id 面板id
      * @param pevent 是否阻止事件的派发
      */
-    '_lE'(id, pevent) {
+    '@:{close.panel~rs}'(id, pevent) {
         let info = PanelsMap[id];
-        if (info['dE']) {
-            info['dE'] = 0;
-            let n = node(info['_lG']);
+        if (info['@:{panel#opened~rs}']) {
+            info['@:{panel#opened~rs}'] = 0;
+            let n = node(info['@:{node.id~rs}']);
             n.style.display = 'none';
             let vf = Vframe.byNode(n);
-            vf.invoke('_ed');
+            vf.invoke('@:{hide~rs}');
             if (!pevent) {
-                State.fire('d4');
+                State.fire('@:{event#panel.change~rs}');
             }
         }
     },
@@ -117,37 +117,37 @@ module.exports= {
      * 展示或关闭面板
      * @param id 面板id
      */
-    '_fa'(id) {
+    '@:{toggle.panel~rs}'(id) {
         let info = PanelsMap[id];
-        if (info['dE']) {
-            this['_lE'](id);
+        if (info['@:{panel#opened~rs}']) {
+            this['@:{close.panel~rs}'](id);
         }
         else {
-            this['_lF'](id);
+            this['@:{open.panel~rs}'](id);
         }
     },
     /**
      * 通过id打开或折叠面板内容区域
      * @param id 面板id
      */
-    '_f_'(id) {
+    '@:{toggle.panel.height~rs}'(id) {
         let info = PanelsMap[id];
-        if (info['dE']) {
-            let n = node(info['_lG']);
+        if (info['@:{panel#opened~rs}']) {
+            let n = node(info['@:{node.id~rs}']);
             let vf = Vframe.byNode(n);
-            vf.invoke('_lH');
+            vf.invoke('@:{toggle.height~rs}');
         }
     },
     /**
      * 获取当前环境所支持的面板，比如迷你模式下部分面板不展示以节省显示区域
      */
-    '_e9'() {
+    '@:{support.panels~rs}'() {
         if (!Panels.length) {
-            let mini = State.get('dL');
+            let mini = State.get('@:{global#provider.of.use.mini~rs}');
             let root = node(config('rootId'));
             let height = root.clientHeight;
             Panels.push({
-                title: 'l_',
+                title: '@:{lang#panel.elements~rs}',
                 icon: '&#xe7ef;',
                 width: 180,
                 height: mini ? height - 140 : 290,
@@ -157,13 +157,13 @@ module.exports= {
                 key: 1,
                 show: true,
                 resizeY: !mini,
-                id: 'dF',
-                view: "58/tree/index"
+                id: '@:{panel#tree~rs}',
+                view: "panels/tree/index"
             });
             //非迷你模式展示概览面板
             if (!mini) {
                 Panels.push({
-                    title: 'le',
+                    title: '@:{lang#panel.outline~rs}',
                     icon: '&#xe99a;',
                     width: 210,
                     height: 124,
@@ -171,13 +171,13 @@ module.exports= {
                     show: true,
                     left: 25,
                     bottom: 30,
-                    id: 'dG',
-                    view: "58/6k/index",
+                    id: '@:{panel#outline~rs}',
+                    view: "panels/outline/index",
                     fixedSize: true
                 });
             }
             Panels.push({
-                title: 'lf',
+                title: '@:{lang#panel.props~rs}',
                 icon: '&#xe7a1;',
                 width: 242,
                 fixedSize: mini,
@@ -188,13 +188,13 @@ module.exports= {
                 key: Panels.length + 1,
                 show: true,
                 resizeY: !mini,
-                id: 'dH',
-                view: "58/5e/index"
+                id: '@:{panel#props~rs}',
+                view: "panels/props/index"
             });
             //有数据源配置才显示数据源面板
             if (config('getFieldUrl')) {
                 Panels.push({
-                    title: 'k8',
+                    title: '@:{lang#panel.data~rs}',
                     icon: '&#xe609;',
                     width: 200,
                     cm: 1,
@@ -205,14 +205,14 @@ module.exports= {
                     right: 260,
                     top: 90,
                     key: Panels.length + 1,
-                    id: 'dI',
-                    view: "58/data/index"
+                    id: '@:{panel#data~rs}',
+                    view: "panels/data/index"
                 });
             }
             //非迷你模式展示历史记录面板
             if (!mini) {
                 Panels.push({
-                    title: 'lc',
+                    title: '@:{lang#panel.history~rs}',
                     icon: '&#xe720;',
                     width: 200,
                     height: 220,
@@ -221,8 +221,8 @@ module.exports= {
                     right: 260,
                     bottom: 30,
                     key: Panels.length + 1,
-                    id: 'dJ',
-                    view: "58/4q/index"
+                    id: '@:{panel#history~rs}',
+                    view: "panels/history/index"
                 });
             }
             //以下2个面板如果不需要，可以直接删除或注释相应代码即可
@@ -237,8 +237,8 @@ module.exports= {
                     left: 210,
                     top: 90,
                     key: Panels.length + 1,
-                    id: 'dK',
-                    view: "58/perf/index"
+                    id: '@:{panel#performance~rs}',
+                    view: "panels/perf/index"
                 });
             }
             Panels.push({
@@ -251,8 +251,8 @@ module.exports= {
                 left: mini ? 215 : 245,
                 bottom: 30,
                 key: Panels.length + 1,
-                id: 'dL',
-                view: "58/res/index"
+                id: '@:{panel#resource~rs}',
+                view: "panels/res/index"
             });
             PanelsMap = toMap(Panels, 'id');
         }

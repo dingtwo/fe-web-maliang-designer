@@ -4,31 +4,31 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4t/sdrop",["4e","../4d/4g","../4d/56"],(require,exports,module)=>{
+define("provider/sdrop",["magix5","../designer/const","../designer/stage-elements"],(require,exports,module)=>{
 
 
 /**
  * 设计区拖放插件
  */
-let magix_1 = require("4e");
-let const_1 = require("../4d/4g");
-let stage_elements_1 = require("../4d/56");
+let magix_1 = require("magix5");
+let const_1 = require("../designer/const");
+let stage_elements_1 = require("../designer/stage-elements");
 let { State, has } = magix_1;
 let toUnitPropNames = ['x', 'y', 'width', 'height'];
 let watchDrop = (e) => {
-    if (e['_ey'])
+    if (e['@:{halt~rs}'])
         return;
     e.preventDefault();
-    let bindData = State.get('dY');
+    let bindData = State.get('@:{global#bind.field.drag.data~rs}');
     let target = e.target;
     if (bindData) {
         let fieldInfo = bindData.field;
-        let elementsMap = State.get('dZ');
+        let elementsMap = State.get('@:{global#stage.elements.map~rs}');
         let xCtrl = elementsMap[fieldInfo.use] || elementsMap.text;
-        let props = const_1['er'](fieldInfo.props) || {};
+        let props = const_1['@:{const#clone~rs}'](fieldInfo.props) || {};
         for (let up of toUnitPropNames) {
             if (has(props, up)) {
-                props[up] = const_1['dF'](props[up]);
+                props[up] = const_1['@:{const#to.unit~rs}'](props[up]);
             }
         }
         props.bind = {
@@ -37,33 +37,33 @@ let watchDrop = (e) => {
             fields: [bindData.field]
         };
         State.set({
-            'dO': [{
+            '@:{global#memory.cache.element~rs}': [{
                     ctrl: xCtrl,
                     props
                 }]
         });
-        let fromEventOffset = State.get('d0');
-        State.fire('dU', {
+        let fromEventOffset = State.get('@:{global#bind.field.drag.event.offset~rs}');
+        State.fire('@:{event#toolbox.add.element~rs}', {
             node: target,
-            pageX: e.pageX - fromEventOffset['_lq'],
-            pageY: e.pageY - fromEventOffset['_gz']
+            pageX: e.pageX - fromEventOffset['@:{offset.x~rs}'],
+            pageY: e.pageY - fromEventOffset['@:{offset.y~rs}']
         });
     }
 };
 let watchMove = (e) => {
-    let bindData = State.get('dY');
+    let bindData = State.get('@:{global#bind.field.drag.data~rs}');
     if (bindData) {
-        let elementsMap = State.get('dZ');
+        let elementsMap = State.get('@:{global#stage.elements.map~rs}');
         let target = e.target;
         let lastHod;
         //尝试使用字段指定的类型或默认文本类型
         let xCtrl = elementsMap[bindData.field.use] || elementsMap.text;
         if (xCtrl) { //有控制器才进入处理
-            if (!e['_ey']) {
-                lastHod = stage_elements_1['dE'](target, xCtrl);
+            if (!e['@:{halt~rs}']) {
+                lastHod = stage_elements_1['@:{elements#get.best.hod~rs}'](target, xCtrl);
                 ;
             }
-            State.fire('dR', {
+            State.fire('@:{event#toolbox.drag.element.move~rs}', {
                 ctrl: xCtrl,
                 stage: 1,
                 hod: lastHod,
@@ -73,18 +73,18 @@ let watchMove = (e) => {
     }
 };
 module.exports= {
-    'dE'() {
+    '@:{sdrop#setup~rs}'() {
         State.set({
-            'd2': 1
+            '@:{global#provider.of.stage.drop~rs}': 1
         });
     },
-    'dF'() {
+    '@:{sdrop#teardown~rs}'() {
         State.set({
-            'd2': null
+            '@:{global#provider.of.stage.drop~rs}': null
         });
     },
-    'dH': watchMove,
-    'dG': watchDrop
+    '@:{sdrop#drag.enter~rs}': watchMove,
+    '@:{sdrop#drop~rs}': watchDrop
 };
 
 });

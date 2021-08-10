@@ -4,19 +4,19 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4d/5a",["4e","./4g","./enum","./4q","./57","./5b","./4h"],(require,exports,module)=>{
+define("designer/stage-clipboard",["magix5","./const","./enum","./history","./stage-generic","./stage-selection","./transform"],(require,exports,module)=>{
 
 
 /**
  * 剪切板管理对象
  */
-let magix_1 = require("4e");
-let const_1 = require("./4g");
+let magix_1 = require("magix5");
+let const_1 = require("./const");
 let enum_1 = require("./enum");
-let history_1 = require("./4q");
-let stage_generic_1 = require("./57");
-let stage_selection_1 = require("./5b");
-let transform_1 = require("./4h");
+let history_1 = require("./history");
+let stage_generic_1 = require("./stage-generic");
+let stage_selection_1 = require("./stage-selection");
+let transform_1 = require("./transform");
 let { abs } = Math;
 let { State, node, guid, mix } = magix_1;
 //let { MAX_VALUE } = Number;
@@ -37,7 +37,7 @@ let hasSameXY = (elements, compareX, compareY, width, height, rotate, aberration
             abs(props.y - compareY) < aberration &&
             abs(props.width - width) < aberration &&
             abs(props.height - height) < aberration &&
-            const_1['en'](props.rotate || 0, rotate || 0)) {
+            const_1['@:{const#approach~rs}'](props.rotate || 0, rotate || 0)) {
             return 1;
         }
     }
@@ -51,38 +51,38 @@ let hasSameXY = (elements, compareX, compareY, width, height, rotate, aberration
  * @returns
  */
 let getDiff = (props, xy, stage, aberration, moveX, moveY) => {
-    let diffX, diffY, elements = stage['_fR'], { x, y, width, height, rotate } = props;
-    let rect = transform_1['dF'](props);
+    let diffX, diffY, elements = stage['@:{collection~rs}'], { x, y, width, height, rotate } = props;
+    let rect = transform_1['@:{transform#rotate.rect~rs}'](props);
     if (xy) {
-        let lt = rect['_fE'][0];
-        diffX = const_1['dF'](xy.x) - lt.x;
-        diffY = const_1['dF'](xy.y) - lt.y;
+        let lt = rect['@:{point~rs}'][0];
+        diffX = const_1['@:{const#to.unit~rs}'](xy.x) - lt.x;
+        diffY = const_1['@:{const#to.unit~rs}'](xy.y) - lt.y;
     }
     else {
-        let canvas = node(stage['_fS']);
+        let canvas = node(stage['@:{container~rs}']);
         let canRect = {
             x: 0,
             y: 0,
-            width: const_1['dF'](canvas.clientWidth) - 2 * aberration,
-            height: const_1['dF'](canvas.clientHeight) - 2 * aberration
+            width: const_1['@:{const#to.unit~rs}'](canvas.clientWidth) - 2 * aberration,
+            height: const_1['@:{const#to.unit~rs}'](canvas.clientHeight) - 2 * aberration
         };
         let newRect = {
-            x: rect['_fH'] - aberration,
-            y: rect['_fJ'] - aberration,
-            width: rect['_e3'],
-            height: rect['_e4']
+            x: rect['@:{left~rs}'] - aberration,
+            y: rect['@:{top~rs}'] - aberration,
+            width: rect['@:{width~rs}'],
+            height: rect['@:{height~rs}']
         };
-        if (!transform_1["dG"](newRect, canRect)) {
+        if (!transform_1["@:{transform#rect.intersect~rs}"](newRect, canRect)) {
             x = canRect.x + (x - newRect.x - aberration);
             y = canRect.y + (y - newRect.y - aberration);
             if (moveX) {
-                x += const_1['dF'](moveX);
+                x += const_1['@:{const#to.unit~rs}'](moveX);
             }
             if (moveY) {
-                y += const_1['dF'](moveY);
+                y += const_1['@:{const#to.unit~rs}'](moveY);
             }
         }
-        let moved = const_1['dF'](const_1['ec']);
+        let moved = const_1['@:{const#to.unit~rs}'](const_1['@:{const#element.same.position.offset~rs}']);
         while (hasSameXY(elements, x, y, width, height, rotate, aberration)) {
             x += moved;
             y += moved;
@@ -104,9 +104,9 @@ let getDiff = (props, xy, stage, aberration, moveX, moveY) => {
 let walkElements = (from, to, elements) => {
     to.type = from.type;
     to.ctrl = from.ctrl;
-    to.props = const_1['er'](from.props);
+    to.props = const_1['@:{const#clone~rs}'](from.props);
     to.id = guid('rde_');
-    if (from.ctrl.as & enum_1['dH']) {
+    if (from.ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
         to.props.rows = [];
         to.props.focusRow = -1;
         to.props.focusCol = -1;
@@ -119,9 +119,9 @@ let walkElements = (from, to, elements) => {
                     ci.elements = [];
                     for (let cc of c.elements) {
                         let canPaste = 1;
-                        let count = cc.ctrl['_eJ'];
+                        let count = cc.ctrl['@:{allowed.stage.count~rs}'];
                         if (count >= 0) {
-                            let cn = stage_generic_1["dF"](elements, cc.type);
+                            let cn = stage_generic_1["@:{generic#filter.elements~rs}"](elements, cc.type);
                             if (cn.length >= count) {
                                 canPaste = 0;
                             }
@@ -153,29 +153,29 @@ let walkElements = (from, to, elements) => {
  * @returns
  */
 let PasteElements = (stage, list, flowProvider, relationships, xy, anchor, moveX, moveY) => {
-    let elements = stage['_fR'];
-    let allowedElements = stage['_fT'];
-    let stageType = stage['_fU'];
-    let groups = State.get('dP');
+    let elements = stage['@:{collection~rs}'];
+    let allowedElements = stage['@:{allowed.elements~rs}'];
+    let stageType = stage['@:{type~rs}'];
+    let groups = State.get('@:{global#stage.elements.groups~rs}');
     let update, selected = [];
     let changedIds = {};
     if (list &&
         list.length) {
-        list = const_1['er'](list);
+        list = const_1['@:{const#clone~rs}'](list);
         let diffX = 0, diffY = 0;
-        let ab = const_1['ej']();
-        let container = node(stage['_fS']);
+        let ab = const_1['@:{const#unit.step~rs}']();
+        let container = node(stage['@:{container~rs}']);
         let cb = container.getBoundingClientRect();
-        let stageBound = transform_1['dE']();
-        let dx = const_1['dF'](cb.x - stageBound.x);
-        let dy = const_1['dF'](cb.y - stageBound.y);
+        let stageBound = transform_1['@:{transform#get.stage.dom.rect~rs}']();
+        let dx = const_1['@:{const#to.unit~rs}'](cb.x - stageBound.x);
+        let dy = const_1['@:{const#to.unit~rs}'](cb.y - stageBound.y);
         if (!anchor) {
             anchor = list[0].id;
         }
         for (let i = list.length; i--;) {
             let m = list[i];
             if ((!flowProvider ||
-                !flowProvider['dE'](m))) {
+                !flowProvider['@:{flow.provider#is.connector~rs}'](m))) {
                 let cloned = {
                     ...m,
                     props: {
@@ -195,7 +195,7 @@ let PasteElements = (stage, list, flowProvider, relationships, xy, anchor, moveX
         }
         for (let m of list) {
             let canPaste = 1;
-            let allowedToHods = m.ctrl['_fV'];
+            let allowedToHods = m.ctrl['@:{allowed.to.hod~rs}'];
             if (allowedElements &&
                 !allowedElements[m.type]) {
                 canPaste = 0;
@@ -206,18 +206,18 @@ let PasteElements = (stage, list, flowProvider, relationships, xy, anchor, moveX
                 canPaste = 0;
             }
             if (canPaste) {
-                let total = m.ctrl['_eI'];
+                let total = m.ctrl['@:{allowed.total.count~rs}'];
                 if (total >= 0) {
-                    let added = stage_generic_1["dM"](m.ctrl);
+                    let added = stage_generic_1["@:{generic#query.element.added.list~rs}"](m.ctrl);
                     if (added.length >= total) {
                         canPaste = 0;
                     }
                 }
             }
             if (canPaste) {
-                let count = m.ctrl['_eJ'];
+                let count = m.ctrl['@:{allowed.stage.count~rs}'];
                 if (count >= 0) {
-                    let cc = stage_generic_1["dF"](elements, m.type);
+                    let cc = stage_generic_1["@:{generic#filter.elements~rs}"](elements, m.type);
                     if (cc.length >= count) {
                         canPaste = 0;
                     }
@@ -228,9 +228,9 @@ let PasteElements = (stage, list, flowProvider, relationships, xy, anchor, moveX
                 let nm = {};
                 walkElements(m, nm, elements);
                 let { props, ctrl } = nm;
-                let moveProps = ctrl['_fW'];
-                if (ctrl['_fX']) {
-                    moveProps = ctrl['_fW'](props);
+                let moveProps = ctrl['@:{move.props~rs}'];
+                if (ctrl['@:{move.props.is.function~rs}']) {
+                    moveProps = ctrl['@:{move.props~rs}'](props);
                 }
                 for (let x of moveProps) {
                     props[x.key] += x.use == 'x' ? diffX : diffY;
@@ -238,10 +238,10 @@ let PasteElements = (stage, list, flowProvider, relationships, xy, anchor, moveX
                 props.locked = false;
                 props.pinX = false;
                 props.pinY = false;
-                if (ctrl['_eF'] &&
+                if (ctrl['@:{update.props~rs}'] &&
                     (!flowProvider ||
-                        !flowProvider['dE'](nm))) {
-                    ctrl['_eF'](props);
+                        !flowProvider['@:{flow.provider#is.connector~rs}'](nm))) {
+                    ctrl['@:{update.props~rs}'](props);
                 }
                 //自动重连相应的关系
                 if (relationships &&
@@ -251,7 +251,7 @@ let PasteElements = (stage, list, flowProvider, relationships, xy, anchor, moveX
                 elements.push(nm);
                 selected.push(nm);
                 changedIds[m.id] = nm.id;
-                stage_generic_1['dN']();
+                stage_generic_1['@:{generic#reset.all.cache~rs}']();
             }
         }
         if (update) {
@@ -274,10 +274,10 @@ let PasteElements = (stage, list, flowProvider, relationships, xy, anchor, moveX
         }
     }
     return {
-        '_fY': update,
-        '_fZ': selected,
-        '_f0': changedIds,
-        '_f1': relationships
+        '@:{update~rs}': update,
+        '@:{added~rs}': selected,
+        '@:{change.ids~rs}': changedIds,
+        '@:{relationships~rs}': relationships
     };
 };
 let emptyArray = [];
@@ -285,52 +285,52 @@ module.exports= {
     /**
      * 获取复制列表
      */
-    '_f2'() {
-        let clipboard = State.get('dQ');
+    '@:{get.copy.list~rs}'() {
+        let clipboard = State.get('@:{global#stage.clipboard~rs}');
         return clipboard.c || emptyArray;
     },
     /**
      * 清空剪切板信息
      */
-    '_dP'() {
-        let clipboard = State.get('dQ');
+    '@:{clear~rs}'() {
+        let clipboard = State.get('@:{global#stage.clipboard~rs}');
         if (clipboard.c) {
             State.set({
-                'dQ': {}
+                '@:{global#stage.clipboard~rs}': {}
             });
-            State.fire('d1');
+            State.fire('@:{event#stage.clipboard.change~rs}');
         }
     },
     /**
      * 是否剪切动作
      */
-    '_f3'() {
-        let clipboard = State.get('dQ');
+    '@:{is.cut~rs}'() {
+        let clipboard = State.get('@:{global#stage.clipboard~rs}');
         return clipboard.cut;
     },
     /**
      * 缓存元素
      * @param sourceList 源列表
      */
-    '_f4'(sourceList, isCut, e) {
+    '@:{cache.elements~rs}'(sourceList, isCut, e) {
         let list, relationships;
         if (sourceList.length) {
-            let underElement = State.get('dX');
+            let underElement = State.get('@:{global#stage.contextmenu.under.item~rs}');
             let offsetX = 0, offsetY = 0;
-            list = const_1['er'](sourceList); //获取当前所有选中元素
-            let flowProvider = State.get('dR');
+            list = const_1['@:{const#clone~rs}'](sourceList); //获取当前所有选中元素
+            let flowProvider = State.get('@:{global#provider.of.flow~rs}');
             if (flowProvider) { //剪切时，如果是流程图元素，自动添加所包含的连接线一起移动
                 if (isCut) {
-                    list = flowProvider["dH"](list);
+                    list = flowProvider["@:{flow.provider#add.connector.from.elements~rs}"](list);
                 }
                 else { //复制时，对于连接线虽然也选中，但只要它连接的元素不全部在复制的元素内，则从复制元素中移除连接线
-                    list = flowProvider["dI"](list);
+                    list = flowProvider["@:{flow.provider#remove.connector.from.elements~rs}"](list);
                 }
-                relationships = flowProvider["dJ"](list);
+                relationships = flowProvider["@:{flow.provider#collect.before.clone.relationships~rs}"](list);
             }
-            let { x, y } = transform_1['dE']();
+            let { x, y } = transform_1['@:{transform#get.stage.dom.rect~rs}']();
             //let offset = isCut ? 0 : Const['@:{const#to.unit}'](Const['@:{const#element.same.position.offset}']);
-            let ab = const_1['ej']();
+            let ab = const_1['@:{const#unit.step~rs}']();
             let minLeft, minLeftBound, minTop, minTopBound;
             for (let m of list) {
                 let { id, props } = m;
@@ -338,9 +338,9 @@ module.exports= {
                 if (mk) {
                     let mkb = mk.getBoundingClientRect();
                     let cx = mkb.x + mkb.width / 2 - x, cy = mkb.y + mkb.height / 2 - y;
-                    let rect = transform_1['dF'](props);
-                    let dx = rect['_fG'] - const_1['dF'](cx);
-                    let dy = rect['_fI'] - const_1['dF'](cy);
+                    let rect = transform_1['@:{transform#rotate.rect~rs}'](props);
+                    let dx = rect['@:{center.x~rs}'] - const_1['@:{const#to.unit~rs}'](cx);
+                    let dy = rect['@:{center.y~rs}'] - const_1['@:{const#to.unit~rs}'](cy);
                     if (abs(dx) > ab) {
                         props.x -= dx;
                     }
@@ -348,11 +348,11 @@ module.exports= {
                         props.y -= dy;
                     }
                     if (e &&
-                        const_1['d3'] &&
+                        const_1['@:{const#contextmenu.paste.exactly.source.position~rs}'] &&
                         id == underElement.id) {
-                        let lt = rect['_fE'][0];
-                        offsetX = e.pageX - x - const_1['eo'](lt.x - dx);
-                        offsetY = e.pageY - y - const_1['eo'](lt.y - dy);
+                        let lt = rect['@:{point~rs}'][0];
+                        offsetX = e.pageX - x - const_1['@:{const#to.px~rs}'](lt.x - dx);
+                        offsetY = e.pageY - y - const_1['@:{const#to.px~rs}'](lt.y - dy);
                     }
                     if (!minLeft ||
                         mkb.x < minLeftBound.x) {
@@ -376,20 +376,20 @@ module.exports= {
                 if (mx > my) {
                     scElement = minLeft;
                     if (my > 0) {
-                        moveY = my + const_1['ec'];
+                        moveY = my + const_1['@:{const#element.same.position.offset~rs}'];
                     }
                 }
                 else {
                     scElement = minTop;
                     if (mx > 0) {
-                        moveX = mx + const_1['ec'];
+                        moveX = mx + const_1['@:{const#element.same.position.offset~rs}'];
                     }
                 }
             }
             else {
                 scElement = minTop;
             }
-            let clipboard = State.get('dQ');
+            let clipboard = State.get('@:{global#stage.clipboard~rs}');
             clipboard.se = scElement;
             clipboard.ue = underElement && underElement.id;
             clipboard.ox = offsetX;
@@ -398,37 +398,37 @@ module.exports= {
             clipboard.my = moveY;
         }
         return {
-            '_f1': relationships,
-            '_e6': list
+            '@:{relationships~rs}': relationships,
+            '@:{list~rs}': list
         };
     },
     /**
      * 复制元素
      */
-    '_f5'(e) {
-        let sourceList = State.get('dE');
-        let clipboard = State.get('dQ');
+    '@:{copy.elements~rs}'(e) {
+        let sourceList = State.get('@:{global#stage.select.elements~rs}');
+        let clipboard = State.get('@:{global#stage.clipboard~rs}');
         clipboard.cut = 0;
-        let { '_f1': relationships, '_e6': list } = this['_f4'](sourceList, 0, e);
+        let { '@:{relationships~rs}': relationships, '@:{list~rs}': list } = this['@:{cache.elements~rs}'](sourceList, 0, e);
         if (list && list.length) {
             clipboard.fr = relationships;
             clipboard.c = list;
-            State.fire('d1');
+            State.fire('@:{event#stage.clipboard.change~rs}');
         }
     },
     /**
      * 剪切元素
      */
-    '_f6'(e) {
-        let sourceList = State.get('dE');
-        let clipboard = State.get('dQ');
+    '@:{cut.elements~rs}'(e) {
+        let sourceList = State.get('@:{global#stage.select.elements~rs}');
+        let clipboard = State.get('@:{global#stage.clipboard~rs}');
         clipboard.cut = 1;
-        let { '_f1': relationships, '_e6': list } = this['_f4'](sourceList, 1, e);
+        let { '@:{relationships~rs}': relationships, '@:{list~rs}': list } = this['@:{cache.elements~rs}'](sourceList, 1, e);
         if (list && list.length) {
             clipboard.fr = relationships;
             clipboard.c = list;
             let ids = {};
-            let flowProvider = State.get('dR');
+            let flowProvider = State.get('@:{global#provider.of.flow~rs}');
             let changedElements = [];
             for (let e of list) {
                 let { props } = e;
@@ -441,10 +441,10 @@ module.exports= {
             }
             if (flowProvider) {
                 let { //'@:{generic.all#map}': all,
-                'dE': stageElements } = stage_generic_1['dE']();
+                '@:{generic.all#elements~rs}': stageElements } = stage_generic_1['@:{generic#get.all.elements.and.map~rs}']();
                 for (let element of stageElements) {
                     let { props, id } = element;
-                    if (flowProvider['dE'](element) &&
+                    if (flowProvider['@:{flow.provider#is.connector~rs}'](element) &&
                         (ids[props.linkFromId] ||
                             ids[props.linkToId])) {
                         ids[id] = 1;
@@ -452,11 +452,11 @@ module.exports= {
                 }
             }
             if (changedElements.length) {
-                stage_generic_1['dO'](ids);
-                stage_generic_1["dP"](ids);
-                stage_selection_1['dF']();
-                history_1['dE'](history_1['eb'], stage_generic_1['dQ'](changedElements));
-                State.fire('d2');
+                stage_generic_1['@:{generic#remove.grouped.element.by.ids~rs}'](ids);
+                stage_generic_1["@:{generic#internal.delete.element.by.id.map.silent~rs}"](ids);
+                stage_selection_1['@:{selection#set~rs}']();
+                history_1['@:{history#save~rs}'](history_1['@:{history#element.cut~rs}'], stage_generic_1['@:{generic#query.element.name~rs}'](changedElements));
+                State.fire('@:{event#stage.elements.change~rs}');
             }
         }
     },
@@ -465,16 +465,16 @@ module.exports= {
      * @param stages 选中元素处在哪些设计区里
      * @returns
      */
-    '_f8'(stages) {
-        let page = State.get('dN');
+    '@:{duplicate.elements~rs}'(stages) {
+        let page = State.get('@:{global#stage.page~rs}');
         if (page.readonly) {
             return;
         }
         let rs = {}, selected = [];
-        let flowProvider = State.get('dR');
+        let flowProvider = State.get('@:{global#provider.of.flow~rs}');
         for (let stage of stages) {
-            let { '_f1': preRel, '_e6': list } = this['_f4'](stage['_f7']);
-            let { '_f1': relationships, '_fZ': added, '_fY': update } = PasteElements(stage, list, flowProvider, preRel);
+            let { '@:{relationships~rs}': preRel, '@:{list~rs}': list } = this['@:{cache.elements~rs}'](stage['@:{selected~rs}']);
+            let { '@:{relationships~rs}': relationships, '@:{added~rs}': added, '@:{update~rs}': update } = PasteElements(stage, list, flowProvider, preRel);
             if (update) {
                 mix(rs, relationships);
                 selected.push(...added);
@@ -482,12 +482,12 @@ module.exports= {
         }
         if (selected.length) {
             if (flowProvider) {
-                stage_generic_1['dN']();
-                flowProvider["dK"](selected, rs);
+                stage_generic_1['@:{generic#reset.all.cache~rs}']();
+                flowProvider["@:{flow.provider#rebuild.relationship.after.clone~rs}"](selected, rs);
             }
-            State.fire('d2');
-            stage_selection_1['dG'](selected);
-            history_1['dE'](history_1['ec'], stage_generic_1['dQ'](selected));
+            State.fire('@:{event#stage.elements.change~rs}');
+            stage_selection_1['@:{selection#set.all~rs}'](selected);
+            history_1['@:{history#save~rs}'](history_1['@:{history#element.duplicate~rs}'], stage_generic_1['@:{generic#query.element.name~rs}'](selected));
         }
     },
     /**
@@ -495,13 +495,13 @@ module.exports= {
      * @param stage 设计区对象，每一个容器的格子也是一个设计区,使用该对象表示粘贴到哪个设计区里
      * @param xy 粘贴坐标
      */
-    '_f9'(stage, xy) {
-        let page = State.get('dN');
-        let flowProvider = State.get('dR');
+    '@:{paste.elements~rs}'(stage, xy) {
+        let page = State.get('@:{global#stage.page~rs}');
+        let flowProvider = State.get('@:{global#provider.of.flow~rs}');
         if (page.readonly) {
             return;
         }
-        let clipboard = State.get('dQ');
+        let clipboard = State.get('@:{global#stage.clipboard~rs}');
         let under = clipboard.ue;
         let short = clipboard.se, moveX, moveY;
         if (under && xy) {
@@ -515,19 +515,19 @@ module.exports= {
             moveX = clipboard.mx;
             moveY = clipboard.my;
         }
-        let { '_f1': relationships, '_fZ': selected, '_fY': update } = PasteElements(stage, clipboard.c, flowProvider, clipboard.fr, xy, under, moveX, moveY);
+        let { '@:{relationships~rs}': relationships, '@:{added~rs}': selected, '@:{update~rs}': update } = PasteElements(stage, clipboard.c, flowProvider, clipboard.fr, xy, under, moveX, moveY);
         if (update) {
             if (clipboard.cut &&
-                const_1['dR']) {
-                this['_dP']();
+                const_1['@:{const#clear.copy.list.when.cut.action~rs}']) {
+                this['@:{clear~rs}']();
             }
             if (flowProvider) {
-                stage_generic_1['dN']();
-                flowProvider["dK"](selected, relationships);
+                stage_generic_1['@:{generic#reset.all.cache~rs}']();
+                flowProvider["@:{flow.provider#rebuild.relationship.after.clone~rs}"](selected, relationships);
             }
-            State.fire('d2');
-            stage_selection_1['dG'](selected);
-            history_1['dE'](history_1['d6'], stage_generic_1['dQ'](selected));
+            State.fire('@:{event#stage.elements.change~rs}');
+            stage_selection_1['@:{selection#set.all~rs}'](selected);
+            history_1['@:{history#save~rs}'](history_1['@:{history#element.pasted~rs}'], stage_generic_1['@:{generic#query.element.name~rs}'](selected));
         }
     }
 };

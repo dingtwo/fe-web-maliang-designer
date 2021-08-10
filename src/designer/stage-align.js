@@ -4,16 +4,16 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4d/55",["4e","./4g","./enum","./4h"],(require,exports,module)=>{
+define("designer/stage-align",["magix5","./const","./enum","./transform"],(require,exports,module)=>{
 
 
 /**
  * 拖动对齐
  */
-let magix_1 = require("4e");
-let const_1 = require("./4g");
+let magix_1 = require("magix5");
+let const_1 = require("./const");
 let enum_1 = require("./enum");
-let transform_1 = require("./4h");
+let transform_1 = require("./transform");
 let { node, State } = magix_1;
 let alignLocker = {};
 /**
@@ -27,7 +27,7 @@ let Stage_OR_Element_Line = Stage_Line | Element_Line;
 let MaxNum = Number.MAX_VALUE;
 let { min, max, atan, PI, sin, cos, tan, abs, round, pow } = Math;
 let sortAsc = (a, b) => a - b;
-let approachZero = const_1['el'];
+let approachZero = const_1['@:{const#approach.zero~rs}'];
 let minUnitPx = 1;
 let halfUnitPx = .5;
 /**
@@ -65,15 +65,15 @@ let queryXAndYFromAlignElements = (neType, neLeft, neTop, neWidth, neHeight, neX
         nearestX = []; //不比较
     }
     else { //普通元素，比较左中右3个x坐标
-        if (neWidth < const_1['ed']) {
+        if (neWidth < const_1['@:{const#element.min.px.size~rs}']) {
             nearestX = [neLeft];
         }
         else {
             nearestX = [];
-            if (enum_1['dG'] & const_1['d2']) {
+            if (enum_1['@:{enum#align.coners~rs}'] & const_1['@:{const#align.points~rs}']) {
                 nearestX.push(neLeft, neLeft + neWidth);
             }
-            if (enum_1['dF'] & const_1['d2']) {
+            if (enum_1['@:{enum#align.centers~rs}'] & const_1['@:{const#align.points~rs}']) {
                 nearestX.push(neLeft + neWidth / 2);
             }
             if (neXDiffed) {
@@ -89,15 +89,15 @@ let queryXAndYFromAlignElements = (neType, neLeft, neTop, neWidth, neHeight, neX
         nearestY = [];
     }
     else {
-        if (neHeight < const_1['ed']) {
+        if (neHeight < const_1['@:{const#element.min.px.size~rs}']) {
             nearestY = [neTop];
         }
         else {
             nearestY = [];
-            if (enum_1['dG'] & const_1['d2']) {
+            if (enum_1['@:{enum#align.coners~rs}'] & const_1['@:{const#align.points~rs}']) {
                 nearestY.push(neTop, neTop + neHeight);
             }
-            if (enum_1['dF'] & const_1['d2']) {
+            if (enum_1['@:{enum#align.centers~rs}'] & const_1['@:{const#align.points~rs}']) {
                 nearestY.push(neTop + neHeight / 2);
             }
             if (neYDiffed) {
@@ -142,22 +142,22 @@ module.exports= {
      * @param element 鼠标下的元素，比如同时拖动多个元素
      * @param selectedMap 选中的元素id对象，选中的元素一起移动，所以需要从对齐的元素中排除
      */
-    'dE'(allElements, maskId, element, selectedMap) {
+    '@:{align#query.align.elements~rs}'(allElements, maskId, element, selectedMap) {
         let nearestElements = [];
         //流程图插件
-        let flowProvider = State.get('dR');
-        let scale = State.get('dF'); //缩放
-        let { pages } = State.get('dN'); //几个编辑区
-        let pos = transform_1['dE']();
+        let flowProvider = State.get('@:{global#provider.of.flow~rs}');
+        let scale = State.get('@:{global#stage.scale~rs}'); //缩放
+        let { pages } = State.get('@:{global#stage.page~rs}'); //几个编辑区
+        let pos = transform_1['@:{transform#get.stage.dom.rect~rs}']();
         let singlePageHeight = pos.height / pages; //单个编辑区高度
         let maskBound, startX, startY, othersElements = [];
         for (let i = 0; i < pages; i++) { //几个编辑区是逻辑上的设置，它们仍然是一个节点，所以这里需要进行位置拆分
             nearestElements.push({
-                'dM': Stage_Line,
-                'dG': 0,
-                'dH': i * singlePageHeight,
-                'dJ': pos.width,
-                'dK': singlePageHeight
+                '@:{align.queried#type~rs}': Stage_Line,
+                '@:{align.queried#left~rs}': 0,
+                '@:{align.queried#top~rs}': i * singlePageHeight,
+                '@:{align.queried#width~rs}': pos.width,
+                '@:{align.queried#height~rs}': singlePageHeight
             });
         }
         if (maskId) { //元素处在元素格子里，则拖动时，该格子也可以成为对齐对象
@@ -165,33 +165,33 @@ module.exports= {
             if (hodMaskNode) {
                 maskBound = hodMaskNode.getBoundingClientRect();
                 nearestElements.push({
-                    'dM': Stage_Line,
-                    'dG': maskBound.x - pos.x,
-                    'dH': maskBound.y - pos.y,
-                    'dJ': maskBound.width,
-                    'dK': maskBound.height
+                    '@:{align.queried#type~rs}': Stage_Line,
+                    '@:{align.queried#left~rs}': maskBound.x - pos.x,
+                    '@:{align.queried#top~rs}': maskBound.y - pos.y,
+                    '@:{align.queried#width~rs}': maskBound.width,
+                    '@:{align.queried#height~rs}': maskBound.height
                 });
             }
         }
-        let xLines = State.get('dH');
-        let yLines = State.get('dI');
+        let xLines = State.get('@:{global#stage.x.help.lines~rs}');
+        let yLines = State.get('@:{global#stage.y.help.lines~rs}');
         for (let x of xLines) {
             nearestElements.push({
-                'dM': Axis_X_Line,
-                'dG': x * scale
+                '@:{align.queried#type~rs}': Axis_X_Line,
+                '@:{align.queried#left~rs}': x * scale
             });
         }
         for (let y of yLines) {
             nearestElements.push({
-                'dM': Axis_Y_Line,
-                'dH': y * scale
+                '@:{align.queried#type~rs}': Axis_Y_Line,
+                '@:{align.queried#top~rs}': y * scale
             });
         }
         for (let l of allElements) {
             let rect;
             //流程图的连线不作为对齐参考
             if (!flowProvider ||
-                !flowProvider['dE'](l)) { //鼠标下的元素不作为对齐参考
+                !flowProvider['@:{flow.provider#is.connector~rs}'](l)) { //鼠标下的元素不作为对齐参考
                 let maskNode = node(`_rdm_${l.id}`);
                 if (!maskNode) {
                     continue;
@@ -206,23 +206,23 @@ module.exports= {
                 let fourPoints, fourMiddles; //,
                 //dHeight = ctrl['@:{modifier}'] & Enum['@:{enum#modifier.dheight}'];
                 if (props.rotate) {
-                    let rect = transform_1['dF'](props);
-                    fourPoints = rect['_fE'];
-                    fourMiddles = rect['_fF'];
-                    let cx = const_1['eo'](rect['_fG'] - rect['_fH']);
-                    let cy = const_1['eo'](rect['_fI'] - rect['_fJ']);
+                    let rect = transform_1['@:{transform#rotate.rect~rs}'](props);
+                    fourPoints = rect['@:{point~rs}'];
+                    fourMiddles = rect['@:{middles~rs}'];
+                    let cx = const_1['@:{const#to.px~rs}'](rect['@:{center.x~rs}'] - rect['@:{left~rs}']);
+                    let cy = const_1['@:{const#to.px~rs}'](rect['@:{center.y~rs}'] - rect['@:{top~rs}']);
                     xDiffed = [];
                     yDiffed = [];
                     let rotatePoints = [];
-                    if (enum_1['dG'] & const_1['d2']) {
+                    if (enum_1['@:{enum#align.coners~rs}'] & const_1['@:{const#align.points~rs}']) {
                         rotatePoints = rotatePoints.concat(fourPoints);
                     }
-                    if (enum_1['dK'] & const_1['d2']) {
+                    if (enum_1['@:{enum#align.line.middles~rs}'] & const_1['@:{const#align.points~rs}']) {
                         rotatePoints = rotatePoints.concat(fourMiddles);
                     }
                     for (let np of rotatePoints) {
-                        let xDiff = const_1['eo'](np.x - rect['_fH']);
-                        let yDiff = const_1['eo'](np.y - rect['_fJ']);
+                        let xDiff = const_1['@:{const#to.px~rs}'](np.x - rect['@:{left~rs}']);
+                        let yDiff = const_1['@:{const#to.px~rs}'](np.y - rect['@:{top~rs}']);
                         //如果点离左侧或右侧非常近，则不再记录，比如旋转了非常小的角度，仍以原始的左或右侧进行对齐
                         if (xDiff > minUnitPx &&
                             xDiff < bWidth - minUnitPx &&
@@ -237,20 +237,20 @@ module.exports= {
                     }
                 }
                 rect = {
-                    'dI': ctrl,
-                    'dN': xDiffed,
-                    'dO': yDiffed,
-                    'dM': Element_Line,
-                    'dG': bLeft,
-                    'dH': bTop,
-                    'dJ': bWidth,
-                    'dK': bHeight
+                    '@:{align.queried#ctrl~rs}': ctrl,
+                    '@:{align.queried#x.diffed~rs}': xDiffed,
+                    '@:{align.queried#y.diffed~rs}': yDiffed,
+                    '@:{align.queried#type~rs}': Element_Line,
+                    '@:{align.queried#left~rs}': bLeft,
+                    '@:{align.queried#top~rs}': bTop,
+                    '@:{align.queried#width~rs}': bWidth,
+                    '@:{align.queried#height~rs}': bHeight
                 };
                 if (element &&
                     element.id == l.id) { //当前鼠标下的元素
                     othersElements.unshift(rect); //把鼠标下的元素放在首位，其它元素相对它进行偏移
-                    startX = rect['dG'];
-                    startY = rect['dH'];
+                    startX = rect['@:{align.queried#left~rs}'];
+                    startY = rect['@:{align.queried#top~rs}'];
                 }
                 else {
                     // if (dHeight) {
@@ -259,7 +259,7 @@ module.exports= {
                     if (selectedMap &&
                         selectedMap[l.id]) { //真实选中和程序处理后认为`选中`的元素
                         if (selectedMap[l.id] != -1 && //如果不是特殊的容器或指定的跟随，则进行吸附
-                            (selectedMap[l.id] & const_1['d1'])) {
+                            (selectedMap[l.id] & const_1['@:{const#page.follow.snap.align.elements~rs}'])) {
                             othersElements.push(rect);
                         }
                     }
@@ -270,12 +270,12 @@ module.exports= {
             }
         }
         return {
-            'dE': nearestElements,
-            'dP': othersElements,
-            'dQ': startX,
-            'dR': startY,
-            'dF': pos,
-            'dS': maskBound
+            '@:{align.queried#align.elements.sizes~rs}': nearestElements,
+            '@:{align.queried#together.elements.sizes~rs}': othersElements,
+            '@:{align.queried#start.x~rs}': startX,
+            '@:{align.queried#start.y~rs}': startY,
+            '@:{align.queried#root.bound~rs}': pos,
+            '@:{align.queried#mask.bound~rs}': maskBound
         };
     },
     /**
@@ -301,17 +301,17 @@ module.exports= {
      * @param maxWidth 吸附提示线最大宽度
      * @param maxHeight 吸附提示线最大高度
      */
-    'dF'(nearestElements, startX, offsetX, startY, offsetY, sizesMap, testX, testY, pinX, pinY, altPressed, snapThreshold, aberration, scrollOffsetX = 0, scrollOffsetY = 0, maxWidth = 0, maxHeight = 0) {
+    '@:{align#find.and.fire.align.position~rs}'(nearestElements, startX, offsetX, startY, offsetY, sizesMap, testX, testY, pinX, pinY, altPressed, snapThreshold, aberration, scrollOffsetX = 0, scrollOffsetY = 0, maxWidth = 0, maxHeight = 0) {
         snapThreshold += aberration;
         //console.log(nearestElements, startX, startY, startWidth, startHeight);
         let alignLinkX, alignLinkY, hasXOrYLines;
         if (!altPressed) {
             let minX = MaxNum, minY = MaxNum;
-            let destX = startX + offsetX, destY = startY + offsetY, helpLineIsShown = State.get('dJ');
+            let destX = startX + offsetX, destY = startY + offsetY, helpLineIsShown = State.get('@:{global#stage.axis.show.help.lines~rs}');
             //console.log('helpLineIsShown', helpLineIsShown);
             let findFirstTXPoint, findFirstCXPoint, findFirstTYPoint, findFirstCYPoint;
             // console.log('------');
-            for (let { 'dM': neType, 'dG': neLeft, 'dH': neTop, 'dJ': neWidth, 'dK': neHeight, 'dN': neXDiffed, 'dO': neYDiffed } of nearestElements) {
+            for (let { '@:{align.queried#type~rs}': neType, '@:{align.queried#left~rs}': neLeft, '@:{align.queried#top~rs}': neTop, '@:{align.queried#width~rs}': neWidth, '@:{align.queried#height~rs}': neHeight, '@:{align.queried#x.diffed~rs}': neXDiffed, '@:{align.queried#y.diffed~rs}': neYDiffed } of nearestElements) {
                 let { h: nearestX, v: nearestY } = queryXAndYFromAlignElements(neType, neLeft, neTop, neWidth, neHeight, neXDiffed, neYDiffed, helpLineIsShown);
                 if (!pinX) {
                     for (let tx of nearestX) {
@@ -395,14 +395,14 @@ module.exports= {
         }
         //console.log(hasXOrYLines,ref);
         if (hasXOrYLines ||
-            alignLocker['dJ']) {
-            alignLocker['dJ'] = hasXOrYLines;
+            alignLocker['@:{align#fire.snap.event~rs}']) {
+            alignLocker['@:{align#fire.snap.event~rs}'] = hasXOrYLines;
             if (alignLinkY) {
                 for (let y of alignLinkY) {
                     //y长度在循环x的时候，因offsetY不确定，所以需要在这里重新处理一次
                     let [, neTop, neBottom, cy] = y;
                     let m = sizesMap[cy];
-                    let minTop = min(neTop, startY + m['_fJ'] + offsetY - scrollOffsetY) - snapThreshold, maxBottom = max(neBottom, startY + m['_e8'] + offsetY - scrollOffsetY) + snapThreshold;
+                    let minTop = min(neTop, startY + m['@:{top~rs}'] + offsetY - scrollOffsetY) - snapThreshold, maxBottom = max(neBottom, startY + m['@:{bottom~rs}'] + offsetY - scrollOffsetY) + snapThreshold;
                     if (maxHeight > 0 &&
                         maxBottom > maxHeight) {
                         maxBottom = maxHeight;
@@ -417,7 +417,7 @@ module.exports= {
                     let [, neLeft, neRight, cx] = x;
                     let m = sizesMap[cx];
                     //console.log(m['@:{right}'] - m['@:{left}'])
-                    let minLeft = min(neLeft, startX + m['_fH'] + offsetX - scrollOffsetX) - snapThreshold, maxRight = max(neRight, startX + m['_fK'] + offsetX - scrollOffsetX) + snapThreshold;
+                    let minLeft = min(neLeft, startX + m['@:{left~rs}'] + offsetX - scrollOffsetX) - snapThreshold, maxRight = max(neRight, startX + m['@:{right~rs}'] + offsetX - scrollOffsetX) + snapThreshold;
                     if (maxWidth > 0 &&
                         maxRight > maxWidth) {
                         maxRight = maxWidth;
@@ -428,23 +428,23 @@ module.exports= {
                 }
             }
             //console.log(JSON.stringify(alignLinkX));//, alignLinkY, offsetX, offsetY);
-            State.fire('dE', {
+            State.fire('@:{event#stage.find.snap.element~rs}', {
                 x: alignLinkX,
                 y: alignLinkY
             });
         }
         return {
-            'dG': offsetX,
-            'dH': offsetY
+            '@:{align#new.offset.x~rs}': offsetX,
+            '@:{align#new.offset.y~rs}': offsetY
         };
     },
     /**
      * 清空所有吸附提示线
      */
-    'dI'() {
-        if (alignLocker['dJ']) {
-            alignLocker['dJ'] = 0;
-            State.fire('dE');
+    '@:{align#reset.snap.lines~rs}'() {
+        if (alignLocker['@:{align#fire.snap.event~rs}']) {
+            alignLocker['@:{align#fire.snap.event~rs}'] = 0;
+            State.fire('@:{event#stage.find.snap.element~rs}');
         }
     },
     /**
@@ -471,34 +471,34 @@ module.exports= {
      * @param hodCellTop 容器顶部坐标
      * @returns 吸附信息
      */
-    'dL'(nearestElements, fixedPoint, dragHandler, rotate, draggedWidth, draggedHeight, snapThreshold, minWidth, maxWidth, minHeight, maxHeight, syncFlag, beginWidth, beginHeight, minRatio, maxRatio, altPressed, hodCellLeft, hodCellTop) {
+    '@:{align#query.snap.info~rs}'(nearestElements, fixedPoint, dragHandler, rotate, draggedWidth, draggedHeight, snapThreshold, minWidth, maxWidth, minHeight, maxHeight, syncFlag, beginWidth, beginHeight, minRatio, maxRatio, altPressed, hodCellLeft, hodCellTop) {
         //alt键按下，关闭吸附
         if (altPressed) {
-            if (alignLocker['dK']) {
-                alignLocker['dK'] = 0;
-                State.fire('dE');
+            if (alignLocker['@:{align#fire.size.snap.event~rs}']) {
+                alignLocker['@:{align#fire.size.snap.event~rs}'] = 0;
+                State.fire('@:{event#stage.find.snap.element~rs}');
             }
             return {
-                '_fL': 0
+                '@:{sapped~rs}': 0
             };
         }
         //syncSize=isShiftPressed;
         let [handY, handX] = dragHandler;
         let oppsiteWidth = handX == 'l' ? -1 : 1;
         let oppsiteHeight = handY == 't' ? -1 : 1;
-        let minX = MaxNum, minY = MaxNum, helpLineIsShown = State.get('dJ');
+        let minX = MaxNum, minY = MaxNum, helpLineIsShown = State.get('@:{global#stage.axis.show.help.lines~rs}');
         let b = sin(rotate * (PI / 180)), a = cos(rotate * (PI / 180)), c = tan(rotate * (PI / 180)), { x: cx, y: cy } = fixedPoint;
         //统一使用px进行判断
-        cx = const_1['eo'](cx);
-        cy = const_1['eo'](cy);
-        draggedWidth = const_1['eo'](draggedWidth);
-        draggedHeight = const_1['eo'](draggedHeight);
-        beginWidth = const_1['eo'](beginWidth);
-        beginHeight = const_1['eo'](beginHeight);
-        minWidth = const_1['eo'](minWidth);
-        maxWidth = const_1['eo'](maxWidth);
-        minHeight = const_1['eo'](minHeight);
-        maxHeight = const_1['eo'](maxHeight);
+        cx = const_1['@:{const#to.px~rs}'](cx);
+        cy = const_1['@:{const#to.px~rs}'](cy);
+        draggedWidth = const_1['@:{const#to.px~rs}'](draggedWidth);
+        draggedHeight = const_1['@:{const#to.px~rs}'](draggedHeight);
+        beginWidth = const_1['@:{const#to.px~rs}'](beginWidth);
+        beginHeight = const_1['@:{const#to.px~rs}'](beginHeight);
+        minWidth = const_1['@:{const#to.px~rs}'](minWidth);
+        maxWidth = const_1['@:{const#to.px~rs}'](maxWidth);
+        minHeight = const_1['@:{const#to.px~rs}'](minHeight);
+        maxHeight = const_1['@:{const#to.px~rs}'](maxHeight);
         let sWidth = a * draggedWidth;
         let osWidth = b * draggedWidth;
         let sHeight = a * draggedHeight;
@@ -563,7 +563,7 @@ module.exports= {
         //console.log(hThreshod, vThreshod);
         //let firstY;
         //查询吸附信息
-        for (let { 'dM': neType, 'dG': neLeft, 'dH': neTop, 'dJ': neWidth, 'dK': neHeight, 'dN': neXDiffed, 'dO': neYDiffed } of nearestElements) {
+        for (let { '@:{align.queried#type~rs}': neType, '@:{align.queried#left~rs}': neLeft, '@:{align.queried#top~rs}': neTop, '@:{align.queried#width~rs}': neWidth, '@:{align.queried#height~rs}': neHeight, '@:{align.queried#x.diffed~rs}': neXDiffed, '@:{align.queried#y.diffed~rs}': neYDiffed } of nearestElements) {
             let { h: nearestX, v: nearestY } = queryXAndYFromAlignElements(neType, neLeft, neTop, neWidth, neHeight, neXDiffed, neYDiffed, helpLineIsShown);
             for (let tx of nearestX) {
                 let diffX = abs(finalX - tx);
@@ -792,7 +792,7 @@ module.exports= {
                     }
                 }
                 //查询所有与吸附坐标相同的元素，进行辅助线提示
-                for (let { 'dM': neType, 'dG': neLeft, 'dH': neTop, 'dJ': neWidth, 'dK': neHeight, 'dN': neXDiffed, 'dO': neYDiffed } of nearestElements) {
+                for (let { '@:{align.queried#type~rs}': neType, '@:{align.queried#left~rs}': neLeft, '@:{align.queried#top~rs}': neTop, '@:{align.queried#width~rs}': neWidth, '@:{align.queried#height~rs}': neHeight, '@:{align.queried#x.diffed~rs}': neXDiffed, '@:{align.queried#y.diffed~rs}': neYDiffed } of nearestElements) {
                     let { h: nearestX, v: nearestY } = queryXAndYFromAlignElements(neType, neLeft, neTop, neWidth, neHeight, neXDiffed, neYDiffed, helpLineIsShown);
                     for (let tx of nearestX) {
                         let d = abs(x - tx);
@@ -833,25 +833,25 @@ module.exports= {
             //console.log(JSON.stringify(alignLinkX) + JSON.stringify(alignLinkY));
             if (alignLinkX ||
                 alignLinkY) {
-                alignLocker['dK'] = 1;
-                State.fire('dE', {
+                alignLocker['@:{align#fire.size.snap.event~rs}'] = 1;
+                State.fire('@:{event#stage.find.snap.element~rs}', {
                     x: alignLinkX,
                     y: alignLinkY
                 });
             }
-            else if (alignLocker['dK']) {
-                alignLocker['dK'] = 0;
-                State.fire('dE');
+            else if (alignLocker['@:{align#fire.size.snap.event~rs}']) {
+                alignLocker['@:{align#fire.size.snap.event~rs}'] = 0;
+                State.fire('@:{event#stage.find.snap.element~rs}');
             }
         }
-        else if (alignLocker['dK']) {
-            alignLocker['dK'] = 0;
-            State.fire('dE');
+        else if (alignLocker['@:{align#fire.size.snap.event~rs}']) {
+            alignLocker['@:{align#fire.size.snap.event~rs}'] = 0;
+            State.fire('@:{event#stage.find.snap.element~rs}');
         }
         return {
-            '_fM': snapH || snapV,
-            '_fN': const_1['dF'](snapWidth),
-            '_fO': const_1['dF'](snapHeight)
+            '@:{snapped~rs}': snapH || snapV,
+            '@:{snap.width~rs}': const_1['@:{const#to.unit~rs}'](snapWidth),
+            '@:{snap.height~rs}': const_1['@:{const#to.unit~rs}'](snapHeight)
         };
     },
     /**
@@ -863,19 +863,19 @@ module.exports= {
      * @param altPressed alt键是否按下
      * @returns 吸附信息
      */
-    'dN'(nearestElements, nowX, nowY, snapThreshold, altPressed) {
+    '@:{align#query.svg.point.snap.info~rs}'(nearestElements, nowX, nowY, snapThreshold, altPressed) {
         if (altPressed) {
-            if (alignLocker['dM']) {
-                alignLocker['dM'] = 0;
-                State.fire('dE');
+            if (alignLocker['@:{align#fire.svg.snap.point.event~rs}']) {
+                alignLocker['@:{align#fire.svg.snap.point.event~rs}'] = 0;
+                State.fire('@:{event#stage.find.snap.element~rs}');
             }
             return {
-                '_fM': 0
+                '@:{snapped~rs}': 0
             };
         }
-        let minX = MaxNum, minY = MaxNum, helpLineIsShown = State.get('dJ');
+        let minX = MaxNum, minY = MaxNum, helpLineIsShown = State.get('@:{global#stage.axis.show.help.lines~rs}');
         let snapX, snapY, snapHList = [], snapVList = [];
-        for (let { 'dM': neType, 'dG': neLeft, 'dH': neTop, 'dJ': neWidth, 'dK': neHeight, 'dN': neXDiffed, 'dO': neYDiffed } of nearestElements) {
+        for (let { '@:{align.queried#type~rs}': neType, '@:{align.queried#left~rs}': neLeft, '@:{align.queried#top~rs}': neTop, '@:{align.queried#width~rs}': neWidth, '@:{align.queried#height~rs}': neHeight, '@:{align.queried#x.diffed~rs}': neXDiffed, '@:{align.queried#y.diffed~rs}': neYDiffed } of nearestElements) {
             let { h: nearestX, v: nearestY } = queryXAndYFromAlignElements(neType, neLeft, neTop, neWidth, neHeight, neXDiffed, neYDiffed, helpLineIsShown);
             for (let tx of nearestX) {
                 let diffX = abs(nowX - tx);
@@ -920,20 +920,20 @@ module.exports= {
         }
         if (alignLinkX ||
             alignLinkY) {
-            alignLocker['dM'] = 1;
-            State.fire('dE', {
+            alignLocker['@:{align#fire.svg.snap.point.event~rs}'] = 1;
+            State.fire('@:{event#stage.find.snap.element~rs}', {
                 x: alignLinkX,
                 y: alignLinkY
             });
         }
-        else if (alignLocker['dM']) {
-            alignLocker['dM'] = 0;
-            State.fire('dE');
+        else if (alignLocker['@:{align#fire.svg.snap.point.event~rs}']) {
+            alignLocker['@:{align#fire.svg.snap.point.event~rs}'] = 0;
+            State.fire('@:{event#stage.find.snap.element~rs}');
         }
         return {
-            '_fM': vCount || hCount,
-            '_fP': hCount ? snapX : nowX,
-            '_fQ': vCount ? snapY : nowY
+            '@:{snapped~rs}': vCount || hCount,
+            '@:{snap.x~rs}': hCount ? snapX : nowX,
+            '@:{snap.y~rs}': vCount ? snapY : nowY
         };
     }
 };

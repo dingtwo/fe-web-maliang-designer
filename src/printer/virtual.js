@@ -4,29 +4,29 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("6l/virtual",["4e","../4d/51","./6m/index","./6m/resource","./6o/batch","./6o/common","./6o/data-celltable","./6o/data-coltable","./6o/data-dtable","./6o/data-ftable","./6o/data-repeater","./6o/pager","./6o/richtext","../4d/4g"],(require,exports,module)=>{
+define("printer/virtual",["magix5","../designer/service","./generic/index","./generic/resource","./unit/batch","./unit/common","./unit/data-celltable","./unit/data-coltable","./unit/data-dtable","./unit/data-ftable","./unit/data-repeater","./unit/pager","./unit/richtext","../designer/const"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("4e");
-let service_1 = require("../4d/51");
-let index_1 = require("./6m/index");
-let resource_1 = require("./6m/resource");
-let batch_1 = require("./6o/batch");
-let common_1 = require("./6o/common");
-let data_celltable_1 = require("./6o/data-celltable");
-let data_coltable_1 = require("./6o/data-coltable");
-let data_dtable_1 = require("./6o/data-dtable");
-let data_ftable_1 = require("./6o/data-ftable");
-let data_repeater_1 = require("./6o/data-repeater");
-let pager_1 = require("./6o/pager");
-let richtext_1 = require("./6o/richtext");
-let const_1 = require("../4d/4g");
+let magix_1 = require("magix5");
+let service_1 = require("../designer/service");
+let index_1 = require("./generic/index");
+let resource_1 = require("./generic/resource");
+let batch_1 = require("./unit/batch");
+let common_1 = require("./unit/common");
+let data_celltable_1 = require("./unit/data-celltable");
+let data_coltable_1 = require("./unit/data-coltable");
+let data_dtable_1 = require("./unit/data-dtable");
+let data_ftable_1 = require("./unit/data-ftable");
+let data_repeater_1 = require("./unit/data-repeater");
+let pager_1 = require("./unit/pager");
+let richtext_1 = require("./unit/richtext");
+let const_1 = require("../designer/const");
 let DataCenter = {};
 let { State, View, lowTaskFinale, has, applyStyle, delay } = magix_1;
-applyStyle("rd-ek",".rd-ku{page-break-after:auto;page-break-inside:avoid}.rd-kv{contain:paint;display:block}");
+applyStyle("rd-_printer_virtual_less_",".rd-_printer_virtual_less_-page-break {\npage-break-after:auto;\npage-break-inside:avoid;\n}\n.rd-_printer_virtual_less_-page {\ndisplay:block;\ncontain:paint;\n}\n");
 /**
  * 是否进行深层数据绑定的容器元素
  */
@@ -60,7 +60,7 @@ let cleanHTML = (html) => {
 };
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf)=> { 
-let $temp_var,$vnode_0=[],
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0=[],
 {
 	pages,
 	page,
@@ -68,20 +68,21 @@ let $temp_var,$vnode_0=[],
 $$_class,
 $$_style,
 $vnode_1;
-
+$__line=1;$__art="{{if pages}}";$__ctrl="if(pages){";
 if(pages){
-
-for(let $q_c_iltedmsyi=pages.length,$q_lc_zrvm=$q_c_iltedmsyi-1,pageIndex=0;pageIndex<$q_c_iltedmsyi;pageIndex+=1){
-let item=pages[pageIndex];let last=pageIndex===$q_lc_zrvm;
-$vnode_1=[];
-for(let $q_c_eufeajebl=item.length,$q_key_pvubhf=0;$q_key_pvubhf<$q_c_eufeajebl;$q_key_pvubhf+=1){
-let e=item[$q_key_pvubhf];
-$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'pages,unit','mx5-view': '53/'+(e.type)+'/index?props='+$keyOf($refData,e.props,'cH.'+(pageIndex)+'.cI.'+($q_key_pvubhf)+'.cJ')+'&unit='+$keyOf($refData,unit,'cK'),}));
-};$$_class='rd-dE rd-em rd-kv rd-fq';if(!last){;$$_class+=' rd-ku';};$$_style='width:'+(page.width)+(unit)+';height:'+(page.height)+(unit)+';background:'+(page.background)+';';if(!page.preformat&&page.backgroundImage){;$$_style+='background-image:url('+(page.backgroundImage)+');background-repeat:'+(page.backgroundRepeat=='full'?'no-repeat':page.backgroundRepeat)+';background-size:';if(page.backgroundRepeat=='full'){;$$_style+='100% 100%';}else{;$$_style+=''+(page.backgroundWidth)+(unit)+' '+(page.backgroundHeight)+(unit)+';background-position:'+(page.backgroundXOffset)+(unit)+' '+(page.backgroundYOffset)+(unit);};};$vnode_0.push($createVNode('div',{'class': $$_class,'style': $$_style,},$vnode_1));
+$__line=2;$__art="{{each pages as item pageIndex last}}";$__ctrl="for(let $q_c_tmbgxolr=pages.length,$q_lc_xlpinnos=$q_c_tmbgxolr-1,pageIndex=0;pageIndex<$q_c_tmbgxolr;pageIndex++){let item=pages[pageIndex];let last=pageIndex===$q_lc_xlpinnos;";
+for(let $q_c_tmbgxolr=pages.length,$q_lc_xlpinnos=$q_c_tmbgxolr-1,pageIndex=0;pageIndex<$q_c_tmbgxolr;pageIndex+=1){
+let item=pages[pageIndex];let last=pageIndex===$q_lc_xlpinnos;
+$vnode_1=[];$__line=4;$__art="{{each item as e}}";$__ctrl="for(let $q_c_shvaiaoa=item.length,$q_key_afjpuc=0;$q_key_afjpuc<$q_c_shvaiaoa;$q_key_afjpuc++){let e=item[$q_key_afjpuc];";
+for(let $q_c_shvaiaoa=item.length,$q_key_afjpuc=0;$q_key_afjpuc<$q_c_shvaiaoa;$q_key_afjpuc+=1){
+let e=item[$q_key_afjpuc];
+$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'pages,unit','mx5-view': 'elements/'+($__line=5,$__art='{{=e.type}}',$__ctrl='<%=e.type%>',(e.type))+'/index?props='+($__line=5,$__art='{{#e.props}}',$__ctrl='<%#e.props,\'auto_key_pages.\'+(pageIndex)+\'.\'+($q_key_afjpuc)+\'.e.props\'%>',$keyOf($refData,e.props,'auto_key_pages.'+(pageIndex)+'.'+($q_key_afjpuc)+'.e.props'))+'&unit='+($__line=5,$__art='{{#unit}}',$__ctrl='<%#unit,\'auto_key_unit\'%>',$keyOf($refData,unit,'auto_key_unit')),}));
+};$$_class='rd-_assets_index_less_-designer-root rd-_assets_index_less_-pr rd-_printer_virtual_less_-page rd-_assets_index_less_-overflow-hidden'+($__line=3,$__art='{{if !last}}','');$__ctrl='<%if(!last){%>';if(!last){;$$_class+=' rd-_printer_virtual_less_-page-break'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_style='width:'+($__line=3,$__art='{{=page.width}}',$__ctrl='<%=page.width%>',(page.width))+($__line=3,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=3,$__art='{{=page.height}}',$__ctrl='<%=page.height%>',(page.height))+($__line=3,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';background:'+($__line=3,$__art='{{=page.background}}',$__ctrl='<%=page.background%>',(page.background))+';'+($__line=3,$__art='{{if !page.preformat&&page.backgroundImage}}','');$__ctrl='<%if(!page.preformat&&page.backgroundImage){%>';if(!page.preformat&&page.backgroundImage){;$$_style+='background-image:url('+($__line=3,$__art='{{=page.backgroundImage}}',$__ctrl='<%=page.backgroundImage%>',(page.backgroundImage))+');background-repeat:'+($__line=3,$__art='{{=page.backgroundRepeat==\'full\'?\'no-repeat\':page.backgroundRepeat}}',$__ctrl='<%=page.backgroundRepeat==\'full\'?\'no-repeat\':page.backgroundRepeat%>',(page.backgroundRepeat=='full'?'no-repeat':page.backgroundRepeat))+';background-size:'+($__line=3,$__art='{{if page.backgroundRepeat==\'full\'}}','');$__ctrl='<%if(page.backgroundRepeat==\'full\'){%>';if(page.backgroundRepeat=='full'){;$$_style+='100% 100%'+($__line=3,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$$_style+=''+($__line=3,$__art='{{=page.backgroundWidth}}',$__ctrl='<%=page.backgroundWidth%>',(page.backgroundWidth))+($__line=3,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+' '+($__line=3,$__art='{{=page.backgroundHeight}}',$__ctrl='<%=page.backgroundHeight%>',(page.backgroundHeight))+($__line=3,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';background-position:'+($__line=3,$__art='{{=page.backgroundXOffset}}',$__ctrl='<%=page.backgroundXOffset%>',(page.backgroundXOffset))+($__line=3,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+' '+($__line=3,$__art='{{=page.backgroundYOffset}}',$__ctrl='<%=page.backgroundYOffset%>',(page.backgroundYOffset))+($__line=3,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_style+=''+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('div',{'class': $$_class,'style': $$_style,},$vnode_1));
 }
 } 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:printer/virtual.html'; throw msg; }  } ,
     render() {
         this.digest();
     },
@@ -95,14 +96,14 @@ return $createVNode($viewId,0,$vnode_0); } ,
      * @param oy 垂直偏移
      * @param footerHeight 页脚高度
      */
-    async '_mN'(elements, page, pages, pagers, ox, oy, footerHeight) {
+    async '@:{fill.page~rs}'(elements, page, pages, pagers, ox, oy, footerHeight) {
         let logicCurrentPage = 0;
-        let resLoader = this['_mM'];
+        let resLoader = this['@:{resources~rs}'];
         let unit = this.get('unit');
         for (let e of elements) {
             if (e.type == 'data-dtable' ||
                 e.type == 'data-ftable') {
-                index_1['_mE'](e, DataCenter);
+                index_1['@:{recast.table.by.data~rs}'](e, DataCenter);
             }
         }
         /**
@@ -137,7 +138,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
         while (logicCurrentPage < page.pages) {
             let offsetY = logicCurrentPage * page.height;
             //查找当前在设计区里，属于当前分页的元素
-            let pageElements = index_1['_mB'](page, logicCurrentPage, elements, oy);
+            let pageElements = index_1['@:{find.current.page.elements~rs}'](page, logicCurrentPage, elements, oy);
             logicCurrentPage++;
             let indexesCache = {};
             /**
@@ -153,7 +154,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
                     let newElement = inHod ? e : {
                         type: e.type,
                         id: e.id,
-                        props: const_1['er'](e.props)
+                        props: const_1['@:{const#clone~rs}'](e.props)
                     };
                     if (!inHod) {
                         //如果页头和页脚不偏移，则放开if语句
@@ -250,13 +251,13 @@ return $createVNode($viewId,0,$vnode_0); } ,
             } while (hasNextPage(pageElements, indexesCache));
         }
     },
-    async '_ni'({ stage, data }, readyCallback) {
+    async '@:{get.html~rs}'({ stage, data }, readyCallback) {
         for (let key in data) {
             let src = data[key];
-            let { '_fx': apiData, '_fw': error } = service_1['_fC'](src, key);
+            let { '@:{data~rs}': apiData, '@:{error~rs}': error } = service_1['@:{extract.error.and.data~rs}'](src, key);
             DataCenter[key] = {
-                '_fw': error,
-                '_fx': apiData
+                '@:{error~rs}': error,
+                '@:{data~rs}': apiData
             };
         }
         if (!stage)
@@ -265,7 +266,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
         if (!page || !elements || !unit)
             return;
         let resourcesLoader = new resource_1(); //资源加载收集器
-        this['_mM'] = resourcesLoader;
+        this['@:{resources~rs}'] = resourcesLoader;
         /**
          * 这里进行四个边距进行相应的宽高处理，边距在设计器里未开放
          */
@@ -292,9 +293,9 @@ return $createVNode($viewId,0,$vnode_0); } ,
          * 所以这里需要把计算后的偏移量进行设置，以供需要的元素使用
          */
         State.set({
-            'dG': unit,
-            'd4': ox,
-            'd5': oy
+            '@:{global#stage.unit~rs}': unit,
+            '@:{global#stage.page.x.offset~rs}': ox,
+            '@:{global#stage.page.y.offset~rs}': oy
         });
         let pages = []; //分页对象
         let pagers = []; //页码器对象，需要根据分页多少设置每个页码器的当前页码及总共页码
@@ -309,12 +310,12 @@ return $createVNode($viewId,0,$vnode_0); } ,
                 e.id = magix_1.guid('e');
                 //}
                 let { props, type } = e;
-                resourcesLoader['_jh']('_mI', type);
+                resourcesLoader['@:{add~rs}']('@:{script~rs}', type);
                 let { bind } = props;
                 if (bind &&
                     !DataCenter[bind.url]) {
                     DataCenter[bind.url] = {
-                        '_fw': `未提供${bind.url}的数据`
+                        '@:{error~rs}': `未提供${bind.url}的数据`
                     };
                 }
                 //容器需要递归处理
@@ -348,14 +349,14 @@ return $createVNode($viewId,0,$vnode_0); } ,
                     else if (type.startsWith('batch-')) {
                         type = type.substring(6);
                     }
-                    resourcesLoader['_jh']('_mH', type);
+                    resourcesLoader['@:{add~rs}']('@:{provider~rs}', type);
                 }
             }
         };
         collectBindInfo(elements);
-        await resourcesLoader['_ev']();
+        await resourcesLoader['@:{load~rs}']();
         //再进行分页处理
-        await this['_mN'](elements, page, pages, pagers, ox, oy, footerHeight);
+        await this['@:{fill.page~rs}'](elements, page, pages, pagers, ox, oy, footerHeight);
         //设置页码器的总页数
         for (let pager of pagers) {
             pager.props.ext._totalPage = pages.length;
@@ -375,7 +376,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
                 htmlStyles.push(`<style>${s}</style>`);
             }
         }
-        let domPages = document.querySelectorAll('.rd-kv');
+        let domPages = document.querySelectorAll('.rd-_printer_virtual_less_-page');
         for (let i = 0; i < domPages.length; i++) {
             htmlPages.push(cleanHTML(domPages[i].outerHTML));
         }

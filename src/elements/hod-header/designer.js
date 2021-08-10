@@ -4,57 +4,57 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("53/hod-header/designer",["4e","../../4d/4g","../../4d/enum","../../4d/5e","../../4d/4h","../5r"],(require,exports,module)=>{
+define("elements/hod-header/designer",["magix5","../../designer/const","../../designer/enum","../../designer/props","../../designer/transform","../normal"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("4e");
-let const_1 = require("../../4d/4g");
-let enum_1 = require("../../4d/enum");
-let props_1 = require("../../4d/5e");
-let transform_1 = require("../../4d/4h");
-let normal_1 = require("../5r");
+let magix_1 = require("magix5");
+let const_1 = require("../../designer/const");
+let enum_1 = require("../../designer/enum");
+let props_1 = require("../../designer/props");
+let transform_1 = require("../../designer/transform");
+let normal_1 = require("../normal");
 let { State } = magix_1;
 let transformFields = ['width', 'height', 'borderLeftWidth', 'borderTopWidth', 'borderBottomWidth', 'borderRightWidth'];
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "53/hod-header/dshow"
+            view: "elements/hod-header/dshow"
         });
         let update = () => {
             let element = this.get('element');
-            let page = State.get('dN');
-            let scale = State.get('dF');
+            let page = State.get('@:{global#stage.page~rs}');
+            let scale = State.get('@:{global#stage.scale~rs}');
             let { ctrl, props } = element;
             props.rows[0].cols[0].width = page.width * scale;
-            ctrl['_eF'](props);
+            ctrl['@:{update.props~rs}'](props);
         };
-        State.on('dK', update);
+        State.on('@:{event#stage.page.change~rs}', update);
         this.on('destroy', () => {
-            State.off('dK', update);
+            State.off('@:{event#stage.page.change~rs}', update);
         });
     }
 }).static({
     type: 'hod-header',
-    as: enum_1['dH'],
-    title: 'hC',
+    as: enum_1['@:{enum#as.hod~rs}'],
+    title: '@:{lang#elements.print-header~rs}',
     icon: '&#xebd9;',
-    '_fV': {
+    '@:{allowed.to.hod~rs}': {
         root: 1
     },
-    '_gi': enum_1['dM'] |
-        enum_1['dS'],
-    '_eI': 1,
-    '_fW': [{
+    '@:{modifier~rs}': enum_1['@:{enum#modifier.icon~rs}'] |
+        enum_1['@:{enum#modifier.nomask~rs}'],
+    '@:{allowed.total.count~rs}': 1,
+    '@:{move.props~rs}': [{
             key: 'x',
             use: 'x'
         }, {
             key: 'y',
             use: 'y'
         }],
-    '_eF'(props) {
+    '@:{update.props~rs}'(props) {
         //let page = State.get('@:{global#stage.page}');
         //let scale = State.get('@:{global#stage.scale}');
         let { rows } = props;
@@ -74,8 +74,8 @@ module.exports= normal_1.extend({
         //props.x = 0;
         //props.y = page.marginTop * scale;
     },
-    '_eE'() {
-        let page = State.get('dN');
+    '@:{get.props~rs}'() {
+        let page = State.get('@:{global#stage.page~rs}');
         return {
             x: 0,
             y: 0,
@@ -87,7 +87,7 @@ module.exports= normal_1.extend({
             focusRow: -1,
             focusCol: -1,
             rows: [{
-                    height: const_1['dF'](40),
+                    height: const_1['@:{const#to.unit~rs}'](40),
                     cols: [{
                             width: page.width,
                             elements: [],
@@ -105,7 +105,7 @@ module.exports= normal_1.extend({
                             borderRightWidth: 0,
                             borderRightColor: '#cccccc',
                             borderBottomStyle: 'dashed',
-                            borderBottomWidth: const_1['dF'](1),
+                            borderBottomWidth: const_1['@:{const#to.unit~rs}'](1),
                             borderBottomColor: '#cccccc'
                         }]
                 }],
@@ -114,14 +114,14 @@ module.exports= normal_1.extend({
     },
     props: [{
             key: 'rows',
-            '_gV'(dest, { rows }) {
-                transform_1['dU'](dest, rows, transformFields);
+            '@:{json.encode~rs}'(dest, { rows }) {
+                transform_1['@:{transform#json.encode.cells~rs}'](dest, rows, transformFields);
             },
-            '_fb'({ rows }, toUnit) {
-                transform_1['dV'](rows, toUnit, transformFields);
+            '@:{unit.convert~rs}'({ rows }, toUnit) {
+                transform_1['@:{transform#unit.convert.cells~rs}'](rows, toUnit, transformFields);
             },
-            '_ga'(props, step, dest) {
-                transform_1['dT'](props, step, transformFields, dest);
+            '@:{stage.scale~rs}'(props, step, dest) {
+                transform_1['@:{transform#stage.scale.cells~rs}'](props, step, transformFields, dest);
             }
         }, {
             //tip: '@:{lang#props.x}',
@@ -136,68 +136,68 @@ module.exports= normal_1.extend({
             //read: Transform["@:{transform#to.show.value}"],
             json: 1
         }, {
-            tip: 'ft',
+            tip: '@:{lang#props.width~rs}',
             key: 'width',
-            read: transform_1["dH"],
-            type: props_1["dQ"],
+            read: transform_1["@:{transform#to.show.value~rs}"],
+            type: props_1["@:{eprops#label~rs}"],
             json: 1
         }, {
-            tip: 'fu',
+            tip: '@:{lang#props.height~rs}',
             key: 'height',
-            read: transform_1["dH"],
-            type: props_1["dQ"],
+            read: transform_1["@:{transform#to.show.value~rs}"],
+            type: props_1["@:{eprops#label~rs}"],
             json: 1
         }, {
-            tip: 'fw',
+            tip: '@:{lang#props.alpha~rs}',
             key: 'alpha',
-            type: props_1["dE"],
+            type: props_1["@:{eprops#number~rs}"],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
             json: 1
         }, {
-            type: props_1["d5"],
-            '_ha'(props) {
+            type: props_1["@:{eprops#spliter~rs}"],
+            '@:{if.show~rs}'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
             }
         }, {
-            tip: 'hB',
-            type: props_1["dE"],
+            tip: '@:{lang#props.cell.size.height~rs}',
+            type: props_1["@:{eprops#number~rs}"],
             read(x, props) {
                 let row = props.rows[0];
-                return transform_1["dH"](row.height);
+                return transform_1["@:{transform#to.show.value~rs}"](row.height);
             },
             write(x, props) {
-                let v = transform_1["dM"](x);
+                let v = transform_1["@:{transform#to.real.value~rs}"](x);
                 props.rows[0].height = v;
             },
-            fixed: const_1["ek"],
-            step: const_1["ej"],
-            min: () => const_1["dF"](20),
-            '_ha'(props) {
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            step: const_1["@:{const#unit.step~rs}"],
+            min: () => const_1["@:{const#to.unit~rs}"](20),
+            '@:{if.show~rs}'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
             }
         }, {
-            type: props_1["dT"],
-            '_ha'(props) {
+            type: props_1["@:{eprops#cell.style~rs}"],
+            '@:{if.show~rs}'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
             }
         }, {
-            type: props_1["d5"]
+            type: props_1["@:{eprops#spliter~rs}"]
         }, {
-            tip: 'fE',
-            type: props_1["dZ"],
+            tip: '@:{lang#props.help~rs}',
+            type: props_1["@:{eprops#link~rs}"],
             key: 'help'
         }, {
-            tip: 'fF',
+            tip: '@:{lang#props.title~rs}',
             key: 'ename',
-            type: props_1["dN"],
+            type: props_1["@:{eprops#text.input~rs}"],
             json: 1
         }, {
-            tip: 'fG',
+            tip: '@:{lang#props.locked~rs}',
             key: 'locked',
-            type: props_1["dG"],
+            type: props_1["@:{eprops#boolean~rs}"],
             free: true,
             json: 1
         }]

@@ -4,11 +4,11 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4p/index",["4e","./6h"],(require,exports,module)=>{
+define("i18n/index",["magix5","./zh-cn"],(require,exports,module)=>{
 
 
-let magix_1 = require("4e");
-let zh_cn_1 = require("./6h");
+let magix_1 = require("magix5");
+let zh_cn_1 = require("./zh-cn");
 let I18n = {
     'zh-cn': zh_cn_1,
     zh: zh_cn_1

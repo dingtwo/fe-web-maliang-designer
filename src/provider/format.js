@@ -4,10 +4,10 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("4t/format",["4e"],(require,exports,module)=>{
+define("provider/format",["magix5"],(require,exports,module)=>{
 
 
-let magix_1 = require("4e");
+let magix_1 = require("magix5");
 let decimals = [{
         title: '无小数',
         format: '.',
@@ -288,10 +288,10 @@ let fnCache = new magix_1.Cache();
 let fnReg = /\bfunction\s*\(([\s\S]*?)\)\s*\{([\s\S]*?)\}\s*;?\s*$/i;
 let numberExtractReg = /^(\^[\s\S]+?)?(?:#([,'%‰]))?(#{3,4})?(\.#{0,4})?([\s\S]*?)$/;
 module.exports= {
-    '_k_'() {
+    '@:{get.groups~rs}'() {
         return groups;
     },
-    '_j5'(format) {
+    '@:{get.parts~rs}'(format) {
         if (format == null) {
             format = '';
         }
@@ -337,8 +337,8 @@ module.exports= {
         }
         return [];
     },
-    '_j9'(format) {
-        let parts = this['_j5'](format);
+    '@:{translate~rs}'(format) {
+        let parts = this['@:{get.parts~rs}'](format);
         let text = '';
         for (let g of groups) {
             if (g.id == parts[0]) {
@@ -363,9 +363,9 @@ module.exports= {
         }
         return text;
     },
-    '_ho'(format, data, ...exts) {
+    '@:{format~rs}'(format, data, ...exts) {
         format += '';
-        let parts = this['_j5'](format);
+        let parts = this['@:{get.parts~rs}'](format);
         let prefix = parts.shift();
         if (prefix == 'number' ||
             prefix == 'currency') {
