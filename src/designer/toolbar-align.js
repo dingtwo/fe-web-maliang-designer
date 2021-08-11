@@ -5,7 +5,7 @@
     loader:cmd_es
  */
 define("designer/toolbar-align",["magix5","./stage-elements","./stage-generic"],(require,exports,module)=>{
-let $quick_dL_0_static_node;
+let $quick_aW_0_static_node;
 /*
     author:https://github.com/xinglie
 */
@@ -58,14 +58,14 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0=[],
 $$_class,
 $vnode_1;
 
-if($quick_dL_0_static_node){
-$vnode_0.push($quick_dL_0_static_node);
+if($quick_aW_0_static_node){
+$vnode_0.push($quick_aW_0_static_node);
 }else{
-$vnode_0.push($quick_dL_0_static_node=$createVNode('i',{'_': 'cD','class': 'rd-_assets_index_less_-fl rd-_designer_toolbar_less_-toolbar-spliter',}));
+$vnode_0.push($quick_aW_0_static_node=$createVNode('i',{'_': 'ar','class': 'rd-_assets_index_less_-fl rd-_designer_toolbar_less_-toolbar-spliter',}));
 }
-$__line=2;$__art="{{each actions as a}}";$__ctrl="for(let $q_c_gktttquhtm=actions.length,$q_key_mflyxmjjm=0;$q_key_mflyxmjjm<$q_c_gktttquhtm;$q_key_mflyxmjjm++){let a=actions[$q_key_mflyxmjjm];";
-for(let $q_c_gktttquhtm=actions.length,$q_key_mflyxmjjm=0;$q_key_mflyxmjjm<$q_c_gktttquhtm;$q_key_mflyxmjjm+=1){
-let a=actions[$q_key_mflyxmjjm];
+$__line=2;$__art="{{each actions as a}}";$__ctrl="for(let $q_c_dchjubye=actions.length,$q_key_xymtaffppi=0;$q_key_xymtaffppi<$q_c_dchjubye;$q_key_xymtaffppi++){let a=actions[$q_key_xymtaffppi];";
+for(let $q_c_dchjubye=actions.length,$q_key_xymtaffppi=0;$q_key_xymtaffppi<$q_c_dchjubye;$q_key_xymtaffppi+=1){
+let a=actions[$q_key_xymtaffppi];
 $vnode_1=[$createVNode(0,($__line=3,$__art='{{=a.icon}}',$__ctrl='<%=a.icon%>',(a.icon)),1)];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=3,$__art='{{if a.r180}}','');$__ctrl='<%if(a.r180){%>';if(a.r180){;$$_class+=' rd-_assets_index_less_-r180'+($__line=3,$__art='{{else if a.r90}}','');$__ctrl='<%}else if(a.r90){%>';}else if(a.r90){;$$_class+=' rd-_assets_index_less_-r90'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_class+=''+($__line=3,$__art='{{if !this[a.use]}}','');$__ctrl='<%if(!$dataFromView[a.use]){%>';if(!$dataFromView[a.use]){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-disabled'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('i',{'title': ($__line=3,$__art='{{=i18n(a.title)}}',$__ctrl='<%=i18n(a.title)%>',(i18n(a.title))),'mx5-click': (($temp_var=($__line=3,$__art='{{=this[a.use]}}',$__ctrl='<%=this[a.use]%>',$dataFromView[a.use]),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:designer/toolbar-align.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{align.elements~rs}({to:\''+($__line=3,$__art='{{=a.to}}',$__ctrl='<%=$encodeQuote(a.to)%>',($encodeQuote(a.to)))+'\'})'),'class': $$_class,},$vnode_1));
 } 
 

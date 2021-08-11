@@ -23,16 +23,16 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0=[],
 	y,}=$dataFromView;
 $__line=1;$__art="{{if x}}";$__ctrl="if(x){";
 if(x){
-$__line=2;$__art="{{each x as xp}}";$__ctrl="for(let $q_c_fezqdlxjie=x.length,$q_key_gxrmnsd=0;$q_key_gxrmnsd<$q_c_fezqdlxjie;$q_key_gxrmnsd++){let xp=x[$q_key_gxrmnsd];";
-for(let $q_c_fezqdlxjie=x.length,$q_key_gxrmnsd=0;$q_key_gxrmnsd<$q_c_fezqdlxjie;$q_key_gxrmnsd+=1){
-let xp=x[$q_key_gxrmnsd];
+$__line=2;$__art="{{each x as xp}}";$__ctrl="for(let $q_c_ecabxh=x.length,$q_key_rwhqhpatv=0;$q_key_rwhqhpatv<$q_c_ecabxh;$q_key_rwhqhpatv++){let xp=x[$q_key_rwhqhpatv];";
+for(let $q_c_ecabxh=x.length,$q_key_rwhqhpatv=0;$q_key_rwhqhpatv<$q_c_ecabxh;$q_key_rwhqhpatv+=1){
+let xp=x[$q_key_rwhqhpatv];
 $vnode_0.push($createVNode('div',{'class': 'rd-_assets_index_less_-background-color-brand-a60 rd-_assets_index_less_-height-1 rd-_assets_index_less_-pa rd-_assets_index_less_-transform-y-n50 rd-_assets_index_less_-z-index-1','style': 'top:'+($__line=3,$__art='{{=xp[0]}}',$__ctrl='<%=xp[0]%>',(xp[0]))+'px;left:'+($__line=3,$__art='{{=xp[1]}}',$__ctrl='<%=xp[1]%>',(xp[1]))+'px;width:'+($__line=3,$__art='{{=xp[2]-xp[1]}}',$__ctrl='<%=xp[2]-xp[1]%>',(xp[2]-xp[1]))+'px',}));
 }
 }$__line=6;$__art="{{if y}}";$__ctrl="if(y){";
 if(y){
-$__line=7;$__art="{{each y as yp}}";$__ctrl="for(let $q_c_sefpcqprzm=y.length,$q_key_urpprbyauj=0;$q_key_urpprbyauj<$q_c_sefpcqprzm;$q_key_urpprbyauj++){let yp=y[$q_key_urpprbyauj];";
-for(let $q_c_sefpcqprzm=y.length,$q_key_urpprbyauj=0;$q_key_urpprbyauj<$q_c_sefpcqprzm;$q_key_urpprbyauj+=1){
-let yp=y[$q_key_urpprbyauj];
+$__line=7;$__art="{{each y as yp}}";$__ctrl="for(let $q_c_dsihyyfg=y.length,$q_key_duhkinxfm=0;$q_key_duhkinxfm<$q_c_dsihyyfg;$q_key_duhkinxfm++){let yp=y[$q_key_duhkinxfm];";
+for(let $q_c_dsihyyfg=y.length,$q_key_duhkinxfm=0;$q_key_duhkinxfm<$q_c_dsihyyfg;$q_key_duhkinxfm+=1){
+let yp=y[$q_key_duhkinxfm];
 $vnode_0.push($createVNode('div',{'class': 'rd-_assets_index_less_-background-color-brand-a60 rd-_assets_index_less_-pa rd-_assets_index_less_-transform-x-n50 rd-_assets_index_less_-width-1 rd-_assets_index_less_-z-index-1','style': 'left:'+($__line=8,$__art='{{=yp[0]}}',$__ctrl='<%=yp[0]%>',(yp[0]))+'px;top:'+($__line=8,$__art='{{=yp[1]}}',$__ctrl='<%=yp[1]%>',(yp[1]))+'px;height:'+($__line=8,$__art='{{=yp[2]-yp[1]}}',$__ctrl='<%=yp[2]-yp[1]%>',(yp[2]-yp[1]))+'px',}));
 }
 } 

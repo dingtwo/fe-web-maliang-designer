@@ -367,7 +367,8 @@ export default View.extend({
                         let s = new Service();
                         s.save({
                             name: '@:{save.content}',
-                            '@:{body}': `stage=${ToJSON()}`,
+                            // '@:{body}': `stage=${ToJSON()}`,
+                            '@:{body}': JSON.stringify({templateJSON: ToJSON(), name: '测试模板'}),
                             '@:{query}': params
                         }, (ex: {
                             message: string
@@ -575,6 +576,7 @@ export default View.extend({
             let templateUrl = config<string>('getTemplateUrl');
             let contentUrl = config<string>('getContentUrl');
             let { params } = parseUrl(location.href);
+            console.log('______', params, contentUrl);
             if (params.id &&
                 contentUrl) {
                 Toast.show('正在读取内容...');
@@ -585,7 +587,7 @@ export default View.extend({
                 }, (ex, bag) => {
                     Toast.hide();
                     if (!ex) {
-                        let stage = bag.get('data');
+                        let stage = bag.get('data.templateJson');
                         if (stage) {
                             State.fire('@:{event#example.change}', {
                                 '@:{excample.change.event#type}': DHistory['@:{history#example.from.remote}'],

@@ -201,7 +201,7 @@ export default View.extend({
             inner: top != self,
             //rd#need-register-code
             //这个auth属性在收到代码后直接删除，避免打印时的提示
-            auth: location.hostname != 'xinglie.github.io' && location.hostname != 'xinglie.gitee.io',
+            // auth: location.hostname != 'xinglie.github.io' && location.hostname != 'xinglie.gitee.io',
             format: FormatList,
             hasData: false,
             empty: true,
@@ -212,6 +212,7 @@ export default View.extend({
         */
         let { params } = parseUrl(location.href);
         let contentUrl = config('getContentUrl');
+        console.log('______', params, contentUrl);
         if (params.id &&
             contentUrl) {
             let s = new Service();
@@ -219,6 +220,7 @@ export default View.extend({
                 name: '@:{get.content}',
                 '@:{query}': params
             }, (ex, bag) => {
+                console.log('请求回来的初始数据', ex, bag);
                 if (!ex) {//如果请求未有异常，则根据请求回来的数据进行渲染界面
                     let stage = bag.get('data');
                     this['@:{render.page.by.json}'](stage);

@@ -6,14 +6,14 @@
  */
 define("gallery/mx-format/code",["magix5","../../provider/format","./share","../mx-codemirror/index"],(require,exports,module)=>{
 require("../mx-codemirror/index");
-let $quick_fv_0_static_node;
-let $quick_fv_1_static_node;
-let $quick_ea_static_text;
-let $quick_ew_static_text;
-let $quick_ex_static_text;
-let $quick_fv_5_static_node;
-let $quick_fv_3_static_attr={'class': 'rd-_assets_index_less_-dialog-body rd-_assets_index_less_-min-height-500 rd-_assets_index_less_-unselectable',};
-let $quick_fv_4_static_attr={'class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-bottom-0 rd-_assets_index_less_-dialog-footer rd-_assets_index_less_-dialog-footer-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-justify-content-flex-end rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-6',};
+let $quick_cG_0_static_node;
+let $quick_cG_1_static_node;
+let $quick_bl_static_text;
+let $quick_bH_static_text;
+let $quick_bI_static_text;
+let $quick_cG_5_static_node;
+let $quick_cG_3_static_attr={'class': 'rd-_assets_index_less_-dialog-body rd-_assets_index_less_-min-height-500 rd-_assets_index_less_-unselectable',};
+let $quick_cG_4_static_attr={'class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-bottom-0 rd-_assets_index_less_-dialog-footer rd-_assets_index_less_-dialog-footer-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-justify-content-flex-end rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-6',};
 
 
 require("./share");
@@ -38,22 +38,22 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 $vnode_1,
 $vnode_2;
 
-if($quick_fv_0_static_node){
-$vnode_0=[$quick_fv_0_static_node];
+if($quick_cG_0_static_node){
+$vnode_0=[$quick_cG_0_static_node];
 }else{
-$vnode_0=[$quick_fv_0_static_node=$createVNode('div',{'_': 'cD','class': 'rd-_assets_index_less_-dialog-header-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-7',})];
+$vnode_0=[$quick_cG_0_static_node=$createVNode('div',{'_': 'ar','class': 'rd-_assets_index_less_-dialog-header-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-7',})];
 }
 
-if($quick_fv_1_static_node){
-$vnode_0.push($quick_fv_1_static_node);
+if($quick_cG_1_static_node){
+$vnode_0.push($quick_cG_1_static_node);
 }else{
-$vnode_1=[$createVNode(0,'<h5 class="rd-_assets_index_less_-tag-h5">自定义函数</h5>',1)];$vnode_0.push($quick_fv_1_static_node=$createVNode('div',{'_': 'cE','class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-dialog-header rd-_assets_index_less_-dialog-header-with-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-top-0 rd-_assets_index_less_-z-index-8',},$vnode_1));
+$vnode_1=[$createVNode(0,'<h5 class="rd-_assets_index_less_-tag-h5">自定义函数</h5>',1)];$vnode_0.push($quick_cG_1_static_node=$createVNode('div',{'_': 'as','class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-dialog-header rd-_assets_index_less_-dialog-header-with-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-top-0 rd-_assets_index_less_-z-index-8',},$vnode_1));
 }
-$vnode_2=[$quick_ea_static_text||($quick_ea_static_text=$createVNode(0,'loading...'))];$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'$': 'parts','class': 'rd-_gallery_mx-format_share_less_-codemirror','style': 'width:848px;height:480px','mx5-cmchange': $viewId+'@:{update.format~rs}()','mx5-view': 'gallery/mx-codemirror/index?value='+($__line=6,$__art='{{#parts[1]}}',$__ctrl='<%#parts[1],\'auto_key_parts.parts[1]\'%>',$keyOf($refData,parts[1],'auto_key_parts.parts[1]')),},$vnode_2)];$vnode_0.push($createVNode('div',$quick_fv_3_static_attr,$vnode_1));$vnode_2=[$quick_ew_static_text||($quick_ew_static_text=$createVNode(0,'应用'))];$vnode_1=[$createVNode('button',{'mx5-click': $viewId+'@:{apply~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','type': 'button',},$vnode_2)];$vnode_2=[$quick_ex_static_text||($quick_ex_static_text=$createVNode(0,'取消'))];$vnode_1.push($createVNode('button',{'mx5-click': $viewId+'@:{close~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-ml10 rd-_assets_index_less_-tc','type': 'button',},$vnode_2));$vnode_0.push($createVNode('div',$quick_fv_4_static_attr,$vnode_1));
-if($quick_fv_5_static_node){
-$vnode_0.push($quick_fv_5_static_node);
+$vnode_2=[$quick_bl_static_text||($quick_bl_static_text=$createVNode(0,'loading...'))];$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'$': 'parts','class': 'rd-_gallery_mx-format_share_less_-codemirror','style': 'width:848px;height:480px','mx5-cmchange': $viewId+'@:{update.format~rs}()','mx5-view': 'gallery/mx-codemirror/index?value='+($__line=6,$__art='{{#parts[1]}}',$__ctrl='<%#parts[1],\'auto_key_parts.parts[1]\'%>',$keyOf($refData,parts[1],'auto_key_parts.parts[1]')),},$vnode_2)];$vnode_0.push($createVNode('div',$quick_cG_3_static_attr,$vnode_1));$vnode_2=[$quick_bH_static_text||($quick_bH_static_text=$createVNode(0,'应用'))];$vnode_1=[$createVNode('button',{'mx5-click': $viewId+'@:{apply~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','type': 'button',},$vnode_2)];$vnode_2=[$quick_bI_static_text||($quick_bI_static_text=$createVNode(0,'取消'))];$vnode_1.push($createVNode('button',{'mx5-click': $viewId+'@:{close~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-ml10 rd-_assets_index_less_-tc','type': 'button',},$vnode_2));$vnode_0.push($createVNode('div',$quick_cG_4_static_attr,$vnode_1));
+if($quick_cG_5_static_node){
+$vnode_0.push($quick_cG_5_static_node);
 }else{
-$vnode_0.push($quick_fv_5_static_node=$createVNode('div',{'_': 'cF','class': 'rd-_assets_index_less_-dialog-footer-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-5',}));
+$vnode_0.push($quick_cG_5_static_node=$createVNode('div',{'_': 'at','class': 'rd-_assets_index_less_-dialog-footer-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-5',}));
 }
  
 

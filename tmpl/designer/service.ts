@@ -10,7 +10,7 @@ let { Service, toUrl, config, guid } = Magix;
 let extractErrorAndData = (response, url) => {
     let error;
     let data;
-    if (response.status == 1) {
+    if (response.status == 1 || response.code === 200000) {
         data = response.data;
     } else {
         error = response.message || `接口${url}错误`;
@@ -77,7 +77,9 @@ let RDService = Service.extend((bag, callback) => {
         credentials: 'include',
         headers: {
             'Accept': 'application/json',
-            'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+            // 'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+            'Content-type': 'application/json;charset=utf-8',
+
         }
     } as RequestInit;
     let version = DEBUG ? Date.now() : config('version');

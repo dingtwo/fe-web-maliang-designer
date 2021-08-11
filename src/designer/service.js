@@ -86,7 +86,8 @@ let RDService = Service.extend((bag, callback) => {
         credentials: 'include',
         headers: {
             'Accept': 'application/json',
-            'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+            // 'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+            'Content-type': 'application/json;charset=utf-8',
         }
     };
     let version = DEBUG ? Date.now() : config('version');

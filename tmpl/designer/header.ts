@@ -376,7 +376,7 @@ export default View.extend({
                 Runner["@:{task.remove.background}"](old);
             }
             this['@:{printer.try.send.message}'] = 0;
-            let w = window.open(DEBUG ? './print-debug.html' : './print.html', '@:{printer}');
+            let w = window.open(DEBUG ? '/print-debug.html' : './print.html', '@:{printer}');
             w.focus();
             let origin = location.protocol + '//' + location.host;
             let post = () => {

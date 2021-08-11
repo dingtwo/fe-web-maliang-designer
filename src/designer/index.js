@@ -9,14 +9,14 @@ require("./header");
 require("./toolbar");
 require("./axis");
 require("./stage");
-let $quick_dH_2_static_node;
-let $quick_dH_3_static_node;
-let $quick_dH_4_static_node;
-let $quick_dH_7_static_node;
-let $quick_dH_0_static_attr={'class': 'rd-_assets_index_less_-overflow-hidden rd-_designer_index_less_-axis-stage-wrapper',};
-let $quick_dH_1_static_attr={'class': 'rd-_assets_index_less_-flex rd-_designer_index_less_-stage-wrapper',};
-let $quick_dH_5_static_attr={'class': 'rd-_assets_index_less_-color-999 rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-pr rd-_designer_index_less_-foot',};
-let $quick_dH_6_static_attr={'class': 'rd-_assets_index_less_-fl',};
+let $quick_aS_2_static_node;
+let $quick_aS_3_static_node;
+let $quick_aS_4_static_node;
+let $quick_aS_7_static_node;
+let $quick_aS_0_static_attr={'class': 'rd-_assets_index_less_-overflow-hidden rd-_designer_index_less_-axis-stage-wrapper',};
+let $quick_aS_1_static_attr={'class': 'rd-_assets_index_less_-flex rd-_designer_index_less_-stage-wrapper',};
+let $quick_aS_5_static_attr={'class': 'rd-_assets_index_less_-color-999 rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-pr rd-_designer_index_less_-foot',};
+let $quick_aS_6_static_attr={'class': 'rd-_assets_index_less_-fl',};
 
 /*
     author:https://github.com/xinglie
@@ -244,30 +244,30 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 $vnode_2,
 $vnode_1;
 $vnode_0=[$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/header','id': 'hd','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-unselectable rd-_designer_index_less_-header','mx5-contextmenu': $viewId+'@:{prevent~rs}()',}),$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-unselectable rd-_designer_index_less_-toolbar','mx5-contextmenu': $viewId+'@:{prevent~rs}()',})];$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/axis','id': '_rd_axis','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-unselectable rd-_designer_index_less_-axis','mx5-contextmenu': $viewId+'@:{prevent~rs}()',})];
-if($quick_dH_2_static_node){
-$vnode_2=[$quick_dH_2_static_node];
+if($quick_aS_2_static_node){
+$vnode_2=[$quick_aS_2_static_node];
 }else{
-$vnode_2=[$quick_dH_2_static_node=$createVNode('div',{'_': 'cD','class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-overflow-scroll rd-_assets_index_less_-scrollable rd-_designer_index_less_-stage-left',})];
+$vnode_2=[$quick_aS_2_static_node=$createVNode('div',{'_': 'ar','class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-overflow-scroll rd-_assets_index_less_-scrollable rd-_designer_index_less_-stage-left',})];
 }
 $vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/stage','id': '_rd_stage','class': 'rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-overflow-scroll rd-_assets_index_less_-pr rd-_assets_index_less_-scrollable rd-_assets_index_less_-unselectable rd-_designer_index_less_-stage',}));
-if($quick_dH_3_static_node){
-$vnode_2.push($quick_dH_3_static_node);
+if($quick_aS_3_static_node){
+$vnode_2.push($quick_aS_3_static_node);
 }else{
-$vnode_2.push($quick_dH_3_static_node=$createVNode('div',{'_': 'cE','class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-overflow-scroll rd-_assets_index_less_-scrollable rd-_designer_index_less_-stage-right',}));
+$vnode_2.push($quick_aS_3_static_node=$createVNode('div',{'_': 'as','class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-overflow-scroll rd-_assets_index_less_-scrollable rd-_designer_index_less_-stage-right',}));
 }
-$vnode_1.push($createVNode('div',$quick_dH_1_static_attr,$vnode_2));
-if($quick_dH_4_static_node){
-$vnode_1.push($quick_dH_4_static_node);
+$vnode_1.push($createVNode('div',$quick_aS_1_static_attr,$vnode_2));
+if($quick_aS_4_static_node){
+$vnode_1.push($quick_aS_4_static_node);
 }else{
-$vnode_1.push($quick_dH_4_static_node=$createVNode('div',{'_': 'cF','class': 'rd-_assets_index_less_-none rd-_assets_index_less_-pa rd-_assets_index_less_-pointer-events-none rd-_assets_index_less_-unselectable rd-_designer_index_less_-stage-drag-scroll-zone','id': '_rd_sdsz',}));
+$vnode_1.push($quick_aS_4_static_node=$createVNode('div',{'_': 'at','class': 'rd-_assets_index_less_-none rd-_assets_index_less_-pa rd-_assets_index_less_-pointer-events-none rd-_assets_index_less_-unselectable rd-_designer_index_less_-stage-drag-scroll-zone','id': '_rd_sdsz',}));
 }
-$vnode_0.push($createVNode('div',$quick_dH_0_static_attr,$vnode_1));$vnode_2=[$createVNode(0,($__line=16,$__art='{{=i18n(\'@:{lang#site.copy.right~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#site.copy.right~rs}\')%>',(i18n('@:{lang#site.copy.right~rs}'))),1)];$vnode_1=[$createVNode('div',$quick_dH_6_static_attr,$vnode_2)];
-if($quick_dH_7_static_node){
-$vnode_1.push($quick_dH_7_static_node);
+$vnode_0.push($createVNode('div',$quick_aS_0_static_attr,$vnode_1));$vnode_2=[$createVNode(0,($__line=16,$__art='{{=i18n(\'@:{lang#site.copy.right~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#site.copy.right~rs}\')%>',(i18n('@:{lang#site.copy.right~rs}'))),1)];$vnode_1=[$createVNode('div',$quick_aS_6_static_attr,$vnode_2)];
+if($quick_aS_7_static_node){
+$vnode_1.push($quick_aS_7_static_node);
 }else{
-$vnode_1.push($quick_dH_7_static_node=$createVNode('div',{'_': 'cG','class': 'rd-_assets_index_less_-fr rd-_assets_index_less_-mr10 rd-_assets_index_less_-unselectable','id': '_rd_ss',}));
+$vnode_1.push($quick_aS_7_static_node=$createVNode('div',{'_': 'au','class': 'rd-_assets_index_less_-fr rd-_assets_index_less_-mr10 rd-_assets_index_less_-unselectable','id': '_rd_ss',}));
 }
-$vnode_0.push($createVNode('div',$quick_dH_5_static_attr,$vnode_1)); 
+$vnode_0.push($createVNode('div',$quick_aS_5_static_attr,$vnode_1)); 
 
 return $createVNode($viewId,0,$vnode_0); 
 } catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/index.html'; throw msg; }  } ,
@@ -391,7 +391,8 @@ return $createVNode($viewId,0,$vnode_0);
                         let s = new service_1();
                         s.save({
                             name: '@:{save.content~rs}',
-                            '@:{body~rs}': `stage=${tojson_1()}`,
+                            // '@:{body}': `stage=${ToJSON()}`,
+                            '@:{body~rs}': JSON.stringify({ templateJSON: tojson_1(), name: '测试模板' }),
                             '@:{query~rs}': params
                         }, (ex, bag) => {
                             if (ex) {
@@ -605,6 +606,7 @@ return $createVNode($viewId,0,$vnode_0);
             let templateUrl = config('getTemplateUrl');
             let contentUrl = config('getContentUrl');
             let { params } = parseUrl(location.href);
+            console.log('______', params, contentUrl);
             if (params.id &&
                 contentUrl) {
                 index_4.show('正在读取内容...');
@@ -615,7 +617,7 @@ return $createVNode($viewId,0,$vnode_0);
                 }, (ex, bag) => {
                     index_4.hide();
                     if (!ex) {
-                        let stage = bag.get('data');
+                        let stage = bag.get('data.templateJson');
                         if (stage) {
                             State.fire('@:{event#example.change~rs}', {
                                 '@:{excample.change.event#type~rs}': history_1['@:{history#example.from.remote~rs}'],
