@@ -4,44 +4,44 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("designer/index",["magix5","../elements/index","../gallery/mx-dialog/index","../gallery/mx-runner/index","../gallery/mx-toast/index","../i18n/index","../panels/index","./const","./enum","./example","./history","./keyboard","./service","./shortcuts","./stage-clipboard","./stage-generic","./stage-selection","./tojson","./header","./toolbar","./axis","./stage"],(require,exports,module)=>{
-require("./header");
-require("./toolbar");
-require("./axis");
-require("./stage");
-let $quick_aS_2_static_node;
-let $quick_aS_3_static_node;
-let $quick_aS_4_static_node;
-let $quick_aS_7_static_node;
-let $quick_aS_0_static_attr={'class': 'rd-_assets_index_less_-overflow-hidden rd-_designer_index_less_-axis-stage-wrapper',};
-let $quick_aS_1_static_attr={'class': 'rd-_assets_index_less_-flex rd-_designer_index_less_-stage-wrapper',};
-let $quick_aS_5_static_attr={'class': 'rd-_assets_index_less_-color-999 rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-pr rd-_designer_index_less_-foot',};
-let $quick_aS_6_static_attr={'class': 'rd-_assets_index_less_-fl',};
+define("5b/index",["5c","../61/index","../5j/62/index","../5j/5m/index","../5j/5q/index","../5n/index","../66/index","./5e","./enum","./5u","./5o","./5p","./5v","./67","./68","./65","./69","./5s","./60","./6a","./5i","./6b"],(require,exports,module)=>{
+require("./60");
+require("./6a");
+require("./5i");
+require("./6b");
+let $quick_l9_2_static_node;
+let $quick_l9_3_static_node;
+let $quick_l9_4_static_node;
+let $quick_l9_7_static_node;
+let $quick_l9_0_static_attr={'class': 'rd-nO rd-o2',};
+let $quick_l9_1_static_attr={'class': 'rd-mX rd-o3',};
+let $quick_l9_5_static_attr={'class': 'rd-mK rd-nL rd-nU rd-o8',};
+let $quick_l9_6_static_attr={'class': 'rd-mH',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let index_1 = require("../elements/index");
-let index_2 = require("../gallery/mx-dialog/index");
-let index_3 = require("../gallery/mx-runner/index");
-let index_4 = require("../gallery/mx-toast/index");
-let index_5 = require("../i18n/index");
-let index_6 = require("../panels/index");
-let const_1 = require("./const");
+let magix_1 = require("5c");
+let index_1 = require("../61/index");
+let index_2 = require("../5j/62/index");
+let index_3 = require("../5j/5m/index");
+let index_4 = require("../5j/5q/index");
+let index_5 = require("../5n/index");
+let index_6 = require("../66/index");
+let const_1 = require("./5e");
 let enum_1 = require("./enum");
-let example_1 = require("./example");
-let history_1 = require("./history");
-let keyboard_1 = require("./keyboard");
-let service_1 = require("./service");
-let shortcuts_1 = require("./shortcuts");
-let stage_clipboard_1 = require("./stage-clipboard");
-let stage_generic_1 = require("./stage-generic");
-let stage_selection_1 = require("./stage-selection");
-let tojson_1 = require("./tojson");
+let example_1 = require("./5u");
+let history_1 = require("./5o");
+let keyboard_1 = require("./5p");
+let service_1 = require("./5v");
+let shortcuts_1 = require("./67");
+let stage_clipboard_1 = require("./68");
+let stage_generic_1 = require("./65");
+let stage_selection_1 = require("./69");
+let tojson_1 = require("./5s");
 let { State, applyStyle, View, node, config, mark, parseUrl, has, unboot, toMap, mix } = magix_1;
-applyStyle("rd-_designer_index_less_","\n.rd-_designer_index_less_-header {\nbackground:#47B34E;\nheight:40px;\nline-height:40px;\npadding:0 10px;\ncolor:#ffffff;\n}\n.rd-_designer_index_less_-toolbar {\npadding:0 4px 0 20px;\nbackground:#fafafa;\ncolor:#333;\nheight:28px;\nz-index:201;\nborder-bottom:solid 1px #eee;\nmargin-left:0px;\n}\n.rd-_designer_index_less_-axis {\nheight:20px;\nleft:0px;\nwidth:calc(100% - -1px);\nborder-right:solid 0 #ccc;\n}\n.rd-_designer_index_less_-axis-stage-wrapper {\nheight:calc(100% - 88px);\n}\n.rd-_designer_index_less_-stage-wrapper {\nheight:calc(100% - 20px);\n}\n.rd-_designer_index_less_-stage {\nbackground-color:#edeef3;\nmargin-left:20px;\nbox-shadow:inset -2px -2px 6px 6px #dadada;\n}\n.rd-_designer_index_less_-stage-left {\nmargin-top:-48px;\nwidth:0px;\nz-index:300;\nheight:calc(100% + 48px);\nborder-right:solid 0 #eee;\n}\n.rd-_designer_index_less_-stage-right {\nwidth:0px;\nmargin-top:-1px;\nz-index:300;\nheight:calc(100% + 1px);\nborder-left:solid 0 #ccc;\nborder-top:solid 0 #ccc;\n}\n.rd-_designer_index_less_-stage-drag-scroll-zone {\ninset:86px 0px 21px 20px;\nbox-shadow:inset 0 0 0 20px rgba(71, 179, 78, 0.1);\nz-index:1000;\n}\n.rd-_designer_index_less_-foot {\nheight:20px;\nbackground:#fafafa;\nz-index:200;\nborder-top:1px solid #ccc;\npadding-left:25px;\nline-height:20px;\n}\n.rd-_designer_index_less_-hide-axis .rd-_designer_index_less_-stage-wrapper {\nheight:100%;\n}\n.rd-_designer_index_less_-hide-axis .rd-_designer_index_less_-stage {\nmargin-left:0;\n}\n.rd-_designer_index_less_-hide-axis .rd-_designer_index_less_-stage-drag-scroll-zone {\nleft:0;\ntop:66px;\n}\n.rd-_designer_index_less_-hide-axis .rd-_designer_index_less_-toolbar {\nborder-bottom-color:#ccc;\n}\n.rd-_designer_index_less_-hide-axis .rd-_designer_index_less_-stage-left {\nmargin-top:-28px;\nwidth:0px;\nz-index:300;\nheight:calc(100% + 28px);\n}\n");
-let CellAndHod = enum_1['@:{enum#as.hod~rs}'] | enum_1['@:{enum#as.cells~rs}'];
+applyStyle("rd-l7",".rd-oZ{background:#47b34e;color:#fff;height:40px;line-height:40px;padding:0 10px}.rd-o0{background:#fafafa;border-bottom:1px solid #eee;color:#333;height:28px;margin-left:0;padding:0 4px 0 20px;z-index:201}.rd-o1{border-right:0 solid #ccc;height:20px;left:0;width:calc(100% + 1px)}.rd-o2{height:calc(100% - 88px)}.rd-o3{height:calc(100% - 20px)}.rd-o4{background-color:#edeef3;box-shadow:inset -2px -2px 6px 6px #dadada;margin-left:20px}.rd-o5{border-right:0 solid #eee;height:calc(100% + 48px);margin-top:-48px;width:0;z-index:300}.rd-o6{border-left:0 solid #ccc;border-top:0 solid #ccc;height:calc(100% + 1px);margin-top:-1px;width:0;z-index:300}.rd-o7{box-shadow:inset 0 0 0 20px rgba(71,179,78,.1);inset:86px 0 21px 20px;z-index:1000}.rd-o8{background:#fafafa;border-top:1px solid #ccc;height:20px;line-height:20px;padding-left:25px;z-index:200}.rd-o9 .rd-o3{height:100%}.rd-o9 .rd-o4{margin-left:0}.rd-o9 .rd-o7{left:0;top:66px}.rd-o9 .rd-o0{border-bottom-color:#ccc}.rd-o9 .rd-o5{height:calc(100% + 28px);margin-top:-28px;width:0;z-index:300}");
+let CellAndHod = enum_1['l5'] | enum_1['l7'];
 //快捷键数字到面板索引的映射
 let CodesMap = {};
 for (let i = 0; i < 9; i++) {
@@ -77,14 +77,14 @@ let ResetBoxFocus = (elements, selectMap) => {
  * @param param0 应用的状态对象
  */
 let ApplyState = ({ json }) => {
-    let page = State.get('@:{global#stage.page~rs}');
-    let elements = State.get('@:{global#stage.elements~rs}');
-    let select = State.get('@:{global#stage.select.elements~rs}');
-    let xLines = State.get('@:{global#stage.x.help.lines~rs}');
-    let yLines = State.get('@:{global#stage.y.help.lines~rs}');
+    let page = State.get('ma');
+    let elements = State.get('m_');
+    let select = State.get('l2');
+    let xLines = State.get('l5');
+    let yLines = State.get('l6');
     let { page: jsonPage, elements: jsonElements, xLines: jsonXLines, yLines: jsonYLines, clipboard: jsonClipboard, select: jsonSelect } = json;
     mix(page, jsonPage);
-    let { '@:{emanager#elements~rs}': lElements, '@:{emanager#map~rs}': map } = index_1["@:{element.manager#by.json~rs}"](jsonElements, page);
+    let { 'l2': lElements, 'l3': map } = index_1["l3"](jsonElements, page);
     elements.length = 0;
     elements.push(...lElements); //设计区元素
     xLines.length = 0;
@@ -106,16 +106,16 @@ let ApplyState = ({ json }) => {
             }
         }
     }
-    stage_selection_1['@:{selection#reset.map~rs}']();
+    stage_selection_1['l2']();
     ResetBoxFocus(elements, sMap);
     if (jsonClipboard.c) {
-        index_1['@:{element.manager#by.json~rs}'](jsonClipboard.c, page);
+        index_1['l3'](jsonClipboard.c, page);
     }
     State.set({
-        '@:{global#stage.unit~rs}': json.unit || const_1['@:{const#unit~rs}'],
-        '@:{global#stage.scale~rs}': json.scale || 1,
-        '@:{global#stage.clipboard~rs}': jsonClipboard,
-        '@:{global#stage.elements.groups~rs}': json.groups
+        'l4': json.unit || const_1['mF'],
+        'l3': json.scale || 1,
+        'md': jsonClipboard,
+        'mc': json.groups
     });
 };
 /**
@@ -124,14 +124,14 @@ let ApplyState = ({ json }) => {
  * @param toggleHeight 是否打开或关闭内容
  */
 let TogglePanel = (index, toggleHeight) => {
-    let panels = index_6["@:{support.panels~rs}"]();
+    let panels = index_6["_nw"]();
     let dest = panels[index];
     if (dest) {
         if (toggleHeight) { //仅展示可折叠内容
-            index_6["@:{toggle.panel.height~rs}"](dest.id);
+            index_6["_nx"](dest.id);
         }
         else { //展示可隐藏面板
-            index_6["@:{toggle.panel~rs}"](dest.id);
+            index_6["_ny"](dest.id);
         }
     }
 };
@@ -142,7 +142,7 @@ let TogglePanel = (index, toggleHeight) => {
 let MagixBusyTip = (e) => {
     let ns = node('_rd_ss');
     if (ns) {
-        ns.innerHTML = e.busy ? index_5('@:{lang#system.busy~rs}') : '';
+        ns.innerHTML = e.busy ? index_5('np') : '';
     }
     //document.documentElement.classList.add('@:scoped.style:pointer-events-none');
 };
@@ -156,15 +156,15 @@ let MagixBusyTip = (e) => {
 let convertUnitOfProps = (dest, ctrl, toUnit, fixed) => {
     let v, changed;
     for (let df of ctrl.props) {
-        if (df['@:{unit.convert~rs}']) { //属性有unit.convert方法，表明这个属性单位转换比较复杂，交与提供的方法进行转换
+        if (df['_nz']) { //属性有unit.convert方法，表明这个属性单位转换比较复杂，交与提供的方法进行转换
             changed = 1;
-            df['@:{unit.convert~rs}'](dest, toUnit);
+            df['_nz'](dest, toUnit);
         }
-        else if (df['@:{is.scale.and.unit.field~rs}']) { //表明这个属性需要单位转换，那就使用我们默认的单位转换进行计算
+        else if (df['_nA']) { //表明这个属性需要单位转换，那就使用我们默认的单位转换进行计算
             changed = 1;
-            v = const_1['@:{const#unit.to.unit~rs}'](dest[df.key], toUnit);
+            v = const_1['mO'](dest[df.key], toUnit);
             if (fixed) {
-                v = const_1['@:{const#scale.to.unit~rs}'](v, null, toUnit);
+                v = const_1['l4'](v, null, toUnit);
             }
             dest[df.key] = v;
         }
@@ -183,23 +183,23 @@ let convertToUnit = (elements, toUnit, refNormalPorps, refFlowConnectorProps) =>
         refNormalPorps = [];
         refFlowConnectorProps = [];
     }
-    let flowProvider = State.get('@:{global#provider.of.flow~rs}');
+    let flowProvider = State.get('me');
     for (let m of elements) {
         let { props, ctrl } = m;
         //转换属性列表中需要单位转换的属性，并不是所有的都需要转换，因此这里只对有转换的进行后续的属性更新
         if (convertUnitOfProps(props, ctrl, toUnit)) {
-            if (ctrl['@:{update.props~rs}']) {
+            if (ctrl['_m3']) {
                 if (flowProvider &&
-                    flowProvider['@:{flow.provider#is.connector~rs}'](m)) {
-                    refFlowConnectorProps.push([ctrl['@:{update.props~rs}'], props]);
+                    flowProvider['l2'](m)) {
+                    refFlowConnectorProps.push([ctrl['_m3'], props]);
                 }
                 else {
-                    refNormalPorps.push([ctrl['@:{update.props~rs}'], props]);
+                    refNormalPorps.push([ctrl['_m3'], props]);
                 }
             }
         }
         //容器元素需要进行深层遍历
-        if (ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
+        if (ctrl.as & enum_1['l5']) {
             for (let row of props.rows) {
                 for (let col of row.cols) {
                     if (col.elements) {
@@ -212,7 +212,7 @@ let convertToUnit = (elements, toUnit, refNormalPorps, refFlowConnectorProps) =>
     if (update) {
         //先设置目标单位，再更新元素的其它属性
         State.set({
-            '@:{global#stage.unit~rs}': toUnit
+            'l4': toUnit
         });
         let allProps = refNormalPorps.concat(refFlowConnectorProps);
         for (let [update, p] of allProps) {
@@ -230,96 +230,95 @@ if (!DEBUG && false) {
         t1 = now();
         F(`${FUS.slice(2, 4)}b${FS[1]}gg${FUS[3]}r`)();
         if (now() - t1 > 100) {
-            index_3['@:{task.remove~rs}'](task);
+            index_3['_mq'](task);
             unboot();
         }
     };
-    index_3["@:{task.add~rs}"](2000, task);
+    index_3["_mr"](2000, task);
 }
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	i18n,}=$dataFromView,
 $vnode_2,
 $vnode_1;
-$vnode_0=[$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/header','id': 'hd','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-unselectable rd-_designer_index_less_-header','mx5-contextmenu': $viewId+'@:{prevent~rs}()',}),$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-unselectable rd-_designer_index_less_-toolbar','mx5-contextmenu': $viewId+'@:{prevent~rs}()',})];$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/axis','id': '_rd_axis','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-unselectable rd-_designer_index_less_-axis','mx5-contextmenu': $viewId+'@:{prevent~rs}()',})];
-if($quick_aS_2_static_node){
-$vnode_2=[$quick_aS_2_static_node];
+$vnode_0=[$createVNode('div',{'mx5-owner': $viewId,'mx5-view': '5b/60','id': 'hd','class': 'rd-mK rd-mR rd-oZ','mx5-contextmenu': $viewId+'_nT()',}),$createVNode('div',{'mx5-owner': $viewId,'mx5-view': '5b/6a','class': 'rd-mK rd-mR rd-o0','mx5-contextmenu': $viewId+'_nT()',})];$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'mx5-view': '5b/5i','id': '_rd_axis','class': 'rd-mK rd-mR rd-o1','mx5-contextmenu': $viewId+'_nT()',})];
+if($quick_l9_2_static_node){
+$vnode_2=[$quick_l9_2_static_node];
 }else{
-$vnode_2=[$quick_aS_2_static_node=$createVNode('div',{'_': 'ar','class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-overflow-scroll rd-_assets_index_less_-scrollable rd-_designer_index_less_-stage-left',})];
+$vnode_2=[$quick_l9_2_static_node=$createVNode('div',{'_': 'i!','class': 'rd-mA rd-mS rd-nR rd-o5',})];
 }
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/stage','id': '_rd_stage','class': 'rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-overflow-scroll rd-_assets_index_less_-pr rd-_assets_index_less_-scrollable rd-_assets_index_less_-unselectable rd-_designer_index_less_-stage',}));
-if($quick_aS_3_static_node){
-$vnode_2.push($quick_aS_3_static_node);
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'mx5-view': '5b/6b','id': '_rd_stage','class': 'rd-mK rd-mR rd-mS rd-mW rd-nR rd-o4',}));
+if($quick_l9_3_static_node){
+$vnode_2.push($quick_l9_3_static_node);
 }else{
-$vnode_2.push($quick_aS_3_static_node=$createVNode('div',{'_': 'as','class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-overflow-scroll rd-_assets_index_less_-scrollable rd-_designer_index_less_-stage-right',}));
+$vnode_2.push($quick_l9_3_static_node=$createVNode('div',{'_': 'i@','class': 'rd-mA rd-mS rd-nR rd-o6',}));
 }
-$vnode_1.push($createVNode('div',$quick_aS_1_static_attr,$vnode_2));
-if($quick_aS_4_static_node){
-$vnode_1.push($quick_aS_4_static_node);
+$vnode_1.push($createVNode('div',$quick_l9_1_static_attr,$vnode_2));
+if($quick_l9_4_static_node){
+$vnode_1.push($quick_l9_4_static_node);
 }else{
-$vnode_1.push($quick_aS_4_static_node=$createVNode('div',{'_': 'at','class': 'rd-_assets_index_less_-none rd-_assets_index_less_-pa rd-_assets_index_less_-pointer-events-none rd-_assets_index_less_-unselectable rd-_designer_index_less_-stage-drag-scroll-zone','id': '_rd_sdsz',}));
+$vnode_1.push($quick_l9_4_static_node=$createVNode('div',{'_': 'i$','class': 'rd-mJ rd-mL rd-mO rd-mR rd-o7','id': '_rd_sdsz',}));
 }
-$vnode_0.push($createVNode('div',$quick_aS_0_static_attr,$vnode_1));$vnode_2=[$createVNode(0,($__line=16,$__art='{{=i18n(\'@:{lang#site.copy.right~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#site.copy.right~rs}\')%>',(i18n('@:{lang#site.copy.right~rs}'))),1)];$vnode_1=[$createVNode('div',$quick_aS_6_static_attr,$vnode_2)];
-if($quick_aS_7_static_node){
-$vnode_1.push($quick_aS_7_static_node);
+$vnode_0.push($createVNode('div',$quick_l9_0_static_attr,$vnode_1));$vnode_2=[$createVNode(0,(i18n('nt')),1)];$vnode_1=[$createVNode('div',$quick_l9_6_static_attr,$vnode_2)];
+if($quick_l9_7_static_node){
+$vnode_1.push($quick_l9_7_static_node);
 }else{
-$vnode_1.push($quick_aS_7_static_node=$createVNode('div',{'_': 'au','class': 'rd-_assets_index_less_-fr rd-_assets_index_less_-mr10 rd-_assets_index_less_-unselectable','id': '_rd_ss',}));
+$vnode_1.push($quick_l9_7_static_node=$createVNode('div',{'_': 'i^','class': 'rd-mI rd-mR rd-mw','id': '_rd_ss',}));
 }
-$vnode_0.push($createVNode('div',$quick_aS_5_static_attr,$vnode_1)); 
+$vnode_0.push($createVNode('div',$quick_l9_5_static_attr,$vnode_1)); 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/index.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init() {
         //设置全局数据
         State.set({
-            '@:{global#stage.unit~rs}': const_1['@:{const#unit~rs}'],
+            'l4': const_1['mF'],
         });
-        let pageCtrl = State.get('@:{global#stage.page.ctrl~rs}');
+        let pageCtrl = State.get('mf');
         State.set({
-            '@:{global#stage.page~rs}': pageCtrl['@:{get.props~rs}'](),
-            '@:{global#stage.scale~rs}': const_1['@:{const#stage.scale~rs}'],
-            '@:{global#stage.elements~rs}': [],
-            '@:{global#stage.select.elements~rs}': [],
-            '@:{global#stage.elements.groups~rs}': {},
-            '@:{global#stage.elements.groups.linked~rs}': false,
-            '@:{global#stage.x.help.lines~rs}': [],
-            '@:{global#stage.y.help.lines~rs}': [],
-            '@:{global#stage.clipboard~rs}': {}
+            'ma': pageCtrl['_m2'](),
+            'l3': const_1['mf'],
+            'm_': [],
+            'l2': [],
+            'mc': {},
+            'mg': false,
+            'l5': [],
+            'l6': [],
+            'md': {}
         });
         let clearStageElements = (e) => {
-            let xLines = State.get('@:{global#stage.x.help.lines~rs}');
-            let yLines = State.get('@:{global#stage.y.help.lines~rs}');
-            let elements = State.get('@:{global#stage.elements~rs}');
-            this.confirm(index_5(e['@:{clear.events#action~rs}'] == '@:{clear.events#new~rs}' ? '@:{lang#create.new.page.confirm~rs}' : '@:{lang#clear.stage.element.confirm~rs}'), () => {
+            let xLines = State.get('l5');
+            let yLines = State.get('l6');
+            let elements = State.get('m_');
+            this.confirm(index_5(e['l2'] == 'l3' ? 'nq' : 'nr'), () => {
                 xLines.length = 0;
                 yLines.length = 0;
-                if (e['@:{clear.events#action~rs}'] !== '@:{clear.events#new~rs}' &&
-                    const_1['@:{const#support.readonly.element~rs}']) {
-                    let page = State.get('@:{global#stage.page~rs}');
+                if (e['l2'] !== 'l3' &&
+                    const_1['my']) {
+                    let page = State.get('ma');
                     page.readonly = false;
-                    stage_generic_1['@:{generic#remove.nonreadonly.elements~rs}'](elements, 1);
+                    stage_generic_1['l5'](elements, 1);
                 }
                 else {
-                    stage_clipboard_1['@:{clear~rs}']();
+                    stage_clipboard_1['_mc']();
                     State.set({
-                        '@:{global#stage.unit~rs}': const_1['@:{const#unit~rs}']
+                        'l4': const_1['mF']
                     });
                     elements = [];
-                    let pageCtrl = State.get('@:{global#stage.page.ctrl~rs}');
-                    let page = pageCtrl['@:{get.props~rs}']();
+                    let pageCtrl = State.get('mf');
+                    let page = pageCtrl['_m2']();
                     State.set({
-                        '@:{global#stage.page~rs}': page
+                        'ma': page
                     });
                 }
                 State.set({
-                    '@:{global#stage.elements~rs}': elements,
-                    '@:{global#stage.elements.groups~rs}': {}
+                    'm_': elements,
+                    'mc': {}
                 });
-                stage_selection_1["@:{selection#set~rs}"]();
-                State.fire('@:{event#stage.page.and.elements.change~rs}');
-                history_1["@:{history#save~rs}"](history_1[e['@:{clear.events#action~rs}'] == '@:{clear.events#new~rs}' ? '@:{history#new.page~rs}' : '@:{history#clear.stage~rs}']);
+                stage_selection_1["l3"]();
+                State.fire('m_');
+                history_1["l2"](history_1[e['l2'] == 'l3' ? 'me' : 'md']);
             });
         };
         /**
@@ -327,8 +326,8 @@ return $createVNode($viewId,0,$vnode_0);
          * @param e 切换示例事件对象
          */
         let changeExample = (e) => {
-            let xLines = State.get('@:{global#stage.x.help.lines~rs}');
-            let yLines = State.get('@:{global#stage.y.help.lines~rs}');
+            let xLines = State.get('l5');
+            let yLines = State.get('l6');
             xLines.length = 0;
             yLines.length = 0;
             let stageNode = node('_rd_stage');
@@ -336,14 +335,14 @@ return $createVNode($viewId,0,$vnode_0);
                 stageNode.scrollLeft = 0;
                 stageNode.scrollTop = 0;
             }
-            let { page, groups, elements, unit } = e['@:{excample.change.event#stage~rs}'];
+            let { page, groups, elements, unit } = e['l2'];
             State.set({
-                '@:{global#stage.unit~rs}': unit || const_1['@:{const#unit~rs}']
+                'l4': unit || const_1['mF']
             });
-            let pageCtrl = State.get('@:{global#stage.page.ctrl~rs}');
-            let newPage = pageCtrl["@:{get.props~rs}"]();
+            let pageCtrl = State.get('mf');
+            let newPage = pageCtrl["_m2"]();
             mix(newPage, page); //更新设计区属性
-            let { '@:{emanager#elements~rs}': lElements, '@:{emanager#props~rs}': delayUpdateProps, '@:{emanager#id.map~rs}': idMap } = index_1["@:{element.manager#by.json~rs}"](elements, newPage, 1);
+            let { 'l2': lElements, 'l4': delayUpdateProps, 'l5': idMap } = index_1["l3"](elements, newPage, 1);
             let newGroups = {}; //生成新的组合信息
             groups || (groups = []);
             for (let list of groups) {
@@ -355,20 +354,20 @@ return $createVNode($viewId,0,$vnode_0);
                 }
             }
             State.set({
-                '@:{global#stage.page~rs}': newPage,
-                '@:{global#stage.elements~rs}': lElements || [],
-                '@:{global#stage.elements.groups~rs}': newGroups
+                'ma': newPage,
+                'm_': lElements || [],
+                'mc': newGroups
             });
-            stage_selection_1["@:{selection#set~rs}"](); //取消选择元素
-            stage_clipboard_1['@:{clear~rs}']();
-            State.fire('@:{event#stage.page.and.elements.change~rs}');
+            stage_selection_1["l3"](); //取消选择元素
+            stage_clipboard_1['_mc']();
+            State.fire('m_');
             if (delayUpdateProps) { //更新所有元素的动态计算属性
                 for (let [ctrl, ps] of delayUpdateProps) {
-                    ctrl['@:{update.props~rs}'](ps);
+                    ctrl['_m3'](ps);
                 }
             }
             //保存历史记录
-            history_1["@:{history#save~rs}"](e['@:{excample.change.event#type~rs}'], e['@:{excample.change.event#title~rs}']);
+            history_1["l2"](e['l3'], e['l4']);
         };
         /**
          * 保存内容
@@ -376,24 +375,24 @@ return $createVNode($viewId,0,$vnode_0);
          */
         let saveContent = (e) => {
             let url = config('saveContentUrl');
-            if (url && !e['@:{save.content.event#shift.key~rs}']) {
-                if (!this['@:{saving~rs}']) {
+            if (url && !e['l2']) {
+                if (!this['_nB']) {
                     index_4.show('正在保存...');
-                    this['@:{saving~rs}'] = 1;
+                    this['_nB'] = 1;
                     let { params } = parseUrl(location.href);
                     try {
                         if (!params.id &&
-                            this['@:{saved.id~rs}']) {
+                            this['_nC']) {
                             let copied = { ...params };
-                            copied.id = this['@:{saved.id~rs}'];
+                            copied.id = this['_nC'];
                             params = copied;
                         }
                         let s = new service_1();
                         s.save({
-                            name: '@:{save.content~rs}',
+                            name: '_nD',
                             // '@:{body}': `stage=${ToJSON()}`,
-                            '@:{body~rs}': JSON.stringify({ templateJSON: tojson_1(), name: '测试模板' }),
-                            '@:{query~rs}': params
+                            '_nE': JSON.stringify({ templateJSON: tojson_1(), name: '测试模板' }),
+                            '_nF': params
                         }, (ex, bag) => {
                             if (ex) {
                                 index_4.hide();
@@ -401,9 +400,9 @@ return $createVNode($viewId,0,$vnode_0);
                             }
                             else {
                                 index_4.show('保存成功～', 2e3);
-                                this['@:{saved.id~rs}'] = bag.get('data.id', '');
+                                this['_nC'] = bag.get('data.id', '');
                             }
-                            delete this['@:{saving~rs}'];
+                            delete this['_nB'];
                             //如果配置的有onSuccessSave事件，则调用一下
                             // let onSuccessSave = config<Function>('onSuccessSave');
                             // if (onSuccessSave) {
@@ -416,12 +415,12 @@ return $createVNode($viewId,0,$vnode_0);
                         this.alert(ex.message);
                     }
                     finally {
-                        delete this['@:{saving~rs}'];
+                        delete this['_nB'];
                     }
                 }
             }
-            else if (const_1['@:{const#save.show.stage.content~rs}']) {
-                this.mxDialog("designer/content", {
+            else if (const_1['mc']) {
+                this.mxDialog("5b/content", {
                     width: Math.max(1000, screen.width - 200)
                 });
             }
@@ -431,20 +430,20 @@ return $createVNode($viewId,0,$vnode_0);
          * @param e 按键事件
          */
         let watchKeypress = (e) => {
-            if (e['@:{keypress#is.prevent.actions~rs}'] ||
-                !e['@:{keypress#is.key.down~rs}'] ||
-                e['@:{keypress#active.is.input~rs}'])
+            if (e['l2'] ||
+                !e['l3'] ||
+                e['l4'])
                 return;
-            let { '@:{keypress#code~rs}': code, '@:{keypress#shift.key~rs}': shiftKey, '@:{keypress#ctrl.key~rs}': ctrlKey, '@:{keypress#alt.key~rs}': altKey } = e;
-            if (code == keyboard_1["@:{key#z~rs}"] &&
+            let { 'l5': code, 'l6': shiftKey, 'l7': ctrlKey, 'l8': altKey } = e;
+            if (code == keyboard_1["mb"] &&
                 shiftKey &&
                 !ctrlKey) { //shift+z，打开或关闭所有面板
-                let allOpen = index_6["@:{is.all.opened~rs}"]();
+                let allOpen = index_6["_nG"]();
                 if (allOpen) {
-                    index_6["@:{close.all.panels~rs}"]();
+                    index_6["_nH"]();
                 }
                 else {
-                    index_6["@:{open.all.panels~rs}"]();
+                    index_6["_nI"]();
                 }
             }
             else if (!ctrlKey &&
@@ -452,137 +451,137 @@ return $createVNode($viewId,0,$vnode_0);
                 TogglePanel(CodesMap[code], shiftKey);
             }
             else if (shiftKey &&
-                code == keyboard_1["@:{key#slash~rs}"]) { // shift+/ 显示快捷键
-                if (const_1['@:{const#shortcuts.dialog.and.help.icon~rs}']) {
-                    shortcuts_1["@:{show~rs}"](this);
+                code == keyboard_1["ma"]) { // shift+/ 显示快捷键
+                if (const_1['md']) {
+                    shortcuts_1["_mA"](this);
                 }
             }
             else if (ctrlKey &&
-                code == keyboard_1["@:{key#s~rs}"]) {
+                code == keyboard_1["mc"]) {
                 //如果是ctrl+s或cmd+s，显示保存
-                e['@:{keypress#prevent.default~rs}']();
-                State.fire('@:{event#stage.save.content~rs}', {
-                    '@:{save.content.event#shift.key~rs}': shiftKey
+                e['l9']();
+                State.fire('md', {
+                    'l2': shiftKey
                 });
             }
             else if (ctrlKey &&
                 !shiftKey &&
                 !altKey &&
-                code == keyboard_1['@:{key#h~rs}']) {
+                code == keyboard_1['l2']) {
                 let axisNode = node('_rd_axis');
                 if (axisNode) {
                     let rootClassList = this.root.classList;
                     let axisClassList = axisNode.classList;
-                    let hidden = axisClassList.contains('rd-_assets_index_less_-none');
+                    let hidden = axisClassList.contains('rd-mO');
                     if (hidden) {
-                        axisClassList.remove('rd-_assets_index_less_-none');
-                        rootClassList.remove('rd-_designer_index_less_-hide-axis');
+                        axisClassList.remove('rd-mO');
+                        rootClassList.remove('rd-o9');
                     }
                     else {
-                        axisClassList.add('rd-_assets_index_less_-none');
-                        rootClassList.add('rd-_designer_index_less_-hide-axis');
+                        axisClassList.add('rd-mO');
+                        rootClassList.add('rd-o9');
                     }
                 }
             }
             else if (!(ctrlKey || altKey || shiftKey)) {
-                if (code == keyboard_1['@:{key#c~rs}']) { //单纯的按c
-                    if (stage_generic_1['@:{generic#query.can.clear.stage~rs}']()) {
-                        State.fire('@:{event#stage.clear.elements~rs}');
+                if (code == keyboard_1['md']) { //单纯的按c
+                    if (stage_generic_1['l6']()) {
+                        State.fire('ml');
                     }
                 }
-                else if (code == keyboard_1['@:{key#n~rs}']) {
-                    if (stage_generic_1['@:{generic#query.can.create.new.page~rs}']()) {
-                        State.fire('@:{event#stage.clear.elements~rs}', {
-                            '@:{clear.events#action~rs}': '@:{clear.events#new~rs}'
+                else if (code == keyboard_1['me']) {
+                    if (stage_generic_1['l7']()) {
+                        State.fire('ml', {
+                            'l2': 'l3'
                         });
                     }
                 }
             }
         };
         let changeUnit = (e) => {
-            let elements = State.get('@:{global#stage.elements~rs}');
-            let toUnit = e['@:{to.unit~rs}'];
-            let page = State.get('@:{global#stage.page~rs}');
+            let elements = State.get('m_');
+            let toUnit = e['_nJ'];
+            let page = State.get('ma');
             page.unit = toUnit;
-            let pageCtrl = State.get('@:{global#stage.page.ctrl~rs}');
+            let pageCtrl = State.get('mf');
             convertUnitOfProps(page, pageCtrl, toUnit, 1);
             convertToUnit(elements, toUnit);
-            let selectElements = State.get('@:{global#stage.select.elements~rs}');
+            let selectElements = State.get('l2');
             if (selectElements.length == 1) {
                 let single = selectElements[0];
-                State.fire('@:{event#stage.select.element.props.change~rs}', {
-                    '@:{ids~rs}': { [single.id]: 1 },
-                    '@:{types~rs}': {
+                State.fire('l4', {
+                    '_nK': { [single.id]: 1 },
+                    '_nL': {
                         [single.type]: 1
                     },
-                    '@:{props~rs}': {
-                        '@:{unit~rs}': 1
+                    '_l3': {
+                        '_nM': 1
                     }
                 });
             }
-            State.fire('@:{event#stage.page.and.elements.change~rs}');
+            State.fire('m_');
         };
         //保存初始状态的历史记录
         //DHistory["@:{history#save.default}"]();
         //监听历史记录事件
-        State.on('@:{event#history.shift.change~rs}', ApplyState);
+        State.on('l7', ApplyState);
         //框架内部繁忙
-        State.on('@:{event#magix.busy~rs}', MagixBusyTip);
+        State.on('mm', MagixBusyTip);
         //清空
-        State.on('@:{event#stage.clear.elements~rs}', clearStageElements);
+        State.on('ml', clearStageElements);
         //更换模板
-        State.on('@:{event#example.change~rs}', changeExample);
+        State.on('mc', changeExample);
         //保存
-        State.on('@:{event#stage.save.content~rs}', saveContent);
+        State.on('md', saveContent);
         //按键
-        State.on('@:{event#stage.key.press~rs}', watchKeypress);
+        State.on('ma', watchKeypress);
         //单位转换
-        State.on('@:{event#stage.unit.change~rs}', changeUnit);
+        State.on('mn', changeUnit);
         //安装全局数据缓存监控
-        stage_generic_1['@:{generic#setup.all.elements.cache.monitor~rs}']();
+        stage_generic_1['l8']();
         //流程图监控元素之间的连线插件
-        let flowProvider = State.get('@:{global#provider.of.flow~rs}');
+        let flowProvider = State.get('me');
         if (flowProvider) {
-            flowProvider['@:{flow.provider#setup.flow.monitor~rs}']();
+            flowProvider['l3']();
         }
         //安装键盘监视
-        keyboard_1['@:{key#setup.monitor~rs}']();
+        keyboard_1['mf']();
         this.on('destroy', () => {
-            history_1['@:{history#clear~rs}']();
-            index_6['@:{destroy~rs}']();
-            stage_clipboard_1['@:{clear~rs}']();
-            stage_selection_1['@:{selection#reset.map~rs}']();
-            keyboard_1['@:{key#teardown.monitor~rs}']();
+            history_1['mI']();
+            index_6['_nN']();
+            stage_clipboard_1['_mc']();
+            stage_selection_1['l2']();
+            keyboard_1['mg']();
             if (flowProvider) {
-                flowProvider['@:{flow.provider#teardown.flow.monitor~rs}']();
+                flowProvider['l4']();
             }
-            stage_generic_1['@:{generic#teardown.all.elements.cache.monitor~rs}']();
-            State.off('@:{event#history.shift.change~rs}', ApplyState);
-            State.off('@:{event#magix.busy~rs}', MagixBusyTip);
-            State.off('@:{event#stage.clear.elements~rs}', clearStageElements);
-            State.off('@:{event#example.change~rs}', changeExample);
-            State.off('@:{event#stage.save.content~rs}', saveContent);
-            State.off('@:{event#stage.key.press~rs}', watchKeypress);
-            State.off('@:{event#stage.unit.change~rs}', changeUnit);
+            stage_generic_1['l9']();
+            State.off('l7', ApplyState);
+            State.off('mm', MagixBusyTip);
+            State.off('ml', clearStageElements);
+            State.off('mc', changeExample);
+            State.off('md', saveContent);
+            State.off('ma', watchKeypress);
+            State.off('mn', changeUnit);
         });
     },
     /**
      * 获取数据源数据，数据源在项目中多处使用，这里进行统一请求，并放置在State中，供其它view使用
      */
-    async '@:{fetch.data.source~rs}'() {
+    async '_nP'() {
         return new Promise(resolve => {
             if (config('getFieldUrl')) {
                 let s = new service_1();
-                s.all('@:{get.fields~rs}', (err, bag) => {
+                s.all('_nO', (err, bag) => {
                     let dataSourceList = bag.get('data', []);
                     let list = [{
-                            name: index_5('@:{lang#select.source~rs}'),
+                            name: index_5('ns'),
                             id: ''
                         }].concat(dataSourceList);
                     State.set({
-                        '@:{global#stage.data.source.error~rs}': err,
-                        '@:{global#stage.data.source.list~rs}': list,
-                        '@:{global#stage.data.source.list.map~rs}': toMap(list, 'id')
+                        'mh': err,
+                        'mi': list,
+                        'mj': toMap(list, 'id')
                     });
                     resolve();
                 });
@@ -593,12 +592,12 @@ return $createVNode($viewId,0,$vnode_0);
         });
     },
     async render() {
-        index_6["@:{support.panels~rs}"]();
-        let m = mark(this, '@:{render~rs}');
-        await this['@:{fetch.data.source~rs}']();
+        index_6["_nw"]();
+        let m = mark(this, '_mh');
+        await this['_nP']();
         await this.digest();
         if (m()) {
-            index_6["@:{open.panels~rs}"]();
+            index_6["_nQ"]();
             /**
              * 如果地址栏有id且配置了获取内容的url，则从接口读取内容
              * 否则如果配置了模板接口，则从模板列表中随机选择一个
@@ -612,35 +611,35 @@ return $createVNode($viewId,0,$vnode_0);
                 index_4.show('正在读取内容...');
                 let s = new service_1();
                 s.all({
-                    name: '@:{get.content~rs}',
-                    '@:{query~rs}': params
+                    name: '_nR',
+                    '_nF': params
                 }, (ex, bag) => {
                     index_4.hide();
                     if (!ex) {
                         let stage = bag.get('data.templateJson');
                         if (stage) {
-                            State.fire('@:{event#example.change~rs}', {
-                                '@:{excample.change.event#type~rs}': history_1['@:{history#example.from.remote~rs}'],
-                                '@:{excample.change.event#title~rs}': params.id,
-                                '@:{excample.change.event#stage~rs}': stage
+                            State.fire('mc', {
+                                'l3': history_1['mD'],
+                                'l4': params.id,
+                                'l2': stage
                             });
                         }
                     }
                 });
             }
             else if (templateUrl &&
-                const_1['@:{const#random.examples~rs}']) { //如果有示例配置,且允许显示随机示例
+                const_1['ma']) { //如果有示例配置,且允许显示随机示例
                 index_4.show('正在加载示例...');
-                await example_1["@:{load~rs}"]();
+                await example_1["_mT"]();
                 index_4.hide();
             }
             else {
-                history_1['@:{history#save.default~rs}']();
+                history_1['mE']();
             }
         }
     },
     '$doc<dragover,drop>'(e) {
-        this['@:{prevent.default~rs}'](e);
+        this['_nS'](e);
     }
 }).merge(index_2);
 

@@ -4,13 +4,13 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("gallery/mx-runner/index",["magix5"],(require,exports,module)=>{
+define("5j/5m/index",["5c"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
  */
-let magix_1 = require("magix5");
+let magix_1 = require("5c");
 let { toTry } = magix_1;
 let setT = fn => setTimeout(fn, 16);
 let cancelT = clearTimeout;
@@ -73,7 +73,7 @@ let startTimeoutWork = () => {
     }
 };
 module.exports= {
-    '@:{task.add~rs}'(interval, fn) {
+    '_mr'(interval, fn) {
         rafList.push({
             i: interval || 15,
             f: fn,
@@ -81,7 +81,7 @@ module.exports= {
         });
         startRafWork();
     },
-    '@:{task.remove~rs}'(fn) {
+    '_mq'(fn) {
         for (let o, i = 0; i < rafList.length; i++) {
             o = rafList[i];
             if (!o.r && o.f == fn) {
@@ -91,7 +91,7 @@ module.exports= {
             }
         }
     },
-    '@:{task.add.background~rs}'(interval, fn) {
+    '_nl'(interval, fn) {
         tList.push({
             i: interval || 15,
             f: fn,
@@ -99,7 +99,7 @@ module.exports= {
         });
         startTimeoutWork();
     },
-    '@:{task.remove.background~rs}'(fn) {
+    '_ni'(fn) {
         for (let o, i = 0; i < tList.length; i++) {
             o = tList[i];
             if (!o.r && o.f == fn) {

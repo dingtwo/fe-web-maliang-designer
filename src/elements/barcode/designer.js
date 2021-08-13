@@ -4,37 +4,37 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/barcode/designer",["magix5","../../designer/const","../../designer/enum","../../designer/props","../../designer/transform","../../provider/barcode","../normal"],(require,exports,module)=>{
+define("61/barcode/designer",["5c","../../5b/5e","../../5b/enum","../../5b/6c","../../5b/5f","../../5r/barcode","../6p"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let const_1 = require("../../designer/const");
-let enum_1 = require("../../designer/enum");
-let props_1 = require("../../designer/props");
-let transform_1 = require("../../designer/transform");
-let barcode_1 = require("../../provider/barcode");
-let normal_1 = require("../normal");
+let magix_1 = require("5c");
+let const_1 = require("../../5b/5e");
+let enum_1 = require("../../5b/enum");
+let props_1 = require("../../5b/6c");
+let transform_1 = require("../../5b/5f");
+let barcode_1 = require("../../5r/barcode");
+let normal_1 = require("../6p");
 let { config } = magix_1;
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/barcode/dshow"
+            view: "61/barcode/dshow"
         });
     }
 }).static({
     type: 'barcode',
-    title: '@:{lang#elements.barcode~rs}',
+    title: 'nO',
     icon: '&#xe6c8;',
     //元素在设计器里，支持哪些修改操作。特指在设计区中能快捷修改的，非属性面板中的修改。
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.width~rs}'] | //允许修改宽
-        enum_1['@:{enum#modifier.height~rs}'] | //允许修改高
-        enum_1['@:{enum#modifier.rotate~rs}'] | //允许旋转
-        enum_1['@:{enum#modifier.nomask~rs}'],
+    '_oG': enum_1['mb'] | //允许修改宽
+        enum_1['mc'] | //允许修改高
+        enum_1['me'] | //允许旋转
+        enum_1['mf'],
     //哪些属性参与移动，大部分元素只有x y参与移动，但对于svg元素，会有多个点参与移动
-    '@:{move.props~rs}': [{
+    '_oj': [{
             key: 'x',
             use: 'x'
         }, {
@@ -43,17 +43,17 @@ module.exports= normal_1.extend({
         }],
     //'@:{allowed.total.count}':3,
     //获取元素默认的属性
-    '@:{get.props~rs}'(x, y) {
+    '_m2'(x, y) {
         return {
-            height: const_1['@:{const#to.unit~rs}'](80),
+            height: const_1['l3'](80),
             alpha: 1,
-            x: const_1['@:{const#to.unit~rs}'](x),
-            y: const_1['@:{const#to.unit~rs}'](y),
+            x: const_1['l3'](x),
+            y: const_1['l3'](y),
             rotate: 0,
-            width: const_1['@:{const#to.unit~rs}'](200),
+            width: const_1['l3'](200),
             text: '',
             linewidth: 2,
-            tfs: const_1['@:{const#to.unit~rs}'](14),
+            tfs: const_1['l3'](14),
             color: '#000000',
             format: 'code128',
             showText: true,
@@ -70,136 +70,136 @@ module.exports= normal_1.extend({
     //属性面板中的控制列表
     props: [{
             key: 'tfs',
-            '@:{is.scale.and.unit.field~rs}': 1,
+            '_nA': 1,
         }, {
-            tip: '@:{lang#props.x~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nP',
+            type: props_1["l2"],
             key: 'x',
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            '_nA': 1,
             json: 1, //最终从设计器获取数据时，是否序列化当前属性
         }, {
-            tip: '@:{lang#props.y~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nQ',
+            type: props_1["l2"],
             key: 'y',
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            '_nA': 1,
             json: 1,
         }, {
-            tip: '@:{lang#props.width~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nR',
+            type: props_1["l2"],
             key: 'width',
-            min: () => const_1["@:{const#to.unit~rs}"](20),
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            min: () => const_1["l3"](20),
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            '_nA': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.height~rs}',
+            tip: 'nS',
             key: 'height',
-            type: props_1["@:{eprops#number~rs}"],
-            min: () => const_1["@:{const#to.unit~rs}"](20),
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            type: props_1["l2"],
+            min: () => const_1["l3"](20),
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            '_nA': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.rotate~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nT',
+            type: props_1["l2"],
             key: 'rotate',
             min: -360,
             max: 360,
             json: 1
         }, {
-            tip: '@:{lang#props.alpha~rs}',
+            tip: 'nU',
             key: 'alpha',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["l2"],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"],
-            '@:{if.show~rs}'(props) {
+            type: props_1["ms"],
+            '_py'(props) {
                 return !props.bind.url;
             }
         }, {
-            tip: '@:{lang#props.text.content~rs}',
+            tip: 'nV',
             key: 'text',
-            type: props_1["@:{eprops#text.area~rs}"],
+            type: props_1["l7"],
             json: 1,
-            '@:{if.show~rs}'(props) {
+            '_py'(props) {
                 return !props.bind.url;
             }
         }, {
-            type: props_1["@:{eprops#spliter~rs}"],
-            '@:{if.show~rs}'(props) {
+            type: props_1["ms"],
+            '_py'(props) {
                 return !props.text && config('getFieldUrl');
             }
         }, {
-            tip: '@:{lang#props.bind.fields~rs}',
+            tip: 'nW',
             key: 'bind',
-            type: props_1["@:{eprops#bind.field~rs}"],
+            type: props_1["mb"],
             json: 1,
             max: 1,
-            '@:{if.show~rs}'(props) {
+            '_py'(props) {
                 return !props.text && config('getFieldUrl');
             }
         }, {
-            type: props_1["@:{eprops#spliter~rs}"]
+            type: props_1["ms"]
         }, {
-            tip: '@:{lang#props.barcode.format~rs}',
+            tip: 'nX',
             key: 'format',
-            type: props_1["@:{eprops#dropdown~rs}"],
-            items: barcode_1["@:{types~rs}"],
+            type: props_1["l9"],
+            items: barcode_1["_nL"],
             json: 1
         }, {
-            tip: '@:{lang#props.show.text~rs}',
+            tip: 'nY',
             key: 'showText',
-            type: props_1["@:{eprops#boolean~rs}"],
+            type: props_1["l4"],
             json: 1
         }, {
-            tip: '@:{lang#props.line.color~rs}',
+            tip: 'nZ',
             key: 'color',
-            type: props_1["@:{eprops#color~rs}"],
+            type: props_1["l3"],
             json: 1
         }, {
-            tip: '@:{lang#props.line.width~rs}',
+            tip: 'n0',
             key: 'linewidth',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["l2"],
             min: 1,
             max: 8,
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"]
+            type: props_1["ms"]
         }, {
-            tip: '@:{lang#props.official.website~rs}',
+            tip: 'n1',
             key: 'ow',
-            type: props_1["@:{eprops#link~rs}"]
+            type: props_1["mm"]
         }, {
-            tip: '@:{lang#props.help~rs}',
-            type: props_1["@:{eprops#link~rs}"],
+            tip: 'n2',
+            type: props_1["mm"],
             key: 'help'
         }, {
-            tip: '@:{lang#props.title~rs}',
+            tip: 'n3',
             key: 'ename',
-            type: props_1["@:{eprops#text.input~rs}"],
+            type: props_1["ma"],
             json: 1
         }, {
-            tip: '@:{lang#props.locked~rs}',
+            tip: 'n4',
             key: 'locked',
-            type: props_1["@:{eprops#boolean~rs}"],
+            type: props_1["l4"],
             free: true,
             json: 1
         }]

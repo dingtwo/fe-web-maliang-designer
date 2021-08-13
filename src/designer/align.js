@@ -4,7 +4,7 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("designer/align",["magix5"],(require,exports,module)=>{
+define("5b/align",["5c"],(require,exports,module)=>{
 
 
 /*
@@ -13,32 +13,31 @@ define("designer/align",["magix5"],(require,exports,module)=>{
 /**
  * 显示对齐辅助线的view
  */
-let magix_1 = require("magix5");
+let magix_1 = require("5c");
 let { State, View } = magix_1;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0=[],
+let $temp_var,$vnode_0=[],
 {
 	x,
 	y,}=$dataFromView;
-$__line=1;$__art="{{if x}}";$__ctrl="if(x){";
+
 if(x){
-$__line=2;$__art="{{each x as xp}}";$__ctrl="for(let $q_c_ecabxh=x.length,$q_key_rwhqhpatv=0;$q_key_rwhqhpatv<$q_c_ecabxh;$q_key_rwhqhpatv++){let xp=x[$q_key_rwhqhpatv];";
-for(let $q_c_ecabxh=x.length,$q_key_rwhqhpatv=0;$q_key_rwhqhpatv<$q_c_ecabxh;$q_key_rwhqhpatv+=1){
-let xp=x[$q_key_rwhqhpatv];
-$vnode_0.push($createVNode('div',{'class': 'rd-_assets_index_less_-background-color-brand-a60 rd-_assets_index_less_-height-1 rd-_assets_index_less_-pa rd-_assets_index_less_-transform-y-n50 rd-_assets_index_less_-z-index-1','style': 'top:'+($__line=3,$__art='{{=xp[0]}}',$__ctrl='<%=xp[0]%>',(xp[0]))+'px;left:'+($__line=3,$__art='{{=xp[1]}}',$__ctrl='<%=xp[1]%>',(xp[1]))+'px;width:'+($__line=3,$__art='{{=xp[2]-xp[1]}}',$__ctrl='<%=xp[2]-xp[1]%>',(xp[2]-xp[1]))+'px',}));
+
+for(let $q_c_jlpsor=x.length,$q_key_ugjgjxt=0;$q_key_ugjgjxt<$q_c_jlpsor;$q_key_ugjgjxt+=1){
+let xp=x[$q_key_ugjgjxt];
+$vnode_0.push($createVNode('div',{'class': 'rd-mJ rd-mz rd-n5 rd-nb rd-ol','style': 'top:'+(xp[0])+'px;left:'+(xp[1])+'px;width:'+(xp[2]-xp[1])+'px',}));
 }
-}$__line=6;$__art="{{if y}}";$__ctrl="if(y){";
+}
 if(y){
-$__line=7;$__art="{{each y as yp}}";$__ctrl="for(let $q_c_dsihyyfg=y.length,$q_key_duhkinxfm=0;$q_key_duhkinxfm<$q_c_dsihyyfg;$q_key_duhkinxfm++){let yp=y[$q_key_duhkinxfm];";
-for(let $q_c_dsihyyfg=y.length,$q_key_duhkinxfm=0;$q_key_duhkinxfm<$q_c_dsihyyfg;$q_key_duhkinxfm+=1){
-let yp=y[$q_key_duhkinxfm];
-$vnode_0.push($createVNode('div',{'class': 'rd-_assets_index_less_-background-color-brand-a60 rd-_assets_index_less_-pa rd-_assets_index_less_-transform-x-n50 rd-_assets_index_less_-width-1 rd-_assets_index_less_-z-index-1','style': 'left:'+($__line=8,$__art='{{=yp[0]}}',$__ctrl='<%=yp[0]%>',(yp[0]))+'px;top:'+($__line=8,$__art='{{=yp[1]}}',$__ctrl='<%=yp[1]%>',(yp[1]))+'px;height:'+($__line=8,$__art='{{=yp[2]-yp[1]}}',$__ctrl='<%=yp[2]-yp[1]%>',(yp[2]-yp[1]))+'px',}));
+
+for(let $q_c_dhtbqyfkr=y.length,$q_key_ptkezbm=0;$q_key_ptkezbm<$q_c_dhtbqyfkr;$q_key_ptkezbm+=1){
+let yp=y[$q_key_ptkezbm];
+$vnode_0.push($createVNode('div',{'class': 'rd-mJ rd-mz rd-n5 rd-nd rd-om','style': 'left:'+(yp[0])+'px;top:'+(yp[1])+'px;height:'+(yp[2]-yp[1])+'px',}));
 }
 } 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/align.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init() {
         let update = e => {
             this.digest({
@@ -46,9 +45,9 @@ return $createVNode($viewId,0,$vnode_0);
                 y: e.y
             });
         };
-        State.on('@:{event#stage.find.snap.element~rs}', update);
+        State.on('l2', update);
         this.on('destroy', () => {
-            State.off('@:{event#stage.find.snap.element~rs}', update);
+            State.off('l2', update);
         });
     },
     render() {

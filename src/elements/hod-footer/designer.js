@@ -4,60 +4,60 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/hod-footer/designer",["magix5","../../designer/const","../../designer/enum","../../designer/props","../../designer/transform","../normal"],(require,exports,module)=>{
+define("61/hod-footer/designer",["5c","../../5b/5e","../../5b/enum","../../5b/6c","../../5b/5f","../6p"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let const_1 = require("../../designer/const");
-let enum_1 = require("../../designer/enum");
-let props_1 = require("../../designer/props");
-let transform_1 = require("../../designer/transform");
-let normal_1 = require("../normal");
+let magix_1 = require("5c");
+let const_1 = require("../../5b/5e");
+let enum_1 = require("../../5b/enum");
+let props_1 = require("../../5b/6c");
+let transform_1 = require("../../5b/5f");
+let normal_1 = require("../6p");
 let { State } = magix_1;
 let transformFields = ['width', 'height', 'borderLeftWidth', 'borderTopWidth', 'borderBottomWidth', 'borderRightWidth'];
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/hod-footer/dshow"
+            view: "61/hod-footer/dshow"
         });
         let update = () => {
             let element = this.get('element');
-            let page = State.get('@:{global#stage.page~rs}');
-            let scale = State.get('@:{global#stage.scale~rs}');
+            let page = State.get('ma');
+            let scale = State.get('l3');
             let { ctrl, props } = element;
             props.rows[0].cols[0].width = page.width * scale;
-            ctrl['@:{update.props~rs}'](props);
+            ctrl['_m3'](props);
         };
-        State.on('@:{event#stage.page.change~rs}', update);
+        State.on('l8', update);
         this.on('destroy', () => {
-            State.off('@:{event#stage.page.change~rs}', update);
+            State.off('l8', update);
         });
     }
 }).static({
     type: 'hod-footer',
-    as: enum_1['@:{enum#as.hod~rs}'],
-    title: '@:{lang#elements.print-footer~rs}',
+    as: enum_1['l5'],
+    title: 'pY',
     icon: '&#xe675;',
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.icon~rs}'] |
-        enum_1['@:{enum#modifier.nomask~rs}'],
-    '@:{allowed.to.hod~rs}': {
+    '_oG': enum_1['m_'] |
+        enum_1['mf'],
+    '_oi': {
         root: 1
     },
-    '@:{allowed.total.count~rs}': 1,
-    '@:{move.props~rs}': [{
+    '_m6': 1,
+    '_oj': [{
             key: 'x',
             use: 'x'
         }, {
             key: 'y',
             use: 'y'
         }],
-    '@:{update.props~rs}'(props) {
+    '_m3'(props) {
         let { rows } = props;
-        let page = State.get('@:{global#stage.page~rs}');
-        let scale = State.get('@:{global#stage.scale~rs}');
+        let page = State.get('ma');
+        let scale = State.get('l3');
         let height = 0, width = 0;
         for (let row of rows) {
             let w = 0;
@@ -74,8 +74,8 @@ module.exports= normal_1.extend({
         props.x = 0;
         props.y = page.pages * page.height * scale - height - page.marginBottom * scale;
     },
-    '@:{get.props~rs}'() {
-        let page = State.get('@:{global#stage.page~rs}');
+    '_m2'() {
+        let page = State.get('ma');
         return {
             x: 0,
             y: 0,
@@ -87,7 +87,7 @@ module.exports= normal_1.extend({
             pinY: true,
             help: '//github.com/xinglie/report-designer/issues/12',
             rows: [{
-                    height: const_1['@:{const#to.unit~rs}'](40),
+                    height: const_1['l3'](40),
                     cols: [{
                             width: page.width,
                             elements: [],
@@ -99,7 +99,7 @@ module.exports= normal_1.extend({
                             borderLeftWidth: 0,
                             borderLeftColor: '#cccccc',
                             borderTopStyle: 'dashed',
-                            borderTopWidth: const_1['@:{const#to.unit~rs}'](1),
+                            borderTopWidth: const_1['l3'](1),
                             borderTopColor: '#cccccc',
                             borderRightStyle: 'dashed',
                             borderRightWidth: 0,
@@ -114,14 +114,14 @@ module.exports= normal_1.extend({
     },
     props: [{
             key: 'rows',
-            '@:{json.encode~rs}'(dest, { rows }) {
-                transform_1['@:{transform#json.encode.cells~rs}'](dest, rows, transformFields);
+            '_pi'(dest, { rows }) {
+                transform_1['mh'](dest, rows, transformFields);
             },
-            '@:{unit.convert~rs}'({ rows }, toUnit) {
-                transform_1['@:{transform#unit.convert.cells~rs}'](rows, toUnit, transformFields);
+            '_nz'({ rows }, toUnit) {
+                transform_1['mi'](rows, toUnit, transformFields);
             },
-            '@:{stage.scale~rs}'(props, step, dest) {
-                transform_1['@:{transform#stage.scale.cells~rs}'](props, step, transformFields, dest);
+            '_oy'(props, step, dest) {
+                transform_1['mg'](props, step, transformFields, dest);
             }
         }, {
             //tip: '@:{lang#props.x}',
@@ -136,16 +136,16 @@ module.exports= normal_1.extend({
             //read: Transform["@:{transform#to.show.value}"],
             json: 1
         }, {
-            tip: '@:{lang#props.width~rs}',
+            tip: 'nR',
             key: 'width',
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            type: props_1["@:{eprops#label~rs}"],
+            read: transform_1["l5"],
+            type: props_1["md"],
             json: 1
         }, {
-            tip: '@:{lang#props.height~rs}',
+            tip: 'nS',
             key: 'height',
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            type: props_1["@:{eprops#label~rs}"],
+            read: transform_1["l5"],
+            type: props_1["md"],
             json: 1
         } /*, {
             tip: '@:{lang#props.rotate}',
@@ -156,57 +156,57 @@ module.exports= normal_1.extend({
             json: 1
         }*/,
         {
-            tip: '@:{lang#props.alpha~rs}',
+            tip: 'nU',
             key: 'alpha',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["l2"],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"],
-            '@:{if.show~rs}'(props) {
+            type: props_1["ms"],
+            '_py'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
             }
         }, {
-            tip: '@:{lang#props.cell.size.height~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'pZ',
+            type: props_1["l2"],
             read(x, props) {
                 let row = props.rows[0];
-                return transform_1["@:{transform#to.show.value~rs}"](row.height);
+                return transform_1["l5"](row.height);
             },
             write(x, props, e, changed) {
-                let v = transform_1["@:{transform#to.real.value~rs}"](x);
+                let v = transform_1["m_"](x);
                 props.rows[0].height = v;
-                changed['@:{size~rs}'] = 1;
+                changed['_l5'] = 1;
             },
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            min: () => const_1["@:{const#to.unit~rs}"](20),
-            '@:{if.show~rs}'(props) {
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            min: () => const_1["l3"](20),
+            '_py'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
             }
         }, {
-            type: props_1["@:{eprops#cell.style~rs}"],
-            '@:{if.show~rs}'(props) {
+            type: props_1["mg"],
+            '_py'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
             }
         }, {
-            type: props_1["@:{eprops#spliter~rs}"]
+            type: props_1["ms"]
         }, {
-            tip: '@:{lang#props.help~rs}',
-            type: props_1["@:{eprops#link~rs}"],
+            tip: 'n2',
+            type: props_1["mm"],
             key: 'help'
         }, {
-            tip: '@:{lang#props.title~rs}',
+            tip: 'n3',
             key: 'ename',
-            type: props_1["@:{eprops#text.input~rs}"],
+            type: props_1["ma"],
             json: 1
         }, {
-            tip: '@:{lang#props.locked~rs}',
+            tip: 'n4',
             key: 'locked',
-            type: props_1["@:{eprops#boolean~rs}"],
+            type: props_1["l4"],
             free: true,
             json: 1
         }]

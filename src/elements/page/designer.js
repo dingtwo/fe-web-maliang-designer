@@ -4,25 +4,25 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/page/designer",["magix5","../../designer/const","../../designer/props"],(require,exports,module)=>{
+define("61/page/designer",["5c","../../5b/5e","../../5b/6c"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let const_1 = require("../../designer/const");
-let props_1 = require("../../designer/props");
+let magix_1 = require("5c");
+let const_1 = require("../../5b/5e");
+let props_1 = require("../../5b/6c");
 let { config } = magix_1;
 let emptySize = '400x500'; //选择为空时的默认尺寸
 let { round } = Math;
 module.exports= {
-    title: '@:{lang#elements.page~rs}',
-    '@:{get.props~rs}'() {
-        let size = const_1["@:{const#page.width~rs}"] + 'x' + const_1["@:{const#page.height~rs}"];
+    title: 'qu',
+    '_m2'() {
+        let size = const_1["mh"] + 'x' + const_1["mi"];
         return {
-            width: const_1['@:{const#to.unit~rs}'](const_1["@:{const#page.width~rs}"]),
-            height: const_1['@:{const#to.unit~rs}'](const_1["@:{const#page.height~rs}"]),
+            width: const_1['l3'](const_1["mh"]),
+            height: const_1['l3'](const_1["mi"]),
             background: '#ffffff',
             backgroundImage: '',
             backgroundRepeat: 'full',
@@ -34,7 +34,7 @@ module.exports= {
             marginBottom: 0,
             marginLeft: 0,
             preformat: false,
-            unit: magix_1.State.get('@:{global#stage.unit~rs}'),
+            unit: magix_1.State.get('l4'),
             //grid: false,
             //snapGrid: false,
             readonly: false,
@@ -46,7 +46,7 @@ module.exports= {
             yOffset: 0,
             backgroundXOffset: 0,
             backgroundYOffset: 0,
-            snapElement: const_1['@:{const#page.enable.snap.align.elements~rs}'] ? true : false,
+            snapElement: const_1['mn'] ? true : false,
             pages: 1,
             title: ''
         };
@@ -55,65 +55,65 @@ module.exports= {
             key: 'readonly',
             json: 1
         }, {
-            tip: '@:{lang#props.page.unit~rs}',
+            tip: 'qv',
             key: 'unit',
-            type: props_1['@:{eprops#dropdown~rs}'],
+            type: props_1['l9'],
             items: [{
-                    text: '@:{lang#unit.human.mm~rs}',
+                    text: 'qw',
                     value: 'mm'
                 }, {
-                    text: '@:{lang#unit.human.cm~rs}',
+                    text: 'qx',
                     value: 'cm'
                 }, {
-                    text: '@:{lang#unit.human.px~rs}',
+                    text: 'qy',
                     value: 'px'
                 }, {
-                    text: '@:{lang#unit.human.pt~rs}',
+                    text: 'qz',
                     value: 'pt'
                 }, {
-                    text: '@:{lang#unit.human.in~rs}',
+                    text: 'qA',
                     value: 'in'
                 }, {
-                    text: '@:{lang#unit.human.pc~rs}',
+                    text: 'qB',
                     value: 'pc'
                 }, {
-                    text: '@:{lang#unit.human.q~rs}',
+                    text: 'qC',
                     value: 'q'
                 }],
-            disabled: const_1['@:{const#unit.allow.change~rs}'] ? false : true
+            disabled: const_1['mG'] ? false : true
         }, {
-            tip: '@:{lang#props.width~rs}',
+            tip: 'nR',
             key: 'width',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["l2"],
             min: 0,
-            max: () => const_1['@:{const#to.unit~rs}'](const_1['@:{const#page.max.width~rs}']),
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            max: () => const_1['l3'](const_1['mj']),
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            '_nA': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.height~rs}',
+            tip: 'nS',
             key: 'height',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["l2"],
             min: 0,
-            max: () => const_1['@:{const#to.unit~rs}'](const_1['@:{const#page.max.height~rs}']),
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            max: () => const_1['l3'](const_1['mk']),
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            '_nA': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.pages~rs}',
+            tip: 'qD',
             key: 'pages',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["l2"],
             min: 1,
             max: 5,
             json: 1
         }, {
-            tip: '@:{lang#props.page.paper.size~rs}',
-            type: props_1["@:{eprops#dropdown~rs}"],
+            tip: 'qE',
+            type: props_1["l9"],
             key: 'paper',
             items: [{
-                    text: '@:{lang#please.select~rs}',
+                    text: 'qF',
                     value: ''
                 }, {
                     text: 'A1',
@@ -181,7 +181,7 @@ module.exports= {
                 }],
             read(v) {
                 let [width, height] = v.split('x');
-                return `${round(const_1['@:{const#to.px~rs}'](width))}x${round(const_1['@:{const#to.px~rs}'](height))}`;
+                return `${round(const_1['mM'](width))}x${round(const_1['mM'](height))}`;
             },
             write(v, props) {
                 if (!v) {
@@ -189,36 +189,36 @@ module.exports= {
                 }
                 if (v) {
                     let [width, height] = v.split('x');
-                    props.width = const_1['@:{const#to.unit~rs}'](width | 0);
-                    props.height = const_1['@:{const#to.unit~rs}'](height | 0);
+                    props.width = const_1['l3'](width | 0);
+                    props.height = const_1['l3'](height | 0);
                 }
                 return v;
             },
         }, {
-            tip: '@:{lang#props.x.offset~rs}',
+            tip: 'qG',
             key: 'xOffset',
-            type: props_1["@:{eprops#number~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            type: props_1["l2"],
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            '_nA': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.y.offset~rs}',
+            tip: 'qH',
             key: 'yOffset',
-            type: props_1["@:{eprops#number~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            type: props_1["l2"],
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            '_nA': 1,
             json: 1
         },
         {
-            type: props_1["@:{eprops#spliter~rs}"],
+            type: props_1["ms"],
         }, {
-            tip: '@:{lang#props.screen.size~rs}',
+            tip: 'qI',
             key: 'screen',
-            type: props_1["@:{eprops#dropdown~rs}"],
+            type: props_1["l9"],
             items: [{
-                    text: '@:{lang#please.select~rs}',
+                    text: 'qF',
                     value: ''
                 }, {
                     text: '1024x600',
@@ -250,7 +250,7 @@ module.exports= {
                 }],
             read(v) {
                 let [width, height] = v.split('x');
-                return `${round(const_1['@:{const#to.px~rs}'](width))}x${round(const_1['@:{const#to.px~rs}'](height))}`;
+                return `${round(const_1['mM'](width))}x${round(const_1['mM'](height))}`;
             },
             write(v, props) {
                 if (!v) {
@@ -258,36 +258,36 @@ module.exports= {
                 }
                 if (v) {
                     let [width, height] = v.split('x');
-                    props.width = const_1['@:{const#to.unit~rs}'](width | 0);
-                    props.height = const_1['@:{const#to.unit~rs}'](height | 0);
+                    props.width = const_1['l3'](width | 0);
+                    props.height = const_1['l3'](height | 0);
                 }
                 return v;
             },
         }, {
-            tip: '@:{lang#props.page.scale~rs}',
+            tip: 'qJ',
             key: 'scaleType',
-            type: props_1["@:{eprops#dropdown~rs}"],
+            type: props_1["l9"],
             items: [{
-                    text: '@:{lang#props.scale.auto~rs}',
+                    text: 'qK',
                     value: 'auto'
                 }, {
-                    text: '@:{lang#props.scale.full~rs}',
+                    text: 'qL',
                     value: 'full'
                 }],
         },
         {
-            type: props_1["@:{eprops#spliter~rs}"],
+            type: props_1["ms"],
         }, {
-            tip: '@:{lang#props.page.title~rs}',
+            tip: 'qM',
             key: 'title',
-            type: props_1['@:{eprops#text.input~rs}'],
+            type: props_1['ma'],
             json: 1
         }, {
-            tip: '@:{lang#props.element.snap~rs}',
+            tip: 'qN',
             key: 'snapElement',
-            type: props_1['@:{eprops#boolean~rs}'],
-            '@:{if.show~rs}'() {
-                return const_1['@:{const#page.enable.snap.align.elements~rs}'];
+            type: props_1['l4'],
+            '_py'() {
+                return const_1['mn'];
             }
         } /*, {
             tip: '@:{lang#props.page.grid}',
@@ -324,21 +324,21 @@ module.exports= {
             }
         }*/,
         {
-            tip: '@:{lang#props.background~rs}',
+            tip: 'oh',
             key: 'background',
-            type: props_1["@:{eprops#color~rs}"],
+            type: props_1["l3"],
             // '@:{if.show}'(page) {
             //     return !page.grid;
             // },
             json: 1
         }, {
-            tip: '@:{lang#props.background.image~rs}',
+            tip: 'qO',
             //dockTop: true,
             key: 'backgroundImage',
-            type: props_1["@:{eprops#image~rs}"],
+            type: props_1["l8"],
             write(v, props, e) {
-                props.backgroundWidth = const_1['@:{const#to.unit~rs}'](e.width);
-                props.backgroundHeight = const_1['@:{const#to.unit~rs}'](e.height);
+                props.backgroundWidth = const_1['l3'](e.width);
+                props.backgroundHeight = const_1['l3'](e.height);
                 if (props.preformat &&
                     v) {
                     props.width = props.backgroundWidth;
@@ -346,14 +346,14 @@ module.exports= {
                 }
                 return v;
             },
-            '@:{if.show~rs}'() {
+            '_py'() {
                 return config('getImageUrl'); // && !page.grid;
             },
             json: 1
         }, {
-            tip: '@:{lang#props.preformat~rs}',
+            tip: 'qP',
             key: 'preformat',
-            type: props_1['@:{eprops#boolean~rs}'],
+            type: props_1['l4'],
             json: 1,
             write(v, props) {
                 if (v) {
@@ -363,42 +363,42 @@ module.exports= {
                 }
                 return v;
             },
-            '@:{if.show~rs}'(props) {
+            '_py'(props) {
                 return props.backgroundImage;
             }
         }, {
-            tip: '@:{lang#props.background.repeat~rs}',
+            tip: 'qQ',
             key: 'backgroundRepeat',
-            type: props_1["@:{eprops#dropdown~rs}"],
+            type: props_1["l9"],
             items: [{
-                    text: '@:{lang#props.full~rs}',
+                    text: 'qR',
                     value: 'full'
                 }, {
-                    text: '@:{lang#props.no.repeat~rs}',
+                    text: 'qS',
                     value: 'no-repeat'
                 }, {
-                    text: '@:{lang#props.repeat.x~rs}',
+                    text: 'qT',
                     value: 'repeat-x'
                 }, {
-                    text: '@:{lang#props.repeat.y~rs}',
+                    text: 'qU',
                     value: 'repeat-y'
                 }, {
-                    text: '@:{lang#props.repeat~rs}',
+                    text: 'qV',
                     value: 'repeat'
                 }],
-            '@:{if.show~rs}'(page) {
+            '_py'(page) {
                 return page.backgroundImage && !page.preformat; //&&!page.grid;
             },
             json: 1
         }, {
-            tip: '@:{lang#props.image.width~rs}',
+            tip: 'qW',
             key: 'backgroundWidth',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["l2"],
             min: 0,
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
-            '@:{if.show~rs}'(props) {
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            '_nA': 1,
+            '_py'(props) {
                 let img = props.backgroundImage;
                 let repeat = props.backgroundRepeat;
                 let support = repeat !== 'full';
@@ -406,14 +406,14 @@ module.exports= {
             },
             json: 1
         }, {
-            tip: '@:{lang#props.image.height~rs}',
+            tip: 'qX',
             key: 'backgroundHeight',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["l2"],
             min: 0,
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
-            '@:{if.show~rs}'(props) {
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            '_nA': 1,
+            '_py'(props) {
                 let img = props.backgroundImage;
                 let repeat = props.backgroundRepeat;
                 let support = repeat != 'full';
@@ -421,38 +421,38 @@ module.exports= {
             },
             json: 1
         }, {
-            tip: '@:{lang#props.image.reset~rs}',
-            type: props_1["@:{eprops#image.reset~rs}"],
-            '@:{if.show~rs}'(props) {
+            tip: 'p8',
+            type: props_1["m_"],
+            '_py'(props) {
                 let img = props.backgroundImage;
                 let repeat = props.backgroundRepeat;
                 let support = repeat != 'full';
                 return img && support;
             }
         }, {
-            tip: '@:{lang#props.offset.hor~rs}',
+            tip: 'qY',
             key: 'backgroundXOffset',
-            type: props_1["@:{eprops#number~rs}"],
-            min: () => -const_1['@:{const#to.unit~rs}'](const_1['@:{const#page.max.width~rs}']),
-            max: () => const_1['@:{const#to.unit~rs}'](const_1['@:{const#page.max.width~rs}']),
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
-            '@:{if.show~rs}'(props) {
+            type: props_1["l2"],
+            min: () => -const_1['l3'](const_1['mj']),
+            max: () => const_1['l3'](const_1['mj']),
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            '_nA': 1,
+            '_py'(props) {
                 return props.backgroundImage &&
                     props.backgroundRepeat != 'full';
             },
             json: 1
         }, {
-            tip: '@:{lang#props.offset.ver~rs}',
+            tip: 'qZ',
             key: 'backgroundYOffset',
-            type: props_1["@:{eprops#number~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
-            min: () => -const_1['@:{const#to.unit~rs}'](const_1['@:{const#page.max.height~rs}']),
-            max: () => const_1['@:{const#to.unit~rs}'](const_1['@:{const#page.max.height~rs}']),
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            '@:{if.show~rs}'(props) {
+            type: props_1["l2"],
+            '_nA': 1,
+            min: () => -const_1['l3'](const_1['mk']),
+            max: () => const_1['l3'](const_1['mk']),
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            '_py'(props) {
                 return props.backgroundImage &&
                     props.backgroundRepeat != 'full';
             },

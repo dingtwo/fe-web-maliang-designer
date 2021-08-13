@@ -4,133 +4,133 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/clock/designer",["../../designer/const","../../designer/props","../../designer/transform","../normal","../../designer/enum"],(require,exports,module)=>{
+define("61/clock/designer",["../../5b/5e","../../5b/6c","../../5b/5f","../6p","../../5b/enum"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let const_1 = require("../../designer/const");
-let props_1 = require("../../designer/props");
-let transform_1 = require("../../designer/transform");
-let normal_1 = require("../normal");
-let enum_1 = require("../../designer/enum");
+let const_1 = require("../../5b/5e");
+let props_1 = require("../../5b/6c");
+let transform_1 = require("../../5b/5f");
+let normal_1 = require("../6p");
+let enum_1 = require("../../5b/enum");
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/clock/index"
+            view: "61/clock/index"
         });
     }
 }).static({
     type: 'clock',
-    title: '@:{lang#elements.clock~rs}',
+    title: 'oE',
     icon: '&#xe7f1;',
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.size~rs}'] |
-        enum_1['@:{enum#modifier.sync.size~rs}'],
-    '@:{move.props~rs}': [{
+    '_oG': enum_1['ma'] |
+        enum_1['mj'],
+    '_oj': [{
             key: 'x',
             use: 'x'
         }, {
             key: 'y',
             use: 'y'
         }],
-    '@:{get.props~rs}'(x, y) {
+    '_m2'(x, y) {
         return {
             alpha: 1,
-            width: const_1['@:{const#to.unit~rs}'](150),
-            height: const_1['@:{const#to.unit~rs}'](150),
+            width: const_1['l3'](150),
+            height: const_1['l3'](150),
             dialColor: '#00000040',
             handleColor: '#ffffff',
             markColor: '#ffffff80',
-            x: const_1['@:{const#to.unit~rs}'](x),
-            y: const_1['@:{const#to.unit~rs}'](y),
+            x: const_1['l3'](x),
+            y: const_1['l3'](y),
             locked: false
         };
     },
     props: [{
-            tip: '@:{lang#props.x~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nP',
+            type: props_1["l2"],
             key: 'x',
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            '_nA': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.y~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nQ',
+            type: props_1["l2"],
             key: 'y',
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            '_nA': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.width~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nR',
+            type: props_1["l2"],
             key: 'width',
-            min: () => const_1['@:{const#to.unit~rs}'](100),
-            max: () => const_1['@:{const#to.unit~rs}'](400),
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            min: () => const_1['l3'](100),
+            max: () => const_1['l3'](400),
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            '_nA': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.height~rs}',
+            tip: 'nS',
             key: 'height',
-            type: props_1["@:{eprops#number~rs}"],
-            min: () => const_1['@:{const#to.unit~rs}'](100),
-            max: () => const_1['@:{const#to.unit~rs}'](400),
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            type: props_1["l2"],
+            min: () => const_1['l3'](100),
+            max: () => const_1['l3'](400),
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            '_nA': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.alpha~rs}',
+            tip: 'nU',
             key: 'alpha',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["l2"],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"]
+            type: props_1["ms"]
         }, {
-            tip: '@:{lang#props.clock.dial.color~rs}',
+            tip: 'oF',
             key: 'dialColor',
-            type: props_1["@:{eprops#color~rs}"],
+            type: props_1["l3"],
             alpha: true,
             json: 1
         }, {
-            tip: '@:{lang#props.clock.handle.color~rs}',
+            tip: 'oG',
             key: 'handleColor',
-            type: props_1["@:{eprops#color~rs}"],
+            type: props_1["l3"],
             alpha: true,
             json: 1
         }, {
-            tip: '@:{lang#props.clock.mark.color~rs}',
+            tip: 'oH',
             key: 'markColor',
-            type: props_1["@:{eprops#color~rs}"],
+            type: props_1["l3"],
             alpha: true,
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"]
+            type: props_1["ms"]
         }, {
-            tip: '@:{lang#props.title~rs}',
+            tip: 'n3',
             key: 'ename',
-            type: props_1["@:{eprops#text.input~rs}"],
+            type: props_1["ma"],
             json: 1
         }, {
-            tip: '@:{lang#props.locked~rs}',
+            tip: 'n4',
             key: 'locked',
-            type: props_1["@:{eprops#boolean~rs}"],
+            type: props_1["l4"],
             free: true,
             json: 1
         }]

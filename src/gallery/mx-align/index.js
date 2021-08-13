@@ -4,50 +4,50 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("gallery/mx-align/index",["magix5"],(require,exports,module)=>{
+define("5j/6r/index",["5c"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
+let magix_1 = require("5c");
 let actions = [{
-        '@:{g.align#icon~rs}': '&#xe687;',
-        '@:{g.align#title~rs}': '@:{lang#mx-gallery.font.align.left~rs}',
-        '@:{g.align#type~rs}': 'hpos',
-        '@:{g.align#value~rs}': 'flex-start'
+        'l2': '&#xe687;',
+        'l3': 'ro',
+        'l4': 'hpos',
+        'l5': 'flex-start'
     }, {
-        '@:{g.align#icon~rs}': '&#xe68a;',
-        '@:{g.align#title~rs}': '@:{lang#mx-gallery.font.align.center~rs}',
-        '@:{g.align#type~rs}': 'hpos',
-        '@:{g.align#value~rs}': 'center'
+        'l2': '&#xe68a;',
+        'l3': 'rp',
+        'l4': 'hpos',
+        'l5': 'center'
     }, {
-        '@:{g.align#icon~rs}': '&#xe686;',
-        '@:{g.align#title~rs}': '@:{lang#mx-gallery.font.align.right~rs}',
-        '@:{g.align#type~rs}': 'hpos',
-        '@:{g.align#value~rs}': 'flex-end'
+        'l2': '&#xe686;',
+        'l3': 'rq',
+        'l4': 'hpos',
+        'l5': 'flex-end'
     }, {
-        '@:{g.align#icon~rs}': '&#xe687;',
-        '@:{g.align#title~rs}': '@:{lang#mx-gallery.font.align.top~rs}',
-        '@:{g.align#type~rs}': 'vpos',
-        '@:{g.align#value~rs}': 'flex-start',
-        '@:{g.align#r90~rs}': 1
+        'l2': '&#xe687;',
+        'l3': 'rr',
+        'l4': 'vpos',
+        'l5': 'flex-start',
+        'l6': 1
     }, {
-        '@:{g.align#icon~rs}': '&#xe68a;',
-        '@:{g.align#title~rs}': '@:{lang#mx-gallery.font.align.middle~rs}',
-        '@:{g.align#type~rs}': 'vpos',
-        '@:{g.align#value~rs}': 'center',
-        '@:{g.align#r90~rs}': 1
+        'l2': '&#xe68a;',
+        'l3': 'rs',
+        'l4': 'vpos',
+        'l5': 'center',
+        'l6': 1
     }, {
-        '@:{g.align#icon~rs}': '&#xe686;',
-        '@:{g.align#title~rs}': '@:{lang#mx-gallery.font.align.bottom~rs}',
-        '@:{g.align#type~rs}': 'vpos',
-        '@:{g.align#value~rs}': 'flex-end',
-        '@:{g.align#r90~rs}': 1
+        'l2': '&#xe686;',
+        'l3': 'rt',
+        'l4': 'vpos',
+        'l5': 'flex-end',
+        'l6': 1
     }];
 module.exports= magix_1.View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf,$encodeQuote)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	disabled,
 	actions,
@@ -56,14 +56,13 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 $$_class,
 $vnode_2,
 $vnode_1;
-$vnode_1=[];$__line=2;$__art="{{each actions as a}}";$__ctrl="for(let $q_c_rovscnqi=actions.length,$q_key_fmrkahrte=0;$q_key_fmrkahrte<$q_c_rovscnqi;$q_key_fmrkahrte++){let a=actions[$q_key_fmrkahrte];";
-for(let $q_c_rovscnqi=actions.length,$q_key_fmrkahrte=0;$q_key_fmrkahrte<$q_c_rovscnqi;$q_key_fmrkahrte+=1){
-let a=actions[$q_key_fmrkahrte];
-$vnode_2=[$createVNode(0,($__line=3,$__art='{{=a[\'@:{g.align#icon~rs}\']}}',$__ctrl='<%=a[\'@:{g.align#icon~rs}\']%>',(a['@:{g.align#icon~rs}'])),1)];;$$_class='rd-_assets_index_less_-fl rd-_assets_index_less_-group-item rd-_assets_index_less_-tc rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-iconfont'+($__line=3,$__art='{{if a[\'@:{g.align#r90~rs}\']}}','');$__ctrl='<%if(a[\'@:{g.align#r90~rs}\']){%>';if(a['@:{g.align#r90~rs}']){;$$_class+=' rd-_assets_index_less_-r90'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_class+=''+($__line=3,$__art='{{if value[a[\'@:{g.align#type~rs}\']]==a[\'@:{g.align#value}\']}}','');$__ctrl='<%if(value[a[\'@:{g.align#type~rs}\']]==a[\'@:{g.align#value~rs}\']){%>';if(value[a['@:{g.align#type~rs}']]==a['@:{g.align#value~rs}']){;$$_class+=' rd-_assets_index_less_-active'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('li',{'title': ($__line=3,$__art='{{=i18n(a[\'@:{g.align#title~rs}\'])}}',$__ctrl='<%=i18n(a[\'@:{g.align#title~rs}\'])%>',(i18n(a['@:{g.align#title~rs}']))),'mx5-click': $viewId+'@:{set~rs}({type:\''+($__line=3,$__art='{{=a[\'@:{g.align#type~rs}\']}}',$__ctrl='<%=$encodeQuote(a[\'@:{g.align#type~rs}\'])%>',($encodeQuote(a['@:{g.align#type~rs}'])))+'\',v:\''+($__line=3,$__art='{{=a[\'@:{g.align#value~rs}\']}}',$__ctrl='<%=$encodeQuote(a[\'@:{g.align#value~rs}\'])%>',($encodeQuote(a['@:{g.align#value~rs}'])))+'\'})','class': $$_class,},$vnode_2));
-};$$_class='rd-_assets_index_less_-tag-ul rd-_assets_index_less_-unselectable'+($__line=1,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_assets_index_less_-notallowed'+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0=[$createVNode('ul',{'class': $$_class,},$vnode_1)]; 
+$vnode_1=[];
+for(let $q_c_wyqvmy=actions.length,$q_key_bpbjovk=0;$q_key_bpbjovk<$q_c_wyqvmy;$q_key_bpbjovk+=1){
+let a=actions[$q_key_bpbjovk];
+$vnode_2=[$createVNode(0,(a['l2']),1)];;$$_class='rd-mH rd-nG rd-mG rd-nk rd-l3';if(a['l6']){;$$_class+=' rd-mt';};if(value[a['l4']]==a['l5']){;$$_class+=' rd-nH';};$vnode_1.push($createVNode('li',{'title': (i18n(a['l3'])),'mx5-click': $viewId+'_qY({type:\''+($encodeQuote(a['l4']))+'\',v:\''+($encodeQuote(a['l5']))+'\'})','class': $$_class,},$vnode_2));
+};$$_class='rd-mn rd-mR';if(disabled){;$$_class+=' rd-nI';};$vnode_0=[$createVNode('ul',{'class': $$_class,},$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-align/index.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init() {
         this.set({
             actions
@@ -75,7 +74,7 @@ return $createVNode($viewId,0,$vnode_0);
     render() {
         this.digest();
     },
-    '@:{set~rs}<click>'(e) {
+    '_qY<click>'(e) {
         let me = this;
         if (me.get('disabled')) {
             return;

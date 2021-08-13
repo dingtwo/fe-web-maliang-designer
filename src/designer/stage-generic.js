@@ -4,15 +4,15 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("designer/stage-generic",["magix5","../i18n/index","./const","./stage-selection","./transform","./history","./enum"],(require,exports,module)=>{
+define("5b/65",["5c","../5n/index","./5e","./69","./5f","./5o","./enum"],(require,exports,module)=>{
 
 
-let magix_1 = require("magix5");
-let index_1 = require("../i18n/index");
-let const_1 = require("./const");
-let stage_selection_1 = require("./stage-selection");
-let transform_1 = require("./transform");
-let history_1 = require("./history");
+let magix_1 = require("5c");
+let index_1 = require("../5n/index");
+let const_1 = require("./5e");
+let stage_selection_1 = require("./69");
+let transform_1 = require("./5f");
+let history_1 = require("./5o");
 let enum_1 = require("./enum");
 let { node, State, toMap, Vframe, has } = magix_1;
 let MaxNum = Number.MAX_VALUE;
@@ -46,7 +46,7 @@ let ScrollIntoView = (id, scrollerNode, count) => {
         width: rect.width,
         height: rect.height
     };
-    if (!transform_1["@:{transform#rect.intersect~rs}"](rect1, rect2, true)) {
+    if (!transform_1["l4"](rect1, rect2, true)) {
         let offsetY = scroller.clientHeight / 3;
         let offsetX = scroller.clientWidth / 3;
         let toLeft = rect2.x + scroller.scrollLeft - rect1.x - offsetX;
@@ -88,7 +88,7 @@ let addSizesMap = (sizesMap, h, size, start, end) => {
         sizesMap[size] = {};
     }
     let m = sizesMap[size];
-    let beginKey = h ? '@:{left~rs}' : '@:{top~rs}', endKey = h ? '@:{right~rs}' : '@:{bottom~rs}';
+    let beginKey = h ? '_n5' : '_n7', endKey = h ? '_n8' : '_nv';
     if (m[beginKey] == null) {
         m[beginKey] = start;
         m[endKey] = end;
@@ -99,24 +99,24 @@ let addSizesMap = (sizesMap, h, size, start, end) => {
     }
 };
 module.exports= {
-    '@:{generic#scroll.into.view~rs}': ScrollIntoView,
-    '@:{generic#reset.all.cache~rs}': ResetAllCache,
+    'mf': ScrollIntoView,
+    'ma': ResetAllCache,
     /**
      * 安装监听器
      */
-    '@:{generic#setup.all.elements.cache.monitor~rs}'() {
-        State.on('@:{event#stage.elements.change~rs}', ResetAllCache);
-        State.on('@:{event#stage.page.and.elements.change~rs}', ResetAllCache);
-        State.on('@:{event#history.shift.change~rs}', ResetAllCache);
+    'l8'() {
+        State.on('mp', ResetAllCache);
+        State.on('m_', ResetAllCache);
+        State.on('l7', ResetAllCache);
     },
     /**
      * 关闭监听器
      */
-    '@:{generic#teardown.all.elements.cache.monitor~rs}'() {
+    'l9'() {
         ResetAllCache();
-        State.off('@:{event#stage.elements.change~rs}', ResetAllCache);
-        State.off('@:{event#stage.page.and.elements.change~rs}', ResetAllCache);
-        State.off('@:{event#history.shift.change~rs}', ResetAllCache);
+        State.off('mp', ResetAllCache);
+        State.off('m_', ResetAllCache);
+        State.off('l7', ResetAllCache);
     },
     /**
      * 缩放元素
@@ -149,22 +149,22 @@ module.exports= {
      * 获取元素坐标及尺寸信息，用于拉框选择
      * @param elements 待获取位置信息的元素列表
      */
-    '@:{generic#get.elements.location~rs}'(elements) {
+    'mo'(elements) {
         let locations = [];
         for (let e of elements) {
             let { props } = e;
             let { rotate, x, y, width, height, readonly } = props;
-            if (const_1['@:{const#support.readonly.element~rs}'] && readonly)
+            if (const_1['my'] && readonly)
                 continue;
             let rect = {
-                x: const_1['@:{const#to.px~rs}'](x),
-                y: const_1['@:{const#to.px~rs}'](y),
-                width: const_1['@:{const#to.px~rs}'](width),
-                height: const_1['@:{const#to.px~rs}'](height),
+                x: const_1['mM'](x),
+                y: const_1['mM'](y),
+                width: const_1['mM'](width),
+                height: const_1['mM'](height),
                 rotate
             };
-            let tsed = transform_1["@:{transform#rotate.rect~rs}"](rect);
-            let [lt, rt, rb, lb] = tsed['@:{point~rs}'];
+            let tsed = transform_1["l3"](rect);
+            let [lt, rt, rb, lb] = tsed['_n2'];
             // let tl = lt, tt = lt, tr = lt, tb = lt;
             // for (let p of [rt, lb, rb]) {
             //     if (p.x < tl.x) {
@@ -181,7 +181,7 @@ module.exports= {
             //     }
             // }
             locations.push({
-                '@:{element~rs}': e,
+                '_oA': e,
                 // left: tl,
                 // top: tt,
                 // right: tr,
@@ -190,8 +190,8 @@ module.exports= {
                 // '@:{height}': tsed.height,
                 // '@:{left}': tsed.left,
                 // '@:{top}': tsed.top,
-                '@:{points~rs}': [lt, rt, lb, rb],
-                '@:{lines~rs}': [[lt, rt],
+                '_p_': [lt, rt, lb, rb],
+                '_pa': [[lt, rt],
                     [rt, rb],
                     [rb, lb],
                     [lb, lt]]
@@ -207,7 +207,7 @@ module.exports= {
      * @param hods 容器集合
      * @param selectElementsIdMap 拉框前选中元素的id对象
      */
-    '@:{generic#get.intersect.elements~rs}'(elementLocations, rect, selectElements, hods, selectElementsIdMap) {
+    'mp'(elementLocations, rect, selectElements, hods, selectElementsIdMap) {
         let selected = [], find, ids = [], topHods = {}, rectLines = [[{
                     x: rect.x,
                     y: rect.y
@@ -235,12 +235,12 @@ module.exports= {
                 }]], interesctElements = {}, deSelectedIdMap = {};
         for (let e of elementLocations) {
             find = 0;
-            for (let p of e['@:{points~rs}']) {
+            for (let p of e['_p_']) {
                 if (p.x >= rect.x &&
                     p.y >= rect.y &&
                     p.x <= (rect.x + rect.width) &&
                     p.y <= (rect.y + rect.height)) {
-                    let m = e['@:{element~rs}'];
+                    let m = e['_oA'];
                     if (selectElementsIdMap[m.id]) {
                         deSelectedIdMap[m.id] = 1;
                     }
@@ -257,11 +257,11 @@ module.exports= {
                 }
             }
             if (!find) {
-                for (let l of e['@:{lines~rs}']) {
+                for (let l of e['_pa']) {
                     for (let rl of rectLines) {
-                        if (transform_1["@:{transform#is.line.cross~rs}"](l, rl)) {
+                        if (transform_1["l8"](l, rl)) {
                             find = 1;
-                            let m = e['@:{element~rs}'];
+                            let m = e['_oA'];
                             if (selectElementsIdMap[m.id]) {
                                 deSelectedIdMap[m.id] = 1;
                             }
@@ -296,21 +296,21 @@ module.exports= {
             }
         }
         return {
-            '@:{selected~rs}': selected,
-            '@:{ids~rs}': ids.join(',')
+            '_ou': selected,
+            '_nK': ids.join(',')
         };
     },
     /**
      * 获取所有元素及map对象
      */
-    '@:{generic#get.all.elements.and.map~rs}'() {
+    'l2'() {
         if (!AllElementsMap) {
             console.log('rebuild');
             AllElementsMap = {};
             AllStageElementsMap = {};
             AllElementsList = [];
             AllElementsParentHod = {};
-            let stageElements = State.get('@:{global#stage.elements~rs}');
+            let stageElements = State.get('m_');
             let walk = (es, fromHod) => {
                 for (let e of es) {
                     AllElementsMap[e.id] = e;
@@ -321,7 +321,7 @@ module.exports= {
                     else {
                         AllElementsParentHod[e.id] = fromHod;
                     }
-                    if (e.ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
+                    if (e.ctrl.as & enum_1['l5']) {
                         for (let row of e.props.rows) {
                             for (let col of row.cols) {
                                 if (col.elements) {
@@ -335,10 +335,10 @@ module.exports= {
             walk(stageElements);
         }
         return {
-            '@:{generic.all#map~rs}': AllElementsMap,
-            '@:{generic.all#stage.elements.map~rs}': AllStageElementsMap,
-            '@:{generic.all#elements~rs}': AllElementsList,
-            '@:{generic.all#element.hods~rs}': AllElementsParentHod
+            'l3': AllElementsMap,
+            'l5': AllStageElementsMap,
+            'l2': AllElementsList,
+            'l4': AllElementsParentHod
         };
     },
     /**
@@ -346,7 +346,7 @@ module.exports= {
      * @param elements 元素集合
      * @param type 指定的类型
      */
-    '@:{generic#filter.elements~rs}'(elements, type, readonly) {
+    'l3'(elements, type, readonly) {
         let newList = [];
         for (let e of elements) {
             if (e.type == type ||
@@ -393,8 +393,8 @@ module.exports= {
      * 内部用于删除元素的方法，不触发事件
      * @param idMap id对象
      */
-    '@:{generic#internal.delete.element.by.id.map.silent~rs}'(idMap) {
-        let stageElements = State.get('@:{global#stage.elements~rs}'), deleted = 0;
+    'mc'(idMap) {
+        let stageElements = State.get('m_'), deleted = 0;
         ;
         let walk = cs => {
             for (let i = cs.length; i--;) {
@@ -403,7 +403,7 @@ module.exports= {
                     cs.splice(i, 1);
                     deleted = 1;
                 }
-                else if (e.ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
+                else if (e.ctrl.as & enum_1['l5']) {
                     for (let row of e.props.rows) {
                         for (let col of row.cols) {
                             if (col.elements) {
@@ -422,13 +422,13 @@ module.exports= {
     /**
      * 查询组合状态
      */
-    '@:{generic#query.group.state~rs}'() {
-        let selectedElements = State.get('@:{global#stage.select.elements~rs}');
-        let selectedElementsMap = stage_selection_1['@:{selection#get.selected.map~rs}']();
-        let stageElements = State.get('@:{global#stage.elements~rs}');
-        let flowProvider = State.get('@:{global#provider.of.flow~rs}');
+    'mm'() {
+        let selectedElements = State.get('l2');
+        let selectedElementsMap = stage_selection_1['l7']();
+        let stageElements = State.get('m_');
+        let flowProvider = State.get('me');
         if (flowProvider) {
-            selectedElements = flowProvider["@:{flow.provider#remove.connector.from.elements~rs}"](selectedElements, 1);
+            selectedElements = flowProvider["l6"](selectedElements, 1);
         }
         /**
          * 查找容器元素，跨设计区的元素不支持组合，考虑这样的场景：
@@ -447,7 +447,7 @@ module.exports= {
                         break;
                     }
                 }
-                if (e.ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
+                if (e.ctrl.as & enum_1['l5']) {
                     for (let row of e.props.rows) {
                         for (let col of row.cols) {
                             if (col.elements) {
@@ -465,7 +465,7 @@ module.exports= {
             }
         };
         walk(stageElements, 1);
-        let groups = State.get('@:{global#stage.elements.groups~rs}');
+        let groups = State.get('mc');
         let canGroup = false, canUngroup = false, findGroupList;
         for (let e of selectedElements) {
             if (groups[e.id]) {
@@ -490,16 +490,16 @@ module.exports= {
         }
         return {
             //'@:{selected.length}': selectedElements.length,
-            '@:{can.group~rs}': canGroup,
-            '@:{can.ungroup~rs}': canUngroup
+            '_o5': canGroup,
+            '_o4': canUngroup
         };
     },
     /**
      * 查询锁定状态
      */
-    '@:{generic#query.lock.state~rs}'() {
+    'mq'() {
         let canLock = false, canUnlock = false;
-        let selectedElements = State.get('@:{global#stage.select.elements~rs}');
+        let selectedElements = State.get('l2');
         for (let { props } of selectedElements) {
             if (props.locked) {
                 canUnlock = true;
@@ -512,19 +512,19 @@ module.exports= {
             }
         }
         return {
-            '@:{can.lock~rs}': canLock,
-            '@:{can.unlock~rs}': canUnlock
+            '_pb': canLock,
+            '_pc': canUnlock
         };
     },
     /**
      * 锁定或解锁选中的元素
      * @param unlock 是否为解锁
      */
-    '@:{generic#lock.select.elements~rs}'(unlock, shortcuts) {
-        let selectElements = State.get('@:{global#stage.select.elements~rs}');
+    'mr'(unlock, shortcuts) {
+        let selectElements = State.get('l2');
         let changed, to = !unlock, ids = {}, types = {}, changedProps = [];
         if (shortcuts) {
-            let { '@:{can.lock~rs}': canLock, '@:{can.unlock~rs}': canUnlock } = this['@:{generic#query.lock.state~rs}']();
+            let { '_pb': canLock, '_pc': canUnlock } = this['mq']();
             if (unlock &&
                 !canUnlock) {
                 to = !to;
@@ -545,33 +545,33 @@ module.exports= {
                 let n = node(id);
                 let vf = Vframe.byNode(n);
                 if (vf) {
-                    vf.invoke('@:{update~rs}', [e]);
+                    vf.invoke('_ol', [e]);
                 }
             }
         }
         if (changed) {
-            State.fire('@:{event#stage.select.element.props.change~rs}', {
-                '@:{ids~rs}': ids,
-                '@:{types~rs}': types,
-                '@:{props~rs}': {
+            State.fire('l4', {
+                '_nK': ids,
+                '_nL': types,
+                '_l3': {
                     locked: 1
                 }
             });
-            let ename = this['@:{generic#query.element.name~rs}'](changedProps);
-            history_1["@:{history#save~rs}"](to ? history_1['@:{history#element.locked~rs}'] : history_1['@:{history#element.unlocked~rs}'], ename);
+            let ename = this['md'](changedProps);
+            history_1["l2"](to ? history_1['mq'] : history_1['mr'], ename);
         }
     },
     /**
      * 组合或取消组合选中的元素
      * @param ungroup 是否为取消组合
      */
-    '@:{generic#group.select.elements~rs}'(ungroup) {
-        let selectElements = State.get('@:{global#stage.select.elements~rs}');
-        let flowProvider = State.get('@:{global#provider.of.flow~rs}');
+    'ms'(ungroup) {
+        let selectElements = State.get('l2');
+        let flowProvider = State.get('me');
         if (flowProvider) {
-            selectElements = flowProvider["@:{flow.provider#add.connector.from.elements~rs}"](selectElements);
+            selectElements = flowProvider["l5"](selectElements);
         }
-        let groups = State.get('@:{global#stage.elements.groups~rs}');
+        let groups = State.get('mc');
         let newGroup = [], selectedIds = {};
         for (let { id } of selectElements) {
             selectedIds[id] = 1;
@@ -588,24 +588,24 @@ module.exports= {
             }
         }
         if (ungroup) {
-            this['@:{generic#remove.grouped.element.by.ids~rs}'](selectedIds);
+            this['mb'](selectedIds);
         }
         else {
             for (let n of newGroup) {
                 groups[n] = newGroup;
             }
         }
-        State.fire('@:{event#stage.elements.change~rs}');
-        history_1["@:{history#save~rs}"](ungroup ? history_1['@:{history#element.ungrouped~rs}'] : history_1['@:{history#element.grouped~rs}']);
+        State.fire('mp');
+        history_1["l2"](ungroup ? history_1['mp'] : history_1['mo']);
     },
     /**
      * 查询元素中的容器元素
      * @param elements 元素集合
      */
-    '@:{generic#find.hod.sub.elements.map~rs}'(elements) {
+    'mt'(elements) {
         let map = {}, hods = [];
         for (let e of elements) {
-            if (e.ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
+            if (e.ctrl.as & enum_1['l5']) {
                 hods.push(e);
             }
         }
@@ -614,7 +614,7 @@ module.exports= {
                 if (hodId) {
                     map[c.id] = hodId;
                 }
-                if (c.ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
+                if (c.ctrl.as & enum_1['l5']) {
                     for (let r of c.props.rows) {
                         for (let d of r.cols) {
                             if (d.elements) {
@@ -632,8 +632,8 @@ module.exports= {
      * 获取元素所属的集合
      * @param element 待查询的元素
      */
-    '@:{generic#find.element.owner.collection~rs}'(element) {
-        let collection = State.get('@:{global#stage.elements~rs}'), find, findCollection;
+    'mh'(element) {
+        let collection = State.get('m_'), find, findCollection;
         let walk = coll => {
             for (let e of coll) {
                 if (e.id == element.id) {
@@ -641,7 +641,7 @@ module.exports= {
                     findCollection = coll;
                     break;
                 }
-                if (e.ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
+                if (e.ctrl.as & enum_1['l5']) {
                     for (let row of e.props.rows) {
                         for (let col of row.cols) {
                             if (col.elements) {
@@ -691,10 +691,10 @@ module.exports= {
      * 查询某种元素已在编辑区的列表
      * @param ctrl 元素控制对象
      */
-    '@:{generic#query.element.added.list~rs}'(ctrl) {
-        let all = this["@:{generic#get.all.elements.and.map~rs}"]();
-        let allElements = all["@:{generic.all#elements~rs}"];
-        return this["@:{generic#filter.elements~rs}"](allElements, ctrl.type);
+    'm_'(ctrl) {
+        let all = this["l2"]();
+        let allElements = all["l2"];
+        return this["l3"](allElements, ctrl.type);
     },
     /**
      * 过滤列表中包含集合的元素
@@ -742,8 +742,8 @@ module.exports= {
      * 根据id删除组合中的元素
      * @param ids id对象
      */
-    '@:{generic#remove.grouped.element.by.ids~rs}'(ids) {
-        let groups = State.get('@:{global#stage.elements.groups~rs}');
+    'mb'(ids) {
+        let groups = State.get('mc');
         for (let id in ids) {
             let list = groups[id], findIndex; //= list.indexOf(id);
             // list.splice(findIndex, 1);
@@ -770,10 +770,10 @@ module.exports= {
      * 删除选中元素
      * @param element 如果传入某个元素，则只删除该元素
      */
-    '@:{generic#delete.select.elements~rs}'(element, extra) {
-        let selectElements = State.get('@:{global#stage.select.elements~rs}');
+    'mu'(element, extra) {
+        let selectElements = State.get('l2');
         let hasSelected = selectElements.length;
-        let selectElementsMap = stage_selection_1['@:{selection#get.selected.map~rs}']();
+        let selectElementsMap = stage_selection_1['l7']();
         if (element) {
             hasSelected = 1;
             selectElementsMap = {
@@ -781,7 +781,7 @@ module.exports= {
             };
         }
         if (hasSelected) {
-            let stageElements = State.get('@:{global#stage.elements~rs}');
+            let stageElements = State.get('m_');
             let update, ids = {}, removedElements = [];
             let walk = es => {
                 for (let i = es.length; i--;) {
@@ -792,7 +792,7 @@ module.exports= {
                         es.splice(i, 1);
                         removedElements.push(e);
                     }
-                    if (e.ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
+                    if (e.ctrl.as & enum_1['l5']) {
                         for (let row of e.props.rows) {
                             for (let col of row.cols) {
                                 if (col.elements) {
@@ -805,46 +805,46 @@ module.exports= {
             };
             walk(stageElements);
             if (update) {
-                this['@:{generic#remove.grouped.element.by.ids~rs}'](ids);
+                this['mb'](ids);
                 if (element) {
-                    stage_selection_1['@:{selection#remove~rs}'](element);
+                    stage_selection_1['l5'](element);
                 }
                 else {
-                    stage_selection_1['@:{selection#set~rs}']();
+                    stage_selection_1['l3']();
                 }
-                State.fire('@:{event#stage.elements.change~rs}', {
-                    '@:{type~rs}': '@:{remove~rs}',
-                    '@:{extra~rs}': extra,
-                    '@:{changed.ids~rs}': ids
+                State.fire('mp', {
+                    '_oh': '_pd',
+                    '_pe': extra,
+                    '_pf': ids
                 });
-                history_1["@:{history#save~rs}"](history_1['@:{history#element.removed~rs}'], this['@:{generic#query.element.name~rs}'](removedElements));
+                history_1["l2"](history_1['mn'], this['md'](removedElements));
             }
         }
     },
     /**
      * 查询是否支持清空设计区
      */
-    '@:{generic#query.can.clear.stage~rs}'() {
-        let xLines = State.get('@:{global#stage.x.help.lines~rs}');
-        let yLines = State.get('@:{global#stage.y.help.lines~rs}');
-        let stageElements = State.get('@:{global#stage.elements~rs}');
-        let elements = const_1['@:{const#support.readonly.element~rs}'] ? this['@:{generic#query.all.without.readonly.elements~rs}'](stageElements, 1) : stageElements;
+    'l6'() {
+        let xLines = State.get('l5');
+        let yLines = State.get('l6');
+        let stageElements = State.get('m_');
+        let elements = const_1['my'] ? this['mi'](stageElements, 1) : stageElements;
         return xLines.length + yLines.length + elements.length > 0;
     },
     /**
      * 查询是否支持新建
      */
-    '@:{generic#query.can.create.new.page~rs}'() {
-        let xLines = State.get('@:{global#stage.x.help.lines~rs}');
-        let yLines = State.get('@:{global#stage.y.help.lines~rs}');
-        let elements = State.get('@:{global#stage.elements~rs}');
+    'l7'() {
+        let xLines = State.get('l5');
+        let yLines = State.get('l6');
+        let elements = State.get('m_');
         let canCreate = xLines.length + yLines.length + elements.length > 0;
         if (!canCreate) {
-            let pc = State.get('@:{global#stage.page.ctrl~rs}');
+            let pc = State.get('mf');
             if (!defaultPageProps) {
-                defaultPageProps = pc['@:{get.props~rs}']();
+                defaultPageProps = pc['_m2']();
             }
-            let page = State.get('@:{global#stage.page~rs}');
+            let page = State.get('ma');
             for (let { key, json } of pc.props) {
                 if (json &&
                     page[key] != defaultPageProps[key]) {
@@ -860,12 +860,12 @@ module.exports= {
      * @param elements 元素列表
      * @param deep 是否深度查询
      */
-    '@:{generic#query.all.without.readonly.elements~rs}'(elements, deep) {
+    'mi'(elements, deep) {
         let newElements = [];
         let walk = (elements, filters) => {
             for (let e of elements) {
                 let { props, ctrl } = e;
-                if (deep && (ctrl.as & enum_1['@:{enum#as.hod~rs}'])) {
+                if (deep && (ctrl.as & enum_1['l5'])) {
                     let { rows, focusRow, focusCol } = props;
                     let after = [];
                     for (let ri = rows.length; ri--;) {
@@ -886,7 +886,7 @@ module.exports= {
                     }
                     newElements.push(...after);
                 }
-                if (!const_1['@:{const#support.readonly.element~rs}'] ||
+                if (!const_1['my'] ||
                     !e.props.readonly) {
                     filters.push(e);
                 }
@@ -945,14 +945,14 @@ module.exports= {
      * 查询元素的自定义名称
      * @param elements 集合列表
      */
-    '@:{generic#query.element.name~rs}'(elements) {
+    'md'(elements) {
         let ename;
         if (elements.length == 1) {
             let { props, ctrl } = elements[0];
             ename = props.ename || index_1(ctrl.title);
         }
         else {
-            ename = index_1('@:{lang#multi.elements~rs}');
+            ename = index_1('nv');
         }
         return ename;
     },
@@ -960,31 +960,31 @@ module.exports= {
      * 根据差异对象查询对应的历史记录信息
      * @param diff 差异对象
      */
-    '@:{generic#query.history.info.by.diff~rs}'(diff) {
-        let type, ename, { '@:{selection.changed#now.count~rs}': nowCount, '@:{selection.changed#selected.elements~rs}': selectedElements, '@:{selection.changed#deselected.elements~rs}': deselectedElements } = diff;
+    'mv'(diff) {
+        let type, ename, { 'l2': nowCount, 'l3': selectedElements, 'l4': deselectedElements } = diff;
         if (nowCount) {
-            type = history_1['@:{history#element.get.focus~rs}'];
-            ename = this['@:{generic#query.element.name~rs}'](selectedElements);
+            type = history_1['mi'];
+            ename = this['md'](selectedElements);
         }
         else {
-            type = history_1['@:{history#element.lost.focus~rs}'];
-            ename = this['@:{generic#query.element.name~rs}'](deselectedElements);
+            type = history_1['mh'];
+            ename = this['md'](deselectedElements);
         }
         return {
-            '@:{generic.diff.info#type~rs}': type,
-            '@:{generic.diff.info#ename~rs}': ename
+            'l2': type,
+            'l3': ename
         };
     },
     /**
      * 查询能否进行对齐操作
      * @param currentElement 当前参考元素
      */
-    '@:{generic#query.can.align~rs}'(currentElement) {
-        let selectElements = State.get('@:{global#stage.select.elements~rs}');
-        let groups = State.get('@:{global#stage.elements.groups~rs}');
-        let flowProvider = State.get('@:{global#provider.of.flow~rs}');
+    'mk'(currentElement) {
+        let selectElements = State.get('l2');
+        let groups = State.get('mc');
+        let flowProvider = State.get('me');
         if (flowProvider) { //从选中元素中过滤掉流程图连接线元素，因为连接线不支持对齐
-            selectElements = flowProvider["@:{flow.provider#remove.connector.from.elements~rs}"](selectElements, 1);
+            selectElements = flowProvider["l6"](selectElements, 1);
         }
         let xCanAlign = true;
         let yCanAlign = true;
@@ -1003,8 +1003,8 @@ module.exports= {
                     !queried[list]) { //元素处于组合中，且未查询过当前组合
                     queried[list] = 1;
                     if (!allElementsMap) { //获取所有元素对象
-                        let i = this["@:{generic#get.all.elements.and.map~rs}"]();
-                        allElementsMap = i["@:{generic.all#map~rs}"];
+                        let i = this["l2"]();
+                        allElementsMap = i["l3"];
                     }
                     for (let g of list) {
                         // if (selectElementsMap[g]) {
@@ -1052,17 +1052,17 @@ module.exports= {
         }
         console.log(xCanAlign, yCanAlign);
         return {
-            '@:{generic.align#x.can.align~rs}': xCanAlign,
-            '@:{generic.align#y.can.align~rs}': yCanAlign
+            'l2': xCanAlign,
+            'l3': yCanAlign
         };
     },
-    '@:{generic#query.can.avg~rs}'() {
-        let selectElements = State.get('@:{global#stage.select.elements~rs}');
-        let selectElementsMap = stage_selection_1['@:{selection#get.selected.map~rs}']();
-        let groups = State.get('@:{global#stage.elements.groups~rs}');
-        let flowProvider = State.get('@:{global#provider.of.flow~rs}');
+    'mw'() {
+        let selectElements = State.get('l2');
+        let selectElementsMap = stage_selection_1['l7']();
+        let groups = State.get('mc');
+        let flowProvider = State.get('me');
         if (flowProvider) { //从选中元素中过滤掉流程图连接线元素，因为连接线不支持对齐
-            selectElements = flowProvider["@:{flow.provider#remove.connector.from.elements~rs}"](selectElements, 1);
+            selectElements = flowProvider["l6"](selectElements, 1);
         }
         let xCanAvg = true;
         let yCanAvg = true;
@@ -1107,8 +1107,8 @@ module.exports= {
                     inSameGroupCount = 0;
                     inDifferentGroup++;
                     if (!allElementsMap) { //获取所有元素对象
-                        let i = this["@:{generic#get.all.elements.and.map~rs}"]();
-                        allElementsMap = i["@:{generic.all#map~rs}"];
+                        let i = this["l2"]();
+                        allElementsMap = i["l3"];
                     }
                     for (let g of list) {
                         if (selectElementsMap[g]) {
@@ -1154,15 +1154,15 @@ module.exports= {
         }
         console.log(stageXCanAvg, stageYCanAvg);
         return {
-            '@:{generic.avg#x.can.avg~rs}': xCanAvg,
-            '@:{generic.avg#y.can.avg~rs}': yCanAvg,
-            '@:{generic.avg#stage.x.can.avg~rs}': stageXCanAvg,
-            '@:{generic.avg#stage.y.can.avg~rs}': stageYCanAvg
+            'l2': xCanAvg,
+            'l3': yCanAvg,
+            'l4': stageXCanAvg,
+            'l5': stageYCanAvg
         };
     },
-    '@:{generic#query.element.parent~rs}'(current) {
+    'me'(current) {
         let parentElement, ri, ci;
-        let collection = State.get('@:{global#stage.elements~rs}'), find;
+        let collection = State.get('m_'), find;
         let walk = (coll, parent) => {
             for (let e of coll) {
                 if (e.id == current.id) {
@@ -1170,7 +1170,7 @@ module.exports= {
                     parentElement = parent;
                     break;
                 }
-                if (e.ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
+                if (e.ctrl.as & enum_1['l5']) {
                     ri = 0;
                     for (let row of e.props.rows) {
                         ci = 0;
@@ -1193,9 +1193,9 @@ module.exports= {
         };
         walk(collection);
         return {
-            '@:{element~rs}': parentElement,
-            '@:{at.row~rs}': ri,
-            '@:{at.col~rs}': ci
+            '_oA': parentElement,
+            '_oB': ri,
+            '_oC': ci
         };
     },
     /**
@@ -1203,14 +1203,14 @@ module.exports= {
      * @param findEnableParent 是否仅查询可用的父编辑区
      * @param anchorElement 参考元素
      */
-    '@:{generic#query.select.elements.stage~rs}'(findEnableParent, anchorElement) {
-        let selectElementsMap = anchorElement ? { [anchorElement.id]: 1 } : stage_selection_1['@:{selection#get.selected.map~rs}']();
+    'mg'(findEnableParent, anchorElement) {
+        let selectElementsMap = anchorElement ? { [anchorElement.id]: 1 } : stage_selection_1['l7']();
         let stagesAdded = {}, stages = [];
         let walk = (es, stageType, ownerContainer, ownerCollection, tb, hasLocked, rowIndex, colIndex) => {
             for (let e of es) {
                 let { id, props, ctrl, type } = e;
                 if (has(selectElementsMap, id)) {
-                    let sId = tb ? [tb.id, rowIndex, colIndex].join('-') : '@:{stage~rs}';
+                    let sId = tb ? [tb.id, rowIndex, colIndex].join('-') : '_oY';
                     if (!stagesAdded[sId]) {
                         let height = MaxNum, width = MaxNum;
                         if (tb) {
@@ -1220,22 +1220,22 @@ module.exports= {
                             width = row.width != null ? row.width : cell.width;
                         }
                         stages.push(stagesAdded[sId] = {
-                            '@:{container~rs}': ownerContainer,
-                            '@:{selected~rs}': [],
-                            '@:{collection~rs}': ownerCollection,
-                            '@:{type~rs}': stageType,
-                            '@:{stage.type~rs}': tb ? '@:{hod~rs}' : '@:{stage~rs}',
-                            '@:{allowed.elements~rs}': tb && tb.ctrl['@:{allowed.elements~rs}'],
-                            '@:{hod~rs}': tb,
-                            '@:{width~rs}': width,
-                            '@:{height~rs}': height,
-                            '@:{row.index~rs}': rowIndex,
-                            '@:{col.index~rs}': colIndex
+                            '_of': ownerContainer,
+                            '_ou': [],
+                            '_oe': ownerCollection,
+                            '_oh': stageType,
+                            '_oN': tb ? '_oO' : '_oY',
+                            '_og': tb && tb.ctrl['_og'],
+                            '_oO': tb,
+                            '_nq': width,
+                            '_nr': height,
+                            '_oP': rowIndex,
+                            '_oQ': colIndex
                         });
                     }
-                    stagesAdded[sId]['@:{selected~rs}'].push(e);
+                    stagesAdded[sId]['_ou'].push(e);
                 }
-                if (ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
+                if (ctrl.as & enum_1['l5']) {
                     let ri = 0, isLocked = hasLocked || props.locked || props.readonly, useParent = isLocked && findEnableParent;
                     for (let r of props.rows) {
                         let ci = 0, currentCollection;
@@ -1251,7 +1251,7 @@ module.exports= {
                 }
             }
         };
-        let elements = State.get('@:{global#stage.elements~rs}');
+        let elements = State.get('m_');
         walk(elements, 'root', '_rd_sc', elements);
         return stages;
     },
@@ -1259,8 +1259,8 @@ module.exports= {
      * 嵌套的情况下，获取元素最近的设计区
      * @param skipEmptyElements 忽略空元素的格子
      */
-    '@:{generic#query.nearest.stage~rs}'(skipEmptyElements, currentElement, fakeFocusRow, fakeFocusCol) {
-        let selectElements = State.get('@:{global#stage.select.elements~rs}'), c = selectElements.length;
+    'mx'(skipEmptyElements, currentElement, fakeFocusRow, fakeFocusCol) {
+        let selectElements = State.get('l2'), c = selectElements.length;
         if (c) {
             if (c === 1 ||
                 currentElement) {
@@ -1271,7 +1271,7 @@ module.exports= {
                     focusRow = fakeFocusRow;
                     focusCol = fakeFocusCol;
                 }
-                if ((ctrl.as & enum_1['@:{enum#as.hod~rs}']) &&
+                if ((ctrl.as & enum_1['l5']) &&
                     focusRow > -1 &&
                     focusCol > -1 &&
                     (skipEmptyElements ||
@@ -1284,28 +1284,28 @@ module.exports= {
                         (!skipEmptyElements || cell.elements.length)) {
                         return {
                             //'@:{id}': id,
-                            '@:{container~rs}': `_rd_hm_${id}_${focusRow}_${focusCol}`,
-                            '@:{collection~rs}': cell.elements,
-                            '@:{type~rs}': ctrl.type,
-                            '@:{allowed.elements~rs}': ctrl['@:{allowed.elements~rs}'],
-                            '@:{width~rs}': width,
-                            '@:{height~rs}': height
+                            '_of': `_rd_hm_${id}_${focusRow}_${focusCol}`,
+                            '_oe': cell.elements,
+                            '_oh': ctrl.type,
+                            '_og': ctrl['_og'],
+                            '_nq': width,
+                            '_nr': height
                         };
                     }
                 }
             }
-            let stages = this['@:{generic#query.select.elements.stage~rs}'](!skipEmptyElements, currentElement);
+            let stages = this['mg'](!skipEmptyElements, currentElement);
             if (stages.length === 1) {
                 return stages[0];
             }
         }
-        let elements = State.get('@:{global#stage.elements~rs}');
+        let elements = State.get('m_');
         return {
-            '@:{container~rs}': '_rd_sc',
-            '@:{collection~rs}': elements,
-            '@:{type~rs}': 'root',
-            '@:{width~rs}': MaxNum,
-            '@:{height~rs}': MaxNum
+            '_of': '_rd_sc',
+            '_oe': elements,
+            '_oh': 'root',
+            '_nq': MaxNum,
+            '_nr': MaxNum
         };
     },
     /**
@@ -1313,8 +1313,8 @@ module.exports= {
      * @param elementMap 待查询元素的key value对象
      * @returns
      */
-    '@:{generic#query.in.enable.hod~rs}'(elementMap) {
-        let stageElements = State.get('@:{global#stage.elements~rs}');
+    'mj'(elementMap) {
+        let stageElements = State.get('m_');
         let enable = 1;
         let walk = (elements, parentLocked) => {
             for (let { props, ctrl, id } of elements) {
@@ -1323,7 +1323,7 @@ module.exports= {
                     enable = 0;
                     break;
                 }
-                if (ctrl.as & enum_1['@:{enum#as.hod~rs}'] &&
+                if (ctrl.as & enum_1['l5'] &&
                     enable) {
                     for (let r of props.rows) {
                         for (let d of r.cols) {
@@ -1348,11 +1348,11 @@ module.exports= {
      * @param collection 当前环境的元素列表集合
      * @returns
      */
-    '@:{generic#query.can.cxv~rs}'(copyList, 
+    'mn'(copyList, 
     //isCut?: number | boolean,
     current, collection) {
-        let selectElements = State.get('@:{global#stage.select.elements~rs}');
-        let flowProvider = State.get('@:{global#provider.of.flow~rs}');
+        let selectElements = State.get('l2');
+        let flowProvider = State.get('me');
         let selectElementsMap;
         if (current) {
             selectElementsMap = {
@@ -1360,11 +1360,11 @@ module.exports= {
             };
         }
         else {
-            selectElementsMap = stage_selection_1['@:{selection#get.selected.map~rs}']();
+            selectElementsMap = stage_selection_1['l7']();
         }
         //进行判断时，需要移除流程图中的连线元素
         if (flowProvider) {
-            selectElements = flowProvider['@:{flow.provider#remove.connector.from.elements~rs}'](selectElements, 1);
+            selectElements = flowProvider['l6'](selectElements, 1);
         }
         let selectCount = selectElements.length;
         let copyCount = copyList.length;
@@ -1377,7 +1377,7 @@ module.exports= {
                 canPaste = 1;
                 if (current) {
                     let { props, ctrl } = current;
-                    if (ctrl.as & enum_1['@:{enum#as.hod~rs}']) { //是容器
+                    if (ctrl.as & enum_1['l5']) { //是容器
                         if (props.locked ||
                             props.readonly) {
                             canPaste = 0;
@@ -1387,14 +1387,14 @@ module.exports= {
             }
         }
         else {
-            canCut = canDuplicate = this['@:{generic#query.in.enable.hod~rs}'](selectElementsMap);
+            canCut = canDuplicate = this['mj'](selectElementsMap);
             //选中的元素如果有固定或锁定的，不能使用剪切
             //选中的元素如果有数量限制，到达上限后不能复制
             for (let e of selectElements) {
                 let { props } = e;
-                let total = e.ctrl['@:{allowed.total.count~rs}'];
+                let total = e.ctrl['_m6'];
                 if (total >= 0) { //处理复制和剪切，当元素有个数控制时，如果已达上限，则相应的复制和剪切需要禁用
-                    let added = this["@:{generic#query.element.added.list~rs}"](e);
+                    let added = this["m_"](e);
                     if (added.length >= total) {
                         canCopy = 0;
                     }
@@ -1415,9 +1415,9 @@ module.exports= {
             if (copyCount) {
                 //查询复制列表，判断是否可以粘贴
                 for (let ce of copyList) {
-                    let total = ce.ctrl['@:{allowed.total.count~rs}'];
+                    let total = ce.ctrl['_m6'];
                     if (total >= 0) {
-                        let added = this["@:{generic#query.element.added.list~rs}"](ce);
+                        let added = this["m_"](ce);
                         if (added.length < total) {
                             canPaste++;
                         }
@@ -1431,7 +1431,7 @@ module.exports= {
                     selectCount == 1) { //如果传递了当前元素或只有一个选中，需要判断是否为容器元素
                     if (canPaste) {
                         let { ctrl, props, type } = first;
-                        if (ctrl.as & enum_1['@:{enum#as.hod~rs}']) { //是容器
+                        if (ctrl.as & enum_1['l5']) { //是容器
                             if (props.locked ||
                                 props.readonly) { //如果禁用，是否可粘贴需要看有没有传递环境元素
                                 if (current) {
@@ -1445,16 +1445,16 @@ module.exports= {
                                 canPaste = 0;
                                 if (canDuplicate) {
                                     let collection = props.rows[props.focusRow].cols[props.focusCol];
-                                    let allowedElements = ctrl['@:{allowed.elements~rs}'];
+                                    let allowedElements = ctrl['_og'];
                                     for (let ce of copyList) {
-                                        let allowedToHods = ce.ctrl['@:{allowed.to.hod~rs}'];
+                                        let allowedToHods = ce.ctrl['_oi'];
                                         if ((!allowedElements ||
                                             allowedElements[ce.type]) &&
                                             (!allowedToHods ||
                                                 allowedToHods[type])) {
-                                            let total = ce.ctrl['@:{allowed.stage.count~rs}'];
+                                            let total = ce.ctrl['_m7'];
                                             if (total >= 0) {
-                                                let added = this["@:{generic#filter.elements~rs}"](collection, ce.type);
+                                                let added = this["l3"](collection, ce.type);
                                                 if (added.length < total) {
                                                     canPaste++;
                                                 }
@@ -1474,13 +1474,13 @@ module.exports= {
                         canPaste = 0;
                         if (canDuplicate) {
                             if (!collection) {
-                                let s = this['@:{generic#query.nearest.stage~rs}']();
-                                collection = s['@:{collection~rs}'];
+                                let s = this['mx']();
+                                collection = s['_oe'];
                             }
                             for (let ce of copyList) {
-                                let total = ce.ctrl['@:{allowed.stage.count~rs}'];
+                                let total = ce.ctrl['_m7'];
                                 if (total >= 0) {
-                                    let added = this["@:{generic#filter.elements~rs}"](collection, ce.type);
+                                    let added = this["l3"](collection, ce.type);
                                     if (added.length < total) {
                                         canPaste++;
                                     }
@@ -1495,10 +1495,10 @@ module.exports= {
             }
         }
         return {
-            '@:{can.paste~rs}': canPaste,
-            '@:{can.copy~rs}': canCopy,
-            '@:{can.cut~rs}': canCut,
-            '@:{can.duplicate~rs}': canDuplicate
+            '_o9': canPaste,
+            '_o7': canCopy,
+            '_o6': canCut,
+            '_o8': canDuplicate
         };
     },
     /**
@@ -1506,7 +1506,7 @@ module.exports= {
      * @param elements 待删除元素列表
      * @param deep 是否深度遍历
      */
-    '@:{generic#remove.nonreadonly.elements~rs}'(elements, deep) {
+    'l5'(elements, deep) {
         let removed = [];
         for (let i = elements.length; i--;) {
             let { ctrl, props } = elements[i];
@@ -1515,12 +1515,12 @@ module.exports= {
                 removed.push(elements[i]);
                 elements.splice(i, 1);
             }
-            if (deep && (ctrl.as & enum_1['@:{enum#as.hod~rs}'])) {
+            if (deep && (ctrl.as & enum_1['l5'])) {
                 for (let r of rows) {
                     for (let d of r.cols) {
                         if (d.elements &&
                             d.elements.length) {
-                            this['@:{generic#remove.nonreadonly.elements~rs}'](d.elements);
+                            this['l5'](d.elements);
                         }
                     }
                 }
@@ -1533,7 +1533,7 @@ module.exports= {
      * @param elements 元素列表
      * @returns
      */
-    '@:{generic#query.has.disabled~rs}'(elements) {
+    'ml'(elements) {
         let disabled;
         for (let { props } of elements) {
             if (props.locked || props.readonly) {
@@ -1547,12 +1547,12 @@ module.exports= {
      * 全选集合中的元素
      * @param collection 元素列表
      */
-    '@:{generic#select.all.collection.elements~rs}'(collection, reverse) {
-        collection = this['@:{generic#filter.elements~rs}'](collection, 0, 1);
+    'my'(collection, reverse) {
+        collection = this['l3'](collection, 0, 1);
         let i = collection.length;
         if (i) {
             if (reverse) {
-                let selectedMap = stage_selection_1['@:{selection#get.selected.map~rs}']();
+                let selectedMap = stage_selection_1['l7']();
                 for (let i = collection.length; i--;) {
                     let { id } = collection[i];
                     if (selectedMap[id]) {
@@ -1561,9 +1561,9 @@ module.exports= {
                 }
             }
         }
-        if (stage_selection_1['@:{selection#set.all~rs}'](collection)) {
-            let ename = this['@:{generic#query.element.name~rs}'](collection);
-            history_1["@:{history#save~rs}"](history_1['@:{history#element.get.focus~rs}'], ename);
+        if (stage_selection_1['l4'](collection)) {
+            let ename = this['md'](collection);
+            history_1["l2"](history_1['mi'], ename);
         }
     },
     /**
@@ -1573,7 +1573,7 @@ module.exports= {
      * @param others 使用哪些元素的点进行吸附对齐
      * @returns
      */
-    '@:{generic#query.test.position.and.sizes~rs}'(startX, startY, others) {
+    'l4'(startX, startY, others) {
         let testX = [], testY = [], sizesMap = {};
         if (others &&
             others.length) {
@@ -1581,23 +1581,23 @@ module.exports= {
             for (let s of others) {
                 let extraX = [];
                 let extraY = [];
-                let sx = s['@:{align.queried#left~rs}'];
-                let sy = s['@:{align.queried#top~rs}'];
-                let sh = s['@:{align.queried#height~rs}'];
-                let sw = s['@:{align.queried#width~rs}'];
-                let xsd = s['@:{align.queried#x.diffed~rs}'];
-                let ysd = s['@:{align.queried#y.diffed~rs}'];
-                let ctrl = s['@:{align.queried#ctrl~rs}'];
+                let sx = s['l4'];
+                let sy = s['l5'];
+                let sh = s['l8'];
+                let sw = s['l7'];
+                let xsd = s['ma'];
+                let ysd = s['mb'];
+                let ctrl = s['l6'];
                 let l = sx - startX;
                 let t = sy - startY;
-                if (sw < const_1['@:{const#element.min.px.size~rs}']) {
+                if (sw < const_1['mB']) {
                     extraX.push(l);
                 }
                 else {
-                    if (enum_1['@:{enum#align.centers~rs}'] & const_1['@:{const#align.points~rs}']) {
+                    if (enum_1['l3'] & const_1['mp']) {
                         extraX.push(l + sw / 2);
                     }
-                    if (enum_1['@:{enum#align.coners~rs}'] & const_1['@:{const#align.points~rs}']) {
+                    if (enum_1['l4'] & const_1['mp']) {
                         extraX.push(l, l + sw);
                     }
                     if (xsd) {
@@ -1606,15 +1606,15 @@ module.exports= {
                         }
                     }
                 }
-                if (sh < const_1['@:{const#element.min.px.size~rs}'] ||
-                    (ctrl['@:{modifier~rs}'] & enum_1['@:{enum#modifier.dheight~rs}'])) {
+                if (sh < const_1['mB'] ||
+                    (ctrl['_oG'] & enum_1['mi'])) {
                     extraY.push(t);
                 }
                 else {
-                    if (enum_1['@:{enum#align.centers~rs}'] & const_1['@:{const#align.points~rs}']) {
+                    if (enum_1['l3'] & const_1['mp']) {
                         extraY.push(t + sh / 2);
                     }
-                    if (enum_1['@:{enum#align.coners~rs}'] & const_1['@:{const#align.points~rs}']) {
+                    if (enum_1['l4'] & const_1['mp']) {
                         extraY.push(t, t + sh);
                     }
                     if (ysd) {
@@ -1658,9 +1658,9 @@ module.exports= {
             }
         }
         return {
-            '@:{test.x~rs}': testX,
-            '@:{test.y~rs}': testY,
-            '@:{sizes.map~rs}': sizesMap
+            '_m8': testX,
+            '_m9': testY,
+            '_n_': sizesMap
         };
     }
 };

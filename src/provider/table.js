@@ -4,10 +4,10 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("provider/table",["magix5"],(require,exports,module)=>{
+define("5r/table",["5c"],(require,exports,module)=>{
 
 
-let magix_1 = require("magix5");
+let magix_1 = require("5c");
 /**
  * 用于操作描述表格生成的数据对象，如
  * {
@@ -50,8 +50,8 @@ let findMaxColspan = (rows, colIndex, colMax) => {
     let spanned = colMax;
     for (let row of rows) {
         for (let col of row.cols) {
-            let end = col['@:{start.col.index~rs}'] + col.colspan - 1;
-            if (col['@:{start.col.index~rs}'] <= colIndex &&
+            let end = col['_qj'] + col.colspan - 1;
+            if (col['_qj'] <= colIndex &&
                 end >= colIndex) {
                 let s = end - colIndex;
                 if (s < spanned) {
@@ -73,8 +73,8 @@ let findMaxRowspan = (rows, rowIndex, rowMax) => {
     let spanned = rowMax;
     for (let row of rows) {
         for (let col of row.cols) {
-            let end = col['@:{start.row.index~rs}'] + col.rowspan - 1;
-            if (col['@:{start.row.index~rs}'] <= rowIndex &&
+            let end = col['_rh'] + col.rowspan - 1;
+            if (col['_rh'] <= rowIndex &&
                 end >= rowIndex) {
                 let s = end - rowIndex;
                 if (s < spanned) {
@@ -92,10 +92,10 @@ module.exports= {
      * @param canCheck 能否检查并使用已有的缓存信息
      * @returns 表格对象
      */
-    '@:{table.provider#add.ext.meta~rs}'(table, canCheck) {
+    'l2'(table, canCheck) {
         if (!canCheck ||
-            (table['@:{row.max~rs}'] == null ||
-                table['@:{col.max~rs}'] == null)) {
+            (table['_pS'] == null ||
+                table['_pT'] == null)) {
             let ri = 0, ci = 0, colSpanned = {}, rowSpanned = {}, { rows } = table, colMax = 0, rowMax = 0, rci = 0;
             for (let row of rows) {
                 ci = 0;
@@ -107,22 +107,22 @@ module.exports= {
                         ci += colSpanned[ci];
                     }
                     //cell['@:{row.index}'] = ri;
-                    cell['@:{col.index~rs}'] = rci++;
-                    cell['@:{row.index~rs}'] = ri;
-                    cell['@:{start.row.index~rs}'] = ri;
-                    cell['@:{start.col.index~rs}'] = ci;
+                    cell['_oQ'] = rci++;
+                    cell['_oP'] = ri;
+                    cell['_rh'] = ri;
+                    cell['_qj'] = ci;
                     if (cell.rowspan) {
                         rowSpanned[ci] = cell.rowspan + ri;
-                        cell['@:{end.row.index~rs}'] = ri + cell.rowspan - 1;
+                        cell['_rg'] = ri + cell.rowspan - 1;
                     }
                     else {
-                        cell['@:{end.row.index~rs}'] = ri;
+                        cell['_rg'] = ri;
                     }
                     if (cell.colspan) {
                         colSpanned[ci] = cell.colspan;
                         ci += cell.colspan - 1;
                     }
-                    cell['@:{end.col.index~rs}'] = ci++;
+                    cell['_qk'] = ci++;
                     if (ci > colMax) {
                         colMax = ci;
                     }
@@ -132,8 +132,8 @@ module.exports= {
                     rowMax = ri;
                 }
             }
-            table['@:{row.max~rs}'] = rowMax;
-            table['@:{col.max~rs}'] = colMax;
+            table['_pS'] = rowMax;
+            table['_pT'] = colMax;
         }
         return table;
     },
@@ -143,7 +143,7 @@ module.exports= {
      * @param to 向哪个方法合并 left top right bottom
      * @returns 表格对象
      */
-    '@:{table.provider#merge.cell~rs}'(table, to) {
+    'l8'(table, to) {
         let { focusCol, focusRow, rows } = table, cells, syncHeight = 0, syncWidth = 0;
         if (to == 'left') {
             cells = [[focusRow, focusCol - 1], [focusRow, focusCol]];
@@ -156,8 +156,8 @@ module.exports= {
         else {
             syncHeight = 1;
             let dest = rows[focusRow].cols[focusCol];
-            let maxRowIndex = dest['@:{end.row.index~rs}'] + 1;
-            let maxColIndex = dest['@:{end.col.index~rs}'];
+            let maxRowIndex = dest['_rg'] + 1;
+            let maxColIndex = dest['_qk'];
             let find = 0;
             for (let rowIndex = 0; rowIndex <= maxRowIndex; rowIndex++) {
                 for (let colIndex = 0; colIndex <= maxColIndex; colIndex++) {
@@ -166,17 +166,17 @@ module.exports= {
                         let cell = row.cols[colIndex];
                         if (cell &&
                             cell != dest) {
-                            let realColIndex = cell['@:{col.index~rs}'];
-                            if (cell['@:{start.col.index~rs}'] == dest['@:{start.col.index~rs}'] &&
-                                cell['@:{end.col.index~rs}'] == dest['@:{end.col.index~rs}']) {
-                                if (cell['@:{end.row.index~rs}'] + 1 == dest['@:{start.row.index~rs}']) {
+                            let realColIndex = cell['_oQ'];
+                            if (cell['_qj'] == dest['_qj'] &&
+                                cell['_qk'] == dest['_qk']) {
+                                if (cell['_rg'] + 1 == dest['_rh']) {
                                     if (to == 'top') {
                                         cells = [[rowIndex, realColIndex], [focusRow, focusCol]];
                                         find = 1;
                                         break;
                                     }
                                 }
-                                else if (dest['@:{end.row.index~rs}'] + 1 == cell['@:{start.row.index~rs}']) {
+                                else if (dest['_rg'] + 1 == cell['_rh']) {
                                     if (to == 'bottom') {
                                         cells = [[focusRow, focusCol], [rowIndex, realColIndex]];
                                         find = 1;
@@ -198,19 +198,19 @@ module.exports= {
         let spannedCols = 0, spannedRows = 0, spannedMaxRowIndex = -1, spannedMaxColIndex = -1;
         for (let cell of cells) {
             let dest = rows[cell[0]].cols[cell[1]];
-            let maxRowIndex = dest['@:{end.row.index~rs}'];
+            let maxRowIndex = dest['_rg'];
             if (maxRowIndex > spannedMaxRowIndex) {
                 spannedMaxRowIndex = maxRowIndex;
             }
-            let maxColIndex = dest['@:{end.col.index~rs}'];
+            let maxColIndex = dest['_qk'];
             if (maxColIndex > spannedMaxColIndex) {
                 spannedMaxColIndex = maxColIndex;
             }
         }
         let dest = rows[first[0]].cols[first[1]];
         let from = rows[second[0]].cols[second[1]];
-        spannedRows = spannedMaxRowIndex - dest['@:{start.row.index~rs}'] + 1;
-        spannedCols = spannedMaxColIndex - dest['@:{start.col.index~rs}'] + 1;
+        spannedRows = spannedMaxRowIndex - dest['_rh'] + 1;
+        spannedCols = spannedMaxColIndex - dest['_qj'] + 1;
         if (syncWidth) {
             dest.width += from.width;
         }
@@ -233,7 +233,7 @@ module.exports= {
             let row = rows[c[0]];
             row.cols.splice(c[1], 1);
         }
-        let rowMax = table['@:{row.max~rs}'];
+        let rowMax = table['_pS'];
         for (let i = rowMax; i--;) {
             let row = rows[i];
             if (!row.cols.length) {
@@ -247,8 +247,8 @@ module.exports= {
                 for (let j = 0; j <= i; j++) {
                     let trow = rows[j];
                     for (let col of trow.cols) {
-                        let end = col['@:{start.row.index~rs}'] + col.rowspan - 1;
-                        if (col['@:{start.row.index~rs}'] <= i &&
+                        let end = col['_rh'] + col.rowspan - 1;
+                        if (col['_rh'] <= i &&
                             end >= i) {
                             col.rowspan -= s;
                         }
@@ -276,14 +276,14 @@ module.exports= {
         //         }
         //     }
         // }
-        let colMax = table['@:{col.max~rs}'];
+        let colMax = table['_pT'];
         for (let i = 0; i < colMax; i++) {
             let s = findMaxColspan(rows, i, colMax);
             if (s > 0) {
                 for (let row of rows) {
                     for (let col of row.cols) {
-                        let end = col['@:{start.col.index~rs}'] + col.colspan - 1;
-                        if (col['@:{start.col.index~rs}'] <= i &&
+                        let end = col['_qj'] + col.colspan - 1;
+                        if (col['_qj'] <= i &&
                             end >= i) {
                             col.colspan -= s;
                         }
@@ -302,20 +302,20 @@ module.exports= {
      * @param minWidth 最小宽度
      * @param minHeight 最小高度
      */
-    '@:{table.provider#split.cell~rs}'(table, h, cellProps, minWidth, minHeight) {
+    'l9'(table, h, cellProps, minWidth, minHeight) {
         let { focusRow, focusCol, rows } = table;
         let destRow = rows[focusRow];
         let dest = destRow.cols[focusCol];
-        let sizes = this['@:{table.provider#get.sizes~rs}'](table);
+        let sizes = this['l3'](table);
         if (h) {
             let addColspan, addWidth;
             if (dest.colspan > 1) {
                 let right = (dest.colspan / 2) | 0;
                 let left = dest.colspan - right;
                 let rightWidth = 0; //findWidth(rows, dest['@:{end.col.index}'] - right, dest['@:{end.col.index}']);
-                let rightEnd = dest['@:{end.col.index~rs}'], rightStart = rightEnd - right + 1;
+                let rightEnd = dest['_qk'], rightStart = rightEnd - right + 1;
                 for (let i = rightStart; i <= rightEnd; i++) {
-                    rightWidth += sizes['@:{col.widths~rs}'][i];
+                    rightWidth += sizes['_pU'][i];
                 }
                 dest.colspan = left;
                 dest.width -= rightWidth;
@@ -335,7 +335,7 @@ module.exports= {
                 for (let row of rows) {
                     for (let col of row.cols) {
                         if (col != dest &&
-                            col['@:{start.col.index~rs}'] <= dest['@:{start.col.index~rs}'] && col['@:{end.col.index~rs}'] >= dest['@:{end.col.index~rs}']) {
+                            col['_qj'] <= dest['_qj'] && col['_qk'] >= dest['_qk']) {
                             col.colspan++;
                             col.width += diffWidth;
                         }
@@ -358,18 +358,18 @@ module.exports= {
                 let bottom = (dest.rowspan / 2) | 0;
                 let top = dest.rowspan - bottom;
                 let bottomHeight = 0; // findHeight(rows, dest['@:{end.row.index}'] - bottom, dest['@:{end.row.index}']);
-                let bottomEnd = dest['@:{end.row.index~rs}'], bottomStart = bottomEnd - bottom + 1;
+                let bottomEnd = dest['_rg'], bottomStart = bottomEnd - bottom + 1;
                 for (let i = bottomStart; i <= bottomEnd; i++) {
-                    bottomHeight += sizes['@:{row.heights~rs}'][i];
+                    bottomHeight += sizes['_pV'][i];
                 }
                 dest.rowspan = top;
                 dest.height -= bottomHeight;
                 addRowspan = bottom;
                 addHeight = bottomHeight;
-                destRow = rows[dest['@:{start.row.index~rs}'] + top];
+                destRow = rows[dest['_rh'] + top];
                 let ci = 0;
                 for (let c of destRow.cols) {
-                    if (c['@:{start.col.index~rs}'] > dest['@:{start.col.index~rs}']) {
+                    if (c['_qj'] > dest['_qj']) {
                         focusCol = ci;
                         break;
                     }
@@ -389,13 +389,13 @@ module.exports= {
                 for (let row of rows) {
                     for (let col of row.cols) {
                         if (col != dest &&
-                            col['@:{start.row.index~rs}'] <= dest['@:{start.row.index~rs}'] && col['@:{end.row.index~rs}'] >= dest['@:{end.row.index~rs}']) {
+                            col['_rh'] <= dest['_rh'] && col['_rg'] >= dest['_rg']) {
                             col.rowspan++;
                             col.height += diffHeight;
                         }
                     }
                 }
-                rows.splice(dest['@:{end.row.index~rs}'] + 1, 0, destRow = addTag({
+                rows.splice(dest['_rg'] + 1, 0, destRow = addTag({
                     cols: []
                 }, destRow));
             }
@@ -418,18 +418,18 @@ module.exports= {
      * @param rowHeight 行高
      * @returns 表格对象
      */
-    '@:{table.provider#insert.row.at~rs}'(table, rowAt, cellProps, rowHeight) {
+    'l4'(table, rowAt, cellProps, rowHeight) {
         let skipCols = {};
-        let { rows, focusRow, '@:{col.max~rs}': colMax } = table;
+        let { rows, focusRow, '_pT': colMax } = table;
         let currentRow = rows[focusRow];
-        let sizes = this['@:{table.provider#get.sizes~rs}'](table);
+        let sizes = this['l3'](table);
         for (let rowIndex = 0; rowIndex < rowAt; rowIndex++) {
             let row = rows[rowIndex];
             for (let cell of row.cols) {
-                if (cell['@:{end.row.index~rs}'] >= rowAt) {
+                if (cell['_rg'] >= rowAt) {
                     cell.rowspan++;
                     cell.height += rowHeight;
-                    let start = cell['@:{start.col.index~rs}'], end = start + cell.colspan;
+                    let start = cell['_qj'], end = start + cell.colspan;
                     for (let i = start; i < end; i++) {
                         skipCols[i] = 1;
                     }
@@ -447,7 +447,7 @@ module.exports= {
                 let dest = {
                     ...cellProps,
                     elements: [],
-                    width: sizes['@:{col.widths~rs}'][colIndex],
+                    width: sizes['_pU'][colIndex],
                     height: rowHeight,
                     rowspan: 1,
                     colspan: 1,
@@ -466,10 +466,10 @@ module.exports= {
      * @param cellWidth 单元格宽度
      * @returns 表格对象
      */
-    '@:{table.provider#insert.col.at~rs}'(table, colAt, cellProps, cellWidth) {
+    'l6'(table, colAt, cellProps, cellWidth) {
         let { rows } = table;
         let spannedCells = [], ri = 0;
-        let sizes = this['@:{table.provider#get.sizes~rs}'](table);
+        let sizes = this['l3'](table);
         for (let row of rows) {
             let cellsCount = row.cols.length;
             let insertColAt = cellsCount;
@@ -478,23 +478,23 @@ module.exports= {
                 if (cell.rowspan > 1) {
                     spannedCells.push(cell);
                 }
-                if (cell['@:{start.col.index~rs}'] < colAt &&
-                    cell['@:{end.col.index~rs}'] >= colAt) {
+                if (cell['_qj'] < colAt &&
+                    cell['_qk'] >= colAt) {
                     cell.colspan++;
                     cell.width += cellWidth;
                     insertColAt = -1;
                     break;
                 }
-                else if (cell['@:{start.col.index~rs}'] >= colAt) {
+                else if (cell['_qj'] >= colAt) {
                     insertColAt = colIndex;
                     break;
                 }
             }
             for (let cell of spannedCells) {
-                if (cell['@:{start.col.index~rs}'] < colAt &&
-                    cell['@:{end.col.index~rs}'] >= colAt &&
-                    cell['@:{start.row.index~rs}'] < ri &&
-                    cell['@:{end.row.index~rs}'] >= ri) {
+                if (cell['_qj'] < colAt &&
+                    cell['_qk'] >= colAt &&
+                    cell['_rh'] < ri &&
+                    cell['_rg'] >= ri) {
                     insertColAt = -1;
                     break;
                 }
@@ -503,7 +503,7 @@ module.exports= {
                 let dest = {
                     ...cellProps,
                     elements: [],
-                    height: sizes['@:{row.heights~rs}'][ri],
+                    height: sizes['_pV'][ri],
                     width: cellWidth,
                     rowspan: 1,
                     colspan: 1,
@@ -520,7 +520,7 @@ module.exports= {
      * @param deletedRowIndex 删除哪一行
      * @returns 表格对象
      */
-    '@:{table.provider#delete.row~rs}'(table, deletedRowIndex) {
+    'l5'(table, deletedRowIndex) {
         let { rows, focusRow, focusCol } = table;
         let rowRange;
         if (deletedRowIndex != null) {
@@ -528,7 +528,7 @@ module.exports= {
         }
         else {
             let dest = rows[focusRow].cols[focusCol];
-            rowRange = [dest['@:{start.row.index~rs}'], dest['@:{end.row.index~rs}']];
+            rowRange = [dest['_rh'], dest['_rg']];
         }
         let movedCells = {}, hasMoved = 0;
         let removedRows = (rowRange[1] - rowRange[0] + 1);
@@ -538,9 +538,9 @@ module.exports= {
             let row = rows[rowIndex], singRowHeight = 0;
             for (let colIndex = row.cols.length; colIndex--;) {
                 let cell = row.cols[colIndex];
-                let cellStartColIndex = cell['@:{start.col.index~rs}'];
-                let cellEndRowIndex = cell['@:{end.row.index~rs}'];
-                let cellStartRowIndex = cell['@:{start.row.index~rs}'];
+                let cellStartColIndex = cell['_qj'];
+                let cellEndRowIndex = cell['_rg'];
+                let cellStartRowIndex = cell['_rh'];
                 let spannedRows = cellEndRowIndex - cellStartRowIndex + 1;
                 if (spannedRows == 1) {
                     singRowHeight = cell.height;
@@ -549,15 +549,15 @@ module.exports= {
                     let halfSpannedRows = spannedRows / 2;
                     let centerDiff = abs(rowRange[0] + halfDeleteRows - cellStartRowIndex - halfSpannedRows);
                     if (centerDiff < halfDeleteRows + halfSpannedRows) {
-                        if (rowRange[0] == cell['@:{start.row.index~rs}'] &&
-                            (cell['@:{end.row.index~rs}'] - cell['@:{start.row.index~rs}']) >= removedRows) {
+                        if (rowRange[0] == cell['_rh'] &&
+                            (cell['_rg'] - cell['_rh']) >= removedRows) {
                             movedCells[cellStartColIndex] = cell;
                             hasMoved = 1;
                         }
                         if (!singRowHeight) {
                             for (let tempCI = colIndex; tempCI--;) {
                                 let tCell = row.cols[tempCI];
-                                if (tCell['@:{end.row.index~rs}'] == tCell['@:{start.row.index~rs}']) {
+                                if (tCell['_rg'] == tCell['_rh']) {
                                     singRowHeight = tCell.height;
                                     break;
                                 }
@@ -577,7 +577,7 @@ module.exports= {
             }
         }
         if (hasMoved) {
-            let maxCol = table['@:{col.max~rs}'];
+            let maxCol = table['_pT'];
             if (nextRow) {
                 for (let colIndex = maxCol, lastCellIndex = nextRow.cols.length; colIndex--;) {
                     let movedCell = movedCells[colIndex];
@@ -585,7 +585,7 @@ module.exports= {
                         let insertIndex = 0;
                         for (let findIndex = lastCellIndex; findIndex--;) {
                             let cell = nextRow.cols[findIndex];
-                            if (cell['@:{start.col.index~rs}'] < colIndex) {
+                            if (cell['_qj'] < colIndex) {
                                 lastCellIndex = findIndex;
                                 insertIndex = findIndex + 1;
                                 break;
@@ -605,7 +605,7 @@ module.exports= {
      * @param deletedColEndIndex 删除单元格结束的列
      * @returns 表格对象
      */
-    '@:{table.provider#delete.col~rs}'(table, deletedColStartIndex, deletedColEndIndex) {
+    'l7'(table, deletedColStartIndex, deletedColEndIndex) {
         let { focusRow, focusCol, rows } = table;
         let colRange;
         let singleCellWidth = 0;
@@ -618,8 +618,8 @@ module.exports= {
             for (let row of rows) {
                 for (let colIndex = row.cols.length; colIndex--;) {
                     let cell = row.cols[colIndex];
-                    if (cell['@:{start.col.index~rs}'] == deletedColStartIndex &&
-                        cell['@:{end.col.index~rs}'] == deletedColEndIndex) {
+                    if (cell['_qj'] == deletedColStartIndex &&
+                        cell['_qk'] == deletedColEndIndex) {
                         find = 1;
                         singleCellWidth = cell.width;
                         break;
@@ -633,8 +633,8 @@ module.exports= {
         else {
             let row = rows[focusRow];
             let cellToDelete = row.cols[focusCol];
-            colRange = [cellToDelete['@:{start.col.index~rs}'],
-                cellToDelete['@:{end.col.index~rs}']];
+            colRange = [cellToDelete['_qj'],
+                cellToDelete['_qk']];
             singleCellWidth = cellToDelete.width;
         }
         let deletedCols = colRange[1] - colRange[0] + 1;
@@ -642,8 +642,8 @@ module.exports= {
         for (let row of rows) {
             for (let colIndex = row.cols.length; colIndex--;) {
                 let cell = row.cols[colIndex];
-                let cellStartColIndex = cell['@:{start.col.index~rs}'];
-                let cellEndColIndex = cell['@:{end.col.index~rs}'];
+                let cellStartColIndex = cell['_qj'];
+                let cellEndColIndex = cell['_qk'];
                 if (cellStartColIndex >= colRange[0] &&
                     cellEndColIndex <= colRange[1]) {
                     row.cols.splice(colIndex, 1);
@@ -670,14 +670,14 @@ module.exports= {
      * @param refCell 参考的表格
      * @returns 表格对象
      */
-    '@:{table.provider#get.sizes~rs}'(table, refCell) {
+    'l3'(table, refCell) {
         let colWidths = [], rowHeights = [];
         let { rows } = table;
         let usedRefCellWidth = false, usedRefCellHeight = false;
         for (let row of rows) {
             for (let col of row.cols) {
                 if (col.colspan == 1) {
-                    let colIndex = col['@:{start.col.index~rs}'];
+                    let colIndex = col['_qj'];
                     if (colWidths[colIndex] == null ||
                         (!usedRefCellWidth && col.width > colWidths[colIndex]) ||
                         refCell == col) {
@@ -686,7 +686,7 @@ module.exports= {
                     }
                 }
                 if (col.rowspan == 1) {
-                    let rowIndex = col['@:{start.row.index~rs}'];
+                    let rowIndex = col['_rh'];
                     if (rowHeights[rowIndex] == null ||
                         (!usedRefCellHeight && col.height > rowHeights[rowIndex]) ||
                         refCell == col) {
@@ -700,7 +700,7 @@ module.exports= {
             for (let col of row.cols) {
                 if (col.colspan > 1) {
                     let findColsWidth = 0, findCols = 0;
-                    let startCol = col['@:{start.col.index~rs}'], endCol = startCol + col.colspan;
+                    let startCol = col['_qj'], endCol = startCol + col.colspan;
                     for (let i = startCol; i < endCol; i++) {
                         if (colWidths[i] != null && colWidths[i] >= 0) {
                             findColsWidth += colWidths[i];
@@ -728,7 +728,7 @@ module.exports= {
                 }
                 if (col.rowspan > 1) {
                     let findRowsHeight = 0, findRows = 0;
-                    let startRow = col['@:{start.row.index~rs}'], endRow = startRow + col.rowspan;
+                    let startRow = col['_rh'], endRow = startRow + col.rowspan;
                     for (let i = startRow; i < endRow; i++) {
                         if (rowHeights[i] != null && rowHeights[i] >= 0) {
                             findRowsHeight += rowHeights[i];
@@ -757,8 +757,8 @@ module.exports= {
             }
         }
         return {
-            '@:{col.widths~rs}': colWidths,
-            '@:{row.heights~rs}': rowHeights
+            '_pU': colWidths,
+            '_pV': rowHeights
         };
     },
     /**
@@ -766,20 +766,20 @@ module.exports= {
      * @param table 表格对象
      * @param refCell 参考表格
      */
-    '@:{table.provider#update.cell.size~rs}'(table, refCell) {
-        let sizes = this['@:{table.provider#get.sizes~rs}'](table, refCell);
+    'm_'(table, refCell) {
+        let sizes = this['l3'](table, refCell);
         let { rows } = table;
         for (let row of rows) {
             for (let col of row.cols) {
                 let rowspan = col.rowspan || 1;
                 let colspan = col.colspan || 1;
-                let colStartIndex = col['@:{start.col.index~rs}'], rowStartIndex = col['@:{start.row.index~rs}'];
+                let colStartIndex = col['_qj'], rowStartIndex = col['_rh'];
                 let w = 0, h = 0;
                 for (let i = colStartIndex + colspan - 1; i >= colStartIndex; i--) {
-                    w += sizes['@:{col.widths~rs}'][i];
+                    w += sizes['_pU'][i];
                 }
                 for (let i = rowStartIndex + rowspan - 1; i >= rowStartIndex; i--) {
-                    h += sizes['@:{row.heights~rs}'][i];
+                    h += sizes['_pV'][i];
                 }
                 col.width = w;
                 col.height = h;

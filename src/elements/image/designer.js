@@ -4,51 +4,51 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/image/designer",["magix5","../../designer/props","../../designer/transform","../normal","../../designer/const","../../designer/enum"],(require,exports,module)=>{
+define("61/image/designer",["5c","../../5b/6c","../../5b/5f","../6p","../../5b/5e","../../5b/enum"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let props_1 = require("../../designer/props");
-let transform_1 = require("../../designer/transform");
-let normal_1 = require("../normal");
-let const_1 = require("../../designer/const");
-let enum_1 = require("../../designer/enum");
+let magix_1 = require("5c");
+let props_1 = require("../../5b/6c");
+let transform_1 = require("../../5b/5f");
+let normal_1 = require("../6p");
+let const_1 = require("../../5b/5e");
+let enum_1 = require("../../5b/enum");
 let { config } = magix_1;
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/image/dshow"
+            view: "61/image/dshow"
         });
     }
 }).static({
     type: 'image',
-    title: '@:{lang#elements.image~rs}',
+    title: 'p5',
     icon: '&#xe650;',
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.width~rs}'] |
-        enum_1['@:{enum#modifier.height~rs}'] |
-        enum_1['@:{enum#modifier.rotate~rs}'] |
-        enum_1['@:{enum#modifier.nomask~rs}'],
-    '@:{move.props~rs}': [{
+    '_oG': enum_1['mb'] |
+        enum_1['mc'] |
+        enum_1['me'] |
+        enum_1['mf'],
+    '_oj': [{
             key: 'x',
             use: 'x'
         }, {
             key: 'y',
             use: 'y'
         }],
-    '@:{get.props~rs}'(x, y) {
+    '_m2'(x, y) {
         return {
-            height: const_1['@:{const#to.unit~rs}'](100),
+            height: const_1['l3'](100),
             alpha: 1,
-            x: const_1['@:{const#to.unit~rs}'](x),
-            y: const_1['@:{const#to.unit~rs}'](y),
-            tfs: const_1['@:{const#to.unit~rs}'](14),
+            x: const_1['l3'](x),
+            y: const_1['l3'](y),
+            tfs: const_1['l3'](14),
             rotate: 0,
             rotateX: false,
             rotateY: false,
-            width: const_1['@:{const#to.unit~rs}'](200),
+            width: const_1['l3'](200),
             image: '',
             webUrl: '',
             locked: false,
@@ -62,150 +62,150 @@ module.exports= normal_1.extend({
     },
     props: [{
             key: 'tfs',
-            '@:{is.scale.and.unit.field~rs}': 1,
+            '_nA': 1,
         }, {
-            tip: '@:{lang#props.x~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nP',
+            type: props_1["l2"],
             key: 'x',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            '_nA': 1,
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.y~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nQ',
+            type: props_1["l2"],
             key: 'y',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            '_nA': 1,
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.width~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nR',
+            type: props_1["l2"],
             key: 'width',
-            '@:{is.scale.and.unit.field~rs}': 1,
+            '_nA': 1,
             min: () => 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.height~rs}',
+            tip: 'nS',
             key: 'height',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            type: props_1["@:{eprops#number~rs}"],
+            '_nA': 1,
+            type: props_1["l2"],
             min: () => 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.rotate~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nT',
+            type: props_1["l2"],
             key: 'rotate',
             min: -360,
             max: 360,
             json: 1
         }, {
-            tip: '@:{lang#props.alpha~rs}',
+            tip: 'nU',
             key: 'alpha',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["l2"],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"],
-            '@:{if.show~rs}'(props) {
+            type: props_1["ms"],
+            '_py'(props) {
                 return !props.bind.url && !props.image;
             }
         }, {
-            tip: '@:{lang#props.web.image~rs}',
+            tip: 'p6',
             key: 'webUrl',
-            type: props_1['@:{eprops#text.input~rs}'],
+            type: props_1['ma'],
             json: 1,
-            '@:{if.show~rs}'(props) {
+            '_py'(props) {
                 return !props.bind.url && !props.image;
             },
         }, {
-            type: props_1["@:{eprops#spliter~rs}"],
-            '@:{if.show~rs}'(props) {
+            type: props_1["ms"],
+            '_py'(props) {
                 return !props.bind.url && !props.webUrl;
             }
         }, {
-            tip: '@:{lang#props.image~rs}',
+            tip: 'p7',
             key: 'image',
-            type: props_1["@:{eprops#image~rs}"],
+            type: props_1["l8"],
             write(v, props, e) {
                 if (!v) {
                     e.width = 200;
                     e.height = 100;
                 }
-                e.width = const_1["@:{const#to.unit~rs}"](e.width);
-                e.height = const_1["@:{const#to.unit~rs}"](e.height);
-                props.width = transform_1["@:{transform#to.real.value~rs}"](e.width);
-                props.height = transform_1["@:{transform#to.real.value~rs}"](e.height);
+                e.width = const_1["l3"](e.width);
+                e.height = const_1["l3"](e.height);
+                props.width = transform_1["m_"](e.width);
+                props.height = transform_1["m_"](e.height);
                 return v;
             },
             json: 1,
-            '@:{if.show~rs}'(props) {
+            '_py'(props) {
                 return !props.bind.url && config('getImageUrl') && !props.webUrl;
             }
         }, {
-            tip: '@:{lang#props.image.reset~rs}',
-            type: props_1["@:{eprops#image.reset~rs}"],
+            tip: 'p8',
+            type: props_1["m_"],
             key: 'image',
-            '@:{if.show~rs}'(props) {
+            '_py'(props) {
                 return props.image;
             }
         }, {
-            type: props_1["@:{eprops#spliter~rs}"],
-            '@:{if.show~rs}'(props) {
+            type: props_1["ms"],
+            '_py'(props) {
                 return !props.image && config('getFieldUrl') && !props.webUrl;
             }
         }, {
-            tip: '@:{lang#props.bind.fields~rs}',
+            tip: 'nW',
             key: 'bind',
-            type: props_1["@:{eprops#bind.field~rs}"],
+            type: props_1["mb"],
             json: 1,
             max: 1,
-            '@:{if.show~rs}'(props) {
+            '_py'(props) {
                 return !props.image && config('getFieldUrl') && !props.webUrl;
             }
         }, {
-            type: props_1["@:{eprops#spliter~rs}"]
+            type: props_1["ms"]
         }, {
-            tip: '@:{lang#props.rotate.x~rs}',
-            type: props_1["@:{eprops#boolean~rs}"],
+            tip: 'p9',
+            type: props_1["l4"],
             key: 'rotateX',
             json: 1
         }, {
-            tip: '@:{lang#props.rotate.y~rs}',
-            type: props_1["@:{eprops#boolean~rs}"],
+            tip: 'q_',
+            type: props_1["l4"],
             key: 'rotateY',
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"]
+            type: props_1["ms"]
         }, {
-            tip: '@:{lang#props.help~rs}',
-            type: props_1["@:{eprops#link~rs}"],
+            tip: 'n2',
+            type: props_1["mm"],
             key: 'help'
         }, {
-            tip: '@:{lang#props.title~rs}',
+            tip: 'n3',
             key: 'ename',
-            type: props_1["@:{eprops#text.input~rs}"],
+            type: props_1["ma"],
             json: 1
         }, {
-            tip: '@:{lang#props.locked~rs}',
+            tip: 'n4',
             key: 'locked',
-            type: props_1["@:{eprops#boolean~rs}"],
+            type: props_1["l4"],
             free: true,
             json: 1
         }]

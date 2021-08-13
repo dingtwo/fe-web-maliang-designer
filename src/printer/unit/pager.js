@@ -4,7 +4,7 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("printer/unit/pager",[],(require,exports,module)=>{
+define("7j/7m/pager",[],(require,exports,module)=>{
 
 
 /**

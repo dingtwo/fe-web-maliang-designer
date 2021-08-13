@@ -74,7 +74,7 @@ let RDService = Service.extend((bag, callback) => {
     let url = bag.get('url');
     let options = {
         method,
-        credentials: 'include',
+        // credentials: 'include',
         headers: {
             'Accept': 'application/json',
             // 'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',

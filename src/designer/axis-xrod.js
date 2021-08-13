@@ -4,7 +4,7 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("designer/axis-xrod",["magix5","./const"],(require,exports,module)=>{
+define("5b/5g",["5c","./5e"],(require,exports,module)=>{
 
 /*
     author:https://github.com/xinglie
@@ -14,12 +14,12 @@ define("designer/axis-xrod",["magix5","./const"],(require,exports,module)=>{
  */
 
 
-let magix_1 = require("magix5");
-let const_1 = require("./const");
+let magix_1 = require("5c");
+let const_1 = require("./5e");
 let { View, State } = magix_1;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0=[],
+let $temp_var,$vnode_0=[],
 {
 	width,
 	step,
@@ -36,51 +36,50 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0=[],
 	x,}=$dataFromView,
 $vnode_2,
 $vnode_1;
-$vnode_1=[];($__line=2,$__art='{{set temp}}','');$__ctrl='<%let temp;%>';let temp;;$__line=3;$__art="{{for (let i=step;i<xStart;i+=step)}}";$__ctrl="for(let i=step;i<xStart;i+=step){";
+$vnode_1=[];let temp;;
 for(let i=step;i<xStart;i+=step){
-($__line=4,$__art='{{temp=round(i/scale*enlarge)}}','');$__ctrl='<%temp=round(i/scale*enlarge)%>';temp=round(i/scale*enlarge);$__line=5;$__art="{{if temp%(space*enlarge)===0}}";$__ctrl="if(temp%(space*enlarge)===0){";
+temp=round(i/scale*enlarge);
 if(temp%(space*enlarge)===0){
-$vnode_1.push($createVNode('rect',{'width': 1,'height': ($__line=6,$__art='{{=hbar}}',$__ctrl='<%=hbar%>',(hbar)),'x': ($__line=6,$__art='{{=xStart-i}}',$__ctrl='<%=xStart-i%>',(xStart-i)),'y': ($__line=6,$__art='{{=19-hbar}}',$__ctrl='<%=19-hbar%>',(19-hbar)),'style': 'fill:'+($__line=6,$__art='{{=barColor}}',$__ctrl='<%=barColor%>',(barColor)),},1));$vnode_2=[$createVNode(0,($__line=7,$__art='{{=-toUnit(temp/enlarge)}}',$__ctrl='<%=-toUnit(temp/enlarge)%>',(-toUnit(temp/enlarge))))];$vnode_1.push($createVNode('text',{'x': ($__line=7,$__art='{{=xStart-i+2}}',$__ctrl='<%=xStart-i+2%>',(xStart-i+2)),'y': 14,'class': 'rd-_assets_index_less_-color-fill-999 rd-_assets_index_less_-fontsize-10',},$vnode_2));
+$vnode_1.push($createVNode('rect',{'width': 1,'height': (hbar),'x': (xStart-i),'y': (19-hbar),'style': 'fill:'+(barColor),},1));$vnode_2=[$createVNode(0,(-toUnit(temp/enlarge)))];$vnode_1.push($createVNode('text',{'x': (xStart-i+2),'y': 14,'class': 'rd-nM rd-nT',},$vnode_2));
 }else{
-$vnode_1.push($createVNode('rect',{'width': 1,'height': ($__line=9,$__art='{{=bar}}',$__ctrl='<%=bar%>',(bar)),'x': ($__line=9,$__art='{{=xStart-i}}',$__ctrl='<%=xStart-i%>',(xStart-i)),'y': ($__line=9,$__art='{{=19-bar}}',$__ctrl='<%=19-bar%>',(19-bar)),'style': 'fill:'+($__line=9,$__art='{{=barColor}}',$__ctrl='<%=barColor%>',(barColor)),},1));
+$vnode_1.push($createVNode('rect',{'width': 1,'height': (bar),'x': (xStart-i),'y': (19-bar),'style': 'fill:'+(barColor),},1));
 }
-}$__line=12;$__art="{{for (let i=0;i<xEnd;i+=step)}}";$__ctrl="for(let i=0;i<xEnd;i+=step){";
+}
 for(let i=0;i<xEnd;i+=step){
-($__line=13,$__art='{{temp=round(i/scale*enlarge)}}','');$__ctrl='<%temp=round(i/scale*enlarge)%>';temp=round(i/scale*enlarge);$__line=14;$__art="{{if temp%(space*enlarge)===0}}";$__ctrl="if(temp%(space*enlarge)===0){";
+temp=round(i/scale*enlarge);
 if(temp%(space*enlarge)===0){
-$vnode_1.push($createVNode('rect',{'width': 1,'height': ($__line=15,$__art='{{=hbar}}',$__ctrl='<%=hbar%>',(hbar)),'x': ($__line=15,$__art='{{=xStart+i}}',$__ctrl='<%=xStart+i%>',(xStart+i)),'y': ($__line=15,$__art='{{=19-hbar}}',$__ctrl='<%=19-hbar%>',(19-hbar)),'style': 'fill:'+($__line=15,$__art='{{=barColor}}',$__ctrl='<%=barColor%>',(barColor)),},1));$vnode_2=[$createVNode(0,($__line=16,$__art='{{=toUnit(temp/enlarge)}}',$__ctrl='<%=toUnit(temp/enlarge)%>',(toUnit(temp/enlarge))))];$vnode_1.push($createVNode('text',{'x': ($__line=16,$__art='{{=xStart+i+2}}',$__ctrl='<%=xStart+i+2%>',(xStart+i+2)),'y': 14,'class': 'rd-_assets_index_less_-color-fill-999 rd-_assets_index_less_-fontsize-10',},$vnode_2));
+$vnode_1.push($createVNode('rect',{'width': 1,'height': (hbar),'x': (xStart+i),'y': (19-hbar),'style': 'fill:'+(barColor),},1));$vnode_2=[$createVNode(0,(toUnit(temp/enlarge)))];$vnode_1.push($createVNode('text',{'x': (xStart+i+2),'y': 14,'class': 'rd-nM rd-nT',},$vnode_2));
 }else{
-$vnode_1.push($createVNode('rect',{'width': 1,'height': ($__line=18,$__art='{{=bar}}',$__ctrl='<%=bar%>',(bar)),'x': ($__line=18,$__art='{{=xStart+i}}',$__ctrl='<%=xStart+i%>',(xStart+i)),'y': ($__line=18,$__art='{{=19-bar}}',$__ctrl='<%=19-bar%>',(19-bar)),'style': 'fill:'+($__line=18,$__art='{{=barColor}}',$__ctrl='<%=barColor%>',(barColor)),},1));
+$vnode_1.push($createVNode('rect',{'width': 1,'height': (bar),'x': (xStart+i),'y': (19-bar),'style': 'fill:'+(barColor),},1));
 }
-}$vnode_0.push($createVNode('svg',{'class': 'rd-_assets_index_less_-cursor-default rd-_assets_index_less_-pa','xmlns': 'http://www.w3.org/2000/svg','viewBox': '0 0 '+($__line=1,$__art='{{=width}}',$__ctrl='<%=width%>',(width))+' 19','style': 'width:'+($__line=1,$__art='{{=width}}',$__ctrl='<%=width%>',(width))+'px;height:19px',},$vnode_1));$__line=22;$__art="{{if x}}";$__ctrl="if(x){";
+}$vnode_0.push($createVNode('svg',{'class': 'rd-mJ rd-nl','xmlns': 'http://www.w3.org/2000/svg','viewBox': '0 0 '+(width)+' 19','style': 'width:'+(width)+'px;height:19px',},$vnode_1));
 if(x){
-$__line=23;$__art="{{each x as t}}";$__ctrl="for(let $q_c_aghiwjtr=x.length,$q_key_ktocjghjt=0;$q_key_ktocjghjt<$q_c_aghiwjtr;$q_key_ktocjghjt++){let t=x[$q_key_ktocjghjt];";
-for(let $q_c_aghiwjtr=x.length,$q_key_ktocjghjt=0;$q_key_ktocjghjt<$q_c_aghiwjtr;$q_key_ktocjghjt+=1){
-let t=x[$q_key_ktocjghjt];
-$vnode_0.push($createVNode('div',{'class': 'rd-_assets_index_less_-bottom-0 rd-_assets_index_less_-height-4 rd-_assets_index_less_-pa rd-_designer_axis_less_-shadow','style': 'left:'+($__line=24,$__art='{{=t[0]+xStart}}',$__ctrl='<%=t[0]+xStart%>',(t[0]+xStart))+'px;width:'+($__line=24,$__art='{{=t[1]-t[0]}}',$__ctrl='<%=t[1]-t[0]%>',(t[1]-t[0]))+'px',}));
+
+for(let $q_c_aijj=x.length,$q_key_kwprmwb=0;$q_key_kwprmwb<$q_c_aijj;$q_key_kwprmwb+=1){
+let t=x[$q_key_kwprmwb];
+$vnode_0.push($createVNode('div',{'class': 'rd-mJ rd-n2 rd-nc rd-oG','style': 'left:'+(t[0]+xStart)+'px;width:'+(t[1]-t[0])+'px',}));
 }
 } 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/axis-xrod.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init() {
         this.set({
             enlarge: 10000,
             round: Math.round,
             toUnit: v => {
-                return const_1['@:{const#to.unit~rs}'](v).toFixed(this['@:{decimals~rs}']);
+                return const_1['l3'](v).toFixed(this['_l9']);
             },
         });
         let updateShadow = e => {
             this.digest({ x: e.x });
         };
-        State.on('@:{event#stage.axis.shadow.change~rs}', updateShadow);
+        State.on('l3', updateShadow);
         this.on('destroy', () => {
-            State.off('@:{event#stage.axis.shadow.change~rs}', updateShadow);
+            State.off('l3', updateShadow);
         });
     },
     assign(data) {
-        this['@:{decimals~rs}'] = data.decimals;
+        this['_l9'] = data.decimals;
         this.set(data);
     },
     render() {

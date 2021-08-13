@@ -4,47 +4,47 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("panels/props/element",["magix5","../../designer/const","../../designer/enum","../../designer/history","../../designer/props","../../designer/stage-generic","../../designer/transform","gallery/mx-number/index","gallery/mx-range/index","gallery/mx-color/index","gallery/mx-font/style","gallery/mx-align/index","gallery/mx-font/align","gallery/mx-dropdown/index","gallery/mx-picture/index","gallery/mx-field/index","gallery/mx-column/index","gallery/mx-table/style","gallery/mx-box/style","gallery/mx-box/h-operate","gallery/mx-box/v-operate","gallery/mx-table/operate","gallery/mx-table/border","gallery/mx-dtable/operate","gallery/mx-ftable/operate","gallery/mx-box/h-size","gallery/mx-box/v-size","gallery/mx-table/size","gallery/mx-table/share","gallery/mx-table/content","gallery/mx-dtable/content","gallery/mx-fx/index","gallery/mx-fx/help","gallery/mx-svg/kp","gallery/mx-svg/mod","gallery/mx-format/index","gallery/mx-collect/operate","gallery/mx-collect/content","gallery/mx-color/series","gallery/mx-format/fx","gallery/mx-form/items"],(require,exports,module)=>{
-require("gallery/mx-number/index");
-require("gallery/mx-range/index");
-require("gallery/mx-color/index");
-require("gallery/mx-font/style");
-require("gallery/mx-align/index");
-require("gallery/mx-font/align");
-require("gallery/mx-dropdown/index");
-require("gallery/mx-picture/index");
-require("gallery/mx-field/index");
-require("gallery/mx-column/index");
-require("gallery/mx-table/style");
-require("gallery/mx-box/style");
-require("gallery/mx-box/h-operate");
-require("gallery/mx-box/v-operate");
-require("gallery/mx-table/operate");
-require("gallery/mx-table/border");
-require("gallery/mx-dtable/operate");
-require("gallery/mx-ftable/operate");
-require("gallery/mx-box/h-size");
-require("gallery/mx-box/v-size");
-require("gallery/mx-table/size");
-require("gallery/mx-table/share");
-require("gallery/mx-table/content");
-require("gallery/mx-dtable/content");
-require("gallery/mx-fx/index");
-require("gallery/mx-fx/help");
-require("gallery/mx-svg/kp");
-require("gallery/mx-svg/mod");
-require("gallery/mx-format/index");
-require("gallery/mx-collect/operate");
-require("gallery/mx-collect/content");
-require("gallery/mx-color/series");
-require("gallery/mx-format/fx");
-require("gallery/mx-form/items");
-let $quick_c9_3_static_node;
-let $quick_c9_5_static_node;
-let $quick_c9_0_static_attr={'class': 'rd-_assets_index_less_-padding-4 rd-_assets_index_less_-tag-ul rd-_assets_index_less_-unselectable rd-_panels_props_index_less_-props rd-_panels_props_index_less_-props-padding-bottom',};
-let $quick_c9_1_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_panels_props_index_less_-props-item',};
-let $quick_c9_2_static_attr={'class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',};
-let $quick_c9_4_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-flex rd-_assets_index_less_-mwp100 rd-_assets_index_less_-tag-label',};
+define("66/6c/element",["5c","../../5b/5e","../../5b/enum","../../5b/5o","../../5b/6c","../../5b/65","../../5b/5f","5j/6u/index","5j/7c/index","5j/70/index","5j/72/style","5j/6r/index","5j/72/align","5j/6v/index","5j/73/index","5j/79/index","5j/77/index","5j/6t/style","5j/6s/style","5j/6s/h-operate","5j/6s/v-operate","5j/6t/operate","5j/6t/border","5j/78/operate","5j/7a/operate","5j/6s/h-size","5j/6s/v-size","5j/6t/size","5j/6t/share","5j/6t/content","5j/78/content","5j/7b/index","5j/7b/help","5j/7e/kp","5j/7e/mod","5j/74/index","5j/71/operate","5j/71/content","5j/70/series","5j/74/fx","5j/75/items"],(require,exports,module)=>{
+require("5j/6u/index");
+require("5j/7c/index");
+require("5j/70/index");
+require("5j/72/style");
+require("5j/6r/index");
+require("5j/72/align");
+require("5j/6v/index");
+require("5j/73/index");
+require("5j/79/index");
+require("5j/77/index");
+require("5j/6t/style");
+require("5j/6s/style");
+require("5j/6s/h-operate");
+require("5j/6s/v-operate");
+require("5j/6t/operate");
+require("5j/6t/border");
+require("5j/78/operate");
+require("5j/7a/operate");
+require("5j/6s/h-size");
+require("5j/6s/v-size");
+require("5j/6t/size");
+require("5j/6t/share");
+require("5j/6t/content");
+require("5j/78/content");
+require("5j/7b/index");
+require("5j/7b/help");
+require("5j/7e/kp");
+require("5j/7e/mod");
+require("5j/74/index");
+require("5j/71/operate");
+require("5j/71/content");
+require("5j/70/series");
+require("5j/74/fx");
+require("5j/75/items");
+let $quick_op_3_static_node;
+let $quick_op_5_static_node;
+let $quick_op_0_static_attr={'class': 'rd-mR rd-mn rd-of rd-sp rd-sr',};
+let $quick_op_1_static_attr={'class': 'rd-mX rd-mZ rd-sq',};
+let $quick_op_2_static_attr={'class': 'rd-mF rd-nA',};
+let $quick_op_4_static_attr={'class': 'rd-mD rd-mX rd-mZ rd-ml rd-nk',};
 let $special_2={'checked':'checked',};
 let $special_4={'value':'value',};
 /*
@@ -52,19 +52,19 @@ let $special_4={'value':'value',};
 */
 
 
-let magix_1 = require("magix5");
-let const_1 = require("../../designer/const");
-let enum_1 = require("../../designer/enum");
-let history_1 = require("../../designer/history");
-let props_1 = require("../../designer/props");
-let stage_generic_1 = require("../../designer/stage-generic");
-let transform_1 = require("../../designer/transform");
+let magix_1 = require("5c");
+let const_1 = require("../../5b/5e");
+let enum_1 = require("../../5b/enum");
+let history_1 = require("../../5b/5o");
+let props_1 = require("../../5b/6c");
+let stage_generic_1 = require("../../5b/65");
+let transform_1 = require("../../5b/5f");
 let { State, View, node, Vframe, config, mark } = magix_1;
-//import StageGeneric from '../../designer/stage-generic';
+//import StageGeneric from '../../5b/65';
 //let { max, min } = Math;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf,$encodeQuote)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	i18n,
 	e,
@@ -76,133 +76,132 @@ $$_class,
 $text,
 $$_mx5$_view,
 $vnode_1;
-$vnode_1=[];$vnode_3=[$createVNode(0,($__line=4,$__art='{{=i18n(\'@:{lang#props.type~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#props.type~rs}\')%>',(i18n('@:{lang#props.type~rs}'))))];$vnode_2=[$createVNode('span',$quick_c9_2_static_attr,$vnode_3)];$vnode_3=[$createVNode(0,($__line=5,$__art='{{=i18n(e.ctrl.title)}}',$__ctrl='<%=i18n(e.ctrl.title)%>',(i18n(e.ctrl.title))))];$vnode_2.push($createVNode('span',0,$vnode_3));$vnode_1.push($createVNode('li',$quick_c9_1_static_attr,$vnode_2));($__line=7,$__art='{{set {ctrl,props}=e}}','');$__ctrl='<%let ctrl=e.ctrl,props=e.props;%>';let ctrl=e.ctrl,props=e.props;;$__line=8;$__art="{{each ctrl.props as p}}";$__ctrl="for(let $q_a_eyzlpcowlbm=ctrl.props,$q_c_jcnmehsx=$q_a_eyzlpcowlbm.length,$q_key_skjhbtmg=0;$q_key_skjhbtmg<$q_c_jcnmehsx;$q_key_skjhbtmg++){let p=$q_a_eyzlpcowlbm[$q_key_skjhbtmg];";
-for(let $q_a_eyzlpcowlbm=ctrl.props,$q_c_jcnmehsx=$q_a_eyzlpcowlbm.length,$q_key_skjhbtmg=0;$q_key_skjhbtmg<$q_c_jcnmehsx;$q_key_skjhbtmg+=1){
-let p=$q_a_eyzlpcowlbm[$q_key_skjhbtmg];
-$__line=9;$__art="{{if p.type&&(!p[\\'@:{if.show~rs}\\']||p[\\'@:{if.show}\\'](props))}}";$__ctrl="if(p.type&&(!p['@:{if.show~rs}']||p['@:{if.show~rs}'](props))){";
-if(p.type&&(!p['@:{if.show~rs}']||p['@:{if.show~rs}'](props))){
-$__line=10;$__art="{{if p.type==propTypes[\\'@:{eprops#spliter~rs}\\']}}";$__ctrl="if(p.type==propTypes['@:{eprops#spliter~rs}']){";
-if(p.type==propTypes['@:{eprops#spliter~rs}']){
+$vnode_1=[];$vnode_3=[$createVNode(0,(i18n('uc')))];$vnode_2=[$createVNode('span',$quick_op_2_static_attr,$vnode_3)];$vnode_3=[$createVNode(0,(i18n(e.ctrl.title)))];$vnode_2.push($createVNode('span',0,$vnode_3));$vnode_1.push($createVNode('li',$quick_op_1_static_attr,$vnode_2));let ctrl=e.ctrl,props=e.props;;
+for(let $q_a_sqssouxql=ctrl.props,$q_c_upssqkxrcc=$q_a_sqssouxql.length,$q_key_xegioknudfs=0;$q_key_xegioknudfs<$q_c_upssqkxrcc;$q_key_xegioknudfs+=1){
+let p=$q_a_sqssouxql[$q_key_xegioknudfs];
 
-if($quick_c9_3_static_node){
-$vnode_1.push($quick_c9_3_static_node);
+if(p.type&&(!p['_py']||p['_py'](props))){
+
+if(p.type==propTypes['ms']){
+
+if($quick_op_3_static_node){
+$vnode_1.push($quick_op_3_static_node);
 }else{
-$vnode_1.push($quick_c9_3_static_node=$createVNode('li',{'_': 'ar','class': 'rd-_assets_index_less_-item-spliter',}));
+$vnode_1.push($quick_op_3_static_node=$createVNode('li',{'_': 'i!','class': 'rd-mV',}));
 }
 
 }else{
-($__line=13,$__art='{{set data=props[p.key]}}','');$__ctrl='<%let data=props[p.key];%>';let data=props[p.key];;$__line=14;$__art="{{if p.read}}";$__ctrl="if(p.read){";
+let data=props[p.key];;
 if(p.read){
-($__line=15,$__art='{{data=p.read(data,props);}}','');$__ctrl='<%data=p.read(data,props);%>';data=p.read(data,props);;
-}$vnode_2=[];$__line=18;$__art="{{if p.tip&&(he||p.type!=propTypes[\\'@:{eprops#link~rs}\\'])}}";$__ctrl="if(p.tip&&(he||p.type!=propTypes['@:{eprops#link~rs}'])){";
-if(p.tip&&(he||p.type!=propTypes['@:{eprops#link~rs}'])){
-$vnode_3=[$createVNode(0,($__line=20,$__art='{{=i18n(p.tip)}}',$__ctrl='<%=i18n(p.tip)%>',(i18n(p.tip))))];$vnode_2.push($createVNode('span',$quick_c9_2_static_attr,$vnode_3));
-}$text=($__line=23,$__art='{{set locked=props.locked || (p.key==\'x\'&&props.pinX) || (p.key==\'y\'&&props.pinY) || (p.key==\'rotate\'&&(props.pinX||props.pinY))}}','');$__ctrl='<%let locked=props.locked || (p.key==\'x\'&&props.pinX) || (p.key==\'y\'&&props.pinY) || (p.key==\'rotate\'&&(props.pinX||props.pinY));%>';let locked=props.locked || (p.key=='x'&&props.pinX) || (p.key=='y'&&props.pinY) || (p.key=='rotate'&&(props.pinX||props.pinY));;$text+=' '+($__line=24,$__art='{{set {type:pType,\'@:{is.dynamic.type~rs}\':dyanmicType}=p}}','');$__ctrl='<%let pType=p.type,dyanmicType=p[\'@:{is.dynamic.type~rs}\'];%>';let pType=p.type,dyanmicType=p['@:{is.dynamic.type~rs}'];;$__line=25;$__art="{{if dyanmicType}}";$__ctrl="if(dyanmicType){";
+data=p.read(data,props);;
+}$vnode_2=[];
+if(p.tip&&(he||p.type!=propTypes['mm'])){
+$vnode_3=[$createVNode(0,(i18n(p.tip)))];$vnode_2.push($createVNode('span',$quick_op_2_static_attr,$vnode_3));
+}$text='';let locked=props.locked || (p.key=='x'&&props.pinX) || (p.key=='y'&&props.pinY) || (p.key=='rotate'&&(props.pinX||props.pinY));;$text+=' ';let pType=p.type,dyanmicType=p['_qs'];;
 if(dyanmicType){
-($__line=26,$__art='{{pType=pType(props)}}','');$__ctrl='<%pType=pType(props)%>';pType=pType(props);
-}$__line=28;$__art="{{if pType==propTypes[\\'@:{eprops#label~rs}\\']}}";$__ctrl="if(pType==propTypes['@:{eprops#label~rs}']){";
-if(pType==propTypes['@:{eprops#label~rs}']){
-$vnode_3=[$createVNode(0,($__line=29,$__art='{{=data}}',$__ctrl='<%=data%>',(data)))];;$$_class=($__line=29,$__art='{{if locked}}','');$__ctrl='<%if(locked){%>';if(locked){;$$_class+='rd-_assets_index_less_-color-999'+($__line=29,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2.push($createVNode('span',{'class': $$_class,},$vnode_3));
-}else if(($__line=30,$__art="{{else if pType==propTypes[\\'@:{eprops#number~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#number~rs}']){"),pType==propTypes['@:{eprops#number~rs}']){
-;$$_mx5$_view='gallery/mx-number/index?value='+($__line=31,$__art='{{#data}}',$__ctrl='<%#data,\'auto_key_e.props.\'+(p.key)+\'.data\'%>',$keyOf($refData,data,'auto_key_e.props.'+(p.key)+'.data'))+($__line=31,$__art='{{#p.max}}','');$__ctrl='<%if(($temp_var=p.max)!=null){%>';if(($temp_var=p.max)!=null){;$$_mx5$_view+='&max='+($__ctrl='<%#$temp_var,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.max\'%>',$keyOf($refData,$temp_var,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.max'));$__ctrl='<%}%>';};$$_mx5$_view+='&props='+($__line=31,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props'))+($__line=31,$__art='{{#p.step}}','');$__ctrl='<%if(($temp_var=p.step)!=null){%>';if(($temp_var=p.step)!=null){;$$_mx5$_view+='&step='+($__ctrl='<%#$temp_var,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.step\'%>',$keyOf($refData,$temp_var,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.step'));$__ctrl='<%}%>';};$$_mx5$_view+=''+($__line=31,$__art='{{#p.fixed}}','');$__ctrl='<%if(($temp_var=p.fixed)!=null){%>';if(($temp_var=p.fixed)!=null){;$$_mx5$_view+='&fixed='+($__ctrl='<%#$temp_var,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.fixed\'%>',$keyOf($refData,$temp_var,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.fixed'));$__ctrl='<%}%>';};$$_mx5$_view+=''+($__line=31,$__art='{{#p.min}}','');$__ctrl='<%if(($temp_var=p.min)!=null){%>';if(($temp_var=p.min)!=null){;$$_mx5$_view+='&min='+($__ctrl='<%#$temp_var,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.min\'%>',$keyOf($refData,$temp_var,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.min'));$__ctrl='<%}%>';};$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-input rd-_assets_index_less_-pr rd-_assets_index_less_-width-140','disabled': ($temp_var=($__line=31,$__art='{{=locked}}',$__ctrl='<%=locked%>',locked),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:panels/props/element.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-input': $viewId+'@:{update.prop~rs}({key:\''+($__line=31,$__art='{{=p.key}}',$__ctrl='<%=$encodeQuote(p.key)%>',($encodeQuote(p.key)))+'\',use:\'value\',element:\''+($__line=31,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\',write:\''+($__line=31,$__art='{{#p.write}}',$__ctrl='<%#p.write,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.write\'%>',$keyOf($refData,p.write,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.write'))+'\'})','mx5-view': $$_mx5$_view,}));
-}else if(($__line=32,$__art="{{else if pType==propTypes[\\'@:{eprops#number.range~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#number.range~rs}']){"),pType==propTypes['@:{eprops#number.range~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-input': $viewId+'@:{update.prop~rs}({key:\''+($__line=33,$__art='{{=p.key}}',$__ctrl='<%=$encodeQuote(p.key)%>',($encodeQuote(p.key)))+'\',use:\'range\',element:\''+($__line=33,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-range/index?disabled='+($__line=33,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&value='+($__line=33,$__art='{{#data}}',$__ctrl='<%#data,\'auto_key_e.props.\'+(p.key)+\'.data\'%>',$keyOf($refData,data,'auto_key_e.props.'+(p.key)+'.data')),}));
-}else if(($__line=34,$__art="{{else if pType==propTypes[\\'@:{eprops#color~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#color~rs}']){"),pType==propTypes['@:{eprops#color~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-input': $viewId+'@:{update.prop~rs}({key:\''+($__line=35,$__art='{{=p.key}}',$__ctrl='<%=$encodeQuote(p.key)%>',($encodeQuote(p.key)))+'\',use:\'color\',element:\''+($__line=35,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-color/index?clear='+($__line=35,$__art='{{=p.clear}}',$__ctrl='<%=$encodeUrl(p.clear)%>',($encodeUrl(p.clear)))+'&color='+($__line=35,$__art='{{#data}}',$__ctrl='<%#data,\'auto_key_e.props.\'+(p.key)+\'.data\'%>',$keyOf($refData,data,'auto_key_e.props.'+(p.key)+'.data'))+'&align=right&disabled='+($__line=35,$__art='{{=locked}}',$__ctrl='<%=$encodeUrl(locked)%>',($encodeUrl(locked)))+'&alpha='+($__line=35,$__art='{{=p.alpha}}',$__ctrl='<%=$encodeUrl(p.alpha)%>',($encodeUrl(p.alpha))),}));
-}else if(($__line=36,$__art="{{else if pType==propTypes[\\'@:{eprops#boolean~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#boolean~rs}']){"),pType==propTypes['@:{eprops#boolean~rs}']){
-$vnode_3=[$createVNode('input',{'class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-switch-input','type': 'checkbox','checked': ($temp_var=($__line=38,$__art='{{=data}}',$__ctrl='<%=data%>',data),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"checked" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:panels/props/element.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'disabled': ($temp_var=($__line=38,$__art='{{=locked&&!p.free}}',$__ctrl='<%=locked&&!p.free%>',locked&&!p.free),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:panels/props/element.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-change': $viewId+'@:{update.prop~rs}({key:\''+($__line=38,$__art='{{=p.key}}',$__ctrl='<%=$encodeQuote(p.key)%>',($encodeQuote(p.key)))+'\',native:\'checked\',element:\''+($__line=38,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\',write:\''+($__line=38,$__art='{{#p.write}}',$__ctrl='<%#p.write,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.write\'%>',$keyOf($refData,p.write,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.write'))+'\'})',},1,$special_2)];
-if($quick_c9_5_static_node){
-$vnode_3.push($quick_c9_5_static_node);
+pType=pType(props);
+}
+if(pType==propTypes['md']){
+$vnode_3=[$createVNode(0,(data))];;$$_class='';if(locked){;$$_class+='rd-nL';};$vnode_2.push($createVNode('span',{'class': $$_class,},$vnode_3));
+}else if(pType==propTypes['l2']){
+;$$_mx5$_view='5j/6u/index?value='+$keyOf($refData,data,'i!.'+(p.key)+'.i@');if(($temp_var=p.max)!=null){;$$_mx5$_view+='&max='+$keyOf($refData,$temp_var,'i$.'+($q_key_xegioknudfs)+'.i^');};$$_mx5$_view+='&props='+$keyOf($refData,props,'i*');if(($temp_var=p.step)!=null){;$$_mx5$_view+='&step='+$keyOf($refData,$temp_var,'i$.'+($q_key_xegioknudfs)+'.i{');};if(($temp_var=p.fixed)!=null){;$$_mx5$_view+='&fixed='+$keyOf($refData,$temp_var,'i$.'+($q_key_xegioknudfs)+'.i}');};if(($temp_var=p.min)!=null){;$$_mx5$_view+='&min='+$keyOf($refData,$temp_var,'i$.'+($q_key_xegioknudfs)+'.i[');};$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-l5 rd-m8 rd-mK','disabled': (locked),'mx5-input': $viewId+'_rf({key:\''+($encodeQuote(p.key))+'\',use:\'value\',element:\''+$keyOf($refData,e,'i]')+'\',write:\''+$keyOf($refData,p.write,'i$.'+($q_key_xegioknudfs)+'.i|')+'\'})','mx5-view': $$_mx5$_view,}));
+}else if(pType==propTypes['mn']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-input': $viewId+'_rf({key:\''+($encodeQuote(p.key))+'\',use:\'range\',element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/7c/index?disabled='+$keyOf($refData,locked)+'&value='+$keyOf($refData,data,'i!.'+(p.key)+'.i@'),}));
+}else if(pType==propTypes['l3']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-input': $viewId+'_rf({key:\''+($encodeQuote(p.key))+'\',use:\'color\',element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/70/index?clear='+($encodeUrl(p.clear))+'&color='+$keyOf($refData,data,'i!.'+(p.key)+'.i@')+'&align=right&disabled='+($encodeUrl(locked))+'&alpha='+($encodeUrl(p.alpha)),}));
+}else if(pType==propTypes['l4']){
+$vnode_3=[$createVNode('input',{'class': 'rd-mJ rd-nD','type': 'checkbox','checked': (data),'disabled': (locked&&!p.free),'mx5-change': $viewId+'_rf({key:\''+($encodeQuote(p.key))+'\',native:\'checked\',element:\''+$keyOf($refData,e,'i]')+'\',write:\''+$keyOf($refData,p.write,'i$.'+($q_key_xegioknudfs)+'.i|')+'\'})',},1,$special_2)];
+if($quick_op_5_static_node){
+$vnode_3.push($quick_op_5_static_node);
 }else{
-$vnode_3.push($quick_c9_5_static_node=$createVNode('i',{'_': 'as','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-switch-button rd-_assets_index_less_-unselectable',}));
+$vnode_3.push($quick_op_5_static_node=$createVNode('i',{'_': 'i@','class': 'rd-mK rd-mR rd-nE',}));
 }
-$vnode_2.push($createVNode('label',$quick_c9_4_static_attr,$vnode_3));
-}else if(($__line=41,$__art="{{else if pType==propTypes[\\'@:{eprops#text.area~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#text.area~rs}']){"),pType==propTypes['@:{eprops#text.area~rs}']){
-$vnode_2.push($createVNode('textarea',{'class': 'rd-_assets_index_less_-height-100 rd-_assets_index_less_-textarea rd-_assets_index_less_-width-140','disabled': ($temp_var=($__line=42,$__art='{{=locked}}',$__ctrl='<%=locked%>',locked),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:panels/props/element.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-input': $viewId+'@:{update.prop~rs}({key:\''+($__line=42,$__art='{{=p.key}}',$__ctrl='<%=$encodeQuote(p.key)%>',($encodeQuote(p.key)))+'\',native:\'value\',element:\''+($__line=42,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','value': ($__line=42,$__art='{{=data}}',$__ctrl='<%=data%>',(data)),},0,$special_4));
-}else if(($__line=43,$__art="{{else if pType==propTypes[\\'@:{eprops#font.style~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#font.style~rs}']){"),pType==propTypes['@:{eprops#font.style~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-width-140','mx5-input': $viewId+'@:{update.prop~rs}({use:\'_\',element:\''+($__line=44,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-font/style?disabled='+($__line=44,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&value='+($__line=44,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props')),}));
-}else if(($__line=45,$__art="{{else if pType==propTypes[\\'@:{eprops#align~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#align~rs}']){"),pType==propTypes['@:{eprops#align~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-width-140','mx5-input': $viewId+'@:{update.prop~rs}({use:\'_\',element:\''+($__line=46,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-align/index?disabled='+($__line=46,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&value='+($__line=46,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props')),}));
-}else if(($__line=47,$__art="{{else if pType==propTypes[\\'@:{eprops#text.align~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#text.align~rs}']){"),pType==propTypes['@:{eprops#text.align~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-width-140','mx5-input': $viewId+'@:{update.prop~rs}({use:\'_\',element:\''+($__line=48,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-font/align?disabled='+($__line=48,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&value='+($__line=48,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props'))+'&alignKey='+($__line=48,$__art='{{=p.key}}',$__ctrl='<%=$encodeUrl(p.key)%>',($encodeUrl(p.key))),}));
-}else if(($__line=49,$__art="{{else if pType==propTypes[\\'@:{eprops#dropdown~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#dropdown~rs}']){"),pType==propTypes['@:{eprops#dropdown~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({key:\''+($__line=50,$__art='{{=p.key}}',$__ctrl='<%=$encodeQuote(p.key)%>',($encodeQuote(p.key)))+'\',use:\'value\',element:\''+($__line=50,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\',write:\''+($__line=50,$__art='{{#p.write}}',$__ctrl='<%#p.write,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.write\'%>',$keyOf($refData,p.write,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.write'))+'\'})','mx5-view': 'gallery/mx-dropdown/index?disabled='+($__line=50,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&selected='+($__line=50,$__art='{{=data}}',$__ctrl='<%=$encodeUrl(data)%>',($encodeUrl(data)))+'&list='+($__line=50,$__art='{{#p.items}}',$__ctrl='<%#p.items,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.items\'%>',$keyOf($refData,p.items,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.items'))+'&iconKey=icon&textKey='+($__line=50,$__art='{{=p.textKey||\'text\'}}',$__ctrl='<%=$encodeUrl(p.textKey||\'text\')%>',($encodeUrl(p.textKey||'text')))+'&valueKey='+($__line=50,$__art='{{=p.valueKey||\'value\'}}',$__ctrl='<%=$encodeUrl(p.valueKey||\'value\')%>',($encodeUrl(p.valueKey||'value'))),}));
-}else if(($__line=51,$__art="{{else if pType==propTypes[\\'@:{eprops#image~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#image~rs}']){"),pType==propTypes['@:{eprops#image~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({key:\''+($__line=52,$__art='{{=p.key}}',$__ctrl='<%=$encodeQuote(p.key)%>',($encodeQuote(p.key)))+'\',use:\'src\',element:\''+($__line=52,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\',write:\''+($__line=52,$__art='{{#p.write}}',$__ctrl='<%#p.write,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.write\'%>',$keyOf($refData,p.write,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.write'))+'\'})','mx5-view': 'gallery/mx-picture/index?src='+($__line=52,$__art='{{=data}}',$__ctrl='<%=$encodeUrl(data)%>',($encodeUrl(data)))+'&disabled='+($__line=52,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked)),}));
-}else if(($__line=53,$__art="{{else if pType==propTypes[\\'@:{eprops#image.reset~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#image.reset~rs}']){"),pType==propTypes['@:{eprops#image.reset~rs}']){
-$vnode_3=[$createVNode(0,($__line=54,$__art='{{=i18n(\'@:{lang#elements.image.reset~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#elements.image.reset~rs}\')%>',(i18n('@:{lang#elements.image.reset~rs}'))))];$vnode_2.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','disabled': ($temp_var=($__line=54,$__art='{{=locked}}',$__ctrl='<%=locked%>',locked),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:panels/props/element.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-click': $viewId+'@:{update.image.size~rs}({key:\''+($__line=54,$__art='{{=p.key}}',$__ctrl='<%=$encodeQuote(p.key)%>',($encodeQuote(p.key)))+'\',element:\''+($__line=54,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})',},$vnode_3));
-}else if(($__line=55,$__art="{{else if pType==propTypes[\\'@:{eprops#text.input~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#text.input~rs}']){"),pType==propTypes['@:{eprops#text.input~rs}']){
-$vnode_2.push($createVNode('input',{'class': 'rd-_assets_index_less_-input','value': ($__line=56,$__art='{{=data}}',$__ctrl='<%=data%>',(data)),'disabled': ($temp_var=($__line=56,$__art='{{=locked}}',$__ctrl='<%=locked%>',locked),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:panels/props/element.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-input': $viewId+'@:{update.prop~rs}({key:\''+($__line=56,$__art='{{=p.key}}',$__ctrl='<%=$encodeQuote(p.key)%>',($encodeQuote(p.key)))+'\',native:\'value\',element:\''+($__line=56,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})',},1,$special_4));
-}else if(($__line=57,$__art="{{else if pType==propTypes[\\'@:{eprops#bind.field~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#bind.field~rs}']){"),pType==propTypes['@:{eprops#bind.field~rs}']){
-;$$_mx5$_view='gallery/mx-field/index?data='+($__line=58,$__art='{{#data}}',$__ctrl='<%#data,\'auto_key_e.props.\'+(p.key)+\'.data\'%>',$keyOf($refData,data,'auto_key_e.props.'+(p.key)+'.data'))+($__line=58,$__art='{{#p.max}}','');$__ctrl='<%if(($temp_var=p.max)){%>';if(($temp_var=p.max)){;$$_mx5$_view+='&max='+($__ctrl='<%#$temp_var,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.max\'%>',$keyOf($refData,$temp_var,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.max'));$__ctrl='<%}%>';};$$_mx5$_view+='&disabled='+($__line=58,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked));$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({key:\''+($__line=58,$__art='{{=p.key}}',$__ctrl='<%=$encodeQuote(p.key)%>',($encodeQuote(p.key)))+'\',use:\'bindField\',element:\''+($__line=58,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\',write:\''+($__line=58,$__art='{{#p.write}}',$__ctrl='<%#p.write,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.write\'%>',$keyOf($refData,p.write,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.write'))+'\'})','mx5-view': $$_mx5$_view,}));
-}else if(($__line=59,$__art="{{else if pType==propTypes[\\'@:{eprops#column.width~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#column.width~rs}']){"),pType==propTypes['@:{eprops#column.width~rs}']){
-;$$_mx5$_view='gallery/mx-column/index?'+($__line=60,$__art='{{#p.min}}','');$__ctrl='<%if(($temp_var=p.min)!=null){%>';if(($temp_var=p.min)!=null){;$$_mx5$_view+='min='+($__ctrl='<%#$temp_var,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.min\'%>',$keyOf($refData,$temp_var,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.min'));$__ctrl='<%}%>';};$$_mx5$_view+=''+($__line=60,$__art='{{#p.max}}','');$__ctrl='<%if(($temp_var=p.max)!=null){%>';if(($temp_var=p.max)!=null){;$$_mx5$_view+='&max='+($__ctrl='<%#$temp_var,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.max\'%>',$keyOf($refData,$temp_var,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.max'));$__ctrl='<%}%>';};$$_mx5$_view+='&columns='+($__line=60,$__art='{{#data}}',$__ctrl='<%#data,\'auto_key_e.props.\'+(p.key)+\'.data\'%>',$keyOf($refData,data,'auto_key_e.props.'+(p.key)+'.data'))+'&fields='+($__line=60,$__art='{{#props.bind.fields}}',$__ctrl='<%#props.bind.fields,\'auto_key_e.props.props.bind.fields\'%>',$keyOf($refData,props.bind.fields,'auto_key_e.props.props.bind.fields'))+'&disabled='+($__line=60,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked));$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({key:\''+($__line=60,$__art='{{=p.key}}',$__ctrl='<%=$encodeQuote(p.key)%>',($encodeQuote(p.key)))+'\',use:\'columns\',element:\''+($__line=60,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\',write:\''+($__line=60,$__art='{{#p.write}}',$__ctrl='<%#p.write,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.write\'%>',$keyOf($refData,p.write,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.write'))+'\'})','mx5-view': $$_mx5$_view,}));
-}else if(($__line=61,$__art="{{else if pType==propTypes[\\'@:{eprops#table.style~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#table.style~rs}']){"),pType==propTypes['@:{eprops#table.style~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({use:\'skin\',element:\''+($__line=62,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\',write:\''+($__line=62,$__art='{{#p.write}}',$__ctrl='<%#p.write,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.write\'%>',$keyOf($refData,p.write,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.write'))+'\'})','mx5-view': 'gallery/mx-table/style?disabled='+($__line=62,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked)),}));
-}else if(($__line=63,$__art="{{else if pType==propTypes[\\'@:{eprops#cell.style~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#cell.style~rs}']){"),pType==propTypes['@:{eprops#cell.style~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','mx5-change': $viewId+'@:{update.prop~rs}({use:\'rows\',element:\''+($__line=64,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-box/style?disabled='+($__line=64,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=64,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props')),}));
-}else if(($__line=65,$__art="{{else if pType==propTypes[\\'@:{eprops#h.cell.operate~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#h.cell.operate~rs}']){"),pType==propTypes['@:{eprops#h.cell.operate~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({use:\'rows\',size:1,operate:1,element:\''+($__line=66,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-box/h-operate?disabled='+($__line=66,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=66,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props')),}));
-}else if(($__line=67,$__art="{{else if pType==propTypes[\\'@:{eprops#v.cell.operate~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#v.cell.operate~rs}']){"),pType==propTypes['@:{eprops#v.cell.operate~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({use:\'rows\',size:1,operate:1,element:\''+($__line=68,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-box/v-operate?disabled='+($__line=68,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=68,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props')),}));
-}else if(($__line=69,$__art="{{else if pType==propTypes[\\'@:{eprops#table.cell.operate~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#table.cell.operate~rs}']){"),pType==propTypes['@:{eprops#table.cell.operate~rs}']){
-;$$_mx5$_view='gallery/mx-table/operate?disabled='+($__line=70,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=70,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props'))+($__line=70,$__art='{{=p[\'@:{elements~rs}\']}}','');$__ctrl='<%if(($temp_var=p[\'@:{elements~rs}\'])!=null){%>';if(($temp_var=p['@:{elements~rs}'])!=null){;$$_mx5$_view+='&sub='+($__ctrl='<%=$encodeUrl($temp_var)%>',($encodeUrl($temp_var)));$__ctrl='<%}%>';};$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({use:\'rows\',size:1,operate:1,element:\''+($__line=70,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': $$_mx5$_view,}));
-}else if(($__line=71,$__art="{{else if pType==propTypes[\\'@:{eprops#table.cell.border~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#table.cell.border~rs}']){"),pType==propTypes['@:{eprops#table.cell.border~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({use:\'rows\',element:\''+($__line=72,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-table/border?disabled='+($__line=72,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=72,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props')),}));
-}else if(($__line=73,$__art="{{else if pType==propTypes[\\'@:{eprops#dtable.cell.operate~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#dtable.cell.operate~rs}']){"),pType==propTypes['@:{eprops#dtable.cell.operate~rs}']){
-;$$_mx5$_view='gallery/mx-dtable/operate?disabled='+($__line=74,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=74,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props'))+($__line=74,$__art='{{=p[\'@:{elements~rs}\']}}','');$__ctrl='<%if(($temp_var=p[\'@:{elements~rs}\'])!=null){%>';if(($temp_var=p['@:{elements~rs}'])!=null){;$$_mx5$_view+='&sub='+($__ctrl='<%=$encodeUrl($temp_var)%>',($encodeUrl($temp_var)));$__ctrl='<%}%>';};$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({use:\'rows\',operate:1,size:1,element:\''+($__line=74,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': $$_mx5$_view,}));
-}else if(($__line=75,$__art="{{else if pType==propTypes[\\'@:{eprops#ftable.cell.operate~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#ftable.cell.operate~rs}']){"),pType==propTypes['@:{eprops#ftable.cell.operate~rs}']){
-;$$_mx5$_view='gallery/mx-ftable/operate?disabled='+($__line=76,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=76,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props'))+($__line=76,$__art='{{=p[\'@:{elements~rs}\']}}','');$__ctrl='<%if(($temp_var=p[\'@:{elements~rs}\'])!=null){%>';if(($temp_var=p['@:{elements~rs}'])!=null){;$$_mx5$_view+='&sub='+($__ctrl='<%=$encodeUrl($temp_var)%>',($encodeUrl($temp_var)));$__ctrl='<%}%>';};$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({use:\'rows\',operate:1,size:1,element:\''+($__line=76,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': $$_mx5$_view,}));
-}else if(($__line=77,$__art="{{else if pType==propTypes[\\'@:{eprops#h.cell.size~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#h.cell.size~rs}']){"),pType==propTypes['@:{eprops#h.cell.size~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({use:\'rows\',size:1,element:\''+($__line=78,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-box/h-size?disabled='+($__line=78,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=78,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props')),}));
-}else if(($__line=79,$__art="{{else if pType==propTypes[\\'@:{eprops#v.cell.size~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#v.cell.size~rs}']){"),pType==propTypes['@:{eprops#v.cell.size~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({use:\'rows\',size:1,element:\''+($__line=80,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-box/v-size?disabled='+($__line=80,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=80,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props')),}));
-}else if(($__line=81,$__art="{{else if pType==propTypes[\\'@:{eprops#table.cell.size~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#table.cell.size~rs}']){"),pType==propTypes['@:{eprops#table.cell.size~rs}']){
-;$$_mx5$_view='gallery/mx-table/size?disabled='+($__line=82,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=82,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props'))+($__line=82,$__art='{{=p[\'@:{auto.height~rs}\']}}','');$__ctrl='<%if(($temp_var=p[\'@:{auto.height~rs}\'])!=null){%>';if(($temp_var=p['@:{auto.height~rs}'])!=null){;$$_mx5$_view+='&ah='+($__ctrl='<%=$encodeUrl($temp_var)%>',($encodeUrl($temp_var)));$__ctrl='<%}%>';};$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({use:\'rows\',size:1,element:\''+($__line=82,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': $$_mx5$_view,}));
-}else if(($__line=83,$__art="{{else if pType==propTypes[\\'@:{eprops#table.cell.share~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#table.cell.share~rs}']){"),pType==propTypes['@:{eprops#table.cell.share~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({use:\'rows\',size:1,element:\''+($__line=84,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-table/share?disabled='+($__line=84,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=84,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props'))+'&dataPad='+($__line=84,$__art='{{#p.dataPad}}',$__ctrl='<%#p.dataPad,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.dataPad\'%>',$keyOf($refData,p.dataPad,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.dataPad')),}));
-}else if(($__line=85,$__art="{{else if pType==propTypes[\\'@:{eprops#table.cell.content~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#table.cell.content~rs}']){"),pType==propTypes['@:{eprops#table.cell.content~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-220','mx5-change': $viewId+'@:{update.prop~rs}({use:\'rows\',element:\''+($__line=86,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-table/content?disabled='+($__line=86,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=86,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props')),}));
-}else if(($__line=87,$__art="{{else if pType==propTypes[\\'@:{eprops#dtable.cell.content~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#dtable.cell.content~rs}']){"),pType==propTypes['@:{eprops#dtable.cell.content~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-220','mx5-change': $viewId+'@:{update.prop~rs}({use:\'rows\',element:\''+($__line=88,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-dtable/content?disabled='+($__line=88,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=88,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props')),}));
-}else if(($__line=89,$__art="{{else if he&&pType==propTypes[\\'@:{eprops#link~rs}\\']}}",$__ctrl="else if(he&&pType==propTypes['@:{eprops#link~rs}']){"),he&&pType==propTypes['@:{eprops#link~rs}']){
-$vnode_3=[$createVNode(0,($__line=90,$__art='{{=data}}',$__ctrl='<%=data%>',(data)))];$vnode_2.push($createVNode('a',{'href': '//'+($__line=90,$__art='{{=data}}',$__ctrl='<%=data%>',(data)),'class': 'rd-_assets_index_less_-ellipsis rd-_assets_index_less_-tag-a rd-_assets_index_less_-width-140','title': ($__line=90,$__art='{{=data}}',$__ctrl='<%=data%>',(data)),'target': '_blank','rel': 'noopener noreferrer',},$vnode_3));
-}else if(($__line=91,$__art="{{else if pType==propTypes[\\'@:{eprops#fx.expression~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#fx.expression~rs}']){"),pType==propTypes['@:{eprops#fx.expression~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','mx5-change': $viewId+'@:{update.prop~rs}({use:\'data\',element:\''+($__line=92,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-fx/index?disabled='+($__line=92,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&data='+($__line=92,$__art='{{#data}}',$__ctrl='<%#data,\'auto_key_e.props.\'+(p.key)+\'.data\'%>',$keyOf($refData,data,'auto_key_e.props.'+(p.key)+'.data')),}));
-}else if(($__line=93,$__art="{{else if pType==propTypes[\\'@:{eprops#fx.help~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#fx.help~rs}']){"),pType==propTypes['@:{eprops#fx.help~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-220','mx5-change': $viewId+'@:{update.prop~rs}({use:\'data\',element:\''+($__line=94,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-fx/help?disabled='+($__line=94,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&data='+($__line=94,$__art='{{#data}}',$__ctrl='<%#data,\'auto_key_e.props.\'+(p.key)+\'.data\'%>',$keyOf($refData,data,'auto_key_e.props.'+(p.key)+'.data')),}));
-}else if(($__line=95,$__art="{{else if pType==propTypes[\\'@:{eprops#svg.key.point~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#svg.key.point~rs}']){"),pType==propTypes['@:{eprops#svg.key.point~rs}']){
-;$$_mx5$_view='gallery/mx-svg/kp?disabled='+($__line=96,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=96,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props'))+($__line=96,$__art='{{=p.mod}}','');$__ctrl='<%if(($temp_var=p.mod)!=null){%>';if(($temp_var=p.mod)!=null){;$$_mx5$_view+='&mod='+($__ctrl='<%=$encodeUrl($temp_var)%>',($encodeUrl($temp_var)));$__ctrl='<%}%>';};$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-220','mx5-change': $viewId+'@:{update.prop~rs}({use:\'kp\',element:\''+($__line=96,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\',kp:1})','mx5-view': $$_mx5$_view,}));
-}else if(($__line=97,$__art="{{else if pType==propTypes[\\'@:{eprops#svg.mod.point~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#svg.mod.point~rs}']){"),pType==propTypes['@:{eprops#svg.mod.point~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-220','mx5-change': $viewId+'@:{update.prop~rs}({use:\'mod\',element:\''+($__line=98,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\',mod:1})','mx5-view': 'gallery/mx-svg/mod?disabled='+($__line=98,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=98,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props')),}));
-}else if(($__line=99,$__art="{{else if pType==propTypes[\\'@:{eprops#format~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#format~rs}']){"),pType==propTypes['@:{eprops#format~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({key:\''+($__line=100,$__art='{{=p.key}}',$__ctrl='<%=$encodeQuote(p.key)%>',($encodeQuote(p.key)))+'\',use:\'format\',element:\''+($__line=100,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-format/index?format='+($__line=100,$__art='{{#data}}',$__ctrl='<%#data,\'auto_key_e.props.\'+(p.key)+\'.data\'%>',$keyOf($refData,data,'auto_key_e.props.'+(p.key)+'.data'))+'&disabled='+($__line=100,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked)),}));
-}else if(($__line=101,$__art="{{else if pType==propTypes[\\'@:{eprops#form.collect.cell.operate~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#form.collect.cell.operate~rs}']){"),pType==propTypes['@:{eprops#form.collect.cell.operate~rs}']){
-;$$_mx5$_view='gallery/mx-collect/operate?disabled='+($__line=102,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=102,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props'))+($__line=102,$__art='{{=p[\'@:{elements~rs}\']}}','');$__ctrl='<%if(($temp_var=p[\'@:{elements~rs}\'])!=null){%>';if(($temp_var=p['@:{elements~rs}'])!=null){;$$_mx5$_view+='&sub='+($__ctrl='<%=$encodeUrl($temp_var)%>',($encodeUrl($temp_var)));$__ctrl='<%}%>';};$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({use:\'rows\',size:1,operate:1,element:\''+($__line=102,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': $$_mx5$_view,}));
-}else if(($__line=103,$__art="{{else if pType==propTypes[\\'@:{eprops#form.collect.cell.content~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#form.collect.cell.content~rs}']){"),pType==propTypes['@:{eprops#form.collect.cell.content~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-220','mx5-change': $viewId+'@:{update.prop~rs}({use:\'rows\',element:\''+($__line=104,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-collect/content?disabled='+($__line=104,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&props='+($__line=104,$__art='{{#props}}',$__ctrl='<%#props,\'auto_key_e.props.props\'%>',$keyOf($refData,props,'auto_key_e.props.props')),}));
-}else if(($__line=105,$__art="{{else if pType==propTypes[\\'@:{eprops#color.series~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#color.series~rs}']){"),pType==propTypes['@:{eprops#color.series~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({use:\'colors\',element:\''+($__line=106,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-color/series?colors='+($__line=106,$__art='{{#data}}',$__ctrl='<%#data,\'auto_key_e.props.\'+(p.key)+\'.data\'%>',$keyOf($refData,data,'auto_key_e.props.'+(p.key)+'.data'))+'&disabled='+($__line=106,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&multi='+($__line=106,$__art='{{#p.multi}}',$__ctrl='<%#p.multi,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p.multi\'%>',$keyOf($refData,p.multi,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p.multi')),}));
-}else if(($__line=107,$__art="{{else if pType==propTypes[\\'@:{eprops#format.fx~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#format.fx~rs}']){"),pType==propTypes['@:{eprops#format.fx~rs}']){
-;$$_mx5$_view='gallery/mx-format/fx?format='+($__line=108,$__art='{{#data}}',$__ctrl='<%#data,\'auto_key_e.props.\'+(p.key)+\'.data\'%>',$keyOf($refData,data,'auto_key_e.props.'+(p.key)+'.data'))+'&disabled='+($__line=108,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+($__line=108,$__art='{{#p[\'@:{default.fx~rs}\']}}','');$__ctrl='<%if(($temp_var=p[\'@:{default.fx~rs}\'])){%>';if(($temp_var=p['@:{default.fx~rs}'])){;$$_mx5$_view+='&defaultFx='+($__ctrl='<%#$temp_var,\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.p[\\\'@:{default.fx~rs}\\\']\'%>',$keyOf($refData,$temp_var,'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.p[\'@:{default.fx~rs}\']'));$__ctrl='<%}%>';};$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({key:\''+($__line=108,$__art='{{=p.key}}',$__ctrl='<%=$encodeQuote(p.key)%>',($encodeQuote(p.key)))+'\',use:\'format\',element:\''+($__line=108,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': $$_mx5$_view,}));
-}else if(($__line=109,$__art="{{else if pType==propTypes[\\'@:{eprops#form.items~rs}\\']}}",$__ctrl="else if(pType==propTypes['@:{eprops#form.items~rs}']){"),pType==propTypes['@:{eprops#form.items~rs}']){
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','mx5-change': $viewId+'@:{update.prop~rs}({use:\'items\',element:\''+($__line=110,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_e\'%>',$keyOf($refData,e,'auto_key_e'))+'\'})','mx5-view': 'gallery/mx-form/items?items='+($__line=110,$__art='{{#data}}',$__ctrl='<%#data,\'auto_key_e.props.\'+(p.key)+\'.data\'%>',$keyOf($refData,data,'auto_key_e.props.'+(p.key)+'.data'))+'&disabled='+($__line=110,$__art='{{#locked}}',$__ctrl='<%#locked%>',$keyOf($refData,locked))+'&mutual='+($__line=110,$__art='{{#p.mutual&&p.mutual(props)}}',$__ctrl='<%#p.mutual&&p.mutual(props),\'auto_key_e.ctrl.props.\'+($q_key_skjhbtmg)+\'.e.props.p.mutual%26%26p.mutual(props)\'%>',$keyOf($refData,p.mutual&&p.mutual(props),'auto_key_e.ctrl.props.'+($q_key_skjhbtmg)+'.e.props.p.mutual%26%26p.mutual(props)')),}));
-};$$_class='rd-_panels_props_index_less_-props-item rd-_assets_index_less_-flex '+($__line=17,$__art='{{if p[\'@:{dock.top~rs}\']}}','');$__ctrl='<%if(p[\'@:{dock.top~rs}\']){%>';if(p['@:{dock.top~rs}']){;$$_class+='rd-_assets_index_less_-align-items-flex-start'+($__line=17,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$$_class+='rd-_assets_index_less_-align-items-center'+($__line=17,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('li',{'class': $$_class,},$vnode_2));
+$vnode_2.push($createVNode('label',$quick_op_4_static_attr,$vnode_3));
+}else if(pType==propTypes['l7']){
+$vnode_2.push($createVNode('textarea',{'class': 'rd-l6 rd-m8 rd-na','disabled': (locked),'mx5-input': $viewId+'_rf({key:\''+($encodeQuote(p.key))+'\',native:\'value\',element:\''+$keyOf($refData,e,'i]')+'\'})','value': (data),},0,$special_4));
+}else if(pType==propTypes['l5']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8 rd-mX','mx5-input': $viewId+'_rf({use:\'_\',element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/72/style?disabled='+$keyOf($refData,locked)+'&value='+$keyOf($refData,props,'i*'),}));
+}else if(pType==propTypes['l6']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8 rd-mX','mx5-input': $viewId+'_rf({use:\'_\',element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/6r/index?disabled='+$keyOf($refData,locked)+'&value='+$keyOf($refData,props,'i*'),}));
+}else if(pType==propTypes['mB']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8 rd-mX','mx5-input': $viewId+'_rf({use:\'_\',element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/72/align?disabled='+$keyOf($refData,locked)+'&value='+$keyOf($refData,props,'i*')+'&alignKey='+($encodeUrl(p.key)),}));
+}else if(pType==propTypes['l9']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({key:\''+($encodeQuote(p.key))+'\',use:\'value\',element:\''+$keyOf($refData,e,'i]')+'\',write:\''+$keyOf($refData,p.write,'i$.'+($q_key_xegioknudfs)+'.i|')+'\'})','mx5-view': '5j/6v/index?disabled='+$keyOf($refData,locked)+'&selected='+($encodeUrl(data))+'&list='+$keyOf($refData,p.items,'i$.'+($q_key_xegioknudfs)+'.i,')+'&iconKey=icon&textKey='+($encodeUrl(p.textKey||'text'))+'&valueKey='+($encodeUrl(p.valueKey||'value')),}));
+}else if(pType==propTypes['l8']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({key:\''+($encodeQuote(p.key))+'\',use:\'src\',element:\''+$keyOf($refData,e,'i]')+'\',write:\''+$keyOf($refData,p.write,'i$.'+($q_key_xegioknudfs)+'.i|')+'\'})','mx5-view': '5j/73/index?src='+($encodeUrl(data))+'&disabled='+$keyOf($refData,locked),}));
+}else if(pType==propTypes['m_']){
+$vnode_3=[$createVNode(0,(i18n('tb')))];$vnode_2.push($createVNode('button',{'class': 'rd-l9 rd-mG rd-ma rd-nk','disabled': (locked),'mx5-click': $viewId+'_uB({key:\''+($encodeQuote(p.key))+'\',element:\''+$keyOf($refData,e,'i]')+'\'})',},$vnode_3));
+}else if(pType==propTypes['ma']){
+$vnode_2.push($createVNode('input',{'class': 'rd-l5','value': (data),'disabled': (locked),'mx5-input': $viewId+'_rf({key:\''+($encodeQuote(p.key))+'\',native:\'value\',element:\''+$keyOf($refData,e,'i]')+'\'})',},1,$special_4));
+}else if(pType==propTypes['mb']){
+;$$_mx5$_view='5j/79/index?data='+$keyOf($refData,data,'i!.'+(p.key)+'.i@');if(($temp_var=p.max)){;$$_mx5$_view+='&max='+$keyOf($refData,$temp_var,'i$.'+($q_key_xegioknudfs)+'.i^');};$$_mx5$_view+='&disabled='+$keyOf($refData,locked);$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({key:\''+($encodeQuote(p.key))+'\',use:\'bindField\',element:\''+$keyOf($refData,e,'i]')+'\',write:\''+$keyOf($refData,p.write,'i$.'+($q_key_xegioknudfs)+'.i|')+'\'})','mx5-view': $$_mx5$_view,}));
+}else if(pType==propTypes['mc']){
+;$$_mx5$_view='5j/77/index?';if(($temp_var=p.min)!=null){;$$_mx5$_view+='min='+$keyOf($refData,$temp_var,'i$.'+($q_key_xegioknudfs)+'.i[');};if(($temp_var=p.max)!=null){;$$_mx5$_view+='&max='+$keyOf($refData,$temp_var,'i$.'+($q_key_xegioknudfs)+'.i^');};$$_mx5$_view+='&columns='+$keyOf($refData,data,'i!.'+(p.key)+'.i@')+'&fields='+$keyOf($refData,props.bind.fields,'i.')+'&disabled='+$keyOf($refData,locked);$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({key:\''+($encodeQuote(p.key))+'\',use:\'columns\',element:\''+$keyOf($refData,e,'i]')+'\',write:\''+$keyOf($refData,p.write,'i$.'+($q_key_xegioknudfs)+'.i|')+'\'})','mx5-view': $$_mx5$_view,}));
+}else if(pType==propTypes['me']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({use:\'skin\',element:\''+$keyOf($refData,e,'i]')+'\',write:\''+$keyOf($refData,p.write,'i$.'+($q_key_xegioknudfs)+'.i|')+'\'})','mx5-view': '5j/6t/style?disabled='+$keyOf($refData,locked),}));
+}else if(pType==propTypes['mg']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','mx5-change': $viewId+'_rf({use:\'rows\',element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/6s/style?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*'),}));
+}else if(pType==propTypes['mi']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({use:\'rows\',size:1,operate:1,element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/6s/h-operate?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*'),}));
+}else if(pType==propTypes['mk']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({use:\'rows\',size:1,operate:1,element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/6s/v-operate?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*'),}));
+}else if(pType==propTypes['mf']){
+;$$_mx5$_view='5j/6t/operate?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*');if(($temp_var=p['_o0'])!=null){;$$_mx5$_view+='&sub='+($encodeUrl($temp_var));};$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({use:\'rows\',size:1,operate:1,element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': $$_mx5$_view,}));
+}else if(pType==propTypes['mw']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({use:\'rows\',element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/6t/border?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*'),}));
+}else if(pType==propTypes['mu']){
+;$$_mx5$_view='5j/78/operate?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*');if(($temp_var=p['_o0'])!=null){;$$_mx5$_view+='&sub='+($encodeUrl($temp_var));};$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({use:\'rows\',operate:1,size:1,element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': $$_mx5$_view,}));
+}else if(pType==propTypes['mE']){
+;$$_mx5$_view='5j/7a/operate?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*');if(($temp_var=p['_o0'])!=null){;$$_mx5$_view+='&sub='+($encodeUrl($temp_var));};$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({use:\'rows\',operate:1,size:1,element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': $$_mx5$_view,}));
+}else if(pType==propTypes['mh']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({use:\'rows\',size:1,element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/6s/h-size?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*'),}));
+}else if(pType==propTypes['ml']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({use:\'rows\',size:1,element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/6s/v-size?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*'),}));
+}else if(pType==propTypes['mj']){
+;$$_mx5$_view='5j/6t/size?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*');if(($temp_var=p['_uC'])!=null){;$$_mx5$_view+='&ah='+($encodeUrl($temp_var));};$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({use:\'rows\',size:1,element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': $$_mx5$_view,}));
+}else if(pType==propTypes['mF']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({use:\'rows\',size:1,element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/6t/share?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*')+'&dataPad='+$keyOf($refData,p.dataPad,'i$.'+($q_key_xegioknudfs)+'.i`'),}));
+}else if(pType==propTypes['mt']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-n_','mx5-change': $viewId+'_rf({use:\'rows\',element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/6t/content?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*'),}));
+}else if(pType==propTypes['mv']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-n_','mx5-change': $viewId+'_rf({use:\'rows\',element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/78/content?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*'),}));
+}else if(he&&pType==propTypes['mm']){
+$vnode_3=[$createVNode(0,(data))];$vnode_2.push($createVNode('a',{'href': '//'+(data),'class': 'rd-m8 rd-mU rd-mo','title': (data),'target': '_blank','rel': 'noopener noreferrer',},$vnode_3));
+}else if(pType==propTypes['mo']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','mx5-change': $viewId+'_rf({use:\'data\',element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/7b/index?disabled='+$keyOf($refData,locked)+'&data='+$keyOf($refData,data,'i!.'+(p.key)+'.i@'),}));
+}else if(pType==propTypes['mp']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-n_','mx5-change': $viewId+'_rf({use:\'data\',element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/7b/help?disabled='+$keyOf($refData,locked)+'&data='+$keyOf($refData,data,'i!.'+(p.key)+'.i@'),}));
+}else if(pType==propTypes['mq']){
+;$$_mx5$_view='5j/7e/kp?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*');if(($temp_var=p.mod)!=null){;$$_mx5$_view+='&mod='+($encodeUrl($temp_var));};$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-n_','mx5-change': $viewId+'_rf({use:\'kp\',element:\''+$keyOf($refData,e,'i]')+'\',kp:1})','mx5-view': $$_mx5$_view,}));
+}else if(pType==propTypes['mr']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-n_','mx5-change': $viewId+'_rf({use:\'mod\',element:\''+$keyOf($refData,e,'i]')+'\',mod:1})','mx5-view': '5j/7e/mod?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*'),}));
+}else if(pType==propTypes['mx']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({key:\''+($encodeQuote(p.key))+'\',use:\'format\',element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/74/index?format='+$keyOf($refData,data,'i!.'+(p.key)+'.i@')+'&disabled='+$keyOf($refData,locked),}));
+}else if(pType==propTypes['mz']){
+;$$_mx5$_view='5j/71/operate?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*');if(($temp_var=p['_o0'])!=null){;$$_mx5$_view+='&sub='+($encodeUrl($temp_var));};$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({use:\'rows\',size:1,operate:1,element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': $$_mx5$_view,}));
+}else if(pType==propTypes['mA']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-n_','mx5-change': $viewId+'_rf({use:\'rows\',element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/71/content?disabled='+$keyOf($refData,locked)+'&props='+$keyOf($refData,props,'i*'),}));
+}else if(pType==propTypes['mC']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({use:\'colors\',element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/70/series?colors='+$keyOf($refData,data,'i!.'+(p.key)+'.i@')+'&disabled='+$keyOf($refData,locked)+'&multi='+$keyOf($refData,p.multi,'i$.'+($q_key_xegioknudfs)+'.i~'),}));
+}else if(pType==propTypes['my']){
+;$$_mx5$_view='5j/74/fx?format='+$keyOf($refData,data,'i!.'+(p.key)+'.i@')+'&disabled='+$keyOf($refData,locked);if(($temp_var=p['_sq'])){;$$_mx5$_view+='&defaultFx='+$keyOf($refData,$temp_var,'i$.'+($q_key_xegioknudfs)+'.i/');};$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','class': 'rd-m8','mx5-change': $viewId+'_rf({key:\''+($encodeQuote(p.key))+'\',use:\'format\',element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': $$_mx5$_view,}));
+}else if(pType==propTypes['mD']){
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'e','mx5-change': $viewId+'_rf({use:\'items\',element:\''+$keyOf($refData,e,'i]')+'\'})','mx5-view': '5j/75/items?items='+$keyOf($refData,data,'i!.'+(p.key)+'.i@')+'&disabled='+$keyOf($refData,locked)+'&mutual='+$keyOf($refData,p.mutual&&p.mutual(props),'i$.'+($q_key_xegioknudfs)+'.i;'),}));
+};$$_class='rd-sq rd-mX ';if(p['_pW']){;$$_class+='rd-nC';}else{;$$_class+='rd-mZ';};$vnode_1.push($createVNode('li',{'class': $$_class,},$vnode_2));
 }
 }
-}$vnode_0=[$createVNode('ul',$quick_c9_0_static_attr,$vnode_1)]; 
+}$vnode_0=[$createVNode('ul',$quick_op_0_static_attr,$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:panels/props/element.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init() {
-        let update = this['@:{debounce~rs}'](this.render, 30);
-        State.on('@:{event#stage.select.element.props.change~rs}', update);
-        State.on('@:{event#history.shift.change~rs}', update);
-        State.on('@:{event#stage.select.elements.change~rs}', update);
+        let update = this['_mb'](this.render, 30);
+        State.on('l4', update);
+        State.on('l7', update);
+        State.on('l5', update);
         this.on('destroy', () => {
-            State.off('@:{event#stage.select.element.props.change~rs}', update);
-            State.off('@:{event#history.shift.change~rs}', update);
-            State.off('@:{event#stage.select.elements.change~rs}', update);
+            State.off('l4', update);
+            State.off('l7', update);
+            State.off('l5', update);
         });
         this.set({
             he: config('helpElement'),
@@ -210,7 +209,7 @@ return $createVNode($viewId,0,$vnode_0);
         });
     },
     async render() {
-        let selectElements = State.get('@:{global#stage.select.elements~rs}');
+        let selectElements = State.get('l2');
         let single = selectElements.length == 1;
         if (single) {
             this.digest({
@@ -218,7 +217,7 @@ return $createVNode($viewId,0,$vnode_0);
             });
         }
     },
-    async '@:{update.prop~rs}<input,change>'(e) {
+    async '_rf<input,change>'(e) {
         //console.log(e);
         let { key, use, element, native, write, size, kp, operate, mod } = e.params;
         let changed = 0, changedProps, changedIds, changedTypes;
@@ -231,8 +230,8 @@ return $createVNode($viewId,0,$vnode_0);
                 key == 'rx' ||
                 key == 'ry', old, cachedOld;
             if (props.rotate) {
-                let oldRotatedRect = transform_1['@:{transform#rotate.rect~rs}'](props);
-                cachedOld = oldRotatedRect['@:{point~rs}'][0];
+                let oldRotatedRect = transform_1['l3'](props);
+                cachedOld = oldRotatedRect['_n2'][0];
             }
             if (resetXY) {
                 old = cachedOld;
@@ -240,7 +239,7 @@ return $createVNode($viewId,0,$vnode_0);
             let updatePosition = key == 'x' || key == 'y';
             let oldWidth = props.width, oldHeight = props.height;
             let v = native ? e.eventTarget[native] : e[use];
-            let updateMarker = mark(this, '@:{update.props~rs}');
+            let updateMarker = mark(this, '_m3');
             changedProps = {};
             changedIds = { [id]: 1 };
             changedTypes = { [type]: 1 };
@@ -260,12 +259,12 @@ return $createVNode($viewId,0,$vnode_0);
                 }
                 if (updatePosition) {
                     let positionOffset = v - props[key];
-                    let linkage = State.get('@:{global#stage.elements.groups.linked~rs}');
+                    let linkage = State.get('mg');
                     if (linkage) {
-                        let groups = State.get('@:{global#stage.elements.groups~rs}');
+                        let groups = State.get('mc');
                         let sameGroups = groups[id];
                         if (sameGroups) {
-                            let { '@:{generic.all#map~rs}': allMap } = stage_generic_1['@:{generic#get.all.elements.and.map~rs}']();
+                            let { 'l3': allMap } = stage_generic_1['l2']();
                             for (let g of sameGroups) {
                                 if (g != id) {
                                     let e = allMap[g];
@@ -287,17 +286,17 @@ return $createVNode($viewId,0,$vnode_0);
                             let { ctrl, props, id, type } = me;
                             changedIds[id] = 1;
                             changedTypes[type] = 1;
-                            let moveProps = ctrl['@:{move.props~rs}'];
-                            if (ctrl['@:{move.props.is.function~rs}']) {
-                                moveProps = ctrl['@:{move.props~rs}'](props);
+                            let moveProps = ctrl['_oj'];
+                            if (ctrl['_ok']) {
+                                moveProps = ctrl['_oj'](props);
                             }
                             for (let m of moveProps) {
                                 if (m.use == key) {
                                     props[m.key] += positionOffset;
                                 }
                             }
-                            if (ctrl['@:{update.props~rs}']) {
-                                ctrl['@:{update.props~rs}'](props, old, 1);
+                            if (ctrl['_m3']) {
+                                ctrl['_m3'](props, old, 1);
                             }
                             changed = 1;
                         }
@@ -310,7 +309,7 @@ return $createVNode($viewId,0,$vnode_0);
                     let r;
                     if ((key == 'width' ||
                         key == 'height') &&
-                        (ctrl['@:{modifier~rs}'] & enum_1['@:{enum#modifier.sync.size~rs}'])) {
+                        (ctrl['_oG'] & enum_1['mj'])) {
                         r = props.height ? props.width / props.height : 0;
                     }
                     props[key] = v;
@@ -322,20 +321,20 @@ return $createVNode($viewId,0,$vnode_0);
                             props.width = props.height * r;
                         }
                     }
-                    if (ctrl['@:{update.props~rs}']) {
-                        ctrl['@:{update.props~rs}'](props, old, 1);
+                    if (ctrl['_m3']) {
+                        ctrl['_m3'](props, old, 1);
                     }
                     if (old) {
-                        let newRotatedRect = transform_1['@:{transform#rotate.rect~rs}'](props);
-                        let n = newRotatedRect['@:{point~rs}'][0];
+                        let newRotatedRect = transform_1['l3'](props);
+                        let n = newRotatedRect['_n2'][0];
                         props.x += old.x - n.x;
                         props.y += old.y - n.y;
                     }
                     changed = 1;
                 }
                 else {
-                    if (ctrl['@:{update.props~rs}']) {
-                        ctrl['@:{update.props~rs}'](props, old, 1);
+                    if (ctrl['_m3']) {
+                        ctrl['_m3'](props, old, 1);
                     }
                     changed = 1;
                 }
@@ -394,26 +393,26 @@ return $createVNode($viewId,0,$vnode_0);
             }
         }
         if (changed) {
-            State.fire('@:{event#stage.select.element.props.change~rs}', {
-                '@:{ids~rs}': changedIds,
-                '@:{types~rs}': changedTypes,
-                '@:{props~rs}': changedProps
+            State.fire('l4', {
+                '_nK': changedIds,
+                '_nL': changedTypes,
+                '_l3': changedProps
             });
             for (let me of moveElements) {
                 let n = node(me.id);
                 if (n) {
                     let vf = Vframe.byNode(n);
                     if (vf) {
-                        vf.invoke('@:{update~rs}', [me]);
+                        vf.invoke('_ol', [me]);
                     }
                 }
             }
             //非svg控制点的处理,才记录历史记录
-            if (!e['@:{svg.control.point~rs}']) {
+            if (!e['_tr']) {
                 let type;
                 if (key == 'x' ||
                     key == 'y') {
-                    type = history_1['@:{history#element.moved~rs}'];
+                    type = history_1['mj'];
                 }
                 else if ((size && !operate) ||
                     key == 'width' ||
@@ -422,67 +421,67 @@ return $createVNode($viewId,0,$vnode_0);
                     key == 'ry' ||
                     key == 'r' ||
                     key == 'tfootSpacing') {
-                    type = history_1['@:{history#element.modified.size~rs}'];
+                    type = history_1['mx'];
                 }
                 else if (key == 'rotate') {
-                    type = history_1['@:{history#element.rotated~rs}'];
+                    type = history_1['mu'];
                 }
                 else if (kp) {
-                    type = history_1['@:{history#element.modified.ctrl.point~rs}'];
+                    type = history_1['mv'];
                 }
                 else if (mod) {
-                    type = history_1['@:{history#element.modified.mod.point~rs}'];
+                    type = history_1['mw'];
                 }
                 else if (key == 'locked') {
-                    type = props.locked ? history_1['@:{history#element.locked~rs}'] : history_1['@:{history#element.unlocked~rs}'];
+                    type = props.locked ? history_1['mq'] : history_1['mr'];
                 }
                 else {
-                    type = history_1['@:{history#element.modified.props~rs}'];
+                    type = history_1['my'];
                 }
-                let ename = stage_generic_1['@:{generic#query.element.name~rs}']([element]);
-                history_1["@:{history#save~rs}"](type, ename, element.id + '@:{history#element.props.change~rs}' + key, 500);
+                let ename = stage_generic_1['md']([element]);
+                history_1["l2"](type, ename, element.id + 'mP' + key, 500);
             }
         }
     },
-    '@:{update.image.size~rs}<click>'(e) {
-        let m = mark(this, '@:{update.img.size~rs}');
+    '_uB<click>'(e) {
+        let m = mark(this, '_uA');
         let { key, element } = e.params;
         let { props, ctrl } = element;
-        let oldRotatedRect = transform_1['@:{transform#rotate.rect~rs}'](props);
-        let old = oldRotatedRect['@:{point~rs}'][0];
+        let oldRotatedRect = transform_1['l3'](props);
+        let old = oldRotatedRect['_n2'][0];
         let img = new Image();
         let setSize = () => {
-            let newWidth = const_1['@:{const#to.unit~rs}'](img.width), newHeight = const_1['@:{const#to.unit~rs}'](img.height);
+            let newWidth = const_1['l3'](img.width), newHeight = const_1['l3'](img.height);
             if (m() &&
                 (newWidth != props.width ||
                     newHeight != props.height)) {
                 props.width = newWidth;
                 props.height = newHeight;
-                let newRotatedRect = transform_1['@:{transform#rotate.rect~rs}'](props);
-                let n = newRotatedRect['@:{point~rs}'][0];
+                let newRotatedRect = transform_1['l3'](props);
+                let n = newRotatedRect['_n2'][0];
                 props.x += old.x - n.x;
                 props.y += old.y - n.y;
-                if (ctrl['@:{update.props~rs}']) {
-                    ctrl['@:{update.props~rs}'](props);
+                if (ctrl['_m3']) {
+                    ctrl['_m3'](props);
                 }
                 this.render();
-                State.fire('@:{event#stage.select.element.props.change~rs}', {
-                    '@:{ids~rs}': {
+                State.fire('l4', {
+                    '_nK': {
                         [element.id]: 1
                     },
-                    '@:{types~rs}': {
+                    '_nL': {
                         [element.type]: 1
                     },
-                    '@:{props~rs}': {
-                        '@:{position~rs}': 1
+                    '_l3': {
+                        '_l4': 1
                     }
                 });
                 let n1 = node(element.id);
                 let vf = Vframe.byNode(n1);
                 if (vf) {
-                    vf.invoke('@:{update~rs}', [element]);
+                    vf.invoke('_ol', [element]);
                 }
-                history_1["@:{history#save~rs}"](history_1['@:{history#element.modified.size~rs}'], props.ename, element.id + '@:{history#element.props.change~rs}' + key, 500);
+                history_1["l2"](history_1['mx'], props.ename, element.id + 'mP' + key, 500);
             }
         };
         img.onload = setSize;

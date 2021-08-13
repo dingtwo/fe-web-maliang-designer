@@ -4,52 +4,52 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/pager/designer",["../../designer/const","../../designer/enum","../../designer/props","../../designer/transform","../normal"],(require,exports,module)=>{
+define("61/pager/designer",["../../5b/5e","../../5b/enum","../../5b/6c","../../5b/5f","../6p"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let const_1 = require("../../designer/const");
-let enum_1 = require("../../designer/enum");
-let props_1 = require("../../designer/props");
-let transform_1 = require("../../designer/transform");
-let normal_1 = require("../normal");
+let const_1 = require("../../5b/5e");
+let enum_1 = require("../../5b/enum");
+let props_1 = require("../../5b/6c");
+let transform_1 = require("../../5b/5f");
+let normal_1 = require("../6p");
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/pager/index"
+            view: "61/pager/index"
         });
     }
 }).static({
     type: 'pager',
-    title: '@:{lang#elements.pager~rs}',
+    title: 'q0',
     icon: '&#xe646;',
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.width~rs}'] |
-        enum_1['@:{enum#modifier.height~rs}'] |
-        enum_1['@:{enum#modifier.rotate~rs}'] |
-        enum_1['@:{enum#modifier.text~rs}'],
-    '@:{move.props~rs}': [{
+    '_oG': enum_1['mb'] |
+        enum_1['mc'] |
+        enum_1['me'] |
+        enum_1['mg'],
+    '_oj': [{
             key: 'x',
             use: 'x'
         }, {
             key: 'y',
             use: 'y'
         }],
-    '@:{get.props~rs}'(x, y) {
+    '_m2'(x, y) {
         return {
             background: '',
-            height: const_1['@:{const#to.unit~rs}'](50),
+            height: const_1['l3'](50),
             alpha: 1,
             text: '当前第${currentPage}页，共${totalPage}页',
             //'@:{show.text}': 1,
-            letterspacing: const_1['@:{const#to.unit~rs}'](0),
-            x: const_1['@:{const#to.unit~rs}'](x),
-            y: const_1['@:{const#to.unit~rs}'](y),
+            letterspacing: const_1['l3'](0),
+            x: const_1['l3'](x),
+            y: const_1['l3'](y),
             rotate: 0,
-            width: const_1['@:{const#to.unit~rs}'](200),
+            width: const_1['l3'](200),
             forecolor: '#000000',
-            fontsize: const_1['@:{const#to.unit~rs}'](14),
+            fontsize: const_1['l3'](14),
             fontfamily: 'Microsoft YaHei',
             locked: false,
             styleBold: false,
@@ -65,115 +65,115 @@ module.exports= normal_1.extend({
             key: 'ext',
             json: 1
         }, {
-            tip: '@:{lang#props.x~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nP',
+            type: props_1["l2"],
             key: 'x',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            '_nA': 1,
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.y~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nQ',
+            type: props_1["l2"],
             key: 'y',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            '_nA': 1,
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.width~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nR',
+            type: props_1["l2"],
             key: 'width',
-            '@:{is.scale.and.unit.field~rs}': 1,
+            '_nA': 1,
             min: () => 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.height~rs}',
+            tip: 'nS',
             key: 'height',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            type: props_1["@:{eprops#number~rs}"],
+            '_nA': 1,
+            type: props_1["l2"],
             min: () => 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.rotate~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nT',
+            type: props_1["l2"],
             key: 'rotate',
             min: -360,
             max: 360,
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"],
+            type: props_1["ms"],
         }, {
-            tip: '@:{lang#props.text.content~rs}',
+            tip: 'nV',
             key: 'text',
-            type: props_1["@:{eprops#text.area~rs}"],
+            type: props_1["l7"],
             //'@:{dock.top}': 1,
             json: 1,
         }, {
-            tip: '@:{lang#props.font.size~rs}',
+            tip: 'oe',
             key: 'fontsize',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            type: props_1["@:{eprops#number~rs}"],
+            '_nA': 1,
+            type: props_1["l2"],
             min: 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.font.family~rs}',
+            tip: 'of',
             key: 'fontfamily',
-            type: props_1["@:{eprops#dropdown~rs}"],
-            items: const_1["@:{const#font.family~rs}"],
+            type: props_1["l9"],
+            items: const_1["mD"],
             json: 1
         }, {
-            tip: '@:{lang#props.alpha~rs}',
+            tip: 'nU',
             key: 'alpha',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["l2"],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
             json: 1
         }, {
-            tip: '@:{lang#props.letter.spacing~rs}',
+            tip: 'og',
             key: 'letterspacing',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            type: props_1["@:{eprops#number~rs}"],
+            '_nA': 1,
+            type: props_1["l2"],
             min: 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.background~rs}',
+            tip: 'oh',
             key: 'background',
             clear: true,
             alpha: true,
-            type: props_1["@:{eprops#color~rs}"],
+            type: props_1["l3"],
             json: 1
         }, {
-            tip: '@:{lang#props.forecolor~rs}',
+            tip: 'oi',
             key: 'forecolor',
-            type: props_1["@:{eprops#color~rs}"],
+            type: props_1["l3"],
             json: 1
         }, {
-            tip: '@:{lang#props.font.style~rs}',
-            type: props_1["@:{eprops#font.style~rs}"],
-            '@:{json.encode~rs}'(dest, props) {
+            tip: 'oj',
+            type: props_1["l5"],
+            '_pi'(dest, props) {
                 dest.styleBold = props.styleBold;
                 dest.styleUnderline = props.styleUnderline;
                 dest.styleItalic = props.styleItalic;
@@ -181,23 +181,23 @@ module.exports= normal_1.extend({
                 dest.styleOverline = props.styleOverline;
             }
         }, {
-            tip: '@:{lang#props.font.align~rs}',
-            type: props_1["@:{eprops#align~rs}"],
-            '@:{json.encode~rs}'(dest, props) {
+            tip: 'ok',
+            type: props_1["l6"],
+            '_pi'(dest, props) {
                 dest.hpos = props.hpos;
                 dest.vpos = props.vpos;
             }
         }, {
-            type: props_1["@:{eprops#spliter~rs}"]
+            type: props_1["ms"]
         }, {
-            tip: '@:{lang#props.title~rs}',
+            tip: 'n3',
             key: 'ename',
-            type: props_1["@:{eprops#text.input~rs}"],
+            type: props_1["ma"],
             json: 1
         }, {
-            tip: '@:{lang#props.locked~rs}',
+            tip: 'n4',
             key: 'locked',
-            type: props_1["@:{eprops#boolean~rs}"],
+            type: props_1["l4"],
             free: true,
             json: 1
         }]

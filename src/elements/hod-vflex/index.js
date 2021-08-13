@@ -4,38 +4,37 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/hod-vflex/index",["magix5"],(require,exports,module)=>{
-let $quick_bP_0_static_attr={'class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-flex-direction-column',};
+define("61/hod-vflex/index",["5c"],(require,exports,module)=>{
+let $quick_m6_0_static_attr={'class': 'rd-mX rd-mY',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
+let magix_1 = require("5c");
 module.exports= magix_1.View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	props,
 	unit,}=$dataFromView,
 $vnode_3,
 $vnode_2,
 $vnode_1;
-$vnode_1=[];$__line=2;$__art="{{each props.rows as row ri}}";$__ctrl="for(let $q_a_xdtlqkehke=props.rows,$q_c_ixvtypyx=$q_a_xdtlqkehke.length,ri=0;ri<$q_c_ixvtypyx;ri++){let row=$q_a_xdtlqkehke[ri];";
-for(let $q_a_xdtlqkehke=props.rows,$q_c_ixvtypyx=$q_a_xdtlqkehke.length,ri=0;ri<$q_c_ixvtypyx;ri+=1){
-let row=$q_a_xdtlqkehke[ri];
-$vnode_2=[];$__line=4;$__art="{{each row.cols as col ci}}";$__ctrl="for(let $q_a_dmuzpbb=row.cols,$q_c_awtwikdh=$q_a_dmuzpbb.length,ci=0;ci<$q_c_awtwikdh;ci++){let col=$q_a_dmuzpbb[ci];";
-for(let $q_a_dmuzpbb=row.cols,$q_c_awtwikdh=$q_a_dmuzpbb.length,ci=0;ci<$q_c_awtwikdh;ci+=1){
-let col=$q_a_dmuzpbb[ci];
-$vnode_3=[];$__line=6;$__art="{{each col.elements as e}}";$__ctrl="for(let $q_a_qtmm=col.elements,$q_c_rdbgiloc=$q_a_qtmm.length,$q_key_odlpega=0;$q_key_odlpega<$q_c_rdbgiloc;$q_key_odlpega++){let e=$q_a_qtmm[$q_key_odlpega];";
-for(let $q_a_qtmm=col.elements,$q_c_rdbgiloc=$q_a_qtmm.length,$q_key_odlpega=0;$q_key_odlpega<$q_c_rdbgiloc;$q_key_odlpega+=1){
-let e=$q_a_qtmm[$q_key_odlpega];
-$vnode_3.push($createVNode('div',{'mx5-owner': $viewId,'$': 'props,unit','mx5-view': 'elements/'+($__line=7,$__art='{{=e.type}}',$__ctrl='<%=e.type%>',(e.type))+'/index?props='+($__line=7,$__art='{{#e.props}}',$__ctrl='<%#e.props,\'auto_key_props.rows.\'+(ri)+\'.cols.\'+(ci)+\'.elements.\'+($q_key_odlpega)+\'.e.props\'%>',$keyOf($refData,e.props,'auto_key_props.rows.'+(ri)+'.cols.'+(ci)+'.elements.'+($q_key_odlpega)+'.e.props'))+'&unit='+($__line=7,$__art='{{#unit}}',$__ctrl='<%#unit,\'auto_key_unit\'%>',$keyOf($refData,unit,'auto_key_unit')),}));
-}$vnode_2.push($createVNode('div',{'class': 'rd-_assets_index_less_-hp100 rd-_assets_index_less_-overflow-hidden rd-_assets_index_less_-pr rd-_assets_index_less_-wp100','style': 'width:'+($__line=5,$__art='{{=row.width}}',$__ctrl='<%=row.width%>',(row.width))+($__line=5,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=5,$__art='{{=col.height}}',$__ctrl='<%=col.height%>',(col.height))+($__line=5,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';border-top:'+($__line=5,$__art='{{=col.borderTopStyle}}',$__ctrl='<%=col.borderTopStyle%>',(col.borderTopStyle))+' '+($__line=5,$__art='{{=col.borderTopWidth}}',$__ctrl='<%=col.borderTopWidth%>',(col.borderTopWidth))+($__line=5,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+' '+($__line=5,$__art='{{=col.borderTopColor}}',$__ctrl='<%=col.borderTopColor%>',(col.borderTopColor))+';border-right:'+($__line=5,$__art='{{=col.borderRightStyle}}',$__ctrl='<%=col.borderRightStyle%>',(col.borderRightStyle))+' '+($__line=5,$__art='{{=col.borderRightWidth}}',$__ctrl='<%=col.borderRightWidth%>',(col.borderRightWidth))+($__line=5,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+' '+($__line=5,$__art='{{=col.borderRightColor}}',$__ctrl='<%=col.borderRightColor%>',(col.borderRightColor))+';border-bottom:'+($__line=5,$__art='{{=col.borderBottomStyle}}',$__ctrl='<%=col.borderBottomStyle%>',(col.borderBottomStyle))+' '+($__line=5,$__art='{{=col.borderBottomWidth}}',$__ctrl='<%=col.borderBottomWidth%>',(col.borderBottomWidth))+($__line=5,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+' '+($__line=5,$__art='{{=col.borderBottomColor}}',$__ctrl='<%=col.borderBottomColor%>',(col.borderBottomColor))+';border-left:'+($__line=5,$__art='{{=col.borderLeftStyle}}',$__ctrl='<%=col.borderLeftStyle%>',(col.borderLeftStyle))+' '+($__line=5,$__art='{{=col.borderLeftWidth}}',$__ctrl='<%=col.borderLeftWidth%>',(col.borderLeftWidth))+($__line=5,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+' '+($__line=5,$__art='{{=col.borderLeftColor}}',$__ctrl='<%=col.borderLeftColor%>',(col.borderLeftColor)),},$vnode_3));
-}$vnode_1.push($createVNode('div',$quick_bP_0_static_attr,$vnode_2));
-}$vnode_0=[$createVNode('div',{'class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-pa rd-_assets_index_less_-z-index-1','style': 'left:'+($__line=1,$__art='{{=props.x}}',$__ctrl='<%=props.x%>',(props.x))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';top:'+($__line=1,$__art='{{=props.y}}',$__ctrl='<%=props.y%>',(props.y))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';opacity:'+($__line=1,$__art='{{=props.alpha}}',$__ctrl='<%=props.alpha%>',(props.alpha))+';width:'+($__line=1,$__art='{{=props.width}}',$__ctrl='<%=props.width%>',(props.width))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=1,$__art='{{=props.height}}',$__ctrl='<%=props.height%>',(props.height))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit)),},$vnode_1)]; 
+$vnode_1=[];
+for(let $q_a_sdeoybvqii=props.rows,$q_c_mngjfwvvx=$q_a_sdeoybvqii.length,ri=0;ri<$q_c_mngjfwvvx;ri+=1){
+let row=$q_a_sdeoybvqii[ri];
+$vnode_2=[];
+for(let $q_a_wsudzaxo=row.cols,$q_c_gksyyjml=$q_a_wsudzaxo.length,ci=0;ci<$q_c_gksyyjml;ci+=1){
+let col=$q_a_wsudzaxo[ci];
+$vnode_3=[];
+for(let $q_a_weuv=col.elements,$q_c_gzlsndln=$q_a_weuv.length,$q_key_fmbsrlavku=0;$q_key_fmbsrlavku<$q_c_gzlsndln;$q_key_fmbsrlavku+=1){
+let e=$q_a_weuv[$q_key_fmbsrlavku];
+$vnode_3.push($createVNode('div',{'mx5-owner': $viewId,'$': 'props,unit','mx5-view': '61/'+(e.type)+'/index?props='+$keyOf($refData,e.props,'i!.'+(ri)+'.i@.'+(ci)+'.i$.'+($q_key_fmbsrlavku)+'.i^')+'&unit='+$keyOf($refData,unit,'i*'),}));
+}$vnode_2.push($createVNode('div',{'class': 'rd-mB rd-mC rd-mK rd-nO','style': 'width:'+(row.width)+(unit)+';height:'+(col.height)+(unit)+';border-top:'+(col.borderTopStyle)+' '+(col.borderTopWidth)+(unit)+' '+(col.borderTopColor)+';border-right:'+(col.borderRightStyle)+' '+(col.borderRightWidth)+(unit)+' '+(col.borderRightColor)+';border-bottom:'+(col.borderBottomStyle)+' '+(col.borderBottomWidth)+(unit)+' '+(col.borderBottomColor)+';border-left:'+(col.borderLeftStyle)+' '+(col.borderLeftWidth)+(unit)+' '+(col.borderLeftColor),},$vnode_3));
+}$vnode_1.push($createVNode('div',$quick_m6_0_static_attr,$vnode_2));
+}$vnode_0=[$createVNode('div',{'class': 'rd-mJ rd-mX rd-n5','style': 'left:'+(props.x)+(unit)+';top:'+(props.y)+(unit)+';opacity:'+(props.alpha)+';width:'+(props.width)+(unit)+';height:'+(props.height)+(unit),},$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:elements/hod-vflex/index.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     assign(data) {
         this.set(data);
     },

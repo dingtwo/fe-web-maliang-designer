@@ -4,16 +4,16 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("provider/scroll",["magix5","../gallery/mx-runner/index","../designer/const","./pole"],(require,exports,module)=>{
+define("5r/scroll",["5c","../5j/5m/index","../5b/5e","./pole"],(require,exports,module)=>{
 
 "use strict";
 /**
  * 贴边滚动插件
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-let magix_1 = require("magix5");
-let index_1 = require("../gallery/mx-runner/index");
-let const_1 = require("../designer/const");
+let magix_1 = require("5c");
+let index_1 = require("../5j/5m/index");
+let const_1 = require("../5b/5e");
 let pole_1 = require("./pole");
 let { State, node } = magix_1;
 /**
@@ -39,30 +39,30 @@ let scrollRunner = () => {
         }
         let oldTop = stage.scrollTop, oldLeft = stage.scrollLeft, toTop = oldTop, toLeft = oldLeft, scroll = 1, maxTop = stage.scrollHeight - stage.clientHeight, maxLeft = stage.scrollWidth - stage.clientWidth;
         if (pageY > stageBound.y &&
-            pageY < stageBound.y + const_1["@:{const#move.near.side.area~rs}"]) {
-            toTop = oldTop - const_1["@:{const#move.near.step~rs}"];
+            pageY < stageBound.y + const_1["ml"]) {
+            toTop = oldTop - const_1["mm"];
             if (toTop < 0) {
                 toTop = 0;
             }
             //stage.scrollTop -= Const["@:{const#move.near.step}"];
         }
-        else if (pageY >= stageBound.y + stageBound.height - const_1["@:{const#move.near.side.area~rs}"] &&
+        else if (pageY >= stageBound.y + stageBound.height - const_1["ml"] &&
             pageY < stageBound.y + stageBound.height) {
-            toTop = oldTop + const_1["@:{const#move.near.step~rs}"];
+            toTop = oldTop + const_1["mm"];
             if (toTop > maxTop) {
                 toTop = maxTop;
             }
             //stage.scrollTop += Const["@:{const#move.near.step}"];
         }
-        if (pageX < stageBound.x + const_1["@:{const#move.near.side.area~rs}"]) {
-            toLeft = oldLeft - const_1["@:{const#move.near.step~rs}"];
+        if (pageX < stageBound.x + const_1["ml"]) {
+            toLeft = oldLeft - const_1["mm"];
             if (toLeft < 0) {
                 toLeft = 0;
             }
         }
-        else if (pageX > stageBound.x + stageBound.width - const_1["@:{const#move.near.side.area~rs}"] &&
+        else if (pageX > stageBound.x + stageBound.width - const_1["ml"] &&
             pageY < stageBound.x + stageBound.width) {
-            toLeft = oldLeft + const_1["@:{const#move.near.step~rs}"];
+            toLeft = oldLeft + const_1["mm"];
             if (toLeft > maxLeft) {
                 toLeft = maxLeft;
             }
@@ -79,20 +79,20 @@ let scrollRunner = () => {
         if (scroll != 1) {
             canScroll = 0;
             let offsetEvent = {
-                '@:{interval.move.event#x~rs}': offsetX,
-                '@:{interval.move.event#y~rs}': offsetY,
-                '@:{interval.move.event#ready~rs}'() {
+                'l3': offsetX,
+                'l2': offsetY,
+                'l5'() {
                     if ((scroll & 2)) {
                         stage.scrollTop = toTop;
                     }
                     if ((scroll & 4)) {
                         stage.scrollLeft = toLeft;
                     }
-                    pole_1['@:{pole#update~rs}']({ size: 1 });
+                    pole_1['l4']({ size: 1 });
                     canScroll = 1;
                 }
             };
-            State.fire('@:{event#stage.interval.move~rs}', offsetEvent);
+            State.fire('mg', offsetEvent);
             //updateElementToAreaUI(pointerInfo, 1);
         }
     }
@@ -104,13 +104,13 @@ let scrollRunner = () => {
 let startScrollWhenNearSide = e => {
     if (!pointerInfo) {
         State.set({
-            '@:{global#stage.prevent.actions~rs}': 1
+            'l8': 1
         });
         if (!stageDragScrollZone) {
             stageDragScrollZone = node('_rd_sdsz');
         }
-        stageDragScrollZone.classList.remove('rd-_assets_index_less_-none');
-        index_1["@:{task.add~rs}"](10, scrollRunner);
+        stageDragScrollZone.classList.remove('rd-mO');
+        index_1["_mr"](10, scrollRunner);
     }
     pointerInfo = e;
 };
@@ -122,25 +122,25 @@ let stopScrollWhenNearSide = () => {
     stageBound = null;
     offsetX = offsetY = 0;
     State.set({
-        '@:{global#stage.prevent.actions~rs}': 0
+        'l8': 0
     });
     if (stageDragScrollZone) {
-        stageDragScrollZone.classList.add('rd-_assets_index_less_-none');
+        stageDragScrollZone.classList.add('rd-mO');
     }
-    index_1["@:{task.remove~rs}"](scrollRunner);
+    index_1["_mq"](scrollRunner);
     canScroll = 1;
 };
 module.exports= {
-    '@:{scroll#setup~rs}'() {
+    'l2'() {
         stage = node('_rd_stage');
-        State.on('@:{event#drag.element.move~rs}', startScrollWhenNearSide);
-        State.on('@:{event#drag.element.stop~rs}', stopScrollWhenNearSide);
+        State.on('mf', startScrollWhenNearSide);
+        State.on('mi', stopScrollWhenNearSide);
     },
-    '@:{scroll#teardown~rs}'() {
+    'l3'() {
         stage = null;
         stopScrollWhenNearSide();
-        State.off('@:{event#drag.element.move~rs}', startScrollWhenNearSide);
-        State.off('@:{event#drag.element.stop~rs}', stopScrollWhenNearSide);
+        State.off('mf', startScrollWhenNearSide);
+        State.off('mi', stopScrollWhenNearSide);
     }
 };
 

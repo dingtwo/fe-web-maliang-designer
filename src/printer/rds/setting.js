@@ -4,32 +4,32 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("printer/rds/setting",["magix5","../../designer/service","./index","gallery/mx-dropdown/index","gallery/mx-number/index"],(require,exports,module)=>{
-require("gallery/mx-dropdown/index");
-require("gallery/mx-number/index");
-let $quick_df_0_static_node;
-let $quick_df_1_static_node;
-let $quick_df_5_static_node;
-let $quick_df_7_static_node;
-let $quick_df_8_static_node;
-let $quick_df_10_static_node;
-let $quick_df_11_static_node;
-let $quick_df_12_static_node;
-let $quick_df_13_static_node;
-let $quick_df_14_static_node;
-let $quick_df_15_static_node;
-let $quick_bH_static_text;
-let $quick_bI_static_text;
-let $quick_df_17_static_node;
-let $quick_df_3_static_attr={'class': 'rd-_assets_index_less_-dialog-body',};
-let $quick_df_4_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex',};
-let $quick_df_6_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_printer_index_less_-mt-20',};
-let $quick_df_9_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-flex rd-_assets_index_less_-mwp100 rd-_assets_index_less_-tag-label',};
-let $quick_df_16_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-bottom-0 rd-_assets_index_less_-dialog-footer rd-_assets_index_less_-dialog-footer-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-justify-content-flex-end rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-6',};
+define("7j/7l/setting",["5c","../../5b/5v","./index","5j/6v/index","5j/6u/index"],(require,exports,module)=>{
+require("5j/6v/index");
+require("5j/6u/index");
+let $quick_ow_0_static_node;
+let $quick_ow_1_static_node;
+let $quick_ow_5_static_node;
+let $quick_ow_7_static_node;
+let $quick_ow_8_static_node;
+let $quick_ow_10_static_node;
+let $quick_ow_11_static_node;
+let $quick_ow_12_static_node;
+let $quick_ow_13_static_node;
+let $quick_ow_14_static_node;
+let $quick_ow_15_static_node;
+let $quick_mY_static_text;
+let $quick_mZ_static_text;
+let $quick_ow_17_static_node;
+let $quick_ow_3_static_attr={'class': 'rd-mf',};
+let $quick_ow_4_static_attr={'class': 'rd-mX rd-mZ',};
+let $quick_ow_6_static_attr={'class': 'rd-mX rd-mZ rd-sI',};
+let $quick_ow_9_static_attr={'class': 'rd-mD rd-mX rd-mZ rd-ml rd-nk',};
+let $quick_ow_16_static_attr={'class': 'rd-m3 rd-mA rd-mX rd-mZ rd-mh rd-mi rd-n2 rd-n7 rd-nh',};
 let $special_2={'checked':'checked',};
 
-let magix_1 = require("magix5");
-let service_1 = require("../../designer/service");
+let magix_1 = require("5c");
+let service_1 = require("../../5b/5v");
 let index_1 = require("./index");
 
 let Layouts = [{
@@ -41,7 +41,7 @@ let Layouts = [{
     }];
 module.exports= magix_1.View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	error,
 	exf,
@@ -52,107 +52,106 @@ $vnode_1,
 $vnode_3,
 $vnode_2;
 
-if($quick_df_0_static_node){
-$vnode_0=[$quick_df_0_static_node];
+if($quick_ow_0_static_node){
+$vnode_0=[$quick_ow_0_static_node];
 }else{
-$vnode_0=[$quick_df_0_static_node=$createVNode('div',{'_': 'ar','class': 'rd-_assets_index_less_-dialog-header-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-7',})];
+$vnode_0=[$quick_ow_0_static_node=$createVNode('div',{'_': 'i!','class': 'rd-m3 rd-md rd-n8',})];
 }
 
-if($quick_df_1_static_node){
-$vnode_0.push($quick_df_1_static_node);
+if($quick_ow_1_static_node){
+$vnode_0.push($quick_ow_1_static_node);
 }else{
-$vnode_1=[$createVNode(0,'<h5 class="rd-_assets_index_less_-tag-h5">RDS打印服务设置</h5>',1)];$vnode_0.push($quick_df_1_static_node=$createVNode('div',{'_': 'as','class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-dialog-header rd-_assets_index_less_-dialog-header-with-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-top-0 rd-_assets_index_less_-z-index-8',},$vnode_1));
+$vnode_1=[$createVNode(0,'<h5 class="rd-mm">RDS打印服务设置</h5>',1)];$vnode_0.push($quick_ow_1_static_node=$createVNode('div',{'_': 'i@','class': 'rd-m3 rd-m4 rd-mA rd-mb rd-mc rd-n9',},$vnode_1));
 }
-$vnode_1=[];$__line=6;$__art="{{if error}}";$__ctrl="if(error){";
+$vnode_1=[];
 if(error){
-$vnode_1.push($createVNode(0,($__line=7,$__art='{{=exf(error.message)}}',$__ctrl='<%=exf(error.message)%>',(exf(error.message)))));
+$vnode_1.push($createVNode(0,(exf(error.message))));
 }else{
 
-if($quick_df_5_static_node){
-$vnode_2=[$quick_df_5_static_node];
+if($quick_ow_5_static_node){
+$vnode_2=[$quick_ow_5_static_node];
 }else{
-$vnode_3=[$createVNode(0,'打印机：')];$vnode_2=[$quick_df_5_static_node=$createVNode('div',{'_': 'at','class': 'rd-_assets_index_less_-tr rd-_printer_index_less_-width-120',},$vnode_3)];
+$vnode_3=[$createVNode(0,'打印机：')];$vnode_2=[$quick_ow_5_static_node=$createVNode('div',{'_': 'i$','class': 'rd-mF rd-sG',},$vnode_3)];
 }
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'list','class': 'rd-_printer_index_less_-width-350','mx5-change': $viewId+'@:{set.printer~rs}({key:\'name\'})','mx5-view': 'gallery/mx-dropdown/index?list='+($__line=11,$__art='{{#list}}',$__ctrl='<%#list,\'auto_key_list\'%>',$keyOf($refData,list,'auto_key_list'))+'&selected='+($__line=11,$__art='{{=printer.name}}',$__ctrl='<%=$encodeUrl(printer.name)%>',($encodeUrl(printer.name))),}));$vnode_1.push($createVNode('div',$quick_df_4_static_attr,$vnode_2));
-if($quick_df_7_static_node){
-$vnode_2=[$quick_df_7_static_node];
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'list','class': 'rd-sH','mx5-change': $viewId+'_vA({key:\'name\'})','mx5-view': '5j/6v/index?list='+$keyOf($refData,list,'i!')+'&selected='+($encodeUrl(printer.name)),}));$vnode_1.push($createVNode('div',$quick_ow_4_static_attr,$vnode_2));
+if($quick_ow_7_static_node){
+$vnode_2=[$quick_ow_7_static_node];
 }else{
-$vnode_3=[$createVNode(0,'方向：')];$vnode_2=[$quick_df_7_static_node=$createVNode('div',{'_': 'au','class': 'rd-_assets_index_less_-tr rd-_printer_index_less_-width-120',},$vnode_3)];
+$vnode_3=[$createVNode(0,'方向：')];$vnode_2=[$quick_ow_7_static_node=$createVNode('div',{'_': 'i^','class': 'rd-mF rd-sG',},$vnode_3)];
 }
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'layouts','class': 'rd-_printer_index_less_-width-350','mx5-change': $viewId+'@:{set.printer~rs}({key:\'l\'})','mx5-view': 'gallery/mx-dropdown/index?list='+($__line=15,$__art='{{#layouts}}',$__ctrl='<%#layouts,\'auto_key_layouts\'%>',$keyOf($refData,layouts,'auto_key_layouts'))+'&textKey=text&valueKey=value&selected='+($__line=15,$__art='{{=printer.l}}',$__ctrl='<%=$encodeUrl(printer.l)%>',($encodeUrl(printer.l))),}));$vnode_1.push($createVNode('div',$quick_df_6_static_attr,$vnode_2));
-if($quick_df_8_static_node){
-$vnode_2=[$quick_df_8_static_node];
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'layouts','class': 'rd-sH','mx5-change': $viewId+'_vA({key:\'l\'})','mx5-view': '5j/6v/index?list='+$keyOf($refData,layouts,'i@')+'&textKey=text&valueKey=value&selected='+($encodeUrl(printer.l)),}));$vnode_1.push($createVNode('div',$quick_ow_6_static_attr,$vnode_2));
+if($quick_ow_8_static_node){
+$vnode_2=[$quick_ow_8_static_node];
 }else{
-$vnode_3=[$createVNode(0,'双面打印：')];$vnode_2=[$quick_df_8_static_node=$createVNode('div',{'_': 'av','class': 'rd-_assets_index_less_-tr rd-_printer_index_less_-width-120',},$vnode_3)];
+$vnode_3=[$createVNode(0,'双面打印：')];$vnode_2=[$quick_ow_8_static_node=$createVNode('div',{'_': 'i*','class': 'rd-mF rd-sG',},$vnode_3)];
 }
-$vnode_3=[$createVNode('input',{'class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-switch-input','type': 'checkbox','checked': ($temp_var=($__line=20,$__art='{{=printer.ts}}',$__ctrl='<%=printer.ts%>',printer.ts),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"checked" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:printer/rds/setting.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-change': $viewId+'@:{set.printer.two.side~rs}()',},1,$special_2)];
-if($quick_df_10_static_node){
-$vnode_3.push($quick_df_10_static_node);
+$vnode_3=[$createVNode('input',{'class': 'rd-mJ rd-nD','type': 'checkbox','checked': (printer.ts),'mx5-change': $viewId+'_vB()',},1,$special_2)];
+if($quick_ow_10_static_node){
+$vnode_3.push($quick_ow_10_static_node);
 }else{
-$vnode_3.push($quick_df_10_static_node=$createVNode('i',{'_': 'aw','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-switch-button rd-_assets_index_less_-unselectable',}));
+$vnode_3.push($quick_ow_10_static_node=$createVNode('i',{'_': 'i{','class': 'rd-mK rd-mR rd-nE',}));
 }
-$vnode_2.push($createVNode('label',$quick_df_9_static_attr,$vnode_3));$vnode_1.push($createVNode('div',$quick_df_6_static_attr,$vnode_2));
-if($quick_df_11_static_node){
-$vnode_2=[$quick_df_11_static_node];
+$vnode_2.push($createVNode('label',$quick_ow_9_static_attr,$vnode_3));$vnode_1.push($createVNode('div',$quick_ow_6_static_attr,$vnode_2));
+if($quick_ow_11_static_node){
+$vnode_2=[$quick_ow_11_static_node];
 }else{
-$vnode_3=[$createVNode(0,'打印份数：')];$vnode_2=[$quick_df_11_static_node=$createVNode('div',{'_': 'ax','class': 'rd-_assets_index_less_-tr rd-_printer_index_less_-width-120',},$vnode_3)];
+$vnode_3=[$createVNode(0,'打印份数：')];$vnode_2=[$quick_ow_11_static_node=$createVNode('div',{'_': 'i}','class': 'rd-mF rd-sG',},$vnode_3)];
 }
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'printer','mx5-input': $viewId+'@:{update.num~rs}({key:\'nc\'})','class': 'rd-_assets_index_less_-input rd-_assets_index_less_-pr','mx5-view': 'gallery/mx-number/index?min=1&value='+($__line=26,$__art='{{#printer.nc}}',$__ctrl='<%#printer.nc,\'auto_key_printer.printer.nc\'%>',$keyOf($refData,printer.nc,'auto_key_printer.printer.nc')),}));$vnode_1.push($createVNode('div',$quick_df_6_static_attr,$vnode_2));
-if($quick_df_12_static_node){
-$vnode_2=[$quick_df_12_static_node];
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'printer','mx5-input': $viewId+'_vz({key:\'nc\'})','class': 'rd-l5 rd-mK','mx5-view': '5j/6u/index?min=1&value='+$keyOf($refData,printer.nc,'i$'),}));$vnode_1.push($createVNode('div',$quick_ow_6_static_attr,$vnode_2));
+if($quick_ow_12_static_node){
+$vnode_2=[$quick_ow_12_static_node];
 }else{
-$vnode_3=[$createVNode(0,'左页边距：')];$vnode_2=[$quick_df_12_static_node=$createVNode('div',{'_': 'ay','class': 'rd-_assets_index_less_-tr rd-_printer_index_less_-width-120',},$vnode_3)];
+$vnode_3=[$createVNode(0,'左页边距：')];$vnode_2=[$quick_ow_12_static_node=$createVNode('div',{'_': 'i[','class': 'rd-mF rd-sG',},$vnode_3)];
 }
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'printer','mx5-input': $viewId+'@:{update.num~rs}({key:\'pl\'})','class': 'rd-_assets_index_less_-input rd-_assets_index_less_-pr','mx5-view': 'gallery/mx-number/index?min=0&value='+($__line=30,$__art='{{#printer.pl}}',$__ctrl='<%#printer.pl,\'auto_key_printer.printer.pl\'%>',$keyOf($refData,printer.pl,'auto_key_printer.printer.pl')),}));$vnode_1.push($createVNode('div',$quick_df_6_static_attr,$vnode_2));
-if($quick_df_13_static_node){
-$vnode_2=[$quick_df_13_static_node];
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'printer','mx5-input': $viewId+'_vz({key:\'pl\'})','class': 'rd-l5 rd-mK','mx5-view': '5j/6u/index?min=0&value='+$keyOf($refData,printer.pl,'i^'),}));$vnode_1.push($createVNode('div',$quick_ow_6_static_attr,$vnode_2));
+if($quick_ow_13_static_node){
+$vnode_2=[$quick_ow_13_static_node];
 }else{
-$vnode_3=[$createVNode(0,'上页边距：')];$vnode_2=[$quick_df_13_static_node=$createVNode('div',{'_': 'az','class': 'rd-_assets_index_less_-tr rd-_printer_index_less_-width-120',},$vnode_3)];
+$vnode_3=[$createVNode(0,'上页边距：')];$vnode_2=[$quick_ow_13_static_node=$createVNode('div',{'_': 'i]','class': 'rd-mF rd-sG',},$vnode_3)];
 }
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'printer','mx5-input': $viewId+'@:{update.num~rs}({key:\'pt\'})','class': 'rd-_assets_index_less_-input rd-_assets_index_less_-pr','mx5-view': 'gallery/mx-number/index?min=0&value='+($__line=34,$__art='{{#printer.pt}}',$__ctrl='<%#printer.pt,\'auto_key_printer.printer.pt\'%>',$keyOf($refData,printer.pt,'auto_key_printer.printer.pt')),}));$vnode_1.push($createVNode('div',$quick_df_6_static_attr,$vnode_2));
-if($quick_df_14_static_node){
-$vnode_2=[$quick_df_14_static_node];
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'printer','mx5-input': $viewId+'_vz({key:\'pt\'})','class': 'rd-l5 rd-mK','mx5-view': '5j/6u/index?min=0&value='+$keyOf($refData,printer.pt,'i*'),}));$vnode_1.push($createVNode('div',$quick_ow_6_static_attr,$vnode_2));
+if($quick_ow_14_static_node){
+$vnode_2=[$quick_ow_14_static_node];
 }else{
-$vnode_3=[$createVNode(0,'右页边距：')];$vnode_2=[$quick_df_14_static_node=$createVNode('div',{'_': 'aA','class': 'rd-_assets_index_less_-tr rd-_printer_index_less_-width-120',},$vnode_3)];
+$vnode_3=[$createVNode(0,'右页边距：')];$vnode_2=[$quick_ow_14_static_node=$createVNode('div',{'_': 'i|','class': 'rd-mF rd-sG',},$vnode_3)];
 }
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'printer','mx5-input': $viewId+'@:{update.num~rs}({key:\'pr\'})','class': 'rd-_assets_index_less_-input rd-_assets_index_less_-pr','mx5-view': 'gallery/mx-number/index?min=0&value='+($__line=38,$__art='{{#printer.pr}}',$__ctrl='<%#printer.pr,\'auto_key_printer.printer.pr\'%>',$keyOf($refData,printer.pr,'auto_key_printer.printer.pr')),}));$vnode_1.push($createVNode('div',$quick_df_6_static_attr,$vnode_2));
-if($quick_df_15_static_node){
-$vnode_2=[$quick_df_15_static_node];
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'printer','mx5-input': $viewId+'_vz({key:\'pr\'})','class': 'rd-l5 rd-mK','mx5-view': '5j/6u/index?min=0&value='+$keyOf($refData,printer.pr,'i{'),}));$vnode_1.push($createVNode('div',$quick_ow_6_static_attr,$vnode_2));
+if($quick_ow_15_static_node){
+$vnode_2=[$quick_ow_15_static_node];
 }else{
-$vnode_3=[$createVNode(0,'下页边距：')];$vnode_2=[$quick_df_15_static_node=$createVNode('div',{'_': 'aB','class': 'rd-_assets_index_less_-tr rd-_printer_index_less_-width-120',},$vnode_3)];
+$vnode_3=[$createVNode(0,'下页边距：')];$vnode_2=[$quick_ow_15_static_node=$createVNode('div',{'_': 'i,','class': 'rd-mF rd-sG',},$vnode_3)];
 }
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'printer','mx5-input': $viewId+'@:{update.num~rs}({key:\'pb\'})','class': 'rd-_assets_index_less_-input rd-_assets_index_less_-pr','mx5-view': 'gallery/mx-number/index?min=0&value='+($__line=42,$__art='{{#printer.pb}}',$__ctrl='<%#printer.pb,\'auto_key_printer.printer.pb\'%>',$keyOf($refData,printer.pb,'auto_key_printer.printer.pb')),}));$vnode_1.push($createVNode('div',$quick_df_6_static_attr,$vnode_2));
-}$vnode_0.push($createVNode('div',$quick_df_3_static_attr,$vnode_1));$vnode_2=[$quick_bH_static_text||($quick_bH_static_text=$createVNode(0,'应用'))];$vnode_1=[$createVNode('button',{'mx5-click': $viewId+'@:{apply~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','type': 'button',},$vnode_2)];$vnode_2=[$quick_bI_static_text||($quick_bI_static_text=$createVNode(0,'取消'))];$vnode_1.push($createVNode('button',{'mx5-click': $viewId+'@:{cancel~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-ml10 rd-_assets_index_less_-tc','type': 'button',},$vnode_2));$vnode_0.push($createVNode('div',$quick_df_16_static_attr,$vnode_1));
-if($quick_df_17_static_node){
-$vnode_0.push($quick_df_17_static_node);
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'printer','mx5-input': $viewId+'_vz({key:\'pb\'})','class': 'rd-l5 rd-mK','mx5-view': '5j/6u/index?min=0&value='+$keyOf($refData,printer.pb,'i}'),}));$vnode_1.push($createVNode('div',$quick_ow_6_static_attr,$vnode_2));
+}$vnode_0.push($createVNode('div',$quick_ow_3_static_attr,$vnode_1));$vnode_2=[$quick_mY_static_text||($quick_mY_static_text=$createVNode(0,'应用'))];$vnode_1=[$createVNode('button',{'mx5-click': $viewId+'_mJ()','class': 'rd-l9 rd-mG rd-ma rd-nk','type': 'button',},$vnode_2)];$vnode_2=[$quick_mZ_static_text||($quick_mZ_static_text=$createVNode(0,'取消'))];$vnode_1.push($createVNode('button',{'mx5-click': $viewId+'_mI()','class': 'rd-l9 rd-mG rd-mx rd-nk','type': 'button',},$vnode_2));$vnode_0.push($createVNode('div',$quick_ow_16_static_attr,$vnode_1));
+if($quick_ow_17_static_node){
+$vnode_0.push($quick_ow_17_static_node);
 }else{
-$vnode_0.push($quick_df_17_static_node=$createVNode('div',{'_': 'aC','class': 'rd-_assets_index_less_-dialog-footer-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-5',}));
+$vnode_0.push($quick_ow_17_static_node=$createVNode('div',{'_': 'i.','class': 'rd-m3 rd-mg rd-n6',}));
 }
  
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:printer/rds/setting.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init(data) {
-        this['@:{dialog~rs}'] = data.dialog;
+        this['_mH'] = data.dialog;
         this.set({
-            exf: index_1["@:{format.ex.message~rs}"],
+            exf: index_1["_vg"],
             layouts: Layouts
         });
     },
     render() {
-        let mark = magix_1.mark(this, '@:{render.rds.setting~rs}');
+        let mark = magix_1.mark(this, '_vy');
         let s = new service_1();
         s.all({
-            name: '@:{post.by.url~rs}',
+            name: '_nZ',
             url: magix_1.config('rds') + 'printers',
-            '@:{body~rs}': JSON.stringify({
+            '_nE': JSON.stringify({
                 width: 0,
                 height: 0,
                 location: location.href
             })
         }, (ex, bag) => {
             if (mark()) {
-                let printer = index_1["@:{get.config~rs}"]();
+                let printer = index_1["_vs"]();
                 let list = bag.get('data', []);
                 if (!printer.name) {
                     printer.name = list[0];
@@ -165,26 +164,26 @@ return $createVNode($viewId,0,$vnode_0);
             }
         });
     },
-    '@:{cancel~rs}<click>'() {
-        this['@:{dialog~rs}'].close();
+    '_mI<click>'() {
+        this['_mH'].close();
     },
-    '@:{update.num~rs}<input>'(e) {
+    '_vz<input>'(e) {
         let printer = this.get('printer');
         let { key } = e.params;
         printer[key] = e.value;
     },
-    '@:{set.printer~rs}<change>'(e) {
+    '_vA<change>'(e) {
         let printer = this.get('printer');
         let { key } = e.params;
         printer[key] = e.value;
     },
-    '@:{set.printer.two.side~rs}<change>'(e) {
+    '_vB<change>'(e) {
         let printer = this.get('printer');
         printer.ts = e.eventTarget.checked;
     },
-    '@:{apply~rs}<click>'() {
-        index_1["@:{set.config~rs}"](this.get('printer'));
-        this['@:{dialog~rs}'].close();
+    '_mJ<click>'() {
+        index_1["_vx"](this.get('printer'));
+        this['_mH'].close();
     }
 });
 

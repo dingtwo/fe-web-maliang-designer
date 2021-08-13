@@ -4,13 +4,13 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("gallery/mx-monitor/index",["magix5"],(require,exports,module)=>{
+define("5j/76/index",["5c"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
  */
-let magix_1 = require("magix5");
+let magix_1 = require("5c");
 let { node, attach, detach } = magix_1;
 let ICounter = 0;
 let Instances = [];
@@ -21,15 +21,15 @@ let Stage;
 let Watcher = (e) => {
     for (let i = Instances.length; i--;) {
         let info = Instances[i];
-        if (info['@:{destroyed~rs}']) {
+        if (info['_sK']) {
             Instances.splice(i, 1);
         }
         else {
-            let view = info['@:{view~rs}'];
+            let view = info['_sL'];
             if (e.type == 'resize' ||
                 e.type == 'blur' ||
-                !view['@:{inside~rs}'](e.target)) {
-                view['@:{hide~rs}']();
+                !view['_rE'](e.target)) {
+                view['_mB']();
             }
         }
     }
@@ -37,21 +37,21 @@ let Watcher = (e) => {
 let Remove = view => {
     let info = Instances[view.id];
     if (info) {
-        info['@:{destroyed~rs}'] = 1;
+        info['_sK'] = 1;
         delete Instances[view.id];
     }
 };
 module.exports= {
-    '@:{add~rs}'(view) {
+    '_rF'(view) {
         Remove(view);
         let info = {
-            '@:{view~rs}': view
+            '_sL': view
         };
         Instances.push(info);
         Instances[view.id] = info;
     },
-    '@:{remove~rs}': Remove,
-    '@:{setup~rs}'() {
+    '_pd': Remove,
+    '_ro'() {
         if (!ICounter) {
             if (!Stage) {
                 Stage = node('_rd_stage');
@@ -67,7 +67,7 @@ module.exports= {
         }
         ICounter++;
     },
-    '@:{teardown~rs}'() {
+    '_rp'() {
         if (ICounter > 0) {
             ICounter--;
             if (!ICounter) {

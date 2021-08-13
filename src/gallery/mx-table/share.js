@@ -4,35 +4,34 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("gallery/mx-table/share",["magix5","../../provider/table","../../designer/const"],(require,exports,module)=>{
+define("5j/6t/share",["5c","../../5r/table","../../5b/5e"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let table_1 = require("../../provider/table");
-let const_1 = require("../../designer/const");
+let magix_1 = require("5c");
+let table_1 = require("../../5r/table");
+let const_1 = require("../../5b/5e");
 let { View, dispatch } = magix_1;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	disabled,
 	canSetWidth,
 	i18n,
 	canSetHeight,}=$dataFromView,
 $vnode_1;
-$vnode_1=[$createVNode(0,($__line=1,$__art='{{=i18n(\'@:{lang#mx-gallery.share.width~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.share.width~rs}\')%>',(i18n('@:{lang#mx-gallery.share.width~rs}'))))];$vnode_0=[$createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-wp100','disabled': ($temp_var=($__line=1,$__art='{{=disabled||!canSetWidth}}',$__ctrl='<%=disabled||!canSetWidth%>',disabled||!canSetWidth),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-table/share.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-click': $viewId+'@:{share~rs}({type:\'x\'})',},$vnode_1)];$vnode_1=[$createVNode(0,($__line=2,$__art='{{=i18n(\'@:{lang#mx-gallery.share.height~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.share.height~rs}\')%>',(i18n('@:{lang#mx-gallery.share.height~rs}'))))];$vnode_0.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-wp100','disabled': ($temp_var=($__line=2,$__art='{{=disabled||!canSetHeight}}',$__ctrl='<%=disabled||!canSetHeight%>',disabled||!canSetHeight),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-table/share.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-click': $viewId+'@:{share~rs}({type:\'y\'})',},$vnode_1)); 
+$vnode_1=[$createVNode(0,(i18n('sI')))];$vnode_0=[$createVNode('button',{'class': 'rd-l9 rd-mB rd-ma','disabled': (disabled||!canSetWidth),'mx5-click': $viewId+'_ty({type:\'x\'})',},$vnode_1)];$vnode_1=[$createVNode(0,(i18n('sJ')))];$vnode_0.push($createVNode('button',{'class': 'rd-l9 rd-mB rd-ma','disabled': (disabled||!canSetHeight),'mx5-click': $viewId+'_ty({type:\'y\'})',},$vnode_1)); 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-table/share.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     assign(data) {
         let { props, disabled, dataPad } = data;
-        table_1['@:{table.provider#add.ext.meta~rs}'](props, true);
-        let sizes = table_1['@:{table.provider#get.sizes~rs}'](props);
+        table_1['l2'](props, true);
+        let sizes = table_1['l3'](props);
         let canSetWidth = false, canSetHeight = false;
-        let widths = sizes['@:{col.widths~rs}'], heights = sizes['@:{row.heights~rs}'];
+        let widths = sizes['_pU'], heights = sizes['_pV'];
         let fw = widths[0], fh = heights[0];
         for (let w of widths) {
             if (w != fw) {
@@ -70,8 +69,8 @@ return $createVNode($viewId,0,$vnode_0);
             }
             ri++;
         }
-        this['@:{props~rs}'] = props;
-        this['@:{data.pad~rs}'] = dataPad || 0;
+        this['_l3'] = props;
+        this['_tx'] = dataPad || 0;
         this.set({
             disabled,
             canSetWidth,
@@ -81,19 +80,19 @@ return $createVNode($viewId,0,$vnode_0);
     render() {
         this.digest();
     },
-    '@:{share~rs}<click>'(e) {
+    '_ty<click>'(e) {
         let { type } = e.params;
-        let props = this['@:{props~rs}'];
+        let props = this['_l3'];
         let { rows, hideHead, hideLabel, hideTotal, hideFoot } = props;
-        let sizes = table_1['@:{table.provider#get.sizes~rs}'](props);
-        let widths = sizes['@:{col.widths~rs}'], heights = sizes['@:{row.heights~rs}'];
-        let dataPad = this['@:{data.pad~rs}'];
+        let sizes = table_1['l3'](props);
+        let widths = sizes['_pU'], heights = sizes['_pV'];
+        let dataPad = this['_tx'];
         if (type == 'x') {
             let totalWidth = 0, avgWidth = 0;
             for (let w of widths) {
                 totalWidth += w;
             }
-            avgWidth = const_1['@:{const#scale.to.unit~rs}'](totalWidth / widths.length);
+            avgWidth = const_1['l4'](totalWidth / widths.length);
             for (let row of rows) {
                 for (let col of row.cols) {
                     col.width = (col.colspan || 1) * avgWidth;
@@ -146,7 +145,7 @@ return $createVNode($viewId,0,$vnode_0);
                 }
                 ri++;
             }
-            avgHeight = const_1['@:{const#scale.to.unit~rs}'](totalHeight / totalRows);
+            avgHeight = const_1['l4'](totalHeight / totalRows);
             let findLabelRow, findTotalRow, findFootRow;
             for (let row of rows) {
                 if (row.label) {

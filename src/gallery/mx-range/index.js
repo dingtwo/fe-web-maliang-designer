@@ -4,33 +4,32 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("gallery/mx-range/index",["magix5","../mx-number/index"],(require,exports,module)=>{
-require("../mx-number/index");
-let $quick_cS_1_static_node;
-let $quick_cS_0_static_attr={'class': 'rd-_assets_index_less_-flex',};
+define("5j/7c/index",["5c","../6u/index"],(require,exports,module)=>{
+require("../6u/index");
+let $quick_n9_1_static_node;
+let $quick_n9_0_static_attr={'class': 'rd-mX',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
+let magix_1 = require("5c");
 module.exports= magix_1.View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	disabled,
 	value,}=$dataFromView,
 $vnode_2,
 $vnode_1;
-$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'$': 'value','disabled': ($temp_var=($__line=2,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-range/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'class': 'rd-_assets_index_less_-input rd-_assets_index_less_-pr rd-_assets_index_less_-width-60','mx5-input': $viewId+'@:{num.input~rs}({i:0})','mx5-change': $viewId+'@:{stop~rs}()','mx5-view': 'gallery/mx-number/index?value='+($__line=2,$__art='{{#value[0]}}',$__ctrl='<%#value[0],\'auto_key_value.value[0]\'%>',$keyOf($refData,value[0],'auto_key_value.value[0]')),})];
-if($quick_cS_1_static_node){
-$vnode_1.push($quick_cS_1_static_node);
+$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'$': 'value','disabled': (disabled),'class': 'rd-l5 rd-m7 rd-mK','mx5-input': $viewId+'_tj({i:0})','mx5-change': $viewId+'_p2()','mx5-view': '5j/6u/index?value='+$keyOf($refData,value[0],'i!'),})];
+if($quick_n9_1_static_node){
+$vnode_1.push($quick_n9_1_static_node);
 }else{
-$vnode_2=[$createVNode(0,'~')];$vnode_1.push($quick_cS_1_static_node=$createVNode('span',{'_': 'ar','class': 'rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-fore-color-border rd-_assets_index_less_-tc',},$vnode_2));
+$vnode_2=[$createVNode(0,'~')];$vnode_1.push($quick_n9_1_static_node=$createVNode('span',{'_': 'i!','class': 'rd-mG rd-mW rd-nj',},$vnode_2));
 }
-$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'value','disabled': ($temp_var=($__line=4,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-range/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'class': 'rd-_assets_index_less_-input rd-_assets_index_less_-pr rd-_assets_index_less_-width-60','mx5-input': $viewId+'@:{num.input~rs}({i:1})','mx5-change': $viewId+'@:{stop~rs}()','mx5-view': 'gallery/mx-number/index?value='+($__line=4,$__art='{{#value[1]}}',$__ctrl='<%#value[1],\'auto_key_value.value[1]\'%>',$keyOf($refData,value[1],'auto_key_value.value[1]')),}));$vnode_0=[$createVNode('div',$quick_cS_0_static_attr,$vnode_1)]; 
+$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'value','disabled': (disabled),'class': 'rd-l5 rd-m7 rd-mK','mx5-input': $viewId+'_tj({i:1})','mx5-change': $viewId+'_p2()','mx5-view': '5j/6u/index?value='+$keyOf($refData,value[1],'i@'),}));$vnode_0=[$createVNode('div',$quick_n9_0_static_attr,$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-range/index.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     assign(data) {
         if (!data.value) {
             data.value = [];
@@ -40,8 +39,8 @@ return $createVNode($viewId,0,$vnode_0);
     render() {
         this.digest();
     },
-    '@:{num.input~rs}<input>'(e) {
-        this['@:{stop.propagation~rs}'](e);
+    '_tj<input>'(e) {
+        this['_qe'](e);
         let { i } = e.params;
         let value = this.get('value');
         value[i] = e.value;

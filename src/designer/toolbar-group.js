@@ -4,22 +4,22 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("designer/toolbar-group",["magix5","./stage-generic"],(require,exports,module)=>{
-let $quick_a1_0_static_node;
-let $quick_aS_static_text;
-let $quick_aT_static_text;
-let $quick_aU_static_text;
+define("5b/6j",["5c","./65"],(require,exports,module)=>{
+let $quick_mh_0_static_node;
+let $quick_l9_static_text;
+let $quick_m__static_text;
+let $quick_ma_static_text;
 /*
     author:https://github.com/xinglie
 */
 
 
-let magix_1 = require("magix5");
-let stage_generic_1 = require("./stage-generic");
+let magix_1 = require("5c");
+let stage_generic_1 = require("./65");
 let { State, View } = magix_1;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	canGroup,
 	i18n,
@@ -28,43 +28,42 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 $$_class,
 $vnode_1;
 
-if($quick_a1_0_static_node){
-$vnode_0=[$quick_a1_0_static_node];
+if($quick_mh_0_static_node){
+$vnode_0=[$quick_mh_0_static_node];
 }else{
-$vnode_0=[$quick_a1_0_static_node=$createVNode('i',{'_': 'ar','class': 'rd-_assets_index_less_-fl rd-_designer_toolbar_less_-toolbar-spliter',})];
+$vnode_0=[$quick_mh_0_static_node=$createVNode('i',{'_': 'i!','class': 'rd-mH rd-pm',})];
 }
-$vnode_1=[$quick_aS_static_text||($quick_aS_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=2,$__art='{{if !canGroup}}','');$__ctrl='<%if(!canGroup){%>';if(!canGroup){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-disabled'+($__line=2,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('i',{'title': ($__line=2,$__art='{{=i18n(\'@:{lang#menu.group~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.group~rs}\')%>',(i18n('@:{lang#menu.group~rs}')))+'(Ctrl/Shift+G)','mx5-click': (($temp_var=($__line=2,$__art='{{=canGroup}}',$__ctrl='<%=canGroup%>',canGroup),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:designer/toolbar-group.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{group.elements~rs}()'),'class': $$_class,},$vnode_1));$vnode_1=[$quick_aT_static_text||($quick_aT_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=3,$__art='{{if !canUngroup}}','');$__ctrl='<%if(!canUngroup){%>';if(!canUngroup){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-disabled'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('i',{'title': ($__line=3,$__art='{{=i18n(\'@:{lang#menu.ungroup~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.ungroup~rs}\')%>',(i18n('@:{lang#menu.ungroup~rs}')))+'(Shift/Ctrl+G)','mx5-click': (($temp_var=($__line=3,$__art='{{=canUngroup}}',$__ctrl='<%=canUngroup%>',canUngroup),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:designer/toolbar-group.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{group.elements~rs}({un:1})'),'class': $$_class,},$vnode_1));$vnode_1=[$quick_aU_static_text||($quick_aU_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=4,$__art='{{if linkEnable}}','');$__ctrl='<%if(linkEnable){%>';if(linkEnable){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-active'+($__line=4,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('i',{'title': ($__line=4,$__art='{{=i18n(linkEnable?\'@:{lang#menu.group.unlinked~rs}\':\'@:{lang#menu.group.linked}\')}}',$__ctrl='<%=i18n(linkEnable?\'@:{lang#menu.group.unlinked~rs}\':\'@:{lang#menu.group.linked~rs}\')%>',(i18n(linkEnable?'@:{lang#menu.group.unlinked~rs}':'@:{lang#menu.group.linked~rs}'))),'mx5-click': $viewId+'@:{toggle.enable~rs}()','class': $$_class,},$vnode_1)); 
+$vnode_1=[$quick_l9_static_text||($quick_l9_static_text=$createVNode(0,''))];;$$_class='rd-l3 rd-pj rd-nk rd-mZ rd-ng';if(!canGroup){;$$_class+=' rd-pn';};$vnode_0.push($createVNode('i',{'title': (i18n('nC'))+'(Ctrl/Shift+G)','mx5-click': ((canGroup))&&($viewId+'_pr()'),'class': $$_class,},$vnode_1));$vnode_1=[$quick_m__static_text||($quick_m__static_text=$createVNode(0,''))];;$$_class='rd-l3 rd-pj rd-nk rd-mZ rd-ng';if(!canUngroup){;$$_class+=' rd-pn';};$vnode_0.push($createVNode('i',{'title': (i18n('nD'))+'(Shift/Ctrl+G)','mx5-click': ((canUngroup))&&($viewId+'_pr({un:1})'),'class': $$_class,},$vnode_1));$vnode_1=[$quick_ma_static_text||($quick_ma_static_text=$createVNode(0,''))];;$$_class='rd-l3 rd-pj rd-nk rd-mZ rd-ng';if(linkEnable){;$$_class+=' rd-pk';};$vnode_0.push($createVNode('i',{'title': (i18n(linkEnable?'nE':'nF')),'mx5-click': $viewId+'_ps()','class': $$_class,},$vnode_1)); 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/toolbar-group.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init() {
         let update = this.render.bind(this);
-        State.on('@:{event#history.shift.change~rs}', update);
-        State.on('@:{event#stage.select.elements.change~rs}', update);
-        State.on('@:{event#stage.elements.change~rs}', update);
+        State.on('l7', update);
+        State.on('l5', update);
+        State.on('mp', update);
         this.on('destroy', () => {
-            State.off('@:{event#history.shift.change~rs}', update);
-            State.off('@:{event#stage.select.elements.change~rs}', update);
-            State.off('@:{event#stage.elements.change~rs}', update);
+            State.off('l7', update);
+            State.off('l5', update);
+            State.off('mp', update);
         });
     },
     render() {
-        let { '@:{can.group~rs}': canGroup, '@:{can.ungroup~rs}': canUngroup } = stage_generic_1["@:{generic#query.group.state~rs}"]();
-        let linkEnable = State.get('@:{global#stage.elements.groups.linked~rs}');
+        let { '_o5': canGroup, '_o4': canUngroup } = stage_generic_1["mm"]();
+        let linkEnable = State.get('mg');
         this.digest({
             linkEnable,
             canGroup,
             canUngroup
         });
     },
-    '@:{group.elements~rs}<click>'(e) {
+    '_pr<click>'(e) {
         let { un } = e.params;
-        stage_generic_1["@:{generic#group.select.elements~rs}"](un);
+        stage_generic_1["ms"](un);
     },
-    '@:{toggle.enable~rs}<click>'() {
-        let linkEnable = State.get('@:{global#stage.elements.groups.linked~rs}');
+    '_ps<click>'() {
+        let linkEnable = State.get('mg');
         State.set({
-            '@:{global#stage.elements.groups.linked~rs}': !linkEnable
+            'mg': !linkEnable
         });
         this.digest({
             linkEnable: !linkEnable

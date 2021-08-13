@@ -4,23 +4,23 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("gallery/mx-dialog/alert",["magix5","../../i18n/index"],(require,exports,module)=>{
-let $quick_cw_0_static_node;
-let $quick_cw_5_static_node;
-let $quick_cw_1_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-dialog-header rd-_assets_index_less_-dialog-header-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-position-sticky rd-_assets_index_less_-top-0 rd-_assets_index_less_-z-index-8',};
-let $quick_cw_2_static_attr={'class': 'rd-_assets_index_less_-tag-h5',};
-let $quick_cw_3_static_attr={'class': 'rd-_assets_index_less_-dialog-body rd-_assets_index_less_-word-break-break-all',};
-let $quick_cw_4_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-bottom-0 rd-_assets_index_less_-dialog-footer rd-_assets_index_less_-dialog-footer-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-justify-content-flex-end rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-6',};
+define("5j/62/alert",["5c","../../5n/index"],(require,exports,module)=>{
+let $quick_nN_0_static_node;
+let $quick_nN_5_static_node;
+let $quick_nN_1_static_attr={'class': 'rd-m3 rd-m4 rd-mA rd-mX rd-mZ rd-mb rd-mc rd-n9',};
+let $quick_nN_2_static_attr={'class': 'rd-mm',};
+let $quick_nN_3_static_attr={'class': 'rd-mf rd-nn',};
+let $quick_nN_4_static_attr={'class': 'rd-m3 rd-mA rd-mX rd-mZ rd-mh rd-mi rd-n2 rd-n7 rd-nh',};
 
 /*
     author:https://github.com/xinglie
  */
-let magix_1 = require("magix5");
-let index_1 = require("../../i18n/index");
+let magix_1 = require("5c");
+let index_1 = require("../../5n/index");
 let { View, toTry, node } = magix_1;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	title,
 	body,
@@ -28,44 +28,43 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 $vnode_2,
 $vnode_1;
 
-if($quick_cw_0_static_node){
-$vnode_0=[$quick_cw_0_static_node];
+if($quick_nN_0_static_node){
+$vnode_0=[$quick_nN_0_static_node];
 }else{
-$vnode_0=[$quick_cw_0_static_node=$createVNode('div',{'_': 'ar','class': 'rd-_assets_index_less_-dialog-header-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-7',})];
+$vnode_0=[$quick_nN_0_static_node=$createVNode('div',{'_': 'i!','class': 'rd-m3 rd-md rd-n8',})];
 }
-$vnode_2=[$createVNode(0,($__line=3,$__art='{{=title}}',$__ctrl='<%=title%>',(title)))];$vnode_1=[$createVNode('h5',$quick_cw_2_static_attr,$vnode_2)];$vnode_0.push($createVNode('div',$quick_cw_1_static_attr,$vnode_1));$vnode_1=[$createVNode(0,($__line=5,$__art='{{=body}}',$__ctrl='<%=body%>',(body)))];$vnode_0.push($createVNode('div',$quick_cw_3_static_attr,$vnode_1));$vnode_2=[$createVNode(0,($__line=7,$__art='{{=i18n(\'@:{lang#btn.enter~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#btn.enter~rs}\')%>',(i18n('@:{lang#btn.enter~rs}'))))];$vnode_1=[$createVNode('button',{'mx5-click': $viewId+'@:{enter~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','type': 'button','tabindex': 1,'id': '_mx_o_'+($__line=7,$__art='{{=$viewId}}','')+$viewId,},$vnode_2)];$vnode_0.push($createVNode('div',$quick_cw_4_static_attr,$vnode_1));
-if($quick_cw_5_static_node){
-$vnode_0.push($quick_cw_5_static_node);
+$vnode_2=[$createVNode(0,(title))];$vnode_1=[$createVNode('h5',$quick_nN_2_static_attr,$vnode_2)];$vnode_0.push($createVNode('div',$quick_nN_1_static_attr,$vnode_1));$vnode_1=[$createVNode(0,(body))];$vnode_0.push($createVNode('div',$quick_nN_3_static_attr,$vnode_1));$vnode_2=[$createVNode(0,(i18n('sm')))];$vnode_1=[$createVNode('button',{'mx5-click': $viewId+'_rC()','class': 'rd-l9 rd-mG rd-ma rd-nk','type': 'button','tabindex': 1,'id': '_mx_o_'+$viewId,},$vnode_2)];$vnode_0.push($createVNode('div',$quick_nN_4_static_attr,$vnode_1));
+if($quick_nN_5_static_node){
+$vnode_0.push($quick_nN_5_static_node);
 }else{
-$vnode_0.push($quick_cw_5_static_node=$createVNode('div',{'_': 'as','class': 'rd-_assets_index_less_-dialog-footer-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-5',}));
+$vnode_0.push($quick_nN_5_static_node=$createVNode('div',{'_': 'i@','class': 'rd-m3 rd-mg rd-n6',}));
 }
  
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-dialog/alert.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init(extra) {
         let me = this;
-        me['@:{dialog~rs}'] = extra.dialog;
-        me['@:{string.body~rs}'] = extra.body;
-        me['@:{string.title~rs}'] = extra.title || index_1('@:{lang#dialog.tip~rs}');
-        me['@:{fn.enter.callback~rs}'] = extra.enter;
+        me['_mH'] = extra.dialog;
+        me['_rO'] = extra.body;
+        me['_rP'] = extra.title || index_1('sl');
+        me['_rQ'] = extra.enter;
     },
     async render() {
         let me = this;
         await me.digest({
-            body: me['@:{string.body~rs}'],
-            title: me['@:{string.title~rs}']
+            body: me['_rO'],
+            title: me['_rP']
         });
         let okBtn = node(`_mx_o_${this.id}`);
         if (okBtn) {
             okBtn.focus();
         }
     },
-    '@:{enter~rs}<click>'() {
+    '_rC<click>'() {
         let me = this;
-        me['@:{dialog~rs}'].close();
-        if (me['@:{fn.enter.callback~rs}']) {
-            toTry(me['@:{fn.enter.callback~rs}']);
+        me['_mH'].close();
+        if (me['_rQ']) {
+            toTry(me['_rQ']);
         }
     }
 });

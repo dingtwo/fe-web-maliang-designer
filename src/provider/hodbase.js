@@ -4,21 +4,21 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("provider/hodbase",["magix5","../designer/const","../designer/contextmenu","../designer/history","../designer/keyboard","../designer/stage-clipboard","../designer/stage-elements","../designer/stage-generic","../designer/stage-selection","../designer/transform","../gallery/mx-pointer/cursor","../gallery/mx-pointer/tip","./cell","./table"],(require,exports,module)=>{
+define("5r/hodbase",["5c","../5b/5e","../5b/5t","../5b/5o","../5b/5p","../5b/68","../5b/64","../5b/65","../5b/69","../5b/5f","../5j/5l/cursor","../5j/5l/tip","./cell","./table"],(require,exports,module)=>{
 
 
-let magix_1 = require("magix5");
-let const_1 = require("../designer/const");
-let contextmenu_1 = require("../designer/contextmenu");
-let history_1 = require("../designer/history");
-let keyboard_1 = require("../designer/keyboard");
-let stage_clipboard_1 = require("../designer/stage-clipboard");
-let stage_elements_1 = require("../designer/stage-elements");
-let stage_generic_1 = require("../designer/stage-generic");
-let stage_selection_1 = require("../designer/stage-selection");
-let transform_1 = require("../designer/transform");
-let cursor_1 = require("../gallery/mx-pointer/cursor");
-let tip_1 = require("../gallery/mx-pointer/tip");
+let magix_1 = require("5c");
+let const_1 = require("../5b/5e");
+let contextmenu_1 = require("../5b/5t");
+let history_1 = require("../5b/5o");
+let keyboard_1 = require("../5b/5p");
+let stage_clipboard_1 = require("../5b/68");
+let stage_elements_1 = require("../5b/64");
+let stage_generic_1 = require("../5b/65");
+let stage_selection_1 = require("../5b/69");
+let transform_1 = require("../5b/5f");
+let cursor_1 = require("../5j/5l/cursor");
+let tip_1 = require("../5j/5l/tip");
 let cell_1 = require("./cell");
 let table_1 = require("./table");
 let { State, mark } = magix_1;
@@ -37,15 +37,15 @@ let activeCellByPos = (props, element, view, row, col) => {
         props.focusCol != col)) { //未锁定且当前激活的格子与目标格子不一样才处理
         props.focusRow = row;
         props.focusCol = col;
-        State.fire('@:{event#stage.select.element.props.change~rs}', {
-            '@:{ids~rs}': {
+        State.fire('l4', {
+            '_nK': {
                 [element.id]: 1
             },
-            '@:{types~rs}': {
+            '_nL': {
                 [element.type]: 1
             },
-            '@:{props~rs}': {
-                '@:{focus.cell~rs}': 1
+            '_l3': {
+                '_pk': 1
             }
         });
         view.digest({
@@ -65,15 +65,15 @@ let activeCellByPos = (props, element, view, row, col) => {
 let activeCell = (element, props, row, col, isShiftKeyPressed, view) => {
     if (props.readonly) { //元素只读
         if (!isShiftKeyPressed) { //未按shift的情况下，取消其它元素的选中，且当前元素不能被选中
-            let old = stage_selection_1["@:{selection#set~rs}"]();
+            let old = stage_selection_1["l3"]();
             if (old) {
-                history_1["@:{history#save~rs}"](history_1['@:{history#element.lost.focus~rs}'], stage_generic_1['@:{generic#query.element.name~rs}'](old));
+                history_1["l2"](history_1['mh'], stage_generic_1['md'](old));
             }
         }
     }
     else {
         activeCellByPos(props, element, view, row, col);
-        stage_elements_1['@:{elements#single.or.multi.select~rs}'](element, isShiftKeyPressed, false);
+        stage_elements_1['l5'](element, isShiftKeyPressed, false);
     }
 };
 /**
@@ -83,7 +83,7 @@ let activeCell = (element, props, row, col, isShiftKeyPressed, view) => {
  * @param eventTarget 监听事件的节点
  */
 let activeDirectInput = async (view, sourceTarget, eventTarget) => {
-    let waitMark = mark(view, '@:{wait.ready~rs}');
+    let waitMark = mark(view, '_vP');
     await view.finale(); //等待view完成渲染
     setTimeout(() => {
         if (waitMark()) {
@@ -100,7 +100,7 @@ module.exports= {
     /**
      * 失去焦点
      */
-    '@:{lost.select~rs}'() {
+    '_vQ'() {
         let props = this.get('props');
         let element = this.get('element');
         activeCellByPos(props, element, this, -1, -1);
@@ -109,7 +109,7 @@ module.exports= {
      * 格子内的input监听
      * @param e
      */
-    '@:{active.cell.by.pos~rs}<focusin>'(e) {
+    '_q_<focusin>'(e) {
         let { params } = e;
         let { row, col } = params;
         let props = this.get('props');
@@ -121,10 +121,10 @@ module.exports= {
      * @param e
      * @returns
      */
-    '@:{start.resize.table.cell~rs}<pointerdown>'(e) {
-        if (e['@:{halt~rs}'] || e.button)
+    '_p3<pointerdown>'(e) {
+        if (e['_mW'] || e.button)
             return; //事件被阻止或右键不处理
-        e['@:{halt~rs}'] = 1;
+        e['_mW'] = 1;
         let me = this;
         let element = this.get('element');
         let { props, ctrl, id } = element;
@@ -140,7 +140,7 @@ module.exports= {
             x: e.pageX,
             y: e.pageY
         };
-        State.fire('@:{event#stage.toggle.scroll~rs}', {
+        State.fire('mq', {
             show: 1,
             size: 1
         });
@@ -158,24 +158,24 @@ module.exports= {
         let { eventTarget, params } = e;
         let { key } = params;
         let [handY, handX] = key;
-        let rotatedRect = transform_1['@:{transform#rotate.rect~rs}'](props);
-        let useFixIndex = transform_1['@:{transform#handle.to.fixed.point~rs}'](key);
-        let beginFixed = rotatedRect['@:{point~rs}'][useFixIndex];
+        let rotatedRect = transform_1['l3'](props);
+        let useFixIndex = transform_1['mb'](key);
+        let beginFixed = rotatedRect['_n2'][useFixIndex];
         let parent = me.owner.parent();
         let current = eventTarget;
         let modifyWidth = handX != 'm';
         let modifyHeight = handY != 'm';
         let oppsiteWidth = handX == 'l' ? -1 : 1;
         let oppsiteHeight = handY == 't' ? -1 : 1;
-        let scale = State.get('@:{global#stage.scale~rs}');
-        let minCellWidth = isSpace ? 0 : const_1['@:{const#to.unit~rs}'](cell_1['@:{min.width~rs}'] * scale);
-        let minCellHeight = isSpace ? 0 : const_1['@:{const#to.unit~rs}'](cell_1['@:{min.height~rs}'] * scale);
+        let scale = State.get('l3');
+        let minCellWidth = isSpace ? 0 : const_1['l3'](cell_1['_q3'] * scale);
+        let minCellHeight = isSpace ? 0 : const_1['l3'](cell_1['_q5'] * scale);
         let moveEvent, nearsideScrollOffset;
         let moveCallback = async () => {
             if (!moveEvent)
                 return;
             if (!moved) {
-                cursor_1["@:{show~rs}"](current);
+                cursor_1["_mA"](current);
                 moved = 1;
             }
             let nowPoint = {
@@ -183,14 +183,14 @@ module.exports= {
                 y: moveEvent.pageY
             };
             if (nearsideScrollOffset) {
-                nowPoint.y += nearsideScrollOffset['@:{interval.move.event#y~rs}'];
-                nowPoint.x += nearsideScrollOffset['@:{interval.move.event#x~rs}'];
+                nowPoint.y += nearsideScrollOffset['l2'];
+                nowPoint.x += nearsideScrollOffset['l3'];
             }
-            let angle = transform_1['@:{transform#get.point.deg~rs}'](nowPoint, beginPoint);
-            let dis = transform_1['@:{transform#get.point.distance~rs}'](nowPoint, beginPoint);
+            let angle = transform_1['ma'](nowPoint, beginPoint);
+            let dis = transform_1['mf'](nowPoint, beginPoint);
             let rad = (PI / 180) * (angle - rotate);
-            let diffY = const_1['@:{const#to.unit~rs}'](sin(rad) * dis);
-            let diffX = const_1['@:{const#to.unit~rs}'](cos(rad) * dis);
+            let diffY = const_1['l3'](sin(rad) * dis);
+            let diffX = const_1['l3'](cos(rad) * dis);
             let newWidth = beginWidth + (modifyWidth ? diffX : 0) * oppsiteWidth;
             let newHeight = beginHeight + (modifyHeight ? diffY : 0) * oppsiteHeight;
             let minWidth = (isNormalCell ? cell.colspan : 1) * minCellWidth;
@@ -223,90 +223,90 @@ module.exports= {
                 else {
                     cell.width = newWidth;
                     cell.height = newHeight;
-                    table_1["@:{table.provider#update.cell.size~rs}"](props, cell);
+                    table_1["m_"](props, cell);
                 }
                 //更新部分尺寸属性后，调用元素控制器的update.props方法进行其它属性的更新
-                ctrl['@:{update.props~rs}'](props);
-                let newRotatedRect = transform_1['@:{transform#rotate.rect~rs}'](props);
-                let newFixed = newRotatedRect['@:{point~rs}'][useFixIndex];
+                ctrl['_m3'](props);
+                let newRotatedRect = transform_1['l3'](props);
+                let newFixed = newRotatedRect['_n2'][useFixIndex];
                 let x = beginFixed.x - newFixed.x;
                 let y = beginFixed.y - newFixed.y;
                 props.x += x;
                 props.y += y;
-                await parent.invoke('@:{update~rs}', [element]);
-                State.fire('@:{event#stage.select.element.props.change~rs}', {
-                    '@:{ids~rs}': {
+                await parent.invoke('_ol', [element]);
+                State.fire('l4', {
+                    '_nK': {
                         [id]: 1
                     },
-                    '@:{types~rs}': {
+                    '_nL': {
                         [element.type]: 1
                     },
-                    '@:{props~rs}': {
-                        '@:{size~rs}': 1
+                    '_l3': {
+                        '_l5': 1
                     }
                 });
             }
             if (nearsideScrollOffset &&
-                !nearsideScrollOffset['@:{interval.move.event#called~rs}']) {
-                nearsideScrollOffset['@:{interval.move.event#called~rs}'] = 1;
-                nearsideScrollOffset['@:{interval.move.event#ready~rs}']();
+                !nearsideScrollOffset['l4']) {
+                nearsideScrollOffset['l4'] = 1;
+                nearsideScrollOffset['l5']();
             }
-            let tipWidth = transform_1['@:{transform#to.show.value~rs}'](newWidth), tipHeight = transform_1['@:{transform#to.show.value~rs}'](newHeight), tipMsg;
+            let tipWidth = transform_1['l5'](newWidth), tipHeight = transform_1['l5'](newHeight), tipMsg;
             if (isSpace) {
                 tipMsg = tipHeight;
             }
             else {
                 tipMsg = `${tipWidth} x ${tipHeight}`;
             }
-            tip_1['@:{show.text~rs}'](tipMsg);
-            tip_1['@:{update.position~rs}'](moveEvent.pageX, moveEvent.pageY);
+            tip_1['_oJ'](tipMsg);
+            tip_1['_oM'](moveEvent.pageX, moveEvent.pageY);
         };
         let watchIntervalMove = (e) => {
             nearsideScrollOffset = e;
             moveCallback();
         };
-        State.on('@:{event#stage.interval.move~rs}', watchIntervalMove);
-        me['@:{drag.drop~rs}'](e, evt => {
-            State.fire('@:{event#drag.element.move~rs}', evt);
+        State.on('mg', watchIntervalMove);
+        me['_mz'](e, evt => {
+            State.fire('mf', evt);
             moveEvent = evt;
             moveCallback();
         }, () => {
-            State.off('@:{event#stage.interval.move~rs}', watchIntervalMove);
-            State.fire('@:{event#drag.element.stop~rs}');
+            State.off('mg', watchIntervalMove);
+            State.fire('mi');
             if (moved) {
-                cursor_1["@:{hide~rs}"]();
+                cursor_1["_mB"]();
             }
             if (moved == 2) {
-                history_1["@:{history#save~rs}"](history_1['@:{history#element.modified.size~rs}'], ename);
+                history_1["l2"](history_1['mx'], ename);
             }
-            State.fire('@:{event#stage.toggle.scroll~rs}', {
+            State.fire('mq', {
                 hide: 1
             });
-            tip_1['@:{hide~rs}']();
+            tip_1['_mB']();
         });
     },
-    '@:{active.cell~rs}<pointerdown>'(e) {
+    '_p1<pointerdown>'(e) {
         let fs = this.get('fs');
-        if (e['@:{halt~rs}'] ||
+        if (e['_mW'] ||
             fs)
             return;
         let element = this.get('element');
         let props = this.get('props');
         let { eventTarget: target, shiftKey, ctrlKey, metaKey, params, button, target: sourceTarget, pageX, pageY } = e;
-        let selectElements = State.get('@:{global#stage.select.elements~rs}');
+        let selectElements = State.get('l2');
         let { row, col, elm, input } = params;
         let isShiftKeyStillPressed = shiftKey || ctrlKey || metaKey;
         if (!button) {
             if (isShiftKeyStillPressed ||
                 elm) {
-                e['@:{halt~rs}'] = 1;
+                e['_mW'] = 1;
             }
             if (elm && !input) {
                 let cell = props.rows[row].cols[col];
                 //Select["@:{init}"]();
                 let showedCursor;
                 let hodElements, currentSelected;
-                let last = stage_selection_1['@:{selection#get.selected.map~rs}']();
+                let last = stage_selection_1['l7']();
                 let initSelectedElements = [...selectElements];
                 let initIds = [], initIdsMap = {};
                 for (let ise of initSelectedElements) {
@@ -315,24 +315,24 @@ module.exports= {
                 }
                 currentSelected = initIds.join(',');
                 if (isShiftKeyStillPressed) {
-                    hodElements = stage_generic_1["@:{generic#find.hod.sub.elements.map~rs}"]([...cell.elements, ...initSelectedElements]);
+                    hodElements = stage_generic_1["mt"]([...cell.elements, ...initSelectedElements]);
                 }
                 else {
                     initIdsMap = emptyObject;
                 }
-                let elementLocations = stage_generic_1["@:{generic#get.elements.location~rs}"](cell.elements);
+                let elementLocations = stage_generic_1["mo"](cell.elements);
                 let moveEvent;
                 State.set({
-                    '@:{global#stage.prevent.actions~rs}': 1
+                    'l8': 1
                 });
                 let dragSelect = () => {
                     if (!moveEvent)
                         return;
                     if (!showedCursor) {
                         showedCursor = 1;
-                        cursor_1["@:{show.by.type~rs}"]('default');
+                        cursor_1["_oL"]('default');
                         if (!isShiftKeyStillPressed) {
-                            stage_selection_1["@:{selection#set~rs}"]();
+                            stage_selection_1["l3"]();
                         }
                     }
                     let { pageX: moveX, pageY: moveY } = moveEvent;
@@ -341,7 +341,7 @@ module.exports= {
                     let left = min(pageX, moveX);
                     let top = min(pageY, moveY);
                     //Select["@:{update}"](left, top, width, height);
-                    let rect = transform_1["@:{transform#real.to.nearest.coord~rs}"](target, {
+                    let rect = transform_1["l9"](target, {
                         x: left,
                         y: top,
                         f: 0
@@ -355,36 +355,36 @@ module.exports= {
                     });
                     //console.log(rect,width,height);
                     if (elementLocations.length) {
-                        let intersect = stage_generic_1["@:{generic#get.intersect.elements~rs}"](elementLocations, rect, initSelectedElements, isShiftKeyStillPressed && hodElements, isShiftKeyStillPressed ? initIdsMap : emptyObject);
-                        if (intersect["@:{ids~rs}"] != currentSelected) {
-                            currentSelected = intersect["@:{ids~rs}"];
-                            stage_selection_1["@:{selection#set.all~rs}"](intersect["@:{selected~rs}"]);
+                        let intersect = stage_generic_1["mp"](elementLocations, rect, initSelectedElements, isShiftKeyStillPressed && hodElements, isShiftKeyStillPressed ? initIdsMap : emptyObject);
+                        if (intersect["_nK"] != currentSelected) {
+                            currentSelected = intersect["_nK"];
+                            stage_selection_1["l4"](intersect["_ou"]);
                         }
                     }
                 };
                 let watchKeypress = e => {
-                    isShiftKeyStillPressed = e['@:{keypress#shift.key~rs}'] || e['@:{keypress#ctrl.key~rs}'];
+                    isShiftKeyStillPressed = e['l6'] || e['l7'];
                     dragSelect();
                 };
-                State.on('@:{event#stage.key.press~rs}', watchKeypress);
-                this['@:{drag.drop~rs}'](e, ex => {
+                State.on('ma', watchKeypress);
+                this['_mz'](e, ex => {
                     moveEvent = ex;
                     dragSelect();
                 }, () => {
-                    State.off('@:{event#stage.key.press~rs}', watchKeypress);
+                    State.off('ma', watchKeypress);
                     State.set({
-                        '@:{global#stage.prevent.actions~rs}': 0
+                        'l8': 0
                     });
                     if (showedCursor) {
                         this.digest({
                             selectRect: null
                         });
                         //Select["@:{hide}"]();
-                        cursor_1["@:{hide~rs}"]();
-                        let diff = stage_selection_1["@:{selection#has.changed~rs}"](last);
-                        if (diff['@:{selection.changed#has.diffed~rs}']) {
-                            let { '@:{generic.diff.info#type~rs}': type, '@:{generic.diff.info#ename~rs}': ename } = stage_generic_1['@:{generic#query.history.info.by.diff~rs}'](diff);
-                            history_1["@:{history#save~rs}"](type, ename);
+                        cursor_1["_mB"]();
+                        let diff = stage_selection_1["l8"](last);
+                        if (diff['l5']) {
+                            let { 'l2': type, 'l3': ename } = stage_generic_1['mv'](diff);
+                            history_1["l2"](type, ename);
                         }
                     }
                     else {
@@ -398,8 +398,8 @@ module.exports= {
                 if (!props.readonly) {
                     activeDirectInput(this, sourceTarget, target);
                     //如果点击对象是可输入，则优先使用系统的功能，比如输入框可以拖动选择文本，此时不宜移动元素
-                    if (keyboard_1['@:{key#is.input.element~rs}'](sourceTarget)) {
-                        e['@:{halt~rs}'] = 1;
+                    if (keyboard_1['my'](sourceTarget)) {
+                        e['_mW'] = 1;
                     }
                 }
             }
@@ -408,7 +408,7 @@ module.exports= {
             activeCell(element, props, row, col, 0, this);
         }
     },
-    '@:{update.cell.text~rs}<input>'(e) {
+    '_p9<input>'(e) {
         let { params, eventTarget } = e;
         let { cell, key } = params;
         let value = eventTarget.value;
@@ -418,111 +418,111 @@ module.exports= {
         this.digest({
             props
         });
-        State.fire('@:{event#stage.select.element.props.change~rs}', {
-            '@:{ids~rs}': {
+        State.fire('l4', {
+            '_nK': {
                 [element.id]: 1
             },
-            '@:{types~rs}': {
+            '_nL': {
                 [element.type]: 1
             },
-            '@:{props~rs}': {
+            '_l3': {
                 rows: 1
             }
         });
-        history_1["@:{history#save~rs}"](history_1['@:{history#element.modified.props~rs}'], props.ename, element.id + '@:{history#element.props.change~rs}' + 'rows', 500);
+        history_1["l2"](history_1['my'], props.ename, element.id + 'mP' + 'rows', 500);
     },
-    '@:{stop~rs}<pointerdown>'(e) {
-        e['@:{halt~rs}'] = 1;
+    '_p2<pointerdown>'(e) {
+        e['_mW'] = 1;
     },
-    '@:{element.start.drag~rs}<pointerdown>'(e) {
+    '_ph<pointerdown>'(e) {
         let fs = this.get('fs');
-        if (fs || e['@:{halt~rs}'])
+        if (fs || e['_mW'])
             return;
-        e['@:{halt~rs}'] = 1;
-        stage_elements_1["@:{elements#select.or.move.elements~rs}"](e, this);
+        e['_mW'] = 1;
+        stage_elements_1["l9"](e, this);
     },
-    '@:{show.contxtmenu~rs}<contextmenu>'(e) {
+    '_p8<contextmenu>'(e) {
         let currentElement = this.get('element');
         let { props, id } = currentElement;
         let fs = this.get('fs');
-        if (e['@:{halt~rs}'] ||
+        if (e['_mW'] ||
             fs) {
             return;
         }
-        this['@:{prevent.default~rs}'](e);
-        e['@:{halt~rs}'] = 1;
+        this['_nS'](e);
+        e['_mW'] = 1;
         let { row, col } = e.params;
         let cell = props.rows[row].cols[col];
         let collection = cell.elements;
-        let selectElements = State.get('@:{global#stage.select.elements~rs}');
+        let selectElements = State.get('l2');
         let element = selectElements[0];
         let bound = e.eventTarget.getBoundingClientRect();
         let nowPosition = {
             x: e.pageX - bound.x,
             y: e.pageY - bound.y
         };
-        stage_elements_1["@:{elements#show.contextmenu~rs}"](this, e, collection, id, async (menu) => {
-            if (menu.id == contextmenu_1["@:{cm#all.id~rs}"]) {
-                stage_generic_1['@:{generic#select.all.collection.elements~rs}'](collection);
+        stage_elements_1["mh"](this, e, collection, id, async (menu) => {
+            if (menu.id == contextmenu_1["l2"]) {
+                stage_generic_1['my'](collection);
             }
-            else if (menu.id == contextmenu_1['@:{cm#reverse.id~rs}']) {
-                let underElement = State.get('@:{global#stage.contextmenu.under.item~rs}');
-                let stage = stage_generic_1['@:{generic#query.nearest.stage~rs}'](0, underElement);
-                let coll = stage["@:{collection~rs}"];
-                stage_generic_1['@:{generic#select.all.collection.elements~rs}'](coll, 1);
+            else if (menu.id == contextmenu_1['mq']) {
+                let underElement = State.get('mk');
+                let stage = stage_generic_1['mx'](0, underElement);
+                let coll = stage["_oe"];
+                stage_generic_1['my'](coll, 1);
             }
-            else if (menu.id == contextmenu_1["@:{cm#copy.id~rs}"]) {
-                stage_clipboard_1["@:{copy.elements~rs}"](e);
+            else if (menu.id == contextmenu_1["l9"]) {
+                stage_clipboard_1["_os"](e);
             }
-            else if (menu.id == contextmenu_1["@:{cm#paste.id~rs}"]) {
-                let stage = stage_generic_1['@:{generic#query.nearest.stage~rs}'](0, currentElement, row, col);
-                stage_clipboard_1["@:{paste.elements~rs}"](stage, nowPosition);
+            else if (menu.id == contextmenu_1["l3"]) {
+                let stage = stage_generic_1['mx'](0, currentElement, row, col);
+                stage_clipboard_1["_ow"](stage, nowPosition);
             }
-            else if (menu.id == contextmenu_1['@:{cm#duplicate.id~rs}']) {
-                let stages = stage_generic_1['@:{generic#query.select.elements.stage~rs}']();
-                stage_clipboard_1['@:{duplicate.elements~rs}'](stages);
+            else if (menu.id == contextmenu_1['m_']) {
+                let stages = stage_generic_1['mg']();
+                stage_clipboard_1['_ov'](stages);
             }
-            else if (menu.id == contextmenu_1["@:{cm#cut.id~rs}"]) {
-                stage_clipboard_1["@:{cut.elements~rs}"](e);
+            else if (menu.id == contextmenu_1["l8"]) {
+                stage_clipboard_1["_ot"](e);
             }
-            else if (menu.id == contextmenu_1["@:{cm#delete.id~rs}"]) {
-                stage_generic_1["@:{generic#delete.select.elements~rs}"]();
+            else if (menu.id == contextmenu_1["ma"]) {
+                stage_generic_1["mu"]();
             }
             else if (menu.id >= 3 && menu.id <= 6) {
-                stage_elements_1["@:{elements#modify.element.z.index~rs}"](menu.id, element);
+                stage_elements_1["ma"](menu.id, element);
             }
             else if (menu.id > 19 && menu.id < 30) {
-                stage_elements_1["@:{elements#align.elements~rs}"](menu.to);
+                stage_elements_1["md"](menu.to);
             }
             else if (menu.id > 30 && menu.id < 40) {
                 let ungroup = menu.id == 32;
-                stage_generic_1["@:{generic#group.select.elements~rs}"](ungroup);
+                stage_generic_1["ms"](ungroup);
             }
             else if (menu.id > 40 && menu.id < 50) {
-                let from = (menu.id == contextmenu_1["@:{cm#sync.width.as.height.id~rs}"] || menu.id == contextmenu_1["@:{cm#sync.width.id~rs}"]) ? 1 : 0;
-                let to = (menu.id == contextmenu_1["@:{cm#sync.height.id~rs}"] ||
-                    menu.id == contextmenu_1["@:{cm#sync.width.as.height.id~rs}"]) ? 0 : 1;
-                let [result, id] = await stage_elements_1["@:{elements#sync.or.reverse.size.elements~rs}"](from, to);
+                let from = (menu.id == contextmenu_1["mf"] || menu.id == contextmenu_1["mh"]) ? 1 : 0;
+                let to = (menu.id == contextmenu_1["mi"] ||
+                    menu.id == contextmenu_1["mf"]) ? 0 : 1;
+                let [result, id] = await stage_elements_1["me"](from, to);
                 if (result) {
-                    State.fire('@:{event#stage.select.element.props.change~rs}', {
-                        '@:{ids~rs}': {
+                    State.fire('l4', {
+                        '_nK': {
                             [id]: 1
                         },
-                        '@:{types~rs}': {
+                        '_nL': {
                             [element.type]: 1
                         },
-                        '@:{props~rs}': {
-                            '@:{size~rs}': 1
+                        '_l3': {
+                            '_l5': 1
                         }
                     });
-                    history_1["@:{history#save~rs}"](history_1['@:{history#element.sync.size~rs}']);
+                    history_1["l2"](history_1['ml']);
                 }
             }
-            else if (menu.id == contextmenu_1['@:{cm#clear.hod.stage.id~rs}']) {
-                let removed = stage_generic_1['@:{generic#remove.nonreadonly.elements~rs}'](collection);
+            else if (menu.id == contextmenu_1['mp']) {
+                let removed = stage_generic_1['l5'](collection);
                 if (removed.length) {
-                    State.fire('@:{event#stage.elements.change~rs}');
-                    history_1["@:{history#save~rs}"](history_1['@:{history#element.removed~rs}'], stage_generic_1['@:{generic#query.element.name~rs}'](removed));
+                    State.fire('mp');
+                    history_1["l2"](history_1['mn'], stage_generic_1['md'](removed));
                 }
             }
         });

@@ -4,148 +4,148 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/calendar/designer",["../../designer/const","../../designer/enum","../../designer/props","../../designer/transform","../normal"],(require,exports,module)=>{
+define("61/calendar/designer",["../../5b/5e","../../5b/enum","../../5b/6c","../../5b/5f","../6p"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let const_1 = require("../../designer/const");
-let enum_1 = require("../../designer/enum");
-let props_1 = require("../../designer/props");
-let transform_1 = require("../../designer/transform");
-let normal_1 = require("../normal");
+let const_1 = require("../../5b/5e");
+let enum_1 = require("../../5b/enum");
+let props_1 = require("../../5b/6c");
+let transform_1 = require("../../5b/5f");
+let normal_1 = require("../6p");
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/calendar/index"
+            view: "61/calendar/index"
         });
     }
 }).static({
     type: 'calendar',
-    title: '@:{lang#elements.calendar~rs}',
+    title: 'op',
     icon: '&#xe65c;',
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.width~rs}'] |
-        enum_1['@:{enum#modifier.height~rs}'] |
-        enum_1['@:{enum#modifier.rotate~rs}'],
-    '@:{move.props~rs}': [{
+    '_oG': enum_1['mb'] |
+        enum_1['mc'] |
+        enum_1['me'],
+    '_oj': [{
             key: 'x',
             use: 'x'
         }, {
             key: 'y',
             use: 'y'
         }],
-    '@:{get.props~rs}'(x, y) {
+    '_m2'(x, y) {
         return {
             alpha: 1,
-            width: const_1['@:{const#to.unit~rs}'](300),
-            height: const_1['@:{const#to.unit~rs}'](180),
-            x: const_1['@:{const#to.unit~rs}'](x),
-            y: const_1['@:{const#to.unit~rs}'](y),
+            width: const_1['l3'](300),
+            height: const_1['l3'](180),
+            x: const_1['l3'](x),
+            y: const_1['l3'](y),
             rotate: 0,
-            theadFontsize: const_1['@:{const#to.unit~rs}'](16),
-            tbodyFontsize: const_1['@:{const#to.unit~rs}'](14),
+            theadFontsize: const_1['l3'](16),
+            tbodyFontsize: const_1['l3'](14),
             theadRowBackground: '#ffda95',
             weekStart: 0,
             locked: false
         };
     },
     props: [{
-            tip: '@:{lang#props.x~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nP',
+            type: props_1["l2"],
             key: 'x',
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            '_nA': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.y~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nQ',
+            type: props_1["l2"],
             key: 'y',
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            '_nA': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.width~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nR',
+            type: props_1["l2"],
             key: 'width',
-            min: () => const_1['@:{const#to.unit~rs}'](300),
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            min: () => const_1['l3'](300),
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            '_nA': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.height~rs}',
+            tip: 'nS',
             key: 'height',
-            type: props_1["@:{eprops#number~rs}"],
-            min: () => const_1['@:{const#to.unit~rs}'](180),
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            type: props_1["l2"],
+            min: () => const_1['l3'](180),
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            '_nA': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.rotate~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nT',
+            type: props_1["l2"],
             key: 'rotate',
             min: -360,
             max: 360,
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"]
+            type: props_1["ms"]
         }, {
-            tip: '@:{lang#props.alpha~rs}',
+            tip: 'nU',
             key: 'alpha',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["l2"],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
             json: 1
         }, {
-            tip: '@:{lang#props.table.head.font.size~rs}',
-            min: () => const_1["@:{const#to.unit~rs}"](12),
-            max: () => const_1["@:{const#to.unit~rs}"](100),
-            '@:{is.scale.and.unit.field~rs}': 1,
+            tip: 'oq',
+            min: () => const_1["l3"](12),
+            max: () => const_1["l3"](100),
+            '_nA': 1,
             key: 'theadFontsize',
-            type: props_1["@:{eprops#number~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            type: props_1["l2"],
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.table.head.row.background~rs}',
+            tip: 'or',
             key: 'theadRowBackground',
-            type: props_1["@:{eprops#color~rs}"],
+            type: props_1["l3"],
             clear: true,
             alpha: true,
             json: 1
         }, {
-            tip: '@:{lang#props.table.body.font.size~rs}',
-            min: () => const_1["@:{const#to.unit~rs}"](12),
-            max: () => const_1["@:{const#to.unit~rs}"](100),
-            '@:{is.scale.and.unit.field~rs}': 1,
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
+            tip: 'os',
+            min: () => const_1["l3"](12),
+            max: () => const_1["l3"](100),
+            '_nA': 1,
+            step: const_1["mH"],
+            fixed: const_1["mI"],
             key: 'tbodyFontsize',
-            type: props_1["@:{eprops#number~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            type: props_1["l2"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.week.start~rs}',
+            tip: 'ot',
             key: 'weekStart',
             json: 1,
-            type: props_1['@:{eprops#dropdown~rs}'],
+            type: props_1['l9'],
             items: [{
                     text: '星期日',
                     value: 0
@@ -169,16 +169,16 @@ module.exports= normal_1.extend({
                     value: 6
                 }]
         }, {
-            type: props_1["@:{eprops#spliter~rs}"]
+            type: props_1["ms"]
         }, {
-            tip: '@:{lang#props.title~rs}',
+            tip: 'n3',
             key: 'ename',
-            type: props_1["@:{eprops#text.input~rs}"],
+            type: props_1["ma"],
             json: 1
         }, {
-            tip: '@:{lang#props.locked~rs}',
+            tip: 'n4',
             key: 'locked',
-            type: props_1["@:{eprops#boolean~rs}"],
+            type: props_1["l4"],
             free: true,
             json: 1
         }]

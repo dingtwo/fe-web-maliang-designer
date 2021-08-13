@@ -4,50 +4,50 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/richtext/designer",["../../designer/props","../../designer/transform","../normal","../../designer/const","../../designer/enum"],(require,exports,module)=>{
+define("61/richtext/designer",["../../5b/6c","../../5b/5f","../6p","../../5b/5e","../../5b/enum"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let props_1 = require("../../designer/props");
-let transform_1 = require("../../designer/transform");
-let normal_1 = require("../normal");
-let const_1 = require("../../designer/const");
-let enum_1 = require("../../designer/enum");
+let props_1 = require("../../5b/6c");
+let transform_1 = require("../../5b/5f");
+let normal_1 = require("../6p");
+let const_1 = require("../../5b/5e");
+let enum_1 = require("../../5b/enum");
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/richtext/dshow"
+            view: "61/richtext/dshow"
         });
     }
 }).static({
     type: 'richtext',
-    title: '@:{lang#elements.richtext~rs}',
+    title: 'pp',
     icon: '&#xe663;',
-    '@:{allowed.to.hod~rs}': {
+    '_oi': {
         root: 1
     },
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.width~rs}'] |
-        enum_1['@:{enum#modifier.height~rs}'] |
-        enum_1['@:{enum#modifier.nomask~rs}'] |
-        enum_1['@:{enum#modifier.icon~rs}'],
-    '@:{move.props~rs}': [{
+    '_oG': enum_1['mb'] |
+        enum_1['mc'] |
+        enum_1['mf'] |
+        enum_1['m_'],
+    '_oj': [{
             key: 'x',
             use: 'x'
         }, {
             key: 'y',
             use: 'y'
         }],
-    '@:{get.props~rs}'(x, y) {
+    '_m2'(x, y) {
         return {
-            x: const_1['@:{const#to.unit~rs}'](x),
-            y: const_1['@:{const#to.unit~rs}'](y),
+            x: const_1['l3'](x),
+            y: const_1['l3'](y),
             text: '欢迎使用通用设计器',
             alpha: 1,
             splitToPages: true,
-            width: const_1['@:{const#to.unit~rs}'](680),
-            height: const_1['@:{const#to.unit~rs}'](300),
+            width: const_1['l3'](680),
+            height: const_1['l3'](300),
             ow: 'ckeditor.com',
             locked: false
         };
@@ -56,76 +56,76 @@ module.exports= normal_1.extend({
             key: 'text',
             json: 1
         }, {
-            tip: '@:{lang#props.x~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nP',
+            type: props_1["l2"],
             key: 'x',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            '_nA': 1,
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.y~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nQ',
+            type: props_1["l2"],
             key: 'y',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            '_nA': 1,
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.width~rs}',
+            tip: 'nR',
             key: 'width',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            min: () => const_1["@:{const#to.unit~rs}"](200),
-            type: props_1["@:{eprops#number~rs}"],
+            '_nA': 1,
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            min: () => const_1["l3"](200),
+            type: props_1["l2"],
             json: 1
         }, {
-            tip: '@:{lang#props.height~rs}',
+            tip: 'nS',
             key: 'height',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            min: () => const_1["@:{const#to.unit~rs}"](100),
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            type: props_1["@:{eprops#number~rs}"],
+            '_nA': 1,
+            min: () => const_1["l3"](100),
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            type: props_1["l2"],
             json: 1
         }, {
-            tip: '@:{lang#props.alpha~rs}',
+            tip: 'nU',
             key: 'alpha',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["l2"],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
             json: 1
         }, {
-            tip: '@:{lang#props.split.to.pages~rs}',
+            tip: 'r_',
             key: 'splitToPages',
-            type: props_1['@:{eprops#boolean~rs}'],
+            type: props_1['l4'],
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"]
+            type: props_1["ms"]
         }, {
-            tip: '@:{lang#props.official.website~rs}',
+            tip: 'n1',
             key: 'ow',
-            type: props_1["@:{eprops#link~rs}"]
+            type: props_1["mm"]
         }, {
-            tip: '@:{lang#props.title~rs}',
+            tip: 'n3',
             key: 'ename',
-            type: props_1["@:{eprops#text.input~rs}"],
+            type: props_1["ma"],
             json: 1
         }, {
-            tip: '@:{lang#props.locked~rs}',
+            tip: 'n4',
             key: 'locked',
-            type: props_1["@:{eprops#boolean~rs}"],
+            type: props_1["l4"],
             free: true,
             json: 1
         }]

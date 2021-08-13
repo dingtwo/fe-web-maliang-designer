@@ -4,49 +4,49 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/repeat/designer",["magix5","../../designer/const","../../designer/enum","../../designer/props","../../designer/transform","../normal"],(require,exports,module)=>{
+define("61/repeat/designer",["5c","../../5b/5e","../../5b/enum","../../5b/6c","../../5b/5f","../6p"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let const_1 = require("../../designer/const");
-let enum_1 = require("../../designer/enum");
-let props_1 = require("../../designer/props");
-let transform_1 = require("../../designer/transform");
-let normal_1 = require("../normal");
+let magix_1 = require("5c");
+let const_1 = require("../../5b/5e");
+let enum_1 = require("../../5b/enum");
+let props_1 = require("../../5b/6c");
+let transform_1 = require("../../5b/5f");
+let normal_1 = require("../6p");
 let { config } = magix_1;
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/repeat/dshow"
+            view: "61/repeat/dshow"
         });
     }
 }).static({
     type: 'repeat',
-    title: '@:{lang#elements.repeat~rs}',
+    title: 'q8',
     icon: '&#xe78f;',
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.width~rs}'] |
-        enum_1['@:{enum#modifier.height~rs}'] |
-        enum_1['@:{enum#modifier.rotate~rs}'] |
-        enum_1['@:{enum#modifier.nomask~rs}'],
-    '@:{move.props~rs}': [{
+    '_oG': enum_1['mb'] |
+        enum_1['mc'] |
+        enum_1['me'] |
+        enum_1['mf'],
+    '_oj': [{
             key: 'x',
             use: 'x'
         }, {
             key: 'y',
             use: 'y'
         }],
-    '@:{get.props~rs}'(x, y) {
+    '_m2'(x, y) {
         return {
-            height: const_1['@:{const#to.unit~rs}'](100),
+            height: const_1['l3'](100),
             alpha: 1,
-            x: const_1['@:{const#to.unit~rs}'](x),
-            y: const_1['@:{const#to.unit~rs}'](y),
+            x: const_1['l3'](x),
+            y: const_1['l3'](y),
             rotate: 0,
-            width: const_1['@:{const#to.unit~rs}'](200),
-            tfs: const_1['@:{const#to.unit~rs}'](14),
+            width: const_1['l3'](200),
+            tfs: const_1['l3'](14),
             radius: 0,
             image: '',
             webUrl: '',
@@ -66,224 +66,224 @@ module.exports= normal_1.extend({
     },
     props: [{
             key: 'tfs',
-            '@:{is.scale.and.unit.field~rs}': 1,
+            '_nA': 1,
         }, {
-            tip: '@:{lang#props.x~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nP',
+            type: props_1["l2"],
             key: 'x',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            '_nA': 1,
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.y~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nQ',
+            type: props_1["l2"],
             key: 'y',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            '_nA': 1,
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.width~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nR',
+            type: props_1["l2"],
             key: 'width',
-            '@:{is.scale.and.unit.field~rs}': 1,
+            '_nA': 1,
             min: () => 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.height~rs}',
+            tip: 'nS',
             key: 'height',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            type: props_1["@:{eprops#number~rs}"],
+            '_nA': 1,
+            type: props_1["l2"],
             min: () => 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.rotate~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nT',
+            type: props_1["l2"],
             key: 'rotate',
             min: -360,
             max: 360,
             json: 1
         }, {
-            tip: '@:{lang#props.alpha~rs}',
+            tip: 'nU',
             key: 'alpha',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["l2"],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"],
-            '@:{if.show~rs}'(props) {
+            type: props_1["ms"],
+            '_py'(props) {
                 return !props.bind.url && !props.image;
             }
         }, {
-            tip: '@:{lang#props.web.image~rs}',
+            tip: 'p6',
             key: 'webUrl',
-            type: props_1['@:{eprops#text.input~rs}'],
+            type: props_1['ma'],
             json: 1,
-            '@:{if.show~rs}'(props) {
+            '_py'(props) {
                 return !props.bind.url && !props.image;
             },
         }, {
-            type: props_1["@:{eprops#spliter~rs}"],
-            '@:{if.show~rs}'(props) {
+            type: props_1["ms"],
+            '_py'(props) {
                 return !props.bind.url && !props.webUrl;
             }
         }, {
-            tip: '@:{lang#props.image~rs}',
+            tip: 'p7',
             key: 'image',
-            type: props_1["@:{eprops#image~rs}"],
+            type: props_1["l8"],
             write(v, props, e) {
-                e.width = const_1["@:{const#to.unit~rs}"](e.width);
-                e.height = const_1["@:{const#to.unit~rs}"](e.height);
-                props.imageWidth = transform_1["@:{transform#to.real.value~rs}"](e.width);
-                props.imageHeight = transform_1["@:{transform#to.real.value~rs}"](e.height);
+                e.width = const_1["l3"](e.width);
+                e.height = const_1["l3"](e.height);
+                props.imageWidth = transform_1["m_"](e.width);
+                props.imageHeight = transform_1["m_"](e.height);
                 return v;
             },
-            '@:{if.show~rs}'(props) {
+            '_py'(props) {
                 return !props.bind.url && config('getImageUrl') && !props.webUrl;
             },
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"],
-            '@:{if.show~rs}'(props) {
+            type: props_1["ms"],
+            '_py'(props) {
                 return !props.image && config('getFieldUrl') && !props.webUrl;
             }
         }, {
-            tip: '@:{lang#props.bind.fields~rs}',
+            tip: 'nW',
             key: 'bind',
-            type: props_1["@:{eprops#bind.field~rs}"],
+            type: props_1["mb"],
             json: 1,
             max: 1,
-            '@:{if.show~rs}'(props) {
+            '_py'(props) {
                 return !props.image && config('getFieldUrl') && !props.webUrl;
             }
         }, {
-            type: props_1["@:{eprops#spliter~rs}"],
-            '@:{if.show~rs}'(props) {
+            type: props_1["ms"],
+            '_py'(props) {
                 return props.image || props.bind.url || props.webUrl;
             },
         }, {
-            tip: '@:{lang#props.background.repeat~rs}',
+            tip: 'qQ',
             key: 'repeat',
-            type: props_1["@:{eprops#dropdown~rs}"],
-            '@:{if.show~rs}'(props) {
+            type: props_1["l9"],
+            '_py'(props) {
                 return props.image || props.bind.url || props.webUrl;
             },
             items: [{
-                    text: '@:{lang#props.repeat~rs}',
+                    text: 'qV',
                     value: 'repeat'
                 }, {
-                    text: '@:{lang#props.repeat.x~rs}',
+                    text: 'qT',
                     value: 'repeat-x'
                 }, {
-                    text: '@:{lang#props.repeat.y~rs}',
+                    text: 'qU',
                     value: 'repeat-y'
                 }, {
-                    text: '@:{lang#props.full~rs}',
+                    text: 'qR',
                     value: 'full'
                 }, {
-                    text: '@:{lang#props.no.repeat~rs}',
+                    text: 'qS',
                     value: 'no-repeat'
                 }],
             json: 1
         }, {
-            tip: '@:{lang#props.border.radius~rs}',
+            tip: 'q5',
             key: 'radius',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            type: props_1["@:{eprops#number~rs}"],
+            '_nA': 1,
+            type: props_1["l2"],
             min: 0,
             json: 1,
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            '@:{if.show~rs}'(props) {
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            '_py'(props) {
                 return props.image || props.bind.url || props.webUrl;
             },
         }, {
-            tip: '@:{lang#props.image.width~rs}',
+            tip: 'qW',
             key: 'imageWidth',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            type: props_1["@:{eprops#number~rs}"],
+            '_nA': 1,
+            type: props_1["l2"],
             min: 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{if.show~rs}'({ image, bind, webUrl, repeat }) {
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            '_py'({ image, bind, webUrl, repeat }) {
                 return (image || bind.url || webUrl) && repeat != 'full';
             },
             json: 1
         }, {
-            tip: '@:{lang#props.image.height~rs}',
+            tip: 'qX',
             key: 'imageHeight',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            type: props_1["@:{eprops#number~rs}"],
+            '_nA': 1,
+            type: props_1["l2"],
             min: 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{if.show~rs}'({ image, bind, webUrl, repeat }) {
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
+            '_py'({ image, bind, webUrl, repeat }) {
                 return (image || bind.url || webUrl) && repeat != 'full';
             },
             json: 1
         }, {
-            tip: '@:{lang#props.offset.hor~rs}',
+            tip: 'qY',
             key: 'backgroundXOffset',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            type: props_1["@:{eprops#number~rs}"],
-            min: () => -const_1['@:{const#to.unit~rs}'](const_1['@:{const#page.max.width~rs}']),
-            max: () => const_1['@:{const#to.unit~rs}'](const_1['@:{const#page.max.width~rs}']),
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            '@:{if.show~rs}'({ image, bind, webUrl, repeat }) {
+            '_nA': 1,
+            type: props_1["l2"],
+            min: () => -const_1['l3'](const_1['mj']),
+            max: () => const_1['l3'](const_1['mj']),
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            '_py'({ image, bind, webUrl, repeat }) {
                 return (image || bind.url || webUrl) && repeat != 'full';
             },
             json: 1
         }, {
-            tip: '@:{lang#props.offset.ver~rs}',
+            tip: 'qZ',
             key: 'backgroundYOffset',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            type: props_1["@:{eprops#number~rs}"],
-            min: () => -const_1['@:{const#to.unit~rs}'](const_1['@:{const#page.max.height~rs}']),
-            max: () => const_1['@:{const#to.unit~rs}'](const_1['@:{const#page.max.height~rs}']),
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            '@:{if.show~rs}'({ image, bind, webUrl, repeat }) {
+            '_nA': 1,
+            type: props_1["l2"],
+            min: () => -const_1['l3'](const_1['mk']),
+            max: () => const_1['l3'](const_1['mk']),
+            step: const_1["mH"],
+            fixed: const_1["mI"],
+            '_py'({ image, bind, webUrl, repeat }) {
                 return (image || bind.url || webUrl) && repeat != 'full';
             },
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"]
+            type: props_1["ms"]
         }, {
-            tip: '@:{lang#props.help~rs}',
-            type: props_1["@:{eprops#link~rs}"],
+            tip: 'n2',
+            type: props_1["mm"],
             key: 'help'
         }, {
-            tip: '@:{lang#props.title~rs}',
+            tip: 'n3',
             key: 'ename',
-            type: props_1["@:{eprops#text.input~rs}"],
+            type: props_1["ma"],
             json: 1
         }, {
-            tip: '@:{lang#props.locked~rs}',
+            tip: 'n4',
             key: 'locked',
-            type: props_1["@:{eprops#boolean~rs}"],
+            type: props_1["l4"],
             free: true,
             json: 1
         }]

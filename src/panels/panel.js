@@ -4,45 +4,45 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("panels/panel",["magix5","../gallery/mx-pointer/cursor","../gallery/mx-dragdrop/index","../designer/const"],(require,exports,module)=>{
-let $quick_bN_static_text;
-let $quick_bZ_static_text;
-let $quick_c7_0_static_attr={'class': 'rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-iconfont rd-_assets_index_less_-mr2',};
-let $quick_c7_1_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-hp100',};
+define("66/7h",["5c","../5j/5l/cursor","../5j/5k/index","../5b/5e"],(require,exports,module)=>{
+let $quick_m4_static_text;
+let $quick_nf_static_text;
+let $quick_on_0_static_attr={'class': 'rd-l3 rd-mq rd-nU',};
+let $quick_on_1_static_attr={'class': 'rd-mC rd-mX rd-mZ',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let cursor_1 = require("../gallery/mx-pointer/cursor");
-let index_1 = require("../gallery/mx-dragdrop/index");
-let const_1 = require("../designer/const");
+let magix_1 = require("5c");
+let cursor_1 = require("../5j/5l/cursor");
+let index_1 = require("../5j/5k/index");
+let const_1 = require("../5b/5e");
 let DocRoot = document.documentElement;
 let { min } = Math;
 let { applyStyle, node, View, config, toTry, mark, State, Vframe } = magix_1;
-applyStyle("rd-_panels_panel_less_","\n.rd-_panels_panel_less_-panel {\nbackground:#fffe;\nbox-shadow:0 2px 4px 0 rgba(0, 0, 0, 0.3);\ntransform:translate3d(0, 0, 0);\n}\n.rd-_panels_panel_less_-panel:hover {\nwill-change:left, top, right, bottom, transform;\n}\n.rd-_panels_panel_less_-title {\nheight:18px;\nline-height:18px;\nbackground:#47B34E;\ncolor:#ffffff;\n}\n.rd-_panels_panel_less_-title-text {\npadding:0 5px;\ncursor:move;\nwidth:calc(100% - 36px);\n}\n.rd-_panels_panel_less_-title-icon {\nwidth:16px;\nheight:14px;\nmargin:0 1px;\ndisplay:inline-flex;\nborder-radius:2px;\n}\n.rd-_panels_panel_less_-title-icon:hover {\nbackground:#398e3e;\n}\n.rd-_panels_panel_less_-anim-move {\ntransition-duration:0.25s;\n}\n.rd-_panels_panel_less_-content-outer {\ntransition:height 0.25s;\n}\n.rd-_panels_panel_less_-content-outer-disable-anim {\ntransition:none;\n}\n.rd-_panels_panel_less_-content {\n-ms-scroll-chaining:none;\noverscroll-behavior:contain;\ncontent-visibility:auto;\n}\n.rd-_panels_panel_less_-hbar {\nwidth:3px;\ncursor:ew-resize;\ninset:0 0 0 auto;\n}\n.rd-_panels_panel_less_-foot {\nheight:3px;\ncursor:ns-resize;\ninset:auto 0 0;\n}\n.rd-_panels_panel_less_-foot:hover,\n.rd-_panels_panel_less_-resize-hover,\n.rd-_panels_panel_less_-hbar:hover {\nbackground:#8ed292;\n}\n");
+applyStyle("rd-mC",".rd-sd{background:#fffe;box-shadow:0 2px 4px 0 rgba(0,0,0,.3);transform:translateZ(0)}.rd-sd:hover{will-change:left,top,right,bottom,transform}.rd-se{background:#47b34e;color:#fff;height:18px;line-height:18px}.rd-sf{cursor:move;padding:0 5px;width:calc(100% - 36px)}.rd-sg{border-radius:2px;display:inline-flex;height:14px;margin:0 1px;width:16px}.rd-sg:hover{background:#398e3e}.rd-sh{transition-duration:.25s}.rd-si{transition:height .25s}.rd-sj{transition:none}.rd-sk{-ms-scroll-chaining:none;content-visibility:auto;overscroll-behavior:contain}.rd-sl{cursor:ew-resize;inset:0 0 0 auto;width:3px}.rd-sm{cursor:ns-resize;height:3px;inset:auto 0 0}.rd-sm:hover,.rd-sl:hover,.rd-sn{background:#8ed292}");
 let MinWidth = 100;
 let ZIndex = 600;
 let Panels = [];
 let PanelsManager = {
-    '@:{add~rs}'(view) {
+    '_rF'(view) {
         Panels.push(view);
     },
-    '@:{remove~rs}'(view) {
+    '_pd'(view) {
         for (let i = Panels.length; i--;) {
             if (Panels[i] == view) {
                 Panels.splice(i, 1);
                 break;
             }
         }
-        this['@:{z-index~rs}']();
+        this['_u_']();
     },
-    '@:{z-index~rs}'() {
+    '_u_'() {
         for (let i = Panels.length; i--;) {
-            Panels[i]['@:{set.z-index~rs}'](ZIndex + i);
+            Panels[i]['_ua'](ZIndex + i);
         }
     },
-    '@:{top~rs}'(view) {
+    '_n7'(view) {
         if (Panels[Panels.length - 1] != view) {
             for (let i = Panels.length; i--;) {
                 if (Panels[i] == view) {
@@ -51,13 +51,13 @@ let PanelsManager = {
                 }
             }
             Panels.push(view);
-            this['@:{z-index~rs}']();
+            this['_u_']();
         }
     }
 };
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	width,
 	left,
@@ -82,36 +82,35 @@ $vnode_3,
 $$_class,
 $vnode_2,
 $vnode_1;
-$vnode_3=[];$__line=4;$__art="{{if icon}}";$__ctrl="if(icon){";
+$vnode_3=[];
 if(icon){
-$vnode_4=[$createVNode(0,($__line=5,$__art='{{=icon}}',$__ctrl='<%=icon%>',(icon)),1)];$vnode_3.push($createVNode('i',$quick_c7_0_static_attr,$vnode_4));
-}$vnode_3.push($createVNode(0,($__line=7,$__art='{{=i18n(title)}}',$__ctrl='<%=i18n(title)%>',(i18n(title)))));$vnode_2=[$createVNode('div',{'class': 'rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-touch-action-none rd-_panels_panel_less_-title-text','title': ($__line=3,$__art='{{=i18n(\'@:{lang#panel.drag~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#panel.drag~rs}\')%>',(i18n('@:{lang#panel.drag~rs}'))),'mx5-pointerdown': $viewId+'1@:{drag.move~rs}()',},$vnode_3)];$vnode_4=[$quick_bN_static_text||($quick_bN_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_panels_panel_less_-title-icon rd-_assets_index_less_-fontsize-10 rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-justify-content-center rd-_assets_index_less_-align-items-center'+($__line=10,$__art='{{if shrink}}','');$__ctrl='<%if(shrink){%>';if(shrink){;$$_class+=' rd-_assets_index_less_-r180'+($__line=10,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_3=[$createVNode('i',{'mx5-click': $viewId+'@:{toggle.height~rs}()','title': ($__line=10,$__art='{{=i18n(shrink?\'@:{lang#panel.expand.panel~rs}\':\'@:{lang#panel.shrink.panel}\',title,key)}}',$__ctrl='<%=i18n(shrink?\'@:{lang#panel.expand.panel~rs}\':\'@:{lang#panel.shrink.panel~rs}\',title,key)%>',(i18n(shrink?'@:{lang#panel.expand.panel~rs}':'@:{lang#panel.shrink.panel~rs}',title,key))),'class': $$_class,},$vnode_4)];$vnode_4=[$quick_bZ_static_text||($quick_bZ_static_text=$createVNode(0,''))];$vnode_3.push($createVNode('i',{'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-fontsize-10 rd-_assets_index_less_-iconfont rd-_assets_index_less_-justify-content-center rd-_panels_panel_less_-title-icon','mx5-click': $viewId+'@:{close~rs}()','title': ($__line=11,$__art='{{=i18n(\'@:{lang#panel.close.panel~rs}\',title,key)}}',$__ctrl='<%=i18n(\'@:{lang#panel.close.panel~rs}\',title,key)%>',(i18n('@:{lang#panel.close.panel~rs}',title,key))),},$vnode_4));$vnode_2.push($createVNode('div',$quick_c7_1_static_attr,$vnode_3));$vnode_1=[$createVNode('div',{'class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-unselectable rd-_panels_panel_less_-title','mx5-contextmenu': $viewId+'@:{prevent~rs}()',},$vnode_2)];$vnode_2=[];$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'class': 'rd-_assets_index_less_-hp100 rd-_assets_index_less_-overflow-auto rd-_assets_index_less_-scrollable rd-_assets_index_less_-thin-scrollable rd-_panels_panel_less_-content','mx5-view': ($__line=15,$__art='{{=view}}',$__ctrl='<%=view%>',(view)),'id': '_rd_'+($__line=15,$__art='{{=$viewId}}','')+$viewId+'_v',}));$__line=17;$__art="{{if resizeX}}";$__ctrl="if(resizeX){";
+$vnode_4=[$createVNode(0,(icon),1)];$vnode_3.push($createVNode('i',$quick_on_0_static_attr,$vnode_4));
+}$vnode_3.push($createVNode(0,(i18n(title))));$vnode_2=[$createVNode('div',{'class': 'rd-mW rd-on rd-sf','title': (i18n('tw')),'mx5-pointerdown': $viewId+'1_uf()',},$vnode_3)];$vnode_4=[$quick_m4_static_text||($quick_m4_static_text=$createVNode(0,''))];;$$_class='rd-l3 rd-sg rd-nT rd-nk rd-ng rd-mZ';if(shrink){;$$_class+=' rd-ms';};$vnode_3=[$createVNode('i',{'mx5-click': $viewId+'_t5()','title': (i18n(shrink?'tz':'tE',title,key)),'class': $$_class,},$vnode_4)];$vnode_4=[$quick_nf_static_text||($quick_nf_static_text=$createVNode(0,''))];$vnode_3.push($createVNode('i',{'class': 'rd-l3 rd-mZ rd-nT rd-ng rd-nk rd-sg','mx5-click': $viewId+'_mR()','title': (i18n('nI',title,key)),},$vnode_4));$vnode_2.push($createVNode('div',$quick_on_1_static_attr,$vnode_3));$vnode_1=[$createVNode('div',{'class': 'rd-mR rd-mX rd-nU rd-se','mx5-contextmenu': $viewId+'_nT()',},$vnode_2)];$vnode_2=[];$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'class': 'rd-mC rd-mS rd-mT rd-nQ rd-sk','mx5-view': (view),'id': '_rd_'+$viewId+'_v',}));
 if(resizeX){
-$vnode_2.push($createVNode('div',{'class': 'rd-_assets_index_less_-hp100 rd-_assets_index_less_-pa rd-_assets_index_less_-touch-action-none rd-_assets_index_less_-unselectable rd-_panels_panel_less_-hbar','title': ($__line=18,$__art='{{=i18n(\'@:{lang#panel.ew-resize~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#panel.ew-resize~rs}\')%>',(i18n('@:{lang#panel.ew-resize~rs}'))),'mx5-pointerdown': $viewId+'1@:{start.resize~rs}({w:1})','mx5-contextmenu': $viewId+'@:{prevent~rs}()',}));
-}$vnode_1.push($createVNode('div',{'class': 'rd-_assets_index_less_-contain-paint rd-_assets_index_less_-overflow-hidden rd-_panels_panel_less_-content-outer','id': '_rdc_'+($__line=14,$__art='{{=$viewId}}','')+$viewId,'style': 'height:'+($__line=14,$__art='{{=(shrink?0:fixedSize?`${height}px`:`calc(100vh - ${height}px)`)}}',$__ctrl='<%=shrink?0:fixedSize?`${height}px`:`calc(100vh - ${height}px)`%>',(shrink?0:fixedSize?`${height}px`:`calc(100vh - ${height}px)`)),'mx5-contextmenu': (($temp_var=($__line=14,$__art='{{=cm==null}}',$__ctrl='<%=cm==null%>',cm==null),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-contextmenu" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:panels/panel.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{prevent~rs}()'),},$vnode_2));;$$_class='rd-_panels_panel_less_-foot rd-_assets_index_less_-pa rd-_assets_index_less_-unselectable rd-_assets_index_less_-touch-action-none'+($__line=21,$__art='{{if shrink||!resizeY}}','');$__ctrl='<%if(shrink||!resizeY){%>';if(shrink||!resizeY){;$$_class+=' rd-_assets_index_less_-none'+($__line=21,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'title': ($__line=21,$__art='{{=i18n(\'@:{lang#panel.ns-resize~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#panel.ns-resize~rs}\')%>',(i18n('@:{lang#panel.ns-resize~rs}'))),'mx5-contextmenu': $viewId+'@:{prevent~rs}()','mx5-pointerdown': $viewId+'@:{start.resize~rs}({h:1})','class': $$_class,}));;$$_style='width:'+($__line=1,$__art='{{=width}}',$__ctrl='<%=width%>',(width))+'px;'+($__line=1,$__art='{{if left!=null}}','');$__ctrl='<%if(left!=null){%>';if(left!=null){;$$_style+='left:'+($__line=1,$__art='{{=left}}',$__ctrl='<%=left%>',(left))+($__line=1,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$$_style+='right:'+($__line=1,$__art='{{=right}}',$__ctrl='<%=right%>',(right))+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_style+='px;'+($__line=1,$__art='{{if top!=null}}','');$__ctrl='<%if(top!=null){%>';if(top!=null){;$$_style+='top:'+($__line=1,$__art='{{=top}}',$__ctrl='<%=top%>',(top))+'px'+($__line=1,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$$_style+='bottom:'+($__line=1,$__art='{{=bottom}}',$__ctrl='<%=bottom%>',(bottom))+'px'+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_style+=';z-index:'+($__line=1,$__art='{{=zIndex}}',$__ctrl='<%=zIndex%>',(zIndex));$vnode_0=[$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-touch-action-none rd-_panels_panel_less_-anim-move rd-_panels_panel_less_-panel','id': '_rdp_'+($__line=1,$__art='{{=$viewId}}','')+$viewId,'mx5-pointerdown': $viewId+'@:{update.z-index~rs}()','mx5-pointerover': $viewId+'@:{hover.panel~rs}()','mx5-pointerout': $viewId+'@:{hover.panel~rs}()','style': $$_style,},$vnode_1)]; 
+$vnode_2.push($createVNode('div',{'class': 'rd-mC rd-mJ rd-mR rd-on rd-sl','title': (i18n('ty')),'mx5-pointerdown': $viewId+'1_qd({w:1})','mx5-contextmenu': $viewId+'_nT()',}));
+}$vnode_1.push($createVNode('div',{'class': 'rd-nO rd-oe rd-si','id': '_rdc_'+$viewId,'style': 'height:'+(shrink?0:fixedSize?`${height}px`:`calc(100vh - ${height}px)`),'mx5-contextmenu': ((cm==null))&&($viewId+'_nT()'),},$vnode_2));;$$_class='rd-sm rd-mJ rd-mR rd-on';if(shrink||!resizeY){;$$_class+=' rd-mO';};$vnode_1.push($createVNode('div',{'title': (i18n('tB')),'mx5-contextmenu': $viewId+'_nT()','mx5-pointerdown': $viewId+'_qd({h:1})','class': $$_class,}));;$$_style='width:'+(width)+'px;';if(left!=null){;$$_style+='left:'+(left);}else{;$$_style+='right:'+(right);};$$_style+='px;';if(top!=null){;$$_style+='top:'+(top)+'px';}else{;$$_style+='bottom:'+(bottom)+'px';};$$_style+=';z-index:'+(zIndex);$vnode_0=[$createVNode('div',{'class': 'rd-mJ rd-on rd-sd rd-sh','id': '_rdp_'+$viewId,'mx5-pointerdown': $viewId+'_uk()','mx5-pointerover': $viewId+'_ul()','mx5-pointerout': $viewId+'_ul()','style': $$_style,},$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:panels/panel.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init(data) {
-        PanelsManager["@:{add~rs}"](this);
+        PanelsManager["_rF"](this);
         this.on('destroy', () => {
-            PanelsManager["@:{remove~rs}"](this);
+            PanelsManager["_pd"](this);
         });
-        this['@:{p.close~rs}'] = data.close;
+        this['_ub'] = data.close;
         this.set(data);
     },
     async render() {
         await this.digest({
             zIndex: ZIndex + Panels.length
         });
-        this['@:{fix.position~rs}']();
-        this['@:{check.hide.state~rs}']();
+        this['_uc']();
+        this['_ud']();
     },
-    '@:{drag.move~rs}<pointerdown>'(e) {
-        this['@:{hold.hide~rs}'] = 1;
+    '_uf<pointerdown>'(e) {
+        this['_ue'] = 1;
         let n = node('_rdp_' + this.id);
         let root = node(config('rootId'));
-        n.classList.add('rd-_panels_panel_less_-content-outer-disable-anim');
+        n.classList.add('rd-sj');
         let screenHeight = root.clientHeight;
         let screenWidth = min(root.clientWidth, DocRoot.clientWidth);
         let styles = n.style;
@@ -134,12 +133,12 @@ return $createVNode($viewId,0,$vnode_0);
         let showedCursor;
         let target = e.eventTarget;
         State.set({
-            '@:{global#stage.prevent.actions~rs}': 1
+            'l8': 1
         });
-        this['@:{drag.drop~rs}'](e, ex => {
+        this['_mz'](e, ex => {
             if (!showedCursor) {
                 showedCursor = 1;
-                cursor_1["@:{show~rs}"](target);
+                cursor_1["_mA"](target);
             }
             let offsetX = (dockRight ? e.pageX - ex.pageX : ex.pageX - e.pageX) + startX;
             if (offsetX < 0) {
@@ -168,38 +167,38 @@ return $createVNode($viewId,0,$vnode_0);
             });
         }, () => {
             State.set({
-                '@:{global#stage.prevent.actions~rs}': 0
+                'l8': 0
             });
-            delete this['@:{hold.hide~rs}'];
-            cursor_1["@:{hide~rs}"]();
-            n.classList.remove('rd-_panels_panel_less_-content-outer-disable-anim');
-            this['@:{check.hide.state~rs}']();
+            delete this['_ue'];
+            cursor_1["_mB"]();
+            n.classList.remove('rd-sj');
+            this['_ud']();
         });
     },
-    '@:{start.resize~rs}<pointerdown>'(e) {
+    '_qd<pointerdown>'(e) {
         let { w: resizeWidth } = e.params;
-        this['@:{hold.hide~rs}'] = 1;
+        this['_ue'] = 1;
         let startWidth = this.get('width');
         let startHeight = this.get('height');
         let startRight = this.get('right');
         let cNode = node('_rdc_' + this.id);
         let eventTarget = e.eventTarget;
-        eventTarget.classList.add('rd-_panels_panel_less_-resize-hover');
+        eventTarget.classList.add('rd-sn');
         let root = node(config('rootId'));
         let screenHeight = root.clientHeight;
-        cNode.classList.add('rd-_panels_panel_less_-content-outer-disable-anim');
+        cNode.classList.add('rd-sj');
         let cStyles = cNode.style;
         let bound = cNode.getBoundingClientRect();
         let pStyles = node('_rdp_' + this.id).style;
         let showedCursor = 0;
         let target = e.eventTarget;
         State.set({
-            '@:{global#stage.prevent.actions~rs}': 1
+            'l8': 1
         });
-        this['@:{drag.drop~rs}'](e, ex => {
+        this['_mz'](e, ex => {
             if (!showedCursor) {
                 showedCursor = 1;
-                cursor_1["@:{show~rs}"](target);
+                cursor_1["_mA"](target);
             }
             if (resizeWidth) {
                 let offset = ex.pageX - e.pageX;
@@ -235,35 +234,35 @@ return $createVNode($viewId,0,$vnode_0);
             }
         }, () => {
             State.set({
-                '@:{global#stage.prevent.actions~rs}': 0
+                'l8': 0
             });
-            delete this['@:{hold.hide~rs}'];
-            delete this['@:{user.defined.height~rs}'];
-            cursor_1["@:{hide~rs}"]();
-            cNode.classList.remove('rd-_panels_panel_less_-content-outer-disable-anim');
-            eventTarget.classList.remove('rd-_panels_panel_less_-resize-hover');
-            this['@:{check.hide.state~rs}']();
+            delete this['_ue'];
+            delete this['_ug'];
+            cursor_1["_mB"]();
+            cNode.classList.remove('rd-sj');
+            eventTarget.classList.remove('rd-sn');
+            this['_ud']();
         });
     },
-    '@:{set.z-index~rs}'(z) {
+    '_ua'(z) {
         node('_rdp_' + this.id).style.zIndex = z;
     },
-    '@:{fix.position~rs}'() {
-        let check = mark(this, '@:{check.position~rs}');
+    '_uc'() {
+        let check = mark(this, '_uh');
         setTimeout(() => {
             if (check()) {
                 let n = node('_rdp_' + this.id);
                 let cNode = node('_rdc_' + this.id);
                 let root = node(config('rootId'));
                 let definedHeight = this.get('height');
-                let startHeight = this['@:{user.defined.height~rs}'] || definedHeight;
+                let startHeight = this['_ug'] || definedHeight;
                 let fixedSize = this.get('fixedSize');
                 let screenHeight = root.clientHeight;
                 let screenWidth = min(root.clientWidth, DocRoot.clientWidth);
                 if (!fixedSize) {
                     if (startHeight > screenHeight) {
-                        if (!this['@:{user.defined.height~rs}']) {
-                            this['@:{user.defined.height~rs}'] = startHeight;
+                        if (!this['_ug']) {
+                            this['_ug'] = startHeight;
                         }
                         cNode.style.height = `calc(100vh - ${screenHeight}px)`;
                         this.set({
@@ -271,7 +270,7 @@ return $createVNode($viewId,0,$vnode_0);
                         });
                     }
                     else if (definedHeight != startHeight) {
-                        delete this['@:{user.defined.height~rs}'];
+                        delete this['_ug'];
                         cNode.style.height = `calc(100vh - ${startHeight}px)`;
                         this.set({
                             height: startHeight
@@ -330,29 +329,29 @@ return $createVNode($viewId,0,$vnode_0);
                         [dockXKey]: startX,
                         [dockYKey]: startY
                     });
-                    this['@:{check.hide.state~rs}']();
+                    this['_ud']();
                 }
             }
         }, 300);
     },
-    async '@:{toggle.height~rs}'() {
+    async '_t5'() {
         let shrink = this.get('shrink');
         await this.digest({
             shrink: !shrink
         });
-        this['@:{fix.position~rs}']();
+        this['_uc']();
         let viewNode = node(`_rd_${this.id}_v`);
         if (viewNode) {
             let vf = Vframe.byNode(viewNode);
             if (vf) {
-                vf.invoke(shrink ? '@:{show~rs}' : '@:{hide~rs}', [!shrink]);
+                vf.invoke(shrink ? '_mA' : '_mB', [!shrink]);
             }
         }
     },
-    '@:{check.hide.state~rs}'() {
-        if (const_1['@:{const#support.panels.hide.when.nearside~rs}']) {
-            let hideMark = mark(this, '@:{hide.mark~rs}');
-            this['@:{delay.hide.timer~rs}'] = setTimeout(() => {
+    '_ud'() {
+        if (const_1['mz']) {
+            let hideMark = mark(this, '_ui');
+            this['_uj'] = setTimeout(() => {
                 if (hideMark()) {
                     let n = node('_rdp_' + this.id);
                     let styles = n.style;
@@ -392,53 +391,53 @@ return $createVNode($viewId,0,$vnode_0);
             }, 50);
         }
     },
-    '@:{update.z-index~rs}<pointerdown>'(e) {
-        PanelsManager["@:{top~rs}"](this);
+    '_uk<pointerdown>'(e) {
+        PanelsManager["_n7"](this);
     },
-    '@:{show~rs}'() {
-        PanelsManager["@:{top~rs}"](this);
+    '_mA'() {
+        PanelsManager["_n7"](this);
         let viewNode = node(`_rd_${this.id}_v`);
         if (viewNode) {
             let vf = Vframe.byNode(viewNode);
             if (vf) {
-                vf.invoke('@:{show~rs}', [this.get('shrink')]);
+                vf.invoke('_mA', [this.get('shrink')]);
             }
         }
     },
-    '@:{hide~rs}'() {
+    '_mB'() {
         let viewNode = node(`_rd_${this.id}_v`);
         if (viewNode) {
             let vf = Vframe.byNode(viewNode);
             if (vf) {
-                vf.invoke('@:{hide~rs}');
+                vf.invoke('_mB');
             }
         }
     },
-    '@:{toggle.height~rs}<click>'() {
-        this['@:{toggle.height~rs}']();
+    '_t5<click>'() {
+        this['_t5']();
     },
-    '@:{close~rs}<click>'() {
-        let c = this['@:{p.close~rs}'];
+    '_mR<click>'() {
+        let c = this['_ub'];
         if (c) {
             toTry(c);
         }
     },
-    '@:{hover.panel~rs}<pointerover,pointerout>'(e) {
+    '_ul<pointerover,pointerout>'(e) {
         let inNode = magix_1.inside(e.relatedTarget, e.eventTarget);
         if (!inNode) {
             let n = node('_rdp_' + this.id);
             let styles = n.style;
             if (e.type == 'pointerover') {
-                clearTimeout(this['@:{delay.hide.timer~rs}']);
+                clearTimeout(this['_uj']);
                 styles.transform = 'translate3d(0,0,0)';
             }
-            else if (!this['@:{hold.hide~rs}']) {
-                this['@:{check.hide.state~rs}']();
+            else if (!this['_ue']) {
+                this['_ud']();
             }
         }
     },
     '$win<resize>'() {
-        this['@:{fix.position~rs}']();
+        this['_uc']();
     }
 }).merge(index_1);
 

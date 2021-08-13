@@ -222,7 +222,7 @@ export default View.extend({
             }, (ex, bag) => {
                 console.log('请求回来的初始数据', ex, bag);
                 if (!ex) {//如果请求未有异常，则根据请求回来的数据进行渲染界面
-                    let stage = bag.get('data');
+                    let stage = bag.get('data.templateJson');
                     this['@:{render.page.by.json}'](stage);
                 }
             });
@@ -820,7 +820,7 @@ export default View.extend({
                 doc.setDocumentProperties({
                     //rd#need-register-code
                     //需删除<未注册版>字样
-                    title: I18n('@:{lang#site.name}') + '<未注册版>',
+                    title: I18n('@:{lang#site.name}'),
                     subject: '打印页面',
                     author: 'kooboy_li@163.com',
                     keywords: '打印、可视化、编辑器',
@@ -945,7 +945,10 @@ export default View.extend({
         });
     },
     '@:{open.with.id}<click>'() {
-        window.open(DEBUG ? './print-debug.html?id=xl' : './print.html?id=xl');
+        let { params } = parseUrl(location.href);
+        console.log('参数', params, location.href);
+        
+        window.open(DEBUG ? `./print-debug.html?id=${params.id}` : `./print.html?id=${params.id}`);
     },
     async '@:{export.to.native.file}<click>'() {
         let selectFormat = this.get('sf');

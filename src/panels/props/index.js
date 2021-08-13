@@ -4,37 +4,36 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("panels/props/index",["magix5","./element","./page"],(require,exports,module)=>{
+define("66/6c/index",["5c","./element","./page"],(require,exports,module)=>{
 require("./element");
 require("./page");
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
+let magix_1 = require("5c");
 let { State, View, applyStyle } = magix_1;
-applyStyle("rd-_panels_props_index_less_","\n.rd-_panels_props_index_less_-props {\nmin-width:200px;\n}\n.rd-_panels_props_index_less_-props-item {\nline-height:24px;\npadding:2px 0;\n}\n.rd-_panels_props_index_less_-props-padding-bottom {\npadding-bottom:200px;\n}\n");
+applyStyle("rd-mE",".rd-sp{min-width:200px}.rd-sq{line-height:24px;padding:2px 0}.rd-sr{padding-bottom:200px}");
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	single,}=$dataFromView,
 $$_class;
-;$$_class=($__line=1,$__art='{{if !single}}','');$__ctrl='<%if(!single){%>';if(!single){;$$_class+='rd-_assets_index_less_-none'+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0=[$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'panels/props/element','class': $$_class,})];;$$_class=($__line=2,$__art='{{if single}}','');$__ctrl='<%if(single){%>';if(single){;$$_class+='rd-_assets_index_less_-none'+($__line=2,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'panels/props/page','class': $$_class,})); 
+;$$_class='';if(!single){;$$_class+='rd-mO';};$vnode_0=[$createVNode('div',{'mx5-owner': $viewId,'mx5-view': '66/6c/element','class': $$_class,})];;$$_class='';if(single){;$$_class+='rd-mO';};$vnode_0.push($createVNode('div',{'mx5-owner': $viewId,'mx5-view': '66/6c/page','class': $$_class,})); 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:panels/props/index.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init() {
-        let update = this['@:{debounce~rs}'](this.render, 30);
-        State.on('@:{event#stage.select.elements.change~rs}', update);
-        State.on('@:{event#history.shift.change~rs}', update);
+        let update = this['_mb'](this.render, 30);
+        State.on('l5', update);
+        State.on('l7', update);
         this.on('destroy', () => {
-            State.off('@:{event#stage.select.elements.change~rs}', update);
-            State.off('@:{event#history.shift.change~rs}', update);
+            State.off('l5', update);
+            State.off('l7', update);
         });
     },
     render() {
-        let selectElements = State.get('@:{global#stage.select.elements~rs}');
+        let selectElements = State.get('l2');
         let single = selectElements.length == 1;
         this.digest({
             single

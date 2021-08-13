@@ -4,47 +4,47 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/todo/dshow",["magix5","../../designer/stage-selection","../../designer/history","./index"],(require,exports,module)=>{
+define("61/todo/dshow",["5c","../../5b/69","../../5b/5o","./index"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let stage_selection_1 = require("../../designer/stage-selection");
-let history_1 = require("../../designer/history");
+let magix_1 = require("5c");
+let stage_selection_1 = require("../../5b/69");
+let history_1 = require("../../5b/5o");
 let index_1 = require("./index");
 let Base = index_1.prototype;
 let { State } = magix_1;
 module.exports= index_1.extend({
-    '@:{update.size~rs}'() {
-        Base['@:{update.size~rs}'].call(this);
+    '_qT'() {
+        Base['_qT'].call(this);
         let element = this.get('element');
         let parent = this.owner.parent();
-        parent.invoke('@:{update~rs}', [element]);
-        State.fire('@:{event#stage.select.element.props.change~rs}', {
-            '@:{ids~rs}': {
+        parent.invoke('_ol', [element]);
+        State.fire('l4', {
+            '_nK': {
                 [element.id]: 1
             },
-            '@:{types~rs}': {
+            '_nL': {
                 [element.type]: 1
             },
-            '@:{props~rs}': {
-                '@:{size~rs}': 1
+            '_l3': {
+                '_l5': 1
             }
         });
-        history_1['@:{history#save~rs}'](history_1['@:{history#element.modified.props~rs}'], element.props.ename);
+        history_1['l2'](history_1['my'], element.props.ename);
     },
-    '@:{change.task.status~rs}<change>'(e) {
-        Base['@:{change.task.status~rs}<change>'].call(this, e);
+    '_qU<change>'(e) {
+        Base['_qU<change>'].call(this, e);
         let element = this.get('element');
-        history_1['@:{history#save~rs}'](history_1['@:{history#element.modified.props~rs}'], element.props.ename);
+        history_1['l2'](history_1['my'], element.props.ename);
     },
-    '@:{stop~rs}<pointerdown,contextmenu>'(e) {
-        Base['@:{stop~rs}<pointerdown,contextmenu>'].call(this, e);
+    '_p2<pointerdown,contextmenu>'(e) {
+        Base['_p2<pointerdown,contextmenu>'].call(this, e);
         let element = this.get('element');
-        if (element && stage_selection_1["@:{selection#set~rs}"](element)) {
-            history_1["@:{history#save~rs}"](history_1['@:{history#element.get.focus~rs}'], element.props.ename);
+        if (element && stage_selection_1["l3"](element)) {
+            history_1["l2"](history_1['mi'], element.props.ename);
         }
     }
 });

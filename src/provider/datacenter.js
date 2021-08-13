@@ -4,14 +4,14 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("provider/datacenter",["magix5","../designer/service"],(require,exports,module)=>{
+define("5r/datacenter",["5c","../5b/5v"],(require,exports,module)=>{
 
 
 /**
  * 带缓存的数据中心，在设计区时，避免多个元素或同一个元素反复的请求某一个接口
  */
-let magix_1 = require("magix5");
-let service_1 = require("../designer/service");
+let magix_1 = require("5c");
+let service_1 = require("../5b/5v");
 let { Cache } = magix_1;
 let DataCenter = new Cache(100, 40);
 module.exports= api => {
@@ -21,27 +21,27 @@ module.exports= api => {
             dest = {};
             DataCenter.set(api, dest);
         }
-        if (dest['@:{loaded~rs}']) {
+        if (dest['_u7']) {
             resolve(dest);
         }
-        else if (dest['@:{loading~rs}']) {
-            dest['@:{loading~rs}'].push(resolve);
+        else if (dest['_u8']) {
+            dest['_u8'].push(resolve);
         }
         else {
-            dest['@:{loading~rs}'] = [resolve];
+            dest['_u8'] = [resolve];
             let s = new service_1();
             s.all({
-                name: '@:{get.by.url~rs}',
+                name: '_nY',
                 url: api
             }, (err, bag) => {
                 let list = bag.get('data');
-                dest['@:{data~rs}'] = list;
-                dest['@:{loaded~rs}'] = 1;
-                dest['@:{error~rs}'] = err === null || err === void 0 ? void 0 : err.message;
-                for (let resolve of dest['@:{loading~rs}']) {
+                dest['_nV'] = list;
+                dest['_u7'] = 1;
+                dest['_nU'] = err === null || err === void 0 ? void 0 : err.message;
+                for (let resolve of dest['_u8']) {
                     resolve(dest);
                 }
-                delete dest['@:{loading~rs}'];
+                delete dest['_u8'];
             });
         }
     });

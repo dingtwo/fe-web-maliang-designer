@@ -4,37 +4,37 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/hod-hflex/designer",["../../designer/const","../../designer/enum","../../designer/props","../../designer/transform","../../provider/cell","../normal"],(require,exports,module)=>{
+define("61/hod-hflex/designer",["../../5b/5e","../../5b/enum","../../5b/6c","../../5b/5f","../../5r/cell","../6p"],(require,exports,module)=>{
 
 
-let const_1 = require("../../designer/const");
-let enum_1 = require("../../designer/enum");
-let props_1 = require("../../designer/props");
-let transform_1 = require("../../designer/transform");
-let cell_1 = require("../../provider/cell");
-let normal_1 = require("../normal");
+let const_1 = require("../../5b/5e");
+let enum_1 = require("../../5b/enum");
+let props_1 = require("../../5b/6c");
+let transform_1 = require("../../5b/5f");
+let cell_1 = require("../../5r/cell");
+let normal_1 = require("../6p");
 let transformFields = ['width', 'height', 'borderLeftWidth', 'borderTopWidth', 'borderBottomWidth', 'borderRightWidth'];
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/hod-hflex/dshow"
+            view: "61/hod-hflex/dshow"
         });
     }
 }).static({
     type: 'hod-hflex',
-    as: enum_1['@:{enum#as.hod~rs}'],
-    title: '@:{lang#elements.h-flexbox~rs}',
+    as: enum_1['l5'],
+    title: 'p1',
     icon: '&#xebd7;',
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.icon~rs}'] |
-        enum_1['@:{enum#modifier.nomask~rs}'],
-    '@:{move.props~rs}': [{
+    '_oG': enum_1['m_'] |
+        enum_1['mf'],
+    '_oj': [{
             key: 'x',
             use: 'x'
         }, {
             key: 'y',
             use: 'y'
         }],
-    '@:{update.props~rs}'(props) {
+    '_m3'(props) {
         let { rows } = props;
         let height = 0, width = 0;
         for (let row of rows) {
@@ -56,8 +56,8 @@ module.exports= normal_1.extend({
         //     props.y += old.y - n.y;
         // }
     },
-    '@:{get.props~rs}'(x, y) {
-        let borderWidth = const_1['@:{const#to.unit~rs}'](1);
+    '_m2'(x, y) {
+        let borderWidth = const_1['l3'](1);
         // let elementsMap = State.get<Report.StageElementCtrlMapObject>('@:{global#stage.elements.map}');
         // let textType = 'text';
         // let textCtrl = elementsMap[textType];
@@ -70,17 +70,17 @@ module.exports= normal_1.extend({
         // textElement.props.text = 'abc';
         // textElement.props.ename = '文本';
         return {
-            x: const_1['@:{const#to.unit~rs}'](x),
-            y: const_1['@:{const#to.unit~rs}'](y),
+            x: const_1['l3'](x),
+            y: const_1['l3'](y),
             //rotate: 0,
             alpha: 1,
             focusRow: -1,
             focusCol: -1,
             help: '//github.com/xinglie/report-designer/issues/12',
             rows: [{
-                    height: const_1['@:{const#to.unit~rs}'](cell_1["@:{default.height~rs}"]),
+                    height: const_1['l3'](cell_1["_qb"]),
                     cols: [{
-                            width: const_1['@:{const#to.unit~rs}'](cell_1["@:{default.width~rs}"]),
+                            width: const_1['l3'](cell_1["_qc"]),
                             elements: [
                             //textElement
                             ],
@@ -107,46 +107,46 @@ module.exports= normal_1.extend({
     },
     props: [{
             key: 'rows',
-            '@:{json.encode~rs}'(dest, { rows }) {
-                transform_1['@:{transform#json.encode.cells~rs}'](dest, rows, transformFields);
+            '_pi'(dest, { rows }) {
+                transform_1['mh'](dest, rows, transformFields);
             },
-            '@:{unit.convert~rs}'({ rows }, toUnit) {
-                transform_1['@:{transform#unit.convert.cells~rs}'](rows, toUnit, transformFields);
+            '_nz'({ rows }, toUnit) {
+                transform_1['mi'](rows, toUnit, transformFields);
             },
-            '@:{stage.scale~rs}'(props, step, dest) {
-                transform_1['@:{transform#stage.scale.cells~rs}'](props, step, transformFields, dest);
+            '_oy'(props, step, dest) {
+                transform_1['mg'](props, step, transformFields, dest);
             }
         }, {
-            tip: '@:{lang#props.x~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nP',
+            type: props_1["l2"],
             key: 'x',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            '_nA': 1,
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.y~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'nQ',
+            type: props_1["l2"],
             key: 'y',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            '_nA': 1,
+            fixed: const_1["mI"],
+            step: const_1["mH"],
+            read: transform_1["l5"],
+            write: transform_1["m_"],
             json: 1
         }, {
-            tip: '@:{lang#props.width~rs}',
+            tip: 'nR',
             key: 'width',
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            type: props_1["@:{eprops#label~rs}"],
+            read: transform_1["l5"],
+            type: props_1["md"],
             json: 1
         }, {
-            tip: '@:{lang#props.height~rs}',
+            tip: 'nS',
             key: 'height',
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            type: props_1["@:{eprops#label~rs}"],
+            read: transform_1["l5"],
+            type: props_1["md"],
             json: 1
         } /*, {
             tip: '@:{lang#props.rotate}',
@@ -157,53 +157,53 @@ module.exports= normal_1.extend({
             json: 1
         }*/,
         {
-            tip: '@:{lang#props.alpha~rs}',
+            tip: 'nU',
             key: 'alpha',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["l2"],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"],
-            '@:{if.show~rs}'(props) {
+            type: props_1["ms"],
+            '_py'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
             }
         }, {
-            tip: '@:{lang#props.cell.size~rs}',
-            type: props_1["@:{eprops#h.cell.size~rs}"],
-            '@:{dock.top~rs}': 1,
-            '@:{if.show~rs}'(props) {
+            tip: 'oN',
+            type: props_1["mh"],
+            '_pW': 1,
+            '_py'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
             }
         }, {
-            tip: '@:{lang#props.cell.operate~rs}',
-            type: props_1["@:{eprops#h.cell.operate~rs}"],
-            '@:{dock.top~rs}': 1,
-            '@:{if.show~rs}'(props) {
+            tip: 'oP',
+            type: props_1["mi"],
+            '_pW': 1,
+            '_py'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
             }
         }, {
-            type: props_1["@:{eprops#cell.style~rs}"],
-            '@:{if.show~rs}'(props) {
+            type: props_1["mg"],
+            '_py'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
             }
         }, {
-            type: props_1["@:{eprops#spliter~rs}"]
+            type: props_1["ms"]
         }, {
-            tip: '@:{lang#props.help~rs}',
-            type: props_1["@:{eprops#link~rs}"],
+            tip: 'n2',
+            type: props_1["mm"],
             key: 'help'
         }, {
-            tip: '@:{lang#props.title~rs}',
+            tip: 'n3',
             key: 'ename',
-            type: props_1["@:{eprops#text.input~rs}"],
+            type: props_1["ma"],
             json: 1
         }, {
-            tip: '@:{lang#props.locked~rs}',
+            tip: 'n4',
             key: 'locked',
-            type: props_1["@:{eprops#boolean~rs}"],
+            type: props_1["l4"],
             free: true,
             json: 1
         }]

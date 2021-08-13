@@ -4,16 +4,16 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("provider/sdrag",["magix5","../designer/stage-generic","../gallery/mx-pointer/select","../i18n/index"],(require,exports,module)=>{
+define("5r/sdrag",["5c","../5b/65","../5j/5l/select","../5n/index"],(require,exports,module)=>{
 
 
 /**
  * 拖动提示插件
  */
-let magix_1 = require("magix5");
-let stage_generic_1 = require("../designer/stage-generic");
-let select_1 = require("../gallery/mx-pointer/select");
-let index_1 = require("../i18n/index");
+let magix_1 = require("5c");
+let stage_generic_1 = require("../5b/65");
+let select_1 = require("../5j/5l/select");
+let index_1 = require("../5n/index");
 let { State, node } = magix_1;
 let lastHover, lastHod;
 let dragElementMoveFromToolbox = (e) => {
@@ -24,27 +24,27 @@ let dragElementMoveFromToolbox = (e) => {
         let hasSize = width || height;
         if (hasSize) {
             // +1 for snap line
-            select_1["@:{update~rs}"](pageX, pageY, width, height);
+            select_1["_ol"](pageX, pageY, width, height);
             //更新icon
-            select_1["@:{update.icon~rs}"](ctrl.icon);
+            select_1["_ti"](ctrl.icon);
         }
-        let canDrop, page = State.get('@:{global#stage.page~rs}');
+        let canDrop, page = State.get('ma');
         if (page.readonly) {
-            select_1["@:{update.text~rs}"](index_1('@:{lang#pointer.not.find.destination~rs}'));
+            select_1["_qO"](index_1('tF'));
         }
         else {
             //如果鼠标下的节点变化了，这里进行性能处理，只有变化的才进入处理
             if (lastHover != hover) {
                 lastHover = hover;
                 //容器的提示节点
-                let dashedNode = hod && node(hod['@:{dashed.id~rs}']);
+                let dashedNode = hod && node(hod['_o3']);
                 if (!hod ||
                     dashedNode != lastHod) {
                     //不在容器或容器有变化
                     if (lastHod) { //从一个容器变换到另一个
                         let { classList } = lastHod;
                         //, '@:scoped.style:full-fill'
-                        classList.remove('rd-_assets_index_less_-hod-drop-tip');
+                        classList.remove('rd-nz');
                         lastHod = null;
                     }
                     //查询一共允许多少个
@@ -52,12 +52,12 @@ let dragElementMoveFromToolbox = (e) => {
                     let tip;
                     if (!hod) { //在设计区
                         //查询节点是否支持放在设计区
-                        canDrop = canDrop && (!ctrl['@:{allowed.to.hod~rs}'] ||
-                            ctrl['@:{allowed.to.hod~rs}'].root);
+                        canDrop = canDrop && (!ctrl['_oi'] ||
+                            ctrl['_oi'].root);
                         if (canDrop) { //查询设计区允许多少个
                             canDrop = allowedStage == null || count < allowedStage;
                         }
-                        tip = '@:{lang#pointer.release.element.to.stage~rs}';
+                        tip = 'tH';
                         //console.log(tip);
                     }
                     else { //在容器里
@@ -65,25 +65,25 @@ let dragElementMoveFromToolbox = (e) => {
                         lastHod = dashedNode;
                         //同样需要查询能放多少个
                         if (canDrop && allowedStage >= 0) {
-                            let cc = stage_generic_1['@:{generic#filter.elements~rs}'](hod['@:{elements~rs}'], ctrl.type);
+                            let cc = stage_generic_1['l3'](hod['_o0'], ctrl.type);
                             canDrop = cc.length < allowedStage;
                         }
-                        tip = '@:{lang#pointer.release.element.to.cell~rs}';
+                        tip = 'tG';
                     }
                     if (canDrop) { //能放置
                         if (lastHod) { //容器显示可放置提示
                             let { classList } = lastHod;
                             //, '@:scoped.style:full-fill'
-                            classList.add('rd-_assets_index_less_-hod-drop-tip');
+                            classList.add('rd-nz');
                         }
                         if (hasSize) {
                             //可放置提示文字
-                            select_1["@:{update.text~rs}"](index_1(tip));
+                            select_1["_qO"](index_1(tip));
                         }
                     }
                     else if (hasSize) {
                         //不可放置
-                        select_1["@:{update.text~rs}"](index_1('@:{lang#pointer.not.find.destination~rs}'));
+                        select_1["_qO"](index_1('tF'));
                     }
                 }
             }
@@ -98,26 +98,26 @@ let dragElementMoveFromToolbox = (e) => {
         if (lastHod) { //如果有容器，需要移除容器的提示
             let { classList } = lastHod;
             //, '@:scoped.style:full-fill'
-            classList.remove('rd-_assets_index_less_-hod-drop-tip');
+            classList.remove('rd-nz');
         }
         //隐藏鼠标样式及清除相应的缓存信息
-        select_1["@:{hide~rs}"]();
+        select_1["_mB"]();
         lastHover = null;
         lastHod = null;
     }
 };
 module.exports= {
-    '@:{sdrag#get.last.hod~rs}'() {
+    'l2'() {
         return lastHod;
     },
-    '@:{sdrag#clear~rs}'() {
+    'l3'() {
         lastHod = lastHover = null;
     },
-    '@:{sdrag#setup~rs}'() {
-        State.on('@:{event#toolbox.drag.element.move~rs}', dragElementMoveFromToolbox);
+    'l4'() {
+        State.on('me', dragElementMoveFromToolbox);
     },
-    '@:{sdrag#teardown~rs}'() {
-        State.off('@:{event#toolbox.drag.element.move~rs}', dragElementMoveFromToolbox);
+    'l5'() {
+        State.off('me', dragElementMoveFromToolbox);
     }
 };
 
