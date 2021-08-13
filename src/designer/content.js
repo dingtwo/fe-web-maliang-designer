@@ -98,36 +98,22 @@ return $createVNode($viewId,0,$vnode_0);
         this['@:{dialog~rs}'].close();
     },
     '@:{apply~rs}<click>'() {
-        //rd#need-register-code
-        //保留if逻辑体中的代码，删除if条件及else代码即可删除相应的未授权提示
-        if (DEBUG) {
-            let value = node('_rd_ta_' + this.id).value.trim();
-            if (tryApplyContent(value)) {
-                this['@:{dialog~rs}'].close();
-            }
-        }
-        else {
-            alertMsg('未授权版本不支持该功能');
+        let value = node('_rd_ta_' + this.id).value.trim();
+        if (tryApplyContent(value)) {
+            this['@:{dialog~rs}'].close();
         }
     }
 }).static({
     async '@:{read.file~rs}'(target) {
-        //rd#need-register-code
-        //保留if逻辑体中的代码，删除if条件及else代码即可删除相应的未授权提示
-        if (DEBUG) {
-            let readMark = mark(this, '@:{save.async~rs}');
-            try {
-                let content = await fs_1['@:{read.file~rs}'](target);
-                tryApplyContent(content);
-            }
-            catch (ex) {
-                if (readMark() && ex.name != 'AbortError') {
-                    Vframe.root().invoke('alert', [ex.message]);
-                }
-            }
+        let readMark = mark(this, '@:{save.async~rs}');
+        try {
+            let content = await fs_1['@:{read.file~rs}'](target);
+            tryApplyContent(content);
         }
-        else {
-            alertMsg('未授权版本不支持该功能');
+        catch (ex) {
+            if (readMark() && ex.name != 'AbortError') {
+                Vframe.root().invoke('alert', [ex.message]);
+            }
         }
     },
     async '@:{save~rs}'() {

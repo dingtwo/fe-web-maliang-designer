@@ -39,11 +39,6 @@
                     {{else if sf=='rdImage' && rdImages}}
                         <img class="tag-img mwp100" src="{{=rdImages[pageIndex]}}"/>
                     {{/if}}
-                    <!--//rd#need-register-code-->
-                    <!--删除这个if语句，在最后打印时就不再出现提示-->
-                    {{if auth}}
-                        <div class="need-auth pa">当前report-designer未取得授权，域名及IP地址已记录</div>
-                    {{/if}}
                 </div>
                 {{/each}}
             {{/if}}

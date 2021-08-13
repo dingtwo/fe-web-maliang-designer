@@ -17,7 +17,6 @@ let $quick_gw_static_text;
 let $quick_hw_4_static_node;
 let $quick_hw_5_static_node;
 let $quick_hw_6_static_node;
-let $quick_hw_7_static_node;
 let $quick_hw_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_printer_index_less_-header',};
 let $quick_hw_3_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-flex-direction-column rd-_printer_index_less_-wrap',};
 
@@ -156,38 +155,6 @@ let fetchOneAPI = (api) => {
                 url: api
             }, (err, bag) => {
                 let list = bag.get('data', []);
-                //rd#need-register-code
-                /**
-                 * !!!真实环境删除这个if语句
-                 * 这里进行一定概率的数据错乱，防止生产包被使用！
-                 */
-                if (random() < checkFlag) {
-                    let newList = [];
-                    for (let e of list) {
-                        if (type(e) == 'Object') {
-                            let d = {};
-                            for (let x in e) {
-                                let dest = e[x];
-                                if (type(dest) == 'Number') {
-                                    d[x] = dest + (random() * 10) | 0;
-                                }
-                                else if (type(dest) == 'String' &&
-                                    !dest.startsWith('//')) {
-                                    d[x] = dest.substring(1);
-                                }
-                                else {
-                                    d[x] = dest;
-                                }
-                            }
-                            newList.push(d);
-                        }
-                        else {
-                            newList.push(e);
-                        }
-                    }
-                    bag.set('data', newList);
-                    list = newList;
-                }
                 dest['@:{data~rs}'] = list;
                 dest['@:{loaded~rs}'] = 1;
                 dest['@:{error~rs}'] = err === null || err === void 0 ? void 0 : err.message;
@@ -227,8 +194,7 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 	rdPdf,
 	pages,
 	images,
-	rdImages,
-	auth,}=$dataFromView,
+	rdImages,}=$dataFromView,
 $vnode_2,
 $$_mx5$_view,
 $vnode_1,
@@ -280,46 +246,37 @@ $vnode_1.push($createVNode('embed',{'src': ($__line=27,$__art='{{=pdf}}',$__ctrl
 }else if(($__line=28,$__art="{{else if sf==\\'rdPdf\\'}}",$__ctrl="else if(sf=='rdPdf'){"),sf=='rdPdf'){
 $vnode_1.push($createVNode('embed',{'src': ($__line=29,$__art='{{=rdPdf}}',$__ctrl='<%=rdPdf%>',(rdPdf)),'class': 'rd-_assets_index_less_-wp100 rd-_printer_index_less_-pdf-ifm','type': 'application/pdf',},1));
 }else{
-$__line=31;$__art="{{each pages as item pageIndex last}}";$__ctrl="for(let $q_c_exsxippql=pages.length,$q_lc_mbpvbpwm=$q_c_exsxippql-1,pageIndex=0;pageIndex<$q_c_exsxippql;pageIndex++){let item=pages[pageIndex];let last=pageIndex===$q_lc_mbpvbpwm;";
-for(let $q_c_exsxippql=pages.length,$q_lc_mbpvbpwm=$q_c_exsxippql-1,pageIndex=0;pageIndex<$q_c_exsxippql;pageIndex+=1){
-let item=pages[pageIndex];let last=pageIndex===$q_lc_mbpvbpwm;
+$__line=31;$__art="{{each pages as item pageIndex last}}";$__ctrl="for(let $q_c_jjstswn=pages.length,$q_lc_fhkbwzfnh=$q_c_jjstswn-1,pageIndex=0;pageIndex<$q_c_jjstswn;pageIndex++){let item=pages[pageIndex];let last=pageIndex===$q_lc_fhkbwzfnh;";
+for(let $q_c_jjstswn=pages.length,$q_lc_fhkbwzfnh=$q_c_jjstswn-1,pageIndex=0;pageIndex<$q_c_jjstswn;pageIndex+=1){
+let item=pages[pageIndex];let last=pageIndex===$q_lc_fhkbwzfnh;
 $vnode_2=[];$__line=33;$__art="{{if sf==\\'web\\'}}";$__ctrl="if(sf=='web'){";
 if(sf=='web'){
-$__line=34;$__art="{{each item as e}}";$__ctrl="for(let $q_c_vpbdeofteja=item.length,$q_key_hkwupod=0;$q_key_hkwupod<$q_c_vpbdeofteja;$q_key_hkwupod++){let e=item[$q_key_hkwupod];";
-for(let $q_c_vpbdeofteja=item.length,$q_key_hkwupod=0;$q_key_hkwupod<$q_c_vpbdeofteja;$q_key_hkwupod+=1){
-let e=item[$q_key_hkwupod];
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'pages,unit','mx5-view': 'elements/'+($__line=35,$__art='{{=e.type}}',$__ctrl='<%=e.type%>',(e.type))+'/index?props='+($__line=35,$__art='{{#e.props}}',$__ctrl='<%#e.props,\'auto_key_pages.\'+(pageIndex)+\'.\'+($q_key_hkwupod)+\'.e.props\'%>',$keyOf($refData,e.props,'auto_key_pages.'+(pageIndex)+'.'+($q_key_hkwupod)+'.e.props'))+'&unit='+($__line=35,$__art='{{#unit}}',$__ctrl='<%#unit,\'auto_key_unit\'%>',$keyOf($refData,unit,'auto_key_unit')),}));
+$__line=34;$__art="{{each item as e}}";$__ctrl="for(let $q_c_lcocjbb=item.length,$q_key_pozvcfm=0;$q_key_pozvcfm<$q_c_lcocjbb;$q_key_pozvcfm++){let e=item[$q_key_pozvcfm];";
+for(let $q_c_lcocjbb=item.length,$q_key_pozvcfm=0;$q_key_pozvcfm<$q_c_lcocjbb;$q_key_pozvcfm+=1){
+let e=item[$q_key_pozvcfm];
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'pages,unit','mx5-view': 'elements/'+($__line=35,$__art='{{=e.type}}',$__ctrl='<%=e.type%>',(e.type))+'/index?props='+($__line=35,$__art='{{#e.props}}',$__ctrl='<%#e.props,\'auto_key_pages.\'+(pageIndex)+\'.\'+($q_key_pozvcfm)+\'.e.props\'%>',$keyOf($refData,e.props,'auto_key_pages.'+(pageIndex)+'.'+($q_key_pozvcfm)+'.e.props'))+'&unit='+($__line=35,$__art='{{#unit}}',$__ctrl='<%#unit,\'auto_key_unit\'%>',$keyOf($refData,unit,'auto_key_unit')),}));
 }
 }else if(($__line=37,$__art="{{else if sf==\\'image\\' && images}}",$__ctrl="else if(sf=='image' && images){"),sf=='image' && images){
 $vnode_2.push($createVNode('img',{'class': 'rd-_assets_index_less_-mwp100 rd-_assets_index_less_-tag-img','src': ($__line=38,$__art='{{=images[pageIndex]}}',$__ctrl='<%=images[pageIndex]%>',(images[pageIndex])),},1));
 }else if(($__line=39,$__art="{{else if sf==\\'rdImage\\' && rdImages}}",$__ctrl="else if(sf=='rdImage' && rdImages){"),sf=='rdImage' && rdImages){
 $vnode_2.push($createVNode('img',{'class': 'rd-_assets_index_less_-mwp100 rd-_assets_index_less_-tag-img','src': ($__line=40,$__art='{{=rdImages[pageIndex]}}',$__ctrl='<%=rdImages[pageIndex]%>',(rdImages[pageIndex])),},1));
-}$__line=44;$__art="{{if auth}}";$__ctrl="if(auth){";
-if(auth){
-
-if($quick_hw_5_static_node){
-$vnode_2.push($quick_hw_5_static_node);
-}else{
-$vnode_3=[$createVNode(0,'当前report-designer未取得授权，域名及IP地址已记录')];$vnode_2.push($quick_hw_5_static_node=$createVNode('div',{'_': 'dP','class': 'rd-_assets_index_less_-pa rd-_printer_index_less_-need-auth',},$vnode_3));
-}
-
 };$$_class='rd-_assets_index_less_-designer-root rd-_assets_index_less_-pr rd-_printer_index_less_-page rd-_printer_index_less_-page-display rd-_assets_index_less_-overflow-hidden'+($__line=32,$__art='{{if !last}}','');$__ctrl='<%if(!last){%>';if(!last){;$$_class+=' rd-_printer_index_less_-page-break'+($__line=32,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_style='width:'+($__line=32,$__art='{{=page.width}}',$__ctrl='<%=page.width%>',(page.width))+($__line=32,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=32,$__art='{{=page.height}}',$__ctrl='<%=page.height%>',(page.height))+($__line=32,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';background:'+($__line=32,$__art='{{=page.background}}',$__ctrl='<%=page.background%>',(page.background))+';'+($__line=32,$__art='{{if !page.preformat&&page.backgroundImage}}','');$__ctrl='<%if(!page.preformat&&page.backgroundImage){%>';if(!page.preformat&&page.backgroundImage){;$$_style+='background-image:url('+($__line=32,$__art='{{=page.backgroundImage}}',$__ctrl='<%=page.backgroundImage%>',(page.backgroundImage))+');background-repeat:'+($__line=32,$__art='{{=page.backgroundRepeat==\'full\'?\'no-repeat\':page.backgroundRepeat}}',$__ctrl='<%=page.backgroundRepeat==\'full\'?\'no-repeat\':page.backgroundRepeat%>',(page.backgroundRepeat=='full'?'no-repeat':page.backgroundRepeat))+';background-size:'+($__line=32,$__art='{{if page.backgroundRepeat==\'full\'}}','');$__ctrl='<%if(page.backgroundRepeat==\'full\'){%>';if(page.backgroundRepeat=='full'){;$$_style+='100% 100%'+($__line=32,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$$_style+=''+($__line=32,$__art='{{=page.backgroundWidth}}',$__ctrl='<%=page.backgroundWidth%>',(page.backgroundWidth))+($__line=32,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+' '+($__line=32,$__art='{{=page.backgroundHeight}}',$__ctrl='<%=page.backgroundHeight%>',(page.backgroundHeight))+($__line=32,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';background-position:'+($__line=32,$__art='{{=page.backgroundXOffset}}',$__ctrl='<%=page.backgroundXOffset%>',(page.backgroundXOffset))+($__line=32,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+' '+($__line=32,$__art='{{=page.backgroundYOffset}}',$__ctrl='<%=page.backgroundYOffset%>',(page.backgroundYOffset))+($__line=32,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+($__line=32,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_style+=''+($__line=32,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'class': $$_class,'style': $$_style,},$vnode_2));
 }
 }
 }
 }else{
 
-if($quick_hw_6_static_node){
-$vnode_1.push($quick_hw_6_static_node);
+if($quick_hw_5_static_node){
+$vnode_1.push($quick_hw_5_static_node);
 }else{
-$vnode_2=[$createVNode(0,'请传递打印 id 或在设计器中打开该页面')];$vnode_1.push($quick_hw_6_static_node=$createVNode('div',{'_': 'dQ','class': 'rd-_assets_index_less_-fontsize-16 rd-_printer_index_less_-tip',},$vnode_2));
+$vnode_2=[$createVNode(0,'请传递打印 id 或在设计器中打开该页面')];$vnode_1.push($quick_hw_5_static_node=$createVNode('div',{'_': 'dQ','class': 'rd-_assets_index_less_-fontsize-16 rd-_printer_index_less_-tip',},$vnode_2));
 }
 
 }$vnode_0.push($createVNode('div',$quick_hw_3_static_attr,$vnode_1));
-if($quick_hw_7_static_node){
-$vnode_0.push($quick_hw_7_static_node);
+if($quick_hw_6_static_node){
+$vnode_0.push($quick_hw_6_static_node);
 }else{
-$vnode_0.push($quick_hw_7_static_node=$createVNode('div',{'_': 'dR','id': '_rd_tip','class': 'rd-_assets_index_less_-none rd-_assets_index_less_-right-0 rd-_printer_index_less_-progress-tip',}));
+$vnode_0.push($quick_hw_6_static_node=$createVNode('div',{'_': 'dR','id': '_rd_tip','class': 'rd-_assets_index_less_-none rd-_assets_index_less_-right-0 rd-_printer_index_less_-progress-tip',}));
 }
  
 
@@ -331,9 +288,6 @@ return $createVNode($viewId,0,$vnode_0);
          */
         await this.digest({
             inner: top != self,
-            //rd#need-register-code
-            //这个auth属性在收到代码后直接删除，避免打印时的提示
-            // auth: location.hostname != 'xinglie.github.io' && location.hostname != 'xinglie.gitee.io',
             format: FormatList,
             hasData: false,
             empty: true,
@@ -965,11 +919,9 @@ return $createVNode($viewId,0,$vnode_0);
                 });
                 this['@:{js.pdf.document~rs}'] = doc;
                 doc.setDocumentProperties({
-                    //rd#need-register-code
-                    //需删除<未注册版>字样
                     title: index_4('@:{lang#site.name~rs}'),
                     subject: '打印页面',
-                    author: 'kooboy_li@163.com',
+                    author: 'dingjz',
                     keywords: '打印、可视化、编辑器',
                     creator: location.host
                 });

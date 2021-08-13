@@ -53,34 +53,23 @@ export default View.extend({
         this['@:{dialog}'].close();
     },
     '@:{apply}<click>'() {
-        //rd#need-register-code
-        //保留if逻辑体中的代码，删除if条件及else代码即可删除相应的未授权提示
-        if (DEBUG) {
-            let value = (node('_rd_ta_' + this.id) as HTMLTextAreaElement).value.trim();
-            if (tryApplyContent(value)) {
-                this['@:{dialog}'].close();
-            }
-        } else {
-            alertMsg('未授权版本不支持该功能');
+        let value = (node('_rd_ta_' + this.id) as HTMLTextAreaElement).value.trim();
+        if (tryApplyContent(value)) {
+            this['@:{dialog}'].close();
         }
     }
 }).static({
     async '@:{read.file}'(target: HTMLElement) {
-        //rd#need-register-code
-        //保留if逻辑体中的代码，删除if条件及else代码即可删除相应的未授权提示
-        if (DEBUG) {
-            let readMark = mark(this, '@:{save.async}');
-            try {
-                let content = await FileSystemProvider['@:{read.file}'](target as HTMLInputElement);
-                tryApplyContent(content);
-            } catch (ex) {
-                if (readMark() && ex.name != 'AbortError') {
-                    Vframe.root().invoke('alert', [ex.message]);
-                }
+        let readMark = mark(this, '@:{save.async}');
+        try {
+            let content = await FileSystemProvider['@:{read.file}'](target as HTMLInputElement);
+            tryApplyContent(content);
+        } catch (ex) {
+            if (readMark() && ex.name != 'AbortError') {
+                Vframe.root().invoke('alert', [ex.message]);
             }
-        } else {
-            alertMsg('未授权版本不支持该功能');
         }
+        
     },
     async '@:{save}'() {
         let saveMark = mark(this, '@:{save.async}');

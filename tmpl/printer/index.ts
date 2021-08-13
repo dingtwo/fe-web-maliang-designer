@@ -140,35 +140,6 @@ let fetchOneAPI = (api) => {
                 url: api
             }, (err: { message: string }, bag) => {
                 let list = bag.get('data', []);
-                //rd#need-register-code
-                /**
-                 * !!!真实环境删除这个if语句
-                 * 这里进行一定概率的数据错乱，防止生产包被使用！
-                 */
-                if (random() < checkFlag) {
-                    let newList = [];
-                    for (let e of list) {
-                        if (type(e) == 'Object') {
-                            let d = {};
-                            for (let x in e) {
-                                let dest = e[x];
-                                if (type(dest) == 'Number') {
-                                    d[x] = dest + (random() * 10) | 0;
-                                } else if (type(dest) == 'String' &&
-                                    !dest.startsWith('//')) {
-                                    d[x] = dest.substring(1);
-                                } else {
-                                    d[x] = dest;
-                                }
-                            }
-                            newList.push(d);
-                        } else {
-                            newList.push(e);
-                        }
-                    }
-                    bag.set('data', newList);
-                    list = newList;
-                }
                 dest['@:{data}'] = list;
                 dest['@:{loaded}'] = 1;
                 dest['@:{error}'] = err?.message;
@@ -199,9 +170,6 @@ export default View.extend({
          */
         await this.digest({
             inner: top != self,
-            //rd#need-register-code
-            //这个auth属性在收到代码后直接删除，避免打印时的提示
-            // auth: location.hostname != 'xinglie.github.io' && location.hostname != 'xinglie.gitee.io',
             format: FormatList,
             hasData: false,
             empty: true,
@@ -818,11 +786,9 @@ export default View.extend({
                 });
                 this['@:{js.pdf.document}'] = doc;
                 doc.setDocumentProperties({
-                    //rd#need-register-code
-                    //需删除<未注册版>字样
                     title: I18n('@:{lang#site.name}'),
                     subject: '打印页面',
-                    author: 'kooboy_li@163.com',
+                    author: 'dingjz',
                     keywords: '打印、可视化、编辑器',
                     creator: location.host
                 });
