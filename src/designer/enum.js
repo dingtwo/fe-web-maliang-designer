@@ -1,10 +1,10 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5b/enum",[],(require,exports,module)=>{
+define("designer/enum",[],(require,exports,module)=>{
 
 
 /**
@@ -12,29 +12,29 @@ define("5b/enum",[],(require,exports,module)=>{
  */
 module.exports= {
     //角色类型
-    'l5': 1,
-    'l6': 2,
-    'l7': 4,
+    '@:{enum#as.hod~rs}': 1,
+    '@:{enum#as.data.hod~rs}': 2,
+    '@:{enum#as.cells~rs}': 4,
     //对齐
-    'l4': 1,
-    'l8': 2,
-    'l3': 2 << 1,
+    '@:{enum#align.coners~rs}': 1,
+    '@:{enum#align.line.middles~rs}': 2,
+    '@:{enum#align.centers~rs}': 2 << 1,
     //拖动对齐跟随元素
-    'l9': 1,
-    'l2': 2,
+    '@:{enum#follow.align.grouped~rs}': 1,
+    '@:{enum#follow.align.selected~rs}': 2,
     //修改器类型
-    'm_': 1,
-    'ma': 2,
-    'mb': 2 << 1,
-    'mc': 2 << 2,
-    'md': 2 << 3,
-    'me': 2 << 4,
-    'mf': 2 << 5,
-    'mg': 2 << 6,
-    'mh': 2 << 7,
-    'mi': 2 << 8,
-    'mj': 2 << 9,
-    'mk': 2 << 10, //选中显示icon
+    '@:{enum#modifier.icon~rs}': 1,
+    '@:{enum#modifier.size~rs}': 2,
+    '@:{enum#modifier.width~rs}': 2 << 1,
+    '@:{enum#modifier.height~rs}': 2 << 2,
+    '@:{enum#modifier.protate~rs}': 2 << 3,
+    '@:{enum#modifier.rotate~rs}': 2 << 4,
+    '@:{enum#modifier.nomask~rs}': 2 << 5,
+    '@:{enum#modifier.text~rs}': 2 << 6,
+    '@:{enum#modifier.dblclick~rs}': 2 << 7,
+    '@:{enum#modifier.dheight~rs}': 2 << 8,
+    '@:{enum#modifier.sync.size~rs}': 2 << 9,
+    '@:{enum#modifier.selected.show.icon~rs}': 2 << 10, //选中显示icon
 };
 
 });

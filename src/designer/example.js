@@ -1,26 +1,26 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5b/5u",["5c","./5e","./5o","./5v"],(require,exports,module)=>{
-let $quick_l7_0_static_node;
-let $quick_l7_1_static_node;
-let $quick_l7_3_static_attr={'class': 'rd-mf rd-ob',};
-let $quick_l7_4_static_attr={'class': 'rd-mX rd-ni',};
-let $quick_l7_5_static_attr={'class': 'rd-mG rd-mN rd-nW',};
+define("designer/example",["magix5","./const","./history","./service"],(require,exports,module)=>{
+let $quick_e8_0_static_node;
+let $quick_e8_1_static_node;
+let $quick_e8_3_static_attr={'class': 'rd-_assets_index_less_-dialog-body rd-_assets_index_less_-min-height-500',};
+let $quick_e8_4_static_attr={'class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-flex-wrap-wrap',};
+let $quick_e8_5_static_attr={'class': 'rd-_assets_index_less_-fontsize-16 rd-_assets_index_less_-mt30 rd-_assets_index_less_-tc',};
 
-let magix_1 = require("5c");
-let const_1 = require("./5e");
-let history_1 = require("./5o");
-let service_1 = require("./5v");
+let magix_1 = require("magix5");
+let const_1 = require("./const");
+let history_1 = require("./history");
+let service_1 = require("./service");
 let { random, floor } = Math;
 let { State, applyStyle, View, mark, config } = magix_1;
-applyStyle("rd-l5",".rd-oI{border:1px solid #e6e6e6;border-radius:2px;margin:4px;padding:0 10px;width:100px}.rd-oI:hover{border-color:#47b34e}");
+applyStyle("rd-_designer_example_less_","\n.rd-_designer_example_less_-item-container {\nwidth:100px;\nmargin:4px;\nborder:1px solid #e6e6e6;\npadding:0 10px;\nborder-radius:2px;\n}\n.rd-_designer_example_less_-item-container:hover {\nborder-color:#47B34E;\n}\n");
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	error,
 	list,}=$dataFromView,
@@ -29,36 +29,37 @@ $vnode_3,
 $vnode_4,
 $vnode_2;
 
-if($quick_l7_0_static_node){
-$vnode_0=[$quick_l7_0_static_node];
+if($quick_e8_0_static_node){
+$vnode_0=[$quick_e8_0_static_node];
 }else{
-$vnode_0=[$quick_l7_0_static_node=$createVNode('div',{'_': 'i!','class': 'rd-m3 rd-md rd-n8',})];
+$vnode_0=[$quick_e8_0_static_node=$createVNode('div',{'_': 'dM','class': 'rd-_assets_index_less_-dialog-header-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-7',})];
 }
 
-if($quick_l7_1_static_node){
-$vnode_0.push($quick_l7_1_static_node);
+if($quick_e8_1_static_node){
+$vnode_0.push($quick_e8_1_static_node);
 }else{
-$vnode_1=[$createVNode(0,'<h5 class="rd-mm">模板</h5><a class="rd-mo rd-mx" href="https://github.com/xinglie/report-designer/issues/28" rel="noopener noreferrer" target="_blank">如何不显示或更换模板接口?</a>',1)];$vnode_0.push($quick_l7_1_static_node=$createVNode('div',{'_': 'i@','class': 'rd-m3 rd-m4 rd-mA rd-mX rd-mZ rd-mb rd-mc rd-n9',},$vnode_1));
+$vnode_1=[$createVNode(0,'<h5 class="rd-_assets_index_less_-tag-h5">模板</h5><a class="rd-_assets_index_less_-ml10 rd-_assets_index_less_-tag-a" href="https://github.com/xinglie/report-designer/issues/28" rel="noopener noreferrer" target="_blank">如何不显示或更换模板接口?</a>',1)];$vnode_0.push($quick_e8_1_static_node=$createVNode('div',{'_': 'dN','class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-dialog-header rd-_assets_index_less_-dialog-header-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-position-sticky rd-_assets_index_less_-top-0 rd-_assets_index_less_-z-index-8',},$vnode_1));
 }
-$vnode_2=[];
+$vnode_2=[];$__line=8;$__art="{{if error}}";$__ctrl="if(error){";
 if(error){
-$vnode_3=[$createVNode(0,(error.message))];$vnode_2.push($createVNode('div',$quick_l7_5_static_attr,$vnode_3));
+$vnode_3=[$createVNode(0,($__line=9,$__art='{{=error.message}}',$__ctrl='<%=error.message%>',(error.message)))];$vnode_2.push($createVNode('div',$quick_e8_5_static_attr,$vnode_3));
 }else{
-
-for(let $q_c_kihvtgh=list.length,$q_key_okvudulaz=0;$q_key_okvudulaz<$q_c_kihvtgh;$q_key_okvudulaz+=1){
-let p=list[$q_key_okvudulaz];
-$vnode_4=[$createVNode(0,(p.title))];$vnode_3=[$createVNode('div',{'class': 'rd-mX rd-mZ rd-nO rd-na rd-ng rd-nk rd-oI','mx5-click': $viewId+'_mQ({src:\''+$keyOf($refData,p,'i!.'+($q_key_okvudulaz)+'.i@')+'\'})',},$vnode_4)];$vnode_2.push($createVNode('div',{'title': (p.title),},$vnode_3));
+$__line=11;$__art="{{each list as p}}";$__ctrl="for(let $q_c_zzwyfxhi=list.length,$q_key_ubgywxrmpo=0;$q_key_ubgywxrmpo<$q_c_zzwyfxhi;$q_key_ubgywxrmpo++){let p=list[$q_key_ubgywxrmpo];";
+for(let $q_c_zzwyfxhi=list.length,$q_key_ubgywxrmpo=0;$q_key_ubgywxrmpo<$q_c_zzwyfxhi;$q_key_ubgywxrmpo+=1){
+let p=list[$q_key_ubgywxrmpo];
+$vnode_4=[$createVNode(0,($__line=14,$__art='{{=p.title}}',$__ctrl='<%=p.title%>',(p.title)))];$vnode_3=[$createVNode('div',{'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-flex rd-_assets_index_less_-height-100 rd-_assets_index_less_-justify-content-center rd-_assets_index_less_-overflow-hidden rd-_designer_example_less_-item-container','mx5-click': $viewId+'@:{use~rs}({src:\''+($__line=13,$__art='{{#p}}',$__ctrl='<%#p,\'auto_key_list.\'+($q_key_ubgywxrmpo)+\'.p\'%>',$keyOf($refData,p,'auto_key_list.'+($q_key_ubgywxrmpo)+'.p'))+'\'})',},$vnode_4)];$vnode_2.push($createVNode('div',{'title': ($__line=12,$__art='{{=p.title}}',$__ctrl='<%=p.title%>',(p.title)),},$vnode_3));
 }
-}$vnode_1=[$createVNode('div',$quick_l7_4_static_attr,$vnode_2)];$vnode_0.push($createVNode('div',$quick_l7_3_static_attr,$vnode_1)); 
+}$vnode_1=[$createVNode('div',$quick_e8_4_static_attr,$vnode_2)];$vnode_0.push($createVNode('div',$quick_e8_3_static_attr,$vnode_1)); 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/example.html'; throw msg; }  } ,
     init(data) {
-        this['_mH'] = data.dialog;
+        this['@:{dialog~rs}'] = data.dialog;
     },
     render() {
-        let m = mark(this, '_mh');
+        let m = mark(this, '@:{render~rs}');
         let s = new service_1();
-        s.all('_mP', (ex, bag) => {
+        s.all('@:{get.templates~rs}', (ex, bag) => {
             if (m()) {
                 this.digest({
                     error: ex,
@@ -67,44 +68,44 @@ return $createVNode($viewId,0,$vnode_0); } ,
             }
         });
     },
-    '_mQ<click>'(e) {
-        this['_mH'].close();
+    '@:{use~rs}<click>'(e) {
+        this['@:{dialog~rs}'].close();
         let { src } = e.params;
         if (src.stage) {
-            State.fire('mc', {
-                'l3': history_1['l8'],
-                'l4': src.title,
-                'l2': const_1['mP'](src.stage)
+            State.fire('@:{event#example.change~rs}', {
+                '@:{excample.change.event#type~rs}': history_1['@:{history#example.from.list~rs}'],
+                '@:{excample.change.event#title~rs}': src.title,
+                '@:{excample.change.event#stage~rs}': const_1['@:{const#clone~rs}'](src.stage)
             });
         }
     },
-    '_mR<click>'() {
-        this['_mH'].close();
+    '@:{close~rs}<click>'() {
+        this['@:{dialog~rs}'].close();
     }
 }).static({
-    '_mA'(owner) {
-        if (!this['_mS'] &&
+    '@:{show~rs}'(owner) {
+        if (!this['@:{shown~rs}'] &&
             config('getTemplateUrl')) {
-            this['_mS'] = 1;
-            owner.mxDialog("5b/5u", {
+            this['@:{shown~rs}'] = 1;
+            owner.mxDialog("designer/example", {
                 width: 1026
             }).whenClose(() => {
-                delete this['_mS'];
+                delete this['@:{shown~rs}'];
             });
         }
     },
-    '_mT'() {
+    '@:{load~rs}'() {
         return new Promise(resolve => {
             let s = new service_1();
-            s.all('_mP', (ex, bag) => {
+            s.all('@:{get.templates~rs}', (ex, bag) => {
                 let list = bag.get('data', []);
                 let one = list[floor(random() * list.length)];
                 if (one &&
                     one.stage) {
-                    State.fire('mc', {
-                        'l3': history_1['l8'],
-                        'l2': const_1['mP'](one.stage),
-                        'l4': one.title
+                    State.fire('@:{event#example.change~rs}', {
+                        '@:{excample.change.event#type~rs}': history_1['@:{history#example.from.list~rs}'],
+                        '@:{excample.change.event#stage~rs}': const_1['@:{const#clone~rs}'](one.stage),
+                        '@:{excample.change.event#title~rs}': one.title
                     });
                 }
                 resolve();

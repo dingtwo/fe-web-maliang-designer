@@ -1,10 +1,10 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5r/jspdf",[],(require,exports,module)=>{
+define("provider/jspdf",[],(require,exports,module)=>{
 
 
 let dest = '//cdn.bootcdn.net/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js';

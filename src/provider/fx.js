@@ -1,10 +1,10 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5r/fx",[],(require,exports,module)=>{
+define("provider/fx",[],(require,exports,module)=>{
 
 
 let dest = '//cdn.jsdelivr.net/npm/function-plot/dist/function-plot.js';

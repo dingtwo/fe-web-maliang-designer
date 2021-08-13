@@ -1,10 +1,10 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5r/underscore",[],(require,exports,module)=>{
+define("provider/underscore",[],(require,exports,module)=>{
 
 
 let dest = '//cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js';

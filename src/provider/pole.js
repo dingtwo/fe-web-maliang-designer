@@ -1,16 +1,16 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5r/pole",["5c"],(require,exports,module)=>{
+define("provider/pole",["magix5"],(require,exports,module)=>{
 
 
 /**
  * 撑杆插件
  */
-let magix_1 = require("5c");
+let magix_1 = require("magix5");
 let { State, node } = magix_1;
 let ownerView;
 let togglePole = e => {
@@ -24,12 +24,12 @@ let togglePole = e => {
     if (e.show) {
         ps.display = 'block';
         State.set({
-            'l8': 1
+            '@:{global#stage.prevent.actions~rs}': 1
         });
     }
     if (e.hide) {
         State.set({
-            'l8': 0
+            '@:{global#stage.prevent.actions~rs}': 0
         });
         let before = o.scrollTop;
         ps.display = 'none';
@@ -41,15 +41,15 @@ let togglePole = e => {
     }
 };
 module.exports= {
-    'l2'(view) {
+    '@:{pole#setup~rs}'(view) {
         ownerView = view;
-        State.on('mq', togglePole);
+        State.on('@:{event#stage.toggle.scroll~rs}', togglePole);
     },
-    'l3'() {
+    '@:{pole#teardown~rs}'() {
         ownerView = null;
-        State.off('mq', togglePole);
+        State.off('@:{event#stage.toggle.scroll~rs}', togglePole);
     },
-    'l4': togglePole
+    '@:{pole#update~rs}': togglePole
 };
 
 });

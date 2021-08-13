@@ -1,16 +1,16 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("61/data-coltable/consts",[],(require,exports,module)=>{
+define("elements/data-coltable/consts",[],(require,exports,module)=>{
 
 
 module.exports= {
-    '_p4': 120,
-    '_p5': 200,
-    '_p6': 100,
+    '@:{default.cell.width~rs}': 120,
+    '@:{default.empty.width~rs}': 200,
+    '@:{loading.tip.height~rs}': 100,
 };
 
 });

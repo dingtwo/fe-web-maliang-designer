@@ -1,10 +1,10 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5r/barcode",[],(require,exports,module)=>{
+define("provider/barcode",[],(require,exports,module)=>{
 
 
 let dest = '//cdn.jsdelivr.net/npm/jsbarcode@3.11.4/dist/JsBarcode.all.js';
@@ -12,7 +12,7 @@ let loadingList = [];
 let state = 1;
 let rejectMsg = 'can not load barcode library';
 module.exports= {
-    '_nL': [{ value: 'CODE128', text: 'CODE128' },
+    '@:{types~rs}': [{ value: 'CODE128', text: 'CODE128' },
         { value: 'CODE128A', text: 'CODE128A' },
         { value: 'CODE128B', text: 'CODE128B' },
         { value: 'CODE128C', text: 'CODE128C' },
@@ -34,7 +34,7 @@ module.exports= {
         { value: 'codabar', text: 'codabar' },
         { value: 'pharmacode', text: 'pharmacode' },
         { value: 'GenericBarcode', text: 'GenericBarcode' }],
-    '_pA'() {
+    '@:{load.library~rs}'() {
         return new Promise((resolve, reject) => {
             if (state & 2) {
                 if (window.JsBarcode) {

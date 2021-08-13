@@ -1,14 +1,14 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5n/index",["5c","./7f"],(require,exports,module)=>{
+define("i18n/index",["magix5","./zh-cn"],(require,exports,module)=>{
 
 
-let magix_1 = require("5c");
-let zh_cn_1 = require("./7f");
+let magix_1 = require("magix5");
+let zh_cn_1 = require("./zh-cn");
 let I18n = {
     'zh-cn': zh_cn_1,
     zh: zh_cn_1

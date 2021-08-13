@@ -1,31 +1,31 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5j/6s/v-operate",["5c","../../5b/5e","../../5r/cell","../6t/coperate"],(require,exports,module)=>{
-let $quick_mF_static_text;
-let $quick_mG_static_text;
-let $quick_mK_static_text;
-let $quick_mI_static_text;
-let $quick_mJ_static_text;
-let $quick_nF_0_static_attr={'class': 'rd-mX rd-mZ rd-nf rd-ni',};
+define("gallery/mx-box/v-operate",["magix5","../../designer/const","../../provider/cell","../mx-table/coperate"],(require,exports,module)=>{
+let $quick_fG_static_text;
+let $quick_fH_static_text;
+let $quick_fL_static_text;
+let $quick_fJ_static_text;
+let $quick_fK_static_text;
+let $quick_gG_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-flex-wrap-wrap rd-_assets_index_less_-justify-content-space-between',};
 /*
     author:https://github.com/xinglie
 */
 
 
-let magix_1 = require("5c");
-let const_1 = require("../../5b/5e");
-let cell_1 = require("../../5r/cell");
-require("../6t/coperate");
+let magix_1 = require("magix5");
+let const_1 = require("../../designer/const");
+let cell_1 = require("../../provider/cell");
+require("../mx-table/coperate");
 let { View, dispatch, mix } = magix_1;
 let { max } = Math;
 let toUnits = ['height', 'borderLeftWidth', 'borderTopWidth', 'borderRightWidth', 'borderBottomWidth'];
 let getCellProps = () => {
     let initialCell = {
-        height: cell_1["_qc"],
+        height: cell_1["@:{default.width~rs}"],
         borderLeftTopRadius: 0,
         borderRightTopRadius: 0,
         borderLeftBottomRadius: 0,
@@ -44,13 +44,13 @@ let getCellProps = () => {
         borderBottomColor: '#000000'
     };
     for (let e of toUnits) {
-        initialCell[e] = const_1['l3'](initialCell[e]);
+        initialCell[e] = const_1['@:{const#to.unit~rs}'](initialCell[e]);
     }
     return initialCell;
 };
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	disabled,
 	i18n,
@@ -60,9 +60,10 @@ let $temp_var,$vnode_0,
 $$_class,
 $vnode_2,
 $vnode_1;
-$vnode_2=[$quick_mF_static_text||($quick_mF_static_text=$createVNode(0,''))];;$$_class='rd-l3 rd-nX rd-p8 rd-nk rd-m5';if(disabled){;$$_class+=' rd-p9';};$vnode_1=[$createVNode('i',{'title': (i18n('rL')),'mx5-click': ((!disabled))&&($viewId+'_q0({to:\'top\'})'),'class': $$_class,},$vnode_2)];$vnode_2=[$quick_mF_static_text||($quick_mF_static_text=$createVNode(0,''))];;$$_class='rd-l3 rd-nX rd-p8 rd-nk rd-m1 rd-m5';if(disabled){;$$_class+=' rd-p9';};$vnode_1.push($createVNode('i',{'title': (i18n('rM')),'mx5-click': ((!disabled))&&($viewId+'_q0()'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_mG_static_text||($quick_mG_static_text=$createVNode(0,''))];;$$_class='rd-l3 rd-nX rd-p8 rd-nk rd-m0 rd-m5';if(disabled){;$$_class+=' rd-p9';};$vnode_1.push($createVNode('i',{'title': (i18n('rN')),'mx5-click': ((!disabled))&&($viewId+'_qZ({to:\'left\'})'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_mG_static_text||($quick_mG_static_text=$createVNode(0,''))];;$$_class='rd-l3 rd-nX rd-p8 rd-nk rd-m5';if(disabled){;$$_class+=' rd-p9';};$vnode_1.push($createVNode('i',{'title': (i18n('rO')),'mx5-click': ((!disabled))&&($viewId+'_qZ()'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_mK_static_text||($quick_mK_static_text=$createVNode(0,''))];;$$_class='rd-l3 rd-nX rd-p8 rd-nk rd-m5';if(disabled||!canDel){;$$_class+=' rd-p9';};$vnode_1.push($createVNode('i',{'title': (i18n('ry')),'mx5-click': ((!disabled&&canDel))&&($viewId+'_q1()'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_mI_static_text||($quick_mI_static_text=$createVNode(0,''))];;$$_class='rd-l3 rd-nX rd-p8 rd-nk rd-m5 rd-mu';if(disabled||!canMergeTop){;$$_class+=' rd-p9';};$vnode_1.push($createVNode('i',{'title': (i18n('rP')),'mx5-click': ((!disabled&&canMergeTop))&&($viewId+'_q2({to:\'top\'})'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_mI_static_text||($quick_mI_static_text=$createVNode(0,''))];;$$_class='rd-l3 rd-nX rd-p8 rd-nk rd-m5 rd-mt';if(disabled||!canMergeBottom){;$$_class+=' rd-p9';};$vnode_1.push($createVNode('i',{'title': (i18n('rQ')),'mx5-click': ((!disabled&&canMergeBottom))&&($viewId+'_q2()'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_mJ_static_text||($quick_mJ_static_text=$createVNode(0,''))];;$$_class='rd-l3 rd-nX rd-p8 rd-nk rd-m5 rd-mt';if(disabled){;$$_class+=' rd-p9';};$vnode_1.push($createVNode('i',{'title': (i18n('rB')),'mx5-click': ((!disabled))&&($viewId+'_q4()'),'class': $$_class,},$vnode_2));$vnode_0=[$createVNode('div',$quick_nF_0_static_attr,$vnode_1)]; 
+$vnode_2=[$quick_fG_static_text||($quick_fG_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-margin-bottom-4'+($__line=2,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=2,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1=[$createVNode('i',{'title': ($__line=2,$__art='{{=i18n(\'@:{lang#mx-gallery.box.insert.box.top~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.box.insert.box.top~rs}\')%>',(i18n('@:{lang#mx-gallery.box.insert.box.top~rs}'))),'mx5-click': (($temp_var=($__line=2,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-box/v-operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{add.col~rs}({to:\'top\'})'),'class': $$_class,},$vnode_2)];$vnode_2=[$quick_fG_static_text||($quick_fG_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-flipy rd-_assets_index_less_-margin-bottom-4'+($__line=3,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=3,$__art='{{=i18n(\'@:{lang#mx-gallery.box.insert.box.bottom~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.box.insert.box.bottom~rs}\')%>',(i18n('@:{lang#mx-gallery.box.insert.box.bottom~rs}'))),'mx5-click': (($temp_var=($__line=3,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-box/v-operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{add.col~rs}()'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_fH_static_text||($quick_fH_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-flipx rd-_assets_index_less_-margin-bottom-4'+($__line=4,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=4,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=4,$__art='{{=i18n(\'@:{lang#mx-gallery.box.insert.col.left~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.box.insert.col.left~rs}\')%>',(i18n('@:{lang#mx-gallery.box.insert.col.left~rs}'))),'mx5-click': (($temp_var=($__line=4,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-box/v-operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{add.row~rs}({to:\'left\'})'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_fH_static_text||($quick_fH_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-margin-bottom-4'+($__line=5,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=5,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=5,$__art='{{=i18n(\'@:{lang#mx-gallery.box.insert.col.right~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.box.insert.col.right~rs}\')%>',(i18n('@:{lang#mx-gallery.box.insert.col.right~rs}'))),'mx5-click': (($temp_var=($__line=5,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-box/v-operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{add.row~rs}()'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_fL_static_text||($quick_fL_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-margin-bottom-4'+($__line=6,$__art='{{if disabled||!canDel}}','');$__ctrl='<%if(disabled||!canDel){%>';if(disabled||!canDel){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=6,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=6,$__art='{{=i18n(\'@:{lang#mx-gallery.box.delete.box~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.box.delete.box~rs}\')%>',(i18n('@:{lang#mx-gallery.box.delete.box~rs}'))),'mx5-click': (($temp_var=($__line=6,$__art='{{=!disabled&&canDel}}',$__ctrl='<%=!disabled&&canDel%>',!disabled&&canDel),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-box/v-operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{del.cell~rs}()'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_fJ_static_text||($quick_fJ_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-margin-bottom-4 rd-_assets_index_less_-r270'+($__line=7,$__art='{{if disabled||!canMergeTop}}','');$__ctrl='<%if(disabled||!canMergeTop){%>';if(disabled||!canMergeTop){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=7,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=7,$__art='{{=i18n(\'@:{lang#mx-gallery.box.merge.to.top~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.box.merge.to.top~rs}\')%>',(i18n('@:{lang#mx-gallery.box.merge.to.top~rs}'))),'mx5-click': (($temp_var=($__line=7,$__art='{{=!disabled&&canMergeTop}}',$__ctrl='<%=!disabled&&canMergeTop%>',!disabled&&canMergeTop),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-box/v-operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{merge.cell~rs}({to:\'top\'})'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_fJ_static_text||($quick_fJ_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-margin-bottom-4 rd-_assets_index_less_-r90'+($__line=8,$__art='{{if disabled||!canMergeBottom}}','');$__ctrl='<%if(disabled||!canMergeBottom){%>';if(disabled||!canMergeBottom){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=8,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=8,$__art='{{=i18n(\'@:{lang#mx-gallery.box.merge.to.bottom~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.box.merge.to.bottom~rs}\')%>',(i18n('@:{lang#mx-gallery.box.merge.to.bottom~rs}'))),'mx5-click': (($temp_var=($__line=8,$__art='{{=!disabled&&canMergeBottom}}',$__ctrl='<%=!disabled&&canMergeBottom%>',!disabled&&canMergeBottom),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-box/v-operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{merge.cell~rs}()'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_fK_static_text||($quick_fK_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-margin-bottom-4 rd-_assets_index_less_-r90'+($__line=9,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=9,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=9,$__art='{{=i18n(\'@:{lang#mx-gallery.box.split.box~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.box.split.box~rs}\')%>',(i18n('@:{lang#mx-gallery.box.split.box~rs}'))),'mx5-click': (($temp_var=($__line=9,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-box/v-operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{split.cell~rs}()'),'class': $$_class,},$vnode_2));$vnode_0=[$createVNode('div',$quick_gG_0_static_attr,$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-box/v-operate.html'; throw msg; }  } ,
     assign(data) {
         let canDel = true;
         let canMergeTop = true;
@@ -93,14 +94,14 @@ return $createVNode($viewId,0,$vnode_0); } ,
     render() {
         this.digest();
     },
-    '_qZ<click>'(e) {
+    '@:{add.row~rs}<click>'(e) {
         let { to } = e.params;
         let props = this.get('props');
         let { focusRow, rows } = props;
         if (focusRow != -1) {
             let index = to == 'left' ? focusRow : focusRow + 1;
             rows.splice(index, 0, {
-                width: const_1['l3'](cell_1["_qb"]),
+                width: const_1['@:{const#to.unit~rs}'](cell_1["@:{default.height~rs}"]),
                 cols: [mix({
                         elements: []
                     }, getCellProps())]
@@ -112,7 +113,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
             });
         }
     },
-    '_q0<click>'(e) {
+    '@:{add.col~rs}<click>'(e) {
         let { to } = e.params;
         let props = this.get('props');
         let { focusRow, focusCol, rows } = props;
@@ -129,7 +130,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
             });
         }
     },
-    '_q1<click>'() {
+    '@:{del.cell~rs}<click>'() {
         let props = this.get('props');
         let { focusRow, focusCol, rows } = props;
         if (focusRow != -1 &&
@@ -152,7 +153,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
             });
         }
     },
-    '_q2<click>'(e) {
+    '@:{merge.cell~rs}<click>'(e) {
         let { to } = e.params;
         let props = this.get('props');
         let { focusRow, focusCol, rows } = props;
@@ -171,14 +172,14 @@ return $createVNode($viewId,0,$vnode_0); } ,
             });
         }
     },
-    '_q4<click>'() {
+    '@:{split.cell~rs}<click>'() {
         let props = this.get('props');
         let { focusRow, focusCol, rows } = props;
         if (focusRow != -1 &&
             focusCol != -1) {
             let row = rows[focusRow];
             let src = row.cols[focusCol];
-            let halfHeight = max(src.height / 2, const_1['l3'](cell_1["_q3"]));
+            let halfHeight = max(src.height / 2, const_1['@:{const#to.unit~rs}'](cell_1["@:{min.width~rs}"]));
             src.height = halfHeight;
             let destCell = mix({
                 elements: []

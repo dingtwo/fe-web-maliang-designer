@@ -1,61 +1,61 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5b/67",["5c","./5e"],(require,exports,module)=>{
-let $quick_ma_0_static_node;
-let $quick_ma_4_static_node;
-let $quick_ma_1_static_attr={'class': 'rd-m3 rd-m4 rd-mA rd-mX rd-mZ rd-mb rd-mc rd-n9',};
-let $quick_ma_2_static_attr={'class': 'rd-mm',};
-let $quick_ma_3_static_attr={'class': 'rd-mf',};
-let $quick_ma_6_static_attr={'class': 'rd-n_',};
-let $quick_ma_7_static_attr={'class': 'rd-mA rd-mG rd-mQ rd-p_',};
-let $quick_ma_8_static_attr={'class': 'rd-mW rd-my',};
+define("designer/shortcuts",["magix5","./const"],(require,exports,module)=>{
+let $quick_fb_0_static_node;
+let $quick_fb_4_static_node;
+let $quick_fb_1_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-dialog-header rd-_assets_index_less_-dialog-header-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-position-sticky rd-_assets_index_less_-top-0 rd-_assets_index_less_-z-index-8',};
+let $quick_fb_2_static_attr={'class': 'rd-_assets_index_less_-tag-h5',};
+let $quick_fb_3_static_attr={'class': 'rd-_assets_index_less_-dialog-body',};
+let $quick_fb_6_static_attr={'class': 'rd-_assets_index_less_-width-220',};
+let $quick_fb_7_static_attr={'class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-display-inline-block rd-_assets_index_less_-tc rd-_designer_shortcuts_less_-key',};
+let $quick_fb_8_static_attr={'class': 'rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-pl10',};
 
-let magix_1 = require("5c");
-let const_1 = require("./5e");
+let magix_1 = require("magix5");
+let const_1 = require("./const");
 let { applyStyle, View, State, config, Cache } = magix_1;
-applyStyle("rd-l8",".rd-p_{border:1px solid #ccc;border-radius:6px;box-shadow:inset 0 -3px 0 #ccc;color:#666;cursor:default;font-family:-apple-system,BlinkMacSystemFont;margin:2px;min-width:32px;padding:1px 10px 3px}.rd-pa{padding-left:14px}.rd-pb{background:#fafafa}.rd-pc{padding:5px 0}.rd-pd{background-color:#e6e6e6;border-radius:2px;margin:1px 4px;padding:2px}");
+applyStyle("rd-_designer_shortcuts_less_","\n.rd-_designer_shortcuts_less_-key {\npadding:1px 10px 3px;\nborder-radius:6px;\nborder:solid 1px #ccc;\nbox-shadow:inset 0 -3px 0 #ccc;\ncolor:#666;\nmargin:2px;\ncursor:default;\nfont-family:-apple-system, BlinkMacSystemFont;\nmin-width:32px;\n}\n.rd-_designer_shortcuts_less_-padding-left-14 {\npadding-left:14px;\n}\n.rd-_designer_shortcuts_less_-odd {\nbackground:#fafafa;\n}\n.rd-_designer_shortcuts_less_-line {\npadding:5px 0;\n}\n.rd-_designer_shortcuts_less_-keys-group {\nmargin:1px 4px;\npadding:2px;\nbackground-color:#e6e6e6;\nborder-radius:2px;\n}\n");
 let isMac = navigator.userAgent.toLowerCase().includes('macintosh');
 /**
  * 把修改按键转成图形(mac系统)或英文描述(其它系统)
  */
 let modifiersToGlyphs = {
-    'l2': isMac ? '⌦' : 'Delete',
-    'l3': isMac ? '⌫' : 'Backspace',
-    'l4': '⌘',
-    'l5': isMac ? '⌃' : 'Ctrl',
-    'l6': isMac ? '⇧' : 'Shift',
-    'l7': isMac ? '⌥' : 'Alt',
-    'l8': isMac ? '⇥' : 'Tab',
-    'l9': '↑',
-    'm_': '→',
-    'ma': '↓',
-    'mb': '←',
-    'mc': '+',
-    'md': '-',
-    'me': isMac ? '⎋' : 'Esc'
+    '@:{keystroke#delete~rs}': isMac ? '⌦' : 'Delete',
+    '@:{keystroke#backspace~rs}': isMac ? '⌫' : 'Backspace',
+    '@:{keystroke#command~rs}': '⌘',
+    '@:{keystroke#ctrl~rs}': isMac ? '⌃' : 'Ctrl',
+    '@:{keystroke#shift~rs}': isMac ? '⇧' : 'Shift',
+    '@:{keystroke#alt~rs}': isMac ? '⌥' : 'Alt',
+    '@:{keystroke#tab~rs}': isMac ? '⇥' : 'Tab',
+    '@:{keystroke#top.arrow~rs}': '↑',
+    '@:{keystroke#right.arrow~rs}': '→',
+    '@:{keystroke#bottom.arrow~rs}': '↓',
+    '@:{keystroke#left.arrow~rs}': '←',
+    '@:{keystroke#plus~rs}': '+',
+    '@:{keystroke#minus~rs}': '-',
+    '@:{keystroke#escape~rs}': isMac ? '⎋' : 'Esc'
 };
 /**
  * 翻译修改按键
  */
 let modifiersToTitle = {
-    'me': 'Escape',
-    'l2': 'Delete',
-    'l3': 'Backspace',
-    'l4': 'Command',
-    'l5': isMac ? 'Control' : 'Ctrl',
-    'l6': 'Shift',
-    'l7': isMac ? 'Option' : 'Alt',
-    'l8': 'Tab',
-    'l9': '上箭头',
-    'm_': '右箭头',
-    'ma': '下箭头',
-    'mb': '左箭头',
-    'mc': '加号',
-    'md': '减号'
+    '@:{keystroke#escape~rs}': 'Escape',
+    '@:{keystroke#delete~rs}': 'Delete',
+    '@:{keystroke#backspace~rs}': 'Backspace',
+    '@:{keystroke#command~rs}': 'Command',
+    '@:{keystroke#ctrl~rs}': isMac ? 'Control' : 'Ctrl',
+    '@:{keystroke#shift~rs}': 'Shift',
+    '@:{keystroke#alt~rs}': isMac ? 'Option' : 'Alt',
+    '@:{keystroke#tab~rs}': 'Tab',
+    '@:{keystroke#top.arrow~rs}': '上箭头',
+    '@:{keystroke#right.arrow~rs}': '右箭头',
+    '@:{keystroke#bottom.arrow~rs}': '下箭头',
+    '@:{keystroke#left.arrow~rs}': '左箭头',
+    '@:{keystroke#plus~rs}': '加号',
+    '@:{keystroke#minus~rs}': '减号'
 };
 let modKey = key => modifiersToGlyphs[key] || key;
 let numReg = /^\d+$/;
@@ -101,175 +101,175 @@ let modTitle = keys => {
     return translated;
 };
 let toCurrentUnit = src => {
-    let unit = State.get('l4');
-    return const_1['mH'](unit) * src + unit;
+    let unit = State.get('@:{global#stage.unit~rs}');
+    return const_1['@:{const#unit.step~rs}'](unit) * src + unit;
 };
 let list = [{
-        'l2': [['me']],
-        'l3': '取消元素选中或关闭弹窗(弹窗需允许快捷键关闭)'
+        '@:{ks#keys~rs}': [['@:{keystroke#escape~rs}']],
+        '@:{ks#desc~rs}': '取消元素选中或关闭弹窗(弹窗需允许快捷键关闭)'
     }, {
-        'l2': [['l3'], ['l2']],
-        'l3': '删除选中的元素'
+        '@:{ks#keys~rs}': [['@:{keystroke#backspace~rs}'], ['@:{keystroke#delete~rs}']],
+        '@:{ks#desc~rs}': '删除选中的元素'
     }, {
-        'l2': (isMac ? [['l4', 'Z']] : []).concat([['l5', 'Z']]),
-        'l3': '撤销操作'
+        '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', 'Z']] : []).concat([['@:{keystroke#ctrl~rs}', 'Z']]),
+        '@:{ks#desc~rs}': '撤销操作'
     }, {
-        'l2': (isMac ? [['l4', 'l6', 'Z'], ['l4', 'Y']] : []).concat([['l5', 'l6', 'Z'], ['l5', 'Y']]),
-        'l3': '重做操作'
+        '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', '@:{keystroke#shift~rs}', 'Z'], ['@:{keystroke#command~rs}', 'Y']] : []).concat([['@:{keystroke#ctrl~rs}', '@:{keystroke#shift~rs}', 'Z'], ['@:{keystroke#ctrl~rs}', 'Y']]),
+        '@:{ks#desc~rs}': '重做操作'
     }, {
-        'l2': [['l8']],
-        'l3': '按z轴从大到小选择编辑区中的元素'
+        '@:{ks#keys~rs}': [['@:{keystroke#tab~rs}']],
+        '@:{ks#desc~rs}': '按z轴从大到小选择编辑区中的元素'
     }, {
-        'l2': [['l6', 'l8']],
-        'l3': '按z轴从小到大选择编辑区中的元素'
+        '@:{ks#keys~rs}': [['@:{keystroke#shift~rs}', '@:{keystroke#tab~rs}']],
+        '@:{ks#desc~rs}': '按z轴从小到大选择编辑区中的元素'
     }, {
-        'l2': [['l7']],
-        'l3': '拖动对齐开启或关闭的情况下，按下在拖动过程中可临时关闭或打开拖动对齐和尺寸拖动修改吸附功能。'
+        '@:{ks#keys~rs}': [['@:{keystroke#alt~rs}']],
+        '@:{ks#desc~rs}': '拖动对齐开启或关闭的情况下，按下在拖动过程中可临时关闭或打开拖动对齐和尺寸拖动修改吸附功能。'
     }, {
-        'l2': [['l6']],
-        'l3': '拖动改变元素尺寸的情况下，拖拐角的修改点时，按下可等比改变宽高'
+        '@:{ks#keys~rs}': [['@:{keystroke#shift~rs}']],
+        '@:{ks#desc~rs}': '拖动改变元素尺寸的情况下，拖拐角的修改点时，按下可等比改变宽高'
     }, {
-        'l2': [['mb']],
-        'l4': 1,
-        'l3': () => `按下后编辑区选中的元素或辅助线向左移动${toCurrentUnit(const_1['l9'])}`
+        '@:{ks#keys~rs}': [['@:{keystroke#left.arrow~rs}']],
+        '@:{ks#dest.is.fn~rs}': 1,
+        '@:{ks#desc~rs}': () => `按下后编辑区选中的元素或辅助线向左移动${toCurrentUnit(const_1['@:{const#keyboard.move.step~rs}'])}`
     }, {
-        'l2': [['l6', 'mb']],
-        'l4': 1,
-        'l3': () => `按下后编辑区选中的元素或辅助线向左移动${toCurrentUnit(const_1['l8'])}`
+        '@:{ks#keys~rs}': [['@:{keystroke#shift~rs}', '@:{keystroke#left.arrow~rs}']],
+        '@:{ks#dest.is.fn~rs}': 1,
+        '@:{ks#desc~rs}': () => `按下后编辑区选中的元素或辅助线向左移动${toCurrentUnit(const_1['@:{const#keyboard.with.shift.move.step~rs}'])}`
     }, {
-        'l2': [['l9']],
-        'l4': 1,
-        'l3': () => `按下后编辑区选中的元素或辅助线向上移动${toCurrentUnit(const_1['l9'])}`
+        '@:{ks#keys~rs}': [['@:{keystroke#top.arrow~rs}']],
+        '@:{ks#dest.is.fn~rs}': 1,
+        '@:{ks#desc~rs}': () => `按下后编辑区选中的元素或辅助线向上移动${toCurrentUnit(const_1['@:{const#keyboard.move.step~rs}'])}`
     }, {
-        'l2': [['l6', 'l9']],
-        'l4': 1,
-        'l3': () => `按下后编辑区选中的元素或辅助线向上移动${toCurrentUnit(const_1['l8'])}`
+        '@:{ks#keys~rs}': [['@:{keystroke#shift~rs}', '@:{keystroke#top.arrow~rs}']],
+        '@:{ks#dest.is.fn~rs}': 1,
+        '@:{ks#desc~rs}': () => `按下后编辑区选中的元素或辅助线向上移动${toCurrentUnit(const_1['@:{const#keyboard.with.shift.move.step~rs}'])}`
     }, {
-        'l2': [['m_']],
-        'l4': 1,
-        'l3': () => `按下后编辑区选中的元素或辅助线向右移动${toCurrentUnit(const_1['l9'])}`
+        '@:{ks#keys~rs}': [['@:{keystroke#right.arrow~rs}']],
+        '@:{ks#dest.is.fn~rs}': 1,
+        '@:{ks#desc~rs}': () => `按下后编辑区选中的元素或辅助线向右移动${toCurrentUnit(const_1['@:{const#keyboard.move.step~rs}'])}`
     }, {
-        'l2': [['l6', 'm_']],
-        'l4': 1,
-        'l3': () => `按下后编辑区选中的元素或辅助线向右移动${toCurrentUnit(const_1['l8'])}`
+        '@:{ks#keys~rs}': [['@:{keystroke#shift~rs}', '@:{keystroke#right.arrow~rs}']],
+        '@:{ks#dest.is.fn~rs}': 1,
+        '@:{ks#desc~rs}': () => `按下后编辑区选中的元素或辅助线向右移动${toCurrentUnit(const_1['@:{const#keyboard.with.shift.move.step~rs}'])}`
     }, {
-        'l2': [['ma']],
-        'l4': 1,
-        'l3': () => `按下后编辑区选中的元素或辅助线向下移动${toCurrentUnit(const_1['l9'])}`
+        '@:{ks#keys~rs}': [['@:{keystroke#bottom.arrow~rs}']],
+        '@:{ks#dest.is.fn~rs}': 1,
+        '@:{ks#desc~rs}': () => `按下后编辑区选中的元素或辅助线向下移动${toCurrentUnit(const_1['@:{const#keyboard.move.step~rs}'])}`
     }, {
-        'l2': [['l6', 'ma']],
-        'l4': 1,
-        'l3': () => `按下后编辑区选中的元素或辅助线向下移动${toCurrentUnit(const_1['l8'])}`
+        '@:{ks#keys~rs}': [['@:{keystroke#shift~rs}', '@:{keystroke#bottom.arrow~rs}']],
+        '@:{ks#dest.is.fn~rs}': 1,
+        '@:{ks#desc~rs}': () => `按下后编辑区选中的元素或辅助线向下移动${toCurrentUnit(const_1['@:{const#keyboard.with.shift.move.step~rs}'])}`
     }, {
-        'l2': (isMac ? [['l4', 'mb'], ['l4', 'l9']] : []).concat([['l5', 'mb'], ['l5', 'l9']]),
-        'l3': `只有一个元素选中且支持旋转的情况下，每次按下减少${const_1['mv']}度`
+        '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', '@:{keystroke#left.arrow~rs}'], ['@:{keystroke#command~rs}', '@:{keystroke#top.arrow~rs}']] : []).concat([['@:{keystroke#ctrl~rs}', '@:{keystroke#left.arrow~rs}'], ['@:{keystroke#ctrl~rs}', '@:{keystroke#top.arrow~rs}']]),
+        '@:{ks#desc~rs}': `只有一个元素选中且支持旋转的情况下，每次按下减少${const_1['@:{const#keyboard.rotate.step~rs}']}度`
     }, {
-        'l2': (isMac ? [['l4', 'l6', 'mb'], ['l4', 'l6', 'l9']] : []).concat([['l5', 'l6', 'mb'], ['l5', 'l6', 'l9']]),
-        'l3': `只有一个元素选中且支持旋转的情况下，每次按下减少${const_1['mw']}度`
+        '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', '@:{keystroke#shift~rs}', '@:{keystroke#left.arrow~rs}'], ['@:{keystroke#command~rs}', '@:{keystroke#shift~rs}', '@:{keystroke#top.arrow~rs}']] : []).concat([['@:{keystroke#ctrl~rs}', '@:{keystroke#shift~rs}', '@:{keystroke#left.arrow~rs}'], ['@:{keystroke#ctrl~rs}', '@:{keystroke#shift~rs}', '@:{keystroke#top.arrow~rs}']]),
+        '@:{ks#desc~rs}': `只有一个元素选中且支持旋转的情况下，每次按下减少${const_1['@:{const#keyboard.with.shift.rotate.step~rs}']}度`
     }, {
-        'l2': (isMac ? [['l4', 'm_'], ['l4', 'ma']] : []).concat([['l5', 'm_'], ['l5', 'ma']]),
-        'l3': `只有一个元素选中且支持旋转的情况下，每次按下增加${const_1['mv']}度`
+        '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', '@:{keystroke#right.arrow~rs}'], ['@:{keystroke#command~rs}', '@:{keystroke#bottom.arrow~rs}']] : []).concat([['@:{keystroke#ctrl~rs}', '@:{keystroke#right.arrow~rs}'], ['@:{keystroke#ctrl~rs}', '@:{keystroke#bottom.arrow~rs}']]),
+        '@:{ks#desc~rs}': `只有一个元素选中且支持旋转的情况下，每次按下增加${const_1['@:{const#keyboard.rotate.step~rs}']}度`
     }, {
-        'l2': (isMac ? [['l4', 'l6', 'm_'], ['l4', 'l6', 'ma']] : []).concat([['l5', 'l6', 'm_'], ['l5', 'l6', 'ma']]),
-        'l3': `只有一个元素选中且支持旋转的情况下，每次按下增加${const_1['mw']}度`
+        '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', '@:{keystroke#shift~rs}', '@:{keystroke#right.arrow~rs}'], ['@:{keystroke#command~rs}', '@:{keystroke#shift~rs}', '@:{keystroke#bottom.arrow~rs}']] : []).concat([['@:{keystroke#ctrl~rs}', '@:{keystroke#shift~rs}', '@:{keystroke#right.arrow~rs}'], ['@:{keystroke#ctrl~rs}', '@:{keystroke#shift~rs}', '@:{keystroke#bottom.arrow~rs}']]),
+        '@:{ks#desc~rs}': `只有一个元素选中且支持旋转的情况下，每次按下增加${const_1['@:{const#keyboard.with.shift.rotate.step~rs}']}度`
     }, {
-        'l2': (isMac ? [['l4', 'A']] : []).concat([['l5', 'A']]),
-        'l3': '全选编辑区中的元素或当容器元素格子激活时，全选格子内的元素'
+        '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', 'A']] : []).concat([['@:{keystroke#ctrl~rs}', 'A']]),
+        '@:{ks#desc~rs}': '全选编辑区中的元素或当容器元素格子激活时，全选格子内的元素'
     }, {
-        'l2': (isMac ? [['l4', 'l6', 'I']] : []).concat([['l5', 'l6', 'I']]),
-        'l3': '反选编辑区中的元素或当容器元素格子内元素选中时，反选格子内其它元素'
+        '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', '@:{keystroke#shift~rs}', 'I']] : []).concat([['@:{keystroke#ctrl~rs}', '@:{keystroke#shift~rs}', 'I']]),
+        '@:{ks#desc~rs}': '反选编辑区中的元素或当容器元素格子内元素选中时，反选格子内其它元素'
     }, {
-        'l2': (isMac ? [['l4', 'C']] : []).concat([['l5', 'C']]),
-        'l3': '复制编辑区中选中的元素'
+        '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', 'C']] : []).concat([['@:{keystroke#ctrl~rs}', 'C']]),
+        '@:{ks#desc~rs}': '复制编辑区中选中的元素'
     }, {
-        'l2': (isMac ? [['l4', 'X']] : []).concat([['l5', 'X']]),
-        'l3': '剪切编辑区中选中的元素'
+        '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', 'X']] : []).concat([['@:{keystroke#ctrl~rs}', 'X']]),
+        '@:{ks#desc~rs}': '剪切编辑区中选中的元素'
     }, {
-        'l2': (isMac ? [['l4', 'V']] : []).concat([['l5', 'V']]),
-        'l3': '粘贴复制或剪切的元素'
+        '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', 'V']] : []).concat([['@:{keystroke#ctrl~rs}', 'V']]),
+        '@:{ks#desc~rs}': '粘贴复制或剪切的元素'
     }, {
-        'l2': (isMac ? [['l4', 'D']] : []).concat([['l5', 'D']]),
-        'l3': '克隆选中的元素'
+        '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', 'D']] : []).concat([['@:{keystroke#ctrl~rs}', 'D']]),
+        '@:{ks#desc~rs}': '克隆选中的元素'
     }];
-let canShowContent = const_1['mc'], hasSaveUrl = config('saveContentUrl');
+let canShowContent = const_1['@:{const#save.show.stage.content~rs}'], hasSaveUrl = config('saveContentUrl');
 if (canShowContent ||
     hasSaveUrl) {
     list.push({
-        'l2': (isMac ? [['l4', 'S']] : []).concat([['l5', 'S']]),
-        'l3': (hasSaveUrl ? '保存内容' : '显示设计区内容对话框')
+        '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', 'S']] : []).concat([['@:{keystroke#ctrl~rs}', 'S']]),
+        '@:{ks#desc~rs}': (hasSaveUrl ? '保存内容' : '显示设计区内容对话框')
     });
     if (canShowContent &&
         hasSaveUrl) {
         list.push({
-            'l2': (isMac ? [['l4', 'l6', 'S']] : []).concat([['l5', 'l6', 'S']]),
-            'l3': '显示设计区内容对话框'
+            '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', '@:{keystroke#shift~rs}', 'S']] : []).concat([['@:{keystroke#ctrl~rs}', '@:{keystroke#shift~rs}', 'S']]),
+            '@:{ks#desc~rs}': '显示设计区内容对话框'
         });
     }
 }
 list.push({
-    'l2': (isMac ? [['l4', 'P']] : []).concat([['l5', 'P']]),
-    'l3': '显示打印页面或对话框'
+    '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', 'P']] : []).concat([['@:{keystroke#ctrl~rs}', 'P']]),
+    '@:{ks#desc~rs}': '显示打印页面或对话框'
 }, {
-    'l2': [['H']],
-    'l3': '显示或隐藏辅助线'
+    '@:{ks#keys~rs}': [['H']],
+    '@:{ks#desc~rs}': '显示或隐藏辅助线'
 }, {
-    'l2': [['l7', 'H']],
-    'l3': '清除辅助线'
+    '@:{ks#keys~rs}': [['@:{keystroke#alt~rs}', 'H']],
+    '@:{ks#desc~rs}': '清除辅助线'
 }, {
-    'l2': (isMac ? [['l4', 'H']] : []).concat([['l5', 'H']]),
-    'l3': '隐藏或显示标尺'
+    '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', 'H']] : []).concat([['@:{keystroke#ctrl~rs}', 'H']]),
+    '@:{ks#desc~rs}': '隐藏或显示标尺'
 }, {
-    'l2': (isMac ? [['l4', 'G']] : []).concat([['l5', 'G'], ['l6', 'G']]),
-    'l3': '组合或取消组合选中的元素'
+    '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', 'G']] : []).concat([['@:{keystroke#ctrl~rs}', 'G'], ['@:{keystroke#shift~rs}', 'G']]),
+    '@:{ks#desc~rs}': '组合或取消组合选中的元素'
 }, {
-    'l2': (isMac ? [['l4', 'L']] : []).concat([['l5', 'L'], ['l6', 'L']]),
-    'l3': '编辑锁定或取消编辑锁定选中的元素'
+    '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', 'L']] : []).concat([['@:{keystroke#ctrl~rs}', 'L'], ['@:{keystroke#shift~rs}', 'L']]),
+    '@:{ks#desc~rs}': '编辑锁定或取消编辑锁定选中的元素'
 }, {
-    'l2': [['T']],
-    'l3': '把选中的元素调整到最顶层级'
+    '@:{ks#keys~rs}': [['T']],
+    '@:{ks#desc~rs}': '把选中的元素调整到最顶层级'
 }, {
-    'l2': [['U']],
-    'l3': '把选中的元素向上调整一个层级'
+    '@:{ks#keys~rs}': [['U']],
+    '@:{ks#desc~rs}': '把选中的元素向上调整一个层级'
 }, {
-    'l2': [['D']],
-    'l3': '把选中的元素向下调整一个层级'
+    '@:{ks#keys~rs}': [['D']],
+    '@:{ks#desc~rs}': '把选中的元素向下调整一个层级'
 }, {
-    'l2': [['B']],
-    'l3': '把选中的元素调整到最底层级'
+    '@:{ks#keys~rs}': [['B']],
+    '@:{ks#desc~rs}': '把选中的元素调整到最底层级'
 }, {
-    'l2': [['F']],
-    'l3': '容器格子中的元素选中状态下，按下可聚焦为当前格子'
+    '@:{ks#keys~rs}': [['F']],
+    '@:{ks#desc~rs}': '容器格子中的元素选中状态下，按下可聚焦为当前格子'
 }, {
-    'l2': [['C']],
-    'l3': '清除编辑区内容'
+    '@:{ks#keys~rs}': [['C']],
+    '@:{ks#desc~rs}': '清除编辑区内容'
 }, {
-    'l2': [['N']],
-    'l3': '新建编辑区内容'
+    '@:{ks#keys~rs}': [['N']],
+    '@:{ks#desc~rs}': '新建编辑区内容'
 }, {
-    'l2': [['l6', '/']],
-    'l3': '显示快捷键大全对话框'
+    '@:{ks#keys~rs}': [['@:{keystroke#shift~rs}', '/']],
+    '@:{ks#desc~rs}': '显示快捷键大全对话框'
 }, {
-    'l2': (isMac ? [['l4', 'mc']] : []).concat([['l5', 'mc']]),
-    'l3': '放大编辑区'
+    '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', '@:{keystroke#plus~rs}']] : []).concat([['@:{keystroke#ctrl~rs}', '@:{keystroke#plus~rs}']]),
+    '@:{ks#desc~rs}': '放大编辑区'
 }, {
-    'l2': (isMac ? [['l4', 'md']] : []).concat([['l5', 'md']]),
-    'l3': '缩小编辑区'
+    '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', '@:{keystroke#minus~rs}']] : []).concat([['@:{keystroke#ctrl~rs}', '@:{keystroke#minus~rs}']]),
+    '@:{ks#desc~rs}': '缩小编辑区'
 }, {
-    'l2': (isMac ? [['l4', '0']] : []).concat([['l5', '0']]),
-    'l3': '恢复编辑区到未缩放状态'
+    '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}', '0']] : []).concat([['@:{keystroke#ctrl~rs}', '0']]),
+    '@:{ks#desc~rs}': '恢复编辑区到未缩放状态'
 }, {
-    'l2': (isMac ? [['l4']] : []).concat([['l6'], ['l5']]),
-    'l3': '拉框或点击选择元素的情况下，按下可叠加或取消之前已经选择的元素'
+    '@:{ks#keys~rs}': (isMac ? [['@:{keystroke#command~rs}']] : []).concat([['@:{keystroke#shift~rs}'], ['@:{keystroke#ctrl~rs}']]),
+    '@:{ks#desc~rs}': '拉框或点击选择元素的情况下，按下可叠加或取消之前已经选择的元素'
 }, {
-    'l2': [['1']],
-    'l3': '打开或关闭元素面板'
+    '@:{ks#keys~rs}': [['1']],
+    '@:{ks#desc~rs}': '打开或关闭元素面板'
 }, {
-    'l2': [['l6', '1']],
-    'l3': '打开或折叠元素面板的内容'
+    '@:{ks#keys~rs}': [['@:{keystroke#shift~rs}', '1']],
+    '@:{ks#desc~rs}': '打开或折叠元素面板的内容'
 });
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	i18n,
 	help,
@@ -284,101 +284,102 @@ $vnode_4,
 $vnode_3,
 $text;
 
-if($quick_ma_0_static_node){
-$vnode_0=[$quick_ma_0_static_node];
+if($quick_fb_0_static_node){
+$vnode_0=[$quick_fb_0_static_node];
 }else{
-$vnode_0=[$quick_ma_0_static_node=$createVNode('div',{'_': 'i!','class': 'rd-m3 rd-md rd-n8',})];
+$vnode_0=[$quick_fb_0_static_node=$createVNode('div',{'_': 'dM','class': 'rd-_assets_index_less_-dialog-header-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-7',})];
 }
-$vnode_2=[$createVNode(0,(i18n('nu')))];$vnode_1=[$createVNode('h5',$quick_ma_2_static_attr,$vnode_2)];$vnode_2=[$createVNode(0,(i18n('mk'))+'设计方案及元素详细介绍')];$vnode_1.push($createVNode('a',{'class': 'rd-mo rd-mx','href': (help),'rel': 'noopener noreferrer','target': '_blank',},$vnode_2));$vnode_0.push($createVNode('div',$quick_ma_1_static_attr,$vnode_1));$vnode_1=[];
-if($quick_ma_4_static_node){
-$vnode_1.push($quick_ma_4_static_node);
+$vnode_2=[$createVNode(0,($__line=3,$__art='{{=i18n(\'@:{lang#all.shortcuts~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#all.shortcuts~rs}\')%>',(i18n('@:{lang#all.shortcuts~rs}'))))];$vnode_1=[$createVNode('h5',$quick_fb_2_static_attr,$vnode_2)];$vnode_2=[$createVNode(0,($__line=4,$__art='{{=i18n(\'@:{lang#site.name~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#site.name~rs}\')%>',(i18n('@:{lang#site.name~rs}')))+'设计方案及元素详细介绍')];$vnode_1.push($createVNode('a',{'class': 'rd-_assets_index_less_-ml10 rd-_assets_index_less_-tag-a','href': ($__line=4,$__art='{{=help}}',$__ctrl='<%=help%>',(help)),'rel': 'noopener noreferrer','target': '_blank',},$vnode_2));$vnode_0.push($createVNode('div',$quick_fb_1_static_attr,$vnode_1));$vnode_1=[];
+if($quick_fb_4_static_node){
+$vnode_1.push($quick_fb_4_static_node);
 }else{
-$vnode_2=[$createVNode(0,'<div class="rd-nW rd-n_ rd-pa">按键</div><div class="rd-mW rd-my rd-nW">功能</div>',1)];$vnode_1.push($quick_ma_4_static_node=$createVNode('div',{'_': 'i@','class': 'rd-mX rd-mZ rd-pb rd-pc',},$vnode_2));
+$vnode_2=[$createVNode(0,'<div class="rd-_assets_index_less_-fontsize-16 rd-_assets_index_less_-width-220 rd-_designer_shortcuts_less_-padding-left-14">按键</div><div class="rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-fontsize-16 rd-_assets_index_less_-pl10">功能</div>',1)];$vnode_1.push($quick_fb_4_static_node=$createVNode('div',{'_': 'dN','class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_designer_shortcuts_less_-line rd-_designer_shortcuts_less_-odd',},$vnode_2));
 }
-
-for(let $q_c_mksfdwwwfr=list.length,sti=0;sti<$q_c_mksfdwwwfr;sti+=1){
+$__line=11;$__art="{{each list as st sti}}";$__ctrl="for(let $q_c_qaeuhdococ=list.length,sti=0;sti<$q_c_qaeuhdococ;sti++){let st=list[sti];";
+for(let $q_c_qaeuhdococ=list.length,sti=0;sti<$q_c_qaeuhdococ;sti+=1){
 let st=list[sti];
-$vnode_3=[];
-for(let $q_a_fwyhnqbrtv=st['l2'],$q_c_uuidhcvtau=$q_a_fwyhnqbrtv.length,$q_lc_loypd=$q_c_uuidhcvtau-1,ki=0;ki<$q_c_uuidhcvtau;ki+=1){
-let keys=$q_a_fwyhnqbrtv[ki];let last=ki===$q_lc_loypd;
-$vnode_4=[];
-for(let $q_c_qhrxvxa=keys.length,$q_key_jpfdltoz=0;$q_key_jpfdltoz<$q_c_qhrxvxa;$q_key_jpfdltoz+=1){
-let k=keys[$q_key_jpfdltoz];
-$vnode_5=[$createVNode(0,(modKey(k)))];$vnode_4.push($createVNode('kbd',$quick_ma_7_static_attr,$vnode_5));
-}$vnode_3.push($createVNode('div',{'class': 'rd-mQ rd-pd','title': (modTitle(keys)),},$vnode_4));
-}$vnode_2=[$createVNode('div',$quick_ma_6_static_attr,$vnode_3)];$text='';if(st['l4']){;$text+=' '+(st['l3']())+' ';}else{;$text+=' '+(st['l3'])+' ';};$vnode_3=[$createVNode(0,$text)];$vnode_2.push($createVNode('div',$quick_ma_8_static_attr,$vnode_3));;$$_class='rd-mX rd-mZ rd-pc';if(sti%2){;$$_class+=' rd-pb';};$vnode_1.push($createVNode('div',{'class': $$_class,},$vnode_2));
-}$vnode_0.push($createVNode('div',$quick_ma_3_static_attr,$vnode_1)); 
+$vnode_3=[];$__line=14;$__art="{{each st[\\'@:{ks#keys~rs}\\'] as keys ki last}}";$__ctrl="for(let $q_a_fxhukara=st['@:{ks#keys~rs}'],$q_c_mkejbbio=$q_a_fxhukara.length,$q_lc_agupudv=$q_c_mkejbbio-1,ki=0;ki<$q_c_mkejbbio;ki++){let keys=$q_a_fxhukara[ki];let last=ki===$q_lc_agupudv;";
+for(let $q_a_fxhukara=st['@:{ks#keys~rs}'],$q_c_mkejbbio=$q_a_fxhukara.length,$q_lc_agupudv=$q_c_mkejbbio-1,ki=0;ki<$q_c_mkejbbio;ki+=1){
+let keys=$q_a_fxhukara[ki];let last=ki===$q_lc_agupudv;
+$vnode_4=[];$__line=16;$__art="{{each keys as k}}";$__ctrl="for(let $q_c_vdkdy=keys.length,$q_key_wojsvubl=0;$q_key_wojsvubl<$q_c_vdkdy;$q_key_wojsvubl++){let k=keys[$q_key_wojsvubl];";
+for(let $q_c_vdkdy=keys.length,$q_key_wojsvubl=0;$q_key_wojsvubl<$q_c_vdkdy;$q_key_wojsvubl+=1){
+let k=keys[$q_key_wojsvubl];
+$vnode_5=[$createVNode(0,($__line=17,$__art='{{=modKey(k)}}',$__ctrl='<%=modKey(k)%>',(modKey(k))))];$vnode_4.push($createVNode('kbd',$quick_fb_7_static_attr,$vnode_5));
+}$vnode_3.push($createVNode('div',{'class': 'rd-_assets_index_less_-display-inline-block rd-_designer_shortcuts_less_-keys-group','title': ($__line=15,$__art='{{=modTitle(keys)}}',$__ctrl='<%=modTitle(keys)%>',(modTitle(keys))),},$vnode_4));
+}$vnode_2=[$createVNode('div',$quick_fb_6_static_attr,$vnode_3)];$text=($__line=23,$__art='{{if st[\'@:{ks#dest.is.fn~rs}\']}}','');$__ctrl='<%if(st[\'@:{ks#dest.is.fn~rs}\']){%>';if(st['@:{ks#dest.is.fn~rs}']){;$text+=' '+($__line=24,$__art='{{=st[\'@:{ks#desc~rs}\']()}}',$__ctrl='<%=st[\'@:{ks#desc~rs}\']()%>',(st['@:{ks#desc~rs}']()))+' '+($__line=25,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$text+=' '+($__line=26,$__art='{{=st[\'@:{ks#desc~rs}\']}}',$__ctrl='<%=st[\'@:{ks#desc~rs}\']%>',(st['@:{ks#desc~rs}']))+' '+($__line=27,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_3=[$createVNode(0,$text)];$vnode_2.push($createVNode('div',$quick_fb_8_static_attr,$vnode_3));;$$_class='rd-_assets_index_less_-flex rd-_assets_index_less_-align-items-center rd-_designer_shortcuts_less_-line'+($__line=12,$__art='{{if sti%2}}','');$__ctrl='<%if(sti%2){%>';if(sti%2){;$$_class+=' rd-_designer_shortcuts_less_-odd'+($__line=12,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'class': $$_class,},$vnode_2));
+}$vnode_0.push($createVNode('div',$quick_fb_3_static_attr,$vnode_1)); 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/shortcuts.html'; throw msg; }  } ,
     init() {
         //以下根据不同的环境，比如迷你模式，来决定如何生成数字键的帮助提示
-        if (!list['_n1']) {
-            list['_n1'] = 1;
-            let mini = State.get('l9');
+        if (!list['@:{pad.number.panels~rs}']) {
+            list['@:{pad.number.panels~rs}'] = 1;
+            let mini = State.get('@:{global#provider.of.use.mini~rs}');
             let startNumber = 2, n;
             if (!mini) {
                 n = startNumber + '';
                 list.push({
-                    'l2': [[n]],
-                    'l3': `打开或关闭概览图面板`
+                    '@:{ks#keys~rs}': [[n]],
+                    '@:{ks#desc~rs}': `打开或关闭概览图面板`
                 }, {
-                    'l2': [['l6', n]],
-                    'l3': '打开或折叠概览图面板的内容'
+                    '@:{ks#keys~rs}': [['@:{keystroke#shift~rs}', n]],
+                    '@:{ks#desc~rs}': '打开或折叠概览图面板的内容'
                 });
                 startNumber++;
             }
             n = startNumber + '';
             list.push({
-                'l2': [[n]],
-                'l3': `打开或关闭属性面板`
+                '@:{ks#keys~rs}': [[n]],
+                '@:{ks#desc~rs}': `打开或关闭属性面板`
             }, {
-                'l2': [['l6', n]],
-                'l3': '打开或折叠属性面板的内容'
+                '@:{ks#keys~rs}': [['@:{keystroke#shift~rs}', n]],
+                '@:{ks#desc~rs}': '打开或折叠属性面板的内容'
             });
             startNumber++;
             if (config('getFieldUrl')) {
                 n = startNumber + '';
                 list.push({
-                    'l2': [[n]],
-                    'l3': `打开或关闭数据源面板`
+                    '@:{ks#keys~rs}': [[n]],
+                    '@:{ks#desc~rs}': `打开或关闭数据源面板`
                 }, {
-                    'l2': [['l6', n]],
-                    'l3': '打开或折叠数据源面板的内容'
+                    '@:{ks#keys~rs}': [['@:{keystroke#shift~rs}', n]],
+                    '@:{ks#desc~rs}': '打开或折叠数据源面板的内容'
                 });
                 startNumber++;
             }
             if (!mini) {
                 n = startNumber + '';
                 list.push({
-                    'l2': [[n]],
-                    'l3': `打开或关闭历史记录面板`
+                    '@:{ks#keys~rs}': [[n]],
+                    '@:{ks#desc~rs}': `打开或关闭历史记录面板`
                 }, {
-                    'l2': [['l6', n]],
-                    'l3': '打开或折叠历史记录面板的内容'
+                    '@:{ks#keys~rs}': [['@:{keystroke#shift~rs}', n]],
+                    '@:{ks#desc~rs}': '打开或折叠历史记录面板的内容'
                 });
                 startNumber++;
                 n = startNumber + '';
                 list.push({
-                    'l2': [[n]],
-                    'l3': `打开或关闭性能面板`
+                    '@:{ks#keys~rs}': [[n]],
+                    '@:{ks#desc~rs}': `打开或关闭性能面板`
                 }, {
-                    'l2': [['l6', n]],
-                    'l3': '打开或折叠性能面板的内容'
+                    '@:{ks#keys~rs}': [['@:{keystroke#shift~rs}', n]],
+                    '@:{ks#desc~rs}': '打开或折叠性能面板的内容'
                 });
                 startNumber++;
             }
             n = startNumber + '';
             list.push({
-                'l2': [[n]],
-                'l3': `打开或关闭资源面板`
+                '@:{ks#keys~rs}': [[n]],
+                '@:{ks#desc~rs}': `打开或关闭资源面板`
             }, {
-                'l2': [['l6', n]],
-                'l3': '打开或折叠资源面板的内容'
+                '@:{ks#keys~rs}': [['@:{keystroke#shift~rs}', n]],
+                '@:{ks#desc~rs}': '打开或折叠资源面板的内容'
             });
             startNumber++;
             list.push({
-                'l2': [['l6', 'Z']],
-                'l3': `打开或关闭所有可拖动的面板，即数字1-${startNumber - 1}键对应的面板`
+                '@:{ks#keys~rs}': [['@:{keystroke#shift~rs}', 'Z']],
+                '@:{ks#desc~rs}': `打开或关闭所有可拖动的面板，即数字1-${startNumber - 1}键对应的面板`
             });
         }
     },
@@ -391,13 +392,13 @@ return $createVNode($viewId,0,$vnode_0); } ,
         });
     }
 }).static({
-    '_mA'(owner) {
-        if (!this['_mS']) {
-            this['_mS'] = 1;
-            owner.mxDialog("5b/67", {
+    '@:{show~rs}'(owner) {
+        if (!this['@:{shown~rs}']) {
+            this['@:{shown~rs}'] = 1;
+            owner.mxDialog("designer/shortcuts", {
                 width: 1000
             }).whenClose(() => {
-                delete this['_mS'];
+                delete this['@:{shown~rs}'];
             });
         }
     }

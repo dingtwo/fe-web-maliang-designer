@@ -1,13 +1,13 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5r/format",["5c"],(require,exports,module)=>{
+define("provider/format",["magix5"],(require,exports,module)=>{
 
 
-let magix_1 = require("5c");
+let magix_1 = require("magix5");
 let decimals = [{
         title: '无小数',
         format: '.',
@@ -288,10 +288,10 @@ let fnCache = new magix_1.Cache();
 let fnReg = /\bfunction\s*\(([\s\S]*?)\)\s*\{([\s\S]*?)\}\s*;?\s*$/i;
 let numberExtractReg = /^(\^[\s\S]+?)?(?:#([,'%‰]))?(#{3,4})?(\.#{0,4})?([\s\S]*?)$/;
 module.exports= {
-    '_sx'() {
+    '@:{get.groups~rs}'() {
         return groups;
     },
-    '_ss'(format) {
+    '@:{get.parts~rs}'(format) {
         if (format == null) {
             format = '';
         }
@@ -337,8 +337,8 @@ module.exports= {
         }
         return [];
     },
-    '_sw'(format) {
-        let parts = this['_ss'](format);
+    '@:{translate~rs}'(format) {
+        let parts = this['@:{get.parts~rs}'](format);
         let text = '';
         for (let g of groups) {
             if (g.id == parts[0]) {
@@ -363,9 +363,9 @@ module.exports= {
         }
         return text;
     },
-    '_pM'(format, data, ...exts) {
+    '@:{format~rs}'(format, data, ...exts) {
         format += '';
-        let parts = this['_ss'](format);
+        let parts = this['@:{get.parts~rs}'](format);
         let prefix = parts.shift();
         if (prefix == 'number' ||
             prefix == 'currency') {

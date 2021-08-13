@@ -1,10 +1,10 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("7j/7m/pager",[],(require,exports,module)=>{
+define("printer/unit/pager",[],(require,exports,module)=>{
 
 
 /**

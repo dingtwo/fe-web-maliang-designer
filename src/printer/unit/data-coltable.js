@@ -1,13 +1,13 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("7j/7m/data-coltable",["../../61/data-coltable/consts"],(require,exports,module)=>{
+define("printer/unit/data-coltable",["../../elements/data-coltable/consts"],(require,exports,module)=>{
 
 
-let consts_1 = require("../../61/data-coltable/consts");
+let consts_1 = require("../../elements/data-coltable/consts");
 let { floor } = Math;
 /**
  * 填充列表格元素数据
@@ -33,10 +33,10 @@ module.exports= (dataCenter, table, fromIndex, page, footerHeight, newPage, inHo
         }
         props.width = width + 1;
         //从数据中心拿数据
-        let { '_nU': err, '_nV': list } = dataCenter[bind.url];
+        let { '@:{error~rs}': err, '@:{data~rs}': list } = dataCenter[bind.url];
         if (err) {
             //如果数据出错，则设置出错皐　信息
-            props.loadingHeight = consts_1["_p6"];
+            props.loadingHeight = consts_1["@:{loading.tip.height~rs}"];
             bind._tip = err;
         }
         else {
@@ -59,7 +59,7 @@ module.exports= (dataCenter, table, fromIndex, page, footerHeight, newPage, inHo
     }
     else {
         //如果未绑定数据，则宽度默认为初始宽度
-        props.width = consts_1["_p5"];
+        props.width = consts_1["@:{default.empty.width~rs}"];
     }
     //返回-1表明分页完毕
     return -1;

@@ -30,7 +30,7 @@ let minify = options => {
 
 
 
-let combineTool = require('../magix-composer/index');
+let combineTool = require('@csx/magix-composer');
 let removeESModuleReg = /"use strict";\s*Object\.defineProperty\(exports,\s*"__esModule",\s*\{\s*value:\s*true\s*\}\);?/g;
 
 let exportsReg = /\bexports\.default\s*=/g;

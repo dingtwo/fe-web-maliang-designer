@@ -1,21 +1,21 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5j/6t/style",["5c","../../5b/5e"],(require,exports,module)=>{
-let $quick_mv_static_text;
-let $quick_nc_static_text;
-let $quick_nd_static_text;
+define("gallery/mx-table/style",["magix5","../../designer/const"],(require,exports,module)=>{
+let $quick_fw_static_text;
+let $quick_gd_static_text;
+let $quick_ge_static_text;
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("5c");
-let const_1 = require("../../5b/5e");
+let magix_1 = require("magix5");
+let const_1 = require("../../designer/const");
 let { View, dispatch, applyStyle, isNumber } = magix_1;
-applyStyle("rd-mw",".rd-rL{-ms-scroll-chaining:none;border:1px solid #e6e6e6;border-radius:2px;height:140px;overflow-y:scroll;overscroll-behavior:contain}.rd-rL:hover{border-color:#ccc}.rd-rM{zoom:.5;margin:8px;opacity:.8;width:116px}.rd-rM:hover{opacity:1}.rd-rN{background:#f5f5f5;cursor:not-allowed}.rd-rN:hover{border-color:#e6e6e6}.rd-rN .rd-rM{cursor:not-allowed;opacity:.4}.rd-rN .rd-rM:hover{opacity:.4}");
+applyStyle("rd-_gallery_mx-table_style_less_","\n.rd-_gallery_mx-table_style_less_-root {\nborder:solid 1px #e6e6e6;\nborder-radius:2px;\noverflow-y:scroll;\nheight:140px;\n-ms-scroll-chaining:none;\noverscroll-behavior:contain;\n}\n.rd-_gallery_mx-table_style_less_-root:hover {\nborder-color:#ccc;\n}\n.rd-_gallery_mx-table_style_less_-table-item {\nwidth:116px;\nmargin:8px;\nopacity:0.8;\nzoom:0.5;\n}\n.rd-_gallery_mx-table_style_less_-table-item:hover {\nopacity:1;\n}\n.rd-_gallery_mx-table_style_less_-notallowed {\nbackground:#f5f5f5;\ncursor:not-allowed;\n}\n.rd-_gallery_mx-table_style_less_-notallowed:hover {\nborder-color:#e6e6e6;\n}\n.rd-_gallery_mx-table_style_less_-notallowed .rd-_gallery_mx-table_style_less_-table-item {\ncursor:not-allowed;\nopacity:0.4;\n}\n.rd-_gallery_mx-table_style_less_-notallowed .rd-_gallery_mx-table_style_less_-table-item:hover {\nopacity:0.4;\n}\n");
 let Skins = [{
         cellAlign: 'center',
         theadFontsize: 16,
@@ -91,7 +91,7 @@ let Skins = [{
     }];
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	disabled,
 	skins,}=$dataFromView,
@@ -103,13 +103,14 @@ $vnode_4,
 $vnode_3,
 $vnode_2,
 $vnode_1;
-$vnode_1=[];
-for(let $q_c_rsupzjsz=skins.length,$q_key_vlobpbtpp=0;$q_key_vlobpbtpp<$q_c_rsupzjsz;$q_key_vlobpbtpp+=1){
-let s=skins[$q_key_vlobpbtpp];
-$vnode_6=[$quick_mv_static_text||($quick_mv_static_text=$createVNode(0,'表头'))];$vnode_5=[$createVNode('div',{'class': 'rd-nr','style': 'height:'+(s.theadRowHeight)+'px;line-height:'+(s.theadRowHeight)+'px;font-size:'+(s.theadFontsize)+'px;color:'+(s.theadForecolor),},$vnode_6)];;$$_style='border-color:'+(s.bordercolor)+';text-align:'+(s.cellAlign)+';';if(s.theadRowBackground){;$$_style+='background:'+(s.theadRowBackground);};$vnode_4=[$createVNode('th',{'class': 'rd-nn rd-np','style': $$_style,},$vnode_5)];$vnode_3=[$createVNode('tr',0,$vnode_4)];$vnode_2=[$createVNode('thead',0,$vnode_3)];$vnode_6=[$quick_nc_static_text||($quick_nc_static_text=$createVNode(0,'奇数行'))];$vnode_5=[$createVNode('div',{'class': 'rd-nr','style': 'height:'+(s.tbodyRowHeight)+'px;line-height:'+(s.tbodyRowHeight)+'px;font-size:'+(s.tbodyFontsize)+'px;color:'+(s.tbodyForecolor),},$vnode_6)];$vnode_4=[$createVNode('td',{'class': 'rd-nn rd-np','style': 'text-align:'+(s.cellAlign)+';border-color:'+(s.bordercolor)+';background:'+(s.tbodyOddRowBackground),},$vnode_5)];$vnode_3=[$createVNode('tr',0,$vnode_4)];$vnode_6=[$quick_nd_static_text||($quick_nd_static_text=$createVNode(0,'偶数行'))];$vnode_5=[$createVNode('div',{'class': 'rd-nr','style': 'height:'+(s.tbodyRowHeight)+'px;line-height:'+(s.tbodyRowHeight)+'px;font-size:'+(s.tbodyFontsize)+'px;color:'+(s.tbodyForecolor),},$vnode_6)];$vnode_4=[$createVNode('td',{'class': 'rd-nn rd-np','style': 'text-align:'+(s.cellAlign)+';border-color:'+(s.bordercolor)+';background:'+(s.tbodyEvenRowBackground),},$vnode_5)];$vnode_3.push($createVNode('tr',0,$vnode_4));$vnode_2.push($createVNode('tbody',0,$vnode_3));$vnode_1.push($createVNode('table',{'class': 'rd-mH rd-nk rd-no rd-rM','style': 'border-color:'+(s.bordercolor),'mx5-click': ((!disabled))&&($viewId+'_tA({skin:\''+$keyOf($refData,s,'i!.'+($q_key_vlobpbtpp)+'.i@')+'\'})'),},$vnode_2));
-};$$_class='rd-rL rd-mA rd-mS rd-mT';if(disabled){;$$_class+=' rd-rN';};$vnode_0=[$createVNode('div',{'class': $$_class,},$vnode_1)]; 
+$vnode_1=[];$__line=2;$__art="{{each skins as s}}";$__ctrl="for(let $q_c_agacicvnp=skins.length,$q_key_vbzpikplpr=0;$q_key_vbzpikplpr<$q_c_agacicvnp;$q_key_vbzpikplpr++){let s=skins[$q_key_vbzpikplpr];";
+for(let $q_c_agacicvnp=skins.length,$q_key_vbzpikplpr=0;$q_key_vbzpikplpr<$q_c_agacicvnp;$q_key_vbzpikplpr+=1){
+let s=skins[$q_key_vbzpikplpr];
+$vnode_6=[$quick_fw_static_text||($quick_fw_static_text=$createVNode(0,'表头'))];$vnode_5=[$createVNode('div',{'class': 'rd-_assets_index_less_-text-pre-hidden','style': 'height:'+($__line=7,$__art='{{=s.theadRowHeight}}',$__ctrl='<%=s.theadRowHeight%>',(s.theadRowHeight))+'px;line-height:'+($__line=7,$__art='{{=s.theadRowHeight}}',$__ctrl='<%=s.theadRowHeight%>',(s.theadRowHeight))+'px;font-size:'+($__line=7,$__art='{{=s.theadFontsize}}',$__ctrl='<%=s.theadFontsize%>',(s.theadFontsize))+'px;color:'+($__line=7,$__art='{{=s.theadForecolor}}',$__ctrl='<%=s.theadForecolor%>',(s.theadForecolor)),},$vnode_6)];;$$_style='border-color:'+($__line=6,$__art='{{=s.bordercolor}}',$__ctrl='<%=s.bordercolor%>',(s.bordercolor))+';text-align:'+($__line=6,$__art='{{=s.cellAlign}}',$__ctrl='<%=s.cellAlign%>',(s.cellAlign))+';'+($__line=6,$__art='{{if s.theadRowBackground}}','');$__ctrl='<%if(s.theadRowBackground){%>';if(s.theadRowBackground){;$$_style+='background:'+($__line=6,$__art='{{=s.theadRowBackground}}',$__ctrl='<%=s.theadRowBackground%>',(s.theadRowBackground))+($__line=6,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_4=[$createVNode('th',{'class': 'rd-_assets_index_less_-table-cell rd-_assets_index_less_-word-break-break-all','style': $$_style,},$vnode_5)];$vnode_3=[$createVNode('tr',0,$vnode_4)];$vnode_2=[$createVNode('thead',0,$vnode_3)];$vnode_6=[$quick_gd_static_text||($quick_gd_static_text=$createVNode(0,'奇数行'))];$vnode_5=[$createVNode('div',{'class': 'rd-_assets_index_less_-text-pre-hidden','style': 'height:'+($__line=14,$__art='{{=s.tbodyRowHeight}}',$__ctrl='<%=s.tbodyRowHeight%>',(s.tbodyRowHeight))+'px;line-height:'+($__line=14,$__art='{{=s.tbodyRowHeight}}',$__ctrl='<%=s.tbodyRowHeight%>',(s.tbodyRowHeight))+'px;font-size:'+($__line=14,$__art='{{=s.tbodyFontsize}}',$__ctrl='<%=s.tbodyFontsize%>',(s.tbodyFontsize))+'px;color:'+($__line=14,$__art='{{=s.tbodyForecolor}}',$__ctrl='<%=s.tbodyForecolor%>',(s.tbodyForecolor)),},$vnode_6)];$vnode_4=[$createVNode('td',{'class': 'rd-_assets_index_less_-table-cell rd-_assets_index_less_-word-break-break-all','style': 'text-align:'+($__line=13,$__art='{{=s.cellAlign}}',$__ctrl='<%=s.cellAlign%>',(s.cellAlign))+';border-color:'+($__line=13,$__art='{{=s.bordercolor}}',$__ctrl='<%=s.bordercolor%>',(s.bordercolor))+';background:'+($__line=13,$__art='{{=s.tbodyOddRowBackground}}',$__ctrl='<%=s.tbodyOddRowBackground%>',(s.tbodyOddRowBackground)),},$vnode_5)];$vnode_3=[$createVNode('tr',0,$vnode_4)];$vnode_6=[$quick_ge_static_text||($quick_ge_static_text=$createVNode(0,'偶数行'))];$vnode_5=[$createVNode('div',{'class': 'rd-_assets_index_less_-text-pre-hidden','style': 'height:'+($__line=21,$__art='{{=s.tbodyRowHeight}}',$__ctrl='<%=s.tbodyRowHeight%>',(s.tbodyRowHeight))+'px;line-height:'+($__line=21,$__art='{{=s.tbodyRowHeight}}',$__ctrl='<%=s.tbodyRowHeight%>',(s.tbodyRowHeight))+'px;font-size:'+($__line=21,$__art='{{=s.tbodyFontsize}}',$__ctrl='<%=s.tbodyFontsize%>',(s.tbodyFontsize))+'px;color:'+($__line=21,$__art='{{=s.tbodyForecolor}}',$__ctrl='<%=s.tbodyForecolor%>',(s.tbodyForecolor)),},$vnode_6)];$vnode_4=[$createVNode('td',{'class': 'rd-_assets_index_less_-table-cell rd-_assets_index_less_-word-break-break-all','style': 'text-align:'+($__line=20,$__art='{{=s.cellAlign}}',$__ctrl='<%=s.cellAlign%>',(s.cellAlign))+';border-color:'+($__line=20,$__art='{{=s.bordercolor}}',$__ctrl='<%=s.bordercolor%>',(s.bordercolor))+';background:'+($__line=20,$__art='{{=s.tbodyEvenRowBackground}}',$__ctrl='<%=s.tbodyEvenRowBackground%>',(s.tbodyEvenRowBackground)),},$vnode_5)];$vnode_3.push($createVNode('tr',0,$vnode_4));$vnode_2.push($createVNode('tbody',0,$vnode_3));$vnode_1.push($createVNode('table',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-fl rd-_assets_index_less_-table rd-_gallery_mx-table_style_less_-table-item','style': 'border-color:'+($__line=3,$__art='{{=s.bordercolor}}',$__ctrl='<%=s.bordercolor%>',(s.bordercolor)),'mx5-click': (($temp_var=($__line=3,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-table/style.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{set.skin~rs}({skin:\''+($__line=3,$__art='{{#s}}',$__ctrl='<%#s,\'auto_key_skins.\'+($q_key_vbzpikplpr)+\'.s\'%>',$keyOf($refData,s,'auto_key_skins.'+($q_key_vbzpikplpr)+'.s'))+'\'})'),},$vnode_2));
+};$$_class='rd-_gallery_mx-table_style_less_-root rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-scrollable rd-_assets_index_less_-thin-scrollable'+($__line=1,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-table_style_less_-notallowed'+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0=[$createVNode('div',{'class': $$_class,},$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-table/style.html'; throw msg; }  } ,
     assign(data) {
         this.set(data);
     },
@@ -118,13 +119,13 @@ return $createVNode($viewId,0,$vnode_0); } ,
             skins: Skins
         });
     },
-    '_tA<click>'(e) {
+    '@:{set.skin~rs}<click>'(e) {
         let { skin } = e.params;
         let cloned = {};
         for (let p in skin) {
             let src = skin[p];
             if (isNumber(src)) {
-                src = const_1['l3'](src);
+                src = const_1['@:{const#to.unit~rs}'](src);
             }
             cloned[p] = src;
         }

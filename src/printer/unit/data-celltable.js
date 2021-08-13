@@ -1,10 +1,10 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("7j/7m/data-celltable",[],(require,exports,module)=>{
+define("printer/unit/data-celltable",[],(require,exports,module)=>{
 
 
 /**
@@ -19,7 +19,7 @@ module.exports= (dataCenter, resLoader, table, fromIndex, newPage, inHod) => {
     let { props } = table;
     let { bind, rows } = props;
     if (bind.url) {
-        let { '_nU': err, '_nV': list } = dataCenter[bind.url];
+        let { '@:{error~rs}': err, '@:{data~rs}': list } = dataCenter[bind.url];
         if (err) {
             bind._tip = err;
         }
@@ -29,7 +29,7 @@ module.exports= (dataCenter, resLoader, table, fromIndex, newPage, inHod) => {
                 for (let col of row.cols) {
                     if (col.type == 'qrcode' ||
                         col.type == 'barcode') {
-                        resLoader['_rF']('_u5', col.type);
+                        resLoader['@:{add~rs}']('@:{provider~rs}', col.type);
                     }
                     //  else if (col.type == 'image' &&
                     //     col.bindKey) {

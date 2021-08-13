@@ -1,16 +1,16 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5r/fs",["../5j/5q/index","../5n/index","5c","../5r/filesaver"],(require,exports,module)=>{
+define("provider/fs",["../gallery/mx-toast/index","../i18n/index","magix5","../provider/filesaver"],(require,exports,module)=>{
 
 
-let index_1 = require("../5j/5q/index");
-let index_2 = require("../5n/index");
-let magix_1 = require("5c");
-let filesaver_1 = require("../5r/filesaver");
+let index_1 = require("../gallery/mx-toast/index");
+let index_2 = require("../i18n/index");
+let magix_1 = require("magix5");
+let filesaver_1 = require("../provider/filesaver");
 let { guid } = magix_1;
 //检测是否支持最新的对话框读取和保存文件
 let transitional = !window.showOpenFilePicker && !window.showSaveFilePicker;
@@ -39,17 +39,17 @@ module.exports= {
      * 是否使用原生的文件上传
      * @returns
      */
-    '_mV'() {
+    '@:{native.file.element~rs}'() {
         return transitional;
     },
     /**
      * 环境准备，如果不支持最新的对话框的形式，则采用`saveAs`插件进行保存
      */
-    async '_mM'() {
+    async '@:{prepare~rs}'() {
         if (transitional &&
             !window.saveAs) {
             try {
-                index_1.show(index_2('qo'));
+                index_1.show(index_2('@:{lang#elements.loading.library.tip~rs}'));
                 await filesaver_1();
             }
             catch (ex) {
@@ -65,7 +65,7 @@ module.exports= {
      * @param nativeInputElement <input type="file"/>节点对象
      * @returns
      */
-    async '_mL'(nativeInputElement) {
+    async '@:{read.file~rs}'(nativeInputElement) {
         if (transitional) {
             let file = nativeInputElement.files[0];
             if (file) {
@@ -94,7 +94,7 @@ module.exports= {
      * @param name 文件名称
      * @param content 文件内容
      */
-    async '_mN'(name, content, accept = ['.rd']) {
+    async '@:{save.file~rs}'(name, content, accept = ['.rd']) {
         if (transitional) {
             let b = new Blob([content]);
             saveAs(b, name);

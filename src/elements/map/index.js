@@ -1,21 +1,21 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("61/map/index",["5c","../../5r/map"],(require,exports,module)=>{
+define("elements/map/index",["magix5","../../provider/map"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("5c");
-let map_1 = require("../../5r/map");
+let magix_1 = require("magix5");
+let map_1 = require("../../provider/map");
 let { View, mark, node } = magix_1;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	props,
 	unit,
@@ -24,12 +24,13 @@ let $temp_var,$vnode_0,
 $text,
 $vnode_2,
 $vnode_1;
-$text='';if(error){;$text+=' '+(error)+' ';}else{;$text+=' '+(i18n('qo'))+' ';};$vnode_2=[$createVNode(0,$text)];$vnode_1=[$createVNode('div',{'id': 'tip_'+$viewId,'class': 'rd-mC rd-mX rd-mZ rd-ng',},$vnode_2)];$vnode_0=[$createVNode('div',{'class': 'rd-mJ rd-n5','style': 'left:'+(props.x)+(unit)+';top:'+(props.y)+(unit)+';height:'+(props.height)+(unit)+';opacity:'+(props.alpha)+';width:'+(props.width)+(unit),'id': 'map_'+$viewId,},$vnode_1)]; 
+$text=($__line=3,$__art='{{if error}}','');$__ctrl='<%if(error){%>';if(error){;$text+=' '+($__line=4,$__art='{{=error}}',$__ctrl='<%=error%>',(error))+' '+($__line=5,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$text+=' '+($__line=6,$__art='{{=i18n(\'@:{lang#elements.loading.library.tip~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#elements.loading.library.tip~rs}\')%>',(i18n('@:{lang#elements.loading.library.tip~rs}')))+' '+($__line=7,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2=[$createVNode(0,$text)];$vnode_1=[$createVNode('div',{'id': 'tip_'+($__line=2,$__art='{{=$viewId}}','')+$viewId,'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-hp100 rd-_assets_index_less_-justify-content-center',},$vnode_2)];$vnode_0=[$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-z-index-1','style': 'left:'+($__line=1,$__art='{{=props.x}}',$__ctrl='<%=props.x%>',(props.x))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';top:'+($__line=1,$__art='{{=props.y}}',$__ctrl='<%=props.y%>',(props.y))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=1,$__art='{{=props.height}}',$__ctrl='<%=props.height%>',(props.height))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';opacity:'+($__line=1,$__art='{{=props.alpha}}',$__ctrl='<%=props.alpha%>',(props.alpha))+';width:'+($__line=1,$__art='{{=props.width}}',$__ctrl='<%=props.width%>',(props.width))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit)),'id': 'map_'+($__line=1,$__art='{{=$viewId}}','')+$viewId,},$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:elements/map/index.html'; throw msg; }  } ,
     init() {
         this.on('destroy', () => {
-            let map = this['_qF'];
+            let map = this['@:{map.instance~rs}'];
             if (map) {
                 map.remove();
             }
@@ -39,16 +40,16 @@ return $createVNode($viewId,0,$vnode_0); } ,
         this.set(data);
     },
     async render() {
-        let m = mark(this, '_mh');
+        let m = mark(this, '@:{render~rs}');
         let props = this.get('props');
-        if (this['_qG']) {
+        if (this['@:{exception~rs}']) {
             this.digest({
-                error: this['_qG']
+                error: this['@:{exception~rs}']
             });
         }
         else {
             await this.digest();
-            let map = this['_qF'];
+            let map = this['@:{map.instance~rs}'];
             if (!map) {
                 try {
                     await map_1();
@@ -61,7 +62,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
                             dragging: props.dragging,
                             doubleClickZoom: props.doubleClickZoom
                         });
-                        this['_qF'] = map;
+                        this['@:{map.instance~rs}'] = map;
                         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
                         }).addTo(map);
@@ -71,7 +72,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
                 }
                 catch (ex) {
                     this.digest({
-                        error: this['_qG'] = ex
+                        error: this['@:{exception~rs}'] = ex
                     });
                 }
             }

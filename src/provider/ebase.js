@@ -1,25 +1,25 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5r/ebase",["5c","../5b/5e","../5b/enum","../5b/5o","../5b/63","../5b/65","../5b/5f","../5j/5l/cursor","../5j/5l/tip"],(require,exports,module)=>{
+define("provider/ebase",["magix5","../designer/const","../designer/enum","../designer/history","../designer/stage-align","../designer/stage-generic","../designer/transform","../gallery/mx-pointer/cursor","../gallery/mx-pointer/tip"],(require,exports,module)=>{
 
 "use strict";
 /**
  * svg操作对象
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-let magix_1 = require("5c");
-let const_1 = require("../5b/5e");
-let enum_1 = require("../5b/enum");
-let history_1 = require("../5b/5o");
-let stage_align_1 = require("../5b/63");
-let stage_generic_1 = require("../5b/65");
-let transform_1 = require("../5b/5f");
-let cursor_1 = require("../5j/5l/cursor");
-let tip_1 = require("../5j/5l/tip");
+let magix_1 = require("magix5");
+let const_1 = require("../designer/const");
+let enum_1 = require("../designer/enum");
+let history_1 = require("../designer/history");
+let stage_align_1 = require("../designer/stage-align");
+let stage_generic_1 = require("../designer/stage-generic");
+let transform_1 = require("../designer/transform");
+let cursor_1 = require("../gallery/mx-pointer/cursor");
+let tip_1 = require("../gallery/mx-pointer/tip");
 let { atan2, PI, sin, cos, max, min } = Math;
 let { node, State, has, inside, } = magix_1;
 let { MAX_VALUE } = Number;
@@ -34,9 +34,9 @@ module.exports= {
         //     element.id = guid('fix_');
         // }
         this.set(data);
-        this['_qK']();
+        this['@:{check.status~rs}']();
     },
-    async '_ol'(element) {
+    async '@:{update~rs}'(element) {
         await this.digest({
             element
         });
@@ -46,8 +46,8 @@ module.exports= {
      * @param props svg元素属性
      * @returns 控制点列表
      */
-    '_tk'(props) {
-        if (!props['_tm']) {
+    '@:{get.key.point~rs}'(props) {
+        if (!props['@:{cached.key.points~rs}']) {
             let points = [], index = 1;
             while (true) {
                 let key = 'ctrl' + index++;
@@ -58,17 +58,17 @@ module.exports= {
                     break;
                 }
             }
-            props['_tm'] = points;
+            props['@:{cached.key.points~rs}'] = points;
         }
-        return props['_tm'];
+        return props['@:{cached.key.points~rs}'];
     },
     /**
      * 获取以mod开头的所有修改点
      * @param props svg元素属性
      * @returns 修改点列表
      */
-    '_tt'(props) {
-        if (!props['_vI']) {
+    '@:{get.mod.point~rs}'(props) {
+        if (!props['@:{cached.mod.points~rs}']) {
             let points = [], index = 1;
             while (true) {
                 let key = 'mod' + index++;
@@ -80,21 +80,21 @@ module.exports= {
                     break;
                 }
             }
-            props['_vI'] = points;
+            props['@:{cached.mod.points~rs}'] = points;
         }
-        return props['_vI'];
+        return props['@:{cached.mod.points~rs}'];
     },
-    '_qN<pointerdown>'(e) {
-        e['_mW'] = 1;
+    '@:{start.rotate~rs}<pointerdown>'(e) {
+        e['@:{halt~rs}'] = 1;
         let me = this;
         let element = me.get('element');
         let { props, ctrl } = element;
         let { rotate, x, y, width, height } = props;
-        width = const_1['mM'](width);
-        height = const_1['mM'](height);
-        x = const_1['mM'](x);
-        y = const_1['mM'](y);
-        State.fire('mq', {
+        width = const_1['@:{const#to.px~rs}'](width);
+        height = const_1['@:{const#to.px~rs}'](height);
+        x = const_1['@:{const#to.px~rs}'](x);
+        y = const_1['@:{const#to.px~rs}'](y);
+        State.fire('@:{event#stage.toggle.scroll~rs}', {
             show: 1,
             size: 1
         });
@@ -102,19 +102,19 @@ module.exports= {
             x: x + width / 2,
             y: y + height / 2
         };
-        let pos = transform_1["l9"](me.root, {
+        let pos = transform_1["@:{transform#real.to.nearest.coord~rs}"](me.root, {
             x: e.pageX,
             y: e.pageY,
             f: 1
         });
         let sdeg = atan2(pos.y - c.y, pos.x - c.x) - rotate * PI / 180, moved;
         let eventTarget = e.eventTarget;
-        me['_mz'](e, (evt) => {
+        me['@:{drag.drop~rs}'](e, (evt) => {
             if (!moved) {
-                cursor_1["_mA"](eventTarget);
+                cursor_1["@:{show~rs}"](eventTarget);
             }
             moved = 1;
-            pos = transform_1["l9"](me.root, {
+            pos = transform_1["@:{transform#real.to.nearest.coord~rs}"](me.root, {
                 x: evt.pageX,
                 y: evt.pageY,
                 f: 1
@@ -122,47 +122,47 @@ module.exports= {
             let deg = atan2(pos.y - c.y, pos.x - c.x);
             deg = (deg - sdeg) * 180 / PI;
             props.rotate = (360 + (deg | 0)) % 360;
-            if (ctrl['_m3']) {
-                ctrl['_m3'](props);
+            if (ctrl['@:{update.props~rs}']) {
+                ctrl['@:{update.props~rs}'](props);
             }
             this.digest({
                 element
             });
-            State.fire('l4', {
-                '_nK': {
+            State.fire('@:{event#stage.select.element.props.change~rs}', {
+                '@:{ids~rs}': {
                     [element.id]: 1
                 },
-                '_nL': {
+                '@:{types~rs}': {
                     [element.type]: 1
                 },
-                '_l3': {
-                    '_l6': 1
+                '@:{props~rs}': {
+                    '@:{rotate~rs}': 1
                 }
             });
-            tip_1['_oJ'](`${props.rotate}°`);
-            tip_1['_oM'](evt.pageX, evt.pageY);
+            tip_1['@:{show.text~rs}'](`${props.rotate}°`);
+            tip_1['@:{update.position~rs}'](evt.pageX, evt.pageY);
         }, () => {
             if (moved) {
-                cursor_1["_mB"]();
+                cursor_1["@:{hide~rs}"]();
                 if (rotate != props.rotate) {
-                    history_1["l2"](history_1['mu'], props.ename);
+                    history_1["@:{history#save~rs}"](history_1['@:{history#element.rotated~rs}'], props.ename);
                 }
             }
-            State.fire('mq', {
+            State.fire('@:{event#stage.toggle.scroll~rs}', {
                 hide: 1
             });
-            tip_1['_mB']();
+            tip_1['@:{hide~rs}']();
         });
     },
-    '_qd<pointerdown>'(e) {
-        if (e.button || e['_mW'])
+    '@:{start.resize~rs}<pointerdown>'(e) {
+        if (e.button || e['@:{halt~rs}'])
             return;
-        e['_mW'] = 1;
+        e['@:{halt~rs}'] = 1;
         //https://github.com/a7650/h5-editor/blob/master/src/views/posterEditor/components/dragable/components/vue-draggable-resizable.vue
         let me = this;
         let element = me.get('element');
         let { props, ctrl } = element;
-        State.fire('mq', {
+        State.fire('@:{event#stage.toggle.scroll~rs}', {
             show: 1,
             size: 1
         });
@@ -172,11 +172,11 @@ module.exports= {
         }
         let { params, pageX, pageY, shiftKey: isShiftKeyStillPressed, altKey, eventTarget } = e;
         let { key } = params;
-        let rotatedRect = transform_1['l3'](props);
+        let rotatedRect = transform_1['@:{transform#rotate.rect~rs}'](props);
         let [handY, handX] = key;
-        let useFixIndex = transform_1['mb'](key);
-        let beginFixed = rotatedRect['_n2'][useFixIndex];
-        let scale = State.get('l3');
+        let useFixIndex = transform_1['@:{transform#handle.to.fixed.point~rs}'](key);
+        let beginFixed = rotatedRect['@:{point~rs}'][useFixIndex];
+        let scale = State.get('@:{global#stage.scale~rs}');
         let minWidth = 0, minHeight = 0, maxWidth = MAX_VALUE, maxHeight = MAX_VALUE, findWidth, findHeight;
         for (let p of ctrl.props) {
             if (p.key == 'width') {
@@ -214,17 +214,17 @@ module.exports= {
         let oppsiteHeight = handY == 't' ? -1 : 1;
         let minRatio = max(minWidth / beginWidth, minHeight / beginHeight);
         let maxRatio = min(maxWidth / beginWidth, maxHeight / beginHeight);
-        let syncSize = ctrl['_oG'] & enum_1['mj'];
-        let supportSnapElement = const_1['mn'], alignElements, page = State.get('ma'), snapElement = page.snapElement, altPressed = snapElement ? altKey : !altKey, snapThreshold, maskLeft, maskTop;
+        let syncSize = ctrl['@:{modifier~rs}'] & enum_1['@:{enum#modifier.sync.size~rs}'];
+        let supportSnapElement = const_1['@:{const#page.enable.snap.align.elements~rs}'], alignElements, page = State.get('@:{global#stage.page~rs}'), snapElement = page.snapElement, altPressed = snapElement ? altKey : !altKey, snapThreshold, maskLeft, maskTop;
         if (supportSnapElement) {
             let maskId = this.get('maskId');
-            let { 'l2': allElements } = stage_generic_1['l2']();
-            let find = stage_align_1['l2'](allElements, maskId, element);
-            alignElements = find['l2'];
-            snapThreshold = const_1['mx'] * scale;
+            let { '@:{generic.all#elements~rs}': allElements } = stage_generic_1['@:{generic#get.all.elements.and.map~rs}']();
+            let find = stage_align_1['@:{align#query.align.elements~rs}'](allElements, maskId, element);
+            alignElements = find['@:{align.queried#align.elements.sizes~rs}'];
+            snapThreshold = const_1['@:{const#drag.snap.to.other.element.offset~rs}'] * scale;
             if (maskId) {
-                let maskBound = find['mf'];
-                let rootBound = find['l3'];
+                let maskBound = find['@:{align.queried#mask.bound~rs}'];
+                let rootBound = find['@:{align.queried#root.bound~rs}'];
                 maskLeft = maskBound.x - rootBound.x;
                 maskTop = maskBound.y - rootBound.y;
             }
@@ -235,7 +235,7 @@ module.exports= {
             if (!moveEvent)
                 return;
             if (!moved) {
-                cursor_1["_mA"](eventTarget);
+                cursor_1["@:{show~rs}"](eventTarget);
                 moved = 1;
             }
             let nowPoint = {
@@ -243,14 +243,14 @@ module.exports= {
                 y: moveEvent.pageY
             };
             if (nearsideScrollOffset) {
-                nowPoint.y += nearsideScrollOffset['l2'];
-                nowPoint.x += nearsideScrollOffset['l3'];
+                nowPoint.y += nearsideScrollOffset['@:{interval.move.event#y~rs}'];
+                nowPoint.x += nearsideScrollOffset['@:{interval.move.event#x~rs}'];
             }
-            let angle = transform_1['ma'](nowPoint, beginPoint);
-            let dis = transform_1['mf'](nowPoint, beginPoint);
+            let angle = transform_1['@:{transform#get.point.deg~rs}'](nowPoint, beginPoint);
+            let dis = transform_1['@:{transform#get.point.distance~rs}'](nowPoint, beginPoint);
             let rad = (PI / 180) * (angle - rotate);
-            let diffY = const_1['l3'](sin(rad) * dis);
-            let diffX = const_1['l3'](cos(rad) * dis);
+            let diffY = const_1['@:{const#to.unit~rs}'](sin(rad) * dis);
+            let diffX = const_1['@:{const#to.unit~rs}'](cos(rad) * dis);
             let newWidth = beginWidth + (modifyWidth ? diffX : 0) * oppsiteWidth;
             let newHeight = beginHeight + (modifyHeight ? diffY : 0) * oppsiteHeight;
             if (newWidth < minWidth) {
@@ -310,10 +310,10 @@ module.exports= {
                 newHeight = beginHeight * r;
             }
             if (supportSnapElement) {
-                let snapInfo = stage_align_1['l9'](alignElements, beginFixed, key, rotate, newWidth, newHeight, snapThreshold, minWidth, maxWidth, minHeight, maxHeight, syncFlag, beginWidth, beginHeight, minRatio, maxRatio, altPressed, maskLeft, maskTop);
-                if (snapInfo['_o_']) {
-                    newWidth = snapInfo['_oa'];
-                    newHeight = snapInfo['_ob'];
+                let snapInfo = stage_align_1['@:{align#query.snap.info~rs}'](alignElements, beginFixed, key, rotate, newWidth, newHeight, snapThreshold, minWidth, maxWidth, minHeight, maxHeight, syncFlag, beginWidth, beginHeight, minRatio, maxRatio, altPressed, maskLeft, maskTop);
+                if (snapInfo['@:{snapped~rs}']) {
+                    newWidth = snapInfo['@:{snap.width~rs}'];
+                    newHeight = snapInfo['@:{snap.height~rs}'];
                 }
             }
             if (props.width != newWidth ||
@@ -321,38 +321,38 @@ module.exports= {
                 moved = (newWidth != beginWidth || newHeight != beginHeight) ? 2 : 1;
                 props.width = newWidth;
                 props.height = newHeight;
-                let newRotatedRect = transform_1['l3'](props);
-                let newFixed = newRotatedRect['_n2'][useFixIndex];
+                let newRotatedRect = transform_1['@:{transform#rotate.rect~rs}'](props);
+                let newFixed = newRotatedRect['@:{point~rs}'][useFixIndex];
                 let x = beginFixed.x - newFixed.x;
                 let y = beginFixed.y - newFixed.y;
                 props.x += x;
                 props.y += y;
-                if (ctrl['_m3']) {
-                    ctrl['_m3'](props);
+                if (ctrl['@:{update.props~rs}']) {
+                    ctrl['@:{update.props~rs}'](props);
                 }
                 await me.digest({
                     element
                 });
-                State.fire('l4', {
-                    '_nK': {
+                State.fire('@:{event#stage.select.element.props.change~rs}', {
+                    '@:{ids~rs}': {
                         [element.id]: 1
                     },
-                    '_nL': {
+                    '@:{types~rs}': {
                         [element.type]: 1
                     },
-                    '_l3': {
-                        '_l5': 1
+                    '@:{props~rs}': {
+                        '@:{size~rs}': 1
                     }
                 });
             }
             if (nearsideScrollOffset &&
-                !nearsideScrollOffset['l4']) {
-                nearsideScrollOffset['l4'] = 1;
-                nearsideScrollOffset['l5']();
+                !nearsideScrollOffset['@:{interval.move.event#called~rs}']) {
+                nearsideScrollOffset['@:{interval.move.event#called~rs}'] = 1;
+                nearsideScrollOffset['@:{interval.move.event#ready~rs}']();
             }
-            let tipWidth = transform_1['l5'](newWidth), tipHeight = transform_1['l5'](newHeight), tipMsg = `${tipWidth} x ${tipHeight}`;
-            tip_1['_oJ'](tipMsg);
-            tip_1['_oM'](moveEvent.pageX, moveEvent.pageY);
+            let tipWidth = transform_1['@:{transform#to.show.value~rs}'](newWidth), tipHeight = transform_1['@:{transform#to.show.value~rs}'](newHeight), tipMsg = `${tipWidth} x ${tipHeight}`;
+            tip_1['@:{show.text~rs}'](tipMsg);
+            tip_1['@:{update.position~rs}'](moveEvent.pageX, moveEvent.pageY);
         };
         /**
          * 监听设计器贴边滚动事件
@@ -363,26 +363,26 @@ module.exports= {
             moveCallback();
         };
         let watchKeypress = e => {
-            isShiftKeyStillPressed = e['l6'];
-            altPressed = snapElement ? e['l8'] : !e['l8'];
+            isShiftKeyStillPressed = e['@:{keypress#shift.key~rs}'];
+            altPressed = snapElement ? e['@:{keypress#alt.key~rs}'] : !e['@:{keypress#alt.key~rs}'];
             moveCallback();
         };
-        State.on('ma', watchKeypress);
+        State.on('@:{event#stage.key.press~rs}', watchKeypress);
         //处理贴边滚动
-        State.on('mg', watchIntervalMove);
-        me['_mz'](e, evt => {
-            State.fire('mf', evt);
+        State.on('@:{event#stage.interval.move~rs}', watchIntervalMove);
+        me['@:{drag.drop~rs}'](e, evt => {
+            State.fire('@:{event#drag.element.move~rs}', evt);
             moveEvent = evt;
             moveCallback();
         }, () => {
-            State.off('ma', watchKeypress);
-            State.off('mg', watchIntervalMove);
-            State.fire('mi');
+            State.off('@:{event#stage.key.press~rs}', watchKeypress);
+            State.off('@:{event#stage.interval.move~rs}', watchIntervalMove);
+            State.fire('@:{event#drag.element.stop~rs}');
             if (moved) {
-                cursor_1["_mB"]();
+                cursor_1["@:{hide~rs}"]();
             }
             if (moved == 2) {
-                history_1["l2"](history_1['mx'], props.ename);
+                history_1["@:{history#save~rs}"](history_1['@:{history#element.modified.size~rs}'], props.ename);
             }
             // let rect = Transform["@:{transform#rotate.rect}"](props, props.rotate);
             // console.log(rect);
@@ -403,21 +403,21 @@ module.exports= {
             //         element
             //     });
             // }
-            State.fire('mq', {
+            State.fire('@:{event#stage.toggle.scroll~rs}', {
                 hide: 1
             });
             if (supportSnapElement) {
-                State.fire('l2');
+                State.fire('@:{event#stage.find.snap.element~rs}');
             }
-            tip_1['_mB']();
+            tip_1['@:{hide~rs}']();
         });
     },
-    '_vL<pointerdown>'(e) {
-        e['_mW'] = 1;
+    '@:{drag.svg.key.point~rs}<pointerdown>'(e) {
+        e['@:{halt~rs}'] = 1;
         let me = this;
         let element = me.get('element');
         let { props, ctrl } = element;
-        State.fire('mq', {
+        State.fire('@:{event#stage.toggle.scroll~rs}', {
             show: 1,
             size: 1
         });
@@ -426,197 +426,197 @@ module.exports= {
         let { key } = params;
         let { x, y, width, height, rotate } = props;
         let startX = props[`${key}X`], startY = props[`${key}Y`];
-        width = const_1['mM'](width);
-        height = const_1['mM'](height);
-        x = const_1['mM'](x);
-        y = const_1['mM'](y);
+        width = const_1['@:{const#to.px~rs}'](width);
+        height = const_1['@:{const#to.px~rs}'](height);
+        x = const_1['@:{const#to.px~rs}'](x);
+        y = const_1['@:{const#to.px~rs}'](y);
         rotate = rotate || 0;
         let c = {
             x: x + width / 2,
             y: y + height / 2
         };
-        let scale = State.get('l3');
-        props['_tq'] = key;
+        let scale = State.get('@:{global#stage.scale~rs}');
+        props['@:{focus.ctrl~rs}'] = key;
         this.digest({
             element
         });
-        State.fire('l4', {
-            '_nK': {
+        State.fire('@:{event#stage.select.element.props.change~rs}', {
+            '@:{ids~rs}': {
                 [element.id]: 1
             },
-            '_nL': {
+            '@:{types~rs}': {
                 [element.type]: 1
             },
-            '_l3': {
-                '_vJ': 1
+            '@:{props~rs}': {
+                '@:{focus.kp~rs}': 1
             }
         });
-        let supportSnapElement = const_1['mn'], alignElements, page = State.get('ma'), snapElement = page.snapElement, altPressed = snapElement ? altKey : !altKey, snapThreshold;
+        let supportSnapElement = const_1['@:{const#page.enable.snap.align.elements~rs}'], alignElements, page = State.get('@:{global#stage.page~rs}'), snapElement = page.snapElement, altPressed = snapElement ? altKey : !altKey, snapThreshold;
         if (supportSnapElement) {
-            let { 'l2': allElements } = stage_generic_1['l2']();
-            let find = stage_align_1['l2'](allElements, null, element);
-            alignElements = find['l2'];
-            snapThreshold = const_1['mx'] * scale;
+            let { '@:{generic.all#elements~rs}': allElements } = stage_generic_1['@:{generic#get.all.elements.and.map~rs}']();
+            let find = stage_align_1['@:{align#query.align.elements~rs}'](allElements, null, element);
+            alignElements = find['@:{align.queried#align.elements.sizes~rs}'];
+            snapThreshold = const_1['@:{const#drag.snap.to.other.element.offset~rs}'] * scale;
         }
         let moveEvent;
-        let nearsideScrollOffset, stageBound = transform_1['l2']();
+        let nearsideScrollOffset, stageBound = transform_1['@:{transform#get.stage.dom.rect~rs}']();
         let moveCallback = async () => {
             if (!moveEvent)
                 return;
             if (!moved) {
-                cursor_1["_mA"](eventTarget);
+                cursor_1["@:{show~rs}"](eventTarget);
             }
             let mpos = {
                 x: moveEvent.pageX - stageBound.x,
                 y: moveEvent.pageY - stageBound.y
             };
             if (nearsideScrollOffset) {
-                mpos.y += nearsideScrollOffset['l2'];
-                mpos.x += nearsideScrollOffset['l3'];
+                mpos.y += nearsideScrollOffset['@:{interval.move.event#y~rs}'];
+                mpos.x += nearsideScrollOffset['@:{interval.move.event#x~rs}'];
             }
             moved = 1;
-            let current = transform_1["ma"](mpos, c);
-            let { y: newY, x: newX } = transform_1["mc"](mpos, c, current - rotate);
+            let current = transform_1["@:{transform#get.point.deg~rs}"](mpos, c);
+            let { y: newY, x: newX } = transform_1["@:{transform#get.rotated.point~rs}"](mpos, c, current - rotate);
             if (supportSnapElement) {
-                let snapInfo = stage_align_1['ma'](alignElements, newX, newY, snapThreshold, altPressed);
-                if (snapInfo['_o_']) {
-                    newX = snapInfo['_oc'];
-                    newY = snapInfo['_od'];
+                let snapInfo = stage_align_1['@:{align#query.svg.point.snap.info~rs}'](alignElements, newX, newY, snapThreshold, altPressed);
+                if (snapInfo['@:{snapped~rs}']) {
+                    newX = snapInfo['@:{snap.x~rs}'];
+                    newY = snapInfo['@:{snap.y~rs}'];
                 }
             }
-            props[`${key}X`] = const_1['l3'](newX);
-            props[`${key}Y`] = const_1['l3'](newY);
+            props[`${key}X`] = const_1['@:{const#to.unit~rs}'](newX);
+            props[`${key}Y`] = const_1['@:{const#to.unit~rs}'](newY);
             await this.digest({
                 element
             });
-            State.fire('l4', {
-                '_nK': {
+            State.fire('@:{event#stage.select.element.props.change~rs}', {
+                '@:{ids~rs}': {
                     [element.id]: 1
                 },
-                '_nL': {
+                '@:{types~rs}': {
                     [element.type]: 1
                 },
-                '_l3': {
-                    '_vK': 1
+                '@:{props~rs}': {
+                    '@:{kp~rs}': 1
                 }
             });
             if (nearsideScrollOffset &&
-                !nearsideScrollOffset['l4']) {
-                nearsideScrollOffset['l4'] = 1;
-                nearsideScrollOffset['l5']();
+                !nearsideScrollOffset['@:{interval.move.event#called~rs}']) {
+                nearsideScrollOffset['@:{interval.move.event#called~rs}'] = 1;
+                nearsideScrollOffset['@:{interval.move.event#ready~rs}']();
             }
-            let tipMsg = `${transform_1['l5'](props[`${key}X`])} , ${transform_1['l5'](props[`${key}Y`])}`;
-            tip_1['_oJ'](tipMsg);
-            tip_1['_oM'](moveEvent.pageX, moveEvent.pageY);
+            let tipMsg = `${transform_1['@:{transform#to.show.value~rs}'](props[`${key}X`])} , ${transform_1['@:{transform#to.show.value~rs}'](props[`${key}Y`])}`;
+            tip_1['@:{show.text~rs}'](tipMsg);
+            tip_1['@:{update.position~rs}'](moveEvent.pageX, moveEvent.pageY);
         };
         let watchIntervalMove = (e) => {
             nearsideScrollOffset = e;
             moveCallback();
         };
         let watchKeypress = e => {
-            altPressed = snapElement ? e['l8'] : !e['l8'];
+            altPressed = snapElement ? e['@:{keypress#alt.key~rs}'] : !e['@:{keypress#alt.key~rs}'];
             moveCallback();
         };
-        State.on('ma', watchKeypress);
-        State.on('mg', watchIntervalMove);
-        me['_mz'](e, (evt) => {
-            State.fire('mf', evt);
+        State.on('@:{event#stage.key.press~rs}', watchKeypress);
+        State.on('@:{event#stage.interval.move~rs}', watchIntervalMove);
+        me['@:{drag.drop~rs}'](e, (evt) => {
+            State.fire('@:{event#drag.element.move~rs}', evt);
             moveEvent = evt;
             moveCallback();
         }, () => {
-            State.off('ma', watchKeypress);
-            State.off('mg', watchIntervalMove);
-            State.fire('mi');
-            cursor_1["_mB"]();
+            State.off('@:{event#stage.key.press~rs}', watchKeypress);
+            State.off('@:{event#stage.interval.move~rs}', watchIntervalMove);
+            State.fire('@:{event#drag.element.stop~rs}');
+            cursor_1["@:{hide~rs}"]();
             if (moved) {
-                ctrl['_m3'](props);
+                ctrl['@:{update.props~rs}'](props);
                 this.digest({
                     element
                 });
-                State.fire('l4', {
-                    '_nK': {
+                State.fire('@:{event#stage.select.element.props.change~rs}', {
+                    '@:{ids~rs}': {
                         [element.id]: 1
                     },
-                    '_nL': {
+                    '@:{types~rs}': {
                         [element.type]: 1
                     },
-                    '_l3': {
-                        '_l8': 1
+                    '@:{props~rs}': {
+                        '@:{kped~rs}': 1
                     }
                 });
                 if (props[`${key}X`] != startX ||
                     props[`${key}Y`] != startY) {
-                    history_1["l2"](history_1['mv'], props.ename);
+                    history_1["@:{history#save~rs}"](history_1['@:{history#element.modified.ctrl.point~rs}'], props.ename);
                 }
             }
-            State.fire('mq', {
+            State.fire('@:{event#stage.toggle.scroll~rs}', {
                 hide: 1
             });
             if (supportSnapElement) {
-                State.fire('l2');
+                State.fire('@:{event#stage.find.snap.element~rs}');
             }
-            tip_1['_mB']();
+            tip_1['@:{hide~rs}']();
         });
     },
-    '_vM<pointerover>'(e) {
+    '@:{show.title~rs}<pointerover>'(e) {
         let titleNode = node(`_rd_t_${this.id}`);
         if (titleNode) {
             titleNode.innerHTML = e.eventTarget.getAttribute('title');
         }
     },
-    '_vN<pointerout>'() {
+    '@:{hide.title~rs}<pointerout>'() {
         let titleNode = node(`_rd_t_${this.id}`);
         if (titleNode) {
             titleNode.innerHTML = '';
         }
     },
-    '_qO<input>'(e) {
+    '@:{update.text~rs}<input>'(e) {
         let element = this.get('element');
         let { props } = element;
         props.text = e.eventTarget.value; //.trim();
-        this['_ol'](element);
-        State.fire('l4', {
-            '_nK': {
+        this['@:{update~rs}'](element);
+        State.fire('@:{event#stage.select.element.props.change~rs}', {
+            '@:{ids~rs}': {
                 [element.id]: 1
             },
-            '_nL': {
+            '@:{types~rs}': {
                 [element.type]: 1
             },
-            '_l3': {
-                '_vO': 1
+            '@:{props~rs}': {
+                '@:{content~rs}': 1
             }
         });
-        history_1["l2"](history_1['my'], props.ename, element.id, 500);
+        history_1["@:{history#save~rs}"](history_1['@:{history#element.modified.props~rs}'], props.ename, element.id, 500);
     },
-    '_qP<pointerover>'(e) {
-        this['_vM<pointerover>'](e);
+    '@:{focus.mod.point~rs}<pointerover>'(e) {
+        this['@:{show.title~rs}<pointerover>'](e);
         if (!inside(e.relatedTarget, e.eventTarget)) {
             let element = this.get('element');
             let { props } = element;
-            props['_qJ'] = e.params.key;
-            this['_ol'](element);
-            State.fire('l4', {
-                '_nK': {
+            props['@:{focus.mod~rs}'] = e.params.key;
+            this['@:{update~rs}'](element);
+            State.fire('@:{event#stage.select.element.props.change~rs}', {
+                '@:{ids~rs}': {
                     [element.id]: 1
                 },
-                '_nL': {
+                '@:{types~rs}': {
                     [element.type]: 1
                 },
-                '_l3': {
-                    '_qJ': 1
+                '@:{props~rs}': {
+                    '@:{focus.mod~rs}': 1
                 }
             });
         }
     },
-    '_qQ<pointerdown>'(e) {
-        e['_mW'] = 1;
+    '@:{drag.mod.point~rs}<pointerdown>'(e) {
+        e['@:{halt~rs}'] = 1;
         let element = this.get('element');
         let { ctrl } = element;
         let { key } = e.params;
-        ctrl['_qQ'](element, e, key, this);
+        ctrl['@:{drag.mod.point~rs}'](element, e, key, this);
     },
-    '_p2<pointerdown,contextmenu>'(e) {
-        e['_mW'] = 1;
+    '@:{stop~rs}<pointerdown,contextmenu>'(e) {
+        e['@:{halt~rs}'] = 1;
     }
 };
 

@@ -1,10 +1,10 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5r/mathjax",[],(require,exports,module)=>{
+define("provider/mathjax",[],(require,exports,module)=>{
 
 
 let dest = '//unpkg.com/mathjax@3.2.0/es5/tex-svg.js';

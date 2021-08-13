@@ -1,34 +1,34 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("61/data-coltable/designer",["5c","../../5b/5e","../../5b/enum","../../5b/6c","../../5b/5v","../../5b/5f","../6p","./consts"],(require,exports,module)=>{
+define("elements/data-coltable/designer",["magix5","../../designer/const","../../designer/enum","../../designer/props","../../designer/service","../../designer/transform","../normal","./consts"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("5c");
-let const_1 = require("../../5b/5e");
-let enum_1 = require("../../5b/enum");
-let props_1 = require("../../5b/6c");
-let service_1 = require("../../5b/5v");
-let transform_1 = require("../../5b/5f");
-let normal_1 = require("../6p");
+let magix_1 = require("magix5");
+let const_1 = require("../../designer/const");
+let enum_1 = require("../../designer/enum");
+let props_1 = require("../../designer/props");
+let service_1 = require("../../designer/service");
+let transform_1 = require("../../designer/transform");
+let normal_1 = require("../normal");
 let consts_1 = require("./consts");
 let BaseDesigner = normal_1.prototype;
 let { State, Cache, mark, config, mix } = magix_1;
 let { floor } = Math;
 let calcTableSize = (props, list, err) => {
     let { bind, columns } = props;
-    let scale = State.get('l3');
+    let scale = State.get('@:{global#stage.scale~rs}');
     //console.log('calc');
     if (bind.fields &&
         bind.fields.length) {
         let footerHeight = 0;
-        let stageElements = State.get('m_');
+        let stageElements = State.get('@:{global#stage.elements~rs}');
         for (let e of stageElements) {
             if (e.type == 'hod-footer') {
                 footerHeight = e.props.height;
@@ -36,17 +36,17 @@ let calcTableSize = (props, list, err) => {
         }
         let width = 0;
         for (let field of bind.fields) {
-            width += (columns[field.id] || consts_1["_p4"] * scale);
+            width += (columns[field.id] || consts_1["@:{default.cell.width~rs}"] * scale);
         }
-        let oneBorder = const_1['l3'](1);
+        let oneBorder = const_1['@:{const#to.unit~rs}'](1);
         props.width = width + oneBorder;
         if (err || !list) {
-            props.loadingHeight = consts_1["_p6"] * scale;
-            props.height = consts_1["_p6"] * scale + props.theadRowHeight + const_1['l3'](3) + props.tfootSpacing;
+            props.loadingHeight = consts_1["@:{loading.tip.height~rs}"] * scale;
+            props.height = consts_1["@:{loading.tip.height~rs}"] * scale + props.theadRowHeight + const_1['@:{const#to.unit~rs}'](3) + props.tfootSpacing;
             props.bind._tip = (err === null || err === void 0 ? void 0 : err.message) || '正在加载数据...';
         }
         else {
-            let page = State.get('ma');
+            let page = State.get('@:{global#stage.page~rs}');
             let y = props.y;
             let rh = page.height * scale;
             let pn = y / rh;
@@ -73,33 +73,33 @@ let calcTableSize = (props, list, err) => {
         //props.height = 365;
     }
     else {
-        props.height = props.theadRowHeight + props.tbodyRowHeight + const_1['l3'](3) + props.tfootSpacing;
-        props.width = const_1['l3'](consts_1["_p5"]) * scale;
+        props.height = props.theadRowHeight + props.tbodyRowHeight + const_1['@:{const#to.unit~rs}'](3) + props.tfootSpacing;
+        props.width = const_1['@:{const#to.unit~rs}'](consts_1["@:{default.empty.width~rs}"]) * scale;
     }
 };
 let apiDataCache = new Cache();
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "61/data-coltable/dshow"
+            view: "elements/data-coltable/dshow"
         });
-        let updateSize = this['_mb'](e => {
+        let updateSize = this['@:{debounce~rs}'](e => {
             //console.log(e);
-            if (!e['_nL'] ||
-                e['_nL']['hod-footer']) {
+            if (!e['@:{types~rs}'] ||
+                e['@:{types~rs}']['hod-footer']) {
                 let element = this.get('element');
-                this['_ol'](element);
+                this['@:{update~rs}'](element);
             }
         }, 20);
-        State.on('l8', updateSize);
-        State.on('l4', updateSize);
+        State.on('@:{event#stage.page.change~rs}', updateSize);
+        State.on('@:{event#stage.select.element.props.change~rs}', updateSize);
         // State.on('@:{event#stage.scale.change}', updateSize);
         this.on('destroy', () => {
-            State.off('l8', updateSize);
-            State.off('l4', updateSize);
+            State.off('@:{event#stage.page.change~rs}', updateSize);
+            State.off('@:{event#stage.select.element.props.change~rs}', updateSize);
         });
     },
-    '_p7'(element) {
+    '@:{attach.data~rs}'(element) {
         let { props } = element;
         let { bind } = props;
         if (bind.url) {
@@ -109,10 +109,10 @@ module.exports= normal_1.extend({
             }
             else {
                 calcTableSize(props);
-                let m = mark(this, '_p7');
+                let m = mark(this, '@:{attach.data~rs}');
                 let s = new service_1();
                 s.all({
-                    name: '_nY',
+                    name: '@:{get.by.url~rs}',
                     url: bind.url
                 }, (err, bag) => {
                     let list = bag.get('data', []);
@@ -123,21 +123,21 @@ module.exports= normal_1.extend({
                     calcTableSize(props, list, err);
                     let element = this.get('element');
                     if (m()) {
-                        if (element.ctrl['_m3']) {
-                            element.ctrl['_m3'](props);
+                        if (element.ctrl['@:{update.props~rs}']) {
+                            element.ctrl['@:{update.props~rs}'](props);
                         }
                         this.digest({
                             element
                         });
-                        State.fire('l4', {
-                            '_nK': {
+                        State.fire('@:{event#stage.select.element.props.change~rs}', {
+                            '@:{ids~rs}': {
                                 [element.id]: 1
                             },
-                            '_nL': {
+                            '@:{types~rs}': {
                                 [element.type]: 1
                             },
-                            '_l3': {
-                                '_pZ': 1
+                            '@:{props~rs}': {
+                                '@:{bind~rs}': 1
                             }
                         });
                     }
@@ -149,44 +149,44 @@ module.exports= normal_1.extend({
         }
     },
     assign(data) {
-        this['_p7'](data.element);
+        this['@:{attach.data~rs}'](data.element);
         BaseDesigner.assign.call(this, data);
     },
-    '_ol'(element) {
-        this['_p7'](element);
-        BaseDesigner['_ol'].call(this, element);
+    '@:{update~rs}'(element) {
+        this['@:{attach.data~rs}'](element);
+        BaseDesigner['@:{update~rs}'].call(this, element);
     }
 }).static({
     type: 'data-coltable',
-    title: 'oT',
+    title: '@:{lang#elements.data.coltable~rs}',
     icon: '&#xeb47;',
-    '_oj': [{
+    '@:{move.props~rs}': [{
             key: 'x',
             use: 'x'
         }, {
             key: 'y',
             use: 'y'
         }],
-    '_oG': enum_1['mi'],
-    '_oi': {
+    '@:{modifier~rs}': enum_1['@:{enum#modifier.dheight~rs}'],
+    '@:{allowed.to.hod~rs}': {
         root: 1
     },
-    '_m2'(x, y) {
+    '@:{get.props~rs}'(x, y) {
         return {
             alpha: 1,
-            x: const_1['l3'](x),
-            y: const_1['l3'](y),
+            x: const_1['@:{const#to.unit~rs}'](x),
+            y: const_1['@:{const#to.unit~rs}'](y),
             //rotate: 0,
-            width: const_1['l3'](200),
-            height: const_1['l3'](93),
+            width: const_1['@:{const#to.unit~rs}'](200),
+            height: const_1['@:{const#to.unit~rs}'](93),
             locked: false,
             cellAlign: 'center',
-            tfootSpacing: const_1['l3'](20),
-            theadFontsize: const_1['l3'](16),
-            theadRowHeight: const_1['l3'](40),
+            tfootSpacing: const_1['@:{const#to.unit~rs}'](20),
+            theadFontsize: const_1['@:{const#to.unit~rs}'](16),
+            theadRowHeight: const_1['@:{const#to.unit~rs}'](40),
             theadForecolor: '#000000',
-            tbodyRowHeight: const_1['l3'](30),
-            tbodyFontsize: const_1['l3'](14),
+            tbodyRowHeight: const_1['@:{const#to.unit~rs}'](30),
+            tbodyFontsize: const_1['@:{const#to.unit~rs}'](14),
             tbodyForecolor: '#000000',
             theadRowBackground: '#ffda95',
             tbodyEvenRowBackground: '#dde09d',
@@ -202,24 +202,24 @@ module.exports= normal_1.extend({
         };
     },
     props: [{
-            tip: 'nP',
-            type: props_1["l2"],
+            tip: '@:{lang#props.x~rs}',
+            type: props_1["@:{eprops#number~rs}"],
             key: 'x',
-            step: const_1["mH"],
-            fixed: const_1["mI"],
-            read: transform_1["l5"],
-            write: transform_1["m_"],
-            '_nA': 1,
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            read: transform_1["@:{transform#to.show.value~rs}"],
+            write: transform_1["@:{transform#to.real.value~rs}"],
+            '@:{is.scale.and.unit.field~rs}': 1,
             json: 1
         }, {
-            tip: 'nQ',
-            type: props_1["l2"],
+            tip: '@:{lang#props.y~rs}',
+            type: props_1["@:{eprops#number~rs}"],
             key: 'y',
-            step: const_1["mH"],
-            fixed: const_1["mI"],
-            read: transform_1["l5"],
-            write: transform_1["m_"],
-            '_nA': 1,
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            read: transform_1["@:{transform#to.show.value~rs}"],
+            write: transform_1["@:{transform#to.real.value~rs}"],
+            '@:{is.scale.and.unit.field~rs}': 1,
             json: 1
         } /*, {
             tip: '@:{lang#props.width}',
@@ -227,15 +227,15 @@ module.exports= normal_1.extend({
             key: 'width'
         }*/,
         {
-            type: props_1["ms"]
+            type: props_1["@:{eprops#spliter~rs}"]
         }, {
-            tip: 'nW',
+            tip: '@:{lang#props.bind.fields~rs}',
             key: 'bind',
-            type: props_1["mb"],
+            type: props_1["@:{eprops#bind.field~rs}"],
             json: 1,
             max: -1,
             //'@:{dock.top}': 1,
-            '_py'() {
+            '@:{if.show~rs}'() {
                 return config('getFieldUrl');
             },
             write(v, props) {
@@ -246,23 +246,23 @@ module.exports= normal_1.extend({
                     delete columns[p];
                 }
                 for (let p of v.fields) {
-                    columns[p.id] = (_a = old[p.id]) !== null && _a !== void 0 ? _a : const_1['l3'](consts_1["_p4"]);
+                    columns[p.id] = (_a = old[p.id]) !== null && _a !== void 0 ? _a : const_1['@:{const#to.unit~rs}'](consts_1["@:{default.cell.width~rs}"]);
                 }
                 return v;
             }
         }, {
-            tip: 'oU',
+            tip: '@:{lang#props.table.columns.width~rs}',
             key: 'columns',
-            type: props_1["mc"],
-            min: () => const_1["l3"](20),
-            max: () => const_1["l3"](300),
-            '_nz'(props, toUnit) {
+            type: props_1["@:{eprops#column.width~rs}"],
+            min: () => const_1["@:{const#to.unit~rs}"](20),
+            max: () => const_1["@:{const#to.unit~rs}"](300),
+            '@:{unit.convert~rs}'(props, toUnit) {
                 let { columns } = props;
                 for (let e in columns) {
-                    columns[e] = const_1['mO'](columns[e], toUnit);
+                    columns[e] = const_1['@:{const#unit.to.unit~rs}'](columns[e], toUnit);
                 }
             },
-            '_oy'(props, step, dest) {
+            '@:{stage.scale~rs}'(props, step, dest) {
                 let { columns } = props;
                 for (let e in columns) {
                     columns[e] *= step;
@@ -274,142 +274,142 @@ module.exports= normal_1.extend({
             read(values) {
                 let newColumns = {};
                 for (let p in values) {
-                    newColumns[p] = transform_1["l5"](values[p]);
+                    newColumns[p] = transform_1["@:{transform#to.show.value~rs}"](values[p]);
                 }
                 return newColumns;
             },
             write(values) {
                 let newColumns = {};
                 for (let p in values) {
-                    newColumns[p] = transform_1["m_"](values[p]);
+                    newColumns[p] = transform_1["@:{transform#to.real.value~rs}"](values[p]);
                 }
                 return newColumns;
             },
             json: 1,
             //'@:{dock.top}': 1
         }, {
-            tip: 'oV',
+            tip: '@:{lang#props.table.foot.spacing~rs}',
             min: 0,
             key: 'tfootSpacing',
-            type: props_1["l2"],
-            step: const_1["mH"],
-            fixed: const_1["mI"],
-            read: transform_1["l5"],
-            write: transform_1["m_"],
-            '_nA': 1,
+            type: props_1["@:{eprops#number~rs}"],
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            read: transform_1["@:{transform#to.show.value~rs}"],
+            write: transform_1["@:{transform#to.real.value~rs}"],
+            '@:{is.scale.and.unit.field~rs}': 1,
             json: 1
         }, {
-            type: props_1["ms"]
+            type: props_1["@:{eprops#spliter~rs}"]
         }, {
-            tip: 'oW',
-            type: props_1["me"],
+            tip: '@:{lang#props.table.style~rs}',
+            type: props_1["@:{eprops#table.style~rs}"],
             //'@:{dock.top}': 1,
             write(skin, props) {
                 mix(props, skin);
             }
         }, {
-            tip: 'on',
+            tip: '@:{lang#props.border.color~rs}',
             key: 'bordercolor',
-            type: props_1["l3"],
+            type: props_1["@:{eprops#color~rs}"],
             json: 1
         }, {
-            tip: 'oX',
+            tip: '@:{lang#props.table.cell.align~rs}',
             key: 'cellAlign',
-            type: props_1["l9"],
+            type: props_1["@:{eprops#dropdown~rs}"],
             items: [{
-                    text: 'oY',
+                    text: '@:{lang#props.table.cell.align.left~rs}',
                     value: 'left'
                 }, {
-                    text: 'oZ',
+                    text: '@:{lang#props.table.cell.align.center~rs}',
                     value: 'center'
                 }, {
-                    text: 'o0',
+                    text: '@:{lang#props.table.cell.align.right~rs}',
                     value: 'right'
                 }],
             json: 1
         }, {
-            tip: 'o1',
-            min: () => const_1["l3"](25),
-            max: () => const_1["l3"](100),
-            step: const_1["mH"],
-            fixed: const_1["mI"],
+            tip: '@:{lang#props.table.head.row.height~rs}',
+            min: () => const_1["@:{const#to.unit~rs}"](25),
+            max: () => const_1["@:{const#to.unit~rs}"](100),
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
             key: 'theadRowHeight',
-            type: props_1["l2"],
-            '_nA': 1,
-            read: transform_1["l5"],
-            write: transform_1["m_"],
+            type: props_1["@:{eprops#number~rs}"],
+            '@:{is.scale.and.unit.field~rs}': 1,
+            read: transform_1["@:{transform#to.show.value~rs}"],
+            write: transform_1["@:{transform#to.real.value~rs}"],
             json: 1
         }, {
-            tip: 'o2',
-            min: () => const_1["l3"](25),
-            max: () => const_1["l3"](100),
-            '_nA': 1,
+            tip: '@:{lang#props.table.body.row.height~rs}',
+            min: () => const_1["@:{const#to.unit~rs}"](25),
+            max: () => const_1["@:{const#to.unit~rs}"](100),
+            '@:{is.scale.and.unit.field~rs}': 1,
             key: 'tbodyRowHeight',
-            type: props_1["l2"],
-            step: const_1["mH"],
-            fixed: const_1["mI"],
-            read: transform_1["l5"],
-            write: transform_1["m_"],
+            type: props_1["@:{eprops#number~rs}"],
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            read: transform_1["@:{transform#to.show.value~rs}"],
+            write: transform_1["@:{transform#to.real.value~rs}"],
             json: 1
         }, {
-            tip: 'oq',
-            min: () => const_1["l3"](12),
-            max: () => const_1["l3"](100),
-            '_nA': 1,
+            tip: '@:{lang#props.table.head.font.size~rs}',
+            min: () => const_1["@:{const#to.unit~rs}"](12),
+            max: () => const_1["@:{const#to.unit~rs}"](100),
+            '@:{is.scale.and.unit.field~rs}': 1,
             key: 'theadFontsize',
-            type: props_1["l2"],
-            step: const_1["mH"],
-            fixed: const_1["mI"],
-            read: transform_1["l5"],
-            write: transform_1["m_"],
+            type: props_1["@:{eprops#number~rs}"],
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            read: transform_1["@:{transform#to.show.value~rs}"],
+            write: transform_1["@:{transform#to.real.value~rs}"],
             json: 1
         }, {
-            tip: 'oi',
+            tip: '@:{lang#props.forecolor~rs}',
             key: 'theadForecolor',
-            type: props_1["l3"],
+            type: props_1["@:{eprops#color~rs}"],
             json: 1
         }, {
-            tip: 'or',
+            tip: '@:{lang#props.table.head.row.background~rs}',
             key: 'theadRowBackground',
-            type: props_1["l3"],
+            type: props_1["@:{eprops#color~rs}"],
             clear: true,
             alpha: true,
             json: 1
         }, {
-            tip: 'os',
-            min: () => const_1["l3"](12),
-            max: () => const_1["l3"](100),
-            '_nA': 1,
-            step: const_1["mH"],
-            fixed: const_1["mI"],
+            tip: '@:{lang#props.table.body.font.size~rs}',
+            min: () => const_1["@:{const#to.unit~rs}"](12),
+            max: () => const_1["@:{const#to.unit~rs}"](100),
+            '@:{is.scale.and.unit.field~rs}': 1,
+            step: const_1["@:{const#unit.step~rs}"],
+            fixed: const_1["@:{const#unit.fixed~rs}"],
             key: 'tbodyFontsize',
-            type: props_1["l2"],
-            read: transform_1["l5"],
-            write: transform_1["m_"],
+            type: props_1["@:{eprops#number~rs}"],
+            read: transform_1["@:{transform#to.show.value~rs}"],
+            write: transform_1["@:{transform#to.real.value~rs}"],
             json: 1
         }, {
-            tip: 'oi',
+            tip: '@:{lang#props.forecolor~rs}',
             key: 'tbodyForecolor',
-            type: props_1["l3"],
+            type: props_1["@:{eprops#color~rs}"],
             json: 1
         }, {
-            tip: 'o3',
+            tip: '@:{lang#props.table.body.even.row.background~rs}',
             key: 'tbodyEvenRowBackground',
-            type: props_1["l3"],
+            type: props_1["@:{eprops#color~rs}"],
             clear: true,
             alpha: true,
             json: 1
         }, {
-            tip: 'o4',
+            tip: '@:{lang#props.table.body.odd.row.background~rs}',
             key: 'tbodyOddRowBackground',
-            type: props_1["l3"],
+            type: props_1["@:{eprops#color~rs}"],
             clear: true,
             alpha: true,
             json: 1
         }, {
-            tip: 'nU',
+            tip: '@:{lang#props.alpha~rs}',
             key: 'alpha',
-            type: props_1["l2"],
+            type: props_1["@:{eprops#number~rs}"],
             step: 0.1,
             fixed: 1,
             min: 0,
@@ -417,20 +417,20 @@ module.exports= normal_1.extend({
             json: 1
         },
         {
-            type: props_1["ms"]
+            type: props_1["@:{eprops#spliter~rs}"]
         }, {
-            tip: 'n2',
-            type: props_1["mm"],
+            tip: '@:{lang#props.help~rs}',
+            type: props_1["@:{eprops#link~rs}"],
             key: 'help'
         }, {
-            tip: 'n3',
+            tip: '@:{lang#props.title~rs}',
             key: 'ename',
-            type: props_1["ma"],
+            type: props_1["@:{eprops#text.input~rs}"],
             json: 1
         }, {
-            tip: 'n4',
+            tip: '@:{lang#props.locked~rs}',
             key: 'locked',
-            type: props_1["l4"],
+            type: props_1["@:{eprops#boolean~rs}"],
             free: true,
             json: 1
         }]

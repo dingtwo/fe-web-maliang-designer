@@ -1,10 +1,10 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5r/filesaver",[],(require,exports,module)=>{
+define("provider/filesaver",[],(require,exports,module)=>{
 
 
 let dest = '//cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js';

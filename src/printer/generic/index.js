@@ -1,15 +1,15 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("7j/7k/index",["5c","../../5b/5f","../../5r/table"],(require,exports,module)=>{
+define("printer/generic/index",["magix5","../../designer/transform","../../provider/table"],(require,exports,module)=>{
 
 
-let magix_1 = require("5c");
-let transform_1 = require("../../5b/5f");
-let table_1 = require("../../5r/table");
+let magix_1 = require("magix5");
+let transform_1 = require("../../designer/transform");
+let table_1 = require("../../provider/table");
 let { Vframe, node, has, guid, delay, lowTaskFinale, isArray } = magix_1;
 /**
  * 哪些元素在分页时，使用y坐标进行判断
@@ -79,17 +79,17 @@ let findCurrentPageElements = (page, current, elements, oy) => {
             else {
                 //采用矩形碰撞检测，碰撞后则在当前分页内
                 //需要考虑矩形旋转的情况
-                let newRect = transform_1["l3"]({
+                let newRect = transform_1["@:{transform#rotate.rect~rs}"]({
                     x, y, width, height,
                     rotate
                 });
                 let testRect = {
-                    x: newRect['_n5'],
-                    y: newRect['_n7'],
-                    width: newRect['_nq'],
-                    height: newRect['_nr']
+                    x: newRect['@:{left~rs}'],
+                    y: newRect['@:{top~rs}'],
+                    width: newRect['@:{width~rs}'],
+                    height: newRect['@:{height~rs}']
                 };
-                if (transform_1["l4"](testRect, pageRect)) {
+                if (transform_1["@:{transform#rect.intersect~rs}"](testRect, pageRect)) {
                     filterElements.push(e);
                 }
             }
@@ -115,7 +115,7 @@ let mountDisplayOfElement = async (type, data) => {
     let container = node(mountDisplayOfElementId);
     if (!container) {
         container = document.createElement('div');
-        container.className = 'rd-l2';
+        container.className = 'rd-_assets_index_less_-designer-root';
         container.style.cssText = 'position:fixed;left:-500cm;top:-500cm;pointer-events:none;opacity:0';
         //container.style.cssText = 'position:absolute;left:0cm;top:0cm;';
         container.id = mountDisplayOfElementId;
@@ -123,7 +123,7 @@ let mountDisplayOfElement = async (type, data) => {
     }
     let vfRoot = Vframe.root();
     vfRoot.unmount(container);
-    vfRoot.mount(container, `61/${type}/index`, data);
+    vfRoot.mount(container, `elements/${type}/index`, data);
     for (;;) {
         if (container.childNodes.length) {
             break;
@@ -133,7 +133,7 @@ let mountDisplayOfElement = async (type, data) => {
     await lowTaskFinale();
     return container;
 };
-let hidden = 'rd-mO';
+let hidden = 'rd-_assets_index_less_-none';
 let tipMsg = msg => {
     let n = node('_rd_tip');
     let { classList } = n;
@@ -203,9 +203,9 @@ let getDTableRemovedInfo = (rows, anchorData) => {
         dataRowIndex++;
     }
     return {
-        'l2': dataRowIndex,
-        'l3': removedColIndexes,
-        'l4': removedColWidth,
+        '@:{generic.recast.table#data.row.index~rs}': dataRowIndex,
+        '@:{generic.recast.table#removed.indexes~rs}': removedColIndexes,
+        '@:{generic.recast.table#removed.width~rs}': removedColWidth,
     };
 };
 /**
@@ -261,47 +261,47 @@ let getFTableRemovedInfo = (rows, anchorData) => {
         dataRowIndex++;
     }
     return {
-        'l2': dataRowIndex,
-        'l3': removedColIndexes,
-        'l4': removedColWidth,
+        '@:{generic.recast.table#data.row.index~rs}': dataRowIndex,
+        '@:{generic.recast.table#removed.indexes~rs}': removedColIndexes,
+        '@:{generic.recast.table#removed.width~rs}': removedColWidth,
     };
 };
 module.exports= {
     /**
      * 展示消息
      */
-    '_uW': tipMsg,
+    '@:{show.msg~rs}': tipMsg,
     /**
      * 隐藏消息
      */
-    '_uX': hideMsg,
+    '@:{hide.msg~rs}': hideMsg,
     /**
      * 渲染元素的展示层
      */
-    '_uY': mountDisplayOfElement,
+    '@:{mount.display.of.element~rs}': mountDisplayOfElement,
     /**
      * 查询处于当前页面中的元素
      */
-    '_uZ': findCurrentPageElements,
+    '@:{find.current.page.elements~rs}': findCurrentPageElements,
     /**
      * 二次检查图片
      */
-    '_u0': doubleCheckImages,
+    '@:{double.check.images~rs}': doubleCheckImages,
     /**
      * 转换JSON
      */
-    '_u1': tryParseJSON,
+    '@:{try.parse.json~rs}': tryParseJSON,
     /**
      * 重新编排表格描述对象数据
      * @param table 表格描述对象
      * @param dataCenter 数据中心对象
      */
-    '_u2'(table, dataCenter) {
+    '@:{recast.table.by.data~rs}'(table, dataCenter) {
         let { props, type } = table;
         let { bind, rows, dynamicCols, avgDynamicColsWidth } = props;
         if (bind.url &&
             dynamicCols) {
-            let { '_nU': err, '_nV': list } = dataCenter[bind.url];
+            let { '@:{error~rs}': err, '@:{data~rs}': list } = dataCenter[bind.url];
             if (!err) {
                 let anchorData = isArray(list) ? list[0] : list;
                 let info;
@@ -311,24 +311,24 @@ module.exports= {
                 else {
                     info = getFTableRemovedInfo(rows, anchorData);
                 }
-                let removedColIndexes = info['l3'];
-                let removedColWidth = info['l4'];
-                let dataRowIndex = info['l2'];
+                let removedColIndexes = info['@:{generic.recast.table#removed.indexes~rs}'];
+                let removedColWidth = info['@:{generic.recast.table#removed.width~rs}'];
+                let dataRowIndex = info['@:{generic.recast.table#data.row.index~rs}'];
                 props.focusRow = dataRowIndex;
                 //附加单元格信息，方便删除
-                table_1['l2'](props);
+                table_1['@:{table.provider#add.ext.meta~rs}'](props);
                 for (let ri of removedColIndexes) {
                     props.focusCol = ri;
                     //根据focusRow及focusCol逻辑聚焦到某个单元格上，然后删除这个聚焦的格子所在的列
-                    table_1['l7'](props);
+                    table_1['@:{table.provider#delete.col~rs}'](props);
                     //删除后需要再次更新单元格元信息
-                    table_1['l2'](props);
+                    table_1['@:{table.provider#add.ext.meta~rs}'](props);
                 }
                 if (avgDynamicColsWidth == 'none') {
                     props.width -= removedColWidth;
                 }
                 else if (avgDynamicColsWidth == 'direct') { //采用直接均分的方式
-                    let restCols = props['_pT'];
+                    let restCols = props['@:{col.max~rs}'];
                     let singleColWidth = removedColWidth / restCols;
                     for (let row of rows) {
                         for (let col of row.cols) {
@@ -339,8 +339,8 @@ module.exports= {
                 }
                 else {
                     //以下是占比均分，根据剩余单元格的宽度在整体里的占比，对宽度按占比均分
-                    let sizes = table_1['l3'](props);
-                    let colWidths = sizes['_pU'];
+                    let sizes = table_1['@:{table.provider#get.sizes~rs}'](props);
+                    let colWidths = sizes['@:{col.widths~rs}'];
                     let restTotalWidth = 0;
                     for (let cw of colWidths) {
                         restTotalWidth += cw;

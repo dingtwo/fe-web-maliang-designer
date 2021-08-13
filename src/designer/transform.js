@@ -1,14 +1,14 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5b/5f",["5c","./5e"],(require,exports,module)=>{
+define("designer/transform",["magix5","./const"],(require,exports,module)=>{
 
 
-let magix_1 = require("5c");
-let const_1 = require("./5e");
+let magix_1 = require("magix5");
+let const_1 = require("./const");
 let { State, node } = magix_1;
 let { sqrt, pow, atan, PI, sin, cos, min, max, atan2, tan, abs } = Math;
 let PD180 = PI / 180;
@@ -37,12 +37,12 @@ module.exports= {
     /**
      * 获取设计区dom节点的rect
      */
-    'l2': getStageCanvasDomRect,
+    '@:{transform#get.stage.dom.rect~rs}': getStageCanvasDomRect,
     /**
      * 真实坐标转设计区坐标
      * @param param0 坐标点
      */
-    'l6'({ x, y }) {
+    '@:{transform#real.to.stage.coord~rs}'({ x, y }) {
         let pos = getStageCanvasDomRect();
         x = x - pos.x; // + oNode.prop('scrollLeft');
         y = y - pos.y; // + oNode.prop('scrollTop');
@@ -56,7 +56,7 @@ module.exports= {
      * @param node 从哪个dom节点向上是容器即设计区的节点
      * @param param1 转换坐标信息
      */
-    'l9'(node, { x, y, f }) {
+    '@:{transform#real.to.nearest.coord~rs}'(node, { x, y, f }) {
         let stage = node;
         if (f) {
             while (stage.parentNode) {
@@ -78,7 +78,7 @@ module.exports= {
      * 设计区坐标转真实坐标
      * @param param0 坐标点
      */
-    'l7'({ x, y }) {
+    '@:{transform#stage.to.real.coord~rs}'({ x, y }) {
         let pos = getStageCanvasDomRect();
         x = x + pos.x; // + oNode.prop('scrollLeft');
         y = y + pos.y; // + oNode.prop('scrollTop');
@@ -91,24 +91,24 @@ module.exports= {
      * 真实值转成显示值
      * @param x 待转换的值
      */
-    'l5'(x) {
-        let s = State.get('l3');
+    '@:{transform#to.show.value~rs}'(x) {
+        let s = State.get('@:{global#stage.scale~rs}');
         let v = (x / s);
-        return const_1['l4'](v);
+        return const_1['@:{const#scale.to.unit~rs}'](v);
     },
     /**
      * 显示值转成真实值
      * @param x 待转换的值
      */
-    'm_'(x) {
-        let s = State.get('l3');
+    '@:{transform#to.real.value~rs}'(x) {
+        let s = State.get('@:{global#stage.scale~rs}');
         return x * s;
     },
     /**
      * 获取旋转后的矩形
      * @param param0 矩形信息
      */
-    'l3'({ x, y, width, height, rotate }) {
+    '@:{transform#rotate.rect~rs}'({ x, y, width, height, rotate }) {
         rotate || (rotate = 0);
         let r = sqrt(pow(width, 2) + pow(height, 2)) / 2;
         let a = width ? atan(height / width) * 180 / PI : 90;
@@ -158,16 +158,16 @@ module.exports= {
         let maxY = max(topLeft.y, topRight.y, bottomRight.y, bottomLeft.y);
         //return [topLeft, top, topRight, right, bottomRight, bottom, bottomLeft, left];
         return {
-            '_n2': [topLeft, topRight, bottomRight, bottomLeft],
-            '_n3': [topMiddle, rightMiddle, bottomMiddle, leftMiddle],
-            '_nq': maxX - minX,
-            '_nr': maxY - minY,
-            '_n5': minX,
-            '_n8': maxX,
-            '_n7': minY,
-            '_nv': maxY,
-            '_n4': middleX,
-            '_n6': middleY
+            '@:{point~rs}': [topLeft, topRight, bottomRight, bottomLeft],
+            '@:{middles~rs}': [topMiddle, rightMiddle, bottomMiddle, leftMiddle],
+            '@:{width~rs}': maxX - minX,
+            '@:{height~rs}': maxY - minY,
+            '@:{left~rs}': minX,
+            '@:{right~rs}': maxX,
+            '@:{top~rs}': minY,
+            '@:{bottom~rs}': maxY,
+            '@:{center.x~rs}': middleX,
+            '@:{center.y~rs}': middleY
         };
     },
     /**
@@ -220,14 +220,14 @@ module.exports= {
      * @param p1 第一个点
      * @param p2 第二个点
      */
-    'ma'(p1, p2) {
+    '@:{transform#get.point.deg~rs}'(p1, p2) {
         return (360 + atan2((p1.y - p2.y), (p1.x - p2.x)) * 180 / PI) % 360;
     },
     /**
      * 手柄转固定坐标索引
      * @param handler 拖动手柄字符串
      */
-    'mb'(handler) {
+    '@:{transform#handle.to.fixed.point~rs}'(handler) {
         return handlerToPointIndex[handler];
     },
     /**
@@ -236,7 +236,7 @@ module.exports= {
      * @param center 绕哪个点旋转
      * @param degree 旋转多少度
      */
-    'mc'(src, center, degree) {
+    '@:{transform#get.rotated.point~rs}'(src, center, degree) {
         let r = sqrt(pow(src.x - center.x, 2) + pow(src.y - center.y, 2));
         //deg = 360 - deg;
         let newX = center.x + r * cos(degree * PD180);
@@ -250,7 +250,7 @@ module.exports= {
      * @param y y点坐标
      * @param degree 倾斜角度
      */
-    'md'(x, y, degree) {
+    '@:{transform#get.linear.equation.by.deg~rs}'(x, y, degree) {
         let k = tan(degree * PD180);
         let b = y - x * k;
         return { k, b };
@@ -262,7 +262,7 @@ module.exports= {
      * @param x2 第2个点的x坐标
      * @param y2 第2个点的y坐标
      */
-    'me'(x1, y1, x2, y2) {
+    '@:{transform#get.linear.equation.by.point~rs}'(x1, y1, x2, y2) {
         let k = (y2 - y1) / (x2 - x1);
         let b = y1 - x1 * k;
         return { k, b };
@@ -272,7 +272,7 @@ module.exports= {
      * @param p1 第1个点坐标
      * @param p2 第2个点坐标
      */
-    'mf'(p1, p2) {
+    '@:{transform#get.point.distance~rs}'(p1, p2) {
         return sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2));
     },
     /**
@@ -280,7 +280,7 @@ module.exports= {
      * @param line1 第1条线段
      * @param line2 第2条线段
      */
-    'l8'(line1, line2) {
+    '@:{transform#is.line.cross~rs}'(line1, line2) {
         let [s1, e1] = line1, [s2, e2] = line2;
         let d1 = ((e1.x - s1.x) * (s2.y - s1.y) - (e1.y - s1.y) * (s2.x - s1.x)) * ((e1.x - s1.x) * (e2.y - s1.y) - (e1.y - s1.y) * (e2.x - s1.x));
         let d2 = ((e2.x - s2.x) * (s1.y - s2.y) - (e2.y - s2.y) * (s1.x - s2.x)) * ((e2.x - s2.x) * (e1.y - s2.y) - (e2.y - s2.y) * (e1.x - s2.x));
@@ -308,7 +308,7 @@ module.exports= {
      * @param rect1 第1个矩形
      * @param rect2 第2个矩形
      */
-    'l4'(rect1, rect2, onlyCheckInside) {
+    '@:{transform#rect.intersect~rs}'(rect1, rect2, onlyCheckInside) {
         let half1Width = rect1.width / 2, half1Height = rect1.height / 2, half2Width = rect2.width / 2, half2Height = rect2.height / 2, cen1 = {
             x: rect1.x + half1Width,
             y: rect1.y + half1Height
@@ -400,7 +400,7 @@ module.exports= {
      * @param fields 缩放哪些字段
      * @param dest 目标属性
      */
-    'mg'({ rows }, step, fields, dest) {
+    '@:{transform#stage.scale.cells~rs}'({ rows }, step, fields, dest) {
         for (let row of rows) {
             for (let f of fields) {
                 if (row[f] != null) {
@@ -425,7 +425,7 @@ module.exports= {
      * @param rows 数据行
      * @param fields 编码哪些字段
      */
-    'mh'(dest, rows, fields) {
+    '@:{transform#json.encode.cells~rs}'(dest, rows, fields) {
         let clonedRows = [];
         for (let row of rows) {
             let clonedRow = {
@@ -434,7 +434,7 @@ module.exports= {
             };
             for (let f of fields) {
                 if (clonedRow[f] != null) {
-                    clonedRow[f] = this['l5'](clonedRow[f]);
+                    clonedRow[f] = this['@:{transform#to.show.value~rs}'](clonedRow[f]);
                 }
             }
             for (let col of row.cols) {
@@ -443,7 +443,7 @@ module.exports= {
                 };
                 for (let f of fields) {
                     if (clonedCol[f] != null) {
-                        clonedCol[f] = this['l5'](clonedCol[f]);
+                        clonedCol[f] = this['@:{transform#to.show.value~rs}'](clonedCol[f]);
                     }
                 }
                 clonedRow.cols.push(clonedCol);
@@ -458,17 +458,17 @@ module.exports= {
      * @param toUnit 目标单位
      * @param fields 转换哪些字段
      */
-    'mi'(rows, toUnit, fields) {
+    '@:{transform#unit.convert.cells~rs}'(rows, toUnit, fields) {
         for (let row of rows) {
             for (let f of fields) {
                 if (row[f] != null) {
-                    row[f] = const_1['mO'](row[f], toUnit);
+                    row[f] = const_1['@:{const#unit.to.unit~rs}'](row[f], toUnit);
                 }
             }
             for (let col of row.cols) {
                 for (let f of fields) {
                     if (col[f] != null) {
-                        col[f] = const_1['mO'](col[f], toUnit);
+                        col[f] = const_1['@:{const#unit.to.unit~rs}'](col[f], toUnit);
                     }
                 }
             }

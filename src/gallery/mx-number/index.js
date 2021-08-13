@@ -1,34 +1,35 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5j/6u/index",["5c"],(require,exports,module)=>{
+define("gallery/mx-number/index",["magix5"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
  */
-let magix_1 = require("5c");
+let magix_1 = require("magix5");
 let { node, View, applyStyle, has, mark, dispatch, isFunction } = magix_1;
 let Max_Value = Number.MAX_SAFE_INTEGER;
-applyStyle("rd-mq",".rd-ro{background:none;border:none;color:#333;font-size:100%;padding:0 20px 0 0}.rd-ro:focus{outline:0}.rd-ro:disabled{background:#f5f5f5;color:#999;cursor:not-allowed}.rd-rp,.rd-rq{border:2px solid #fff;border-radius:2px;height:50%;width:20px}.rd-rp:hover,.rd-rq:hover{background-color:#f0f0f0}.rd-rq{top:1px}.rd-rp{bottom:1px}.rd-rr:after{border-left:4px solid transparent;border-right:4px solid transparent;content:\"\";display:block;height:0;inset:0;margin:auto;position:absolute;width:0}.rd-rp:after{border-top:4px solid #ccc}.rd-rq:after{border-bottom:4px solid #ccc}.rd-rp.rd-rs,.rd-rq.rd-rs{border-color:transparent;cursor:not-allowed}.rd-rp.rd-rs:hover,.rd-rq.rd-rs:hover{background-color:transparent}");
+applyStyle("rd-_gallery_mx-number_index_less_","\n.rd-_gallery_mx-number_index_less_-ipt {\nborder:none;\nbackground:none;\ncolor:#333;\npadding:0 20px 0 0;\nfont-size:100%;\n}\n.rd-_gallery_mx-number_index_less_-ipt:focus {\noutline:0;\n}\n.rd-_gallery_mx-number_index_less_-ipt:disabled {\ncursor:not-allowed;\ncolor:#999;\nbackground:#f5f5f5;\n}\n.rd-_gallery_mx-number_index_less_-up,\n.rd-_gallery_mx-number_index_less_-down {\nwidth:20px;\nheight:50%;\nborder:2px solid #fff;\nborder-radius:2px;\n}\n.rd-_gallery_mx-number_index_less_-up:hover,\n.rd-_gallery_mx-number_index_less_-down:hover {\nbackground-color:#f0f0f0;\n}\n.rd-_gallery_mx-number_index_less_-up {\ntop:1px;\n}\n.rd-_gallery_mx-number_index_less_-down {\nbottom:1px;\n}\n.rd-_gallery_mx-number_index_less_-arrow::after {\nwidth:0;\nheight:0;\nposition:absolute;\ninset:0;\nborder-left:4px solid rgba(0, 0, 0, 0);\nborder-right:4px solid rgba(0, 0, 0, 0);\ncontent:'';\ndisplay:block;\nmargin:auto;\n}\n.rd-_gallery_mx-number_index_less_-down:after {\nborder-top:4px solid #ccc;\n}\n.rd-_gallery_mx-number_index_less_-up:after {\nborder-bottom:4px solid #ccc;\n}\n.rd-_gallery_mx-number_index_less_-up.rd-_gallery_mx-number_index_less_-notallowed,\n.rd-_gallery_mx-number_index_less_-down.rd-_gallery_mx-number_index_less_-notallowed {\ncursor:not-allowed;\nborder-color:transparent;\n}\n.rd-_gallery_mx-number_index_less_-up.rd-_gallery_mx-number_index_less_-notallowed:hover,\n.rd-_gallery_mx-number_index_less_-down.rd-_gallery_mx-number_index_less_-notallowed:hover {\nbackground-color:transparent;\n}\n");
 let getFlagByCtrlKey = e => e.shiftKey ? 1 : (e.metaKey || e.ctrlKey ? 2 : 0);
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	disabled,}=$dataFromView,
 $$_class;
-$vnode_0=[$createVNode('input',{'class': 'rd-mB rd-mC rd-mP rd-ro','id': '_mx_ipt_'+$viewId,'mx5-focusin': $viewId+'_s2()','mx5-focusout': $viewId+'_s4()','mx5-change': $viewId+'_p2()','mx5-keydown': $viewId+'_t_()','disabled': (disabled),'autocomplete': 'off','mx5-input': $viewId+'_tb()','mx5-wheel': $viewId+'_ta()',},1)];;$$_class='rd-rq rd-nZ rd-mJ rd-rr rd-mR rd-nk rd-on';if(disabled){;$$_class+=' rd-rs';};$vnode_0.push($createVNode('span',{'mx5-click': $viewId+'_sY({i:1})','mx5-pointerdown': $viewId+'_s9({i:1})','mx5-contextmenu': $viewId+'_nT()','class': $$_class,}));;$$_class='rd-rp rd-nZ rd-mJ rd-rr rd-mR rd-nk rd-on';if(disabled){;$$_class+=' rd-rs';};$vnode_0.push($createVNode('span',{'mx5-click': $viewId+'_sY()','mx5-pointerdown': $viewId+'_s9()','mx5-contextmenu': $viewId+'_nT()','class': $$_class,})); 
+$vnode_0=[$createVNode('input',{'class': 'rd-_assets_index_less_-display-block rd-_assets_index_less_-hp100 rd-_assets_index_less_-wp100 rd-_gallery_mx-number_index_less_-ipt','id': '_mx_ipt_'+($__line=1,$__art='{{=$viewId}}','')+$viewId,'mx5-focusin': $viewId+'@:{active~rs}()','mx5-focusout': $viewId+'@:{deactive~rs}()','mx5-change': $viewId+'@:{stop~rs}()','mx5-keydown': $viewId+'@:{press.check~rs}()','disabled': ($temp_var=($__line=1,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-number/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'autocomplete': 'off','mx5-input': $viewId+'@:{input.check~rs}()','mx5-wheel': $viewId+'@:{wheel~rs}()',},1)];;$$_class='rd-_gallery_mx-number_index_less_-up rd-_assets_index_less_-right-0 rd-_assets_index_less_-pa rd-_gallery_mx-number_index_less_-arrow rd-_assets_index_less_-unselectable rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-touch-action-none'+($__line=2,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-number_index_less_-notallowed'+($__line=2,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('span',{'mx5-click': $viewId+'@:{key.num.change~rs}({i:1})','mx5-pointerdown': $viewId+'@:{fast.start~rs}({i:1})','mx5-contextmenu': $viewId+'@:{prevent~rs}()','class': $$_class,}));;$$_class='rd-_gallery_mx-number_index_less_-down rd-_assets_index_less_-right-0 rd-_assets_index_less_-pa rd-_gallery_mx-number_index_less_-arrow rd-_assets_index_less_-unselectable rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-touch-action-none'+($__line=3,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-number_index_less_-notallowed'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('span',{'mx5-click': $viewId+'@:{key.num.change~rs}()','mx5-pointerdown': $viewId+'@:{fast.start~rs}()','mx5-contextmenu': $viewId+'@:{prevent~rs}()','class': $$_class,})); 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-number/index.html'; throw msg; }  } ,
     assign(ops) {
         let me = this;
         let { root } = me;
-        if (!root.classList.contains('rd-l7')) {
-            delete me['_sM'];
+        if (!root.classList.contains('rd-_assets_index_less_-input-focus')) {
+            delete me['@:{value.when.active~rs}'];
             if (isFunction(ops.max)) { //!important callback with ops.props
                 ops.max = ops.max(ops.props);
             }
@@ -41,86 +42,86 @@ return $createVNode($viewId,0,$vnode_0); } ,
             if (isFunction(ops.step)) {
                 ops.step = ops.step();
             }
-            me['_sN'] = +ops.step || 1;
-            me['_sO'] = ops.empty;
-            me['_sP'] = root.hasAttribute('disabled');
-            me['_sQ'] = has(ops, 'max') ? +ops.max : Max_Value;
-            me['_sR'] = has(ops, 'min') ? +ops.min : -Max_Value;
-            me['_sS'] = +ops.ratio || 10;
-            me['_sT'] = +ops.fixed || 0;
-            me['_sU'] = me['_sV'](ops.value);
+            me['@:{step~rs}'] = +ops.step || 1;
+            me['@:{support.empty~rs}'] = ops.empty;
+            me['@:{disabled~rs}'] = root.hasAttribute('disabled');
+            me['@:{max~rs}'] = has(ops, 'max') ? +ops.max : Max_Value;
+            me['@:{min~rs}'] = has(ops, 'min') ? +ops.min : -Max_Value;
+            me['@:{ratio~rs}'] = +ops.ratio || 10;
+            me['@:{tail.length~rs}'] = +ops.fixed || 0;
+            me['@:{value~rs}'] = me['@:{get.value~rs}'](ops.value);
             return true;
         }
         else {
-            me['_sM'] = me['_sV'](ops.value);
+            me['@:{value.when.active~rs}'] = me['@:{get.value~rs}'](ops.value);
         }
         return false;
     },
     async render() {
         let { root } = this;
-        let m = mark(this, '_mh');
+        let m = mark(this, '@:{render~rs}');
         await this.digest({
-            disabled: this['_sP']
+            disabled: this['@:{disabled~rs}']
         });
         if (m() &&
-            !root.classList.contains('rd-l7')) {
-            this['_sW']();
+            !root.classList.contains('rd-_assets_index_less_-input-focus')) {
+            this['@:{fix.value~rs}']();
         }
     },
-    '_sW'(v) {
+    '@:{fix.value~rs}'(v) {
         let me = this;
-        v = v === undefined ? (me['_sM'] === undefined ? me['_sU'] : me['_sM']) : v;
+        v = v === undefined ? (me['@:{value.when.active~rs}'] === undefined ? me['@:{value~rs}'] : me['@:{value.when.active~rs}']) : v;
         node('_mx_ipt_' + me.id).value = v; //.toFixed(me['@:{tail.length}']);
     },
-    '_sV'(v) {
+    '@:{get.value~rs}'(v) {
         let me = this;
         v = +v;
         if (v || v === 0) {
-            let max = me['_sQ'];
-            let min = me['_sR'];
+            let max = me['@:{max~rs}'];
+            let min = me['@:{min~rs}'];
             if (v > max) {
                 v = max;
             }
             else if (v < min) {
                 v = min;
             }
-            v = +v.toFixed(me['_sT']);
+            v = +v.toFixed(me['@:{tail.length~rs}']);
         }
-        return isNaN(v) ? (me['_sO'] ? '' : 0) : v;
+        return isNaN(v) ? (me['@:{support.empty~rs}'] ? '' : 0) : v;
     },
-    '_sX'(v, ignoreFill) {
+    '@:{set.value~rs}'(v, ignoreFill) {
         let me = this;
         if (v === '' &&
-            me['_sO']) {
+            me['@:{support.empty~rs}']) {
             dispatch(me.root, 'input', {
-                value: me['_sU'] = v
+                value: me['@:{value~rs}'] = v
             });
             return;
         }
-        v = me['_sV'](v);
-        if (v !== me['_sU']) {
+        v = me['@:{get.value~rs}'](v);
+        if (v !== me['@:{value~rs}']) {
             if (!ignoreFill) {
-                me['_sW'](v);
+                me['@:{fix.value~rs}'](v);
             }
             dispatch(me.root, 'input', {
-                value: me['_sU'] = v
+                value: me['@:{value~rs}'] = v
             });
         }
-        return me['_sU'];
+        return me['@:{value~rs}'];
     },
-    '_sY'(increase, flag) {
+    '@:{key.num.change~rs}'(increase, flag) {
         let me = this;
-        let value = me['_sU'];
+        let value = me['@:{value~rs}'];
         if (value === '')
             value = 0; //for init
-        let step = me['_sN'];
+        let step = me['@:{step~rs}'];
         if (flag) {
             if (flag == 1) {
-                step *= me['_sS'];
+                step *= me['@:{ratio~rs}'];
             }
             else {
-                let len = me['_sT'];
-                let t = Number((step / me['_sS']).toFixed(len));
+                let len = me['@:{tail.length~rs}'];
+                let t = Number((step / me['@:{ratio~rs}']).toFixed(len));
                 if (t != 0) {
                     step = t;
                 }
@@ -132,9 +133,9 @@ return $createVNode($viewId,0,$vnode_0); } ,
         else {
             value -= step;
         }
-        me['_sX'](value);
+        me['@:{set.value~rs}'](value);
     },
-    '_sZ'() {
+    '@:{cursor.show~rs}'() {
         let me = this;
         let ipt = node('_mx_ipt_' + me.id);
         if (ipt) {
@@ -142,86 +143,86 @@ return $createVNode($viewId,0,$vnode_0); } ,
             ipt.selectionStart = ipt.selectionEnd = ipt.value.length;
         }
     },
-    '_s1'() {
+    '@:{simulator.active~rs}'() {
         let me = this;
-        me.root.classList.add('rd-l7');
-        if (!has(me, '_s0')) {
-            me['_s0'] = me['_sU'];
+        me.root.classList.add('rd-_assets_index_less_-input-focus');
+        if (!has(me, '@:{last.value~rs}')) {
+            me['@:{last.value~rs}'] = me['@:{value~rs}'];
         }
     },
-    '_s2<focusin>'() {
-        this['_s1']();
+    '@:{active~rs}<focusin>'() {
+        this['@:{simulator.active~rs}']();
     },
-    '_s4<focusout>'() {
+    '@:{deactive~rs}<focusout>'() {
         let me = this;
-        if (!me['_s3']) {
-            me.root.classList.remove('rd-l7');
-            me['_sW']();
-            if (me['_s0'] != me['_sU']) {
+        if (!me['@:{ui.keep.active~rs}']) {
+            me.root.classList.remove('rd-_assets_index_less_-input-focus');
+            me['@:{fix.value~rs}']();
+            if (me['@:{last.value~rs}'] != me['@:{value~rs}']) {
                 dispatch(me.root, 'change', {
-                    value: me['_sU']
+                    value: me['@:{value~rs}']
                 });
             }
-            delete me['_s0'];
+            delete me['@:{last.value~rs}'];
         }
     },
-    '_sY<click>'(e) {
+    '@:{key.num.change~rs}<click>'(e) {
         let me = this;
-        if (!me['_sP'] &&
-            !me['_s5']) {
-            me['_sY'](e.params.i, getFlagByCtrlKey(e));
-            me['_sZ']();
+        if (!me['@:{disabled~rs}'] &&
+            !me['@:{fast.change.start~rs}']) {
+            me['@:{key.num.change~rs}'](e.params.i, getFlagByCtrlKey(e));
+            me['@:{cursor.show~rs}']();
         }
     },
-    '_s9<pointerdown>'(e) {
+    '@:{fast.start~rs}<pointerdown>'(e) {
         let me = this;
-        if (!me['_sP']) {
-            me['_s3'] = 1;
-            me['_s1']();
+        if (!me['@:{disabled~rs}']) {
+            me['@:{ui.keep.active~rs}'] = 1;
+            me['@:{simulator.active~rs}']();
             let i = e.params.i;
-            let m = mark(this, '_s6');
-            me['_s7'] = setTimeout(() => {
+            let m = mark(this, '@:{pointerdown~rs}');
+            me['@:{long.tap.timer~rs}'] = setTimeout(() => {
                 if (m()) {
-                    me['_s8'] = setInterval(() => {
+                    me['@:{interval.timer~rs}'] = setInterval(() => {
                         if (m()) {
-                            me['_s5'] = 1;
-                            me['_sY'](i, getFlagByCtrlKey(e));
-                            me['_sZ']();
+                            me['@:{fast.change.start~rs}'] = 1;
+                            me['@:{key.num.change~rs}'](i, getFlagByCtrlKey(e));
+                            me['@:{cursor.show~rs}']();
                         }
                     }, 50);
                 }
             }, 300);
         }
     },
-    '_t_<keydown>'(e) {
+    '@:{press.check~rs}<keydown>'(e) {
         if (e.code == 'ArrowUp' ||
             e.code == 'ArrowDown') {
-            this['_nS'](e);
+            this['@:{prevent.default~rs}'](e);
             let me = this;
-            me['_sY'](e.code == 'ArrowUp', getFlagByCtrlKey(e));
+            me['@:{key.num.change~rs}'](e.code == 'ArrowUp', getFlagByCtrlKey(e));
         }
     },
-    '_ta<wheel>&{passive:false}'(e) {
-        if (this.root.classList.contains('rd-l7')) {
-            this['_nS'](e);
+    '@:{wheel~rs}<wheel>&{passive:false}'(e) {
+        if (this.root.classList.contains('rd-_assets_index_less_-input-focus')) {
+            this['@:{prevent.default~rs}'](e);
             let delta = e.deltaY;
-            this['_sY'](delta > 0, getFlagByCtrlKey(e));
+            this['@:{key.num.change~rs}'](delta > 0, getFlagByCtrlKey(e));
         }
     },
-    '_tb<input>'(e) {
-        this['_qe'](e);
+    '@:{input.check~rs}<input>'(e) {
+        this['@:{stop.propagation~rs}'](e);
         let target = e.eventTarget;
-        this['_sX'](target.value, 1);
+        this['@:{set.value~rs}'](target.value, 1);
     },
     '$doc<pointerup>'() {
         let me = this;
-        clearTimeout(me['_s7']);
-        clearInterval(me['_s8']);
-        delete me['_s3'];
+        clearTimeout(me['@:{long.tap.timer~rs}']);
+        clearInterval(me['@:{interval.timer~rs}']);
+        delete me['@:{ui.keep.active~rs}'];
         let m = mark(this, '@:pointerup');
         setTimeout(() => {
             if (m()) {
-                delete me['_s5'];
+                delete me['@:{fast.change.start~rs}'];
             }
         }, 0);
     }

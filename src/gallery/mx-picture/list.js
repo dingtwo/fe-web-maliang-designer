@@ -1,36 +1,36 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5j/73/list",["5c","../../5b/5v","../../5n/index","../62/index","../5q/index"],(require,exports,module)=>{
-let $quick_n8_0_static_node;
-let $quick_n8_3_static_node;
-let $quick_m6_static_text;
-let $quick_m7_static_text;
-let $quick_n8_1_static_attr={'class': 'rd-m3 rd-m4 rd-mA rd-mX rd-mZ rd-mb rd-mc rd-n9',};
-let $quick_n8_2_static_attr={'class': 'rd-mm',};
-let $quick_n8_4_static_attr={'class': 'rd-mf rd-oc',};
-let $quick_n8_5_static_attr={'class': 'rd-mG rd-mN rd-nW',};
-let $quick_n8_6_static_attr={'class': 'rd-mX rd-rD',};
-let $quick_n8_7_static_attr={'class': 'rd-mX rd-rG',};
-let $quick_n8_8_static_attr={'class': 'rd-mX rd-ni',};
-let $quick_n8_9_static_attr={'class': 'rd-mG rd-mU rd-rA',};
+define("gallery/mx-picture/list",["magix5","../../designer/service","../../i18n/index","../mx-dialog/index","../mx-toast/index"],(require,exports,module)=>{
+let $quick_g9_0_static_node;
+let $quick_g9_3_static_node;
+let $quick_f7_static_text;
+let $quick_f8_static_text;
+let $quick_g9_1_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-dialog-header rd-_assets_index_less_-dialog-header-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-position-sticky rd-_assets_index_less_-top-0 rd-_assets_index_less_-z-index-8',};
+let $quick_g9_2_static_attr={'class': 'rd-_assets_index_less_-tag-h5',};
+let $quick_g9_4_static_attr={'class': 'rd-_assets_index_less_-dialog-body rd-_assets_index_less_-min-height-100vh',};
+let $quick_g9_5_static_attr={'class': 'rd-_assets_index_less_-fontsize-16 rd-_assets_index_less_-mt30 rd-_assets_index_less_-tc',};
+let $quick_g9_6_static_attr={'class': 'rd-_assets_index_less_-flex rd-_gallery_mx-picture_index_less_-tabs',};
+let $quick_g9_7_static_attr={'class': 'rd-_assets_index_less_-flex rd-_gallery_mx-picture_index_less_-margin-100',};
+let $quick_g9_8_static_attr={'class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-flex-wrap-wrap',};
+let $quick_g9_9_static_attr={'class': 'rd-_assets_index_less_-ellipsis rd-_assets_index_less_-tc rd-_gallery_mx-picture_index_less_-item-title',};
 /*
     author:https://github.com/xinglie
 */
 
 
-let magix_1 = require("5c");
-let service_1 = require("../../5b/5v");
-let index_1 = require("../../5n/index");
-let index_2 = require("../62/index");
-let index_3 = require("../5q/index");
+let magix_1 = require("magix5");
+let service_1 = require("../../designer/service");
+let index_1 = require("../../i18n/index");
+let index_2 = require("../mx-dialog/index");
+let index_3 = require("../mx-toast/index");
 let { View, mark, node } = magix_1;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf,$encodeQuote)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	i18n,
 	error,
@@ -42,42 +42,43 @@ $$_class,
 $vnode_3,
 $vnode_4;
 
-if($quick_n8_0_static_node){
-$vnode_0=[$quick_n8_0_static_node];
+if($quick_g9_0_static_node){
+$vnode_0=[$quick_g9_0_static_node];
 }else{
-$vnode_0=[$quick_n8_0_static_node=$createVNode('div',{'_': 'i!','class': 'rd-m3 rd-md rd-n8',})];
+$vnode_0=[$quick_g9_0_static_node=$createVNode('div',{'_': 'dM','class': 'rd-_assets_index_less_-dialog-header-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-7',})];
 }
-$vnode_2=[$createVNode(0,(i18n('sF')))];$vnode_1=[$createVNode('h5',$quick_n8_2_static_attr,$vnode_2)];
-if($quick_n8_3_static_node){
-$vnode_1.push($quick_n8_3_static_node);
+$vnode_2=[$createVNode(0,($__line=3,$__art='{{=i18n(\'@:{lang#lib.images~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#lib.images~rs}\')%>',(i18n('@:{lang#lib.images~rs}'))))];$vnode_1=[$createVNode('h5',$quick_g9_2_static_attr,$vnode_2)];
+if($quick_g9_3_static_node){
+$vnode_1.push($quick_g9_3_static_node);
 }else{
-$vnode_2=[$createVNode(0,'如何不显示或更换图片库接口?')];$vnode_1.push($quick_n8_3_static_node=$createVNode('a',{'_': 'i@','class': 'rd-mo rd-mx','href': 'https://github.com/xinglie/report-designer/issues/28','rel': 'noopener noreferrer','target': '_blank',},$vnode_2));
+$vnode_2=[$createVNode(0,'如何不显示或更换图片库接口?')];$vnode_1.push($quick_g9_3_static_node=$createVNode('a',{'_': 'dN','class': 'rd-_assets_index_less_-ml10 rd-_assets_index_less_-tag-a','href': 'https://github.com/xinglie/report-designer/issues/28','rel': 'noopener noreferrer','target': '_blank',},$vnode_2));
 }
-$vnode_0.push($createVNode('div',$quick_n8_1_static_attr,$vnode_1));$vnode_1=[];
+$vnode_0.push($createVNode('div',$quick_g9_1_static_attr,$vnode_1));$vnode_1=[];$__line=7;$__art="{{if error}}";$__ctrl="if(error){";
 if(error){
-$vnode_2=[$createVNode(0,(error.message))];$vnode_1.push($createVNode('div',$quick_n8_5_static_attr,$vnode_2));
+$vnode_2=[$createVNode(0,($__line=8,$__art='{{=error.message}}',$__ctrl='<%=error.message%>',(error.message)))];$vnode_1.push($createVNode('div',$quick_g9_5_static_attr,$vnode_2));
 }else{
-$vnode_2=[];
-for(let $q_c_qxaqqtg=list.length,ci=0;ci<$q_c_qxaqqtg;ci+=1){
+$vnode_2=[];$__line=11;$__art="{{each list as category ci}}";$__ctrl="for(let $q_c_uawrmhwop=list.length,ci=0;ci<$q_c_uawrmhwop;ci++){let category=list[ci];";
+for(let $q_c_uawrmhwop=list.length,ci=0;ci<$q_c_uawrmhwop;ci+=1){
 let category=list[ci];
-$vnode_3=[$createVNode(0,(category.title))];;$$_class='rd-rE rd-mG rd-nk';if(ci==current){;$$_class+=' rd-rF';};$vnode_2.push($createVNode('div',{'mx5-click': ((ci!=current))&&($viewId+'_sz({to:'+(ci)+'})'),'class': $$_class,},$vnode_3));
-}$vnode_3=[$quick_m6_static_text||($quick_m6_static_text=$createVNode(0,'网络图片'))];;$$_class='rd-rE rd-mG rd-nk';if('network'==current){;$$_class+=' rd-rF';};$vnode_2.push($createVNode('div',{'mx5-click': (('network'!=current))&&($viewId+'_sz({to:\'network\'})'),'class': $$_class,},$vnode_3));$vnode_1.push($createVNode('div',$quick_n8_6_static_attr,$vnode_2));
+$vnode_3=[$createVNode(0,($__line=12,$__art='{{=category.title}}',$__ctrl='<%=category.title%>',(category.title)))];;$$_class='rd-_gallery_mx-picture_index_less_-tabs-item rd-_assets_index_less_-tc rd-_assets_index_less_-cursor-pointer'+($__line=12,$__art='{{if ci==current}}','');$__ctrl='<%if(ci==current){%>';if(ci==current){;$$_class+=' rd-_gallery_mx-picture_index_less_-tabs-active'+($__line=12,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2.push($createVNode('div',{'mx5-click': (($temp_var=($__line=12,$__art='{{ci!=current}}',$__ctrl='<%ci!=current%>',ci!=current),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-picture/list.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{change.tab~rs}({to:'+($__line=12,$__art='{{=ci}}',$__ctrl='<%=ci%>',(ci))+'})'),'class': $$_class,},$vnode_3));
+}$vnode_3=[$quick_f7_static_text||($quick_f7_static_text=$createVNode(0,'网络图片'))];;$$_class='rd-_gallery_mx-picture_index_less_-tabs-item rd-_assets_index_less_-tc rd-_assets_index_less_-cursor-pointer'+($__line=15,$__art='{{if \'network\'==current}}','');$__ctrl='<%if(\'network\'==current){%>';if('network'==current){;$$_class+=' rd-_gallery_mx-picture_index_less_-tabs-active'+($__line=15,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2.push($createVNode('div',{'mx5-click': (($temp_var=($__line=15,$__art='{{\'network\'!=current}}',$__ctrl='<%\'network\'!=current%>','network'!=current),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-picture/list.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{change.tab~rs}({to:\'network\'})'),'class': $$_class,},$vnode_3));$vnode_1.push($createVNode('div',$quick_g9_6_static_attr,$vnode_2));$__line=20;$__art="{{if current==\\'network\\'}}";$__ctrl="if(current=='network'){";
 if(current=='network'){
-$vnode_2=[$quick_m7_static_text||($quick_m7_static_text=$createVNode(0,'网络地址: ')),$createVNode('input',{'placeholder': '请粘贴/输入网络图片地址','class': 'rd-l4 rd-l5 rd-mW rd-mx','id': '_rd_nw_'+$viewId,},1)];$vnode_3=[$createVNode(0,(i18n('mn')))];$vnode_2.push($createVNode('button',{'class': 'rd-l9 rd-ma rd-mx','mx5-click': $viewId+'_tg()',},$vnode_3));$vnode_1.push($createVNode('div',$quick_n8_7_static_attr,$vnode_2));
+$vnode_2=[$quick_f8_static_text||($quick_f8_static_text=$createVNode(0,'网络地址: ')),$createVNode('input',{'placeholder': '请粘贴/输入网络图片地址','class': 'rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-input rd-_assets_index_less_-ml10 rd-_assets_index_less_-tag-input','id': '_rd_nw_'+($__line=23,$__art='{{=$viewId}}','')+$viewId,},1)];$vnode_3=[$createVNode(0,($__line=24,$__art='{{=i18n(\'@:{lang#btn.apply~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#btn.apply~rs}\')%>',(i18n('@:{lang#btn.apply~rs}'))))];$vnode_2.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-ml10','mx5-click': $viewId+'@:{apply.network.image~rs}()',},$vnode_3));$vnode_1.push($createVNode('div',$quick_g9_7_static_attr,$vnode_2));
 }else{
-$vnode_2=[];
-for(let $q_a_qsqjyz=list[current].list,$q_c_vywuaxey=$q_a_qsqjyz.length,$q_key_zindsyzri=0;$q_key_zindsyzri<$q_c_vywuaxey;$q_key_zindsyzri+=1){
-let p=$q_a_qsqjyz[$q_key_zindsyzri];
-$vnode_4=[$createVNode('div',{'class': 'rd-mC rd-rz','style': 'background-image:url(\''+(p.src)+'\')',})];$vnode_3=[$createVNode('div',{'class': 'rd-nO rd-na rd-nk rd-of rd-ry','mx5-click': $viewId+'_mQ({src:\''+($encodeQuote(p.src))+'\'})',},$vnode_4)];$vnode_4=[$createVNode(0,(p.title))];$vnode_3.push($createVNode('div',$quick_n8_9_static_attr,$vnode_4));$vnode_2.push($createVNode('div',{'title': (p.title),},$vnode_3));
-}$vnode_1.push($createVNode('div',$quick_n8_8_static_attr,$vnode_2));
+$vnode_2=[];$__line=28;$__art="{{each list[current].list as p}}";$__ctrl="for(let $q_a_uyappbpiy=list[current].list,$q_c_diqinhsajt=$q_a_uyappbpiy.length,$q_key_syccjc=0;$q_key_syccjc<$q_c_diqinhsajt;$q_key_syccjc++){let p=$q_a_uyappbpiy[$q_key_syccjc];";
+for(let $q_a_uyappbpiy=list[current].list,$q_c_diqinhsajt=$q_a_uyappbpiy.length,$q_key_syccjc=0;$q_key_syccjc<$q_c_diqinhsajt;$q_key_syccjc+=1){
+let p=$q_a_uyappbpiy[$q_key_syccjc];
+$vnode_4=[$createVNode('div',{'class': 'rd-_assets_index_less_-hp100 rd-_gallery_mx-picture_index_less_-item','style': 'background-image:url(\''+($__line=31,$__art='{{=p.src}}',$__ctrl='<%=p.src%>',(p.src))+'\')',})];$vnode_3=[$createVNode('div',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-height-100 rd-_assets_index_less_-overflow-hidden rd-_assets_index_less_-padding-4 rd-_gallery_mx-picture_index_less_-item-container','mx5-click': $viewId+'@:{use~rs}({src:\''+($__line=30,$__art='{{=p.src}}',$__ctrl='<%=$encodeQuote(p.src)%>',($encodeQuote(p.src)))+'\'})',},$vnode_4)];$vnode_4=[$createVNode(0,($__line=33,$__art='{{=p.title}}',$__ctrl='<%=p.title%>',(p.title)))];$vnode_3.push($createVNode('div',$quick_g9_9_static_attr,$vnode_4));$vnode_2.push($createVNode('div',{'title': ($__line=29,$__art='{{=p.title}}',$__ctrl='<%=p.title%>',(p.title)),},$vnode_3));
+}$vnode_1.push($createVNode('div',$quick_g9_8_static_attr,$vnode_2));
 }
-}$vnode_0.push($createVNode('div',$quick_n8_4_static_attr,$vnode_1)); 
+}$vnode_0.push($createVNode('div',$quick_g9_4_static_attr,$vnode_1)); 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-picture/list.html'; throw msg; }  } ,
     init(data) {
         let me = this;
-        me['_mH'] = data.dialog;
-        me['_sr'] = data.done;
+        me['@:{dialog~rs}'] = data.dialog;
+        me['@:{done.callback~rs}'] = data.done;
         me.set({
             current: 0
         });
@@ -86,9 +87,9 @@ return $createVNode($viewId,0,$vnode_0); } ,
         });
     },
     render() {
-        let m = mark(this, '_mh');
+        let m = mark(this, '@:{render~rs}');
         let s = new service_1();
-        s.all('_nX', (err, bag) => {
+        s.all('@:{get.images~rs}', (err, bag) => {
             if (m()) {
                 this.digest({
                     error: err,
@@ -97,17 +98,17 @@ return $createVNode($viewId,0,$vnode_0); } ,
             }
         });
     },
-    '_mQ<click>'(e) {
+    '@:{use~rs}<click>'(e) {
         let me = this;
         let img = new Image();
-        let done = me['_sr'];
+        let done = me['@:{done.callback~rs}'];
         let src = e.params.src;
-        let m = mark(this, '_mQ');
+        let m = mark(this, '@:{use~rs}');
         index_3.show('正在获取图片尺寸...');
         img.onerror = () => {
             if (m()) {
                 index_3.hide();
-                me.alert(index_1('sE'));
+                me.alert(index_1('@:{lang#load.img.error~rs}'));
             }
         };
         img.onload = () => {
@@ -120,26 +121,26 @@ return $createVNode($viewId,0,$vnode_0); } ,
                     width: w,
                     height: h
                 });
-                me['_mH'].close();
+                me['@:{dialog~rs}'].close();
             }
         };
         img.src = src;
     },
-    '_sz<click>'(e) {
+    '@:{change.tab~rs}<click>'(e) {
         let { to } = e.params;
         this.digest({
             current: to
         });
     },
-    '_mR<click>'() {
-        this['_mH'].close();
+    '@:{close~rs}<click>'() {
+        this['@:{dialog~rs}'].close();
     },
-    '_tg<click>'() {
+    '@:{apply.network.image~rs}<click>'() {
         let input = node(`_rd_nw_${this.id}`);
         let url = input.value.trim();
         if (url) {
-            let m = mark(this, '_mQ');
-            let done = this['_sr'];
+            let m = mark(this, '@:{use~rs}');
+            let done = this['@:{done.callback~rs}'];
             index_3.show('正在获取图片尺寸...');
             let img = new Image();
             img.onload = () => {
@@ -150,7 +151,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
                         width: img.width,
                         height: img.height
                     });
-                    this['_mH'].close();
+                    this['@:{dialog~rs}'].close();
                 }
             };
             img.onerror = () => {
@@ -166,7 +167,7 @@ return $createVNode($viewId,0,$vnode_0); } ,
             input.focus();
         }
     },
-    '_th<change>'(e) {
+    '@:{page.change~rs}<change>'(e) {
         console.log(e.page);
     }
 }).merge(index_2);

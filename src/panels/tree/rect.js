@@ -1,37 +1,37 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("66/tree/rect",["5c","../../5b/5e","../../5b/64","../../5b/65","../../5b/5f"],(require,exports,module)=>{
+define("panels/tree/rect",["magix5","../../designer/const","../../designer/stage-elements","../../designer/stage-generic","../../designer/transform"],(require,exports,module)=>{
 
 
-let magix_1 = require("5c");
-let const_1 = require("../../5b/5e");
-let stage_elements_1 = require("../../5b/64");
-let stage_generic_1 = require("../../5b/65");
-let transform_1 = require("../../5b/5f");
+let magix_1 = require("magix5");
+let const_1 = require("../../designer/const");
+let stage_elements_1 = require("../../designer/stage-elements");
+let stage_generic_1 = require("../../designer/stage-generic");
+let transform_1 = require("../../designer/transform");
 let { node, config, guid, inside } = magix_1;
 let RId = guid('rp_');
 let { max } = Math;
 let root;
 let RectPole = {
-    '_m4'() {
+    '@:{init~rs}'() {
         let n = node(RId);
         if (!n) {
             root = node(config('rootId'));
-            root.insertAdjacentHTML("beforeend", `<div class="rd-mJ rd-n5 rd-sB" id="${RId}"></div>`);
+            root.insertAdjacentHTML("beforeend", `<div class="rd-_assets_index_less_-pa rd-_assets_index_less_-z-index-1 rd-_panels_tree_index_less_-rect" id="${RId}"></div>`);
         }
     },
-    '_mA'(element, dest) {
+    '@:{show~rs}'(element, dest) {
         let ns = node(RId).style;
         let rb = root.getBoundingClientRect();
         let styles = getComputedStyle(root);
         let borderLeft = parseInt(styles.borderLeftWidth, 10) || 0;
         let borderTop = parseInt(styles.borderTopWidth, 10) || 0;
         let { props } = element, pos;
-        let x = const_1['mM'](props.x), y = const_1['mM'](props.y), width = const_1['mM'](props.width), height = const_1['mM'](props.height);
+        let x = const_1['@:{const#to.px~rs}'](props.x), y = const_1['@:{const#to.px~rs}'](props.y), width = const_1['@:{const#to.px~rs}'](props.width), height = const_1['@:{const#to.px~rs}'](props.height);
         if (dest) {
             let n = node(dest);
             if (n) {
@@ -47,7 +47,7 @@ let RectPole = {
             }
         }
         else {
-            pos = transform_1["l7"]({
+            pos = transform_1["@:{transform#stage.to.real.coord~rs}"]({
                 x,
                 y
             });
@@ -59,46 +59,46 @@ let RectPole = {
         let r = props.rotate || 0;
         ns.transform = `rotate(${r}deg)`;
     },
-    '_mB'() {
+    '@:{hide~rs}'() {
         let styles = node(RId).style;
         styles.left = '-10000px';
         styles.top = '-10000px';
     }
 };
 module.exports= {
-    '_ro'() {
-        RectPole['_m4']();
+    '@:{setup~rs}'() {
+        RectPole['@:{init~rs}']();
     },
-    '_uQ'() {
-        RectPole['_mB']();
+    '@:{hide.pole~rs}'() {
+        RectPole['@:{hide~rs}']();
     },
-    '_uR<pointerover>'(e) {
+    '@:{show.rect~rs}<pointerover>'(e) {
         let flag = inside(e.relatedTarget, e.eventTarget);
         if (!flag) {
             let { element, dest } = e.params;
-            RectPole["_mA"](element, dest);
+            RectPole["@:{show~rs}"](element, dest);
         }
     },
-    '_uS<pointerout>'(e) {
+    '@:{hide.rect~rs}<pointerout>'(e) {
         let flag = inside(e.relatedTarget, e.eventTarget);
         if (!flag) {
-            RectPole["_mB"]();
+            RectPole["@:{hide~rs}"]();
         }
     },
-    '_uT<click>'(e) {
-        if (e['_mW'])
+    '@:{select.element~rs}<click>'(e) {
+        if (e['@:{halt~rs}'])
             return;
         let { params, shiftKey, ctrlKey, metaKey } = e;
         let { element, dest } = params;
-        stage_elements_1['l5'](element, shiftKey || ctrlKey || metaKey);
+        stage_elements_1['@:{elements#single.or.multi.select~rs}'](element, shiftKey || ctrlKey || metaKey);
         //修正元素聚焦滚动到视区内时，hover高亮元素的指示元素也需要更新位置
-        RectPole["_mA"](element, dest);
+        RectPole["@:{show~rs}"](element, dest);
     },
-    '_uU<click>'(e) {
-        e['_mW'] = 1;
+    '@:{remove.element~rs}<click>'(e) {
+        e['@:{halt~rs}'] = 1;
         let { element } = e.params;
-        stage_generic_1['mu'](element, '_uV');
-        RectPole['_mB']();
+        stage_generic_1['@:{generic#delete.select.elements~rs}'](element, '@:{delete.from.tree.panel~rs}');
+        RectPole['@:{hide~rs}']();
     }
 };
 

@@ -17,5 +17,8 @@
     "server": "anywhere -h localhost -p 8888",
     "watch": "gulp watch",
     "dist": "gulp dist"
+  },
+  "devDependencies": {
+    "@csx/magix-composer": "^1.0.0"
   }
 }

@@ -1,21 +1,21 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("61/data-richtext/dshow",["5c","../../5r/ebind"],(require,exports,module)=>{
-let $quick_mN_0_static_attr={'class': 'rd-mL rd-mX rd-nO',};
+define("elements/data-richtext/dshow",["magix5","../../provider/ebind"],(require,exports,module)=>{
+let $quick_fO_0_static_attr={'class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-overflow-hidden rd-_assets_index_less_-pointer-events-none',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("5c");
-let ebind_1 = require("../../5r/ebind");
+let magix_1 = require("magix5");
+let ebind_1 = require("../../provider/ebind");
 let { View } = magix_1;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	enter,
 	props,
@@ -26,16 +26,17 @@ $$_class,
 $vnode_3,
 $vnode_2,
 $vnode_1;
-$vnode_2=[];
+$vnode_2=[];$__line=3;$__art="{{if text}}";$__ctrl="if(text){";
 if(text){
-$vnode_2.push($createVNode(0,(text)));
+$vnode_2.push($createVNode(0,($__line=4,$__art='{{=text}}',$__ctrl='<%=text%>',(text))));
 }else{
-$vnode_3=[$createVNode(0,(i18n('n9')))];$vnode_2.push($createVNode('span',{'style': 'font-size:'+(props.tfs)+(unit),},$vnode_3));
-}$vnode_1=[$createVNode('div',$quick_mN_0_static_attr,$vnode_2)];;$$_class='rd-mJ rd-n5';if(enter){;$$_class+=' rd-nz';};$vnode_0=[$createVNode('div',{'style': 'left:'+(props.x)+(unit)+';top:'+(props.y)+(unit)+';opacity:'+(props.alpha)+';width:'+(props.width)+(unit)+';height:'+(props.height)+(unit),'mx5-dragenter': $viewId+'_pH()','mx5-dragleave': $viewId+'_pI()','mx5-drop': $viewId+'_pJ()','class': $$_class,},$vnode_1)]; 
+$vnode_3=[$createVNode(0,($__line=6,$__art='{{=i18n(\'@:{lang#elements.data.bind.tip~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#elements.data.bind.tip~rs}\')%>',(i18n('@:{lang#elements.data.bind.tip~rs}'))))];$vnode_2.push($createVNode('span',{'style': 'font-size:'+($__line=6,$__art='{{=props.tfs}}',$__ctrl='<%=props.tfs%>',(props.tfs))+($__line=6,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit)),},$vnode_3));
+}$vnode_1=[$createVNode('div',$quick_fO_0_static_attr,$vnode_2)];;$$_class='rd-_assets_index_less_-pa rd-_assets_index_less_-z-index-1'+($__line=1,$__art='{{if enter}}','');$__ctrl='<%if(enter){%>';if(enter){;$$_class+=' rd-_assets_index_less_-hod-drop-tip'+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0=[$createVNode('div',{'style': 'left:'+($__line=1,$__art='{{=props.x}}',$__ctrl='<%=props.x%>',(props.x))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';top:'+($__line=1,$__art='{{=props.y}}',$__ctrl='<%=props.y%>',(props.y))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';opacity:'+($__line=1,$__art='{{=props.alpha}}',$__ctrl='<%=props.alpha%>',(props.alpha))+';width:'+($__line=1,$__art='{{=props.width}}',$__ctrl='<%=props.width%>',(props.width))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=1,$__art='{{=props.height}}',$__ctrl='<%=props.height%>',(props.height))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit)),'mx5-dragenter': $viewId+'@:{when.data.field.enter~rs}()','mx5-dragleave': $viewId+'@:{when.data.field.leave~rs}()','mx5-drop': $viewId+'@:{when.data.field.drop~rs}()','class': $$_class,},$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:elements/data-richtext/dshow.html'; throw msg; }  } ,
     init() {
-        this['_pz'] = ['text', '_oJ'];
+        this['@:{has.contents~rs}'] = ['text', '@:{show.text~rs}'];
     },
     assign(data) {
         this.set(data);

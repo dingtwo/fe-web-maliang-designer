@@ -1,30 +1,30 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5j/7e/kp",["5c","../../5r/ebase","../../5b/5f","../../5b/5e","../6u/index"],(require,exports,module)=>{
-require("../6u/index");
-let $quick_l2_static_text;
-let $quick_m8_static_text;
-let $quick_o__2_static_node;
-let $quick_m9_static_text;
-let $quick_o__0_static_attr={'class': 'rd-m5 rd-mX rd-mZ',};
-let $quick_o__1_static_attr={'class': 'rd-m5 rd-mX',};
+define("gallery/mx-svg/kp",["magix5","../../provider/ebase","../../designer/transform","../../designer/const","../mx-number/index"],(require,exports,module)=>{
+require("../mx-number/index");
+let $quick_e3_static_text;
+let $quick_f9_static_text;
+let $quick_ha_2_static_node;
+let $quick_g__static_text;
+let $quick_ha_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-margin-bottom-4',};
+let $quick_ha_1_static_attr={'class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-margin-bottom-4',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("5c");
-let ebase_1 = require("../../5r/ebase");
-let transform_1 = require("../../5b/5f");
-let const_1 = require("../../5b/5e");
+let magix_1 = require("magix5");
+let ebase_1 = require("../../provider/ebase");
+let transform_1 = require("../../designer/transform");
+let const_1 = require("../../designer/const");
 let { has, View, dispatch, inside } = magix_1;
 let { random } = Math;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf,$encodeQuote)=> { 
-let $temp_var,$vnode_0=[],
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0=[],
 {
 	points,
 	disabled,
@@ -37,37 +37,38 @@ $$_class,
 $vnode_3,
 $vnode_2,
 $vnode_1;
-let total=points.length;;
-for(let $q_c_kzsdegejh=points.length,i=0;i<$q_c_kzsdegejh;i+=1){
+($__line=1,$__art='{{set total=points.length}}','');$__ctrl='<%let total=points.length;%>';let total=points.length;;$__line=2;$__art="{{each points as p i}}";$__ctrl="for(let $q_c_psdgqw=points.length,i=0;i<$q_c_psdgqw;i++){let p=points[i];";
+for(let $q_c_psdgqw=points.length,i=0;i<$q_c_psdgqw;i+=1){
 let p=points[i];
-$vnode_2=[];
+$vnode_2=[];$__line=5;$__art="{{if total>3&&mod}}";$__ctrl="if(total>3&&mod){";
 if(total>3&&mod){
-$vnode_3=[$quick_l2_static_text||($quick_l2_static_text=$createVNode(0,''))];;$$_class='rd-l3 rd-mv rd-nV';if(disabled){;$$_class+=' rd-nL';}else{;$$_class+=' rd-nK';};$vnode_2.push($createVNode('span',{'mx5-click': ((!disabled))&&($viewId+'_tp({i:'+(i+1)+'})'),'title': '删除控制点','class': $$_class,},$vnode_3));
-}$vnode_2.push($quick_m8_static_text||($quick_m8_static_text=$createVNode(0,'控制点：')));;$$_class='rd-nA rd-mF';if(disabled){;$$_class+=' rd-nJ';}else{;$$_class+=' rd-nk';if(props['_tq']==p){;$$_class+=' rd-nB';};};$vnode_1=[$createVNode('span',{'mx5-pointerover': $viewId+'_ts({key:\''+($encodeQuote(p))+'\'})','class': $$_class,},$vnode_2),$createVNode('div',{'mx5-owner': $viewId,'$': 'step,fixed,props,points','class': 'rd-l5 rd-m8 rd-mK','disabled': (disabled),'mx5-change': $viewId+'_p2()','mx5-input': $viewId+'_tl({i:'+(i+1)+',type:\'X\'})','mx5-view': '5j/6u/index?step='+$keyOf($refData,step,'i!')+'&fixed='+$keyOf($refData,fixed,'i@')+'&value='+$keyOf($refData,read(props[p+'X']),'i$.'+(i)+'.i^'),})];$vnode_0.push($createVNode('div',$quick_o__0_static_attr,$vnode_1));
-if($quick_o__2_static_node){
-$vnode_1=[$quick_o__2_static_node];
+$vnode_3=[$quick_e3_static_text||($quick_e3_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-mr5 rd-_assets_index_less_-fontsize-14'+($__line=6,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_assets_index_less_-color-999'+($__line=6,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$$_class+=' rd-_assets_index_less_-gray'+($__line=6,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2.push($createVNode('span',{'mx5-click': (($temp_var=($__line=6,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-svg/kp.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{remove.key.point~rs}({i:'+($__line=6,$__art='{{=i+1}}',$__ctrl='<%=i+1%>',(i+1))+'})'),'title': '删除控制点','class': $$_class,},$vnode_3));
+}$vnode_2.push($quick_f9_static_text||($quick_f9_static_text=$createVNode(0,'控制点：')));;$$_class='rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr'+($__line=4,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_assets_index_less_-cursor-not-allowed'+($__line=4,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$$_class+=' rd-_assets_index_less_-cursor-pointer'+($__line=4,$__art='{{if props[\'@:{focus.ctrl~rs}\']==p}}','');$__ctrl='<%if(props[\'@:{focus.ctrl~rs}\']==p){%>';if(props['@:{focus.ctrl~rs}']==p){;$$_class+=' rd-_assets_index_less_-props-item-title-selected'+($__line=4,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_class+=''+($__line=4,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1=[$createVNode('span',{'mx5-pointerover': $viewId+'@:{focus.key.point~rs}({key:\''+($__line=4,$__art='{{=p}}',$__ctrl='<%=$encodeQuote(p)%>',($encodeQuote(p)))+'\'})','class': $$_class,},$vnode_2),$createVNode('div',{'mx5-owner': $viewId,'$': 'step,fixed,props,points','class': 'rd-_assets_index_less_-input rd-_assets_index_less_-pr rd-_assets_index_less_-width-140','disabled': ($temp_var=($__line=10,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-svg/kp.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-change': $viewId+'@:{stop~rs}()','mx5-input': $viewId+'@:{update.key.point~rs}({i:'+($__line=10,$__art='{{=i+1}}',$__ctrl='<%=i+1%>',(i+1))+',type:\'X\'})','mx5-view': 'gallery/mx-number/index?step='+($__line=10,$__art='{{#step}}',$__ctrl='<%#step,\'auto_key_step\'%>',$keyOf($refData,step,'auto_key_step'))+'&fixed='+($__line=10,$__art='{{#fixed}}',$__ctrl='<%#fixed,\'auto_key_fixed\'%>',$keyOf($refData,fixed,'auto_key_fixed'))+'&value='+($__line=10,$__art='{{#read(props[p+\'X\'])}}',$__ctrl='<%#read(props[p+\'X\']),\'auto_key_read.props.points.\'+(i)+\'.read(props[p+\\\'X\\\'])\'%>',$keyOf($refData,read(props[p+'X']),'auto_key_read.props.points.'+(i)+'.read(props[p+\'X\'])')),})];$vnode_0.push($createVNode('div',$quick_ha_0_static_attr,$vnode_1));
+if($quick_ha_2_static_node){
+$vnode_1=[$quick_ha_2_static_node];
 }else{
-$vnode_1=[$quick_o__2_static_node=$createVNode('span',{'_': 'i!','class': 'rd-mF rd-nA',})];
+$vnode_1=[$quick_ha_2_static_node=$createVNode('span',{'_': 'dM','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',})];
 }
-$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'step,fixed,props,points','class': 'rd-l5 rd-m8 rd-mK','disabled': (disabled),'mx5-change': $viewId+'_p2()','mx5-input': $viewId+'_tl({i:'+(i+1)+',type:\'Y\'})','mx5-view': '5j/6u/index?step='+$keyOf($refData,step,'i!')+'&fixed='+$keyOf($refData,fixed,'i@')+'&value='+$keyOf($refData,read(props[p+'Y']),'i$.'+(i)+'.i*'),}));$vnode_0.push($createVNode('div',$quick_o__1_static_attr,$vnode_1));
-}
+$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'step,fixed,props,points','class': 'rd-_assets_index_less_-input rd-_assets_index_less_-pr rd-_assets_index_less_-width-140','disabled': ($temp_var=($__line=14,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-svg/kp.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-change': $viewId+'@:{stop~rs}()','mx5-input': $viewId+'@:{update.key.point~rs}({i:'+($__line=14,$__art='{{=i+1}}',$__ctrl='<%=i+1%>',(i+1))+',type:\'Y\'})','mx5-view': 'gallery/mx-number/index?step='+($__line=14,$__art='{{#step}}',$__ctrl='<%#step,\'auto_key_step\'%>',$keyOf($refData,step,'auto_key_step'))+'&fixed='+($__line=14,$__art='{{#fixed}}',$__ctrl='<%#fixed,\'auto_key_fixed\'%>',$keyOf($refData,fixed,'auto_key_fixed'))+'&value='+($__line=14,$__art='{{#read(props[p+\'Y\'])}}',$__ctrl='<%#read(props[p+\'Y\']),\'auto_key_read.props.points.\'+(i)+\'.read(props[p+\\\'Y\\\'])\'%>',$keyOf($refData,read(props[p+'Y']),'auto_key_read.props.points.'+(i)+'.read(props[p+\'Y\'])')),}));$vnode_0.push($createVNode('div',$quick_ha_1_static_attr,$vnode_1));
+}$__line=17;$__art="{{if mod}}";$__ctrl="if(mod){";
 if(mod){
-$vnode_1=[$quick_m9_static_text||($quick_m9_static_text=$createVNode(0,'添加控制点'))];$vnode_0.push($createVNode('button',{'class': 'rd-l9 rd-mG rd-mI rd-ma rd-nk','disabled': (disabled),'mx5-click': $viewId+'_to()',},$vnode_1));
+$vnode_1=[$quick_g__static_text||($quick_g__static_text=$createVNode(0,'添加控制点'))];$vnode_0.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-fr rd-_assets_index_less_-tc','disabled': ($temp_var=($__line=18,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-svg/kp.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-click': $viewId+'@:{add.key.point~rs}()',},$vnode_1));
 } 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-svg/kp.html'; throw msg; }  } ,
     init() {
         this.set({
-            fixed: const_1["mI"],
-            step: const_1["mH"],
-            read: transform_1["l5"]
+            fixed: const_1["@:{const#unit.fixed~rs}"],
+            step: const_1["@:{const#unit.step~rs}"],
+            read: transform_1["@:{transform#to.show.value~rs}"]
         });
     },
     assign(extra) {
         let { props, disabled, mod } = extra;
         this.set({
             disabled,
-            points: ebase_1["_tk"](props),
+            points: ebase_1["@:{get.key.point~rs}"](props),
             props,
             mod
         });
@@ -75,26 +76,26 @@ return $createVNode($viewId,0,$vnode_0); } ,
     render() {
         this.digest();
     },
-    '_tl<input>'(e) {
+    '@:{update.key.point~rs}<input>'(e) {
         let { i, type } = e.params;
         let props = this.get('props');
-        props['ctrl' + i + type] = transform_1["m_"](e.value);
+        props['ctrl' + i + type] = transform_1["@:{transform#to.real.value~rs}"](e.value);
         dispatch(this.root, 'change');
     },
-    '_to<click>'() {
+    '@:{add.key.point~rs}<click>'() {
         let props = this.get('props');
-        let keyPoints = ebase_1["_tk"](props);
+        let keyPoints = ebase_1["@:{get.key.point~rs}"](props);
         let { x, y, width, height } = props;
         let nextIndex = keyPoints.length + 1;
         let nextX = x + (width * random());
         let nextY = y + (height * random());
         props[`ctrl${nextIndex}X`] = nextX;
         props[`ctrl${nextIndex}Y`] = nextY;
-        delete props['_tm'];
-        delete props['_tn'];
+        delete props['@:{cached.key.points~rs}'];
+        delete props['@:{cached.move.props~rs}'];
         dispatch(this.root, 'change');
     },
-    '_tp<click>'(e) {
+    '@:{remove.key.point~rs}<click>'(e) {
         let props = this.get('props');
         let { i } = e.params;
         let next = i + 1;
@@ -111,17 +112,17 @@ return $createVNode($viewId,0,$vnode_0); } ,
         }
         delete props[`ctrl${i}X`];
         delete props[`ctrl${i}Y`];
-        delete props['_tm'];
-        delete props['_tn'];
+        delete props['@:{cached.key.points~rs}'];
+        delete props['@:{cached.move.props~rs}'];
         dispatch(this.root, 'change');
     },
-    '_ts<pointerover>'(e) {
+    '@:{focus.key.point~rs}<pointerover>'(e) {
         if (!inside(e.relatedTarget, e.eventTarget)) {
             let { key } = e.params;
             let props = this.get('props');
-            props['_tq'] = key;
+            props['@:{focus.ctrl~rs}'] = key;
             dispatch(this.root, 'change', {
-                '_tr': 1
+                '@:{svg.control.point~rs}': 1
             });
         }
     },

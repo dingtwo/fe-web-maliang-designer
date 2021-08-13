@@ -1,32 +1,33 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("7o/page",["5c"],(require,exports,module)=>{
+define("standalone/page",["magix5"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("5c");
+let magix_1 = require("magix5");
 module.exports= magix_1.View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	page,
 	unit,
 	elements,}=$dataFromView,
 $$_style,
 $vnode_1;
-$vnode_1=[];
-for(let $q_c_jdzguxb=elements.length,$q_key_aqcvyoadnvv=0;$q_key_aqcvyoadnvv<$q_c_jdzguxb;$q_key_aqcvyoadnvv+=1){
-let e=elements[$q_key_aqcvyoadnvv];
-$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'elements','mx5-view': '61/'+(e.type)+'/index?props='+$keyOf($refData,e.props,'i!.'+($q_key_aqcvyoadnvv)+'.i@')+'&unit='+($encodeUrl(unit)),}));
-};$$_style='position:relative;width:'+(page.width)+'px;height:'+(page.height*page.pages)+'px;background:'+(page.background)+';';if(page.backgroundImage){;$$_style+='background-image:url('+(page.backgroundImage)+');background-repeat:'+(page.backgroundRepeat=='full'?'no-repeat':page.backgroundRepeat)+';background-size:';if(page.backgroundRepeat=='full'){;$$_style+='100% 100%';}else{;$$_style+=''+(page.backgroundWidth)+'px '+(page.backgroundHeight)+'px;background-position:'+(page.backgroundXOffset)+(unit)+' '+(page.backgroundYOffset)+(unit);};};$vnode_0=[$createVNode('div',{'style': $$_style,},$vnode_1)]; 
+$vnode_1=[];$__line=2;$__art="{{each elements as e}}";$__ctrl="for(let $q_c_jjoyeuon=elements.length,$q_key_tezugvpqk=0;$q_key_tezugvpqk<$q_c_jjoyeuon;$q_key_tezugvpqk++){let e=elements[$q_key_tezugvpqk];";
+for(let $q_c_jjoyeuon=elements.length,$q_key_tezugvpqk=0;$q_key_tezugvpqk<$q_c_jjoyeuon;$q_key_tezugvpqk+=1){
+let e=elements[$q_key_tezugvpqk];
+$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'elements','mx5-view': 'elements/'+($__line=3,$__art='{{=e.type}}',$__ctrl='<%=e.type%>',(e.type))+'/index?props='+($__line=3,$__art='{{#e.props}}',$__ctrl='<%#e.props,\'auto_key_elements.\'+($q_key_tezugvpqk)+\'.e.props\'%>',$keyOf($refData,e.props,'auto_key_elements.'+($q_key_tezugvpqk)+'.e.props'))+'&unit='+($__line=3,$__art='{{=unit}}',$__ctrl='<%=$encodeUrl(unit)%>',($encodeUrl(unit))),}));
+};$$_style='position:relative;width:'+($__line=1,$__art='{{=page.width}}',$__ctrl='<%=page.width%>',(page.width))+'px;height:'+($__line=1,$__art='{{=page.height*page.pages}}',$__ctrl='<%=page.height*page.pages%>',(page.height*page.pages))+'px;background:'+($__line=1,$__art='{{=page.background}}',$__ctrl='<%=page.background%>',(page.background))+';'+($__line=1,$__art='{{if page.backgroundImage}}','');$__ctrl='<%if(page.backgroundImage){%>';if(page.backgroundImage){;$$_style+='background-image:url('+($__line=1,$__art='{{=page.backgroundImage}}',$__ctrl='<%=page.backgroundImage%>',(page.backgroundImage))+');background-repeat:'+($__line=1,$__art='{{=page.backgroundRepeat==\'full\'?\'no-repeat\':page.backgroundRepeat}}',$__ctrl='<%=page.backgroundRepeat==\'full\'?\'no-repeat\':page.backgroundRepeat%>',(page.backgroundRepeat=='full'?'no-repeat':page.backgroundRepeat))+';background-size:'+($__line=1,$__art='{{if page.backgroundRepeat==\'full\'}}','');$__ctrl='<%if(page.backgroundRepeat==\'full\'){%>';if(page.backgroundRepeat=='full'){;$$_style+='100% 100%'+($__line=1,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$$_style+=''+($__line=1,$__art='{{=page.backgroundWidth}}',$__ctrl='<%=page.backgroundWidth%>',(page.backgroundWidth))+'px '+($__line=1,$__art='{{=page.backgroundHeight}}',$__ctrl='<%=page.backgroundHeight%>',(page.backgroundHeight))+'px;background-position:'+($__line=1,$__art='{{=page.backgroundXOffset}}',$__ctrl='<%=page.backgroundXOffset%>',(page.backgroundXOffset))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+' '+($__line=1,$__art='{{=page.backgroundYOffset}}',$__ctrl='<%=page.backgroundYOffset%>',(page.backgroundYOffset))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_style+=''+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0=[$createVNode('div',{'style': $$_style,},$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:standalone/page.html'; throw msg; }  } ,
     assign(data) {
         this.set(data);
     },

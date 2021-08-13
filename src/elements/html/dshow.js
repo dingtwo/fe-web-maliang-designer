@@ -1,49 +1,50 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("61/html/dshow",["5c","../../5b/5o","../../5b/69","5j/6q/index"],(require,exports,module)=>{
-require("5j/6q/index");
-let $quick_mC_static_text;
+define("elements/html/dshow",["magix5","../../designer/history","../../designer/stage-selection","gallery/mx-codemirror/index"],(require,exports,module)=>{
+require("gallery/mx-codemirror/index");
+let $quick_fD_static_text;
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("5c");
-let history_1 = require("../../5b/5o");
-let stage_selection_1 = require("../../5b/69");
+let magix_1 = require("magix5");
+let history_1 = require("../../designer/history");
+let stage_selection_1 = require("../../designer/stage-selection");
 module.exports= magix_1.View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf)=> { 
-let $temp_var,$vnode_0,
+let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 {
 	props,
 	unit,}=$dataFromView,
 $vnode_2,
 $vnode_1;
-$vnode_2=[$quick_mC_static_text||($quick_mC_static_text=$createVNode(0,'loading...'))];$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'$': 'props','style': 'border:solid 1px #ddd','class': 'rd-mB rd-mC rd-nR rd-nm','mx5-cmchange': $viewId+'_qf()','mx5-view': '5j/6q/index?type=html&value='+$keyOf($refData,props.value,'i!'),},$vnode_2)];$vnode_0=[$createVNode('div',{'class': 'rd-mJ rd-n5 rd-on','style': 'left:'+(props.x)+(unit)+';top:'+(props.y)+(unit)+';height:'+(props.height)+(unit)+';opacity:'+(props.alpha)+';width:'+(props.width)+(unit),'mx5-pointerdown': $viewId+'_p2()','mx5-contextmenu': $viewId+'_p2()',},$vnode_1)]; 
+$vnode_2=[$quick_fD_static_text||($quick_fD_static_text=$createVNode(0,'loading...'))];$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'$': 'props','style': 'border:solid 1px #ddd','class': 'rd-_assets_index_less_-cursor-text rd-_assets_index_less_-hp100 rd-_assets_index_less_-overflow-scroll rd-_assets_index_less_-wp100','mx5-cmchange': $viewId+'@:{update.value~rs}()','mx5-view': 'gallery/mx-codemirror/index?type=html&value='+($__line=2,$__art='{{#props.value}}',$__ctrl='<%#props.value,\'auto_key_props.props.value\'%>',$keyOf($refData,props.value,'auto_key_props.props.value')),},$vnode_2)];$vnode_0=[$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-touch-action-none rd-_assets_index_less_-z-index-1','style': 'left:'+($__line=1,$__art='{{=props.x}}',$__ctrl='<%=props.x%>',(props.x))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';top:'+($__line=1,$__art='{{=props.y}}',$__ctrl='<%=props.y%>',(props.y))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=1,$__art='{{=props.height}}',$__ctrl='<%=props.height%>',(props.height))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';opacity:'+($__line=1,$__art='{{=props.alpha}}',$__ctrl='<%=props.alpha%>',(props.alpha))+';width:'+($__line=1,$__art='{{=props.width}}',$__ctrl='<%=props.width%>',(props.width))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit)),'mx5-pointerdown': $viewId+'@:{stop~rs}()','mx5-contextmenu': $viewId+'@:{stop~rs}()',},$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); } ,
+return $createVNode($viewId,0,$vnode_0); 
+} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:elements/html/dshow.html'; throw msg; }  } ,
     assign(data) {
         this.set(data);
     },
     render() {
         this.digest();
     },
-    '_qf<cmchange>'(e) {
+    '@:{update.value~rs}<cmchange>'(e) {
         let props = this.get('props');
         props.value = e.value;
     },
-    '_p2<pointerdown,contextmenu>'(e) {
-        if (e['_mW'])
+    '@:{stop~rs}<pointerdown,contextmenu>'(e) {
+        if (e['@:{halt~rs}'])
             return;
         // let { target } = e;
         // if (target.id != `${this.id}_pv`) {
-        e['_mW'] = 1;
+        e['@:{halt~rs}'] = 1;
         let element = this.get('element');
-        if (stage_selection_1["l3"](element)) {
-            history_1["l2"](history_1['mi'], element.props.ename);
+        if (stage_selection_1["@:{selection#set~rs}"](element)) {
+            history_1["@:{history#save~rs}"](history_1['@:{history#element.get.focus~rs}'], element.props.ename);
         }
         //}
     }

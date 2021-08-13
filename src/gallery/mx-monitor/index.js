@@ -1,16 +1,16 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5j/76/index",["5c"],(require,exports,module)=>{
+define("gallery/mx-monitor/index",["magix5"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
  */
-let magix_1 = require("5c");
+let magix_1 = require("magix5");
 let { node, attach, detach } = magix_1;
 let ICounter = 0;
 let Instances = [];
@@ -21,15 +21,15 @@ let Stage;
 let Watcher = (e) => {
     for (let i = Instances.length; i--;) {
         let info = Instances[i];
-        if (info['_sK']) {
+        if (info['@:{destroyed~rs}']) {
             Instances.splice(i, 1);
         }
         else {
-            let view = info['_sL'];
+            let view = info['@:{view~rs}'];
             if (e.type == 'resize' ||
                 e.type == 'blur' ||
-                !view['_rE'](e.target)) {
-                view['_mB']();
+                !view['@:{inside~rs}'](e.target)) {
+                view['@:{hide~rs}']();
             }
         }
     }
@@ -37,21 +37,21 @@ let Watcher = (e) => {
 let Remove = view => {
     let info = Instances[view.id];
     if (info) {
-        info['_sK'] = 1;
+        info['@:{destroyed~rs}'] = 1;
         delete Instances[view.id];
     }
 };
 module.exports= {
-    '_rF'(view) {
+    '@:{add~rs}'(view) {
         Remove(view);
         let info = {
-            '_sL': view
+            '@:{view~rs}': view
         };
         Instances.push(info);
         Instances[view.id] = info;
     },
-    '_pd': Remove,
-    '_ro'() {
+    '@:{remove~rs}': Remove,
+    '@:{setup~rs}'() {
         if (!ICounter) {
             if (!Stage) {
                 Stage = node('_rd_stage');
@@ -67,7 +67,7 @@ module.exports= {
         }
         ICounter++;
     },
-    '_rp'() {
+    '@:{teardown~rs}'() {
         if (ICounter > 0) {
             ICounter--;
             if (!ICounter) {

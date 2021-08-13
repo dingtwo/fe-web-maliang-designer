@@ -1,10 +1,10 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5r/echarts",[],(require,exports,module)=>{
+define("provider/echarts",[],(require,exports,module)=>{
 
 
 let dest = '//cdn.bootcss.com/echarts/4.2.0-rc.2/echarts.min.js';

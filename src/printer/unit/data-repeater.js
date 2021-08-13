@@ -1,14 +1,14 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("7j/7m/data-repeater",["5c","../../5b/5e"],(require,exports,module)=>{
+define("printer/unit/data-repeater",["magix5","../../designer/const"],(require,exports,module)=>{
 
 
-let magix_1 = require("5c");
-let const_1 = require("../../5b/5e");
+let magix_1 = require("magix5");
+let const_1 = require("../../designer/const");
 let { guid, isArray } = magix_1;
 /**
  * 填充重复容器元素数据
@@ -29,13 +29,13 @@ module.exports= async (dataCenter, element, fromIndex, page, pageFooterHeight, c
     //let currentLineStart = 0;
     for (;;) {
         //属性需要克隆
-        let clonedProps = const_1['mP'](props);
+        let clonedProps = const_1['@:{const#clone~rs}'](props);
         //更新坐标
         clonedProps.x = nextX;
         clonedProps.y = nextY;
         let bind = clonedProps.bind;
         if (bind.url) {
-            let { '_nU': err, '_nV': data } = dataCenter[bind.url];
+            let { '@:{error~rs}': err, '@:{data~rs}': data } = dataCenter[bind.url];
             if (err) {
                 bind._tip = err;
             }

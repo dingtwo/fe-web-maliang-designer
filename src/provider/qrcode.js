@@ -1,10 +1,10 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("5r/qrcode",[],(require,exports,module)=>{
+define("provider/qrcode",[],(require,exports,module)=>{
 
 
 let dest = '//unpkg.com/@keeex/qrcodejs-kx@1.0.2/qrcode.min.js';

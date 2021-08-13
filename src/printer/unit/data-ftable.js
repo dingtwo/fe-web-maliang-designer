@@ -1,21 +1,21 @@
 /*
-    generate by magix-composer@3.0.0
+    generate by magix-composer@1.0.0
     https://github.com/thx/magix-composer
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("7j/7m/data-ftable",["../../5b/5e","../../5r/table","../7k/index","../../5b/5f","./common"],(require,exports,module)=>{
+define("printer/unit/data-ftable",["../../designer/const","../../provider/table","../generic/index","../../designer/transform","./common"],(require,exports,module)=>{
 
 
-let const_1 = require("../../5b/5e");
-let table_1 = require("../../5r/table");
-let index_1 = require("../7k/index");
-let transform_1 = require("../../5b/5f");
+let const_1 = require("../../designer/const");
+let table_1 = require("../../provider/table");
+let index_1 = require("../generic/index");
+let transform_1 = require("../../designer/transform");
 let common_1 = require("./common");
 let { floor } = Math;
 let measuredHeights = {};
 let measureTableRowsHeight = async (data, props, unit, dataCenter, resLoader, newPage) => {
-    props = const_1['mP'](props);
+    props = const_1['@:{const#clone~rs}'](props);
     props.hideLabel = false;
     props.hideTotal = false;
     let { rows, bind } = props;
@@ -53,7 +53,7 @@ let measureTableRowsHeight = async (data, props, unit, dataCenter, resLoader, ne
     let dataRow = rows[dataRowIndex];
     let fillDataRows = [];
     for (let d of data) {
-        let clonedRows = const_1['mP'](dataRow);
+        let clonedRows = const_1['@:{const#clone~rs}'](dataRow);
         for (let col of clonedRows.cols) {
             if (col.elements &&
                 col.elements.length) {
@@ -67,7 +67,7 @@ let measureTableRowsHeight = async (data, props, unit, dataCenter, resLoader, ne
         fillDataRows.push(clonedRows);
     }
     rows.splice(dataRowIndex, 1, ...fillDataRows);
-    let root = await index_1['_uY']('data-ftable', {
+    let root = await index_1['@:{mount.display.of.element~rs}']('data-ftable', {
         props,
         unit
     });
@@ -86,25 +86,25 @@ let measureTableRowsHeight = async (data, props, unit, dataCenter, resLoader, ne
                 let colsFixed = [];
                 for (let e of col.elements) {
                     let { x, y, width, rotate } = e.props;
-                    let rotatedRect = transform_1['l3'](e.props);
-                    let oldHeight = rotatedRect['_nr'];
+                    let rotatedRect = transform_1['@:{transform#rotate.rect~rs}'](e.props);
+                    let oldHeight = rotatedRect['@:{height~rs}'];
                     let firstNode = allElements[ei].firstElementChild;
                     let eBound = firstNode.getBoundingClientRect();
                     let nodeHeihgt = firstNode.offsetHeight;
-                    let unitNodeHeight = const_1['l3'](nodeHeihgt);
-                    let newRect = transform_1['l3']({
+                    let unitNodeHeight = const_1['@:{const#to.unit~rs}'](nodeHeihgt);
+                    let newRect = transform_1['@:{transform#rotate.rect~rs}']({
                         x,
                         y,
                         width,
                         height: unitNodeHeight,
                         rotate
                     });
-                    let newFixed = newRect['_n2'][0], oldFixed = rotatedRect['_n2'][0];
+                    let newFixed = newRect['@:{point~rs}'][0], oldFixed = rotatedRect['@:{point~rs}'][0];
                     colsFixed[ei] = {
                         x: oldFixed.x - newFixed.x,
                         y: oldFixed.y - newFixed.y
                     };
-                    let oft = const_1['l3'](eBound.height, unit) - oldHeight;
+                    let oft = const_1['@:{const#to.unit~rs}'](eBound.height, unit) - oldHeight;
                     if (oft > maxOffset) {
                         maxOffset = oft;
                     }
@@ -122,8 +122,8 @@ let measureTableRowsHeight = async (data, props, unit, dataCenter, resLoader, ne
         ri++;
     }
     return {
-        '_vD': rowsOffset,
-        '_vE': fixedOffset
+        '@:{rows.offset~rs}': rowsOffset,
+        '@:{fixed.offset~rs}': fixedOffset
     };
 };
 /**
@@ -144,8 +144,8 @@ module.exports= async (dataCenter, resLoader, table, fromIndex, page, pageFooter
     let err, list;
     if (bind.url) {
         let d = dataCenter[bind.url];
-        err = d['_nU'];
-        list = d['_nV'];
+        err = d['@:{error~rs}'];
+        list = d['@:{data~rs}'];
     }
     else {
         list = [];
@@ -164,8 +164,8 @@ module.exports= async (dataCenter, resLoader, table, fromIndex, page, pageFooter
             else {
                 hInfo = measuredHeights[id];
             }
-            rowsOffset = hInfo['_vD'];
-            fixedOffset = hInfo['_vE'];
+            rowsOffset = hInfo['@:{rows.offset~rs}'];
+            fixedOffset = hInfo['@:{fixed.offset~rs}'];
         }
         //是否显示总计栏
         let showAcc = !hideTotal;
@@ -203,12 +203,12 @@ module.exports= async (dataCenter, resLoader, table, fromIndex, page, pageFooter
         //let labelRow = rows[labelRowIndex];
         let dataRow = rows[dataRowIndex];
         //向表格对象添加辅助信息，以方便计算单元格尺寸等信息　
-        table_1["l2"](props, true);
+        table_1["@:{table.provider#add.ext.meta~rs}"](props, true);
         /**
          * 以下计算各种行的高度，用于计算页面里面能放多少行数据
          */
-        let sizes = table_1["l3"](props);
-        let heights = sizes["_pV"];
+        let sizes = table_1["@:{table.provider#get.sizes~rs}"](props);
+        let heights = sizes["@:{row.heights~rs}"];
         let totalHeight = 0;
         let labelHeight = 0;
         let headHeight = 0;
@@ -389,7 +389,7 @@ module.exports= async (dataCenter, resLoader, table, fromIndex, page, pageFooter
         let fillList = list.slice(fromIndex, end);
         let fillDataRows = [];
         for (let d of fillList) {
-            let clonedRows = const_1['mP'](dataRow);
+            let clonedRows = const_1['@:{const#clone~rs}'](dataRow);
             let ci = 0;
             for (let col of clonedRows.cols) {
                 let ei = 0;
