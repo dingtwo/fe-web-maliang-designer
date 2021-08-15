@@ -347,6 +347,7 @@ export default {
         return text;
     },
     '@:{format}'(format, data, ...exts) {
+        console.log('格式化', format, data, ...exts);
         format += '';
         let parts = this['@:{get.parts}'](format);
         let prefix = parts.shift();

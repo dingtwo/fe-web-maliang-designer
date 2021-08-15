@@ -545,6 +545,27 @@ export default View.extend({
             if (config('getFieldUrl')) {
                 let s = new Service();
                 s.all('@:{get.fields}', (err, bag) => {
+                    if(err?.message) {
+                        console.log('有错误', err.message);
+                        this.confirm('登录过期,请重新登录,本地点击确定模拟登录',  () => {
+                            s.all({name: '@:{post.login}', '@:{body}': JSON.stringify({
+                                password: "Aa123456",
+                                username: "13823349075"
+                            })}, (err, bag) => {
+                                if (err) {
+                                    console.error(err);
+                                    return;
+                                }
+                                try {
+                                    window.localStorage.setItem('login-token', bag.get('token'))
+                                    window.location.reload();
+                                } catch (error) {
+                                    
+                                }
+                                console.log('登录结果',bag.get('data'), bag.get('token'));
+                            })
+                        }, console.log, '提示');
+                    }
                     let dataSourceList = bag.get('data', []);
                     let list = [{
                         name: I18n('@:{lang#select.source}'),

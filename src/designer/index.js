@@ -574,6 +574,27 @@ return $createVNode($viewId,0,$vnode_0);
             if (config('getFieldUrl')) {
                 let s = new service_1();
                 s.all('@:{get.fields~rs}', (err, bag) => {
+                    if (err === null || err === void 0 ? void 0 : err.message) {
+                        console.log('有错误', err.message);
+                        this.confirm('登录过期,请重新登录,本地点击确定模拟登录', () => {
+                            s.all({ name: '@:{post.login~rs}', '@:{body~rs}': JSON.stringify({
+                                    password: "Aa123456",
+                                    username: "13823349075"
+                                }) }, (err, bag) => {
+                                if (err) {
+                                    console.error(err);
+                                    return;
+                                }
+                                try {
+                                    window.localStorage.setItem('login-token', bag.get('token'));
+                                    window.location.reload();
+                                }
+                                catch (error) {
+                                }
+                                console.log('登录结果', bag.get('data'), bag.get('token'));
+                            });
+                        }, console.log, '提示');
+                    }
                     let dataSourceList = bag.get('data', []);
                     let list = [{
                             name: index_5('@:{lang#select.source~rs}'),

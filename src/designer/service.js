@@ -15,18 +15,20 @@ let { Service, toUrl, config, guid } = magix_1;
  * @param url 接口url
  * @returns 错误和数据
  */
-let extractErrorAndData = (response, url) => {
+let extractErrorAndData = ({ data: response, token }, url) => {
     let error;
     let data;
     if (response.status == 1 || response.code === 200000) {
         data = response.data;
     }
     else {
+        console.log('异常信息', response.message);
         error = response.message || `接口${url}错误`;
     }
     return {
         '@:{error~rs}': error,
-        '@:{data~rs}': data
+        '@:{data~rs}': data,
+        '@:{token~rs}': token
     };
 };
 /**
@@ -66,9 +68,20 @@ let extractErrorAndData = (response, url) => {
  * @param options 请求参数
  */
 let send = (sendUrl, options) => {
-    return fetch(sendUrl, options).then(res => {
+    let token = window.localStorage.getItem('login-token');
+    console.log('请求之前获取 token', token);
+    if (token) {
+        options.headers = {
+            ...(options.headers || {}),
+            'login-token': token
+        };
+    }
+    return fetch(sendUrl, options).then(async (res) => {
         if (res.ok) {
-            return res.json();
+            return {
+                data: await res.json(),
+                token: res.headers.get('login-token')
+            };
         }
         throw Error('Network response error');
     });
@@ -108,7 +121,8 @@ let RDService = Service.extend((bag, callback) => {
     //对于jsonp，只有get方法，没有post方法，所以在jsonp里，会把body中的参数拼接到url里，超长会被截断，这里需要注意
     //所以优先使用fetch方法进行跨域请求
     send(url, options).then(res => {
-        let { '@:{error~rs}': error, '@:{data~rs}': data } = extractErrorAndData(res, url);
+        let { '@:{error~rs}': error, '@:{data~rs}': data, '@:{token~rs}': token } = extractErrorAndData(res, url);
+        console.log('响应', res);
         if (error) {
             callback({
                 message: error
@@ -116,7 +130,8 @@ let RDService = Service.extend((bag, callback) => {
         }
         else {
             bag.set({
-                data
+                data,
+                token
             });
             //setTimeout(callback, 5e3);
             callback();
@@ -156,6 +171,10 @@ RDService.add([{
     }, {
         name: '@:{post.by.url~rs}',
         '@:{method~rs}': 'post'
+    }, {
+        name: '@:{post.login~rs}',
+        '@:{method~rs}': 'post',
+        url: 'http://10.252.192.35:8000/ucenter/login/web'
     }]);
 RDService['@:{extract.error.and.data~rs}'] = extractErrorAndData;
 module.exports= RDService;

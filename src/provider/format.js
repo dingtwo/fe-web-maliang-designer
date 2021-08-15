@@ -364,6 +364,7 @@ module.exports= {
         return text;
     },
     '@:{format~rs}'(format, data, ...exts) {
+        console.log('格式化', format, data, ...exts);
         format += '';
         let parts = this['@:{get.parts~rs}'](format);
         let prefix = parts.shift();

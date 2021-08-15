@@ -7,17 +7,19 @@ let { Service, toUrl, config, guid } = Magix;
  * @param url 接口url
  * @returns 错误和数据
  */
-let extractErrorAndData = (response, url) => {
+let extractErrorAndData = ({data: response, token}, url) => {
     let error;
     let data;
     if (response.status == 1 || response.code === 200000) {
         data = response.data;
     } else {
+        console.log('异常信息', response.message);
         error = response.message || `接口${url}错误`;
     }
     return {
         '@:{error}': error,
-        '@:{data}': data
+        '@:{data}': data,
+        '@:{token}': token
     };
 };
 /**
@@ -57,9 +59,20 @@ let extractErrorAndData = (response, url) => {
  * @param options 请求参数
  */
 let send = (sendUrl, options) => {
-    return fetch(sendUrl, options).then(res => {
+    const token = window.localStorage.getItem('login-token');
+    console.log('请求之前获取 token', token);
+    if (token) {
+        options.headers = {
+            ...(options.headers || {}),
+            'login-token': token
+        }
+    }
+    return fetch(sendUrl, options).then(async res => {
         if (res.ok) {
-            return res.json();
+            return {
+                data: await res.json(),
+                token: res.headers.get('login-token')
+            };
         }
         throw Error('Network response error');
     });
@@ -102,15 +115,18 @@ let RDService = Service.extend((bag, callback) => {
     send(url, options).then(res => {
         let {
             '@:{error}': error,
-            '@:{data}': data
+            '@:{data}': data,
+            '@:{token}': token
         } = extractErrorAndData(res, url);
+        console.log('响应', res);
         if (error) {
             callback({
                 message: error
             });
         } else {
             bag.set({
-                data
+                data,
+                token
             });
             //setTimeout(callback, 5e3);
             callback();
@@ -150,6 +166,10 @@ RDService.add([{
 }, {
     name: '@:{post.by.url}',
     '@:{method}': 'post'
+}, {
+    name: '@:{post.login}',
+    '@:{method}': 'post',
+    url: 'http://10.252.192.35:8000/ucenter/login/web'
 }]);
 
 RDService['@:{extract.error.and.data}'] = extractErrorAndData;
