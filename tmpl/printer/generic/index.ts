@@ -186,6 +186,7 @@ let getDTableRemovedInfo = (rows, anchorData) => {
     let removedColIndexes = [];
     let removedColWidth = 0;
     let dataRowIndex = 0;
+    console.log('参考的数据', anchorData);
     for (let row of rows) {
         if (row.data) {
             for (let i = row.cols.length; i--;) {

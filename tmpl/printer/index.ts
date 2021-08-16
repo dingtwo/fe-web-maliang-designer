@@ -911,8 +911,8 @@ export default View.extend({
         });
     },
     '@:{open.with.id}<click>'() {
-        let { params } = parseUrl(location.href);
-        console.log('参数', params, location.href);
+        let { params } = parseUrl(parent.location.href);
+        console.log('参数', params, location.href, parent.location.href);
         
         window.open(DEBUG ? `./print-debug.html?id=${params.id}` : `./print.html?id=${params.id}`);
     },

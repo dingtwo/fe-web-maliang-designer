@@ -5,7 +5,7 @@
     loader:cmd_es
  */
 define("elements/clock/index",["magix5","../../gallery/mx-runner/index"],(require,exports,module)=>{
-let $quick_fD_0_static_node;
+let $quick_cL_0_static_node;
 
 /*
     author:https://github.com/xinglie
@@ -24,10 +24,10 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 $$_style,
 $vnode_1;
 $vnode_1=[$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_elements_clock_index_less_-r0','style': 'border-color:'+($__line=2,$__art='{{=props.markColor}}',$__ctrl='<%=props.markColor%>',(props.markColor)),}),$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_elements_clock_index_less_-r1','style': 'border-color:'+($__line=3,$__art='{{=props.markColor}}',$__ctrl='<%=props.markColor%>',(props.markColor)),}),$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_elements_clock_index_less_-r2','style': 'border-color:'+($__line=4,$__art='{{=props.markColor}}',$__ctrl='<%=props.markColor%>',(props.markColor)),}),$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_elements_clock_index_less_-r3','style': 'border-color:'+($__line=5,$__art='{{=props.markColor}}',$__ctrl='<%=props.markColor%>',(props.markColor)),}),$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_elements_clock_index_less_-r4','style': 'border-color:'+($__line=6,$__art='{{=props.markColor}}',$__ctrl='<%=props.markColor%>',(props.markColor)),}),$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_elements_clock_index_less_-r5','style': 'border-color:'+($__line=7,$__art='{{=props.markColor}}',$__ctrl='<%=props.markColor%>',(props.markColor)),}),$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_elements_clock_index_less_-hour','id': '_rd_h_'+($__line=8,$__art='{{=$viewId}}','')+$viewId,'style': 'background-color:'+($__line=8,$__art='{{=props.handleColor}}',$__ctrl='<%=props.handleColor%>',(props.handleColor)),}),$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_elements_clock_index_less_-minute','id': '_rd_m_'+($__line=9,$__art='{{=$viewId}}','')+$viewId,'style': 'background-color:'+($__line=9,$__art='{{=props.handleColor}}',$__ctrl='<%=props.handleColor%>',(props.handleColor)),}),$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_elements_clock_index_less_-second','id': '_rd_s_'+($__line=10,$__art='{{=$viewId}}','')+$viewId,'style': 'background-color:'+($__line=10,$__art='{{=props.handleColor}}',$__ctrl='<%=props.handleColor%>',(props.handleColor)),})];
-if($quick_fD_0_static_node){
-$vnode_1.push($quick_fD_0_static_node);
+if($quick_cL_0_static_node){
+$vnode_1.push($quick_cL_0_static_node);
 }else{
-$vnode_1.push($quick_fD_0_static_node=$createVNode('div',{'_': 'dM','class': 'rd-_assets_index_less_-pa rd-_elements_clock_index_less_-dot',}));
+$vnode_1.push($quick_cL_0_static_node=$createVNode('div',{'_': 'bx','class': 'rd-_assets_index_less_-pa rd-_elements_clock_index_less_-dot',}));
 }
 ;$$_style='left:'+($__line=1,$__art='{{=props.x}}',$__ctrl='<%=props.x%>',(props.x))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';top:'+($__line=1,$__art='{{=props.y}}',$__ctrl='<%=props.y%>',(props.y))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=1,$__art='{{=props.height/scale}}',$__ctrl='<%=props.height/scale%>',(props.height/scale))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';opacity:'+($__line=1,$__art='{{=props.alpha}}',$__ctrl='<%=props.alpha%>',(props.alpha))+';width:'+($__line=1,$__art='{{=props.width/scale}}',$__ctrl='<%=props.width/scale%>',(props.width/scale))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';background-color:'+($__line=1,$__art='{{=props.dialColor}}',$__ctrl='<%=props.dialColor%>',(props.dialColor))+';'+($__line=1,$__art='{{if scale!=1}}','');$__ctrl='<%if(scale!=1){%>';if(scale!=1){;$$_style+='transform:scale('+($__line=1,$__art='{{=scale}}',$__ctrl='<%=scale%>',(scale))+');transform-origin:0 0;'+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0=[$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-z-index-1 rd-_elements_clock_index_less_-clock','style': $$_style,},$vnode_1)]; 
 

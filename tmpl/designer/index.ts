@@ -368,7 +368,7 @@ export default View.extend({
                         s.save({
                             name: '@:{save.content}',
                             // '@:{body}': `stage=${ToJSON()}`,
-                            '@:{body}': JSON.stringify({templateJSON: ToJSON(), name: '测试模板'}),
+                            '@:{body}': JSON.stringify({templateJSON: ToJSON()}),
                             '@:{query}': params
                         }, (ex: {
                             message: string
@@ -597,7 +597,7 @@ export default View.extend({
             let templateUrl = config<string>('getTemplateUrl');
             let contentUrl = config<string>('getContentUrl');
             let { params } = parseUrl(location.href);
-            console.log('______', params, contentUrl);
+            console.log('______', params, contentUrl, parent);
             if (params.id &&
                 contentUrl) {
                 Toast.show('正在读取内容...');

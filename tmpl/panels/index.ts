@@ -230,19 +230,20 @@ export default {
                     view: '@:./perf/index'
                 });
             }
-            Panels.push({
-                title: '资源',
-                width: 420,
-                height: 180,
-                icon: '&#xe605;',
-                fixedSize: true,
-                show: false,
-                left: mini ? 215 : 245,
-                bottom: 30,
-                key: Panels.length + 1,
-                id: '@:{panel#resource}',
-                view: '@:./res/index'
-            });
+            // NOTICE: 给开发者看的
+            // Panels.push({
+            //     title: '资源',
+            //     width: 420,
+            //     height: 180,
+            //     icon: '&#xe605;',
+            //     fixedSize: true,
+            //     show: false,
+            //     left: mini ? 215 : 245,
+            //     bottom: 30,
+            //     key: Panels.length + 1,
+            //     id: '@:{panel#resource}',
+            //     view: '@:./res/index'
+            // });
             PanelsMap = toMap(Panels, 'id');
         }
         return Panels;
