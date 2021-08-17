@@ -7,20 +7,20 @@ let { Service, toUrl, config, guid } = Magix;
  * @param url 接口url
  * @returns 错误和数据
  */
-let extractErrorAndData = ({data: response, token}, url) => {
-    let error;
-    let data;
-    if (response.status == 1 || response.code === 200000) {
-        data = response.data;
-    } else {
-        console.log('异常信息', response.message);
-        error = response.message || `接口${url}错误`;
-    }
-    return {
-        '@:{error}': error,
-        '@:{data}': data,
-        '@:{token}': token
-    };
+let extractErrorAndData = ({ data: response, token }, url) => {
+  let error;
+  let data;
+  if (response.status == 1 || response.code === 200000) {
+    data = response.data;
+  } else {
+    console.log('异常信息', response.message);
+    error = response.message || `接口${url}错误`;
+  }
+  return {
+    '@:{error}': error,
+    '@:{data}': data,
+    '@:{token}': token,
+  };
 };
 /**
  * 使用jsonp向后端请求
@@ -59,80 +59,86 @@ let extractErrorAndData = ({data: response, token}, url) => {
  * @param options 请求参数
  */
 let send = (sendUrl, options) => {
-    const token = window.localStorage.getItem('login-token');
-    console.log('请求之前获取 token', token);
-    if (token) {
-        options.headers = {
-            ...(options.headers || {}),
-            'login-token': token
-        }
+  const token = window.localStorage.getItem('login-token');
+  console.log('请求之前获取 token', token);
+  if (token) {
+    options.headers = {
+      ...(options.headers || {}),
+      'login-token': token,
+    };
+  }
+  return fetch(sendUrl, options).then(async res => {
+    if (res.ok) {
+      return {
+        data: await res.json(),
+        token: res.headers.get('login-token'),
+      };
     }
-    return fetch(sendUrl, options).then(async res => {
-        if (res.ok) {
-            return {
-                data: await res.json(),
-                token: res.headers.get('login-token')
-            };
-        }
-        throw Error('Network response error');
-    });
+    throw Error('Network response error');
+  });
 };
 /**
  * 与后端接口交互对象
  */
 let RDService = Service.extend((bag, callback) => {
-    let method = bag.get('@:{method}') || 'GET';
-    let query = bag.get('@:{query}');
-    let body = bag.get('@:{body}');
-    let url = bag.get('url');
-    let options = {
-        method,
-        // credentials: 'include',
-        headers: {
-            'Accept': 'application/json',
-            // 'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-            'Content-type': 'application/json;charset=utf-8',
-
-        }
-    } as RequestInit;
-    let version = DEBUG ? Date.now() : config('version');
-    if (!query) {
-        query = {};
-    }
-    query.v = version;
-    /**
-     * query放url里，body放请求的body里，某些后端严格区分取参数时，从body里还是request里面取
-     */
-    if (query) {
-        url = toUrl(url, query);
-    }
-    if (body) {
-        options.body = body;
-    }
-    //如果需要jsonp，则把上面的jsonp函数解除注释，在这里根据情况调用send或jsonp函数即可
-    //对于jsonp，只有get方法，没有post方法，所以在jsonp里，会把body中的参数拼接到url里，超长会被截断，这里需要注意
-    //所以优先使用fetch方法进行跨域请求
-    send(url, options).then(res => {
-        let {
-            '@:{error}': error,
-            '@:{data}': data,
-            '@:{token}': token
-        } = extractErrorAndData(res, url);
-        console.log('响应', res);
-        if (error) {
-            callback({
-                message: error
-            });
-        } else {
-            bag.set({
-                data,
-                token
-            });
-            //setTimeout(callback, 5e3);
-            callback();
-        }
-    }).catch(ex => {
-        callback({ message: ex.message });
+  let method = bag.get('@:{method}') || 'GET';
+  let query = bag.get('@:{query}');
+  let body = bag.get('@:{body}');
+  let url = bag.get('url');
+  const token = localStorage.getItem('login-token');
+  if (!token) {
+    console.error('没有 token, 登录失效');
+  }
+  let options = {
+    method,
+    // credentials: 'include',
+    headers: {
+      Accept: 'application/json',
+      // 'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+      'Content-type': 'application/json;charset=utf-8',
+      'login-token': token,
+    },
+  } as RequestInit;
+  let version = DEBUG ? Date.now() : config('version');
+  if (!query) {
+    query = {};
+  }
+  query.v = version;
+  /**
+   * query放url里，body放请求的body里，某些后端严格区分取参数时，从body里还是request里面取
+   */
+  if (query) {
+    url = toUrl(url, query);
+  }
+  if (body) {
+    options.body = body;
+  }
+  //如果需要jsonp，则把上面的jsonp函数解除注释，在这里根据情况调用send或jsonp函数即可
+  //对于jsonp，只有get方法，没有post方法，所以在jsonp里，会把body中的参数拼接到url里，超长会被截断，这里需要注意
+  //所以优先使用fetch方法进行跨域请求
+  send(url, options)
+    .then(res => {
+      let {
+        '@:{error}': error,
+        '@:{data}': data,
+        '@:{token}': token,
+      } = extractErrorAndData(res, url);
+      console.log('响应', res);
+      if (error) {
+        callback({
+          message: error,
+        });
+      } else {
+        bag.set({
+          data,
+          token,
+        });
+        //setTimeout(callback, 5e3);
+        callback();
+      }
+    })
+    .catch(ex => {
+      callback({ message: ex.message });
     });
 });
 /**
@@ -141,36 +147,45 @@ let RDService = Service.extend((bag, callback) => {
  * cache如果配置，则指示该接口缓存多长时间(ms为单位)
  * 其它均可以自定义设置
  */
-RDService.add([{
+RDService.add([
+  {
     name: '@:{get.images}',
     url: config('getImageUrl'),
-    cache: 30 * 60 * 1000
-}, {
+    cache: 30 * 60 * 1000,
+  },
+  {
     name: '@:{get.fields}',
     url: config('getFieldUrl'),
-    cache: 30 * 60 * 1000
-}, {
+    cache: 30 * 60 * 1000,
+  },
+  {
     name: '@:{get.by.url}',
-    cache: 30 * 60 * 1000
-}, {
+    cache: 30 * 60 * 1000,
+  },
+  {
     name: '@:{get.templates}',
     url: config('getTemplateUrl'),
-    cache: 30 * 60 * 1000
-}, {
+    cache: 30 * 60 * 1000,
+  },
+  {
     name: '@:{save.content}',
     url: config('saveContentUrl'),
-    '@:{method}': 'post'
-}, {
+    '@:{method}': 'post',
+  },
+  {
     name: '@:{get.content}',
-    url: config('getContentUrl')
-}, {
+    url: config('getContentUrl'),
+  },
+  {
     name: '@:{post.by.url}',
-    '@:{method}': 'post'
-}, {
+    '@:{method}': 'post',
+  },
+  {
     name: '@:{post.login}',
     '@:{method}': 'post',
-    url: 'http://10.252.192.35:8000/ucenter/login/web'
-}]);
+    url: 'http://10.252.192.35:8000/ucenter/login/web',
+  },
+]);
 
 RDService['@:{extract.error.and.data}'] = extractErrorAndData;
 export default RDService;

@@ -5,9 +5,9 @@
     loader:cmd_es
  */
 define("designer/toolbar-start",["magix5","./stage-generic"],(require,exports,module)=>{
-let $quick_cv_0_static_node;
-let $quick_cq_static_text;
-let $quick_cr_static_text;
+let $quick_kK_0_static_node;
+let $quick_kF_static_text;
+let $quick_kG_static_text;
 /*
     author:https://github.com/xinglie
 */
@@ -26,12 +26,12 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 $$_class,
 $vnode_1;
 
-if($quick_cv_0_static_node){
-$vnode_0=[$quick_cv_0_static_node];
+if($quick_kK_0_static_node){
+$vnode_0=[$quick_kK_0_static_node];
 }else{
-$vnode_0=[$quick_cv_0_static_node=$createVNode('i',{'_': 'bx','class': 'rd-_assets_index_less_-fl rd-_designer_toolbar_less_-toolbar-spliter',})];
+$vnode_0=[$quick_kK_0_static_node=$createVNode('i',{'_': 'hS','class': 'rd-_assets_index_less_-fl rd-_designer_toolbar_less_-toolbar-spliter',})];
 }
-$vnode_1=[$quick_cq_static_text||($quick_cq_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=2,$__art='{{if !canCreate}}','');$__ctrl='<%if(!canCreate){%>';if(!canCreate){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-disabled'+($__line=2,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('i',{'title': ($__line=2,$__art='{{=i18n(\'@:{lang#menu.new~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.new~rs}\')%>',(i18n('@:{lang#menu.new~rs}')))+'(N)','mx5-click': (($temp_var=($__line=2,$__art='{{=canCreate}}',$__ctrl='<%=canCreate%>',canCreate),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:designer/toolbar-start.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{new.page~rs}()'),'class': $$_class,},$vnode_1));$vnode_1=[$quick_cr_static_text||($quick_cr_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=3,$__art='{{if !canClear}}','');$__ctrl='<%if(!canClear){%>';if(!canClear){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-disabled'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('i',{'title': ($__line=3,$__art='{{=i18n(\'@:{lang#menu.clear~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.clear~rs}\')%>',(i18n('@:{lang#menu.clear~rs}')))+'(C)','mx5-click': (($temp_var=($__line=3,$__art='{{=canClear}}',$__ctrl='<%=canClear%>',canClear),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:designer/toolbar-start.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{clear.elements~rs}()'),'class': $$_class,},$vnode_1)); 
+$vnode_1=[$quick_kF_static_text||($quick_kF_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=2,$__art='{{if !canCreate}}','');$__ctrl='<%if(!canCreate){%>';if(!canCreate){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-disabled'+($__line=2,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('i',{'title': ($__line=2,$__art='{{=i18n(\'@:{lang#menu.new~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.new~rs}\')%>',(i18n('@:{lang#menu.new~rs}')))+'(N)','mx5-click': (($temp_var=($__line=2,$__art='{{=canCreate}}',$__ctrl='<%=canCreate%>',canCreate),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:designer/toolbar-start.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{new.page~rs}()'),'class': $$_class,},$vnode_1));$vnode_1=[$quick_kG_static_text||($quick_kG_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=3,$__art='{{if !canClear}}','');$__ctrl='<%if(!canClear){%>';if(!canClear){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-disabled'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('i',{'title': ($__line=3,$__art='{{=i18n(\'@:{lang#menu.clear~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.clear~rs}\')%>',(i18n('@:{lang#menu.clear~rs}')))+'(C)','mx5-click': (($temp_var=($__line=3,$__art='{{=canClear}}',$__ctrl='<%=canClear%>',canClear),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:designer/toolbar-start.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{clear.elements~rs}()'),'class': $$_class,},$vnode_1)); 
 
 return $createVNode($viewId,0,$vnode_0); 
 } catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/toolbar-start.html'; throw msg; }  } ,

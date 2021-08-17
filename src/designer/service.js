@@ -28,7 +28,7 @@ let extractErrorAndData = ({ data: response, token }, url) => {
     return {
         '@:{error~rs}': error,
         '@:{data~rs}': data,
-        '@:{token~rs}': token
+        '@:{token~rs}': token,
     };
 };
 /**
@@ -73,14 +73,14 @@ let send = (sendUrl, options) => {
     if (token) {
         options.headers = {
             ...(options.headers || {}),
-            'login-token': token
+            'login-token': token,
         };
     }
     return fetch(sendUrl, options).then(async (res) => {
         if (res.ok) {
             return {
                 data: await res.json(),
-                token: res.headers.get('login-token')
+                token: res.headers.get('login-token'),
             };
         }
         throw Error('Network response error');
@@ -94,14 +94,19 @@ let RDService = Service.extend((bag, callback) => {
     let query = bag.get('@:{query~rs}');
     let body = bag.get('@:{body~rs}');
     let url = bag.get('url');
+    let token = localStorage.getItem('login-token');
+    if (!token) {
+        console.error('没有 token, 登录失效');
+    }
     let options = {
         method,
         // credentials: 'include',
         headers: {
-            'Accept': 'application/json',
+            Accept: 'application/json',
             // 'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
             'Content-type': 'application/json;charset=utf-8',
-        }
+            'login-token': token,
+        },
     };
     let version = DEBUG ? Date.now() : config('version');
     if (!query) {
@@ -120,23 +125,25 @@ let RDService = Service.extend((bag, callback) => {
     //如果需要jsonp，则把上面的jsonp函数解除注释，在这里根据情况调用send或jsonp函数即可
     //对于jsonp，只有get方法，没有post方法，所以在jsonp里，会把body中的参数拼接到url里，超长会被截断，这里需要注意
     //所以优先使用fetch方法进行跨域请求
-    send(url, options).then(res => {
-        let { '@:{error~rs}': error, '@:{data~rs}': data, '@:{token~rs}': token } = extractErrorAndData(res, url);
+    send(url, options)
+        .then(res => {
+        let { '@:{error~rs}': error, '@:{data~rs}': data, '@:{token~rs}': token, } = extractErrorAndData(res, url);
         console.log('响应', res);
         if (error) {
             callback({
-                message: error
+                message: error,
             });
         }
         else {
             bag.set({
                 data,
-                token
+                token,
             });
             //setTimeout(callback, 5e3);
             callback();
         }
-    }).catch(ex => {
+    })
+        .catch(ex => {
         callback({ message: ex.message });
     });
 });
@@ -146,36 +153,45 @@ let RDService = Service.extend((bag, callback) => {
  * cache如果配置，则指示该接口缓存多长时间(ms为单位)
  * 其它均可以自定义设置
  */
-RDService.add([{
+RDService.add([
+    {
         name: '@:{get.images~rs}',
         url: config('getImageUrl'),
-        cache: 30 * 60 * 1000
-    }, {
+        cache: 30 * 60 * 1000,
+    },
+    {
         name: '@:{get.fields~rs}',
         url: config('getFieldUrl'),
-        cache: 30 * 60 * 1000
-    }, {
+        cache: 30 * 60 * 1000,
+    },
+    {
         name: '@:{get.by.url~rs}',
-        cache: 30 * 60 * 1000
-    }, {
+        cache: 30 * 60 * 1000,
+    },
+    {
         name: '@:{get.templates~rs}',
         url: config('getTemplateUrl'),
-        cache: 30 * 60 * 1000
-    }, {
+        cache: 30 * 60 * 1000,
+    },
+    {
         name: '@:{save.content~rs}',
         url: config('saveContentUrl'),
-        '@:{method~rs}': 'post'
-    }, {
+        '@:{method~rs}': 'post',
+    },
+    {
         name: '@:{get.content~rs}',
-        url: config('getContentUrl')
-    }, {
+        url: config('getContentUrl'),
+    },
+    {
         name: '@:{post.by.url~rs}',
-        '@:{method~rs}': 'post'
-    }, {
+        '@:{method~rs}': 'post',
+    },
+    {
         name: '@:{post.login~rs}',
         '@:{method~rs}': 'post',
-        url: 'http://10.252.192.35:8000/ucenter/login/web'
-    }]);
+        url: 'http://10.252.192.35:8000/ucenter/login/web',
+    },
+]);
 RDService['@:{extract.error.and.data~rs}'] = extractErrorAndData;
 module.exports= RDService;
 

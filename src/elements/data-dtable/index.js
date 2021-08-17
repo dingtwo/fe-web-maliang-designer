@@ -40,24 +40,24 @@ $vnode_4,
 $vnode_3,
 $vnode_2,
 $vnode_1;
-$text=($__line=2,$__art='{{set findLabelRow,findTotalRow}}','');$__ctrl='<%let findLabelRow,findTotalRow;%>';let findLabelRow,findTotalRow;;$text+=' '+($__line=3,$__art='{{set {borderwidth,bordertype,bordercolor,borderdeed,rows,bind}=props}}','');$__ctrl='<%let borderwidth=props.borderwidth,bordertype=props.bordertype,bordercolor=props.bordercolor,borderdeed=props.borderdeed,rows=props.rows,bind=props.bind;%>';let borderwidth=props.borderwidth,bordertype=props.bordertype,bordercolor=props.bordercolor,borderdeed=props.borderdeed,rows=props.rows,bind=props.bind;;$text+=' '+($__line=4,$__art='{{set bwn=(borderdeed==\'collapse\'?1:2)*borderwidth}}','');$__ctrl='<%let bwn=(borderdeed==\'collapse\'?1:2)*borderwidth;%>';let bwn=(borderdeed=='collapse'?1:2)*borderwidth;;$text+=' '+($__line=5,$__art='{{set dataRowCols}}','');$__ctrl='<%let dataRowCols;%>';let dataRowCols;;$vnode_3=[];$__line=8;$__art="{{each rows as row ri}}";$__ctrl="for(let $q_c_rrpnq=rows.length,ri=0;ri<$q_c_rrpnq;ri++){let row=rows[ri];";
-for(let $q_c_rrpnq=rows.length,ri=0;ri<$q_c_rrpnq;ri+=1){
+$text=($__line=2,$__art='{{set findLabelRow,findTotalRow}}','');$__ctrl='<%let findLabelRow,findTotalRow;%>';let findLabelRow,findTotalRow;;$text+=' '+($__line=3,$__art='{{set {borderwidth,bordertype,bordercolor,borderdeed,rows,bind}=props}}','');$__ctrl='<%let borderwidth=props.borderwidth,bordertype=props.bordertype,bordercolor=props.bordercolor,borderdeed=props.borderdeed,rows=props.rows,bind=props.bind;%>';let borderwidth=props.borderwidth,bordertype=props.bordertype,bordercolor=props.bordercolor,borderdeed=props.borderdeed,rows=props.rows,bind=props.bind;;$text+=' '+($__line=4,$__art='{{set bwn=(borderdeed==\'collapse\'?1:2)*borderwidth}}','');$__ctrl='<%let bwn=(borderdeed==\'collapse\'?1:2)*borderwidth;%>';let bwn=(borderdeed=='collapse'?1:2)*borderwidth;;$text+=' '+($__line=5,$__art='{{set dataRowCols}}','');$__ctrl='<%let dataRowCols;%>';let dataRowCols;;$vnode_3=[];$__line=8;$__art="{{each rows as row ri}}";$__ctrl="for(let $q_c_bcwfwmzeei=rows.length,ri=0;ri<$q_c_bcwfwmzeei;ri++){let row=rows[ri];";
+for(let $q_c_bcwfwmzeei=rows.length,ri=0;ri<$q_c_bcwfwmzeei;ri+=1){
 let row=rows[ri];
 $__line=9;$__art="{{if (row.label&&bind._data&&bind._data.length&&!props.hideLabel)||(!row.data&&!row.label&&!findLabelRow&&bind._showHead)||(findTotalRow&&!props.hideFoot&&bind._showFoot)||(row.total&&!props.hideTotal&&bind._showAcc)}}";$__ctrl="if((row.label&&bind._data&&bind._data.length&&!props.hideLabel)||(!row.data&&!row.label&&!findLabelRow&&bind._showHead)||(findTotalRow&&!props.hideFoot&&bind._showFoot)||(row.total&&!props.hideTotal&&bind._showAcc)){";
 if((row.label&&bind._data&&bind._data.length&&!props.hideLabel)||(!row.data&&!row.label&&!findLabelRow&&bind._showHead)||(findTotalRow&&!props.hideFoot&&bind._showFoot)||(row.total&&!props.hideTotal&&bind._showAcc)){
-$vnode_4=[];$__line=11;$__art="{{each row.cols as col ci}}";$__ctrl="for(let $q_a_shezqxxbj=row.cols,$q_c_isxsuozmka=$q_a_shezqxxbj.length,ci=0;ci<$q_c_isxsuozmka;ci++){let col=$q_a_shezqxxbj[ci];";
-for(let $q_a_shezqxxbj=row.cols,$q_c_isxsuozmka=$q_a_shezqxxbj.length,ci=0;ci<$q_c_isxsuozmka;ci+=1){
-let col=$q_a_shezqxxbj[ci];
+$vnode_4=[];$__line=11;$__art="{{each row.cols as col ci}}";$__ctrl="for(let $q_a_xrsd=row.cols,$q_c_gdfwkol=$q_a_xrsd.length,ci=0;ci<$q_c_gdfwkol;ci++){let col=$q_a_xrsd[ci];";
+for(let $q_a_xrsd=row.cols,$q_c_gdfwkol=$q_a_xrsd.length,ci=0;ci<$q_c_gdfwkol;ci+=1){
+let col=$q_a_xrsd[ci];
 $vnode_5=[];$__line=13;$__art="{{if bind._tip}}";$__ctrl="if(bind._tip){";
 if(bind._tip){
 $vnode_5.push($createVNode(0,($__line=14,$__art='{{=bind._tip}}',$__ctrl='<%=bind._tip%>',(bind._tip))));
 }else{
 $__line=16;$__art="{{if col.elements&&col.elements.length}}";$__ctrl="if(col.elements&&col.elements.length){";
 if(col.elements&&col.elements.length){
-$__line=17;$__art="{{each col.elements as e}}";$__ctrl="for(let $q_a_gixfcsgr=col.elements,$q_c_dgjwqmcq=$q_a_gixfcsgr.length,$q_key_exypkdgyck=0;$q_key_exypkdgyck<$q_c_dgjwqmcq;$q_key_exypkdgyck++){let e=$q_a_gixfcsgr[$q_key_exypkdgyck];";
-for(let $q_a_gixfcsgr=col.elements,$q_c_dgjwqmcq=$q_a_gixfcsgr.length,$q_key_exypkdgyck=0;$q_key_exypkdgyck<$q_c_dgjwqmcq;$q_key_exypkdgyck+=1){
-let e=$q_a_gixfcsgr[$q_key_exypkdgyck];
-$vnode_5.push($createVNode('div',{'mx5-owner': $viewId,'$': 'props','mx5-view': 'elements/'+($__line=18,$__art='{{=e.type}}',$__ctrl='<%=e.type%>',(e.type))+'/index?props='+($__line=18,$__art='{{#e.props}}',$__ctrl='<%#e.props,\'auto_key_props.rows.\'+(ri)+\'.cols.\'+(ci)+\'.elements.\'+($q_key_exypkdgyck)+\'.e.props\'%>',$keyOf($refData,e.props,'auto_key_props.rows.'+(ri)+'.cols.'+(ci)+'.elements.'+($q_key_exypkdgyck)+'.e.props'))+'&unit='+($__line=18,$__art='{{=unit}}',$__ctrl='<%=$encodeUrl(unit)%>',($encodeUrl(unit))),}));
+$__line=17;$__art="{{each col.elements as e}}";$__ctrl="for(let $q_a_bqpqtbjbl=col.elements,$q_c_kdckgsb=$q_a_bqpqtbjbl.length,$q_key_mpelrtxebb=0;$q_key_mpelrtxebb<$q_c_kdckgsb;$q_key_mpelrtxebb++){let e=$q_a_bqpqtbjbl[$q_key_mpelrtxebb];";
+for(let $q_a_bqpqtbjbl=col.elements,$q_c_kdckgsb=$q_a_bqpqtbjbl.length,$q_key_mpelrtxebb=0;$q_key_mpelrtxebb<$q_c_kdckgsb;$q_key_mpelrtxebb+=1){
+let e=$q_a_bqpqtbjbl[$q_key_mpelrtxebb];
+$vnode_5.push($createVNode('div',{'mx5-owner': $viewId,'$': 'props','mx5-view': 'elements/'+($__line=18,$__art='{{=e.type}}',$__ctrl='<%=e.type%>',(e.type))+'/index?props='+($__line=18,$__art='{{#e.props}}',$__ctrl='<%#e.props,\'auto_key_props.rows.\'+(ri)+\'.cols.\'+(ci)+\'.elements.\'+($q_key_mpelrtxebb)+\'.e.props\'%>',$keyOf($refData,e.props,'auto_key_props.rows.'+(ri)+'.cols.'+(ci)+'.elements.'+($q_key_mpelrtxebb)+'.e.props'))+'&unit='+($__line=18,$__art='{{=unit}}',$__ctrl='<%=$encodeUrl(unit)%>',($encodeUrl(unit))),}));
 }
 }else{
 $text=($__line=21,$__art='{{set {paddingTop,paddingBottom,paddingLeft,paddingRight}=col}}','');$__ctrl='<%let paddingTop=col.paddingTop,paddingBottom=col.paddingBottom,paddingLeft=col.paddingLeft,paddingRight=col.paddingRight;%>';let paddingTop=col.paddingTop,paddingBottom=col.paddingBottom,paddingLeft=col.paddingLeft,paddingRight=col.paddingRight;;$text+=' '+($__line=22,$__art='{{set realWidth=col.width-bwn-toUnit(1),realHeight=Math.max(col.height-bwn-toUnit(1),0)}}','');$__ctrl='<%let realWidth=col.width-bwn-toUnit(1),realHeight=Math.max(col.height-bwn-toUnit(1),0);%>';let realWidth=col.width-bwn-toUnit(1),realHeight=Math.max(col.height-bwn-toUnit(1),0);;$__line=23;$__art="{{if paddingTop>realHeight}}";$__ctrl="if(paddingTop>realHeight){";
@@ -107,12 +107,12 @@ $vnode_7=[$createVNode(0,($__line=58,$__art='{{=format(col.textFormat,col.totalD
 if(row.data){
 ($__line=69,$__art='{{dataRowCols=row.cols}}','');$__ctrl='<%dataRowCols=row.cols%>';dataRowCols=row.cols;$__line=70;$__art="{{if bind._data}}";$__ctrl="if(bind._data){";
 if(bind._data){
-($__line=71,$__art='{{set realHeights=bind._rHeights}}','');$__ctrl='<%let realHeights=bind._rHeights;%>';let realHeights=bind._rHeights;;$__line=72;$__art="{{each bind._data as data di}}";$__ctrl="for(let $q_a_ccqxrkestv=bind._data,$q_c_qikqxzjji=$q_a_ccqxrkestv.length,di=0;di<$q_c_qikqxzjji;di++){let data=$q_a_ccqxrkestv[di];";
-for(let $q_a_ccqxrkestv=bind._data,$q_c_qikqxzjji=$q_a_ccqxrkestv.length,di=0;di<$q_c_qikqxzjji;di+=1){
-let data=$q_a_ccqxrkestv[di];
-$vnode_4=[];($__line=74,$__art='{{set height=realHeights&&realHeights[di]}}','');$__ctrl='<%let height=realHeights&&realHeights[di];%>';let height=realHeights&&realHeights[di];;$__line=75;$__art="{{each row.cols as col ci}}";$__ctrl="for(let $q_a_iwowbj=row.cols,$q_c_mrpeczzcc=$q_a_iwowbj.length,ci=0;ci<$q_c_mrpeczzcc;ci++){let col=$q_a_iwowbj[ci];";
-for(let $q_a_iwowbj=row.cols,$q_c_mrpeczzcc=$q_a_iwowbj.length,ci=0;ci<$q_c_mrpeczzcc;ci+=1){
-let col=$q_a_iwowbj[ci];
+($__line=71,$__art='{{set realHeights=bind._rHeights}}','');$__ctrl='<%let realHeights=bind._rHeights;%>';let realHeights=bind._rHeights;;$__line=72;$__art="{{each bind._data as data di}}";$__ctrl="for(let $q_a_nxhgcxo=bind._data,$q_c_xbjwbjwm=$q_a_nxhgcxo.length,di=0;di<$q_c_xbjwbjwm;di++){let data=$q_a_nxhgcxo[di];";
+for(let $q_a_nxhgcxo=bind._data,$q_c_xbjwbjwm=$q_a_nxhgcxo.length,di=0;di<$q_c_xbjwbjwm;di+=1){
+let data=$q_a_nxhgcxo[di];
+$vnode_4=[];($__line=74,$__art='{{set height=realHeights&&realHeights[di]}}','');$__ctrl='<%let height=realHeights&&realHeights[di];%>';let height=realHeights&&realHeights[di];;$__line=75;$__art="{{each row.cols as col ci}}";$__ctrl="for(let $q_a_ajqozrjx=row.cols,$q_c_megbhhrlp=$q_a_ajqozrjx.length,ci=0;ci<$q_c_megbhhrlp;ci++){let col=$q_a_ajqozrjx[ci];";
+for(let $q_a_ajqozrjx=row.cols,$q_c_megbhhrlp=$q_a_ajqozrjx.length,ci=0;ci<$q_c_megbhhrlp;ci+=1){
+let col=$q_a_ajqozrjx[ci];
 $vnode_5=[];$__line=77;$__art="{{if bind._tip}}";$__ctrl="if(bind._tip){";
 if(bind._tip){
 $vnode_5.push($createVNode(0,($__line=78,$__art='{{=bind._tip}}',$__ctrl='<%=bind._tip%>',(bind._tip))));

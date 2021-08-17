@@ -9,22 +9,22 @@ require("../mx-color/index");
 require("../mx-dropdown/index");
 require("../mx-range/index");
 require("../mx-number/index");
-let $quick_ca_static_text;
-let $quick_da_static_text;
-let $quick_eb_3_static_node;
-let $quick_eb_4_static_node;
-let $quick_eb_5_static_node;
-let $quick_eb_7_static_node;
-let $quick_eb_8_static_node;
-let $quick_eb_9_static_node;
-let $quick_eb_10_static_node;
-let $quick_eb_11_static_node;
-let $quick_eb_12_static_node;
-let $quick_db_static_text;
-let $quick_eb_0_static_attr={'class': 'rd-_assets_index_less_-align-items-flex-start rd-_assets_index_less_-flex rd-_assets_index_less_-margin-bottom-4',};
-let $quick_eb_1_static_attr={'class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',};
-let $quick_eb_2_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-margin-bottom-4',};
-let $quick_eb_6_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-flex rd-_assets_index_less_-mwp100 rd-_assets_index_less_-tag-label',};
+let $quick_kp_static_text;
+let $quick_lp_static_text;
+let $quick_mq_3_static_node;
+let $quick_mq_4_static_node;
+let $quick_mq_5_static_node;
+let $quick_mq_7_static_node;
+let $quick_mq_8_static_node;
+let $quick_mq_9_static_node;
+let $quick_mq_10_static_node;
+let $quick_mq_11_static_node;
+let $quick_mq_12_static_node;
+let $quick_lq_static_text;
+let $quick_mq_0_static_attr={'class': 'rd-_assets_index_less_-align-items-flex-start rd-_assets_index_less_-flex rd-_assets_index_less_-margin-bottom-4',};
+let $quick_mq_1_static_attr={'class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',};
+let $quick_mq_2_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-margin-bottom-4',};
+let $quick_mq_6_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-flex rd-_assets_index_less_-mwp100 rd-_assets_index_less_-tag-label',};
 let $special_2={'value':'value',};
 let $special_4={'checked':'checked',};
 
@@ -54,89 +54,89 @@ $$_class,
 $vnode_3,
 $vnode_2,
 $vnode_1;
-$__line=1;$__art="{{each data as d i last}}";$__ctrl="for(let $q_c_euvfqsjk=data.length,$q_lc_etnooqws=$q_c_euvfqsjk-1,i=0;i<$q_c_euvfqsjk;i++){let d=data[i];let last=i===$q_lc_etnooqws;";
-for(let $q_c_euvfqsjk=data.length,$q_lc_etnooqws=$q_c_euvfqsjk-1,i=0;i<$q_c_euvfqsjk;i+=1){
-let d=data[i];let last=i===$q_lc_etnooqws;
+$__line=1;$__art="{{each data as d i last}}";$__ctrl="for(let $q_c_tasnvtm=data.length,$q_lc_vwldoo=$q_c_tasnvtm-1,i=0;i<$q_c_tasnvtm;i++){let d=data[i];let last=i===$q_lc_vwldoo;";
+for(let $q_c_tasnvtm=data.length,$q_lc_vwldoo=$q_c_tasnvtm-1,i=0;i<$q_c_tasnvtm;i+=1){
+let d=data[i];let last=i===$q_lc_vwldoo;
 $vnode_2=[];$__line=4;$__art="{{if data.length>1}}";$__ctrl="if(data.length>1){";
 if(data.length>1){
-$vnode_3=[$quick_ca_static_text||($quick_ca_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-mr5'+($__line=5,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_assets_index_less_-color-666 rd-_assets_index_less_-cursor-not-allowed'+($__line=5,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$$_class+=' rd-_assets_index_less_-gray rd-_assets_index_less_-cursor-pointer'+($__line=5,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2.push($createVNode('span',{'mx5-click': (($temp_var=($__line=5,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{remove.fx~rs}({i:'+($__line=5,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+'})'),'title': '删除函数','class': $$_class,},$vnode_3));
-}$vnode_2.push($quick_da_static_text||($quick_da_static_text=$createVNode(0,'函数：')));$vnode_1=[$createVNode('span',$quick_eb_1_static_attr,$vnode_2),$createVNode('textarea',{'class': 'rd-_assets_index_less_-height-100 rd-_assets_index_less_-textarea rd-_assets_index_less_-width-140','disabled': ($temp_var=($__line=9,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-change': $viewId+'@:{stop~rs}()','mx5-input': $viewId+'@:{update.prop~rs}({i:'+($__line=9,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+',key:\'fn\',native:\'value\'})','value': ($__line=9,$__art='{{=d.fn}}',$__ctrl='<%=d.fn%>',(d.fn)),},0,$special_2)];$vnode_0.push($createVNode('div',$quick_eb_0_static_attr,$vnode_1));
-if($quick_eb_3_static_node){
-$vnode_1=[$quick_eb_3_static_node];
+$vnode_3=[$quick_kp_static_text||($quick_kp_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-mr5'+($__line=5,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_assets_index_less_-color-666 rd-_assets_index_less_-cursor-not-allowed'+($__line=5,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$$_class+=' rd-_assets_index_less_-gray rd-_assets_index_less_-cursor-pointer'+($__line=5,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2.push($createVNode('span',{'mx5-click': (($temp_var=($__line=5,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{remove.fx~rs}({i:'+($__line=5,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+'})'),'title': '删除函数','class': $$_class,},$vnode_3));
+}$vnode_2.push($quick_lp_static_text||($quick_lp_static_text=$createVNode(0,'函数：')));$vnode_1=[$createVNode('span',$quick_mq_1_static_attr,$vnode_2),$createVNode('textarea',{'class': 'rd-_assets_index_less_-height-100 rd-_assets_index_less_-textarea rd-_assets_index_less_-width-140','disabled': ($temp_var=($__line=9,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-change': $viewId+'@:{stop~rs}()','mx5-input': $viewId+'@:{update.prop~rs}({i:'+($__line=9,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+',key:\'fn\',native:\'value\'})','value': ($__line=9,$__art='{{=d.fn}}',$__ctrl='<%=d.fn%>',(d.fn)),},0,$special_2)];$vnode_0.push($createVNode('div',$quick_mq_0_static_attr,$vnode_1));
+if($quick_mq_3_static_node){
+$vnode_1=[$quick_mq_3_static_node];
 }else{
-$vnode_2=[$createVNode(0,'颜色：')];$vnode_1=[$quick_eb_3_static_node=$createVNode('span',{'_': 'bx','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',},$vnode_2)];
+$vnode_2=[$createVNode(0,'颜色：')];$vnode_1=[$quick_mq_3_static_node=$createVNode('span',{'_': 'hS','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',},$vnode_2)];
 }
-$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'disabled,data','class': 'rd-_assets_index_less_-width-140','mx5-input': $viewId+'@:{update.prop~rs}({i:'+($__line=13,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+',key:\'color\',use:\'color\'})','mx5-view': 'gallery/mx-color/index?align=right&disabled='+($__line=13,$__art='{{#disabled}}',$__ctrl='<%#disabled,\'auto_key_disabled\'%>',$keyOf($refData,disabled,'auto_key_disabled'))+'&color='+($__line=13,$__art='{{#d.color}}',$__ctrl='<%#d.color,\'auto_key_data.\'+(i)+\'.d.color\'%>',$keyOf($refData,d.color,'auto_key_data.'+(i)+'.d.color')),}));$vnode_0.push($createVNode('div',$quick_eb_2_static_attr,$vnode_1));
-if($quick_eb_4_static_node){
-$vnode_1=[$quick_eb_4_static_node];
+$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'disabled,data','class': 'rd-_assets_index_less_-width-140','mx5-input': $viewId+'@:{update.prop~rs}({i:'+($__line=13,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+',key:\'color\',use:\'color\'})','mx5-view': 'gallery/mx-color/index?align=right&disabled='+($__line=13,$__art='{{#disabled}}',$__ctrl='<%#disabled,\'auto_key_disabled\'%>',$keyOf($refData,disabled,'auto_key_disabled'))+'&color='+($__line=13,$__art='{{#d.color}}',$__ctrl='<%#d.color,\'auto_key_data.\'+(i)+\'.d.color\'%>',$keyOf($refData,d.color,'auto_key_data.'+(i)+'.d.color')),}));$vnode_0.push($createVNode('div',$quick_mq_2_static_attr,$vnode_1));
+if($quick_mq_4_static_node){
+$vnode_1=[$quick_mq_4_static_node];
 }else{
-$vnode_2=[$createVNode(0,'线条类型：')];$vnode_1=[$quick_eb_4_static_node=$createVNode('span',{'_': 'by','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',},$vnode_2)];
+$vnode_2=[$createVNode(0,'线条类型：')];$vnode_1=[$quick_mq_4_static_node=$createVNode('span',{'_': 'hT','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',},$vnode_2)];
 }
-$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'disabled,lineTypes','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({i:'+($__line=17,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+',key:\'graphType\',use:\'value\'})','mx5-view': 'gallery/mx-dropdown/index?disabled='+($__line=17,$__art='{{#disabled}}',$__ctrl='<%#disabled,\'auto_key_disabled\'%>',$keyOf($refData,disabled,'auto_key_disabled'))+'&selected='+($__line=17,$__art='{{=d.graphType}}',$__ctrl='<%=$encodeUrl(d.graphType)%>',($encodeUrl(d.graphType)))+'&list='+($__line=17,$__art='{{#lineTypes}}',$__ctrl='<%#lineTypes,\'auto_key_lineTypes\'%>',$keyOf($refData,lineTypes,'auto_key_lineTypes'))+'&textKey=text&valueKey=value',}));$vnode_0.push($createVNode('div',$quick_eb_2_static_attr,$vnode_1));
-if($quick_eb_5_static_node){
-$vnode_1=[$quick_eb_5_static_node];
+$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'disabled,lineTypes','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({i:'+($__line=17,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+',key:\'graphType\',use:\'value\'})','mx5-view': 'gallery/mx-dropdown/index?disabled='+($__line=17,$__art='{{#disabled}}',$__ctrl='<%#disabled,\'auto_key_disabled\'%>',$keyOf($refData,disabled,'auto_key_disabled'))+'&selected='+($__line=17,$__art='{{=d.graphType}}',$__ctrl='<%=$encodeUrl(d.graphType)%>',($encodeUrl(d.graphType)))+'&list='+($__line=17,$__art='{{#lineTypes}}',$__ctrl='<%#lineTypes,\'auto_key_lineTypes\'%>',$keyOf($refData,lineTypes,'auto_key_lineTypes'))+'&textKey=text&valueKey=value',}));$vnode_0.push($createVNode('div',$quick_mq_2_static_attr,$vnode_1));
+if($quick_mq_5_static_node){
+$vnode_1=[$quick_mq_5_static_node];
 }else{
-$vnode_2=[$createVNode(0,'设置范围：')];$vnode_1=[$quick_eb_5_static_node=$createVNode('span',{'_': 'bz','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',},$vnode_2)];
+$vnode_2=[$createVNode(0,'设置范围：')];$vnode_1=[$quick_mq_5_static_node=$createVNode('span',{'_': 'hU','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',},$vnode_2)];
 }
 $vnode_2=[$createVNode('input',{'class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-switch-input','type': 'checkbox','checked': ($temp_var=($__line=22,$__art='{{=d.range!=null}}',$__ctrl='<%=d.range!=null%>',d.range!=null),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"checked" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'disabled': ($temp_var=($__line=22,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-change': $viewId+'@:{update.range.setting~rs}({i:'+($__line=22,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+'})',},1,$special_4)];
-if($quick_eb_7_static_node){
-$vnode_2.push($quick_eb_7_static_node);
+if($quick_mq_7_static_node){
+$vnode_2.push($quick_mq_7_static_node);
 }else{
-$vnode_2.push($quick_eb_7_static_node=$createVNode('i',{'_': 'bA','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-switch-button rd-_assets_index_less_-unselectable',}));
+$vnode_2.push($quick_mq_7_static_node=$createVNode('i',{'_': 'hV','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-switch-button rd-_assets_index_less_-unselectable',}));
 }
-$vnode_1.push($createVNode('label',$quick_eb_6_static_attr,$vnode_2));$vnode_0.push($createVNode('div',$quick_eb_2_static_attr,$vnode_1));$__line=26;$__art="{{if d.range}}";$__ctrl="if(d.range){";
+$vnode_1.push($createVNode('label',$quick_mq_6_static_attr,$vnode_2));$vnode_0.push($createVNode('div',$quick_mq_2_static_attr,$vnode_1));$__line=26;$__art="{{if d.range}}";$__ctrl="if(d.range){";
 if(d.range){
 
-if($quick_eb_8_static_node){
-$vnode_1=[$quick_eb_8_static_node];
+if($quick_mq_8_static_node){
+$vnode_1=[$quick_mq_8_static_node];
 }else{
-$vnode_2=[$createVNode(0,'取值范围：')];$vnode_1=[$quick_eb_8_static_node=$createVNode('span',{'_': 'bB','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',},$vnode_2)];
+$vnode_2=[$createVNode(0,'取值范围：')];$vnode_1=[$quick_mq_8_static_node=$createVNode('span',{'_': 'hW','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',},$vnode_2)];
 }
-$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'disabled,data','class': 'rd-_assets_index_less_-width-140','mx5-input': $viewId+'@:{update.prop~rs}({i:'+($__line=29,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+',key:\'range\',use:\'range\'})','mx5-view': 'gallery/mx-range/index?disabled='+($__line=29,$__art='{{#disabled}}',$__ctrl='<%#disabled,\'auto_key_disabled\'%>',$keyOf($refData,disabled,'auto_key_disabled'))+'&value='+($__line=29,$__art='{{#d.range}}',$__ctrl='<%#d.range,\'auto_key_data.\'+(i)+\'.d.range\'%>',$keyOf($refData,d.range,'auto_key_data.'+(i)+'.d.range')),}));$vnode_0.push($createVNode('div',$quick_eb_2_static_attr,$vnode_1));
+$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'disabled,data','class': 'rd-_assets_index_less_-width-140','mx5-input': $viewId+'@:{update.prop~rs}({i:'+($__line=29,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+',key:\'range\',use:\'range\'})','mx5-view': 'gallery/mx-range/index?disabled='+($__line=29,$__art='{{#disabled}}',$__ctrl='<%#disabled,\'auto_key_disabled\'%>',$keyOf($refData,disabled,'auto_key_disabled'))+'&value='+($__line=29,$__art='{{#d.range}}',$__ctrl='<%#d.range,\'auto_key_data.\'+(i)+\'.d.range\'%>',$keyOf($refData,d.range,'auto_key_data.'+(i)+'.d.range')),}));$vnode_0.push($createVNode('div',$quick_mq_2_static_attr,$vnode_1));
 }
-if($quick_eb_9_static_node){
-$vnode_1=[$quick_eb_9_static_node];
+if($quick_mq_9_static_node){
+$vnode_1=[$quick_mq_9_static_node];
 }else{
-$vnode_2=[$createVNode(0,'设置取样：')];$vnode_1=[$quick_eb_9_static_node=$createVNode('span',{'_': 'bC','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',},$vnode_2)];
+$vnode_2=[$createVNode(0,'设置取样：')];$vnode_1=[$quick_mq_9_static_node=$createVNode('span',{'_': 'hX','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',},$vnode_2)];
 }
 $vnode_2=[$createVNode('input',{'class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-switch-input','type': 'checkbox','checked': ($temp_var=($__line=35,$__art='{{=d.nSamples!=null}}',$__ctrl='<%=d.nSamples!=null%>',d.nSamples!=null),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"checked" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'disabled': ($temp_var=($__line=35,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-change': $viewId+'@:{update.samples.setting~rs}({i:'+($__line=35,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+'})',},1,$special_4)];
-if($quick_eb_7_static_node){
-$vnode_2.push($quick_eb_7_static_node);
+if($quick_mq_7_static_node){
+$vnode_2.push($quick_mq_7_static_node);
 }else{
-$vnode_2.push($quick_eb_7_static_node=$createVNode('i',{'_': 'bA','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-switch-button rd-_assets_index_less_-unselectable',}));
+$vnode_2.push($quick_mq_7_static_node=$createVNode('i',{'_': 'hV','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-switch-button rd-_assets_index_less_-unselectable',}));
 }
-$vnode_1.push($createVNode('label',$quick_eb_6_static_attr,$vnode_2));$vnode_0.push($createVNode('div',$quick_eb_2_static_attr,$vnode_1));$__line=39;$__art="{{if d.nSamples!=null}}";$__ctrl="if(d.nSamples!=null){";
+$vnode_1.push($createVNode('label',$quick_mq_6_static_attr,$vnode_2));$vnode_0.push($createVNode('div',$quick_mq_2_static_attr,$vnode_1));$__line=39;$__art="{{if d.nSamples!=null}}";$__ctrl="if(d.nSamples!=null){";
 if(d.nSamples!=null){
 
-if($quick_eb_10_static_node){
-$vnode_1=[$quick_eb_10_static_node];
+if($quick_mq_10_static_node){
+$vnode_1=[$quick_mq_10_static_node];
 }else{
-$vnode_2=[$createVNode(0,'取样：')];$vnode_1=[$quick_eb_10_static_node=$createVNode('span',{'_': 'bD','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',},$vnode_2)];
+$vnode_2=[$createVNode(0,'取样：')];$vnode_1=[$quick_mq_10_static_node=$createVNode('span',{'_': 'hY','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',},$vnode_2)];
 }
-$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'data','class': 'rd-_assets_index_less_-input rd-_assets_index_less_-pr rd-_assets_index_less_-width-140','disabled': ($temp_var=($__line=42,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-change': $viewId+'@:{stop~rs}()','mx5-input': $viewId+'@:{update.prop~rs}({i:'+($__line=42,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+',key:\'nSamples\',use:\'value\'})','mx5-view': 'gallery/mx-number/index?value='+($__line=42,$__art='{{#d.nSamples}}',$__ctrl='<%#d.nSamples,\'auto_key_data.\'+(i)+\'.d.nSamples\'%>',$keyOf($refData,d.nSamples,'auto_key_data.'+(i)+'.d.nSamples'))+'&min=10',}));$vnode_0.push($createVNode('div',$quick_eb_2_static_attr,$vnode_1));
+$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'data','class': 'rd-_assets_index_less_-input rd-_assets_index_less_-pr rd-_assets_index_less_-width-140','disabled': ($temp_var=($__line=42,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-change': $viewId+'@:{stop~rs}()','mx5-input': $viewId+'@:{update.prop~rs}({i:'+($__line=42,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+',key:\'nSamples\',use:\'value\'})','mx5-view': 'gallery/mx-number/index?value='+($__line=42,$__art='{{#d.nSamples}}',$__ctrl='<%#d.nSamples,\'auto_key_data.\'+(i)+\'.d.nSamples\'%>',$keyOf($refData,d.nSamples,'auto_key_data.'+(i)+'.d.nSamples'))+'&min=10',}));$vnode_0.push($createVNode('div',$quick_mq_2_static_attr,$vnode_1));
 }
-if($quick_eb_11_static_node){
-$vnode_1=[$quick_eb_11_static_node];
+if($quick_mq_11_static_node){
+$vnode_1=[$quick_mq_11_static_node];
 }else{
-$vnode_2=[$createVNode(0,'填充：')];$vnode_1=[$quick_eb_11_static_node=$createVNode('span',{'_': 'bE','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',},$vnode_2)];
+$vnode_2=[$createVNode(0,'填充：')];$vnode_1=[$quick_mq_11_static_node=$createVNode('span',{'_': 'hZ','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',},$vnode_2)];
 }
 $vnode_2=[$createVNode('input',{'class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-switch-input','type': 'checkbox','checked': ($temp_var=($__line=48,$__art='{{=d.closed}}',$__ctrl='<%=d.closed%>',d.closed),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"checked" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'disabled': ($temp_var=($__line=48,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-change': $viewId+'@:{update.prop~rs}({i:'+($__line=48,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+',key:\'closed\',native:\'checked\'})',},1,$special_4)];
-if($quick_eb_7_static_node){
-$vnode_2.push($quick_eb_7_static_node);
+if($quick_mq_7_static_node){
+$vnode_2.push($quick_mq_7_static_node);
 }else{
-$vnode_2.push($quick_eb_7_static_node=$createVNode('i',{'_': 'bA','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-switch-button rd-_assets_index_less_-unselectable',}));
+$vnode_2.push($quick_mq_7_static_node=$createVNode('i',{'_': 'hV','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-switch-button rd-_assets_index_less_-unselectable',}));
 }
-$vnode_1.push($createVNode('label',$quick_eb_6_static_attr,$vnode_2));$vnode_0.push($createVNode('div',$quick_eb_2_static_attr,$vnode_1));$__line=52;$__art="{{if !last}}";$__ctrl="if(!last){";
+$vnode_1.push($createVNode('label',$quick_mq_6_static_attr,$vnode_2));$vnode_0.push($createVNode('div',$quick_mq_2_static_attr,$vnode_1));$__line=52;$__art="{{if !last}}";$__ctrl="if(!last){";
 if(!last){
 
-if($quick_eb_12_static_node){
-$vnode_0.push($quick_eb_12_static_node);
+if($quick_mq_12_static_node){
+$vnode_0.push($quick_mq_12_static_node);
 }else{
-$vnode_0.push($quick_eb_12_static_node=$createVNode('div',{'_': 'bF','class': 'rd-_assets_index_less_-item-spliter',}));
+$vnode_0.push($quick_mq_12_static_node=$createVNode('div',{'_': 'h0','class': 'rd-_assets_index_less_-item-spliter',}));
 }
 
 }
-}$vnode_1=[$quick_db_static_text||($quick_db_static_text=$createVNode(0,'添加函数'))];$vnode_0.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-fr rd-_assets_index_less_-tc','disabled': ($temp_var=($__line=56,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-click': $viewId+'@:{add.fx~rs}()',},$vnode_1)); 
+}$vnode_1=[$quick_lq_static_text||($quick_lq_static_text=$createVNode(0,'添加函数'))];$vnode_0.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-fr rd-_assets_index_less_-tc','disabled': ($temp_var=($__line=56,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-click': $viewId+'@:{add.fx~rs}()',},$vnode_1)); 
 
 return $createVNode($viewId,0,$vnode_0); 
 } catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-fx/index.html'; throw msg; }  } ,

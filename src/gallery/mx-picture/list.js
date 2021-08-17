@@ -5,18 +5,18 @@
     loader:cmd_es
  */
 define("gallery/mx-picture/list",["magix5","../../designer/service","../../i18n/index","../mx-dialog/index","../mx-toast/index"],(require,exports,module)=>{
-let $quick_eg_0_static_node;
-let $quick_eg_3_static_node;
-let $quick_de_static_text;
-let $quick_df_static_text;
-let $quick_eg_1_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-dialog-header rd-_assets_index_less_-dialog-header-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-position-sticky rd-_assets_index_less_-top-0 rd-_assets_index_less_-z-index-8',};
-let $quick_eg_2_static_attr={'class': 'rd-_assets_index_less_-tag-h5',};
-let $quick_eg_4_static_attr={'class': 'rd-_assets_index_less_-dialog-body rd-_assets_index_less_-min-height-100vh',};
-let $quick_eg_5_static_attr={'class': 'rd-_assets_index_less_-fontsize-16 rd-_assets_index_less_-mt30 rd-_assets_index_less_-tc',};
-let $quick_eg_6_static_attr={'class': 'rd-_assets_index_less_-flex rd-_gallery_mx-picture_index_less_-tabs',};
-let $quick_eg_7_static_attr={'class': 'rd-_assets_index_less_-flex rd-_gallery_mx-picture_index_less_-margin-100',};
-let $quick_eg_8_static_attr={'class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-flex-wrap-wrap',};
-let $quick_eg_9_static_attr={'class': 'rd-_assets_index_less_-ellipsis rd-_assets_index_less_-tc rd-_gallery_mx-picture_index_less_-item-title',};
+let $quick_mv_0_static_node;
+let $quick_mv_3_static_node;
+let $quick_lt_static_text;
+let $quick_lu_static_text;
+let $quick_mv_1_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-dialog-header rd-_assets_index_less_-dialog-header-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-position-sticky rd-_assets_index_less_-top-0 rd-_assets_index_less_-z-index-8',};
+let $quick_mv_2_static_attr={'class': 'rd-_assets_index_less_-tag-h5',};
+let $quick_mv_4_static_attr={'class': 'rd-_assets_index_less_-dialog-body rd-_assets_index_less_-min-height-100vh',};
+let $quick_mv_5_static_attr={'class': 'rd-_assets_index_less_-fontsize-16 rd-_assets_index_less_-mt30 rd-_assets_index_less_-tc',};
+let $quick_mv_6_static_attr={'class': 'rd-_assets_index_less_-flex rd-_gallery_mx-picture_index_less_-tabs',};
+let $quick_mv_7_static_attr={'class': 'rd-_assets_index_less_-flex rd-_gallery_mx-picture_index_less_-margin-100',};
+let $quick_mv_8_static_attr={'class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-flex-wrap-wrap',};
+let $quick_mv_9_static_attr={'class': 'rd-_assets_index_less_-ellipsis rd-_assets_index_less_-tc rd-_gallery_mx-picture_index_less_-item-title',};
 /*
     author:https://github.com/xinglie
 */
@@ -42,36 +42,36 @@ $$_class,
 $vnode_3,
 $vnode_4;
 
-if($quick_eg_0_static_node){
-$vnode_0=[$quick_eg_0_static_node];
+if($quick_mv_0_static_node){
+$vnode_0=[$quick_mv_0_static_node];
 }else{
-$vnode_0=[$quick_eg_0_static_node=$createVNode('div',{'_': 'bx','class': 'rd-_assets_index_less_-dialog-header-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-7',})];
+$vnode_0=[$quick_mv_0_static_node=$createVNode('div',{'_': 'hS','class': 'rd-_assets_index_less_-dialog-header-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-7',})];
 }
-$vnode_2=[$createVNode(0,($__line=3,$__art='{{=i18n(\'@:{lang#lib.images~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#lib.images~rs}\')%>',(i18n('@:{lang#lib.images~rs}'))))];$vnode_1=[$createVNode('h5',$quick_eg_2_static_attr,$vnode_2)];
-if($quick_eg_3_static_node){
-$vnode_1.push($quick_eg_3_static_node);
+$vnode_2=[$createVNode(0,($__line=3,$__art='{{=i18n(\'@:{lang#lib.images~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#lib.images~rs}\')%>',(i18n('@:{lang#lib.images~rs}'))))];$vnode_1=[$createVNode('h5',$quick_mv_2_static_attr,$vnode_2)];
+if($quick_mv_3_static_node){
+$vnode_1.push($quick_mv_3_static_node);
 }else{
-$vnode_2=[$createVNode(0,'如何不显示或更换图片库接口?')];$vnode_1.push($quick_eg_3_static_node=$createVNode('a',{'_': 'by','class': 'rd-_assets_index_less_-ml10 rd-_assets_index_less_-tag-a','href': 'https://github.com/xinglie/report-designer/issues/28','rel': 'noopener noreferrer','target': '_blank',},$vnode_2));
+$vnode_2=[$createVNode(0,'如何不显示或更换图片库接口?')];$vnode_1.push($quick_mv_3_static_node=$createVNode('a',{'_': 'hT','class': 'rd-_assets_index_less_-ml10 rd-_assets_index_less_-tag-a','href': 'https://github.com/xinglie/report-designer/issues/28','rel': 'noopener noreferrer','target': '_blank',},$vnode_2));
 }
-$vnode_0.push($createVNode('div',$quick_eg_1_static_attr,$vnode_1));$vnode_1=[];$__line=7;$__art="{{if error}}";$__ctrl="if(error){";
+$vnode_0.push($createVNode('div',$quick_mv_1_static_attr,$vnode_1));$vnode_1=[];$__line=7;$__art="{{if error}}";$__ctrl="if(error){";
 if(error){
-$vnode_2=[$createVNode(0,($__line=8,$__art='{{=error.message}}',$__ctrl='<%=error.message%>',(error.message)))];$vnode_1.push($createVNode('div',$quick_eg_5_static_attr,$vnode_2));
+$vnode_2=[$createVNode(0,($__line=8,$__art='{{=error.message}}',$__ctrl='<%=error.message%>',(error.message)))];$vnode_1.push($createVNode('div',$quick_mv_5_static_attr,$vnode_2));
 }else{
-$vnode_2=[];$__line=11;$__art="{{each list as category ci}}";$__ctrl="for(let $q_c_lnpbp=list.length,ci=0;ci<$q_c_lnpbp;ci++){let category=list[ci];";
-for(let $q_c_lnpbp=list.length,ci=0;ci<$q_c_lnpbp;ci+=1){
+$vnode_2=[];$__line=11;$__art="{{each list as category ci}}";$__ctrl="for(let $q_c_fsddubutzze=list.length,ci=0;ci<$q_c_fsddubutzze;ci++){let category=list[ci];";
+for(let $q_c_fsddubutzze=list.length,ci=0;ci<$q_c_fsddubutzze;ci+=1){
 let category=list[ci];
 $vnode_3=[$createVNode(0,($__line=12,$__art='{{=category.title}}',$__ctrl='<%=category.title%>',(category.title)))];;$$_class='rd-_gallery_mx-picture_index_less_-tabs-item rd-_assets_index_less_-tc rd-_assets_index_less_-cursor-pointer'+($__line=12,$__art='{{if ci==current}}','');$__ctrl='<%if(ci==current){%>';if(ci==current){;$$_class+=' rd-_gallery_mx-picture_index_less_-tabs-active'+($__line=12,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2.push($createVNode('div',{'mx5-click': (($temp_var=($__line=12,$__art='{{ci!=current}}',$__ctrl='<%ci!=current%>',ci!=current),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-picture/list.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{change.tab~rs}({to:'+($__line=12,$__art='{{=ci}}',$__ctrl='<%=ci%>',(ci))+'})'),'class': $$_class,},$vnode_3));
-}$vnode_3=[$quick_de_static_text||($quick_de_static_text=$createVNode(0,'网络图片'))];;$$_class='rd-_gallery_mx-picture_index_less_-tabs-item rd-_assets_index_less_-tc rd-_assets_index_less_-cursor-pointer'+($__line=15,$__art='{{if \'network\'==current}}','');$__ctrl='<%if(\'network\'==current){%>';if('network'==current){;$$_class+=' rd-_gallery_mx-picture_index_less_-tabs-active'+($__line=15,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2.push($createVNode('div',{'mx5-click': (($temp_var=($__line=15,$__art='{{\'network\'!=current}}',$__ctrl='<%\'network\'!=current%>','network'!=current),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-picture/list.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{change.tab~rs}({to:\'network\'})'),'class': $$_class,},$vnode_3));$vnode_1.push($createVNode('div',$quick_eg_6_static_attr,$vnode_2));$__line=20;$__art="{{if current==\\'network\\'}}";$__ctrl="if(current=='network'){";
+}$vnode_3=[$quick_lt_static_text||($quick_lt_static_text=$createVNode(0,'网络图片'))];;$$_class='rd-_gallery_mx-picture_index_less_-tabs-item rd-_assets_index_less_-tc rd-_assets_index_less_-cursor-pointer'+($__line=15,$__art='{{if \'network\'==current}}','');$__ctrl='<%if(\'network\'==current){%>';if('network'==current){;$$_class+=' rd-_gallery_mx-picture_index_less_-tabs-active'+($__line=15,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2.push($createVNode('div',{'mx5-click': (($temp_var=($__line=15,$__art='{{\'network\'!=current}}',$__ctrl='<%\'network\'!=current%>','network'!=current),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-picture/list.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{change.tab~rs}({to:\'network\'})'),'class': $$_class,},$vnode_3));$vnode_1.push($createVNode('div',$quick_mv_6_static_attr,$vnode_2));$__line=20;$__art="{{if current==\\'network\\'}}";$__ctrl="if(current=='network'){";
 if(current=='network'){
-$vnode_2=[$quick_df_static_text||($quick_df_static_text=$createVNode(0,'网络地址: ')),$createVNode('input',{'placeholder': '请粘贴/输入网络图片地址','class': 'rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-input rd-_assets_index_less_-ml10 rd-_assets_index_less_-tag-input','id': '_rd_nw_'+($__line=23,$__art='{{=$viewId}}','')+$viewId,},1)];$vnode_3=[$createVNode(0,($__line=24,$__art='{{=i18n(\'@:{lang#btn.apply~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#btn.apply~rs}\')%>',(i18n('@:{lang#btn.apply~rs}'))))];$vnode_2.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-ml10','mx5-click': $viewId+'@:{apply.network.image~rs}()',},$vnode_3));$vnode_1.push($createVNode('div',$quick_eg_7_static_attr,$vnode_2));
+$vnode_2=[$quick_lu_static_text||($quick_lu_static_text=$createVNode(0,'网络地址: ')),$createVNode('input',{'placeholder': '请粘贴/输入网络图片地址','class': 'rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-input rd-_assets_index_less_-ml10 rd-_assets_index_less_-tag-input','id': '_rd_nw_'+($__line=23,$__art='{{=$viewId}}','')+$viewId,},1)];$vnode_3=[$createVNode(0,($__line=24,$__art='{{=i18n(\'@:{lang#btn.apply~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#btn.apply~rs}\')%>',(i18n('@:{lang#btn.apply~rs}'))))];$vnode_2.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-ml10','mx5-click': $viewId+'@:{apply.network.image~rs}()',},$vnode_3));$vnode_1.push($createVNode('div',$quick_mv_7_static_attr,$vnode_2));
 }else{
-$vnode_2=[];$__line=28;$__art="{{each list[current].list as p}}";$__ctrl="for(let $q_a_gvzcgobxu=list[current].list,$q_c_umss=$q_a_gvzcgobxu.length,$q_key_bhapcuj=0;$q_key_bhapcuj<$q_c_umss;$q_key_bhapcuj++){let p=$q_a_gvzcgobxu[$q_key_bhapcuj];";
-for(let $q_a_gvzcgobxu=list[current].list,$q_c_umss=$q_a_gvzcgobxu.length,$q_key_bhapcuj=0;$q_key_bhapcuj<$q_c_umss;$q_key_bhapcuj+=1){
-let p=$q_a_gvzcgobxu[$q_key_bhapcuj];
-$vnode_4=[$createVNode('div',{'class': 'rd-_assets_index_less_-hp100 rd-_gallery_mx-picture_index_less_-item','style': 'background-image:url(\''+($__line=31,$__art='{{=p.src}}',$__ctrl='<%=p.src%>',(p.src))+'\')',})];$vnode_3=[$createVNode('div',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-height-100 rd-_assets_index_less_-overflow-hidden rd-_assets_index_less_-padding-4 rd-_gallery_mx-picture_index_less_-item-container','mx5-click': $viewId+'@:{use~rs}({src:\''+($__line=30,$__art='{{=p.src}}',$__ctrl='<%=$encodeQuote(p.src)%>',($encodeQuote(p.src)))+'\'})',},$vnode_4)];$vnode_4=[$createVNode(0,($__line=33,$__art='{{=p.title}}',$__ctrl='<%=p.title%>',(p.title)))];$vnode_3.push($createVNode('div',$quick_eg_9_static_attr,$vnode_4));$vnode_2.push($createVNode('div',{'title': ($__line=29,$__art='{{=p.title}}',$__ctrl='<%=p.title%>',(p.title)),},$vnode_3));
-}$vnode_1.push($createVNode('div',$quick_eg_8_static_attr,$vnode_2));
+$vnode_2=[];$__line=28;$__art="{{each list[current].list as p}}";$__ctrl="for(let $q_a_scnyjso=list[current].list,$q_c_jszosuowz=$q_a_scnyjso.length,$q_key_ttufhqk=0;$q_key_ttufhqk<$q_c_jszosuowz;$q_key_ttufhqk++){let p=$q_a_scnyjso[$q_key_ttufhqk];";
+for(let $q_a_scnyjso=list[current].list,$q_c_jszosuowz=$q_a_scnyjso.length,$q_key_ttufhqk=0;$q_key_ttufhqk<$q_c_jszosuowz;$q_key_ttufhqk+=1){
+let p=$q_a_scnyjso[$q_key_ttufhqk];
+$vnode_4=[$createVNode('div',{'class': 'rd-_assets_index_less_-hp100 rd-_gallery_mx-picture_index_less_-item','style': 'background-image:url(\''+($__line=31,$__art='{{=p.src}}',$__ctrl='<%=p.src%>',(p.src))+'\')',})];$vnode_3=[$createVNode('div',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-height-100 rd-_assets_index_less_-overflow-hidden rd-_assets_index_less_-padding-4 rd-_gallery_mx-picture_index_less_-item-container','mx5-click': $viewId+'@:{use~rs}({src:\''+($__line=30,$__art='{{=p.src}}',$__ctrl='<%=$encodeQuote(p.src)%>',($encodeQuote(p.src)))+'\'})',},$vnode_4)];$vnode_4=[$createVNode(0,($__line=33,$__art='{{=p.title}}',$__ctrl='<%=p.title%>',(p.title)))];$vnode_3.push($createVNode('div',$quick_mv_9_static_attr,$vnode_4));$vnode_2.push($createVNode('div',{'title': ($__line=29,$__art='{{=p.title}}',$__ctrl='<%=p.title%>',(p.title)),},$vnode_3));
+}$vnode_1.push($createVNode('div',$quick_mv_8_static_attr,$vnode_2));
 }
-}$vnode_0.push($createVNode('div',$quick_eg_4_static_attr,$vnode_1)); 
+}$vnode_0.push($createVNode('div',$quick_mv_4_static_attr,$vnode_1)); 
 
 return $createVNode($viewId,0,$vnode_0); 
 } catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-picture/list.html'; throw msg; }  } ,
