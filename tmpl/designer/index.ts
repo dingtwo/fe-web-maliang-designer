@@ -557,7 +557,7 @@ export default View.extend({
                                     return;
                                 }
                                 try {
-                                    window.localStorage.setItem('login-token', bag.get('token'))
+                                    window.localStorage.setItem('login-token', JSON.stringify(bag.get('token')))
                                     window.location.reload();
                                 } catch (error) {
                                     

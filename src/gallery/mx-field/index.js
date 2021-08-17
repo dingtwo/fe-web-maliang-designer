@@ -5,8 +5,8 @@
     loader:cmd_es
  */
 define("gallery/mx-field/index",["magix5","../mx-dragdrop/index"],(require,exports,module)=>{
-let $quick_mg_0_static_node;
-let $quick_mg_1_static_attr={'class': 'rd-_assets_index_less_-color-999 rd-_gallery_mx-field_index_less_-drop-tip',};
+let $quick_dm_0_static_node;
+let $quick_dm_1_static_attr={'class': 'rd-_assets_index_less_-color-999 rd-_gallery_mx-field_index_less_-drop-tip',};
 
 /*
     author:https://github.com/xinglie
@@ -35,19 +35,19 @@ $vnode_2,
 $vnode_1;
 $vnode_1=[];$__line=2;$__art="{{if fields&&fields.length}}";$__ctrl="if(fields&&fields.length){";
 if(fields&&fields.length){
-$__line=3;$__art="{{each fields as field i}}";$__ctrl="for(let $q_c_oosumjc=fields.length,i=0;i<$q_c_oosumjc;i++){let field=fields[i];";
-for(let $q_c_oosumjc=fields.length,i=0;i<$q_c_oosumjc;i+=1){
+$__line=3;$__art="{{each fields as field i}}";$__ctrl="for(let $q_c_lyyckshgjd=fields.length,i=0;i<$q_c_lyyckshgjd;i++){let field=fields[i];";
+for(let $q_c_lyyckshgjd=fields.length,i=0;i<$q_c_lyyckshgjd;i+=1){
 let field=fields[i];
 
-if($quick_mg_0_static_node){
-$vnode_2=[$quick_mg_0_static_node];
+if($quick_dm_0_static_node){
+$vnode_2=[$quick_dm_0_static_node];
 }else{
-$vnode_3=[$createVNode(0,'')];$vnode_2=[$quick_mg_0_static_node=$createVNode('span',{'_': 'hS','class': 'rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-iconfont',},$vnode_3)];
+$vnode_3=[$createVNode(0,'')];$vnode_2=[$quick_dm_0_static_node=$createVNode('span',{'_': 'a@','class': 'rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-iconfont',},$vnode_3)];
 }
 $vnode_2.push($createVNode(0,($__line=5,$__art='{{=field.name}}',$__ctrl='<%=field.name%>',(field.name))));;$$_class='rd-_gallery_mx-field_index_less_-item-draggable rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-pr rd-_assets_index_less_-fontsize-12'+($__line=4,$__art='{{if i==dragIndex}}','');$__ctrl='<%if(i==dragIndex){%>';if(i==dragIndex){;$$_class+=' rd-_gallery_mx-field_index_less_-item-dragged'+($__line=4,$__art='{{if outside}}','');$__ctrl='<%if(outside){%>';if(outside){;$$_class+=' rd-_gallery_mx-field_index_less_-item-removed'+($__line=4,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_class+=''+($__line=4,$__art='{{else if i==index}}','');$__ctrl='<%}else if(i==index){%>';}else if(i==index){;$$_class+=' rd-_gallery_mx-field_index_less_-item--'+($__line=4,$__art='{{=onTop?\'top\':\'bottom\'}}',$__ctrl='<%=onTop?\'top\':\'bottom\'%>',(onTop?'top':'bottom'))+($__line=4,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'draggable': (($__line=4,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled))&&('true'),'mx5-dragstart': $viewId+'@:{drag.start~rs}({index:'+($__line=4,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+'})','mx5-dragover': $viewId+'@:{drag.over~rs}({index:'+($__line=4,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+'})','mx5-dragend': $viewId+'@:{drag.end~rs}()','class': $$_class,},$vnode_2));
 }
 }else{
-$vnode_2=[$createVNode(0,($__line=10,$__art='{{=i18n(\'@:{lang#mx-gallery.field.drag.tip~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.field.drag.tip~rs}\')%>',(i18n('@:{lang#mx-gallery.field.drag.tip~rs}'))))];$vnode_1.push($createVNode('div',$quick_mg_1_static_attr,$vnode_2));
+$vnode_2=[$createVNode(0,($__line=10,$__art='{{=i18n(\'@:{lang#mx-gallery.field.drag.tip~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.field.drag.tip~rs}\')%>',(i18n('@:{lang#mx-gallery.field.drag.tip~rs}'))))];$vnode_1.push($createVNode('div',$quick_dm_1_static_attr,$vnode_2));
 };$$_class='rd-_gallery_mx-field_index_less_-drop-zone rd-_assets_index_less_-background-color-fff'+($__line=1,$__art='{{if enter}}','');$__ctrl='<%if(enter){%>';if(enter){;$$_class+=' rd-_gallery_mx-field_index_less_-drop-zone-enter'+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_class+=''+($__line=1,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-field_index_less_-notallowed'+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_class+=''+($__line=1,$__art='{{if !fields||!fields.length}}','');$__ctrl='<%if(!fields||!fields.length){%>';if(!fields||!fields.length){;$$_class+=' rd-_assets_index_less_-flex rd-_assets_index_less_-align-items-center'+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0=[$createVNode('div',{'mx5-dragleave': $viewId+'@:{drag.exit~rs}()','mx5-dragenter': $viewId+'@:{drag.enter~rs}()','mx5-contextmenu': $viewId+'@:{prevent~rs}()','class': $$_class,},$vnode_1)]; 
 
 return $createVNode($viewId,0,$vnode_0); 

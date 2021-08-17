@@ -5,8 +5,8 @@
     loader:cmd_es
  */
 define("gallery/mx-picture/index",["magix5","../mx-dialog/index"],(require,exports,module)=>{
-let $quick_l__static_text;
-let $quick_mu_0_static_attr={'class': 'rd-_assets_index_less_-color-999 rd-_assets_index_less_-tc rd-_gallery_mx-picture_index_less_-pic-tip',};
+let $quick_cf_static_text;
+let $quick_dA_0_static_attr={'class': 'rd-_assets_index_less_-color-999 rd-_assets_index_less_-tc rd-_gallery_mx-picture_index_less_-pic-tip',};
 
 /*
     author:https://github.com/xinglie
@@ -28,9 +28,9 @@ $vnode_2,
 $vnode_1;
 $vnode_1=[];$__line=2;$__art="{{if src}}";$__ctrl="if(src){";
 if(src){
-$vnode_3=[$quick_l__static_text||($quick_l__static_text=$createVNode(0,''))];$vnode_2=[$createVNode('i',{'class': 'rd-_assets_index_less_-iconfont rd-_assets_index_less_-pa rd-_gallery_mx-picture_index_less_-remove','mx5-click': (($temp_var=($__line=4,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-picture/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'1@:{clear.image~rs}()'),'title': ($__line=4,$__art='{{=i18n(\'@:{lang#remove.image~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#remove.image~rs}\')%>',(i18n('@:{lang#remove.image~rs}'))),},$vnode_3)];$vnode_1.push($createVNode('div',{'class': 'rd-_assets_index_less_-hp100 rd-_assets_index_less_-wp100 rd-_gallery_mx-picture_index_less_-item','style': 'background-image:url(\''+($__line=3,$__art='{{=src}}',$__ctrl='<%=src%>',(src))+'\')',},$vnode_2));
+$vnode_3=[$quick_cf_static_text||($quick_cf_static_text=$createVNode(0,''))];$vnode_2=[$createVNode('i',{'class': 'rd-_assets_index_less_-iconfont rd-_assets_index_less_-pa rd-_gallery_mx-picture_index_less_-remove','mx5-click': (($temp_var=($__line=4,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-picture/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'1@:{clear.image~rs}()'),'title': ($__line=4,$__art='{{=i18n(\'@:{lang#remove.image~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#remove.image~rs}\')%>',(i18n('@:{lang#remove.image~rs}'))),},$vnode_3)];$vnode_1.push($createVNode('div',{'class': 'rd-_assets_index_less_-hp100 rd-_assets_index_less_-wp100 rd-_gallery_mx-picture_index_less_-item','style': 'background-image:url(\''+($__line=3,$__art='{{=src}}',$__ctrl='<%=src%>',(src))+'\')',},$vnode_2));
 }else{
-$vnode_2=[$createVNode(0,($__line=8,$__art='{{=i18n(\'@:{lang#click.choose.image~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#click.choose.image~rs}\')%>',(i18n('@:{lang#click.choose.image~rs}'))))];$vnode_1.push($createVNode('div',$quick_mu_0_static_attr,$vnode_2));
+$vnode_2=[$createVNode(0,($__line=8,$__art='{{=i18n(\'@:{lang#click.choose.image~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#click.choose.image~rs}\')%>',(i18n('@:{lang#click.choose.image~rs}'))))];$vnode_1.push($createVNode('div',$quick_dA_0_static_attr,$vnode_2));
 };$$_class='rd-_gallery_mx-picture_index_less_-pic rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-padding-4 rd-_assets_index_less_-pr rd-_assets_index_less_-height-100'+($__line=1,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-picture_index_less_-notallowed'+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0=[$createVNode('div',{'mx5-click': (($temp_var=($__line=1,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-picture/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{choose.picture~rs}()'),'class': $$_class,},$vnode_1)]; 
 
 return $createVNode($viewId,0,$vnode_0); 

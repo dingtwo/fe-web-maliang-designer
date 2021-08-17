@@ -5,9 +5,9 @@
     loader:cmd_es
  */
 define("gallery/mx-menu/index",["magix5","../mx-monitor/index"],(require,exports,module)=>{
-let $quick_mr_1_static_node;
-let $quick_mr_0_static_attr={'class': 'rd-_assets_index_less_-cursor-default rd-_assets_index_less_-tag-ul rd-_assets_index_less_-unselectable',};
-let $quick_mr_2_static_attr={'class': 'rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-font-weight-normal',};
+let $quick_dx_1_static_node;
+let $quick_dx_0_static_attr={'class': 'rd-_assets_index_less_-cursor-default rd-_assets_index_less_-tag-ul rd-_assets_index_less_-unselectable',};
+let $quick_dx_2_static_attr={'class': 'rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-font-weight-normal',};
 
 /*
     author:https://github.com/xinglie
@@ -29,28 +29,28 @@ $vnode_4,
 $vnode_3,
 $vnode_2,
 $vnode_1;
-$vnode_2=[];$__line=6;$__art="{{each list as one}}";$__ctrl="for(let $q_c_weeoqaiu=list.length,$q_key_yneomed=0;$q_key_yneomed<$q_c_weeoqaiu;$q_key_yneomed++){let one=list[$q_key_yneomed];";
-for(let $q_c_weeoqaiu=list.length,$q_key_yneomed=0;$q_key_yneomed<$q_c_weeoqaiu;$q_key_yneomed+=1){
-let one=list[$q_key_yneomed];
+$vnode_2=[];$__line=6;$__art="{{each list as one}}";$__ctrl="for(let $q_c_alswpktth=list.length,$q_key_gjkc=0;$q_key_gjkc<$q_c_alswpktth;$q_key_gjkc++){let one=list[$q_key_gjkc];";
+for(let $q_c_alswpktth=list.length,$q_key_gjkc=0;$q_key_gjkc<$q_c_alswpktth;$q_key_gjkc+=1){
+let one=list[$q_key_gjkc];
 $__line=7;$__art="{{if one.spliter}}";$__ctrl="if(one.spliter){";
 if(one.spliter){
 
-if($quick_mr_1_static_node){
-$vnode_2.push($quick_mr_1_static_node);
+if($quick_dx_1_static_node){
+$vnode_2.push($quick_dx_1_static_node);
 }else{
-$vnode_2.push($quick_mr_1_static_node=$createVNode('li',{'_': 'hS','class': 'rd-_gallery_mx-menu_index_less_-spliter',}));
+$vnode_2.push($quick_dx_1_static_node=$createVNode('li',{'_': 'a@','class': 'rd-_gallery_mx-menu_index_less_-spliter',}));
 }
 
 }else{
 $vnode_3=[];$vnode_4=[];$__line=11;$__art="{{if =one.icon}}";$__ctrl="if((one.icon)!=null){";
 if((one.icon)!=null){
 $vnode_4.push($createVNode(0,($__ctrl='<%=one.icon%>',(one.icon)),1));
-};$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-mr5 rd-_gallery_mx-menu_index_less_-icon rd-_assets_index_less_-overflow-hidden rd-_assets_index_less_-fontsize-14 rd-_assets_index_less_-color-666'+($__line=11,$__art='{{if one.r180}}','');$__ctrl='<%if(one.r180){%>';if(one.r180){;$$_class+=' rd-_assets_index_less_-r180'+($__line=11,$__art='{{else if one.r90}}','');$__ctrl='<%}else if(one.r90){%>';}else if(one.r90){;$$_class+=' rd-_assets_index_less_-r90'+($__line=11,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_3.push($createVNode('i',{'class': $$_class,},$vnode_4));$vnode_4=[$createVNode(0,($__line=13,$__art='{{=one.text}}',$__ctrl='<%=one.text%>',(one.text)))];$vnode_3.push($createVNode('b',$quick_mr_2_static_attr,$vnode_4));$__line=15;$__art="{{if one.short}}";$__ctrl="if(one.short){";
+};$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-mr5 rd-_gallery_mx-menu_index_less_-icon rd-_assets_index_less_-overflow-hidden rd-_assets_index_less_-fontsize-14 rd-_assets_index_less_-color-666'+($__line=11,$__art='{{if one.r180}}','');$__ctrl='<%if(one.r180){%>';if(one.r180){;$$_class+=' rd-_assets_index_less_-r180'+($__line=11,$__art='{{else if one.r90}}','');$__ctrl='<%}else if(one.r90){%>';}else if(one.r90){;$$_class+=' rd-_assets_index_less_-r90'+($__line=11,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_3.push($createVNode('i',{'class': $$_class,},$vnode_4));$vnode_4=[$createVNode(0,($__line=13,$__art='{{=one.text}}',$__ctrl='<%=one.text%>',(one.text)))];$vnode_3.push($createVNode('b',$quick_dx_2_static_attr,$vnode_4));$__line=15;$__art="{{if one.short}}";$__ctrl="if(one.short){";
 if(one.short){
 $vnode_4=[$createVNode(0,($__line=16,$__art='{{=one.short}}',$__ctrl='<%=one.short%>',(one.short)))];$vnode_3.push($createVNode('code',{'class': 'rd-_assets_index_less_-color-999 rd-_assets_index_less_-fontsize-12 rd-_gallery_mx-menu_index_less_-short','title': '快捷键:'+($__line=16,$__art='{{=one.short}}',$__ctrl='<%=one.short%>',(one.short)),},$vnode_4));
-};$$_class='rd-_assets_index_less_-flex rd-_assets_index_less_-align-items-center rd-_gallery_mx-menu_index_less_-items-li rd-_assets_index_less_-cursor-default'+($__line=10,$__art='{{if disabled[one.id]}}','');$__ctrl='<%if(disabled[one.id]){%>';if(disabled[one.id]){;$$_class+=' rd-_gallery_mx-menu_index_less_-item-disabled'+($__line=10,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2.push($createVNode('li',{'mx5-click': (($temp_var=($__line=10,$__art='{{=!disabled[one.id]}}',$__ctrl='<%=!disabled[one.id]%>',!disabled[one.id]),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-menu/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{select~rs}({item:\''+($__line=10,$__art='{{#one}}',$__ctrl='<%#one,\'auto_key_list.\'+($q_key_yneomed)+\'.one\'%>',$keyOf($refData,one,'auto_key_list.'+($q_key_yneomed)+'.one'))+'\'})'),'class': $$_class,},$vnode_3));
+};$$_class='rd-_assets_index_less_-flex rd-_assets_index_less_-align-items-center rd-_gallery_mx-menu_index_less_-items-li rd-_assets_index_less_-cursor-default'+($__line=10,$__art='{{if disabled[one.id]}}','');$__ctrl='<%if(disabled[one.id]){%>';if(disabled[one.id]){;$$_class+=' rd-_gallery_mx-menu_index_less_-item-disabled'+($__line=10,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2.push($createVNode('li',{'mx5-click': (($temp_var=($__line=10,$__art='{{=!disabled[one.id]}}',$__ctrl='<%=!disabled[one.id]%>',!disabled[one.id]),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-menu/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{select~rs}({item:\''+($__line=10,$__art='{{#one}}',$__ctrl='<%#one,\'auto_key_list.\'+($q_key_gjkc)+\'.one\'%>',$keyOf($refData,one,'auto_key_list.'+($q_key_gjkc)+'.one'))+'\'})'),'class': $$_class,},$vnode_3));
 }
-}$vnode_1=[$createVNode('ul',$quick_mr_0_static_attr,$vnode_2)];$vnode_0=[$createVNode('div',{'style': 'width:'+($__line=1,$__art='{{=width}}',$__ctrl='<%=width%>',(width))+'px;position:absolute;left:-10000px;top:-10000px','class': 'rd-_assets_index_less_-scrollable rd-_assets_index_less_-thin-scrollable rd-_gallery_mx-menu_index_less_-container','id': '_mx_cnt_'+($__line=3,$__art='{{=$viewId}}','')+$viewId,'mx5-contextmenu': $viewId+'@:{prevent~rs}()',},$vnode_1)]; 
+}$vnode_1=[$createVNode('ul',$quick_dx_0_static_attr,$vnode_2)];$vnode_0=[$createVNode('div',{'style': 'width:'+($__line=1,$__art='{{=width}}',$__ctrl='<%=width%>',(width))+'px;position:absolute;left:-10000px;top:-10000px','class': 'rd-_assets_index_less_-scrollable rd-_assets_index_less_-thin-scrollable rd-_gallery_mx-menu_index_less_-container','id': '_mx_cnt_'+($__line=3,$__art='{{=$viewId}}','')+$viewId,'mx5-contextmenu': $viewId+'@:{prevent~rs}()',},$vnode_1)]; 
 
 return $createVNode($viewId,0,$vnode_0); 
 } catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-menu/index.html'; throw msg; }  } ,

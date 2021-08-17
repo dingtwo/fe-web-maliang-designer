@@ -6,17 +6,17 @@
  */
 define("printer/index",["magix5","../designer/const","../designer/service","../gallery/mx-dialog/index","../gallery/mx-runner/index","../gallery/mx-toast/index","../i18n/index","../provider/fs","../provider/html2canvas","../provider/jspdf","./generic/index","./generic/resource","./rds/index","./unit/batch","./unit/common","./unit/data-celltable","./unit/data-coltable","./unit/data-dtable","./unit/data-ftable","./unit/data-repeater","./unit/pager","./unit/richtext","gallery/mx-dropdown/index"],(require,exports,module)=>{
 require("gallery/mx-dropdown/index");
-let $quick_lO_static_text;
-let $quick_lP_static_text;
-let $quick_mT_1_static_node;
-let $quick_mT_2_static_node;
-let $quick_lQ_static_text;
-let $quick_lR_static_text;
-let $quick_mT_4_static_node;
-let $quick_mT_5_static_node;
-let $quick_mT_6_static_node;
-let $quick_mT_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_printer_index_less_-header',};
-let $quick_mT_3_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-flex-direction-column rd-_printer_index_less_-wrap',};
+let $quick_cU_static_text;
+let $quick_cV_static_text;
+let $quick_dZ_1_static_node;
+let $quick_dZ_2_static_node;
+let $quick_cW_static_text;
+let $quick_cX_static_text;
+let $quick_dZ_4_static_node;
+let $quick_dZ_5_static_node;
+let $quick_dZ_6_static_node;
+let $quick_dZ_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_printer_index_less_-header',};
+let $quick_dZ_3_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-flex-direction-column rd-_printer_index_less_-wrap',};
 
 /*
     author:https://github.com/xinglie
@@ -201,40 +201,40 @@ $$_class,
 $$_style;
 $vnode_1=[];$__line=2;$__art="{{if inner}}";$__ctrl="if(inner){";
 if(inner){
-$vnode_2=[$quick_lO_static_text||($quick_lO_static_text=$createVNode(0,'独立使用打印页面'))];$vnode_1.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-mr10 rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{open.with.id~rs}()',},$vnode_2));
-}$vnode_2=[$quick_lP_static_text||($quick_lP_static_text=$createVNode(0,'第三方静默打印'))];$vnode_1.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-mr10 rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{silent.print~rs}()',},$vnode_2));
-if($quick_mT_1_static_node){
-$vnode_1.push($quick_mT_1_static_node);
+$vnode_2=[$quick_cU_static_text||($quick_cU_static_text=$createVNode(0,'独立使用打印页面'))];$vnode_1.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-mr10 rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{open.with.id~rs}()',},$vnode_2));
+}$vnode_2=[$quick_cV_static_text||($quick_cV_static_text=$createVNode(0,'第三方静默打印'))];$vnode_1.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-mr10 rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{silent.print~rs}()',},$vnode_2));
+if($quick_dZ_1_static_node){
+$vnode_1.push($quick_dZ_1_static_node);
 }else{
-$vnode_1.push($quick_mT_1_static_node=$createVNode('div',{'_': 'hS','class': 'rd-_assets_index_less_-width-1 rd-_printer_index_less_-spliter',}));
+$vnode_1.push($quick_dZ_1_static_node=$createVNode('div',{'_': 'a@','class': 'rd-_assets_index_less_-width-1 rd-_printer_index_less_-spliter',}));
 }
 
-if($quick_mT_2_static_node){
-$vnode_1.push($quick_mT_2_static_node);
+if($quick_dZ_2_static_node){
+$vnode_1.push($quick_dZ_2_static_node);
 }else{
-$vnode_2=[$createVNode(0,'转换内容为：')];$vnode_1.push($quick_mT_2_static_node=$createVNode('div',{'_': 'hT',},$vnode_2));
+$vnode_2=[$createVNode(0,'转换内容为：')];$vnode_1.push($quick_dZ_2_static_node=$createVNode('div',{'_': 'a$',},$vnode_2));
 }
-;$$_mx5$_view='gallery/mx-dropdown/index?'+($__line=8,$__art='{{=empty}}','');$__ctrl='<%if(($temp_var=empty)){%>';if(($temp_var=empty)){;$$_mx5$_view+='disabled='+($__ctrl='<%=$encodeUrl($temp_var)%>',($encodeUrl($temp_var)));$__ctrl='<%}%>';};$$_mx5$_view+='&list='+($__line=8,$__art='{{#format}}',$__ctrl='<%#format,\'auto_key_format\'%>',$keyOf($refData,format,'auto_key_format'))+'&textKey=text&valueKey=value&selected='+($__line=8,$__art='{{=sf}}',$__ctrl='<%=$encodeUrl(sf)%>',($encodeUrl(sf)));$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'format','class': 'rd-_assets_index_less_-mr10 rd-_printer_index_less_-width-120','mx5-change': $viewId+'@:{change.format~rs}()','mx5-view': $$_mx5$_view,}));$vnode_2=[$quick_lQ_static_text||($quick_lQ_static_text=$createVNode(0,'导出为本地文件'))];$vnode_1.push($createVNode('button',{'disabled': ($temp_var=($__line=9,$__art='{{= sf!=\'pdf\' && sf!=\'rdPdf\' &&!enable}}',$__ctrl='<%= sf!=\'pdf\' && sf!=\'rdPdf\' &&!enable%>',sf!='pdf' && sf!='rdPdf' &&!enable),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:printer/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{export.to.native.file~rs}()',},$vnode_2));
-if($quick_mT_1_static_node){
-$vnode_1.push($quick_mT_1_static_node);
+;$$_mx5$_view='gallery/mx-dropdown/index?'+($__line=8,$__art='{{=empty}}','');$__ctrl='<%if(($temp_var=empty)){%>';if(($temp_var=empty)){;$$_mx5$_view+='disabled='+($__ctrl='<%=$encodeUrl($temp_var)%>',($encodeUrl($temp_var)));$__ctrl='<%}%>';};$$_mx5$_view+='&list='+($__line=8,$__art='{{#format}}',$__ctrl='<%#format,\'auto_key_format\'%>',$keyOf($refData,format,'auto_key_format'))+'&textKey=text&valueKey=value&selected='+($__line=8,$__art='{{=sf}}',$__ctrl='<%=$encodeUrl(sf)%>',($encodeUrl(sf)));$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'format','class': 'rd-_assets_index_less_-mr10 rd-_printer_index_less_-width-120','mx5-change': $viewId+'@:{change.format~rs}()','mx5-view': $$_mx5$_view,}));$vnode_2=[$quick_cW_static_text||($quick_cW_static_text=$createVNode(0,'导出为本地文件'))];$vnode_1.push($createVNode('button',{'disabled': ($temp_var=($__line=9,$__art='{{= sf!=\'pdf\' && sf!=\'rdPdf\' &&!enable}}',$__ctrl='<%= sf!=\'pdf\' && sf!=\'rdPdf\' &&!enable%>',sf!='pdf' && sf!='rdPdf' &&!enable),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:printer/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{export.to.native.file~rs}()',},$vnode_2));
+if($quick_dZ_1_static_node){
+$vnode_1.push($quick_dZ_1_static_node);
 }else{
-$vnode_1.push($quick_mT_1_static_node=$createVNode('div',{'_': 'hS','class': 'rd-_assets_index_less_-width-1 rd-_printer_index_less_-spliter',}));
+$vnode_1.push($quick_dZ_1_static_node=$createVNode('div',{'_': 'a@','class': 'rd-_assets_index_less_-width-1 rd-_printer_index_less_-spliter',}));
 }
 
-if($quick_mT_1_static_node){
-$vnode_1.push($quick_mT_1_static_node);
+if($quick_dZ_1_static_node){
+$vnode_1.push($quick_dZ_1_static_node);
 }else{
-$vnode_1.push($quick_mT_1_static_node=$createVNode('div',{'_': 'hS','class': 'rd-_assets_index_less_-width-1 rd-_printer_index_less_-spliter',}));
+$vnode_1.push($quick_dZ_1_static_node=$createVNode('div',{'_': 'a@','class': 'rd-_assets_index_less_-width-1 rd-_printer_index_less_-spliter',}));
 }
-$vnode_2=[$quick_lR_static_text||($quick_lR_static_text=$createVNode(0,'浏览器打印'))];$vnode_1.push($createVNode('button',{'disabled': ($temp_var=($__line=17,$__art='{{=!enable}}',$__ctrl='<%=!enable%>',!enable),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:printer/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{print~rs}()',},$vnode_2));$vnode_0=[$createVNode('div',$quick_mT_0_static_attr,$vnode_1)];$vnode_1=[];$__line=21;$__art="{{if hasData}}";$__ctrl="if(hasData){";
+$vnode_2=[$quick_cX_static_text||($quick_cX_static_text=$createVNode(0,'浏览器打印'))];$vnode_1.push($createVNode('button',{'disabled': ($temp_var=($__line=17,$__art='{{=!enable}}',$__ctrl='<%=!enable%>',!enable),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:printer/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{print~rs}()',},$vnode_2));$vnode_0=[$createVNode('div',$quick_dZ_0_static_attr,$vnode_1)];$vnode_1=[];$__line=21;$__art="{{if hasData}}";$__ctrl="if(hasData){";
 if(hasData){
 $__line=22;$__art="{{if loading}}";$__ctrl="if(loading){";
 if(loading){
 
-if($quick_mT_4_static_node){
-$vnode_2=[$quick_mT_4_static_node];
+if($quick_dZ_4_static_node){
+$vnode_2=[$quick_dZ_4_static_node];
 }else{
-$vnode_3=[$createVNode(0,'正在准备基础页面...')];$vnode_2=[$quick_mT_4_static_node=$createVNode('div',{'_': 'hU','class': 'rd-_assets_index_less_-fontsize-16 rd-_printer_index_less_-tip',},$vnode_3)];
+$vnode_3=[$createVNode(0,'正在准备基础页面...')];$vnode_2=[$quick_dZ_4_static_node=$createVNode('div',{'_': 'a^','class': 'rd-_assets_index_less_-fontsize-16 rd-_printer_index_less_-tip',},$vnode_3)];
 }
 $vnode_1.push($createVNode('div',{'class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-justify-content-center rd-_assets_index_less_-overflow-hidden rd-_assets_index_less_-pr rd-_printer_index_less_-page rd-_printer_index_less_-page-display','style': 'width:'+($__line=23,$__art='{{=page.width}}',$__ctrl='<%=page.width%>',(page.width))+($__line=23,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=23,$__art='{{=page.height}}',$__ctrl='<%=page.height%>',(page.height))+($__line=23,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';background:'+($__line=23,$__art='{{=page.background}}',$__ctrl='<%=page.background%>',(page.background)),},$vnode_2));
 }else{
@@ -244,15 +244,15 @@ $vnode_1.push($createVNode('embed',{'src': ($__line=28,$__art='{{=pdf}}',$__ctrl
 }else if(($__line=29,$__art="{{else if sf==\\'rdPdf\\'}}",$__ctrl="else if(sf=='rdPdf'){"),sf=='rdPdf'){
 $vnode_1.push($createVNode('embed',{'src': ($__line=30,$__art='{{=rdPdf}}',$__ctrl='<%=rdPdf%>',(rdPdf)),'class': 'rd-_assets_index_less_-wp100 rd-_printer_index_less_-pdf-ifm','type': 'application/pdf',},1));
 }else{
-$__line=32;$__art="{{each pages as item pageIndex last}}";$__ctrl="for(let $q_c_csqvyqfpj=pages.length,$q_lc_sbagllgwk=$q_c_csqvyqfpj-1,pageIndex=0;pageIndex<$q_c_csqvyqfpj;pageIndex++){let item=pages[pageIndex];let last=pageIndex===$q_lc_sbagllgwk;";
-for(let $q_c_csqvyqfpj=pages.length,$q_lc_sbagllgwk=$q_c_csqvyqfpj-1,pageIndex=0;pageIndex<$q_c_csqvyqfpj;pageIndex+=1){
-let item=pages[pageIndex];let last=pageIndex===$q_lc_sbagllgwk;
+$__line=32;$__art="{{each pages as item pageIndex last}}";$__ctrl="for(let $q_c_pldcloivn=pages.length,$q_lc_kkcxyp=$q_c_pldcloivn-1,pageIndex=0;pageIndex<$q_c_pldcloivn;pageIndex++){let item=pages[pageIndex];let last=pageIndex===$q_lc_kkcxyp;";
+for(let $q_c_pldcloivn=pages.length,$q_lc_kkcxyp=$q_c_pldcloivn-1,pageIndex=0;pageIndex<$q_c_pldcloivn;pageIndex+=1){
+let item=pages[pageIndex];let last=pageIndex===$q_lc_kkcxyp;
 $vnode_2=[];$__line=34;$__art="{{if sf==\\'web\\'}}";$__ctrl="if(sf=='web'){";
 if(sf=='web'){
-$__line=35;$__art="{{each item as e}}";$__ctrl="for(let $q_c_uirmlvh=item.length,$q_key_nbrmwzm=0;$q_key_nbrmwzm<$q_c_uirmlvh;$q_key_nbrmwzm++){let e=item[$q_key_nbrmwzm];";
-for(let $q_c_uirmlvh=item.length,$q_key_nbrmwzm=0;$q_key_nbrmwzm<$q_c_uirmlvh;$q_key_nbrmwzm+=1){
-let e=item[$q_key_nbrmwzm];
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'pages,unit','mx5-view': 'elements/'+($__line=36,$__art='{{=e.type}}',$__ctrl='<%=e.type%>',(e.type))+'/index?props='+($__line=36,$__art='{{#e.props}}',$__ctrl='<%#e.props,\'auto_key_pages.\'+(pageIndex)+\'.\'+($q_key_nbrmwzm)+\'.e.props\'%>',$keyOf($refData,e.props,'auto_key_pages.'+(pageIndex)+'.'+($q_key_nbrmwzm)+'.e.props'))+'&unit='+($__line=36,$__art='{{#unit}}',$__ctrl='<%#unit,\'auto_key_unit\'%>',$keyOf($refData,unit,'auto_key_unit')),}));
+$__line=35;$__art="{{each item as e}}";$__ctrl="for(let $q_c_iqjkcqpb=item.length,$q_key_seperb=0;$q_key_seperb<$q_c_iqjkcqpb;$q_key_seperb++){let e=item[$q_key_seperb];";
+for(let $q_c_iqjkcqpb=item.length,$q_key_seperb=0;$q_key_seperb<$q_c_iqjkcqpb;$q_key_seperb+=1){
+let e=item[$q_key_seperb];
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'pages,unit','mx5-view': 'elements/'+($__line=36,$__art='{{=e.type}}',$__ctrl='<%=e.type%>',(e.type))+'/index?props='+($__line=36,$__art='{{#e.props}}',$__ctrl='<%#e.props,\'auto_key_pages.\'+(pageIndex)+\'.\'+($q_key_seperb)+\'.e.props\'%>',$keyOf($refData,e.props,'auto_key_pages.'+(pageIndex)+'.'+($q_key_seperb)+'.e.props'))+'&unit='+($__line=36,$__art='{{#unit}}',$__ctrl='<%#unit,\'auto_key_unit\'%>',$keyOf($refData,unit,'auto_key_unit')),}));
 }
 }else if(($__line=38,$__art="{{else if sf==\\'image\\' && images}}",$__ctrl="else if(sf=='image' && images){"),sf=='image' && images){
 $vnode_2.push($createVNode('img',{'class': 'rd-_assets_index_less_-mwp100 rd-_assets_index_less_-tag-img','src': ($__line=39,$__art='{{=images[pageIndex]}}',$__ctrl='<%=images[pageIndex]%>',(images[pageIndex])),},1));
@@ -264,17 +264,17 @@ $vnode_2.push($createVNode('img',{'class': 'rd-_assets_index_less_-mwp100 rd-_as
 }
 }else{
 
-if($quick_mT_5_static_node){
-$vnode_1.push($quick_mT_5_static_node);
+if($quick_dZ_5_static_node){
+$vnode_1.push($quick_dZ_5_static_node);
 }else{
-$vnode_2=[$createVNode(0,'请传递打印 id 或在设计器中打开该页面')];$vnode_1.push($quick_mT_5_static_node=$createVNode('div',{'_': 'hV','class': 'rd-_assets_index_less_-fontsize-16 rd-_printer_index_less_-tip',},$vnode_2));
+$vnode_2=[$createVNode(0,'请传递打印 id 或在设计器中打开该页面')];$vnode_1.push($quick_dZ_5_static_node=$createVNode('div',{'_': 'a*','class': 'rd-_assets_index_less_-fontsize-16 rd-_printer_index_less_-tip',},$vnode_2));
 }
 
-}$vnode_0.push($createVNode('div',$quick_mT_3_static_attr,$vnode_1));
-if($quick_mT_6_static_node){
-$vnode_0.push($quick_mT_6_static_node);
+}$vnode_0.push($createVNode('div',$quick_dZ_3_static_attr,$vnode_1));
+if($quick_dZ_6_static_node){
+$vnode_0.push($quick_dZ_6_static_node);
 }else{
-$vnode_0.push($quick_mT_6_static_node=$createVNode('div',{'_': 'hW','id': '_rd_tip','class': 'rd-_assets_index_less_-none rd-_assets_index_less_-right-0 rd-_printer_index_less_-progress-tip',}));
+$vnode_0.push($quick_dZ_6_static_node=$createVNode('div',{'_': 'a{','id': '_rd_tip','class': 'rd-_assets_index_less_-none rd-_assets_index_less_-right-0 rd-_printer_index_less_-progress-tip',}));
 }
  
 

@@ -5,24 +5,24 @@
     loader:cmd_es
  */
 define("gallery/mx-color/index",["magix5","../mx-dragdrop/index","../mx-monitor/index"],(require,exports,module)=>{
-let $quick_k9_static_text;
-let $quick_l__static_text;
-let $quick_l8_2_static_node;
-let $quick_l8_3_static_node;
-let $quick_l8_4_static_node;
-let $quick_l8_5_static_node;
-let $quick_l8_6_static_node;
-let $quick_l8_7_static_node;
-let $quick_l8_8_static_node;
-let $quick_l8_9_static_node;
-let $quick_l8_10_static_node;
-let $quick_l8_11_static_node;
-let $quick_l8_12_static_node;
-let $quick_l8_13_static_node;
-let $quick_l8_0_static_attr={'class': 'rd-_gallery_mx-color_index_less_-body',};
-let $quick_l8_1_static_attr={'xmlns': 'http://www.w3.org/2000/svg','version': 1.1,'width': '100%','height': '100%',};
-let $quick_l8_14_static_attr={'class': 'rd-_assets_index_less_-pr rd-_gallery_mx-color_index_less_-alpha',};
-let $quick_l8_15_static_attr={'class': 'rd-_gallery_mx-color_index_less_-foot',};
+let $quick_ce_static_text;
+let $quick_cf_static_text;
+let $quick_dd_2_static_node;
+let $quick_dd_3_static_node;
+let $quick_dd_4_static_node;
+let $quick_dd_5_static_node;
+let $quick_dd_6_static_node;
+let $quick_dd_7_static_node;
+let $quick_dd_8_static_node;
+let $quick_dd_9_static_node;
+let $quick_dd_10_static_node;
+let $quick_dd_11_static_node;
+let $quick_dd_12_static_node;
+let $quick_dd_13_static_node;
+let $quick_dd_0_static_attr={'class': 'rd-_gallery_mx-color_index_less_-body',};
+let $quick_dd_1_static_attr={'xmlns': 'http://www.w3.org/2000/svg','version': 1.1,'width': '100%','height': '100%',};
+let $quick_dd_14_static_attr={'class': 'rd-_assets_index_less_-pr rd-_gallery_mx-color_index_less_-alpha',};
+let $quick_dd_15_static_attr={'class': 'rd-_gallery_mx-color_index_less_-foot',};
 let $special_2={'value':'value',};
 
 /*
@@ -99,97 +99,97 @@ $vnode_1;
 $vnode_1=[];$__line=2;$__art="{{if text}}";$__ctrl="if(text){";
 if(text){
 $vnode_2=[$createVNode(0,($__line=3,$__art='{{=text}}',$__ctrl='<%=text%>',(text)))];;$$_class='rd-_gallery_mx-color_index_less_-text rd-_assets_index_less_-unselectable'+($__line=3,$__art='{{if !disabled}}','');$__ctrl='<%if(!disabled){%>';if(!disabled){;$$_class+=' rd-_assets_index_less_-cursor-pointer'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_style=($__line=3,$__art='{{if textWidth}}','');$__ctrl='<%if(textWidth){%>';if(textWidth){;$$_style+='width:'+($__line=3,$__art='{{=textWidth}}',$__ctrl='<%=textWidth%>',(textWidth))+'px'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'mx5-click': $viewId+'@:{toggle~rs}()','class': $$_class,'style': $$_style,},$vnode_2));
-}$vnode_2=[$quick_k9_static_text||($quick_k9_static_text=$createVNode(0,'p'))];;$$_class='rd-_gallery_mx-color_index_less_-picker rd-_assets_index_less_-pr rd-_assets_index_less_-unselectable'+($__line=5,$__art='{{if !disabled}}','');$__ctrl='<%if(!disabled){%>';if(!disabled){;$$_class+=' rd-_assets_index_less_-cursor-pointer'+($__line=5,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_class+=''+($__line=5,$__art='{{if !text}}','');$__ctrl='<%if(!text){%>';if(!text){;$$_class+=' rd-_assets_index_less_-wp100'+($__line=5,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_style=($__line=5,$__art='{{if color}}','');$__ctrl='<%if(color){%>';if(color){;$$_style+='background:'+($__line=5,$__art='{{=color}}',$__ctrl='<%=color%>',(color))+';'+($__line=5,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'mx5-click': $viewId+'@:{toggle~rs}()','class': $$_class,'style': $$_style,},$vnode_2));$__line=6;$__art="{{if clear&&color}}";$__ctrl="if(clear&&color){";
+}$vnode_2=[$quick_ce_static_text||($quick_ce_static_text=$createVNode(0,'p'))];;$$_class='rd-_gallery_mx-color_index_less_-picker rd-_assets_index_less_-pr rd-_assets_index_less_-unselectable'+($__line=5,$__art='{{if !disabled}}','');$__ctrl='<%if(!disabled){%>';if(!disabled){;$$_class+=' rd-_assets_index_less_-cursor-pointer'+($__line=5,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_class+=''+($__line=5,$__art='{{if !text}}','');$__ctrl='<%if(!text){%>';if(!text){;$$_class+=' rd-_assets_index_less_-wp100'+($__line=5,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_style=($__line=5,$__art='{{if color}}','');$__ctrl='<%if(color){%>';if(color){;$$_style+='background:'+($__line=5,$__art='{{=color}}',$__ctrl='<%=color%>',(color))+';'+($__line=5,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'mx5-click': $viewId+'@:{toggle~rs}()','class': $$_class,'style': $$_style,},$vnode_2));$__line=6;$__art="{{if clear&&color}}";$__ctrl="if(clear&&color){";
 if(clear&&color){
-$vnode_2=[$quick_l__static_text||($quick_l__static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_gallery_mx-color_index_less_-remove rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-pa'+($__line=7,$__art='{{if !disabled}}','');$__ctrl='<%if(!disabled){%>';if(!disabled){;$$_class+=' rd-_assets_index_less_-cursor-pointer'+($__line=7,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'mx5-click': $viewId+'@:{clear.color~rs}()','title': ($__line=7,$__art='{{=i18n(\'@:{lang#remove.color~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#remove.color~rs}\')%>',(i18n('@:{lang#remove.color~rs}'))),'class': $$_class,},$vnode_2));
+$vnode_2=[$quick_cf_static_text||($quick_cf_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_gallery_mx-color_index_less_-remove rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-pa'+($__line=7,$__art='{{if !disabled}}','');$__ctrl='<%if(!disabled){%>';if(!disabled){;$$_class+=' rd-_assets_index_less_-cursor-pointer'+($__line=7,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'mx5-click': $viewId+'@:{clear.color~rs}()','title': ($__line=7,$__art='{{=i18n(\'@:{lang#remove.color~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#remove.color~rs}\')%>',(i18n('@:{lang#remove.color~rs}'))),'class': $$_class,},$vnode_2));
 }$vnode_2=[];$__line=10;$__art="{{if renderUI}}";$__ctrl="if(renderUI){";
 if(renderUI){
-$vnode_3=[];$__line=12;$__art="{{each shortcuts as sc}}";$__ctrl="for(let $q_c_qsgkchjl=shortcuts.length,$q_key_oignkbawre=0;$q_key_oignkbawre<$q_c_qsgkchjl;$q_key_oignkbawre++){let sc=shortcuts[$q_key_oignkbawre];";
-for(let $q_c_qsgkchjl=shortcuts.length,$q_key_oignkbawre=0;$q_key_oignkbawre<$q_c_qsgkchjl;$q_key_oignkbawre+=1){
-let sc=shortcuts[$q_key_oignkbawre];
+$vnode_3=[];$__line=12;$__art="{{each shortcuts as sc}}";$__ctrl="for(let $q_c_ffeqzf=shortcuts.length,$q_key_ewpmwjwfy=0;$q_key_ewpmwjwfy<$q_c_ffeqzf;$q_key_ewpmwjwfy++){let sc=shortcuts[$q_key_ewpmwjwfy];";
+for(let $q_c_ffeqzf=shortcuts.length,$q_key_ewpmwjwfy=0;$q_key_ewpmwjwfy<$q_c_ffeqzf;$q_key_ewpmwjwfy+=1){
+let sc=shortcuts[$q_key_ewpmwjwfy];
 $vnode_3.push($createVNode('li',{'class': 'rd-_assets_index_less_-fl rd-_assets_index_less_-pr rd-_gallery_mx-color_index_less_-shortcuts-item','id': '_mx_sc_'+($__line=13,$__art='{{=sc}}',$__ctrl='<%=sc%>',(sc))+'_'+($__line=13,$__art='{{=$viewId}}','')+$viewId,'style': 'background:#'+($__line=13,$__art='{{=sc}}',$__ctrl='<%=sc%>',(sc)),'mx5-click': $viewId+'@:{shortcuts.picked~rs}({color:\'#'+($__line=13,$__art='{{=sc}}',$__ctrl='<%=$encodeQuote(sc)%>',($encodeQuote(sc)))+'\'})',}));
 }$vnode_2.push($createVNode('ul',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-flex rd-_assets_index_less_-flex-wrap-wrap rd-_assets_index_less_-tag-ul rd-_gallery_mx-color_index_less_-shortcuts','id': '_mx_scs_'+($__line=11,$__art='{{=$viewId}}','')+$viewId,},$vnode_3));
-if($quick_l8_2_static_node){
-$vnode_7=[$quick_l8_2_static_node];
+if($quick_dd_2_static_node){
+$vnode_7=[$quick_dd_2_static_node];
 }else{
-$vnode_7=[$quick_l8_2_static_node=$createVNode('stop',{'_': 'hS','offset': '0%','stop-color': '#000000','stop-opacity': 1,})];
+$vnode_7=[$quick_dd_2_static_node=$createVNode('stop',{'_': 'a@','offset': '0%','stop-color': '#000000','stop-opacity': 1,})];
 }
 
-if($quick_l8_3_static_node){
-$vnode_7.push($quick_l8_3_static_node);
+if($quick_dd_3_static_node){
+$vnode_7.push($quick_dd_3_static_node);
 }else{
-$vnode_7.push($quick_l8_3_static_node=$createVNode('stop',{'_': 'hT','offset': '100%','stop-color': '#CC9A81','stop-opacity': 0,}));
+$vnode_7.push($quick_dd_3_static_node=$createVNode('stop',{'_': 'a$','offset': '100%','stop-color': '#CC9A81','stop-opacity': 0,}));
 }
 $vnode_6=[$createVNode('lineargradient',{'id': '_mx_gb_'+($__line=20,$__art='{{=$viewId}}','')+$viewId,'x1': '0%','y1': '100%','x2': '0%','y2': '0%',},$vnode_7)];
-if($quick_l8_4_static_node){
-$vnode_7=[$quick_l8_4_static_node];
+if($quick_dd_4_static_node){
+$vnode_7=[$quick_dd_4_static_node];
 }else{
-$vnode_7=[$quick_l8_4_static_node=$createVNode('stop',{'_': 'hU','offset': '0%','stop-color': '#FFFFFF','stop-opacity': 1,})];
+$vnode_7=[$quick_dd_4_static_node=$createVNode('stop',{'_': 'a^','offset': '0%','stop-color': '#FFFFFF','stop-opacity': 1,})];
 }
 
-if($quick_l8_3_static_node){
-$vnode_7.push($quick_l8_3_static_node);
+if($quick_dd_3_static_node){
+$vnode_7.push($quick_dd_3_static_node);
 }else{
-$vnode_7.push($quick_l8_3_static_node=$createVNode('stop',{'_': 'hT','offset': '100%','stop-color': '#CC9A81','stop-opacity': 0,}));
+$vnode_7.push($quick_dd_3_static_node=$createVNode('stop',{'_': 'a$','offset': '100%','stop-color': '#CC9A81','stop-opacity': 0,}));
 }
-$vnode_6.push($createVNode('lineargradient',{'id': '_mx_gw_'+($__line=24,$__art='{{=$viewId}}','')+$viewId,'x1': '0%','y1': '100%','x2': '100%','y2': '100%',},$vnode_7));$vnode_5=[$createVNode('defs',0,$vnode_6),$createVNode('rect',{'x': 0,'y': 0,'width': '100%','height': '100%','fill': 'url(#_mx_gw_'+($__line=29,$__art='{{=$viewId}}','')+$viewId+')',}),$createVNode('rect',{'x': 0,'y': 0,'width': '100%','height': '100%','fill': 'url(#_mx_gb_'+($__line=30,$__art='{{=$viewId}}','')+$viewId+')',})];$vnode_4=[$createVNode('svg',$quick_l8_1_static_attr,$vnode_5),$createVNode('div',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-pa rd-_gallery_mx-color_index_less_-cpicker-indicator','id': '_mx_ci_'+($__line=32,$__art='{{=$viewId}}','')+$viewId,})];$vnode_3=[$createVNode('div',{'class': 'rd-_assets_index_less_-fl rd-_assets_index_less_-pr rd-_assets_index_less_-touch-action-none rd-_gallery_mx-color_index_less_-cpicker','id': '_mx_cz_'+($__line=17,$__art='{{=$viewId}}','')+$viewId,'mx5-pointerdown': $viewId+'@:{color.zone.drag~rs}()',},$vnode_4)];
-if($quick_l8_5_static_node){
-$vnode_7=[$quick_l8_5_static_node];
+$vnode_6.push($createVNode('lineargradient',{'id': '_mx_gw_'+($__line=24,$__art='{{=$viewId}}','')+$viewId,'x1': '0%','y1': '100%','x2': '100%','y2': '100%',},$vnode_7));$vnode_5=[$createVNode('defs',0,$vnode_6),$createVNode('rect',{'x': 0,'y': 0,'width': '100%','height': '100%','fill': 'url(#_mx_gw_'+($__line=29,$__art='{{=$viewId}}','')+$viewId+')',}),$createVNode('rect',{'x': 0,'y': 0,'width': '100%','height': '100%','fill': 'url(#_mx_gb_'+($__line=30,$__art='{{=$viewId}}','')+$viewId+')',})];$vnode_4=[$createVNode('svg',$quick_dd_1_static_attr,$vnode_5),$createVNode('div',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-pa rd-_gallery_mx-color_index_less_-cpicker-indicator','id': '_mx_ci_'+($__line=32,$__art='{{=$viewId}}','')+$viewId,})];$vnode_3=[$createVNode('div',{'class': 'rd-_assets_index_less_-fl rd-_assets_index_less_-pr rd-_assets_index_less_-touch-action-none rd-_gallery_mx-color_index_less_-cpicker','id': '_mx_cz_'+($__line=17,$__art='{{=$viewId}}','')+$viewId,'mx5-pointerdown': $viewId+'@:{color.zone.drag~rs}()',},$vnode_4)];
+if($quick_dd_5_static_node){
+$vnode_7=[$quick_dd_5_static_node];
 }else{
-$vnode_7=[$quick_l8_5_static_node=$createVNode('stop',{'_': 'hV','offset': '0%','stop-color': '#FF0000','stop-opacity': 1,})];
-}
-
-if($quick_l8_6_static_node){
-$vnode_7.push($quick_l8_6_static_node);
-}else{
-$vnode_7.push($quick_l8_6_static_node=$createVNode('stop',{'_': 'hW','offset': '13%','stop-color': '#FF00FF','stop-opacity': 1,}));
+$vnode_7=[$quick_dd_5_static_node=$createVNode('stop',{'_': 'a*','offset': '0%','stop-color': '#FF0000','stop-opacity': 1,})];
 }
 
-if($quick_l8_7_static_node){
-$vnode_7.push($quick_l8_7_static_node);
+if($quick_dd_6_static_node){
+$vnode_7.push($quick_dd_6_static_node);
 }else{
-$vnode_7.push($quick_l8_7_static_node=$createVNode('stop',{'_': 'hX','offset': '25%','stop-color': '#8000FF','stop-opacity': 1,}));
+$vnode_7.push($quick_dd_6_static_node=$createVNode('stop',{'_': 'a{','offset': '13%','stop-color': '#FF00FF','stop-opacity': 1,}));
 }
 
-if($quick_l8_8_static_node){
-$vnode_7.push($quick_l8_8_static_node);
+if($quick_dd_7_static_node){
+$vnode_7.push($quick_dd_7_static_node);
 }else{
-$vnode_7.push($quick_l8_8_static_node=$createVNode('stop',{'_': 'hY','offset': '38%','stop-color': '#0040FF','stop-opacity': 1,}));
+$vnode_7.push($quick_dd_7_static_node=$createVNode('stop',{'_': 'a}','offset': '25%','stop-color': '#8000FF','stop-opacity': 1,}));
 }
 
-if($quick_l8_9_static_node){
-$vnode_7.push($quick_l8_9_static_node);
+if($quick_dd_8_static_node){
+$vnode_7.push($quick_dd_8_static_node);
 }else{
-$vnode_7.push($quick_l8_9_static_node=$createVNode('stop',{'_': 'hZ','offset': '50%','stop-color': '#00FFFF','stop-opacity': 1,}));
+$vnode_7.push($quick_dd_8_static_node=$createVNode('stop',{'_': 'a[','offset': '38%','stop-color': '#0040FF','stop-opacity': 1,}));
 }
 
-if($quick_l8_10_static_node){
-$vnode_7.push($quick_l8_10_static_node);
+if($quick_dd_9_static_node){
+$vnode_7.push($quick_dd_9_static_node);
 }else{
-$vnode_7.push($quick_l8_10_static_node=$createVNode('stop',{'_': 'h0','offset': '63%','stop-color': '#00FF40','stop-opacity': 1,}));
+$vnode_7.push($quick_dd_9_static_node=$createVNode('stop',{'_': 'a]','offset': '50%','stop-color': '#00FFFF','stop-opacity': 1,}));
 }
 
-if($quick_l8_11_static_node){
-$vnode_7.push($quick_l8_11_static_node);
+if($quick_dd_10_static_node){
+$vnode_7.push($quick_dd_10_static_node);
 }else{
-$vnode_7.push($quick_l8_11_static_node=$createVNode('stop',{'_': 'h1','offset': '75%','stop-color': '#0BED00','stop-opacity': 1,}));
+$vnode_7.push($quick_dd_10_static_node=$createVNode('stop',{'_': 'a|','offset': '63%','stop-color': '#00FF40','stop-opacity': 1,}));
 }
 
-if($quick_l8_12_static_node){
-$vnode_7.push($quick_l8_12_static_node);
+if($quick_dd_11_static_node){
+$vnode_7.push($quick_dd_11_static_node);
 }else{
-$vnode_7.push($quick_l8_12_static_node=$createVNode('stop',{'_': 'h2','offset': '88%','stop-color': '#FFFF00','stop-opacity': 1,}));
+$vnode_7.push($quick_dd_11_static_node=$createVNode('stop',{'_': 'a,','offset': '75%','stop-color': '#0BED00','stop-opacity': 1,}));
 }
 
-if($quick_l8_13_static_node){
-$vnode_7.push($quick_l8_13_static_node);
+if($quick_dd_12_static_node){
+$vnode_7.push($quick_dd_12_static_node);
 }else{
-$vnode_7.push($quick_l8_13_static_node=$createVNode('stop',{'_': 'h3','offset': '100%','stop-color': '#FF0000','stop-opacity': 1,}));
+$vnode_7.push($quick_dd_12_static_node=$createVNode('stop',{'_': 'a.','offset': '88%','stop-color': '#FFFF00','stop-opacity': 1,}));
 }
-$vnode_6=[$createVNode('lineargradient',{'id': '_mx_ghsv_'+($__line=37,$__art='{{=$viewId}}','')+$viewId,'x1': '0%','y1': '100%','x2': '0%','y2': '0%',},$vnode_7)];$vnode_5=[$createVNode('defs',0,$vnode_6),$createVNode('rect',{'x': 0,'y': 0,'width': '100%','height': '100%','fill': 'url(#_mx_ghsv_'+($__line=49,$__art='{{=$viewId}}','')+$viewId+')',})];$vnode_4=[$createVNode('svg',$quick_l8_1_static_attr,$vnode_5),$createVNode('div',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-left-2 rd-_assets_index_less_-pa rd-_gallery_mx-color_index_less_-slide-indicator','id': '_mx_si_'+($__line=51,$__art='{{=$viewId}}','')+$viewId,})];$vnode_3.push($createVNode('div',{'class': 'rd-_assets_index_less_-fl rd-_assets_index_less_-pr rd-_assets_index_less_-touch-action-none rd-_gallery_mx-color_index_less_-slide','mx5-pointerdown': $viewId+'@:{slide.drag~rs}()',},$vnode_4));$vnode_2.push($createVNode('div',$quick_l8_0_static_attr,$vnode_3));$__line=54;$__art="{{if alpha}}";$__ctrl="if(alpha){";
+
+if($quick_dd_13_static_node){
+$vnode_7.push($quick_dd_13_static_node);
+}else{
+$vnode_7.push($quick_dd_13_static_node=$createVNode('stop',{'_': 'a`','offset': '100%','stop-color': '#FF0000','stop-opacity': 1,}));
+}
+$vnode_6=[$createVNode('lineargradient',{'id': '_mx_ghsv_'+($__line=37,$__art='{{=$viewId}}','')+$viewId,'x1': '0%','y1': '100%','x2': '0%','y2': '0%',},$vnode_7)];$vnode_5=[$createVNode('defs',0,$vnode_6),$createVNode('rect',{'x': 0,'y': 0,'width': '100%','height': '100%','fill': 'url(#_mx_ghsv_'+($__line=49,$__art='{{=$viewId}}','')+$viewId+')',})];$vnode_4=[$createVNode('svg',$quick_dd_1_static_attr,$vnode_5),$createVNode('div',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-left-2 rd-_assets_index_less_-pa rd-_gallery_mx-color_index_less_-slide-indicator','id': '_mx_si_'+($__line=51,$__art='{{=$viewId}}','')+$viewId,})];$vnode_3.push($createVNode('div',{'class': 'rd-_assets_index_less_-fl rd-_assets_index_less_-pr rd-_assets_index_less_-touch-action-none rd-_gallery_mx-color_index_less_-slide','mx5-pointerdown': $viewId+'@:{slide.drag~rs}()',},$vnode_4));$vnode_2.push($createVNode('div',$quick_dd_0_static_attr,$vnode_3));$__line=54;$__art="{{if alpha}}";$__ctrl="if(alpha){";
 if(alpha){
-$vnode_4=[$createVNode('div',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-pa rd-_gallery_mx-color_index_less_-alpha-indicator','id': '_mx_ai_'+($__line=57,$__art='{{=$viewId}}','')+$viewId,})];$vnode_3=[$createVNode('div',{'class': 'rd-_assets_index_less_-hp100 rd-_assets_index_less_-pr rd-_assets_index_less_-touch-action-none','id': '_mx_at_'+($__line=56,$__art='{{=$viewId}}','')+$viewId,'mx5-pointerdown': $viewId+'@:{alpha.drag~rs}()',},$vnode_4)];$vnode_2.push($createVNode('div',$quick_l8_14_static_attr,$vnode_3));
-}$vnode_3=[$createVNode('span',{'class': 'rd-_assets_index_less_-display-inline-block rd-_gallery_mx-color_index_less_-bgcolor','id': '_mx_bc_'+($__line=62,$__art='{{=$viewId}}','')+$viewId,}),$createVNode('input',{'class': 'rd-_assets_index_less_-input rd-_gallery_mx-color_index_less_-color-value','readonly': true,'id': '_mx_v_'+($__line=63,$__art='{{=$viewId}}','')+$viewId,'value': ($__line=63,$__art='{{=current}}',$__ctrl='<%=current%>',(current)),},1,$special_2)];$vnode_4=[$createVNode(0,($__line=64,$__art='{{=i18n(\'@:{lang#mx-gallery.enter~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.enter~rs}\')%>',(i18n('@:{lang#mx-gallery.enter~rs}'))))];$vnode_3.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc rd-_gallery_mx-color_index_less_-width-56','type': 'button','mx5-click': $viewId+'@:{enter~rs}()',},$vnode_4));$vnode_2.push($createVNode('div',$quick_l8_15_static_attr,$vnode_3));
+$vnode_4=[$createVNode('div',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-pa rd-_gallery_mx-color_index_less_-alpha-indicator','id': '_mx_ai_'+($__line=57,$__art='{{=$viewId}}','')+$viewId,})];$vnode_3=[$createVNode('div',{'class': 'rd-_assets_index_less_-hp100 rd-_assets_index_less_-pr rd-_assets_index_less_-touch-action-none','id': '_mx_at_'+($__line=56,$__art='{{=$viewId}}','')+$viewId,'mx5-pointerdown': $viewId+'@:{alpha.drag~rs}()',},$vnode_4)];$vnode_2.push($createVNode('div',$quick_dd_14_static_attr,$vnode_3));
+}$vnode_3=[$createVNode('span',{'class': 'rd-_assets_index_less_-display-inline-block rd-_gallery_mx-color_index_less_-bgcolor','id': '_mx_bc_'+($__line=62,$__art='{{=$viewId}}','')+$viewId,}),$createVNode('input',{'class': 'rd-_assets_index_less_-input rd-_gallery_mx-color_index_less_-color-value','readonly': true,'id': '_mx_v_'+($__line=63,$__art='{{=$viewId}}','')+$viewId,'value': ($__line=63,$__art='{{=current}}',$__ctrl='<%=current%>',(current)),},1,$special_2)];$vnode_4=[$createVNode(0,($__line=64,$__art='{{=i18n(\'@:{lang#mx-gallery.enter~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.enter~rs}\')%>',(i18n('@:{lang#mx-gallery.enter~rs}'))))];$vnode_3.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc rd-_gallery_mx-color_index_less_-width-56','type': 'button','mx5-click': $viewId+'@:{enter~rs}()',},$vnode_4));$vnode_2.push($createVNode('div',$quick_dd_15_static_attr,$vnode_3));
 }$vnode_1.push($createVNode('div',{'id': '_mx_bd_'+($__line=9,$__art='{{=$viewId}}','')+$viewId,'class': 'rd-_gallery_mx-color_index_less_-color-zone rd-_assets_index_less_-unselectable rd-_assets_index_less_-none rd-_assets_index_less_-pa rd-_gallery_mx-color_index_less_-placement--'+($__line=9,$__art='{{=placement}}',$__ctrl='<%=placement%>',(placement)),'style': ($__line=9,$__art='{{=align}}',$__ctrl='<%=align%>',(align))+':-1px',},$vnode_2));;$$_class='rd-_gallery_mx-color_index_less_-color rd-_assets_index_less_-flex rd-_assets_index_less_-align-items-center rd-_assets_index_less_-pr'+($__line=1,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-color_index_less_-notallowed'+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0=[$createVNode('div',{'mx5-contextmenu': $viewId+'@:{prevent~rs}()','id': '_mx_root_'+($__line=1,$__art='{{=$viewId}}','')+$viewId,'class': $$_class,},$vnode_1)]; 
 
 return $createVNode($viewId,0,$vnode_0); 

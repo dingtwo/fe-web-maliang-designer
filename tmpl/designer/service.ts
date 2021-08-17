@@ -53,19 +53,33 @@ let extractErrorAndData = ({ data: response, token }, url) => {
 //         head.appendChild(script);
 //     });
 // };
+
+let reLogin = () => {
+  /* 重新登陆 */
+  let warning = false;
+  if (!DEBUG) {
+    window.location.href = `/?from=${encodeURIComponent(location.href)}`;
+  }
+};
+
 /**
  * 使用fetch进行请求
  * @param sendUrl 请求地址
  * @param options 请求参数
  */
 let send = (sendUrl, options) => {
-  const token = window.localStorage.getItem('login-token');
+  let token;
+  try {
+    token = JSON.parse(window.localStorage.getItem('login-token'));
+  } catch (error) {}
   console.log('请求之前获取 token', token);
   if (token) {
     options.headers = {
       ...(options.headers || {}),
       'login-token': token,
     };
+  } else {
+    reLogin();
   }
   return fetch(sendUrl, options).then(async res => {
     if (res.ok) {
@@ -85,9 +99,13 @@ let RDService = Service.extend((bag, callback) => {
   let query = bag.get('@:{query}');
   let body = bag.get('@:{body}');
   let url = bag.get('url');
-  const token = localStorage.getItem('login-token');
+  let token;
+  try {
+    token = JSON.parse(localStorage.getItem('login-token'));
+  } catch (error) {}
   if (!token) {
     console.error('没有 token, 登录失效');
+    reLogin();
   }
   let options = {
     method,
