@@ -100,7 +100,7 @@ export default Designer.extend({
                 let s = new Service();
                 s.all({
                     name: '@:{get.by.url}',
-                    url: bind.url
+                    url: bind.url,
                 }, (err: { message: string }, bag) => {
                     let list = bag.get('data', []);
                     apiDataCache.set(bind.url, {

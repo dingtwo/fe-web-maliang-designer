@@ -113,7 +113,7 @@ module.exports= normal_1.extend({
                 let s = new service_1();
                 s.all({
                     name: '@:{get.by.url~rs}',
-                    url: bind.url
+                    url: bind.url,
                 }, (err, bag) => {
                     let list = bag.get('data', []);
                     apiDataCache.set(bind.url, {

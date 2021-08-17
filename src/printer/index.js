@@ -47,7 +47,7 @@ let data_ftable_1 = require("./unit/data-ftable");
 let data_repeater_1 = require("./unit/data-repeater");
 let pager_1 = require("./unit/pager");
 let richtext_1 = require("./unit/richtext");
-let { State, View, lowTaskFinale, type, has, applyStyle, parseUrl, config, mark, guid, unboot, delay, task } = magix_1;
+let { State, View, lowTaskFinale, type, has, applyStyle, parseUrl, config, mark, guid, unboot, delay, task, } = magix_1;
 /**
  * 反调试
  */
@@ -64,7 +64,7 @@ if (!DEBUG && false) {
             unboot();
         }
     };
-    index_2["@:{task.add~rs}"](2000, task);
+    index_2['@:{task.add~rs}'](2000, task);
 }
 let { random } = Math;
 applyStyle("rd-_printer_index_less_",".rd-_printer_index_less_-page-break {\npage-break-after:auto;\npage-break-inside:avoid;\n}\n.rd-_printer_index_less_-width-120 {\nwidth:120px;\n}\n.rd-_printer_index_less_-width-350 {\nwidth:350px;\n}\n.rd-_printer_index_less_-mt-20 {\nmargin-top:20px;\n}\n.rd-_printer_index_less_-pdf-ifm {\nheight:calc(100vh - 45px);\n}\n.rd-_printer_index_less_-progress-tip {\nposition:fixed;\nbottom:0;\npadding:4px;\nbackground-color:#fff;\nbox-shadow:-1px -1px 4px #0000002b;\n}\n.rd-_printer_index_less_-spliter {\nheight:30px;\nbackground:linear-gradient(#ddd4, #ddd 30%, #ddd 70%, #ddd4);\nmargin:4px 20px;\n}\n.rd-_printer_index_less_-need-auth {\nleft:5px;\ntop:5px;\ncolor:red;\nborder:solid 1px red;\nbackground-color:#fff;\npadding:4px;\ndisplay:none;\nz-index:10000;\n}\n@page {\nmargin:0;\n}\n@media screen {\n  .rd-_printer_index_less_-header {\nbox-shadow:0 0 6px 0 rgba(0, 0, 0, 0.3);\nmargin-bottom:10px;\nheight:34px;\njustify-content:flex-end;\npadding-right:50px;\nposition:sticky;\ntop:0;\nz-index:2;\nbackground-color:#fff;\n  }\n  .rd-_printer_index_less_-tip {\nheight:120px;\nline-height:120px;\n  }\n  .rd-_printer_index_less_-page {\nbox-shadow:0 0 6px 0 rgba(0, 0, 0, 0.3);\ncontent-visibility:auto;\ncontain:paint;\n  }\n  .rd-_printer_index_less_-page-display {\nmargin:20px auto;\n  }\n}\n@media print {\n  .rd-_printer_index_less_-header {\ndisplay:none;\n  }\n  body {\nmin-width:auto;\n  }\n  .rd-_printer_index_less_-page-display {\nmargin:0;\n  }\n  .rd-_printer_index_less_-page {\nbox-shadow:none;\n  }\n  .rd-_printer_index_less_-wrap {\ndisplay:block;\n  }\n  .rd-_printer_index_less_-need-auth {\ndisplay:block;\n  }\n}\n");
@@ -89,27 +89,33 @@ let SearchHodBindElements = {
 let HodElements = {
     ...SearchHodBindElements,
     'data-repeater': 1,
-    'data-ftable': 1
+    'data-ftable': 1,
 };
 /**
  * 格式转换列表
  */
-let FormatList = [{
+let FormatList = [
+    {
         text: '网页',
-        value: 'web'
-    }, {
+        value: 'web',
+    },
+    {
         text: '图片',
-        value: 'image'
-    }, {
+        value: 'image',
+    },
+    {
         text: 'pdf',
-        value: 'pdf'
-    }, {
+        value: 'pdf',
+    },
+    {
         text: '图片-RDS服务',
-        value: 'rdImage'
-    }, {
+        value: 'rdImage',
+    },
+    {
         text: 'pdf-RDS服务',
-        value: 'rdPdf'
-    }];
+        value: 'rdPdf',
+    },
+];
 /**
  * 数据中心，用来控制分页
  */
@@ -133,7 +139,16 @@ let checkFlag = 0.1;
  * 根据api地址请求数据
  * @param api api地址
  */
-let fetchOneAPI = (api) => {
+let fetchOneAPI = api => {
+    console.log('获取数据接口', api, parseUrl(api));
+    let { params } = parseUrl(api);
+    let extraParams = '';
+    if (params && params.id) {
+        let { params: apiParams } = parseUrl(window.location.href);
+        console.log('当前参数', apiParams);
+        extraParams = `&params=${encodeURIComponent(apiParams.params)}`;
+    }
+    // 从 api 中获取 id, 把参数传给对应的 id;
     return new Promise(resolve => {
         let dest = DataCenter[api];
         if (!dest) {
@@ -150,7 +165,7 @@ let fetchOneAPI = (api) => {
             let s = new service_1();
             s.all({
                 name: '@:{get.by.url~rs}',
-                url: api
+                url: api + extraParams,
             }, (err, bag) => {
                 let list = bag.get('data', []);
                 dest['@:{data~rs}'] = list;
@@ -168,7 +183,7 @@ let fetchOneAPI = (api) => {
  * 请求所有的api数据回来备用
  * @param apis api数组对象
  */
-let fetchAllAPI = (apis) => {
+let fetchAllAPI = apis => {
     let promises = [];
     for (let api of apis) {
         promises.push(fetchOneAPI(api));
@@ -244,15 +259,15 @@ $vnode_1.push($createVNode('embed',{'src': ($__line=28,$__art='{{=pdf}}',$__ctrl
 }else if(($__line=29,$__art="{{else if sf==\\'rdPdf\\'}}",$__ctrl="else if(sf=='rdPdf'){"),sf=='rdPdf'){
 $vnode_1.push($createVNode('embed',{'src': ($__line=30,$__art='{{=rdPdf}}',$__ctrl='<%=rdPdf%>',(rdPdf)),'class': 'rd-_assets_index_less_-wp100 rd-_printer_index_less_-pdf-ifm','type': 'application/pdf',},1));
 }else{
-$__line=32;$__art="{{each pages as item pageIndex last}}";$__ctrl="for(let $q_c_pldcloivn=pages.length,$q_lc_kkcxyp=$q_c_pldcloivn-1,pageIndex=0;pageIndex<$q_c_pldcloivn;pageIndex++){let item=pages[pageIndex];let last=pageIndex===$q_lc_kkcxyp;";
-for(let $q_c_pldcloivn=pages.length,$q_lc_kkcxyp=$q_c_pldcloivn-1,pageIndex=0;pageIndex<$q_c_pldcloivn;pageIndex+=1){
-let item=pages[pageIndex];let last=pageIndex===$q_lc_kkcxyp;
+$__line=32;$__art="{{each pages as item pageIndex last}}";$__ctrl="for(let $q_c_zjcxher=pages.length,$q_lc_ngkzvnsa=$q_c_zjcxher-1,pageIndex=0;pageIndex<$q_c_zjcxher;pageIndex++){let item=pages[pageIndex];let last=pageIndex===$q_lc_ngkzvnsa;";
+for(let $q_c_zjcxher=pages.length,$q_lc_ngkzvnsa=$q_c_zjcxher-1,pageIndex=0;pageIndex<$q_c_zjcxher;pageIndex+=1){
+let item=pages[pageIndex];let last=pageIndex===$q_lc_ngkzvnsa;
 $vnode_2=[];$__line=34;$__art="{{if sf==\\'web\\'}}";$__ctrl="if(sf=='web'){";
 if(sf=='web'){
-$__line=35;$__art="{{each item as e}}";$__ctrl="for(let $q_c_iqjkcqpb=item.length,$q_key_seperb=0;$q_key_seperb<$q_c_iqjkcqpb;$q_key_seperb++){let e=item[$q_key_seperb];";
-for(let $q_c_iqjkcqpb=item.length,$q_key_seperb=0;$q_key_seperb<$q_c_iqjkcqpb;$q_key_seperb+=1){
-let e=item[$q_key_seperb];
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'pages,unit','mx5-view': 'elements/'+($__line=36,$__art='{{=e.type}}',$__ctrl='<%=e.type%>',(e.type))+'/index?props='+($__line=36,$__art='{{#e.props}}',$__ctrl='<%#e.props,\'auto_key_pages.\'+(pageIndex)+\'.\'+($q_key_seperb)+\'.e.props\'%>',$keyOf($refData,e.props,'auto_key_pages.'+(pageIndex)+'.'+($q_key_seperb)+'.e.props'))+'&unit='+($__line=36,$__art='{{#unit}}',$__ctrl='<%#unit,\'auto_key_unit\'%>',$keyOf($refData,unit,'auto_key_unit')),}));
+$__line=35;$__art="{{each item as e}}";$__ctrl="for(let $q_c_zisrneshe=item.length,$q_key_hmjdlctlc=0;$q_key_hmjdlctlc<$q_c_zisrneshe;$q_key_hmjdlctlc++){let e=item[$q_key_hmjdlctlc];";
+for(let $q_c_zisrneshe=item.length,$q_key_hmjdlctlc=0;$q_key_hmjdlctlc<$q_c_zisrneshe;$q_key_hmjdlctlc+=1){
+let e=item[$q_key_hmjdlctlc];
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'pages,unit','mx5-view': 'elements/'+($__line=36,$__art='{{=e.type}}',$__ctrl='<%=e.type%>',(e.type))+'/index?props='+($__line=36,$__art='{{#e.props}}',$__ctrl='<%#e.props,\'auto_key_pages.\'+(pageIndex)+\'.\'+($q_key_hmjdlctlc)+\'.e.props\'%>',$keyOf($refData,e.props,'auto_key_pages.'+(pageIndex)+'.'+($q_key_hmjdlctlc)+'.e.props'))+'&unit='+($__line=36,$__art='{{#unit}}',$__ctrl='<%#unit,\'auto_key_unit\'%>',$keyOf($refData,unit,'auto_key_unit')),}));
 }
 }else if(($__line=38,$__art="{{else if sf==\\'image\\' && images}}",$__ctrl="else if(sf=='image' && images){"),sf=='image' && images){
 $vnode_2.push($createVNode('img',{'class': 'rd-_assets_index_less_-mwp100 rd-_assets_index_less_-tag-img','src': ($__line=39,$__art='{{=images[pageIndex]}}',$__ctrl='<%=images[pageIndex]%>',(images[pageIndex])),},1));
@@ -289,23 +304,23 @@ return $createVNode($viewId,0,$vnode_0);
             format: FormatList,
             hasData: false,
             empty: true,
-            sf: 'web'
+            sf: 'web',
         });
         /*
-            以下根据地址栏有无id来决定是否发送请求来获取某个id的具体内容
-        */
+                以下根据地址栏有无id来决定是否发送请求来获取某个id的具体内容
+            */
         let { params } = parseUrl(location.href);
         let contentUrl = config('getContentUrl');
         console.log('______', params, contentUrl);
-        if (params.id &&
-            contentUrl) {
+        if (params.id && contentUrl) {
             let s = new service_1();
             s.all({
                 name: '@:{get.content~rs}',
-                '@:{query~rs}': params
+                '@:{query~rs}': params,
             }, (ex, bag) => {
                 console.log('请求回来的初始数据', ex, bag);
-                if (!ex) { //如果请求未有异常，则根据请求回来的数据进行渲染界面
+                if (!ex) {
+                    //如果请求未有异常，则根据请求回来的数据进行渲染界面
                     let stage = bag.get('data.templateJson');
                     this['@:{render.page.by.json~rs}'](stage);
                 }
@@ -327,8 +342,7 @@ return $createVNode($viewId,0,$vnode_0);
         let resLoader = this['@:{resources~rs}'];
         let unit = this.get('unit');
         for (let e of elements) {
-            if (e.type == 'data-dtable' ||
-                e.type == 'data-ftable') {
+            if (e.type == 'data-dtable' || e.type == 'data-ftable') {
                 index_5['@:{recast.table.by.data~rs}'](e, DataCenter);
             }
         }
@@ -378,11 +392,13 @@ return $createVNode($viewId,0,$vnode_0);
                 let newPage = [];
                 for (let i = 0; i < elements.length; i++) {
                     let e = elements[i];
-                    let newElement = inHod ? e : {
-                        type: e.type,
-                        id: e.id,
-                        props: const_1['@:{const#clone~rs}'](e.props)
-                    };
+                    let newElement = inHod
+                        ? e
+                        : {
+                            type: e.type,
+                            id: e.id,
+                            props: const_1['@:{const#clone~rs}'](e.props),
+                        };
                     if (!inHod) {
                         //如果页头和页脚不偏移，则放开if语句
                         // if (e.type != 'hod-footer' &&
@@ -392,19 +408,22 @@ return $createVNode($viewId,0,$vnode_0);
                         //}
                         newElement.props.y -= offsetY;
                     }
-                    if (e.type == 'pager') { //页码器
+                    if (e.type == 'pager') {
+                        //页码器
                         pager_1(newElement, newPage, inHod, pagers, pages.length);
                     }
                     else if (e.type == 'data-coltable') {
                         //列表格
                         let last = indexesCache[i] || 0;
-                        if (last != -1) { //如果未到最后一页，则继续填充
+                        if (last != -1) {
+                            //如果未到最后一页，则继续填充
                             indexesCache[i] = data_coltable_1(DataCenter, newElement, last, page, footerHeight, newPage, inHod);
                         }
                     }
                     else if (e.type == 'data-celltable') {
                         //单元格
-                        if (inHod) { //在容器的情况下，始终填充第1条数据，这里可以根据需求进行调整
+                        if (inHod) {
+                            //在容器的情况下，始终填充第1条数据，这里可以根据需求进行调整
                             data_celltable_1(DataCenter, resLoader, newElement, 0, newPage, inHod);
                         }
                         else {
@@ -414,8 +433,7 @@ return $createVNode($viewId,0,$vnode_0);
                             }
                         }
                     }
-                    else if (e.type == 'data-dtable' ||
-                        e.type == 'data-rdtable') {
+                    else if (e.type == 'data-dtable' || e.type == 'data-rdtable') {
                         //数据表格
                         let last = indexesCache[i] || 0;
                         if (last != -1) {
@@ -442,15 +460,14 @@ return $createVNode($viewId,0,$vnode_0);
                             indexesCache[i] = await data_ftable_1(DataCenter, resLoader, newElement, last, page, footerHeight, newPage, inHod, unit);
                         }
                     }
-                    else if (e.type == 'richtext' ||
-                        e.type == 'data-richtext' ||
-                        e.type == 'html') {
+                    else if (e.type == 'richtext' || e.type == 'data-richtext' || e.type == 'html') {
                         let last = indexesCache[i] || 0;
                         if (last != -1) {
                             indexesCache[i] = await richtext_1(DataCenter, resLoader, newElement, last, page, footerHeight, unit, newPage);
                         }
                     }
-                    else if (e.props.bind) { //如果有绑定，则进行数据填充
+                    else if (e.props.bind) {
+                        //如果有绑定，则进行数据填充
                         common_1(DataCenter, resLoader, newElement, newPage, inHod);
                     }
                     else {
@@ -496,12 +513,10 @@ return $createVNode($viewId,0,$vnode_0);
          * 这里进行四个边距进行相应的宽高处理，边距在设计器里未开放
          */
         let { marginLeft, marginRight, marginTop, marginBottom } = page;
-        if (marginLeft != null &&
-            marginRight != null) {
+        if (marginLeft != null && marginRight != null) {
             page.width -= marginLeft + marginRight;
         }
-        if (marginTop != null &&
-            marginBottom != null) {
+        if (marginTop != null && marginBottom != null) {
             page.height -= marginTop + marginBottom;
         }
         this.digest({
@@ -510,7 +525,7 @@ return $createVNode($viewId,0,$vnode_0);
             page,
             unit,
             hasData: true,
-            loading: true
+            loading: true,
         });
         /**
          * 根据偏移量和边距，计算新的偏移量
@@ -524,7 +539,7 @@ return $createVNode($viewId,0,$vnode_0);
         State.set({
             '@:{global#stage.unit~rs}': unit,
             '@:{global#stage.page.x.offset~rs}': ox,
-            '@:{global#stage.page.y.offset~rs}': oy
+            '@:{global#stage.page.y.offset~rs}': oy,
         });
         let pages = []; //分页对象
         let apis = []; //所有绑定元素的接口地址，在渲染前，需要通过接口地址一次性把所有数据拿回来
@@ -544,9 +559,7 @@ return $createVNode($viewId,0,$vnode_0);
                 let { props, type } = e;
                 let { bind } = props;
                 //有可能不同的元素使用了相同的api,而数据只需要取一份即可
-                if (bind &&
-                    bind.url &&
-                    apis.indexOf(bind.url) == -1) {
+                if (bind && bind.url && apis.indexOf(bind.url) == -1) {
                     apis.push(bind.url);
                 }
                 //容器需要递归处理
@@ -564,7 +577,8 @@ return $createVNode($viewId,0,$vnode_0);
                     type = 'richtext';
                 }
                 resourcesLoader['@:{add~rs}']('@:{script~rs}', type);
-                if (type == 'hod-footer') { //页脚
+                if (type == 'hod-footer') {
+                    //页脚
                     footerHeight = props.height;
                 }
                 else if (type == 'barcode' ||
@@ -614,7 +628,7 @@ return $createVNode($viewId,0,$vnode_0);
             pdf: null,
             sf: 'web',
             pages,
-            loading: false
+            loading: false,
         });
         await lowTaskFinale(); //等待所有子组件任务完成
         await delay(500); //延迟等子组件
@@ -624,7 +638,7 @@ return $createVNode($viewId,0,$vnode_0);
         index_3.show('马上就好...');
         this.digest({
             enable: true,
-            empty: false
+            empty: false,
         });
         await delay(200); //800+500 等待部分组件，如qrcode的异步渲染、图表的动画完成等，此1300ms是预估时间，因为无法知道这些第三方插件什么时候结束，通常是小于1000ms，这里用1300ms来确保无问题
         index_3.hide();
@@ -683,24 +697,25 @@ return $createVNode($viewId,0,$vnode_0);
         return new Promise(async (resolve) => {
             let images = this.get('images');
             let m = mark(this, '@:{image.client.convert~rs}');
-            if (images) { //已经转换过了
+            if (images) {
+                //已经转换过了
                 resolve(images);
             }
             else {
                 if (this.get('sf') != 'web') {
                     //需要先显示成页面
                     await this.digest({
-                        sf: 'web'
+                        sf: 'web',
                     });
                     await lowTaskFinale();
                     this.set({
-                        sf: 'image'
+                        sf: 'image',
                     });
                 }
                 images = [];
                 let options = {
                     useCORS: true,
-                    scale: 2
+                    scale: 2,
                 };
                 let pages = this.root.querySelectorAll('.rd-_printer_index_less_-page'), pageIndex = 0;
                 let total = pages.length;
@@ -738,7 +753,7 @@ return $createVNode($viewId,0,$vnode_0);
                         else {
                             index_5['@:{hide.msg~rs}']();
                             this.set({
-                                images
+                                images,
                             });
                             resolve(images);
                         }
@@ -765,7 +780,7 @@ return $createVNode($viewId,0,$vnode_0);
                     index_3.show('转换图片成功～', 2e3);
                     this.digest({
                         enable: true,
-                        images
+                        images,
                     });
                 }
             }
@@ -797,18 +812,18 @@ return $createVNode($viewId,0,$vnode_0);
                 height: page.height,
                 location: location.href,
                 selector: 'div.rd-_printer_index_less_-page',
-                stage: JSON.stringify(this.get('stage'))
+                stage: JSON.stringify(this.get('stage')),
             };
             let s = new service_1();
             s.save({
                 name: '@:{post.by.url~rs}',
                 url: config('rds') + 'image',
-                '@:{body~rs}': JSON.stringify(data)
+                '@:{body~rs}': JSON.stringify(data),
             }, (ex, bag) => {
                 if (m()) {
                     if (ex) {
                         index_3.hide();
-                        this.alert(index_6["@:{format.ex.message~rs}"](ex));
+                        this.alert(index_6['@:{format.ex.message~rs}'](ex));
                         this.digest({
                             sf: 'rdImage',
                         });
@@ -819,7 +834,7 @@ return $createVNode($viewId,0,$vnode_0);
                         this.digest({
                             sf: 'rdImage',
                             enable: true,
-                            rdImages: bag.get('data', [])
+                            rdImages: bag.get('data', []),
                         });
                     }
                 }
@@ -827,7 +842,7 @@ return $createVNode($viewId,0,$vnode_0);
         }
         else {
             this.digest({
-                enable: true
+                enable: true,
             });
         }
     },
@@ -847,18 +862,18 @@ return $createVNode($viewId,0,$vnode_0);
                 height: page.height,
                 location: location.href,
                 //selector: 'div.@:./index.less:page',
-                stage: JSON.stringify(this.get('stage'))
+                stage: JSON.stringify(this.get('stage')),
             };
             let s = new service_1();
             s.save({
                 name: '@:{post.by.url~rs}',
                 url: config('rds') + 'pdf',
-                '@:{body~rs}': JSON.stringify(data)
+                '@:{body~rs}': JSON.stringify(data),
             }, (ex, bag) => {
                 if (m()) {
                     if (ex) {
                         index_3.hide();
-                        this.alert(index_6["@:{format.ex.message~rs}"](ex));
+                        this.alert(index_6['@:{format.ex.message~rs}'](ex));
                         this.digest({
                             sf: 'rdPdf',
                         });
@@ -873,12 +888,12 @@ return $createVNode($viewId,0,$vnode_0);
                             u8arr[n] = bstr.charCodeAt(n);
                         }
                         let blob = new Blob([u8arr], {
-                            type: 'application/pdf'
+                            type: 'application/pdf',
                         });
                         this.digest({
                             sf: 'rdPdf',
                             enable: false,
-                            rdPdf: URL.createObjectURL(blob)
+                            rdPdf: URL.createObjectURL(blob),
                         });
                     }
                 }
@@ -886,7 +901,7 @@ return $createVNode($viewId,0,$vnode_0);
         }
         else {
             this.digest({
-                enable: false
+                enable: false,
             });
         }
     },
@@ -896,8 +911,7 @@ return $createVNode($viewId,0,$vnode_0);
     async '@:{to.pdf~rs}'() {
         let pdf = this.get('pdf');
         let page = this.get('page');
-        if (!pdf &&
-            page) {
+        if (!pdf && page) {
             let m = mark(this, '@:{to.pdf.transform.mark~rs}');
             try {
                 let images = this.get('rdImages');
@@ -913,7 +927,7 @@ return $createVNode($viewId,0,$vnode_0);
                 let doc = new jspdf.jsPDF({
                     unit: 'px',
                     hotfixes: ['px_scaling'],
-                    format: [width, width > height ? width + 1 : height]
+                    format: [width, width > height ? width + 1 : height],
                 });
                 this['@:{js.pdf.document~rs}'] = doc;
                 doc.setDocumentProperties({
@@ -921,7 +935,7 @@ return $createVNode($viewId,0,$vnode_0);
                     subject: '打印页面',
                     author: 'dingjz',
                     keywords: '打印、可视化、编辑器',
-                    creator: location.host
+                    creator: location.host,
                 });
                 let total = images.length;
                 let toPdf = index => {
@@ -942,7 +956,7 @@ return $createVNode($viewId,0,$vnode_0);
                     this.digest({
                         sf: 'pdf',
                         enable: false,
-                        pdf: doc.output('bloburi')
+                        pdf: doc.output('bloburi'),
                     });
                 }
             }
@@ -955,7 +969,7 @@ return $createVNode($viewId,0,$vnode_0);
         }
         else {
             this.digest({
-                enable: false
+                enable: false,
             });
         }
     },
@@ -978,10 +992,10 @@ return $createVNode($viewId,0,$vnode_0);
     '@:{change.format~rs}<change>'(e) {
         this['@:{canceled.prev.task~rs}']();
         this.digest({
-            enable: false
+            enable: false,
         });
         this.set({
-            sf: e.value
+            sf: e.value,
         });
         if (e.value == 'image') {
             this['@:{to.image~rs}']();
@@ -997,7 +1011,7 @@ return $createVNode($viewId,0,$vnode_0);
         }
         else {
             this.digest({
-                enable: true
+                enable: true,
             });
         }
     },
@@ -1009,7 +1023,7 @@ return $createVNode($viewId,0,$vnode_0);
      */
     '@:{rds.setting~rs}<click>'() {
         this.mxDialog("printer/rds/setting", {
-            width: 500
+            width: 500,
         });
     },
     /**
@@ -1019,7 +1033,7 @@ return $createVNode($viewId,0,$vnode_0);
         let m = mark(this, '@:{rd.printer.mask~rs}');
         index_3.show(`正在调用RDS打印服务...`);
         let page = this.get('page');
-        let printer = index_6["@:{get.config~rs}"]();
+        let printer = index_6['@:{get.config~rs}']();
         let data = {
             width: page.width,
             height: page.height,
@@ -1027,18 +1041,18 @@ return $createVNode($viewId,0,$vnode_0);
             selector: 'div.rd-_printer_index_less_-page',
             printer,
             unit: this.get('unit'),
-            stage: JSON.stringify(this.get('stage'))
+            stage: JSON.stringify(this.get('stage')),
         };
         let s = new service_1();
         s.save({
             name: '@:{post.by.url~rs}',
             url: config('rds') + 'print',
-            '@:{body~rs}': JSON.stringify(data)
+            '@:{body~rs}': JSON.stringify(data),
         }, (ex, bag) => {
             if (m()) {
                 if (ex) {
                     index_3.hide();
-                    this.alert(index_6["@:{format.ex.message~rs}"](ex));
+                    this.alert(index_6['@:{format.ex.message~rs}'](ex));
                 }
                 else {
                     index_3.show('打印成功～', 2e3);
@@ -1091,13 +1105,11 @@ return $createVNode($viewId,0,$vnode_0);
                 }
             }
         }
-        else if (selectFormat == 'pdf' &&
-            this['@:{js.pdf.document~rs}']) {
+        else if (selectFormat == 'pdf' && this['@:{js.pdf.document~rs}']) {
             this['@:{js.pdf.document~rs}'].save(`${index_4('@:{lang#site.name~rs}')}.pdf`);
             index_3.show(index_4('@:{lang#export.success~rs}'), 3e3);
         }
-        else if (selectFormat == 'rdPdf' &&
-            this.get('rdPdf')) {
+        else if (selectFormat == 'rdPdf' && this.get('rdPdf')) {
             let link = document.createElement('a');
             link.download = `${index_4('@:{lang#site.name~rs}')}.pdf`;
             link.href = this.get('rdPdf');
@@ -1182,15 +1194,14 @@ return $createVNode($viewId,0,$vnode_0);
      */
     '$win<message>'(e) {
         let origin = location.protocol + '//' + location.host;
-        if (e.source != window) { //防止自己向自己postMessage
+        if (e.source != window) {
+            //防止自己向自己postMessage
             e.source.postMessage('@:{printer.message.received~rs}', origin);
         }
-        if (e.origin == origin &&
-            e.data &&
-            e.data != '@:{printer.message.received~rs}') {
+        if (e.origin == origin && e.data && e.data != '@:{printer.message.received~rs}') {
             this['@:{render.page.by.json~rs}'](index_5['@:{try.parse.json~rs}'](e.data));
         }
-    }
+    },
 }).merge(index_1);
 
 });
