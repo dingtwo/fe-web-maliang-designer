@@ -72,7 +72,6 @@ let send = (sendUrl, options) => {
   try {
     token = JSON.parse(window.localStorage.getItem('login-token'));
   } catch (error) {}
-  console.log('请求之前获取 token', token);
   if (token) {
     options.headers = {
       ...(options.headers || {}),

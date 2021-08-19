@@ -6,17 +6,17 @@
  */
 define("printer/index",["magix5","../designer/const","../designer/service","../gallery/mx-dialog/index","../gallery/mx-runner/index","../gallery/mx-toast/index","../i18n/index","../provider/fs","../provider/html2canvas","../provider/jspdf","./generic/index","./generic/resource","./rds/index","./unit/batch","./unit/common","./unit/data-celltable","./unit/data-coltable","./unit/data-dtable","./unit/data-ftable","./unit/data-repeater","./unit/pager","./unit/richtext","gallery/mx-dropdown/index"],(require,exports,module)=>{
 require("gallery/mx-dropdown/index");
-let $quick_cU_static_text;
-let $quick_cV_static_text;
-let $quick_dZ_1_static_node;
-let $quick_dZ_2_static_node;
-let $quick_cW_static_text;
-let $quick_cX_static_text;
-let $quick_dZ_4_static_node;
-let $quick_dZ_5_static_node;
-let $quick_dZ_6_static_node;
-let $quick_dZ_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_printer_index_less_-header',};
-let $quick_dZ_3_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-flex-direction-column rd-_printer_index_less_-wrap',};
+let $quick_ho_static_text;
+let $quick_hp_static_text;
+let $quick_it_1_static_node;
+let $quick_it_2_static_node;
+let $quick_hq_static_text;
+let $quick_hr_static_text;
+let $quick_it_4_static_node;
+let $quick_it_5_static_node;
+let $quick_it_6_static_node;
+let $quick_it_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_printer_index_less_-header',};
+let $quick_it_3_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-flex-direction-column rd-_printer_index_less_-wrap',};
 
 /*
     author:https://github.com/xinglie
@@ -216,40 +216,40 @@ $$_class,
 $$_style;
 $vnode_1=[];$__line=2;$__art="{{if inner}}";$__ctrl="if(inner){";
 if(inner){
-$vnode_2=[$quick_cU_static_text||($quick_cU_static_text=$createVNode(0,'独立使用打印页面'))];$vnode_1.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-mr10 rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{open.with.id~rs}()',},$vnode_2));
-}$vnode_2=[$quick_cV_static_text||($quick_cV_static_text=$createVNode(0,'第三方静默打印'))];$vnode_1.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-mr10 rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{silent.print~rs}()',},$vnode_2));
-if($quick_dZ_1_static_node){
-$vnode_1.push($quick_dZ_1_static_node);
+$vnode_2=[$quick_ho_static_text||($quick_ho_static_text=$createVNode(0,'独立使用打印页面'))];$vnode_1.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-mr10 rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{open.with.id~rs}()',},$vnode_2));
+}$vnode_2=[$quick_hp_static_text||($quick_hp_static_text=$createVNode(0,'第三方静默打印'))];$vnode_1.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-mr10 rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{silent.print~rs}()',},$vnode_2));
+if($quick_it_1_static_node){
+$vnode_1.push($quick_it_1_static_node);
 }else{
-$vnode_1.push($quick_dZ_1_static_node=$createVNode('div',{'_': 'a@','class': 'rd-_assets_index_less_-width-1 rd-_printer_index_less_-spliter',}));
+$vnode_1.push($quick_it_1_static_node=$createVNode('div',{'_': 'ep','class': 'rd-_assets_index_less_-width-1 rd-_printer_index_less_-spliter',}));
 }
 
-if($quick_dZ_2_static_node){
-$vnode_1.push($quick_dZ_2_static_node);
+if($quick_it_2_static_node){
+$vnode_1.push($quick_it_2_static_node);
 }else{
-$vnode_2=[$createVNode(0,'转换内容为：')];$vnode_1.push($quick_dZ_2_static_node=$createVNode('div',{'_': 'a$',},$vnode_2));
+$vnode_2=[$createVNode(0,'转换内容为：')];$vnode_1.push($quick_it_2_static_node=$createVNode('div',{'_': 'eq',},$vnode_2));
 }
-;$$_mx5$_view='gallery/mx-dropdown/index?'+($__line=8,$__art='{{=empty}}','');$__ctrl='<%if(($temp_var=empty)){%>';if(($temp_var=empty)){;$$_mx5$_view+='disabled='+($__ctrl='<%=$encodeUrl($temp_var)%>',($encodeUrl($temp_var)));$__ctrl='<%}%>';};$$_mx5$_view+='&list='+($__line=8,$__art='{{#format}}',$__ctrl='<%#format,\'auto_key_format\'%>',$keyOf($refData,format,'auto_key_format'))+'&textKey=text&valueKey=value&selected='+($__line=8,$__art='{{=sf}}',$__ctrl='<%=$encodeUrl(sf)%>',($encodeUrl(sf)));$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'format','class': 'rd-_assets_index_less_-mr10 rd-_printer_index_less_-width-120','mx5-change': $viewId+'@:{change.format~rs}()','mx5-view': $$_mx5$_view,}));$vnode_2=[$quick_cW_static_text||($quick_cW_static_text=$createVNode(0,'导出为本地文件'))];$vnode_1.push($createVNode('button',{'disabled': ($temp_var=($__line=9,$__art='{{= sf!=\'pdf\' && sf!=\'rdPdf\' &&!enable}}',$__ctrl='<%= sf!=\'pdf\' && sf!=\'rdPdf\' &&!enable%>',sf!='pdf' && sf!='rdPdf' &&!enable),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:printer/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{export.to.native.file~rs}()',},$vnode_2));
-if($quick_dZ_1_static_node){
-$vnode_1.push($quick_dZ_1_static_node);
+;$$_mx5$_view='gallery/mx-dropdown/index?'+($__line=8,$__art='{{=empty}}','');$__ctrl='<%if(($temp_var=empty)){%>';if(($temp_var=empty)){;$$_mx5$_view+='disabled='+($__ctrl='<%=$encodeUrl($temp_var)%>',($encodeUrl($temp_var)));$__ctrl='<%}%>';};$$_mx5$_view+='&list='+($__line=8,$__art='{{#format}}',$__ctrl='<%#format,\'auto_key_format\'%>',$keyOf($refData,format,'auto_key_format'))+'&textKey=text&valueKey=value&selected='+($__line=8,$__art='{{=sf}}',$__ctrl='<%=$encodeUrl(sf)%>',($encodeUrl(sf)));$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'format','class': 'rd-_assets_index_less_-mr10 rd-_printer_index_less_-width-120','mx5-change': $viewId+'@:{change.format~rs}()','mx5-view': $$_mx5$_view,}));$vnode_2=[$quick_hq_static_text||($quick_hq_static_text=$createVNode(0,'导出为本地文件'))];$vnode_1.push($createVNode('button',{'disabled': ($temp_var=($__line=9,$__art='{{= sf!=\'pdf\' && sf!=\'rdPdf\' &&!enable}}',$__ctrl='<%= sf!=\'pdf\' && sf!=\'rdPdf\' &&!enable%>',sf!='pdf' && sf!='rdPdf' &&!enable),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:printer/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{export.to.native.file~rs}()',},$vnode_2));
+if($quick_it_1_static_node){
+$vnode_1.push($quick_it_1_static_node);
 }else{
-$vnode_1.push($quick_dZ_1_static_node=$createVNode('div',{'_': 'a@','class': 'rd-_assets_index_less_-width-1 rd-_printer_index_less_-spliter',}));
+$vnode_1.push($quick_it_1_static_node=$createVNode('div',{'_': 'ep','class': 'rd-_assets_index_less_-width-1 rd-_printer_index_less_-spliter',}));
 }
 
-if($quick_dZ_1_static_node){
-$vnode_1.push($quick_dZ_1_static_node);
+if($quick_it_1_static_node){
+$vnode_1.push($quick_it_1_static_node);
 }else{
-$vnode_1.push($quick_dZ_1_static_node=$createVNode('div',{'_': 'a@','class': 'rd-_assets_index_less_-width-1 rd-_printer_index_less_-spliter',}));
+$vnode_1.push($quick_it_1_static_node=$createVNode('div',{'_': 'ep','class': 'rd-_assets_index_less_-width-1 rd-_printer_index_less_-spliter',}));
 }
-$vnode_2=[$quick_cX_static_text||($quick_cX_static_text=$createVNode(0,'浏览器打印'))];$vnode_1.push($createVNode('button',{'disabled': ($temp_var=($__line=17,$__art='{{=!enable}}',$__ctrl='<%=!enable%>',!enable),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:printer/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{print~rs}()',},$vnode_2));$vnode_0=[$createVNode('div',$quick_dZ_0_static_attr,$vnode_1)];$vnode_1=[];$__line=21;$__art="{{if hasData}}";$__ctrl="if(hasData){";
+$vnode_2=[$quick_hr_static_text||($quick_hr_static_text=$createVNode(0,'浏览器打印'))];$vnode_1.push($createVNode('button',{'disabled': ($temp_var=($__line=17,$__art='{{=!enable}}',$__ctrl='<%=!enable%>',!enable),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:printer/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','mx5-click': $viewId+'@:{print~rs}()',},$vnode_2));$vnode_0=[$createVNode('div',$quick_it_0_static_attr,$vnode_1)];$vnode_1=[];$__line=21;$__art="{{if hasData}}";$__ctrl="if(hasData){";
 if(hasData){
 $__line=22;$__art="{{if loading}}";$__ctrl="if(loading){";
 if(loading){
 
-if($quick_dZ_4_static_node){
-$vnode_2=[$quick_dZ_4_static_node];
+if($quick_it_4_static_node){
+$vnode_2=[$quick_it_4_static_node];
 }else{
-$vnode_3=[$createVNode(0,'正在准备基础页面...')];$vnode_2=[$quick_dZ_4_static_node=$createVNode('div',{'_': 'a^','class': 'rd-_assets_index_less_-fontsize-16 rd-_printer_index_less_-tip',},$vnode_3)];
+$vnode_3=[$createVNode(0,'正在准备基础页面...')];$vnode_2=[$quick_it_4_static_node=$createVNode('div',{'_': 'er','class': 'rd-_assets_index_less_-fontsize-16 rd-_printer_index_less_-tip',},$vnode_3)];
 }
 $vnode_1.push($createVNode('div',{'class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-justify-content-center rd-_assets_index_less_-overflow-hidden rd-_assets_index_less_-pr rd-_printer_index_less_-page rd-_printer_index_less_-page-display','style': 'width:'+($__line=23,$__art='{{=page.width}}',$__ctrl='<%=page.width%>',(page.width))+($__line=23,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=23,$__art='{{=page.height}}',$__ctrl='<%=page.height%>',(page.height))+($__line=23,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';background:'+($__line=23,$__art='{{=page.background}}',$__ctrl='<%=page.background%>',(page.background)),},$vnode_2));
 }else{
@@ -259,15 +259,15 @@ $vnode_1.push($createVNode('embed',{'src': ($__line=28,$__art='{{=pdf}}',$__ctrl
 }else if(($__line=29,$__art="{{else if sf==\\'rdPdf\\'}}",$__ctrl="else if(sf=='rdPdf'){"),sf=='rdPdf'){
 $vnode_1.push($createVNode('embed',{'src': ($__line=30,$__art='{{=rdPdf}}',$__ctrl='<%=rdPdf%>',(rdPdf)),'class': 'rd-_assets_index_less_-wp100 rd-_printer_index_less_-pdf-ifm','type': 'application/pdf',},1));
 }else{
-$__line=32;$__art="{{each pages as item pageIndex last}}";$__ctrl="for(let $q_c_zjcxher=pages.length,$q_lc_ngkzvnsa=$q_c_zjcxher-1,pageIndex=0;pageIndex<$q_c_zjcxher;pageIndex++){let item=pages[pageIndex];let last=pageIndex===$q_lc_ngkzvnsa;";
-for(let $q_c_zjcxher=pages.length,$q_lc_ngkzvnsa=$q_c_zjcxher-1,pageIndex=0;pageIndex<$q_c_zjcxher;pageIndex+=1){
-let item=pages[pageIndex];let last=pageIndex===$q_lc_ngkzvnsa;
+$__line=32;$__art="{{each pages as item pageIndex last}}";$__ctrl="for(let $q_c_hdhbfqzm=pages.length,$q_lc_wetjt=$q_c_hdhbfqzm-1,pageIndex=0;pageIndex<$q_c_hdhbfqzm;pageIndex++){let item=pages[pageIndex];let last=pageIndex===$q_lc_wetjt;";
+for(let $q_c_hdhbfqzm=pages.length,$q_lc_wetjt=$q_c_hdhbfqzm-1,pageIndex=0;pageIndex<$q_c_hdhbfqzm;pageIndex+=1){
+let item=pages[pageIndex];let last=pageIndex===$q_lc_wetjt;
 $vnode_2=[];$__line=34;$__art="{{if sf==\\'web\\'}}";$__ctrl="if(sf=='web'){";
 if(sf=='web'){
-$__line=35;$__art="{{each item as e}}";$__ctrl="for(let $q_c_zisrneshe=item.length,$q_key_hmjdlctlc=0;$q_key_hmjdlctlc<$q_c_zisrneshe;$q_key_hmjdlctlc++){let e=item[$q_key_hmjdlctlc];";
-for(let $q_c_zisrneshe=item.length,$q_key_hmjdlctlc=0;$q_key_hmjdlctlc<$q_c_zisrneshe;$q_key_hmjdlctlc+=1){
-let e=item[$q_key_hmjdlctlc];
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'pages,unit','mx5-view': 'elements/'+($__line=36,$__art='{{=e.type}}',$__ctrl='<%=e.type%>',(e.type))+'/index?props='+($__line=36,$__art='{{#e.props}}',$__ctrl='<%#e.props,\'auto_key_pages.\'+(pageIndex)+\'.\'+($q_key_hmjdlctlc)+\'.e.props\'%>',$keyOf($refData,e.props,'auto_key_pages.'+(pageIndex)+'.'+($q_key_hmjdlctlc)+'.e.props'))+'&unit='+($__line=36,$__art='{{#unit}}',$__ctrl='<%#unit,\'auto_key_unit\'%>',$keyOf($refData,unit,'auto_key_unit')),}));
+$__line=35;$__art="{{each item as e}}";$__ctrl="for(let $q_c_nqpycvua=item.length,$q_key_mgghik=0;$q_key_mgghik<$q_c_nqpycvua;$q_key_mgghik++){let e=item[$q_key_mgghik];";
+for(let $q_c_nqpycvua=item.length,$q_key_mgghik=0;$q_key_mgghik<$q_c_nqpycvua;$q_key_mgghik+=1){
+let e=item[$q_key_mgghik];
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'pages,unit','mx5-view': 'elements/'+($__line=36,$__art='{{=e.type}}',$__ctrl='<%=e.type%>',(e.type))+'/index?props='+($__line=36,$__art='{{#e.props}}',$__ctrl='<%#e.props,\'auto_key_pages.\'+(pageIndex)+\'.\'+($q_key_mgghik)+\'.e.props\'%>',$keyOf($refData,e.props,'auto_key_pages.'+(pageIndex)+'.'+($q_key_mgghik)+'.e.props'))+'&unit='+($__line=36,$__art='{{#unit}}',$__ctrl='<%#unit,\'auto_key_unit\'%>',$keyOf($refData,unit,'auto_key_unit')),}));
 }
 }else if(($__line=38,$__art="{{else if sf==\\'image\\' && images}}",$__ctrl="else if(sf=='image' && images){"),sf=='image' && images){
 $vnode_2.push($createVNode('img',{'class': 'rd-_assets_index_less_-mwp100 rd-_assets_index_less_-tag-img','src': ($__line=39,$__art='{{=images[pageIndex]}}',$__ctrl='<%=images[pageIndex]%>',(images[pageIndex])),},1));
@@ -279,17 +279,17 @@ $vnode_2.push($createVNode('img',{'class': 'rd-_assets_index_less_-mwp100 rd-_as
 }
 }else{
 
-if($quick_dZ_5_static_node){
-$vnode_1.push($quick_dZ_5_static_node);
+if($quick_it_5_static_node){
+$vnode_1.push($quick_it_5_static_node);
 }else{
-$vnode_2=[$createVNode(0,'请传递打印 id 或在设计器中打开该页面')];$vnode_1.push($quick_dZ_5_static_node=$createVNode('div',{'_': 'a*','class': 'rd-_assets_index_less_-fontsize-16 rd-_printer_index_less_-tip',},$vnode_2));
+$vnode_2=[$createVNode(0,'请传递打印 id 或在设计器中打开该页面')];$vnode_1.push($quick_it_5_static_node=$createVNode('div',{'_': 'es','class': 'rd-_assets_index_less_-fontsize-16 rd-_printer_index_less_-tip',},$vnode_2));
 }
 
-}$vnode_0.push($createVNode('div',$quick_dZ_3_static_attr,$vnode_1));
-if($quick_dZ_6_static_node){
-$vnode_0.push($quick_dZ_6_static_node);
+}$vnode_0.push($createVNode('div',$quick_it_3_static_attr,$vnode_1));
+if($quick_it_6_static_node){
+$vnode_0.push($quick_it_6_static_node);
 }else{
-$vnode_0.push($quick_dZ_6_static_node=$createVNode('div',{'_': 'a{','id': '_rd_tip','class': 'rd-_assets_index_less_-none rd-_assets_index_less_-right-0 rd-_printer_index_less_-progress-tip',}));
+$vnode_0.push($quick_it_6_static_node=$createVNode('div',{'_': 'et','id': '_rd_tip','class': 'rd-_assets_index_less_-none rd-_assets_index_less_-right-0 rd-_printer_index_less_-progress-tip',}));
 }
  
 
@@ -312,7 +312,7 @@ return $createVNode($viewId,0,$vnode_0);
         let { params } = parseUrl(location.href);
         let contentUrl = config('getContentUrl');
         console.log('______', params, contentUrl);
-        if (params.id && contentUrl) {
+        if (params.ids && contentUrl) {
             let s = new service_1();
             s.all({
                 name: '@:{get.content~rs}',
@@ -321,8 +321,9 @@ return $createVNode($viewId,0,$vnode_0);
                 console.log('请求回来的初始数据', ex, bag);
                 if (!ex) {
                     //如果请求未有异常，则根据请求回来的数据进行渲染界面
-                    let stage = bag.get('data.templateJson');
-                    this['@:{render.page.by.json~rs}'](stage);
+                    let originStages = bag.get('data');
+                    let stages = originStages.map(({ templateJson }) => templateJson);
+                    this['@:{render.page.by.json~rs}'](stages);
                 }
             });
         }
@@ -495,6 +496,9 @@ return $createVNode($viewId,0,$vnode_0);
                 let newPage = await generatePage(pageElements, page);
                 pages.push(newPage);
             } while (hasNextPage(pageElements, indexesCache));
+            /**
+             * 这里结束之后,再来一轮, 是不是就可以解决批量了
+             */
         }
         index_5['@:{hide.msg~rs}']();
     },
@@ -502,7 +506,12 @@ return $createVNode($viewId,0,$vnode_0);
      * 根据json对象渲染页面
      * @param stage 设计器产出的json对象
      */
-    async '@:{render.page.by.json~rs}'(stage) {
+    async '@:{render.page.by.json~rs}'(stages) {
+        if (!stages) {
+            return;
+        }
+        console.log('数据', stages);
+        let [stage, ...others] = stages;
         if (!stage)
             return;
         let { page, elements, unit } = stage;
@@ -609,6 +618,10 @@ return $createVNode($viewId,0,$vnode_0);
             }
         };
         collectBindInfo(elements);
+        // 所有的都遍历一次
+        others.forEach(stage => {
+            collectBindInfo(stage.elements);
+        });
         //先加载数据
         await fetchAllAPI(apis);
         index_3.show('正在准备资源...');
@@ -616,10 +629,16 @@ return $createVNode($viewId,0,$vnode_0);
         index_3.show('正在计算分页...');
         //再进行分页处理
         await this['@:{fill.page~rs}'](elements, page, pages, pagers, ox, oy, footerHeight);
+        // NOTICE: 理论上从这里再渲染一套就行了, 试试
+        for (let i = 0; i < others.length; i++) {
+            let otherStage = others[i];
+            await this['@:{fill.page~rs}'](otherStage.elements, otherStage.page, pages, pagers, ox, oy, footerHeight);
+        }
         //设置页码器的总页数
         for (let pager of pagers) {
             pager.props.ext._totalPage = pages.length;
         }
+        // console.log('页面', pages.push(pages[0]), pages);
         index_3.show('等待页面生成...');
         await this.digest({
             stage,

@@ -75,7 +75,8 @@ module.exports= normal_1.extend({
         repeat: 1,
         line: 1,
         rect: 1,
-        circle: 1
+        circle: 1,
+        'data-dtable': 1
     },
     '@:{move.props~rs}': [{
             key: 'x',

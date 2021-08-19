@@ -210,7 +210,7 @@ export default View.extend({
     let { params } = parseUrl(location.href);
     let contentUrl = config('getContentUrl');
     console.log('______', params, contentUrl);
-    if (params.id && contentUrl) {
+    if (params.ids && contentUrl) {
       let s = new Service();
       s.all(
         {
@@ -221,8 +221,9 @@ export default View.extend({
           console.log('请求回来的初始数据', ex, bag);
           if (!ex) {
             //如果请求未有异常，则根据请求回来的数据进行渲染界面
-            let stage = bag.get('data.templateJson');
-            this['@:{render.page.by.json}'](stage);
+            let originStages = bag.get('data');
+            const stages = originStages.map(({ templateJson }) => templateJson);
+            this['@:{render.page.by.json}'](stages);
           }
         },
       );
@@ -457,6 +458,9 @@ export default View.extend({
         let newPage = await generatePage(pageElements, page);
         pages.push(newPage);
       } while (hasNextPage(pageElements, indexesCache));
+      /**
+       * 这里结束之后,再来一轮, 是不是就可以解决批量了
+       */
     }
     Generic['@:{hide.msg}']();
   },
@@ -464,7 +468,12 @@ export default View.extend({
    * 根据json对象渲染页面
    * @param stage 设计器产出的json对象
    */
-  async '@:{render.page.by.json}'(stage) {
+  async '@:{render.page.by.json}'(stages) {
+    if (!stages) {
+      return;
+    }
+    console.log('数据', stages);
+    const [stage, ...others] = stages;
     if (!stage) return;
     let { page, elements, unit } = stage;
     if (!page || !elements || !unit) return;
@@ -566,6 +575,10 @@ export default View.extend({
       }
     };
     collectBindInfo(elements);
+    // 所有的都遍历一次
+    others.forEach(stage => {
+      collectBindInfo(stage.elements);
+    });
 
     //先加载数据
     await fetchAllAPI(apis);
@@ -574,10 +587,16 @@ export default View.extend({
     Toast.show('正在计算分页...');
     //再进行分页处理
     await this['@:{fill.page}'](elements, page, pages, pagers, ox, oy, footerHeight);
+    // NOTICE: 理论上从这里再渲染一套就行了, 试试
+    for (let i = 0; i < others.length; i++) {
+      const otherStage = others[i];
+      await this['@:{fill.page}'](otherStage.elements, otherStage.page, pages, pagers, ox, oy, footerHeight);
+    }
     //设置页码器的总页数
     for (let pager of pagers) {
       pager.props.ext._totalPage = pages.length;
     }
+    // console.log('页面', pages.push(pages[0]), pages);
     Toast.show('等待页面生成...');
     await this.digest({
       stage,

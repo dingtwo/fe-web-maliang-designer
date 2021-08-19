@@ -20,36 +20,37 @@ let transformFields = ['width', 'height'];
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/hod-table/dshow"
+            view: "elements/hod-table/dshow",
         });
-    }
+    },
 }).static({
     type: 'hod-table',
     as: enum_1['@:{enum#as.hod~rs}'],
     title: '@:{lang#elements.table~rs}',
     icon: '&#xe815;',
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.icon~rs}'] |
-        enum_1['@:{enum#modifier.nomask~rs}'],
-    '@:{move.props~rs}': [{
+    '@:{modifier~rs}': enum_1['@:{enum#modifier.icon~rs}'] | enum_1['@:{enum#modifier.nomask~rs}'],
+    '@:{move.props~rs}': [
+        {
             key: 'x',
-            use: 'x'
-        }, {
+            use: 'x',
+        },
+        {
             key: 'y',
-            use: 'y'
-        }],
+            use: 'y',
+        },
+    ],
     '@:{update.props~rs}'(props) {
         let { borderwidth, borderdeed, rows } = props;
-        if (!props['@:{row.max~rs}'] ||
-            !props['@:{col.max~rs}']) {
-            props = table_1["@:{table.provider#add.ext.meta~rs}"](props);
+        if (!props['@:{row.max~rs}'] || !props['@:{col.max~rs}']) {
+            props = table_1['@:{table.provider#add.ext.meta~rs}'](props);
         }
         let oneBorder = const_1['@:{const#to.unit~rs}'](1);
-        let sizes = table_1["@:{table.provider#get.sizes~rs}"](props);
+        let sizes = table_1['@:{table.provider#get.sizes~rs}'](props);
         let height = 0, width = 0;
-        for (let w of sizes["@:{col.widths~rs}"]) {
+        for (let w of sizes['@:{col.widths~rs}']) {
             width += w;
         }
-        for (let h of sizes["@:{row.heights~rs}"]) {
+        for (let h of sizes['@:{row.heights~rs}']) {
             height += h;
         }
         //表格宽：所以列宽＋一个边框宽
@@ -86,27 +87,37 @@ module.exports= normal_1.extend({
             focusRow: -1,
             focusCol: -1,
             help: '//github.com/xinglie/report-designer/issues/12',
-            rows: [{
-                    cols: [{
+            rows: [
+                {
+                    cols: [
+                        {
                             ...cellProps,
-                            elements: []
-                        }, {
+                            elements: [],
+                        },
+                        {
                             ...cellProps,
-                            elements: []
-                        }]
-                }, {
-                    cols: [{
+                            elements: [],
+                        },
+                    ],
+                },
+                {
+                    cols: [
+                        {
                             ...cellProps,
-                            elements: []
-                        }, {
+                            elements: [],
+                        },
+                        {
                             ...cellProps,
-                            elements: []
-                        }]
-                }],
-            locked: false
+                            elements: [],
+                        },
+                    ],
+                },
+            ],
+            locked: false,
         };
     },
-    props: [{
+    props: [
+        {
             key: 'rows',
             '@:{json.encode~rs}'(dest, { rows }) {
                 transform_1['@:{transform#json.encode.cells~rs}'](dest, rows, transformFields);
@@ -116,45 +127,51 @@ module.exports= normal_1.extend({
             },
             '@:{stage.scale~rs}'(props, step, dest) {
                 transform_1['@:{transform#stage.scale.cells~rs}'](props, step, transformFields, dest);
-            }
-        }, {
+            },
+        },
+        {
             tip: '@:{lang#props.x~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1['@:{eprops#number~rs}'],
             key: 'x',
             '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            json: 1
-        }, {
+            fixed: const_1['@:{const#unit.fixed~rs}'],
+            step: const_1['@:{const#unit.step~rs}'],
+            read: transform_1['@:{transform#to.show.value~rs}'],
+            write: transform_1['@:{transform#to.real.value~rs}'],
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.y~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1['@:{eprops#number~rs}'],
             key: 'y',
             '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            json: 1
-        }, {
+            fixed: const_1['@:{const#unit.fixed~rs}'],
+            step: const_1['@:{const#unit.step~rs}'],
+            read: transform_1['@:{transform#to.show.value~rs}'],
+            write: transform_1['@:{transform#to.real.value~rs}'],
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.width~rs}',
             key: 'width',
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            type: props_1["@:{eprops#label~rs}"],
-            json: 1
-        }, {
+            read: transform_1['@:{transform#to.show.value~rs}'],
+            type: props_1['@:{eprops#label~rs}'],
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.height~rs}',
             key: 'height',
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            type: props_1["@:{eprops#label~rs}"],
-            json: 1
-        }, {
+            read: transform_1['@:{transform#to.show.value~rs}'],
+            type: props_1['@:{eprops#label~rs}'],
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.cell.share~rs}',
             type: props_1['@:{eprops#table.cell.share~rs}'],
             '@:{dock.top~rs}': 1,
-        }, {
-            type: props_1['@:{eprops#spliter~rs}']
+        },
+        {
+            type: props_1['@:{eprops#spliter~rs}'],
         } /*, {
             tip: '@:{lang#props.rotate}',
             type: Props["@:{eprops#number}"],
@@ -166,91 +183,107 @@ module.exports= normal_1.extend({
         {
             tip: '@:{lang#props.alpha~rs}',
             key: 'alpha',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1['@:{eprops#number~rs}'],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
-            json: 1
-        }, {
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.border.width~rs}',
             key: 'borderwidth',
             '@:{is.scale.and.unit.field~rs}': 1,
-            type: props_1["@:{eprops#number~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            type: props_1['@:{eprops#number~rs}'],
+            fixed: const_1['@:{const#unit.fixed~rs}'],
+            step: const_1['@:{const#unit.step~rs}'],
+            read: transform_1['@:{transform#to.show.value~rs}'],
+            write: transform_1['@:{transform#to.real.value~rs}'],
             min: 0,
-            max: () => const_1["@:{const#to.unit~rs}"](10),
-            json: 1
-        }, {
+            max: () => const_1['@:{const#to.unit~rs}'](10),
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.border.type~rs}',
             key: 'bordertype',
-            type: props_1["@:{eprops#dropdown~rs}"],
+            type: props_1['@:{eprops#dropdown~rs}'],
             items: const_1['@:{const#border.types~rs}'],
-            json: 1
-        }, {
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.border.color~rs}',
             key: 'bordercolor',
-            type: props_1["@:{eprops#color~rs}"],
-            json: 1
-        }, {
+            type: props_1['@:{eprops#color~rs}'],
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.table.cell.border.deed~rs}',
             key: 'borderdeed',
-            type: props_1["@:{eprops#dropdown~rs}"],
-            items: [{
+            type: props_1['@:{eprops#dropdown~rs}'],
+            items: [
+                {
                     text: '@:{lang#props.table.cell.border.collapse~rs}',
-                    value: 'collapse'
-                }, {
+                    value: 'collapse',
+                },
+                {
                     text: '@:{lang#props.table.cell.border.separate~rs}',
-                    value: 'separate'
-                }],
-            json: 1
-        }, {
-            type: props_1["@:{eprops#spliter~rs}"],
+                    value: 'separate',
+                },
+            ],
+            json: 1,
+        },
+        {
+            type: props_1['@:{eprops#spliter~rs}'],
             '@:{if.show~rs}'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
-            }
-        }, {
+            },
+        },
+        {
             tip: '@:{lang#props.cell.size~rs}',
-            type: props_1["@:{eprops#table.cell.size~rs}"],
+            type: props_1['@:{eprops#table.cell.size~rs}'],
             '@:{dock.top~rs}': 1,
             '@:{if.show~rs}'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
-            }
-        }, {
+            },
+        },
+        {
             tip: '@:{lang#props.table.cell.border~rs}',
-            type: props_1["@:{eprops#table.cell.border~rs}"],
+            type: props_1['@:{eprops#table.cell.border~rs}'],
             '@:{if.show~rs}'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
-            }
-        }, {
+            },
+        },
+        {
             tip: '@:{lang#props.cell.operate~rs}',
-            type: props_1["@:{eprops#table.cell.operate~rs}"],
+            type: props_1['@:{eprops#table.cell.operate~rs}'],
             '@:{dock.top~rs}': 1,
             '@:{elements~rs}': 1,
             '@:{if.show~rs}'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
-            }
-        }, {
-            type: props_1["@:{eprops#spliter~rs}"]
-        }, {
-            tip: '@:{lang#props.help~rs}',
-            type: props_1["@:{eprops#link~rs}"],
-            key: 'help'
-        }, {
+            },
+        },
+        {
+            type: props_1['@:{eprops#spliter~rs}'],
+        },
+        // {
+        //   tip: '@:{lang#props.help}',
+        //   type: Props['@:{eprops#link}'],
+        //   key: 'help',
+        // },
+        {
             tip: '@:{lang#props.title~rs}',
             key: 'ename',
-            type: props_1["@:{eprops#text.input~rs}"],
-            json: 1
-        }, {
+            type: props_1['@:{eprops#text.input~rs}'],
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.locked~rs}',
             key: 'locked',
-            type: props_1["@:{eprops#boolean~rs}"],
+            type: props_1['@:{eprops#boolean~rs}'],
             free: true,
-            json: 1
-        }]
+            json: 1,
+        },
+    ],
 });
 
 });

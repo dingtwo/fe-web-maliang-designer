@@ -5,8 +5,8 @@
     loader:cmd_es
  */
 define("elements/ls-border-css4/index",["magix5"],(require,exports,module)=>{
-let $quick_cH_0_static_node;
-let $quick_cH_1_static_node;
+let $quick_hb_0_static_node;
+let $quick_hb_1_static_node;
 
 /*
     author:https://github.com/xinglie
@@ -22,16 +22,16 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 	unit,}=$dataFromView,
 $vnode_1;
 
-if($quick_cH_0_static_node){
-$vnode_1=[$quick_cH_0_static_node];
+if($quick_hb_0_static_node){
+$vnode_1=[$quick_hb_0_static_node];
 }else{
-$vnode_1=[$quick_cH_0_static_node=$createVNode('div',{'_': 'a@','class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-right-0 rd-_assets_index_less_-wp100 rd-_elements_ls-border-css4_index_less_-top',})];
+$vnode_1=[$quick_hb_0_static_node=$createVNode('div',{'_': 'ep','class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-right-0 rd-_assets_index_less_-wp100 rd-_elements_ls-border-css4_index_less_-top',})];
 }
 
-if($quick_cH_1_static_node){
-$vnode_1.push($quick_cH_1_static_node);
+if($quick_hb_1_static_node){
+$vnode_1.push($quick_hb_1_static_node);
 }else{
-$vnode_1.push($quick_cH_1_static_node=$createVNode('div',{'_': 'a$','class': 'rd-_assets_index_less_-bottom-0 rd-_assets_index_less_-pa rd-_assets_index_less_-right-0 rd-_assets_index_less_-wp100 rd-_elements_ls-border-css4_index_less_-bottom',}));
+$vnode_1.push($quick_hb_1_static_node=$createVNode('div',{'_': 'eq','class': 'rd-_assets_index_less_-bottom-0 rd-_assets_index_less_-pa rd-_assets_index_less_-right-0 rd-_assets_index_less_-wp100 rd-_elements_ls-border-css4_index_less_-bottom',}));
 }
 $vnode_0=[$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-z-index-1 rd-_elements_ls-border-css4_index_less_-outer','style': 'left:'+($__line=3,$__art='{{=props.x}}',$__ctrl='<%=props.x%>',(props.x))+($__line=3,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';top:'+($__line=3,$__art='{{=props.y}}',$__ctrl='<%=props.y%>',(props.y))+($__line=3,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=3,$__art='{{=props.height}}',$__ctrl='<%=props.height%>',(props.height))+($__line=3,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';opacity:'+($__line=3,$__art='{{=props.alpha}}',$__ctrl='<%=props.alpha%>',(props.alpha))+';width:'+($__line=3,$__art='{{=props.width}}',$__ctrl='<%=props.width%>',(props.width))+($__line=3,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';transform:rotate('+($__line=3,$__art='{{=props.rotate}}',$__ctrl='<%=props.rotate%>',(props.rotate))+'deg)',},$vnode_1)]; 
 

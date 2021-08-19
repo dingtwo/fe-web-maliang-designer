@@ -22,13 +22,13 @@ let UseYElements = {
     'data-rdtable': 1,
     'data-ftable': 1,
     'data-richtext': 1,
-    video: 1
+    video: 1,
 };
 /**
  * 独立不能分隔的元素
  */
 let StandaloneElements = {
-    xsheet: 1
+    xsheet: 1,
 };
 /**
  * 查找属于某个页码内的元素
@@ -46,7 +46,7 @@ let findCurrentPageElements = (page, current, elements, oy) => {
         x: 0,
         y: startY,
         width: width,
-        height: height
+        height: height,
     };
     for (let e of elements) {
         let { props, type } = e;
@@ -54,8 +54,7 @@ let findCurrentPageElements = (page, current, elements, oy) => {
             continue;
         }
         e.used = 1;
-        if (type == 'hod-header' ||
-            type == 'hod-footer') {
+        if (type == 'hod-header' || type == 'hod-footer') {
             //页头页脚固定在一个分页的顶或底部
             if (type == 'hod-header') {
                 props.y = current * height;
@@ -70,26 +69,27 @@ let findCurrentPageElements = (page, current, elements, oy) => {
             y += oy;
             //如果元素采用y坐标，则查看当前分页是否包含该元素的y坐标
             if (has(UseYElements, type)) {
-                if ((y >= startY &&
-                    y <= endY) || (y < 0 &&
-                    current == 0)) {
+                if ((y >= startY && y <= endY) || (y < 0 && current == 0)) {
                     filterElements.push(e);
                 }
             }
             else {
                 //采用矩形碰撞检测，碰撞后则在当前分页内
                 //需要考虑矩形旋转的情况
-                let newRect = transform_1["@:{transform#rotate.rect~rs}"]({
-                    x, y, width, height,
-                    rotate
+                let newRect = transform_1['@:{transform#rotate.rect~rs}']({
+                    x,
+                    y,
+                    width,
+                    height,
+                    rotate,
                 });
                 let testRect = {
                     x: newRect['@:{left~rs}'],
                     y: newRect['@:{top~rs}'],
                     width: newRect['@:{width~rs}'],
-                    height: newRect['@:{height~rs}']
+                    height: newRect['@:{height~rs}'],
                 };
-                if (transform_1["@:{transform#rect.intersect~rs}"](testRect, pageRect)) {
+                if (transform_1['@:{transform#rect.intersect~rs}'](testRect, pageRect)) {
                     filterElements.push(e);
                 }
             }
@@ -188,13 +188,15 @@ let getDTableRemovedInfo = (rows, anchorData) => {
     let removedColIndexes = [];
     let removedColWidth = 0;
     let dataRowIndex = 0;
-    console.log('参考的数据', anchorData);
+    // NOTICE: 没有先返回
+    if (!anchorData) {
+        return;
+    }
     for (let row of rows) {
         if (row.data) {
             for (let i = row.cols.length; i--;) {
                 let col = row.cols[i];
-                if (col.bindKey &&
-                    anchorData[col.bindKey] == null) {
+                if (col.bindKey && anchorData[col.bindKey] == null) {
                     removedColIndexes.push(i);
                     removedColWidth += col.width;
                 }
@@ -216,13 +218,10 @@ let getDTableRemovedInfo = (rows, anchorData) => {
  * @returns 是否有绑定的数据
  */
 let elementHasData = (elements, anchorData) => {
-    if (elements &&
-        elements.length) {
+    if (elements && elements.length) {
         let findData;
         for (let { props } of elements) {
-            if (props.bind &&
-                props.bind.fields &&
-                props.bind.fields.length) {
+            if (props.bind && props.bind.fields && props.bind.fields.length) {
                 let bindField = props.bind.fields[0];
                 if (anchorData[bindField.id] != null) {
                     findData = 1;
@@ -300,8 +299,7 @@ module.exports= {
     '@:{recast.table.by.data~rs}'(table, dataCenter) {
         let { props, type } = table;
         let { bind, rows, dynamicCols, avgDynamicColsWidth } = props;
-        if (bind.url &&
-            dynamicCols) {
+        if (bind.url && dynamicCols) {
             let { '@:{error~rs}': err, '@:{data~rs}': list } = dataCenter[bind.url];
             if (!err) {
                 let anchorData = isArray(list) ? list[0] : list;
@@ -328,7 +326,8 @@ module.exports= {
                 if (avgDynamicColsWidth == 'none') {
                     props.width -= removedColWidth;
                 }
-                else if (avgDynamicColsWidth == 'direct') { //采用直接均分的方式
+                else if (avgDynamicColsWidth == 'direct') {
+                    //采用直接均分的方式
                     let restCols = props['@:{col.max~rs}'];
                     let singleColWidth = removedColWidth / restCols;
                     for (let row of rows) {
@@ -354,7 +353,7 @@ module.exports= {
                 }
             }
         }
-    }
+    },
 };
 
 });

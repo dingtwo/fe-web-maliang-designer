@@ -5,7 +5,7 @@
     loader:cmd_es
  */
 define("gallery/mx-format/fx",["magix5","../mx-dialog/index","./share"],(require,exports,module)=>{
-let $quick_cf_static_text;
+let $quick_gK_static_text;
 
 /*
     author:https://github.com/xinglie
@@ -27,7 +27,7 @@ $vnode_2,
 $vnode_1;
 $vnode_1=[];$vnode_2=[$createVNode(0,'点击'+($__line=3,$__art='{{=format?\'查看或编辑\':\'编辑\'}}',$__ctrl='<%=format?\'查看或编辑\':\'编辑\'%>',(format?'查看或编辑':'编辑'))+'函数')];;$$_class='rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-ellipsis'+($__line=2,$__art='{{if !text}}','');$__ctrl='<%if(!text){%>';if(!text){;$$_class+=' rd-_assets_index_less_-color-999'+($__line=2,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'title': '点击'+($__line=2,$__art='{{=format?\'查看或编辑\':\'编辑\'}}',$__ctrl='<%=format?\'查看或编辑\':\'编辑\'%>',(format?'查看或编辑':'编辑'))+'函数','class': $$_class,},$vnode_2));$__line=5;$__art="{{if format}}";$__ctrl="if(format){";
 if(format){
-$vnode_2=[$quick_cf_static_text||($quick_cf_static_text=$createVNode(0,''))];$vnode_1.push($createVNode('i',{'class': 'rd-_assets_index_less_-iconfont rd-_gallery_mx-format_share_less_-remove','mx5-click': (($temp_var=($__line=6,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-format/fx.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{clear.format~rs}()'),'title': '清除函数',},$vnode_2));
+$vnode_2=[$quick_gK_static_text||($quick_gK_static_text=$createVNode(0,''))];$vnode_1.push($createVNode('i',{'class': 'rd-_assets_index_less_-iconfont rd-_gallery_mx-format_share_less_-remove','mx5-click': (($temp_var=($__line=6,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-format/fx.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{clear.format~rs}()'),'title': '清除函数',},$vnode_2));
 };$$_class='rd-_gallery_mx-format_share_less_-format rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-flex rd-_assets_index_less_-align-items-center'+($__line=1,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-format_share_less_-notallowed'+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0=[$createVNode('div',{'mx5-click': (($temp_var=($__line=1,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-format/fx.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{choose.format~rs}()'),'title': ($temp_var=($__line=1,$__art='{{=text}}',$__ctrl='<%=text%>',text))!=null&&$temp_var,'class': $$_class,},$vnode_1)]; 
 
 return $createVNode($viewId,0,$vnode_0); 

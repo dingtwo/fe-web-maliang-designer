@@ -20,9 +20,9 @@ let { config } = magix_1;
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/text/dshow"
+            view: "elements/text/dshow",
         });
-    }
+    },
 }).static({
     type: 'text',
     title: '@:{lang#elements.text~rs}',
@@ -32,13 +32,16 @@ module.exports= normal_1.extend({
         enum_1['@:{enum#modifier.rotate~rs}'] |
         enum_1['@:{enum#modifier.nomask~rs}'] |
         enum_1['@:{enum#modifier.text~rs}'],
-    '@:{move.props~rs}': [{
+    '@:{move.props~rs}': [
+        {
             key: 'x',
-            use: 'x'
-        }, {
+            use: 'x',
+        },
+        {
             key: 'y',
-            use: 'y'
-        }],
+            use: 'y',
+        },
+    ],
     '@:{can.show.text~rs}'(props) {
         return !props.bind.url;
     },
@@ -74,216 +77,246 @@ module.exports= normal_1.extend({
             bind: {
                 url: '',
                 id: '',
-                fields: []
+                fields: [],
             },
             help: 'github.com/xinglie/report-designer/issues/31',
         };
     },
-    props: [{
+    props: [
+        {
             tip: '@:{lang#props.x~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1['@:{eprops#number~rs}'],
             key: 'x',
             '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            fixed: const_1['@:{const#unit.fixed~rs}'],
+            step: const_1['@:{const#unit.step~rs}'],
+            read: transform_1['@:{transform#to.show.value~rs}'],
+            write: transform_1['@:{transform#to.real.value~rs}'],
             json: 1,
-        }, {
+        },
+        {
             tip: '@:{lang#props.y~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1['@:{eprops#number~rs}'],
             key: 'y',
             '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            fixed: const_1['@:{const#unit.fixed~rs}'],
+            step: const_1['@:{const#unit.step~rs}'],
+            read: transform_1['@:{transform#to.show.value~rs}'],
+            write: transform_1['@:{transform#to.real.value~rs}'],
             json: 1,
-        }, {
+        },
+        {
             tip: '@:{lang#props.width~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1['@:{eprops#number~rs}'],
             key: 'width',
             '@:{is.scale.and.unit.field~rs}': 1,
             min: () => 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            json: 1
-        }, {
+            fixed: const_1['@:{const#unit.fixed~rs}'],
+            step: const_1['@:{const#unit.step~rs}'],
+            read: transform_1['@:{transform#to.show.value~rs}'],
+            write: transform_1['@:{transform#to.real.value~rs}'],
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.height~rs}',
             key: 'height',
             '@:{is.scale.and.unit.field~rs}': 1,
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1['@:{eprops#number~rs}'],
             min: () => 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            json: 1
-        }, {
+            fixed: const_1['@:{const#unit.fixed~rs}'],
+            step: const_1['@:{const#unit.step~rs}'],
+            read: transform_1['@:{transform#to.show.value~rs}'],
+            write: transform_1['@:{transform#to.real.value~rs}'],
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.rotate~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1['@:{eprops#number~rs}'],
             key: 'rotate',
             min: -360,
             max: 360,
-            json: 1
-        }, {
-            type: props_1["@:{eprops#spliter~rs}"],
+            json: 1,
+        },
+        {
+            type: props_1['@:{eprops#spliter~rs}'],
             '@:{if.show~rs}'(props) {
                 return !props.bind.url;
-            }
-        }, {
+            },
+        },
+        {
             tip: '@:{lang#props.text.content~rs}',
             key: 'text',
-            type: props_1["@:{eprops#text.area~rs}"],
+            type: props_1['@:{eprops#text.area~rs}'],
             //'@:{dock.top}': 1,
             json: 1,
             '@:{if.show~rs}'(props) {
                 return !props.bind.url;
-            }
-        }, {
-            type: props_1["@:{eprops#spliter~rs}"],
+            },
+        },
+        {
+            type: props_1['@:{eprops#spliter~rs}'],
             '@:{if.show~rs}'(props) {
                 return !props.text && config('getFieldUrl');
-            }
-        }, {
+            },
+        },
+        {
             tip: '@:{lang#props.bind.fields~rs}',
             key: 'bind',
-            type: props_1["@:{eprops#bind.field~rs}"],
+            type: props_1['@:{eprops#bind.field~rs}'],
             json: 1,
             //'@:{dock.top}': 1,
             max: 1,
             '@:{if.show~rs}'(props) {
                 return !props.text && config('getFieldUrl');
-            }
-        }, {
+            },
+        },
+        {
             tip: '@:{lang#props.format~rs}',
             key: 'format',
-            type: props_1["@:{eprops#format~rs}"],
+            type: props_1['@:{eprops#format~rs}'],
             json: 1,
             '@:{if.show~rs}'(props) {
                 return props.bind.url;
-            }
-        }, {
-            type: props_1["@:{eprops#spliter~rs}"]
-        }, {
+            },
+        },
+        {
+            type: props_1['@:{eprops#spliter~rs}'],
+        },
+        {
             tip: '@:{lang#mx-gallery.text.auto.return~rs}',
             type: props_1['@:{eprops#boolean~rs}'],
             key: 'autoReturn',
-            json: 1
-        }, {
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.richtext~rs}',
             type: props_1['@:{eprops#boolean~rs}'],
             key: 'richtext',
-            json: 1
-        }, {
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.font.size~rs}',
             key: 'fontsize',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1['@:{eprops#number~rs}'],
             min: 0,
             '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            json: 1
-        }, {
+            fixed: const_1['@:{const#unit.fixed~rs}'],
+            step: const_1['@:{const#unit.step~rs}'],
+            read: transform_1['@:{transform#to.show.value~rs}'],
+            write: transform_1['@:{transform#to.real.value~rs}'],
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.font.family~rs}',
             key: 'fontfamily',
-            type: props_1["@:{eprops#dropdown~rs}"],
-            items: const_1["@:{const#font.family~rs}"],
-            json: 1
-        }, {
+            type: props_1['@:{eprops#dropdown~rs}'],
+            items: const_1['@:{const#font.family~rs}'],
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.alpha~rs}',
             key: 'alpha',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1['@:{eprops#number~rs}'],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
-            json: 1
-        }, {
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.letter.spacing~rs}',
             key: 'letterspacing',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1['@:{eprops#number~rs}'],
             min: 0,
             '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            json: 1
-        }, {
+            fixed: const_1['@:{const#unit.fixed~rs}'],
+            step: const_1['@:{const#unit.step~rs}'],
+            read: transform_1['@:{transform#to.show.value~rs}'],
+            write: transform_1['@:{transform#to.real.value~rs}'],
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.background~rs}',
             key: 'background',
             clear: true,
             alpha: true,
-            type: props_1["@:{eprops#color~rs}"],
-            json: 1
-        }, {
+            type: props_1['@:{eprops#color~rs}'],
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.forecolor~rs}',
             key: 'forecolor',
-            type: props_1["@:{eprops#color~rs}"],
-            json: 1
-        }, {
+            type: props_1['@:{eprops#color~rs}'],
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.font.style~rs}',
-            type: props_1["@:{eprops#font.style~rs}"],
+            type: props_1['@:{eprops#font.style~rs}'],
             '@:{json.encode~rs}'(dest, props) {
                 dest.styleBold = props.styleBold;
                 dest.styleUnderline = props.styleUnderline;
                 dest.styleItalic = props.styleItalic;
                 dest.styleStrike = props.styleStrike;
                 dest.styleOverline = props.styleOverline;
-            }
-        }, {
+            },
+        },
+        {
             tip: '@:{lang#props.font.align~rs}',
-            type: props_1["@:{eprops#align~rs}"],
+            type: props_1['@:{eprops#align~rs}'],
             '@:{json.encode~rs}'(dest, props) {
                 dest.hpos = props.hpos;
                 dest.vpos = props.vpos;
-            }
-        }, {
-            type: props_1["@:{eprops#spliter~rs}"]
-        }, {
+            },
+        },
+        {
+            type: props_1['@:{eprops#spliter~rs}'],
+        },
+        {
             tip: '@:{lang#props.border.width~rs}',
             key: 'borderwidth',
-            type: props_1["@:{eprops#number~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            type: props_1['@:{eprops#number~rs}'],
+            fixed: const_1['@:{const#unit.fixed~rs}'],
+            step: const_1['@:{const#unit.step~rs}'],
+            read: transform_1['@:{transform#to.show.value~rs}'],
+            write: transform_1['@:{transform#to.real.value~rs}'],
             min: 0,
-            json: 1
-        }, {
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.border.type~rs}',
             key: 'bordertype',
-            type: props_1["@:{eprops#dropdown~rs}"],
+            type: props_1['@:{eprops#dropdown~rs}'],
             items: const_1['@:{const#border.types~rs}'],
-            json: 1
-        }, {
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.border.color~rs}',
             key: 'bordercolor',
-            type: props_1["@:{eprops#color~rs}"],
-            json: 1
-        }, {
-            type: props_1['@:{eprops#spliter~rs}']
-        }, {
-            tip: '@:{lang#props.help~rs}',
-            type: props_1["@:{eprops#link~rs}"],
-            key: 'help'
-        }, {
+            type: props_1['@:{eprops#color~rs}'],
+            json: 1,
+        },
+        {
+            type: props_1['@:{eprops#spliter~rs}'],
+        },
+        // {
+        //   tip: '@:{lang#props.help}',
+        //   type: Props['@:{eprops#link}'],
+        //   key: 'help',
+        // },
+        {
             tip: '@:{lang#props.title~rs}',
             key: 'ename',
-            type: props_1["@:{eprops#text.input~rs}"],
-            json: 1
-        }, {
+            type: props_1['@:{eprops#text.input~rs}'],
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.locked~rs}',
             key: 'locked',
-            type: props_1["@:{eprops#boolean~rs}"],
+            type: props_1['@:{eprops#boolean~rs}'],
             free: true,
-            json: 1
-        }]
+            json: 1,
+        },
+    ],
 });
 
 });

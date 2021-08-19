@@ -17,11 +17,18 @@ let props_1 = require("../../designer/props");
 let transform_1 = require("../../designer/transform");
 let normal_1 = require("../normal");
 let { State } = magix_1;
-let transformFields = ['width', 'height', 'borderLeftWidth', 'borderTopWidth', 'borderBottomWidth', 'borderRightWidth'];
+let transformFields = [
+    'width',
+    'height',
+    'borderLeftWidth',
+    'borderTopWidth',
+    'borderBottomWidth',
+    'borderRightWidth',
+];
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/hod-footer/dshow"
+            view: "elements/hod-footer/dshow",
         });
         let update = () => {
             let element = this.get('element');
@@ -35,25 +42,27 @@ module.exports= normal_1.extend({
         this.on('destroy', () => {
             State.off('@:{event#stage.page.change~rs}', update);
         });
-    }
+    },
 }).static({
     type: 'hod-footer',
     as: enum_1['@:{enum#as.hod~rs}'],
     title: '@:{lang#elements.print-footer~rs}',
     icon: '&#xe675;',
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.icon~rs}'] |
-        enum_1['@:{enum#modifier.nomask~rs}'],
+    '@:{modifier~rs}': enum_1['@:{enum#modifier.icon~rs}'] | enum_1['@:{enum#modifier.nomask~rs}'],
     '@:{allowed.to.hod~rs}': {
-        root: 1
+        root: 1,
     },
     '@:{allowed.total.count~rs}': 1,
-    '@:{move.props~rs}': [{
+    '@:{move.props~rs}': [
+        {
             key: 'x',
-            use: 'x'
-        }, {
+            use: 'x',
+        },
+        {
             key: 'y',
-            use: 'y'
-        }],
+            use: 'y',
+        },
+    ],
     '@:{update.props~rs}'(props) {
         let { rows } = props;
         let page = State.get('@:{global#stage.page~rs}');
@@ -85,10 +94,14 @@ module.exports= normal_1.extend({
             focusCol: -1,
             pinX: true,
             pinY: true,
-            help: '//github.com/xinglie/report-designer/issues/12',
-            rows: [{
+            // NOTICE: 去掉帮助信息
+            // help: '//github.com/xinglie/report-designer/issues/12',
+            help: '',
+            rows: [
+                {
                     height: const_1['@:{const#to.unit~rs}'](40),
-                    cols: [{
+                    cols: [
+                        {
                             width: page.width,
                             elements: [],
                             borderLeftTopRadius: 0,
@@ -106,13 +119,16 @@ module.exports= normal_1.extend({
                             borderRightColor: '#cccccc',
                             borderBottomStyle: 'dashed',
                             borderBottomWidth: 0,
-                            borderBottomColor: '#cccccc'
-                        }]
-                }],
-            locked: false
+                            borderBottomColor: '#cccccc',
+                        },
+                    ],
+                },
+            ],
+            locked: false,
         };
     },
-    props: [{
+    props: [
+        {
             key: 'rows',
             '@:{json.encode~rs}'(dest, { rows }) {
                 transform_1['@:{transform#json.encode.cells~rs}'](dest, rows, transformFields);
@@ -122,31 +138,35 @@ module.exports= normal_1.extend({
             },
             '@:{stage.scale~rs}'(props, step, dest) {
                 transform_1['@:{transform#stage.scale.cells~rs}'](props, step, transformFields, dest);
-            }
-        }, {
+            },
+        },
+        {
             //tip: '@:{lang#props.x}',
             //type: Props["@:{eprops#label}"],
             key: 'x',
             //read: Transform["@:{transform#to.show.value}"],
-            json: 1
-        }, {
+            json: 1,
+        },
+        {
             //tip: '@:{lang#props.y}',
             //type: Props["@:{eprops#label}"],
             key: 'y',
             //read: Transform["@:{transform#to.show.value}"],
-            json: 1
-        }, {
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.width~rs}',
             key: 'width',
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            type: props_1["@:{eprops#label~rs}"],
-            json: 1
-        }, {
+            read: transform_1['@:{transform#to.show.value~rs}'],
+            type: props_1['@:{eprops#label~rs}'],
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.height~rs}',
             key: 'height',
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            type: props_1["@:{eprops#label~rs}"],
-            json: 1
+            read: transform_1['@:{transform#to.show.value~rs}'],
+            type: props_1['@:{eprops#label~rs}'],
+            json: 1,
         } /*, {
             tip: '@:{lang#props.rotate}',
             type: Props["@:{eprops#number}"],
@@ -158,58 +178,66 @@ module.exports= normal_1.extend({
         {
             tip: '@:{lang#props.alpha~rs}',
             key: 'alpha',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1['@:{eprops#number~rs}'],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
-            json: 1
-        }, {
-            type: props_1["@:{eprops#spliter~rs}"],
+            json: 1,
+        },
+        {
+            type: props_1['@:{eprops#spliter~rs}'],
             '@:{if.show~rs}'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
-            }
-        }, {
+            },
+        },
+        {
             tip: '@:{lang#props.cell.size.height~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1['@:{eprops#number~rs}'],
             read(x, props) {
                 let row = props.rows[0];
-                return transform_1["@:{transform#to.show.value~rs}"](row.height);
+                return transform_1['@:{transform#to.show.value~rs}'](row.height);
             },
             write(x, props, e, changed) {
-                let v = transform_1["@:{transform#to.real.value~rs}"](x);
+                let v = transform_1['@:{transform#to.real.value~rs}'](x);
                 props.rows[0].height = v;
                 changed['@:{size~rs}'] = 1;
             },
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            min: () => const_1["@:{const#to.unit~rs}"](20),
+            fixed: const_1['@:{const#unit.fixed~rs}'],
+            step: const_1['@:{const#unit.step~rs}'],
+            min: () => const_1['@:{const#to.unit~rs}'](20),
             '@:{if.show~rs}'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
-            }
-        }, {
-            type: props_1["@:{eprops#cell.style~rs}"],
+            },
+        },
+        {
+            type: props_1['@:{eprops#cell.style~rs}'],
             '@:{if.show~rs}'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
-            }
-        }, {
-            type: props_1["@:{eprops#spliter~rs}"]
-        }, {
-            tip: '@:{lang#props.help~rs}',
-            type: props_1["@:{eprops#link~rs}"],
-            key: 'help'
-        }, {
+            },
+        },
+        {
+            type: props_1['@:{eprops#spliter~rs}'],
+        },
+        // {
+        //   tip: '@:{lang#props.help}',
+        //   type: Props['@:{eprops#link}'],
+        //   key: 'help',
+        // },
+        {
             tip: '@:{lang#props.title~rs}',
             key: 'ename',
-            type: props_1["@:{eprops#text.input~rs}"],
-            json: 1
-        }, {
+            type: props_1['@:{eprops#text.input~rs}'],
+            json: 1,
+        },
+        {
             tip: '@:{lang#props.locked~rs}',
             key: 'locked',
-            type: props_1["@:{eprops#boolean~rs}"],
+            type: props_1['@:{eprops#boolean~rs}'],
             free: true,
-            json: 1
-        }]
+            json: 1,
+        },
+    ],
 });
 
 });

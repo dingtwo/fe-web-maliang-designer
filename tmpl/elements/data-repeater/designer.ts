@@ -66,7 +66,8 @@ export default Normal.extend({
         repeat: 1,
         line: 1,
         rect: 1,
-        circle: 1
+        circle: 1,
+        'data-dtable': 1
     },
     '@:{move.props}': [{
         key: 'x',
