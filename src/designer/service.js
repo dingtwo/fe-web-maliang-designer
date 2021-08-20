@@ -201,6 +201,10 @@ RDService.add([
         url: config('getContentUrl'),
     },
     {
+        name: '@:{get.muti.content~rs}',
+        url: config('getMutiContentUrl'),
+    },
+    {
         name: '@:{post.by.url~rs}',
         '@:{method~rs}': 'post',
     },

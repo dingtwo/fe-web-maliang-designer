@@ -16,10 +16,10 @@ require("./toolbar-locker");
 require("./toolbar-del");
 require("./toolbar-scale");
 require("./toolbar-panels");
-let $quick_gl_2_static_node;
-let $quick_gh_static_text;
-let $quick_gl_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-fl rd-_assets_index_less_-flex rd-_assets_index_less_-hp100',};
-let $quick_gl_1_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-fr rd-_assets_index_less_-hp100',};
+let $quick_dc_2_static_node;
+let $quick_c9_static_text;
+let $quick_dc_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-fl rd-_assets_index_less_-flex rd-_assets_index_less_-hp100',};
+let $quick_dc_1_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-fr rd-_assets_index_less_-hp100',};
 
 /*
     author:https://github.com/xinglie
@@ -41,19 +41,19 @@ $vnode_2;
 $vnode_1=[];$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-do',}));$__line=3;$__art="{{if !mini}}";$__ctrl="if(!mini){";
 if(!mini){
 $vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-start',}),$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-cxv',}));
-}$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-avg',}),$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-align',}),$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-layer',}),$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-group',}),$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-locker',}),$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-del',}));$vnode_0=[$createVNode('div',$quick_gl_0_static_attr,$vnode_1)];$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-scale',})];
-if($quick_gl_2_static_node){
-$vnode_1.push($quick_gl_2_static_node);
+}$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-avg',}),$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-align',}),$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-layer',}),$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-group',}),$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-locker',}),$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-del',}));$vnode_0=[$createVNode('div',$quick_dc_0_static_attr,$vnode_1)];$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-scale',})];
+if($quick_dc_2_static_node){
+$vnode_1.push($quick_dc_2_static_node);
 }else{
-$vnode_1.push($quick_gl_2_static_node=$createVNode('i',{'_': 'ep','class': 'rd-_assets_index_less_-fl rd-_designer_toolbar_less_-toolbar-compact-spliter',}));
+$vnode_1.push($quick_dc_2_static_node=$createVNode('i',{'_': 'b^','class': 'rd-_assets_index_less_-fl rd-_designer_toolbar_less_-toolbar-compact-spliter',}));
 }
 $vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar-panels',}));
-if($quick_gl_2_static_node){
-$vnode_1.push($quick_gl_2_static_node);
+if($quick_dc_2_static_node){
+$vnode_1.push($quick_dc_2_static_node);
 }else{
-$vnode_1.push($quick_gl_2_static_node=$createVNode('i',{'_': 'ep','class': 'rd-_assets_index_less_-fl rd-_designer_toolbar_less_-toolbar-compact-spliter',}));
+$vnode_1.push($quick_dc_2_static_node=$createVNode('i',{'_': 'b^','class': 'rd-_assets_index_less_-fl rd-_designer_toolbar_less_-toolbar-compact-spliter',}));
 }
-$vnode_2=[$quick_gh_static_text||($quick_gh_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=20,$__art='{{if allOpen}}','');$__ctrl='<%if(allOpen){%>';if(allOpen){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-active'+($__line=20,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'mx5-click': $viewId+'@:{close.all.panel~rs}()','title': ($__line=20,$__art='{{=i18n(allOpen?\'@:{lang#panel.close.all~rs}\':\'@:{lang#panel.open.all}\')}}',$__ctrl='<%=i18n(allOpen?\'@:{lang#panel.close.all~rs}\':\'@:{lang#panel.open.all~rs}\')%>',(i18n(allOpen?'@:{lang#panel.close.all~rs}':'@:{lang#panel.open.all~rs}'))),'class': $$_class,},$vnode_2));$vnode_0.push($createVNode('div',$quick_gl_1_static_attr,$vnode_1)); 
+$vnode_2=[$quick_c9_static_text||($quick_c9_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=20,$__art='{{if allOpen}}','');$__ctrl='<%if(allOpen){%>';if(allOpen){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-active'+($__line=20,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'mx5-click': $viewId+'@:{close.all.panel~rs}()','title': ($__line=20,$__art='{{=i18n(allOpen?\'@:{lang#panel.close.all~rs}\':\'@:{lang#panel.open.all}\')}}',$__ctrl='<%=i18n(allOpen?\'@:{lang#panel.close.all~rs}\':\'@:{lang#panel.open.all~rs}\')%>',(i18n(allOpen?'@:{lang#panel.close.all~rs}':'@:{lang#panel.open.all~rs}'))),'class': $$_class,},$vnode_2));$vnode_0.push($createVNode('div',$quick_dc_1_static_attr,$vnode_1)); 
 
 return $createVNode($viewId,0,$vnode_0); 
 } catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/toolbar.html'; throw msg; }  } ,

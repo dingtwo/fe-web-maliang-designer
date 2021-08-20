@@ -7,10 +7,10 @@
 define("elements/data-celltable/dshow",["magix5","../../designer/const","../../designer/history","../../designer/stage-selection","../../gallery/mx-dragdrop/index","../../provider/hodbase","../subs/barcode","../subs/qrcode"],(require,exports,module)=>{
 require("../subs/barcode");
 require("../subs/qrcode");
-let $quick_f0_static_text;
-let $quick_gi_static_text;
-let $quick_gB_0_static_attr={'class': 'rd-_assets_index_less_-bottom-2 rd-_assets_index_less_-color-999 rd-_assets_index_less_-fontsize-10 rd-_assets_index_less_-iconfont rd-_assets_index_less_-pa rd-_assets_index_less_-pointer-events-none rd-_assets_index_less_-right-2',};
-let $quick_gB_1_static_attr={'class': 'rd-_assets_index_less_-ellipsis',};
+let $quick_cR_static_text;
+let $quick_d__static_text;
+let $quick_ds_0_static_attr={'class': 'rd-_assets_index_less_-bottom-2 rd-_assets_index_less_-color-999 rd-_assets_index_less_-fontsize-10 rd-_assets_index_less_-iconfont rd-_assets_index_less_-pa rd-_assets_index_less_-pointer-events-none rd-_assets_index_less_-right-2',};
+let $quick_ds_1_static_attr={'class': 'rd-_assets_index_less_-ellipsis',};
 
 /*
     author:https://github.com/xinglie
@@ -55,15 +55,15 @@ $vnode_4,
 $vnode_3,
 $vnode_2,
 $vnode_1;
-$text=($__line=2,$__art='{{set {max,min}=Math}}','');$__ctrl='<%let max=Math.max,min=Math.min;%>';let max=Math.max,min=Math.min;;$text+=' '+($__line=3,$__art='{{set {borderwidth:bw,bordertype,bordercolor,borderdeed,rows}=props}}','');$__ctrl='<%let bw=props.borderwidth,bordertype=props.bordertype,bordercolor=props.bordercolor,borderdeed=props.borderdeed,rows=props.rows;%>';let bw=props.borderwidth,bordertype=props.bordertype,bordercolor=props.bordercolor,borderdeed=props.borderdeed,rows=props.rows;;$text+=' '+($__line=4,$__art='{{set bwn=(borderdeed==\'collapse\'?1:2)*bw}}','');$__ctrl='<%let bwn=(borderdeed==\'collapse\'?1:2)*bw;%>';let bwn=(borderdeed=='collapse'?1:2)*bw;;$vnode_3=[];$__line=7;$__art="{{each rows as row ri}}";$__ctrl="for(let $q_c_xwuncsed=rows.length,ri=0;ri<$q_c_xwuncsed;ri++){let row=rows[ri];";
-for(let $q_c_xwuncsed=rows.length,ri=0;ri<$q_c_xwuncsed;ri+=1){
+$text=($__line=2,$__art='{{set {max,min}=Math}}','');$__ctrl='<%let max=Math.max,min=Math.min;%>';let max=Math.max,min=Math.min;;$text+=' '+($__line=3,$__art='{{set {borderwidth:bw,bordertype,bordercolor,borderdeed,rows}=props}}','');$__ctrl='<%let bw=props.borderwidth,bordertype=props.bordertype,bordercolor=props.bordercolor,borderdeed=props.borderdeed,rows=props.rows;%>';let bw=props.borderwidth,bordertype=props.bordertype,bordercolor=props.bordercolor,borderdeed=props.borderdeed,rows=props.rows;;$text+=' '+($__line=4,$__art='{{set bwn=(borderdeed==\'collapse\'?1:2)*bw}}','');$__ctrl='<%let bwn=(borderdeed==\'collapse\'?1:2)*bw;%>';let bwn=(borderdeed=='collapse'?1:2)*bw;;$vnode_3=[];$__line=7;$__art="{{each rows as row ri}}";$__ctrl="for(let $q_c_eqhowqqini=rows.length,ri=0;ri<$q_c_eqhowqqini;ri++){let row=rows[ri];";
+for(let $q_c_eqhowqqini=rows.length,ri=0;ri<$q_c_eqhowqqini;ri+=1){
 let row=rows[ri];
-$vnode_4=[];$__line=9;$__art="{{each row.cols as col ci}}";$__ctrl="for(let $q_a_xqhcsrl=row.cols,$q_c_yymzmkr=$q_a_xqhcsrl.length,ci=0;ci<$q_c_yymzmkr;ci++){let col=$q_a_xqhcsrl[ci];";
-for(let $q_a_xqhcsrl=row.cols,$q_c_yymzmkr=$q_a_xqhcsrl.length,ci=0;ci<$q_c_yymzmkr;ci+=1){
-let col=$q_a_xqhcsrl[ci];
+$vnode_4=[];$__line=9;$__art="{{each row.cols as col ci}}";$__ctrl="for(let $q_a_kruljzrcgg=row.cols,$q_c_zdjen=$q_a_kruljzrcgg.length,ci=0;ci<$q_c_zdjen;ci++){let col=$q_a_kruljzrcgg[ci];";
+for(let $q_a_kruljzrcgg=row.cols,$q_c_zdjen=$q_a_kruljzrcgg.length,ci=0;ci<$q_c_zdjen;ci+=1){
+let col=$q_a_kruljzrcgg[ci];
 $vnode_5=[];$__line=11;$__art="{{if !fs && col.type}}";$__ctrl="if(!fs && col.type){";
 if(!fs && col.type){
-$text=($__line=13,$__art='{{if col.type==\'text\'}}','');$__ctrl='<%if(col.type==\'text\'){%>';if(col.type=='text'){;$text+='  '+($__line=15,$__art='{{else if col.type==\'image\'}}','');$__ctrl='<%}else if(col.type==\'image\'){%>';}else if(col.type=='image'){;$text+='  '+($__line=17,$__art='{{else if col.type==\'barcode\'}}','');$__ctrl='<%}else if(col.type==\'barcode\'){%>';}else if(col.type=='barcode'){;$text+='  '+($__line=19,$__art='{{else if col.type==\'qrcode\'}}','');$__ctrl='<%}else if(col.type==\'qrcode\'){%>';}else if(col.type=='qrcode'){;$text+='  '+($__line=21,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_6=[$createVNode(0,$text)];$vnode_5.push($createVNode('i',$quick_gB_0_static_attr,$vnode_6));
+$text=($__line=13,$__art='{{if col.type==\'text\'}}','');$__ctrl='<%if(col.type==\'text\'){%>';if(col.type=='text'){;$text+='  '+($__line=15,$__art='{{else if col.type==\'image\'}}','');$__ctrl='<%}else if(col.type==\'image\'){%>';}else if(col.type=='image'){;$text+='  '+($__line=17,$__art='{{else if col.type==\'barcode\'}}','');$__ctrl='<%}else if(col.type==\'barcode\'){%>';}else if(col.type=='barcode'){;$text+='  '+($__line=19,$__art='{{else if col.type==\'qrcode\'}}','');$__ctrl='<%}else if(col.type==\'qrcode\'){%>';}else if(col.type=='qrcode'){;$text+='  '+($__line=21,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_6=[$createVNode(0,$text)];$vnode_5.push($createVNode('i',$quick_ds_0_static_attr,$vnode_6));
 }$text=($__line=24,$__art='{{set {paddingTop,paddingBottom,paddingLeft,paddingRight}=col}}','');$__ctrl='<%let paddingTop=col.paddingTop,paddingBottom=col.paddingBottom,paddingLeft=col.paddingLeft,paddingRight=col.paddingRight;%>';let paddingTop=col.paddingTop,paddingBottom=col.paddingBottom,paddingLeft=col.paddingLeft,paddingRight=col.paddingRight;;$text+=' '+($__line=25,$__art='{{set realWidth=col.width-bwn-toUnit(1),realHeight=col.height-bwn-toUnit(1)}}','');$__ctrl='<%let realWidth=col.width-bwn-toUnit(1),realHeight=col.height-bwn-toUnit(1);%>';let realWidth=col.width-bwn-toUnit(1),realHeight=col.height-bwn-toUnit(1);;$__line=26;$__art="{{if paddingTop>realHeight}}";$__ctrl="if(paddingTop>realHeight){";
 if(paddingTop>realHeight){
 ($__line=27,$__art='{{paddingTop=realHeight}}','');$__ctrl='<%paddingTop=realHeight%>';paddingTop=realHeight;
@@ -80,15 +80,15 @@ if(paddingLeft+paddingRight>realWidth){
 if(col.bindKey){
 $__line=40;$__art="{{if !fs&&!props.locked}}";$__ctrl="if(!fs&&!props.locked){";
 if(!fs&&!props.locked){
-$vnode_7=[$quick_f0_static_text||($quick_f0_static_text=$createVNode(0,''))];$vnode_6.push($createVNode('i',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-fontsize-10 rd-_assets_index_less_-gray rd-_assets_index_less_-iconfont rd-_assets_index_less_-pa rd-_assets_index_less_-right-2 rd-_assets_index_less_-top-2 rd-_assets_index_less_-touch-action-none','mx5-pointerdown': $viewId+'1@:{stop~rs}()','mx5-click': $viewId+'@:{delete.bind.field~rs}({row:'+($__line=41,$__art='{{=ri}}',$__ctrl='<%=ri%>',(ri))+',col:'+($__line=41,$__art='{{=ci}}',$__ctrl='<%=ci%>',(ci))+'})','title': ($__line=41,$__art='{{=i18n(\'@:{lang#elements.delete.bind.field~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#elements.delete.bind.field~rs}\')%>',(i18n('@:{lang#elements.delete.bind.field~rs}'))),},$vnode_7));
+$vnode_7=[$quick_cR_static_text||($quick_cR_static_text=$createVNode(0,''))];$vnode_6.push($createVNode('i',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-fontsize-10 rd-_assets_index_less_-gray rd-_assets_index_less_-iconfont rd-_assets_index_less_-pa rd-_assets_index_less_-right-2 rd-_assets_index_less_-top-2 rd-_assets_index_less_-touch-action-none','mx5-pointerdown': $viewId+'1@:{stop~rs}()','mx5-click': $viewId+'@:{delete.bind.field~rs}({row:'+($__line=41,$__art='{{=ri}}',$__ctrl='<%=ri%>',(ri))+',col:'+($__line=41,$__art='{{=ci}}',$__ctrl='<%=ci%>',(ci))+'})','title': ($__line=41,$__art='{{=i18n(\'@:{lang#elements.delete.bind.field~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#elements.delete.bind.field~rs}\')%>',(i18n('@:{lang#elements.delete.bind.field~rs}'))),},$vnode_7));
 }$vnode_6.push($createVNode(0,'[绑定:'+($__line=43,$__art='{{=col.bindName}}',$__ctrl='<%=col.bindName%>',(col.bindName))+']'));$__line=43;$__art="{{if !col.type}}";$__ctrl="if(!col.type){";
 if(!col.type){
-$vnode_6.push($quick_gi_static_text||($quick_gi_static_text=$createVNode(0,'，未指定格子内容')));
+$vnode_6.push($quick_d__static_text||($quick_d__static_text=$createVNode(0,'，未指定格子内容')));
 }
 }else if(($__line=44,$__art="{{else if col.type==\\'text\\'}}",$__ctrl="else if(col.type=='text'){"),col.type=='text'){
 $__line=45;$__art="{{if col.textContent}}";$__ctrl="if(col.textContent){";
 if(col.textContent){
-$vnode_7=[$createVNode(0,($__line=46,$__art='{{=col.textContent}}',$__ctrl='<%=col.textContent%>',(col.textContent)),1)];$vnode_6.push($createVNode('div',$quick_gB_1_static_attr,$vnode_7));
+$vnode_7=[$createVNode(0,($__line=46,$__art='{{=col.textContent}}',$__ctrl='<%=col.textContent%>',(col.textContent)),1)];$vnode_6.push($createVNode('div',$quick_ds_1_static_attr,$vnode_7));
 }
 }else if(($__line=48,$__art="{{else if col.type==\\'image\\'}}",$__ctrl="else if(col.type=='image'){"),col.type=='image'){
 $__line=49;$__art="{{if col.imageContent}}";$__ctrl="if(col.imageContent){";

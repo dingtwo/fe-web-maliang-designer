@@ -41,8 +41,6 @@ module.exports= () => {
     //递归遍历所有元素
     let walk = (es, collection) => {
         for (let { type, ctrl, props, id } of es) {
-            console.log('遍历每个元素', props, type, id);
-            // NOTICE: 额外添加数据源收集
             if (props.bind && props.bind.id) {
                 dataSources.add(props.bind.id);
             }

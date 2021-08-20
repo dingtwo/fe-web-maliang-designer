@@ -5,7 +5,7 @@
     loader:cmd_es
  */
 define("elements/batch-barcode/index",["magix5","../../provider/barcode"],(require,exports,module)=>{
-let $quick_gp_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-hp100 rd-_assets_index_less_-justify-content-center',};
+let $quick_dg_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-hp100 rd-_assets_index_less_-justify-content-center',};
 
 /*
     author:https://github.com/xinglie
@@ -27,7 +27,7 @@ $__line=1;$__art="{{if error||text}}";$__ctrl="if(error||text){";
 if(error||text){
 $vnode_1=[];$__line=3;$__art="{{if error}}";$__ctrl="if(error){";
 if(error){
-$vnode_2=[$createVNode(0,($__line=5,$__art='{{=error}}',$__ctrl='<%=error%>',(error)))];$vnode_1.push($createVNode('div',$quick_gp_0_static_attr,$vnode_2));
+$vnode_2=[$createVNode(0,($__line=5,$__art='{{=error}}',$__ctrl='<%=error%>',(error)))];$vnode_1.push($createVNode('div',$quick_dg_0_static_attr,$vnode_2));
 }else{
 $vnode_1.push($createVNode('img',{'id': '_rd_'+($__line=8,$__art='{{=$viewId}}','')+$viewId+'_bar','class': 'rd-_assets_index_less_-hp100 rd-_assets_index_less_-mwp100 rd-_assets_index_less_-tag-img rd-_assets_index_less_-wp100',},1));
 }$vnode_0.push($createVNode('div',{'class': 'rd-_assets_index_less_-overflow-hidden rd-_assets_index_less_-pa rd-_assets_index_less_-z-index-1','style': 'left:'+($__line=2,$__art='{{=props.x}}',$__ctrl='<%=props.x%>',(props.x))+($__line=2,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';top:'+($__line=2,$__art='{{=props.y}}',$__ctrl='<%=props.y%>',(props.y))+($__line=2,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=2,$__art='{{=props.height}}',$__ctrl='<%=props.height%>',(props.height))+($__line=2,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';opacity:'+($__line=2,$__art='{{=props.alpha}}',$__ctrl='<%=props.alpha%>',(props.alpha))+';width:'+($__line=2,$__art='{{=props.width}}',$__ctrl='<%=props.width%>',(props.width))+($__line=2,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';transform:rotate('+($__line=2,$__art='{{=props.rotate}}',$__ctrl='<%=props.rotate%>',(props.rotate))+'deg)',},$vnode_1));

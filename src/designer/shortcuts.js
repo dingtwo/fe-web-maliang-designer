@@ -5,14 +5,14 @@
     loader:cmd_es
  */
 define("designer/shortcuts",["magix5","./const"],(require,exports,module)=>{
-let $quick_f9_0_static_node;
-let $quick_f9_4_static_node;
-let $quick_f9_1_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-dialog-header rd-_assets_index_less_-dialog-header-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-position-sticky rd-_assets_index_less_-top-0 rd-_assets_index_less_-z-index-8',};
-let $quick_f9_2_static_attr={'class': 'rd-_assets_index_less_-tag-h5',};
-let $quick_f9_3_static_attr={'class': 'rd-_assets_index_less_-dialog-body',};
-let $quick_f9_6_static_attr={'class': 'rd-_assets_index_less_-width-220',};
-let $quick_f9_7_static_attr={'class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-display-inline-block rd-_assets_index_less_-tc rd-_designer_shortcuts_less_-key',};
-let $quick_f9_8_static_attr={'class': 'rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-pl10',};
+let $quick_c0_0_static_node;
+let $quick_c0_4_static_node;
+let $quick_c0_1_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-dialog-header rd-_assets_index_less_-dialog-header-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-position-sticky rd-_assets_index_less_-top-0 rd-_assets_index_less_-z-index-8',};
+let $quick_c0_2_static_attr={'class': 'rd-_assets_index_less_-tag-h5',};
+let $quick_c0_3_static_attr={'class': 'rd-_assets_index_less_-dialog-body',};
+let $quick_c0_6_static_attr={'class': 'rd-_assets_index_less_-width-220',};
+let $quick_c0_7_static_attr={'class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-display-inline-block rd-_assets_index_less_-tc rd-_designer_shortcuts_less_-key',};
+let $quick_c0_8_static_attr={'class': 'rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-pl10',};
 
 let magix_1 = require("magix5");
 let const_1 = require("./const");
@@ -284,30 +284,30 @@ $vnode_4,
 $vnode_3,
 $text;
 
-if($quick_f9_0_static_node){
-$vnode_0=[$quick_f9_0_static_node];
+if($quick_c0_0_static_node){
+$vnode_0=[$quick_c0_0_static_node];
 }else{
-$vnode_0=[$quick_f9_0_static_node=$createVNode('div',{'_': 'ep','class': 'rd-_assets_index_less_-dialog-header-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-7',})];
+$vnode_0=[$quick_c0_0_static_node=$createVNode('div',{'_': 'b^','class': 'rd-_assets_index_less_-dialog-header-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-7',})];
 }
-$vnode_2=[$createVNode(0,($__line=3,$__art='{{=i18n(\'@:{lang#all.shortcuts~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#all.shortcuts~rs}\')%>',(i18n('@:{lang#all.shortcuts~rs}'))))];$vnode_1=[$createVNode('h5',$quick_f9_2_static_attr,$vnode_2)];$vnode_2=[$createVNode(0,($__line=4,$__art='{{=i18n(\'@:{lang#site.name~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#site.name~rs}\')%>',(i18n('@:{lang#site.name~rs}')))+'设计方案及元素详细介绍')];$vnode_1.push($createVNode('a',{'class': 'rd-_assets_index_less_-ml10 rd-_assets_index_less_-tag-a','href': ($__line=4,$__art='{{=help}}',$__ctrl='<%=help%>',(help)),'rel': 'noopener noreferrer','target': '_blank',},$vnode_2));$vnode_0.push($createVNode('div',$quick_f9_1_static_attr,$vnode_1));$vnode_1=[];
-if($quick_f9_4_static_node){
-$vnode_1.push($quick_f9_4_static_node);
+$vnode_2=[$createVNode(0,($__line=3,$__art='{{=i18n(\'@:{lang#all.shortcuts~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#all.shortcuts~rs}\')%>',(i18n('@:{lang#all.shortcuts~rs}'))))];$vnode_1=[$createVNode('h5',$quick_c0_2_static_attr,$vnode_2)];$vnode_2=[$createVNode(0,($__line=4,$__art='{{=i18n(\'@:{lang#site.name~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#site.name~rs}\')%>',(i18n('@:{lang#site.name~rs}')))+'设计方案及元素详细介绍')];$vnode_1.push($createVNode('a',{'class': 'rd-_assets_index_less_-ml10 rd-_assets_index_less_-tag-a','href': ($__line=4,$__art='{{=help}}',$__ctrl='<%=help%>',(help)),'rel': 'noopener noreferrer','target': '_blank',},$vnode_2));$vnode_0.push($createVNode('div',$quick_c0_1_static_attr,$vnode_1));$vnode_1=[];
+if($quick_c0_4_static_node){
+$vnode_1.push($quick_c0_4_static_node);
 }else{
-$vnode_2=[$createVNode(0,'<div class="rd-_assets_index_less_-fontsize-16 rd-_assets_index_less_-width-220 rd-_designer_shortcuts_less_-padding-left-14">按键</div><div class="rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-fontsize-16 rd-_assets_index_less_-pl10">功能</div>',1)];$vnode_1.push($quick_f9_4_static_node=$createVNode('div',{'_': 'eq','class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_designer_shortcuts_less_-line rd-_designer_shortcuts_less_-odd',},$vnode_2));
+$vnode_2=[$createVNode(0,'<div class="rd-_assets_index_less_-fontsize-16 rd-_assets_index_less_-width-220 rd-_designer_shortcuts_less_-padding-left-14">按键</div><div class="rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-fontsize-16 rd-_assets_index_less_-pl10">功能</div>',1)];$vnode_1.push($quick_c0_4_static_node=$createVNode('div',{'_': 'b*','class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_designer_shortcuts_less_-line rd-_designer_shortcuts_less_-odd',},$vnode_2));
 }
-$__line=11;$__art="{{each list as st sti}}";$__ctrl="for(let $q_c_hiofjnje=list.length,sti=0;sti<$q_c_hiofjnje;sti++){let st=list[sti];";
-for(let $q_c_hiofjnje=list.length,sti=0;sti<$q_c_hiofjnje;sti+=1){
+$__line=11;$__art="{{each list as st sti}}";$__ctrl="for(let $q_c_lrxvz=list.length,sti=0;sti<$q_c_lrxvz;sti++){let st=list[sti];";
+for(let $q_c_lrxvz=list.length,sti=0;sti<$q_c_lrxvz;sti+=1){
 let st=list[sti];
-$vnode_3=[];$__line=14;$__art="{{each st[\\'@:{ks#keys~rs}\\'] as keys ki last}}";$__ctrl="for(let $q_a_qzfmk=st['@:{ks#keys~rs}'],$q_c_vhhrgv=$q_a_qzfmk.length,$q_lc_odowcinn=$q_c_vhhrgv-1,ki=0;ki<$q_c_vhhrgv;ki++){let keys=$q_a_qzfmk[ki];let last=ki===$q_lc_odowcinn;";
-for(let $q_a_qzfmk=st['@:{ks#keys~rs}'],$q_c_vhhrgv=$q_a_qzfmk.length,$q_lc_odowcinn=$q_c_vhhrgv-1,ki=0;ki<$q_c_vhhrgv;ki+=1){
-let keys=$q_a_qzfmk[ki];let last=ki===$q_lc_odowcinn;
-$vnode_4=[];$__line=16;$__art="{{each keys as k}}";$__ctrl="for(let $q_c_obaipkdea=keys.length,$q_key_uxnczatzao=0;$q_key_uxnczatzao<$q_c_obaipkdea;$q_key_uxnczatzao++){let k=keys[$q_key_uxnczatzao];";
-for(let $q_c_obaipkdea=keys.length,$q_key_uxnczatzao=0;$q_key_uxnczatzao<$q_c_obaipkdea;$q_key_uxnczatzao+=1){
-let k=keys[$q_key_uxnczatzao];
-$vnode_5=[$createVNode(0,($__line=17,$__art='{{=modKey(k)}}',$__ctrl='<%=modKey(k)%>',(modKey(k))))];$vnode_4.push($createVNode('kbd',$quick_f9_7_static_attr,$vnode_5));
+$vnode_3=[];$__line=14;$__art="{{each st[\\'@:{ks#keys~rs}\\'] as keys ki last}}";$__ctrl="for(let $q_a_ayoauoqjc=st['@:{ks#keys~rs}'],$q_c_hfngxcth=$q_a_ayoauoqjc.length,$q_lc_zgwpjbya=$q_c_hfngxcth-1,ki=0;ki<$q_c_hfngxcth;ki++){let keys=$q_a_ayoauoqjc[ki];let last=ki===$q_lc_zgwpjbya;";
+for(let $q_a_ayoauoqjc=st['@:{ks#keys~rs}'],$q_c_hfngxcth=$q_a_ayoauoqjc.length,$q_lc_zgwpjbya=$q_c_hfngxcth-1,ki=0;ki<$q_c_hfngxcth;ki+=1){
+let keys=$q_a_ayoauoqjc[ki];let last=ki===$q_lc_zgwpjbya;
+$vnode_4=[];$__line=16;$__art="{{each keys as k}}";$__ctrl="for(let $q_c_dxekvuxd=keys.length,$q_key_avjysche=0;$q_key_avjysche<$q_c_dxekvuxd;$q_key_avjysche++){let k=keys[$q_key_avjysche];";
+for(let $q_c_dxekvuxd=keys.length,$q_key_avjysche=0;$q_key_avjysche<$q_c_dxekvuxd;$q_key_avjysche+=1){
+let k=keys[$q_key_avjysche];
+$vnode_5=[$createVNode(0,($__line=17,$__art='{{=modKey(k)}}',$__ctrl='<%=modKey(k)%>',(modKey(k))))];$vnode_4.push($createVNode('kbd',$quick_c0_7_static_attr,$vnode_5));
 }$vnode_3.push($createVNode('div',{'class': 'rd-_assets_index_less_-display-inline-block rd-_designer_shortcuts_less_-keys-group','title': ($__line=15,$__art='{{=modTitle(keys)}}',$__ctrl='<%=modTitle(keys)%>',(modTitle(keys))),},$vnode_4));
-}$vnode_2=[$createVNode('div',$quick_f9_6_static_attr,$vnode_3)];$text=($__line=23,$__art='{{if st[\'@:{ks#dest.is.fn~rs}\']}}','');$__ctrl='<%if(st[\'@:{ks#dest.is.fn~rs}\']){%>';if(st['@:{ks#dest.is.fn~rs}']){;$text+=' '+($__line=24,$__art='{{=st[\'@:{ks#desc~rs}\']()}}',$__ctrl='<%=st[\'@:{ks#desc~rs}\']()%>',(st['@:{ks#desc~rs}']()))+' '+($__line=25,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$text+=' '+($__line=26,$__art='{{=st[\'@:{ks#desc~rs}\']}}',$__ctrl='<%=st[\'@:{ks#desc~rs}\']%>',(st['@:{ks#desc~rs}']))+' '+($__line=27,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_3=[$createVNode(0,$text)];$vnode_2.push($createVNode('div',$quick_f9_8_static_attr,$vnode_3));;$$_class='rd-_assets_index_less_-flex rd-_assets_index_less_-align-items-center rd-_designer_shortcuts_less_-line'+($__line=12,$__art='{{if sti%2}}','');$__ctrl='<%if(sti%2){%>';if(sti%2){;$$_class+=' rd-_designer_shortcuts_less_-odd'+($__line=12,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'class': $$_class,},$vnode_2));
-}$vnode_0.push($createVNode('div',$quick_f9_3_static_attr,$vnode_1)); 
+}$vnode_2=[$createVNode('div',$quick_c0_6_static_attr,$vnode_3)];$text=($__line=23,$__art='{{if st[\'@:{ks#dest.is.fn~rs}\']}}','');$__ctrl='<%if(st[\'@:{ks#dest.is.fn~rs}\']){%>';if(st['@:{ks#dest.is.fn~rs}']){;$text+=' '+($__line=24,$__art='{{=st[\'@:{ks#desc~rs}\']()}}',$__ctrl='<%=st[\'@:{ks#desc~rs}\']()%>',(st['@:{ks#desc~rs}']()))+' '+($__line=25,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$text+=' '+($__line=26,$__art='{{=st[\'@:{ks#desc~rs}\']}}',$__ctrl='<%=st[\'@:{ks#desc~rs}\']%>',(st['@:{ks#desc~rs}']))+' '+($__line=27,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_3=[$createVNode(0,$text)];$vnode_2.push($createVNode('div',$quick_c0_8_static_attr,$vnode_3));;$$_class='rd-_assets_index_less_-flex rd-_assets_index_less_-align-items-center rd-_designer_shortcuts_less_-line'+($__line=12,$__art='{{if sti%2}}','');$__ctrl='<%if(sti%2){%>';if(sti%2){;$$_class+=' rd-_designer_shortcuts_less_-odd'+($__line=12,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'class': $$_class,},$vnode_2));
+}$vnode_0.push($createVNode('div',$quick_c0_3_static_attr,$vnode_1)); 
 
 return $createVNode($viewId,0,$vnode_0); 
 } catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/shortcuts.html'; throw msg; }  } ,

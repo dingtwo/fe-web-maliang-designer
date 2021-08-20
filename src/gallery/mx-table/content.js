@@ -12,10 +12,10 @@ require("../mx-color/index");
 require("../mx-font/style");
 require("../mx-picture/index");
 require("../mx-format/index");
-let $quick_ia_3_static_node;
-let $quick_ia_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-margin-bottom-4',};
-let $quick_ia_1_static_attr={'class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',};
-let $quick_ia_2_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-flex rd-_assets_index_less_-mwp100 rd-_assets_index_less_-tag-label',};
+let $quick_e2_3_static_node;
+let $quick_e2_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-margin-bottom-4',};
+let $quick_e2_1_static_attr={'class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',};
+let $quick_e2_2_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-flex rd-_assets_index_less_-mwp100 rd-_assets_index_less_-tag-label',};
 let $special_2={'value':'value',};
 let $special_4={'checked':'checked',};
 
@@ -308,12 +308,12 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0=[],
 $vnode_2,
 $$_mx5$_view,
 $vnode_1;
-$__line=1;$__art="{{each list as e i last}}";$__ctrl="for(let $q_c_zruuekvdv=list.length,$q_lc_eiojhlnme=$q_c_zruuekvdv-1,i=0;i<$q_c_zruuekvdv;i++){let e=list[i];let last=i===$q_lc_eiojhlnme;";
-for(let $q_c_zruuekvdv=list.length,$q_lc_eiojhlnme=$q_c_zruuekvdv-1,i=0;i<$q_c_zruuekvdv;i+=1){
-let e=list[i];let last=i===$q_lc_eiojhlnme;
+$__line=1;$__art="{{each list as e i last}}";$__ctrl="for(let $q_c_pvkfebngq=list.length,$q_lc_kvvfmznn=$q_c_pvkfebngq-1,i=0;i<$q_c_pvkfebngq;i++){let e=list[i];let last=i===$q_lc_kvvfmznn;";
+for(let $q_c_pvkfebngq=list.length,$q_lc_kvvfmznn=$q_c_pvkfebngq-1,i=0;i<$q_c_pvkfebngq;i+=1){
+let e=list[i];let last=i===$q_lc_kvvfmznn;
 $__line=2;$__art="{{if !e[\\'@:{if.show~rs}\\']||e[\\'@:{if.show}\\'](cell)}}";$__ctrl="if(!e['@:{if.show~rs}']||e['@:{if.show~rs}'](cell)){";
 if(!e['@:{if.show~rs}']||e['@:{if.show~rs}'](cell)){
-$vnode_1=[];$vnode_2=[$createVNode(0,($__line=5,$__art='{{=i18n(e.tip)}}',$__ctrl='<%=i18n(e.tip)%>',(i18n(e.tip))))];$vnode_1.push($createVNode('span',$quick_ia_1_static_attr,$vnode_2));($__line=7,$__art='{{set data=cell[e.key]}}','');$__ctrl='<%let data=cell[e.key];%>';let data=cell[e.key];;$__line=8;$__art="{{if e.read}}";$__ctrl="if(e.read){";
+$vnode_1=[];$vnode_2=[$createVNode(0,($__line=5,$__art='{{=i18n(e.tip)}}',$__ctrl='<%=i18n(e.tip)%>',(i18n(e.tip))))];$vnode_1.push($createVNode('span',$quick_e2_1_static_attr,$vnode_2));($__line=7,$__art='{{set data=cell[e.key]}}','');$__ctrl='<%let data=cell[e.key];%>';let data=cell[e.key];;$__line=8;$__art="{{if e.read}}";$__ctrl="if(e.read){";
 if(e.read){
 ($__line=9,$__art='{{data=e.read(data,cell);}}','');$__ctrl='<%data=e.read(data,cell);%>';data=e.read(data,cell);;
 }$__line=11;$__art="{{if e.type==ptype[\\'@:{eprops#number~rs}\\']}}";$__ctrl="if(e.type==ptype['@:{eprops#number~rs}']){";
@@ -333,17 +333,17 @@ $vnode_1.push($createVNode('textarea',{'class': 'rd-_assets_index_less_-height-1
 $vnode_1.push($createVNode('input',{'class': 'rd-_assets_index_less_-input rd-_assets_index_less_-width-140','value': ($__line=24,$__art='{{=data}}',$__ctrl='<%=data%>',(data)),'disabled': ($temp_var=($__line=24,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-table/content.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-input': $viewId+'@:{update.prop~rs}({key:\''+($__line=24,$__art='{{=e.key}}',$__ctrl='<%=$encodeQuote(e.key)%>',($encodeQuote(e.key)))+'\',native:\'value\'})',},1,$special_2));
 }else if(($__line=25,$__art="{{else if e.type==ptype[\\'@:{eprops#boolean~rs}\\']}}",$__ctrl="else if(e.type==ptype['@:{eprops#boolean~rs}']){"),e.type==ptype['@:{eprops#boolean~rs}']){
 $vnode_2=[$createVNode('input',{'class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-switch-input','type': 'checkbox','checked': ($temp_var=($__line=27,$__art='{{=data}}',$__ctrl='<%=data%>',data),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"checked" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-table/content.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'disabled': ($temp_var=($__line=27,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-table/content.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-change': $viewId+'@:{update.prop~rs}({key:\''+($__line=27,$__art='{{=e.key}}',$__ctrl='<%=$encodeQuote(e.key)%>',($encodeQuote(e.key)))+'\',native:\'checked\'})',},1,$special_4)];
-if($quick_ia_3_static_node){
-$vnode_2.push($quick_ia_3_static_node);
+if($quick_e2_3_static_node){
+$vnode_2.push($quick_e2_3_static_node);
 }else{
-$vnode_2.push($quick_ia_3_static_node=$createVNode('i',{'_': 'ep','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-switch-button rd-_assets_index_less_-unselectable',}));
+$vnode_2.push($quick_e2_3_static_node=$createVNode('i',{'_': 'b^','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-switch-button rd-_assets_index_less_-unselectable',}));
 }
-$vnode_1.push($createVNode('label',$quick_ia_2_static_attr,$vnode_2));
+$vnode_1.push($createVNode('label',$quick_e2_2_static_attr,$vnode_2));
 }else if(($__line=30,$__art="{{else if e.type==ptype[\\'@:{eprops#image~rs}\\']}}",$__ctrl="else if(e.type==ptype['@:{eprops#image~rs}']){"),e.type==ptype['@:{eprops#image~rs}']){
 $vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'cell,list,disabled','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({key:\''+($__line=31,$__art='{{=e.key}}',$__ctrl='<%=$encodeQuote(e.key)%>',($encodeQuote(e.key)))+'\',use:\'src\'})','mx5-view': 'gallery/mx-picture/index?src='+($__line=31,$__art='{{#data}}',$__ctrl='<%#data,\'auto_key_cell.\'+(e.key)+\'.data\'%>',$keyOf($refData,data,'auto_key_cell.'+(e.key)+'.data'))+'&disabled='+($__line=31,$__art='{{#disabled}}',$__ctrl='<%#disabled,\'auto_key_disabled\'%>',$keyOf($refData,disabled,'auto_key_disabled')),}));
 }else if(($__line=32,$__art="{{else if e.type==ptype[\\'@:{eprops#format~rs}\\']}}",$__ctrl="else if(e.type==ptype['@:{eprops#format~rs}']){"),e.type==ptype['@:{eprops#format~rs}']){
 $vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'cell,list,disabled','class': 'rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.prop~rs}({key:\''+($__line=33,$__art='{{=e.key}}',$__ctrl='<%=$encodeQuote(e.key)%>',($encodeQuote(e.key)))+'\',use:\'format\'})','mx5-view': 'gallery/mx-format/index?format='+($__line=33,$__art='{{#data}}',$__ctrl='<%#data,\'auto_key_cell.\'+(e.key)+\'.data\'%>',$keyOf($refData,data,'auto_key_cell.'+(e.key)+'.data'))+'&disabled='+($__line=33,$__art='{{#disabled}}',$__ctrl='<%#disabled,\'auto_key_disabled\'%>',$keyOf($refData,disabled,'auto_key_disabled')),}));
-}$vnode_0.push($createVNode('div',$quick_ia_0_static_attr,$vnode_1));
+}$vnode_0.push($createVNode('div',$quick_e2_0_static_attr,$vnode_1));
 }
 } 
 

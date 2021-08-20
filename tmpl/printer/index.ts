@@ -208,26 +208,47 @@ export default View.extend({
             以下根据地址栏有无id来决定是否发送请求来获取某个id的具体内容
         */
     let { params } = parseUrl(location.href);
+    // 单独打印
     let contentUrl = config('getContentUrl');
-    console.log('______', params, contentUrl);
-    if (params.ids && contentUrl) {
-      let s = new Service();
-      s.all(
-        {
-          name: '@:{get.content}',
-          '@:{query}': params,
-        },
-        (ex, bag) => {
-          console.log('请求回来的初始数据', ex, bag);
-          if (!ex) {
-            //如果请求未有异常，则根据请求回来的数据进行渲染界面
-            let originStages = bag.get('data');
-            const stages = originStages.map(({ templateJson }) => templateJson);
-            this['@:{render.page.by.json}'](stages);
-          }
-        },
-      );
+    // 批量打印
+    let mutiContentUrl = config('getMutiContentUrl');
+    console.log('______', params, contentUrl, mutiContentUrl);
+    // 分两种,单个模板打印和批量打印
+    if (params && params.id) {
+      this['@:{get.stages}'](false, params);
+    } else if (params && params.ids) {
+      this['@:{get.stages}'](true, params);
     }
+  },
+
+  /**
+   * 获取模板
+   * @param {boolean} isMuti 是否批量打印
+   * @param {any} params 打印参数
+   */
+  '@:{get.stages}'(isMuti, params) {
+    let s = new Service();
+    const url = isMuti ? '@:{get.muti.content}' : '@:{get.content}';
+    s.all(
+      {
+        name: url,
+        '@:{query}': params,
+      },
+      (ex, bag) => {
+        console.log('请求回来的初始数据', ex, bag);
+        if (!ex) {
+          //如果请求未有异常，则根据请求回来的数据进行渲染界面
+          let stages;
+          if (isMuti) {
+            stages = bag.get('data').map(({ templateJson }) => templateJson);
+          } else {
+            stages = [bag.get('data.templateJson')];
+          }
+          console.log('打印模板', stages);
+          this['@:{render.page.by.json}'](stages);
+        }
+      },
+    );
   },
 
   /**
@@ -473,7 +494,14 @@ export default View.extend({
       return;
     }
     console.log('数据', stages);
-    const [stage, ...others] = stages;
+    // NOTICE: 为了兼容,有点丑陋
+    let stage,
+      others = [];
+    if (Array.isArray(stages)) {
+      [stage, ...others] = stages;
+    } else {
+      stage = stages;
+    }
     if (!stage) return;
     let { page, elements, unit } = stage;
     if (!page || !elements || !unit) return;
@@ -590,7 +618,15 @@ export default View.extend({
     // NOTICE: 理论上从这里再渲染一套就行了, 试试
     for (let i = 0; i < others.length; i++) {
       const otherStage = others[i];
-      await this['@:{fill.page}'](otherStage.elements, otherStage.page, pages, pagers, ox, oy, footerHeight);
+      await this['@:{fill.page}'](
+        otherStage.elements,
+        otherStage.page,
+        pages,
+        pagers,
+        ox,
+        oy,
+        footerHeight,
+      );
     }
     //设置页码器的总页数
     for (let pager of pagers) {

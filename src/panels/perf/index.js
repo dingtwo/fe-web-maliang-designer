@@ -5,8 +5,8 @@
     loader:cmd_es
  */
 define("panels/perf/index",["magix5"],(require,exports,module)=>{
-let $quick_im_0_static_node;
-let $quick_im_1_static_node;
+let $quick_fd_0_static_node;
+let $quick_fd_1_static_node;
 
 let magix_1 = require("magix5");
 let { View, applyStyle, node, mark, mix } = magix_1;
@@ -89,16 +89,16 @@ module.exports= View.extend({
 let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 $vnode_1;
 
-if($quick_im_0_static_node){
-$vnode_0=[$quick_im_0_static_node];
+if($quick_fd_0_static_node){
+$vnode_0=[$quick_fd_0_static_node];
 }else{
-$vnode_1=[$createVNode(0,'FPS')];$vnode_0=[$quick_im_0_static_node=$createVNode('div',{'_': 'ep','class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-fontsize-16 rd-_assets_index_less_-justify-content-center',},$vnode_1)];
+$vnode_1=[$createVNode(0,'FPS')];$vnode_0=[$quick_fd_0_static_node=$createVNode('div',{'_': 'b^','class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-fontsize-16 rd-_assets_index_less_-justify-content-center',},$vnode_1)];
 }
 $vnode_0.push($createVNode('div',{'class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-justify-content-center','id': ($__line=2,$__art='{{= $viewId}}','')+$viewId+'_fps_text',}),$createVNode('canvas',{'width': 400,'height': 60,'class': 'rd-_panels_perf_index_less_-canvas','id': ($__line=3,$__art='{{= $viewId}}','')+$viewId+'_fps_canvas',}));
-if($quick_im_1_static_node){
-$vnode_0.push($quick_im_1_static_node);
+if($quick_fd_1_static_node){
+$vnode_0.push($quick_fd_1_static_node);
 }else{
-$vnode_1=[$createVNode(0,'Memory(MB)')];$vnode_0.push($quick_im_1_static_node=$createVNode('div',{'_': 'eq','class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-fontsize-16 rd-_assets_index_less_-justify-content-center',},$vnode_1));
+$vnode_1=[$createVNode(0,'Memory(MB)')];$vnode_0.push($quick_fd_1_static_node=$createVNode('div',{'_': 'b*','class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-fontsize-16 rd-_assets_index_less_-justify-content-center',},$vnode_1));
 }
 $vnode_0.push($createVNode('div',{'class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-justify-content-center','id': ($__line=5,$__art='{{= $viewId}}','')+$viewId+'_mem_text',}),$createVNode('canvas',{'width': 400,'height': 60,'class': 'rd-_panels_perf_index_less_-canvas','id': ($__line=6,$__art='{{= $viewId}}','')+$viewId+'_mem_canvas',})); 
 
