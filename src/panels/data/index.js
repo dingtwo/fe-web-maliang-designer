@@ -6,10 +6,10 @@
  */
 define("panels/data/index",["magix5","../../designer/enum","../../designer/stage-generic","./branch"],(require,exports,module)=>{
 require("./branch");
-let $quick_dB_static_text;
-let $quick_f__0_static_attr={'class': 'rd-_assets_index_less_-padding-4 rd-_assets_index_less_-unselectable',};
-let $quick_f__1_static_attr={'class': 'rd-_assets_index_less_-background-color-fff rd-_panels_data_index_less_-search-input',};
-let $quick_f__2_static_attr={'class': 'rd-_assets_index_less_-color-999',};
+let $quick_ch_static_text;
+let $quick_dQ_0_static_attr={'class': 'rd-_assets_index_less_-padding-4 rd-_assets_index_less_-unselectable',};
+let $quick_dQ_1_static_attr={'class': 'rd-_assets_index_less_-background-color-fff rd-_panels_data_index_less_-search-input',};
+let $quick_dQ_2_static_attr={'class': 'rd-_assets_index_less_-color-999',};
 let $special_2={'value':'value',};
 
 /*
@@ -141,15 +141,15 @@ $vnode_0.push($createVNode(0,($__line=2,$__art='{{=error.message||error}}',$__ct
 }else{
 $vnode_1=[];$__line=5;$__art="{{if canUseBind}}";$__ctrl="if(canUseBind){";
 if(canUseBind){
-$vnode_2=[$createVNode('input',{'class': 'rd-_assets_index_less_-input rd-_assets_index_less_-position-sticky rd-_assets_index_less_-tag-input rd-_assets_index_less_-wp100','value': ($__line=8,$__art='{{=kw}}',$__ctrl='<%=kw%>',(kw)),'placeholder': '搜索数据源','mx5-input': $viewId+'@:{search.data.source~rs}()',},1,$special_2)];$vnode_3=[$quick_dB_static_text||($quick_dB_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_panels_data_index_less_-search-remove rd-_assets_index_less_-fontsize-14 rd-_assets_index_less_-pa rd-_assets_index_less_-cursor-pointer'+($__line=9,$__art='{{if !kw}}','');$__ctrl='<%if(!kw){%>';if(!kw){;$$_class+=' rd-_assets_index_less_-none'+($__line=9,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2.push($createVNode('i',{'mx5-click': $viewId+'@:{clear.keyword~rs}()','title': ($__line=9,$__art='{{=i18n(\'@:{lang#remove.keyword~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#remove.keyword~rs}\')%>',(i18n('@:{lang#remove.keyword~rs}'))),'class': $$_class,},$vnode_3));$vnode_1.push($createVNode('div',$quick_f__1_static_attr,$vnode_2));$__line=11;$__art="{{if source.length}}";$__ctrl="if(source.length){";
+$vnode_2=[$createVNode('input',{'class': 'rd-_assets_index_less_-input rd-_assets_index_less_-position-sticky rd-_assets_index_less_-tag-input rd-_assets_index_less_-wp100','value': ($__line=8,$__art='{{=kw}}',$__ctrl='<%=kw%>',(kw)),'placeholder': '搜索数据源','mx5-input': $viewId+'@:{search.data.source~rs}()',},1,$special_2)];$vnode_3=[$quick_ch_static_text||($quick_ch_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_panels_data_index_less_-search-remove rd-_assets_index_less_-fontsize-14 rd-_assets_index_less_-pa rd-_assets_index_less_-cursor-pointer'+($__line=9,$__art='{{if !kw}}','');$__ctrl='<%if(!kw){%>';if(!kw){;$$_class+=' rd-_assets_index_less_-none'+($__line=9,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2.push($createVNode('i',{'mx5-click': $viewId+'@:{clear.keyword~rs}()','title': ($__line=9,$__art='{{=i18n(\'@:{lang#remove.keyword~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#remove.keyword~rs}\')%>',(i18n('@:{lang#remove.keyword~rs}'))),'class': $$_class,},$vnode_3));$vnode_1.push($createVNode('div',$quick_dQ_1_static_attr,$vnode_2));$__line=11;$__art="{{if source.length}}";$__ctrl="if(source.length){";
 if(source.length){
 $vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'source,bindFieldsMap,readonly,kw','mx5-view': 'panels/data/branch?list='+($__line=12,$__art='{{#source}}',$__ctrl='<%#source,\'auto_key_source\'%>',$keyOf($refData,source,'auto_key_source'))+'&bindMap='+($__line=12,$__art='{{#bindFieldsMap}}',$__ctrl='<%#bindFieldsMap,\'auto_key_bindFieldsMap\'%>',$keyOf($refData,bindFieldsMap,'auto_key_bindFieldsMap'))+'&readonly='+($__line=12,$__art='{{#readonly}}',$__ctrl='<%#readonly,\'auto_key_readonly\'%>',$keyOf($refData,readonly,'auto_key_readonly'))+'&kw='+($__line=12,$__art='{{#kw}}',$__ctrl='<%#kw,\'auto_key_kw\'%>',$keyOf($refData,kw,'auto_key_kw')),'mx5-treeitempointerdown': $viewId+'@:{fix.drag.clip.bug~rs}()','mx5-contextmenu': $viewId+'@:{prevent~rs}()',}));
 }else if(($__line=13,$__art="{{else if kw}}",$__ctrl="else if(kw){"),kw){
-$vnode_2=[$createVNode(0,'暂无“'+($__line=14,$__art='{{=kw}}',$__ctrl='<%=kw%>',(kw))+'”数据')];$vnode_1.push($createVNode('span',$quick_f__2_static_attr,$vnode_2));
+$vnode_2=[$createVNode(0,'暂无“'+($__line=14,$__art='{{=kw}}',$__ctrl='<%=kw%>',(kw))+'”数据')];$vnode_1.push($createVNode('span',$quick_dQ_2_static_attr,$vnode_2));
 }
 }else{
 $vnode_1.push($createVNode(0,($__line=33,$__art='{{=i18n(\'@:{lang#data.choose.support.element~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#data.choose.support.element~rs}\')%>',(i18n('@:{lang#data.choose.support.element~rs}')))));
-}$vnode_0.push($createVNode('div',$quick_f__0_static_attr,$vnode_1));
+}$vnode_0.push($createVNode('div',$quick_dQ_0_static_attr,$vnode_1));
 } 
 
 return $createVNode($viewId,0,$vnode_0); 

@@ -141,12 +141,20 @@ let checkFlag = 0.1;
  */
 let fetchOneAPI = api => {
   console.log('获取数据接口', api, parseUrl(api));
-  const { params } = parseUrl(api);
+  // 当前接口的参数, sql 的 id
+  const { params: apiParams } = parseUrl(api);
   let extraParams = '';
-  if (params && params.id) {
-    const { params: apiParams } = parseUrl(window.location.href);
+  // 当前页面 url 的参数
+  const {
+    params: { params, order },
+  } = parseUrl(window.location.href);
+  if (apiParams && apiParams.id && params) {
     console.log('当前参数', apiParams);
-    extraParams = `&params=${encodeURIComponent(apiParams.params)}`;
+    extraParams = `&params=${encodeURIComponent(params)}`;
+  } else if (apiParams && apiParams.id && order) {
+    const orderParams = JSON.stringify({ $ORDER_CODE: order });
+    console.log('订单参数', orderParams);
+    extraParams = `&params=${encodeURIComponent(orderParams)}`;
   }
   // 从 api 中获取 id, 把参数传给对应的 id;
   return new Promise<void>(resolve => {
@@ -218,6 +226,9 @@ export default View.extend({
       this['@:{get.stages}'](false, params);
     } else if (params && params.ids) {
       this['@:{get.stages}'](true, params);
+    } else if (params && params.order) {
+      // 订单模式
+      this['@:{get.stages}'](false, params);
     }
   },
 
@@ -246,6 +257,8 @@ export default View.extend({
           }
           console.log('打印模板', stages);
           this['@:{render.page.by.json}'](stages);
+        } else {
+          Toast.show(ex.message);
         }
       },
     );

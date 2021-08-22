@@ -22,8 +22,8 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0=[],
 	i18n,}=$dataFromView,
 $$_class,
 $vnode_1;
-$__line=1;$__art="{{each panels as p i}}";$__ctrl="for(let $q_c_abqoqmq=panels.length,i=0;i<$q_c_abqoqmq;i++){let p=panels[i];";
-for(let $q_c_abqoqmq=panels.length,i=0;i<$q_c_abqoqmq;i+=1){
+$__line=1;$__art="{{each panels as p i}}";$__ctrl="for(let $q_c_krojrbcxx=panels.length,i=0;i<$q_c_krojrbcxx;i++){let p=panels[i];";
+for(let $q_c_krojrbcxx=panels.length,i=0;i<$q_c_krojrbcxx;i+=1){
 let p=panels[i];
 $__line=2;$__art="{{if p.icon}}";$__ctrl="if(p.icon){";
 if(p.icon){

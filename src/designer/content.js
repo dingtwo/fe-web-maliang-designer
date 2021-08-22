@@ -5,13 +5,13 @@
     loader:cmd_es
  */
 define("designer/content",["magix5","../gallery/mx-toast/index","../i18n/index","../provider/fs","./history","./tojson"],(require,exports,module)=>{
-let $quick_cV_0_static_node;
-let $quick_cV_3_static_node;
-let $quick_cV_6_static_node;
-let $quick_cV_1_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-dialog-header rd-_assets_index_less_-dialog-header-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-position-sticky rd-_assets_index_less_-top-0 rd-_assets_index_less_-z-index-8',};
-let $quick_cV_2_static_attr={'class': 'rd-_assets_index_less_-tag-h5',};
-let $quick_cV_4_static_attr={'class': 'rd-_assets_index_less_-dialog-body',};
-let $quick_cV_5_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-bottom-0 rd-_assets_index_less_-dialog-footer rd-_assets_index_less_-dialog-footer-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-justify-content-flex-end rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-6',};
+let $quick_bB_0_static_node;
+let $quick_bB_3_static_node;
+let $quick_bB_6_static_node;
+let $quick_bB_1_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-dialog-header rd-_assets_index_less_-dialog-header-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-position-sticky rd-_assets_index_less_-top-0 rd-_assets_index_less_-z-index-8',};
+let $quick_bB_2_static_attr={'class': 'rd-_assets_index_less_-tag-h5',};
+let $quick_bB_4_static_attr={'class': 'rd-_assets_index_less_-dialog-body',};
+let $quick_bB_5_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-bottom-0 rd-_assets_index_less_-dialog-footer rd-_assets_index_less_-dialog-footer-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-justify-content-flex-end rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-6',};
 let $special_2={'value':'value',};
 
 /*
@@ -65,22 +65,22 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 $vnode_2,
 $vnode_1;
 
-if($quick_cV_0_static_node){
-$vnode_0=[$quick_cV_0_static_node];
+if($quick_bB_0_static_node){
+$vnode_0=[$quick_bB_0_static_node];
 }else{
-$vnode_0=[$quick_cV_0_static_node=$createVNode('div',{'_': 'b^','class': 'rd-_assets_index_less_-dialog-header-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-7',})];
+$vnode_0=[$quick_bB_0_static_node=$createVNode('div',{'_': 'a^','class': 'rd-_assets_index_less_-dialog-header-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-7',})];
 }
-$vnode_2=[$createVNode(0,($__line=3,$__art='{{=i18n(\'@:{lang#save.content.title~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#save.content.title~rs}\')%>',(i18n('@:{lang#save.content.title~rs}'))))];$vnode_1=[$createVNode('h5',$quick_cV_2_static_attr,$vnode_2)];
-if($quick_cV_3_static_node){
-$vnode_1.push($quick_cV_3_static_node);
+$vnode_2=[$createVNode(0,($__line=3,$__art='{{=i18n(\'@:{lang#save.content.title~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#save.content.title~rs}\')%>',(i18n('@:{lang#save.content.title~rs}'))))];$vnode_1=[$createVNode('h5',$quick_bB_2_static_attr,$vnode_2)];
+if($quick_bB_3_static_node){
+$vnode_1.push($quick_bB_3_static_node);
 }else{
-$vnode_2=[$createVNode(0,'如何保存数据到数据库?')];$vnode_1.push($quick_cV_3_static_node=$createVNode('a',{'_': 'b*','class': 'rd-_assets_index_less_-ml10 rd-_assets_index_less_-tag-a','href': 'https://github.com/xinglie/report-designer/issues/29','rel': 'noopener noreferrer','target': '_blank',},$vnode_2));
+$vnode_2=[$createVNode(0,'如何保存数据到数据库?')];$vnode_1.push($quick_bB_3_static_node=$createVNode('a',{'_': 'a*','class': 'rd-_assets_index_less_-ml10 rd-_assets_index_less_-tag-a','href': 'https://github.com/xinglie/report-designer/issues/29','rel': 'noopener noreferrer','target': '_blank',},$vnode_2));
 }
-$vnode_0.push($createVNode('div',$quick_cV_1_static_attr,$vnode_1));$vnode_1=[$createVNode('textarea',{'class': 'rd-_assets_index_less_-textarea rd-_assets_index_less_-wp100 rd-_designer_content_less_-content-area','spellcheck': 'false','id': '_rd_ta_'+($__line=7,$__art='{{=$viewId}}','')+$viewId,'value': ($__line=7,$__art='{{=body}}',$__ctrl='<%=body%>',(body)),},0,$special_2)];$vnode_0.push($createVNode('div',$quick_cV_4_static_attr,$vnode_1));$vnode_2=[$createVNode(0,($__line=10,$__art='{{=i18n(\'@:{lang#btn.apply~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#btn.apply~rs}\')%>',(i18n('@:{lang#btn.apply~rs}'))))];$vnode_1=[$createVNode('button',{'mx5-click': $viewId+'@:{apply~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','type': 'button',},$vnode_2)];$vnode_2=[$createVNode(0,($__line=11,$__art='{{=i18n(\'@:{lang#btn.cancel~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#btn.cancel~rs}\')%>',(i18n('@:{lang#btn.cancel~rs}'))))];$vnode_1.push($createVNode('button',{'mx5-click': $viewId+'@:{cancel~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-ml10 rd-_assets_index_less_-tc','type': 'button',},$vnode_2));$vnode_0.push($createVNode('div',$quick_cV_5_static_attr,$vnode_1));
-if($quick_cV_6_static_node){
-$vnode_0.push($quick_cV_6_static_node);
+$vnode_0.push($createVNode('div',$quick_bB_1_static_attr,$vnode_1));$vnode_1=[$createVNode('textarea',{'class': 'rd-_assets_index_less_-textarea rd-_assets_index_less_-wp100 rd-_designer_content_less_-content-area','spellcheck': 'false','id': '_rd_ta_'+($__line=7,$__art='{{=$viewId}}','')+$viewId,'value': ($__line=7,$__art='{{=body}}',$__ctrl='<%=body%>',(body)),},0,$special_2)];$vnode_0.push($createVNode('div',$quick_bB_4_static_attr,$vnode_1));$vnode_2=[$createVNode(0,($__line=10,$__art='{{=i18n(\'@:{lang#btn.apply~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#btn.apply~rs}\')%>',(i18n('@:{lang#btn.apply~rs}'))))];$vnode_1=[$createVNode('button',{'mx5-click': $viewId+'@:{apply~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','type': 'button',},$vnode_2)];$vnode_2=[$createVNode(0,($__line=11,$__art='{{=i18n(\'@:{lang#btn.cancel~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#btn.cancel~rs}\')%>',(i18n('@:{lang#btn.cancel~rs}'))))];$vnode_1.push($createVNode('button',{'mx5-click': $viewId+'@:{cancel~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-ml10 rd-_assets_index_less_-tc','type': 'button',},$vnode_2));$vnode_0.push($createVNode('div',$quick_bB_5_static_attr,$vnode_1));
+if($quick_bB_6_static_node){
+$vnode_0.push($quick_bB_6_static_node);
 }else{
-$vnode_0.push($quick_cV_6_static_node=$createVNode('div',{'_': 'b{','class': 'rd-_assets_index_less_-dialog-footer-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-5',}));
+$vnode_0.push($quick_bB_6_static_node=$createVNode('div',{'_': 'a{','class': 'rd-_assets_index_less_-dialog-footer-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-5',}));
 }
  
 
