@@ -145,7 +145,7 @@ let fetchOneAPI = api => {
     let { params: apiParams } = parseUrl(api);
     let extraParams = '';
     // 当前页面 url 的参数
-    let { params: { params, order }, } = parseUrl(window.location.href);
+    let { params: { params, order, scene }, } = parseUrl(window.location.href);
     if (apiParams && apiParams.id && params) {
         console.log('当前参数', apiParams);
         extraParams = `&params=${encodeURIComponent(params)}`;
@@ -266,15 +266,15 @@ $vnode_1.push($createVNode('embed',{'src': ($__line=28,$__art='{{=pdf}}',$__ctrl
 }else if(($__line=29,$__art="{{else if sf==\\'rdPdf\\'}}",$__ctrl="else if(sf=='rdPdf'){"),sf=='rdPdf'){
 $vnode_1.push($createVNode('embed',{'src': ($__line=30,$__art='{{=rdPdf}}',$__ctrl='<%=rdPdf%>',(rdPdf)),'class': 'rd-_assets_index_less_-wp100 rd-_printer_index_less_-pdf-ifm','type': 'application/pdf',},1));
 }else{
-$__line=32;$__art="{{each pages as item pageIndex last}}";$__ctrl="for(let $q_c_sjakwl=pages.length,$q_lc_jjlsnld=$q_c_sjakwl-1,pageIndex=0;pageIndex<$q_c_sjakwl;pageIndex++){let item=pages[pageIndex];let last=pageIndex===$q_lc_jjlsnld;";
-for(let $q_c_sjakwl=pages.length,$q_lc_jjlsnld=$q_c_sjakwl-1,pageIndex=0;pageIndex<$q_c_sjakwl;pageIndex+=1){
-let item=pages[pageIndex];let last=pageIndex===$q_lc_jjlsnld;
+$__line=32;$__art="{{each pages as item pageIndex last}}";$__ctrl="for(let $q_c_ugacksb=pages.length,$q_lc_oqbbs=$q_c_ugacksb-1,pageIndex=0;pageIndex<$q_c_ugacksb;pageIndex++){let item=pages[pageIndex];let last=pageIndex===$q_lc_oqbbs;";
+for(let $q_c_ugacksb=pages.length,$q_lc_oqbbs=$q_c_ugacksb-1,pageIndex=0;pageIndex<$q_c_ugacksb;pageIndex+=1){
+let item=pages[pageIndex];let last=pageIndex===$q_lc_oqbbs;
 $vnode_2=[];$__line=34;$__art="{{if sf==\\'web\\'}}";$__ctrl="if(sf=='web'){";
 if(sf=='web'){
-$__line=35;$__art="{{each item as e}}";$__ctrl="for(let $q_c_hqzfzdm=item.length,$q_key_jwsoqp=0;$q_key_jwsoqp<$q_c_hqzfzdm;$q_key_jwsoqp++){let e=item[$q_key_jwsoqp];";
-for(let $q_c_hqzfzdm=item.length,$q_key_jwsoqp=0;$q_key_jwsoqp<$q_c_hqzfzdm;$q_key_jwsoqp+=1){
-let e=item[$q_key_jwsoqp];
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'pages,unit','mx5-view': 'elements/'+($__line=36,$__art='{{=e.type}}',$__ctrl='<%=e.type%>',(e.type))+'/index?props='+($__line=36,$__art='{{#e.props}}',$__ctrl='<%#e.props,\'auto_key_pages.\'+(pageIndex)+\'.\'+($q_key_jwsoqp)+\'.e.props\'%>',$keyOf($refData,e.props,'auto_key_pages.'+(pageIndex)+'.'+($q_key_jwsoqp)+'.e.props'))+'&unit='+($__line=36,$__art='{{#unit}}',$__ctrl='<%#unit,\'auto_key_unit\'%>',$keyOf($refData,unit,'auto_key_unit')),}));
+$__line=35;$__art="{{each item as e}}";$__ctrl="for(let $q_c_gdzlbhwy=item.length,$q_key_dpiyqnypc=0;$q_key_dpiyqnypc<$q_c_gdzlbhwy;$q_key_dpiyqnypc++){let e=item[$q_key_dpiyqnypc];";
+for(let $q_c_gdzlbhwy=item.length,$q_key_dpiyqnypc=0;$q_key_dpiyqnypc<$q_c_gdzlbhwy;$q_key_dpiyqnypc+=1){
+let e=item[$q_key_dpiyqnypc];
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'$': 'pages,unit','mx5-view': 'elements/'+($__line=36,$__art='{{=e.type}}',$__ctrl='<%=e.type%>',(e.type))+'/index?props='+($__line=36,$__art='{{#e.props}}',$__ctrl='<%#e.props,\'auto_key_pages.\'+(pageIndex)+\'.\'+($q_key_dpiyqnypc)+\'.e.props\'%>',$keyOf($refData,e.props,'auto_key_pages.'+(pageIndex)+'.'+($q_key_dpiyqnypc)+'.e.props'))+'&unit='+($__line=36,$__art='{{#unit}}',$__ctrl='<%#unit,\'auto_key_unit\'%>',$keyOf($refData,unit,'auto_key_unit')),}));
 }
 }else if(($__line=38,$__art="{{else if sf==\\'image\\' && images}}",$__ctrl="else if(sf=='image' && images){"),sf=='image' && images){
 $vnode_2.push($createVNode('img',{'class': 'rd-_assets_index_less_-mwp100 rd-_assets_index_less_-tag-img','src': ($__line=39,$__art='{{=images[pageIndex]}}',$__ctrl='<%=images[pageIndex]%>',(images[pageIndex])),},1));
@@ -330,6 +330,10 @@ return $createVNode($viewId,0,$vnode_0);
             this['@:{get.stages~rs}'](true, params);
         }
         else if (params && params.order) {
+            if (!params.scene) {
+                index_3.show('没有找到场景参数');
+                return Promise.reject('没有找到场景参数');
+            }
             // 订单模式
             this['@:{get.stages~rs}'](false, params);
         }

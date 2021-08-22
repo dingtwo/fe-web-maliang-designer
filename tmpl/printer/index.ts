@@ -146,7 +146,7 @@ let fetchOneAPI = api => {
   let extraParams = '';
   // 当前页面 url 的参数
   const {
-    params: { params, order },
+    params: { params, order, scene },
   } = parseUrl(window.location.href);
   if (apiParams && apiParams.id && params) {
     console.log('当前参数', apiParams);
@@ -227,6 +227,10 @@ export default View.extend({
     } else if (params && params.ids) {
       this['@:{get.stages}'](true, params);
     } else if (params && params.order) {
+      if (!params.scene) {
+        Toast.show('没有找到场景参数');
+        return Promise.reject('没有找到场景参数');
+      }
       // 订单模式
       this['@:{get.stages}'](false, params);
     }
