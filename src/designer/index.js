@@ -82,22 +82,25 @@ let ApplyState = ({ json }) => {
     let select = State.get('@:{global#stage.select.elements~rs}');
     let xLines = State.get('@:{global#stage.x.help.lines~rs}');
     let yLines = State.get('@:{global#stage.y.help.lines~rs}');
-    let { page: jsonPage, elements: jsonElements, xLines: jsonXLines, yLines: jsonYLines, clipboard: jsonClipboard, select: jsonSelect } = json;
+    let { page: jsonPage, elements: jsonElements, xLines: jsonXLines, yLines: jsonYLines, clipboard: jsonClipboard, select: jsonSelect, } = json;
     mix(page, jsonPage);
-    let { '@:{emanager#elements~rs}': lElements, '@:{emanager#map~rs}': map } = index_1["@:{element.manager#by.json~rs}"](jsonElements, page);
+    let { '@:{emanager#elements~rs}': lElements, '@:{emanager#map~rs}': map } = index_1['@:{element.manager#by.json~rs}'](jsonElements, page);
     elements.length = 0;
     elements.push(...lElements); //设计区元素
     xLines.length = 0;
-    if (jsonXLines) { //水平辅助线
+    if (jsonXLines) {
+        //水平辅助线
         xLines.push(...jsonXLines);
     }
     yLines.length = 0;
-    if (jsonYLines) { //垂直辅助线
+    if (jsonYLines) {
+        //垂直辅助线
         yLines.push(...jsonYLines);
     }
     let sMap = {};
     select.length = 0;
-    if (jsonSelect) { //历史处于选中状态的元素
+    if (jsonSelect) {
+        //历史处于选中状态的元素
         for (let s of jsonSelect) {
             let e = map[s.id];
             if (e) {
@@ -115,7 +118,7 @@ let ApplyState = ({ json }) => {
         '@:{global#stage.unit~rs}': json.unit || const_1['@:{const#unit~rs}'],
         '@:{global#stage.scale~rs}': json.scale || 1,
         '@:{global#stage.clipboard~rs}': jsonClipboard,
-        '@:{global#stage.elements.groups~rs}': json.groups
+        '@:{global#stage.elements.groups~rs}': json.groups,
     });
 };
 /**
@@ -124,14 +127,16 @@ let ApplyState = ({ json }) => {
  * @param toggleHeight 是否打开或关闭内容
  */
 let TogglePanel = (index, toggleHeight) => {
-    let panels = index_6["@:{support.panels~rs}"]();
+    let panels = index_6['@:{support.panels~rs}']();
     let dest = panels[index];
     if (dest) {
-        if (toggleHeight) { //仅展示可折叠内容
-            index_6["@:{toggle.panel.height~rs}"](dest.id);
+        if (toggleHeight) {
+            //仅展示可折叠内容
+            index_6['@:{toggle.panel.height~rs}'](dest.id);
         }
-        else { //展示可隐藏面板
-            index_6["@:{toggle.panel~rs}"](dest.id);
+        else {
+            //展示可隐藏面板
+            index_6['@:{toggle.panel~rs}'](dest.id);
         }
     }
 };
@@ -156,11 +161,13 @@ let MagixBusyTip = (e) => {
 let convertUnitOfProps = (dest, ctrl, toUnit, fixed) => {
     let v, changed;
     for (let df of ctrl.props) {
-        if (df['@:{unit.convert~rs}']) { //属性有unit.convert方法，表明这个属性单位转换比较复杂，交与提供的方法进行转换
+        if (df['@:{unit.convert~rs}']) {
+            //属性有unit.convert方法，表明这个属性单位转换比较复杂，交与提供的方法进行转换
             changed = 1;
             df['@:{unit.convert~rs}'](dest, toUnit);
         }
-        else if (df['@:{is.scale.and.unit.field~rs}']) { //表明这个属性需要单位转换，那就使用我们默认的单位转换进行计算
+        else if (df['@:{is.scale.and.unit.field~rs}']) {
+            //表明这个属性需要单位转换，那就使用我们默认的单位转换进行计算
             changed = 1;
             v = const_1['@:{const#unit.to.unit~rs}'](dest[df.key], toUnit);
             if (fixed) {
@@ -178,7 +185,8 @@ let convertUnitOfProps = (dest, ctrl, toUnit, fixed) => {
  */
 let convertToUnit = (elements, toUnit, refNormalPorps, refFlowConnectorProps) => {
     let update;
-    if (!refNormalPorps) { //普通属性和流程图连线元素有更新顺序，普通在前，连接线在后
+    if (!refNormalPorps) {
+        //普通属性和流程图连线元素有更新顺序，普通在前，连接线在后
         update = 1; //因为该方法被递归，而事件只需要触发一次，这里使用update进行控制
         refNormalPorps = [];
         refFlowConnectorProps = [];
@@ -189,8 +197,7 @@ let convertToUnit = (elements, toUnit, refNormalPorps, refFlowConnectorProps) =>
         //转换属性列表中需要单位转换的属性，并不是所有的都需要转换，因此这里只对有转换的进行后续的属性更新
         if (convertUnitOfProps(props, ctrl, toUnit)) {
             if (ctrl['@:{update.props~rs}']) {
-                if (flowProvider &&
-                    flowProvider['@:{flow.provider#is.connector~rs}'](m)) {
+                if (flowProvider && flowProvider['@:{flow.provider#is.connector~rs}'](m)) {
                     refFlowConnectorProps.push([ctrl['@:{update.props~rs}'], props]);
                 }
                 else {
@@ -212,7 +219,7 @@ let convertToUnit = (elements, toUnit, refNormalPorps, refFlowConnectorProps) =>
     if (update) {
         //先设置目标单位，再更新元素的其它属性
         State.set({
-            '@:{global#stage.unit~rs}': toUnit
+            '@:{global#stage.unit~rs}': toUnit,
         });
         let allProps = refNormalPorps.concat(refFlowConnectorProps);
         for (let [update, p] of allProps) {
@@ -234,7 +241,7 @@ if (!DEBUG && false) {
             unboot();
         }
     };
-    index_3["@:{task.add~rs}"](2000, task);
+    index_3['@:{task.add~rs}'](2000, task);
 }
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
@@ -286,13 +293,16 @@ return $createVNode($viewId,0,$vnode_0);
             '@:{global#stage.elements.groups.linked~rs}': false,
             '@:{global#stage.x.help.lines~rs}': [],
             '@:{global#stage.y.help.lines~rs}': [],
-            '@:{global#stage.clipboard~rs}': {}
+            '@:{global#stage.clipboard~rs}': {},
         });
         let clearStageElements = (e) => {
+            //清空设计区元素
             let xLines = State.get('@:{global#stage.x.help.lines~rs}');
             let yLines = State.get('@:{global#stage.y.help.lines~rs}');
             let elements = State.get('@:{global#stage.elements~rs}');
-            this.confirm(index_5(e['@:{clear.events#action~rs}'] == '@:{clear.events#new~rs}' ? '@:{lang#create.new.page.confirm~rs}' : '@:{lang#clear.stage.element.confirm~rs}'), () => {
+            this.confirm(index_5(e['@:{clear.events#action~rs}'] == '@:{clear.events#new~rs}'
+                ? '@:{lang#create.new.page.confirm~rs}'
+                : '@:{lang#clear.stage.element.confirm~rs}'), () => {
                 xLines.length = 0;
                 yLines.length = 0;
                 if (e['@:{clear.events#action~rs}'] !== '@:{clear.events#new~rs}' &&
@@ -304,22 +314,24 @@ return $createVNode($viewId,0,$vnode_0);
                 else {
                     stage_clipboard_1['@:{clear~rs}']();
                     State.set({
-                        '@:{global#stage.unit~rs}': const_1['@:{const#unit~rs}']
+                        '@:{global#stage.unit~rs}': const_1['@:{const#unit~rs}'],
                     });
                     elements = [];
                     let pageCtrl = State.get('@:{global#stage.page.ctrl~rs}');
                     let page = pageCtrl['@:{get.props~rs}']();
                     State.set({
-                        '@:{global#stage.page~rs}': page
+                        '@:{global#stage.page~rs}': page,
                     });
                 }
                 State.set({
                     '@:{global#stage.elements~rs}': elements,
-                    '@:{global#stage.elements.groups~rs}': {}
+                    '@:{global#stage.elements.groups~rs}': {},
                 });
-                stage_selection_1["@:{selection#set~rs}"]();
+                stage_selection_1['@:{selection#set~rs}']();
                 State.fire('@:{event#stage.page.and.elements.change~rs}');
-                history_1["@:{history#save~rs}"](history_1[e['@:{clear.events#action~rs}'] == '@:{clear.events#new~rs}' ? '@:{history#new.page~rs}' : '@:{history#clear.stage~rs}']);
+                history_1['@:{history#save~rs}'](history_1[e['@:{clear.events#action~rs}'] == '@:{clear.events#new~rs}'
+                    ? '@:{history#new.page~rs}'
+                    : '@:{history#clear.stage~rs}']);
             });
         };
         /**
@@ -332,18 +344,19 @@ return $createVNode($viewId,0,$vnode_0);
             xLines.length = 0;
             yLines.length = 0;
             let stageNode = node('_rd_stage');
-            if (stageNode) { //滚动到设计区域的左上角
+            if (stageNode) {
+                //滚动到设计区域的左上角
                 stageNode.scrollLeft = 0;
                 stageNode.scrollTop = 0;
             }
             let { page, groups, elements, unit } = e['@:{excample.change.event#stage~rs}'];
             State.set({
-                '@:{global#stage.unit~rs}': unit || const_1['@:{const#unit~rs}']
+                '@:{global#stage.unit~rs}': unit || const_1['@:{const#unit~rs}'],
             });
             let pageCtrl = State.get('@:{global#stage.page.ctrl~rs}');
-            let newPage = pageCtrl["@:{get.props~rs}"]();
+            let newPage = pageCtrl['@:{get.props~rs}']();
             mix(newPage, page); //更新设计区属性
-            let { '@:{emanager#elements~rs}': lElements, '@:{emanager#props~rs}': delayUpdateProps, '@:{emanager#id.map~rs}': idMap } = index_1["@:{element.manager#by.json~rs}"](elements, newPage, 1);
+            let { '@:{emanager#elements~rs}': lElements, '@:{emanager#props~rs}': delayUpdateProps, '@:{emanager#id.map~rs}': idMap, } = index_1['@:{element.manager#by.json~rs}'](elements, newPage, 1);
             let newGroups = {}; //生成新的组合信息
             groups || (groups = []);
             for (let list of groups) {
@@ -357,18 +370,19 @@ return $createVNode($viewId,0,$vnode_0);
             State.set({
                 '@:{global#stage.page~rs}': newPage,
                 '@:{global#stage.elements~rs}': lElements || [],
-                '@:{global#stage.elements.groups~rs}': newGroups
+                '@:{global#stage.elements.groups~rs}': newGroups,
             });
-            stage_selection_1["@:{selection#set~rs}"](); //取消选择元素
+            stage_selection_1['@:{selection#set~rs}'](); //取消选择元素
             stage_clipboard_1['@:{clear~rs}']();
             State.fire('@:{event#stage.page.and.elements.change~rs}');
-            if (delayUpdateProps) { //更新所有元素的动态计算属性
+            if (delayUpdateProps) {
+                //更新所有元素的动态计算属性
                 for (let [ctrl, ps] of delayUpdateProps) {
                     ctrl['@:{update.props~rs}'](ps);
                 }
             }
             //保存历史记录
-            history_1["@:{history#save~rs}"](e['@:{excample.change.event#type~rs}'], e['@:{excample.change.event#title~rs}']);
+            history_1['@:{history#save~rs}'](e['@:{excample.change.event#type~rs}'], e['@:{excample.change.event#title~rs}']);
         };
         /**
          * 保存内容
@@ -382,8 +396,7 @@ return $createVNode($viewId,0,$vnode_0);
                     this['@:{saving~rs}'] = 1;
                     let { params } = parseUrl(location.href);
                     try {
-                        if (!params.id &&
-                            this['@:{saved.id~rs}']) {
+                        if (!params.id && this['@:{saved.id~rs}']) {
                             let copied = { ...params };
                             copied.id = this['@:{saved.id~rs}'];
                             params = copied;
@@ -393,7 +406,7 @@ return $createVNode($viewId,0,$vnode_0);
                             name: '@:{save.content~rs}',
                             // '@:{body}': `stage=${ToJSON()}`,
                             '@:{body~rs}': JSON.stringify({ templateJSON: tojson_1() }),
-                            '@:{query~rs}': params
+                            '@:{query~rs}': params,
                         }, (ex, bag) => {
                             if (ex) {
                                 index_4.hide();
@@ -422,7 +435,7 @@ return $createVNode($viewId,0,$vnode_0);
             }
             else if (const_1['@:{const#save.show.stage.content~rs}']) {
                 this.mxDialog("designer/content", {
-                    width: Math.max(1000, screen.width - 200)
+                    width: Math.max(1000, screen.width - 200),
                 });
             }
         };
@@ -435,40 +448,35 @@ return $createVNode($viewId,0,$vnode_0);
                 !e['@:{keypress#is.key.down~rs}'] ||
                 e['@:{keypress#active.is.input~rs}'])
                 return;
-            let { '@:{keypress#code~rs}': code, '@:{keypress#shift.key~rs}': shiftKey, '@:{keypress#ctrl.key~rs}': ctrlKey, '@:{keypress#alt.key~rs}': altKey } = e;
-            if (code == keyboard_1["@:{key#z~rs}"] &&
-                shiftKey &&
-                !ctrlKey) { //shift+z，打开或关闭所有面板
-                let allOpen = index_6["@:{is.all.opened~rs}"]();
+            let { '@:{keypress#code~rs}': code, '@:{keypress#shift.key~rs}': shiftKey, '@:{keypress#ctrl.key~rs}': ctrlKey, '@:{keypress#alt.key~rs}': altKey, } = e;
+            if (code == keyboard_1['@:{key#z~rs}'] && shiftKey && !ctrlKey) {
+                //shift+z，打开或关闭所有面板
+                let allOpen = index_6['@:{is.all.opened~rs}']();
                 if (allOpen) {
-                    index_6["@:{close.all.panels~rs}"]();
+                    index_6['@:{close.all.panels~rs}']();
                 }
                 else {
-                    index_6["@:{open.all.panels~rs}"]();
+                    index_6['@:{open.all.panels~rs}']();
                 }
             }
-            else if (!ctrlKey &&
-                has(CodesMap, code)) { //单纯按下数字1-5
+            else if (!ctrlKey && has(CodesMap, code)) {
+                //单纯按下数字1-5
                 TogglePanel(CodesMap[code], shiftKey);
             }
-            else if (shiftKey &&
-                code == keyboard_1["@:{key#slash~rs}"]) { // shift+/ 显示快捷键
+            else if (shiftKey && code == keyboard_1['@:{key#slash~rs}']) {
+                // shift+/ 显示快捷键
                 if (const_1['@:{const#shortcuts.dialog.and.help.icon~rs}']) {
-                    shortcuts_1["@:{show~rs}"](this);
+                    shortcuts_1['@:{show~rs}'](this);
                 }
             }
-            else if (ctrlKey &&
-                code == keyboard_1["@:{key#s~rs}"]) {
+            else if (ctrlKey && code == keyboard_1['@:{key#s~rs}']) {
                 //如果是ctrl+s或cmd+s，显示保存
                 e['@:{keypress#prevent.default~rs}']();
                 State.fire('@:{event#stage.save.content~rs}', {
-                    '@:{save.content.event#shift.key~rs}': shiftKey
+                    '@:{save.content.event#shift.key~rs}': shiftKey,
                 });
             }
-            else if (ctrlKey &&
-                !shiftKey &&
-                !altKey &&
-                code == keyboard_1['@:{key#h~rs}']) {
+            else if (ctrlKey && !shiftKey && !altKey && code == keyboard_1['@:{key#h~rs}']) {
                 let axisNode = node('_rd_axis');
                 if (axisNode) {
                     let rootClassList = this.root.classList;
@@ -485,7 +493,8 @@ return $createVNode($viewId,0,$vnode_0);
                 }
             }
             else if (!(ctrlKey || altKey || shiftKey)) {
-                if (code == keyboard_1['@:{key#c~rs}']) { //单纯的按c
+                if (code == keyboard_1['@:{key#c~rs}']) {
+                    //单纯的按c
                     if (stage_generic_1['@:{generic#query.can.clear.stage~rs}']()) {
                         State.fire('@:{event#stage.clear.elements~rs}');
                     }
@@ -493,7 +502,7 @@ return $createVNode($viewId,0,$vnode_0);
                 else if (code == keyboard_1['@:{key#n~rs}']) {
                     if (stage_generic_1['@:{generic#query.can.create.new.page~rs}']()) {
                         State.fire('@:{event#stage.clear.elements~rs}', {
-                            '@:{clear.events#action~rs}': '@:{clear.events#new~rs}'
+                            '@:{clear.events#action~rs}': '@:{clear.events#new~rs}',
                         });
                     }
                 }
@@ -513,11 +522,11 @@ return $createVNode($viewId,0,$vnode_0);
                 State.fire('@:{event#stage.select.element.props.change~rs}', {
                     '@:{ids~rs}': { [single.id]: 1 },
                     '@:{types~rs}': {
-                        [single.type]: 1
+                        [single.type]: 1,
                     },
                     '@:{props~rs}': {
-                        '@:{unit~rs}': 1
-                    }
+                        '@:{unit~rs}': 1,
+                    },
                 });
             }
             State.fire('@:{event#stage.page.and.elements.change~rs}');
@@ -576,34 +585,45 @@ return $createVNode($viewId,0,$vnode_0);
                 s.all('@:{get.fields~rs}', (err, bag) => {
                     if (err === null || err === void 0 ? void 0 : err.message) {
                         console.log('有错误', err.message);
-                        this.confirm('登录过期,请重新登录,本地点击确定模拟登录', () => {
-                            s.all({ name: '@:{post.login~rs}', '@:{body~rs}': JSON.stringify({
-                                    password: "Aa123456",
-                                    username: "13823349075"
-                                }) }, (err, bag) => {
-                                if (err) {
-                                    console.error(err);
-                                    return;
-                                }
-                                try {
-                                    window.localStorage.setItem('login-token', JSON.stringify(bag.get('token')));
-                                    window.location.reload();
-                                }
-                                catch (error) {
-                                }
-                                console.log('登录结果', bag.get('data'), bag.get('token'));
-                            });
-                        }, console.log, '提示');
+                        /* 重新登陆 */
+                        if (!DEBUG) {
+                            window.location.href = `/?from=${encodeURIComponent(location.href)}`;
+                        }
+                        else {
+                            let s = new service_1();
+                            this.confirm('登录过期,请重新登录,本地点击确定模拟登录', () => {
+                                s.all({
+                                    name: '@:{post.login~rs}',
+                                    '@:{body~rs}': JSON.stringify({
+                                        password: 'Aa123456',
+                                        username: '13823349075',
+                                    }),
+                                }, (err, bag) => {
+                                    if (err) {
+                                        console.error(err);
+                                        return;
+                                    }
+                                    try {
+                                        window.localStorage.setItem('login-token', JSON.stringify(bag.get('token')));
+                                        window.location.reload();
+                                    }
+                                    catch (error) { }
+                                    console.log('登录结果', bag.get('data'), bag.get('token'));
+                                });
+                            }, console.log, '提示');
+                        }
                     }
                     let dataSourceList = bag.get('data', []);
-                    let list = [{
+                    let list = [
+                        {
                             name: index_5('@:{lang#select.source~rs}'),
-                            id: ''
-                        }].concat(dataSourceList);
+                            id: '',
+                        },
+                    ].concat(dataSourceList);
                     State.set({
                         '@:{global#stage.data.source.error~rs}': err,
                         '@:{global#stage.data.source.list~rs}': list,
-                        '@:{global#stage.data.source.list.map~rs}': toMap(list, 'id')
+                        '@:{global#stage.data.source.list.map~rs}': toMap(list, 'id'),
                     });
                     resolve();
                 });
@@ -614,12 +634,12 @@ return $createVNode($viewId,0,$vnode_0);
         });
     },
     async render() {
-        index_6["@:{support.panels~rs}"]();
+        index_6['@:{support.panels~rs}']();
         let m = mark(this, '@:{render~rs}');
         await this['@:{fetch.data.source~rs}']();
         await this.digest();
         if (m()) {
-            index_6["@:{open.panels~rs}"]();
+            index_6['@:{open.panels~rs}']();
             /**
              * 如果地址栏有id且配置了获取内容的url，则从接口读取内容
              * 否则如果配置了模板接口，则从模板列表中随机选择一个
@@ -628,13 +648,12 @@ return $createVNode($viewId,0,$vnode_0);
             let contentUrl = config('getContentUrl');
             let { params } = parseUrl(location.href);
             console.log('______', params, contentUrl, parent);
-            if (params.id &&
-                contentUrl) {
+            if (params.id && contentUrl) {
                 index_4.show('正在读取内容...');
                 let s = new service_1();
                 s.all({
                     name: '@:{get.content~rs}',
-                    '@:{query~rs}': params
+                    '@:{query~rs}': params,
                 }, (ex, bag) => {
                     index_4.hide();
                     if (!ex) {
@@ -643,16 +662,16 @@ return $createVNode($viewId,0,$vnode_0);
                             State.fire('@:{event#example.change~rs}', {
                                 '@:{excample.change.event#type~rs}': history_1['@:{history#example.from.remote~rs}'],
                                 '@:{excample.change.event#title~rs}': params.id,
-                                '@:{excample.change.event#stage~rs}': stage
+                                '@:{excample.change.event#stage~rs}': stage,
                             });
                         }
                     }
                 });
             }
-            else if (templateUrl &&
-                const_1['@:{const#random.examples~rs}']) { //如果有示例配置,且允许显示随机示例
+            else if (templateUrl && const_1['@:{const#random.examples~rs}']) {
+                //如果有示例配置,且允许显示随机示例
                 index_4.show('正在加载示例...');
-                await example_1["@:{load~rs}"]();
+                await example_1['@:{load~rs}']();
                 index_4.hide();
             }
             else {
@@ -661,8 +680,9 @@ return $createVNode($viewId,0,$vnode_0);
         }
     },
     '$doc<dragover,drop>'(e) {
+        //发生的dragover与drop均需要阻止默认行为，前者是防止浏览器打开拖进来的元素，后者是防止文件拖动放置在textarea等输入框内
         this['@:{prevent.default~rs}'](e);
-    }
+    },
 }).merge(index_2);
 
 });
