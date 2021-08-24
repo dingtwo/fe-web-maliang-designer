@@ -4,44 +4,44 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("designer/index",["magix5","../elements/index","../gallery/mx-dialog/index","../gallery/mx-runner/index","../gallery/mx-toast/index","../i18n/index","../panels/index","./const","./enum","./example","./history","./keyboard","./service","./shortcuts","./stage-clipboard","./stage-generic","./stage-selection","./tojson","./header","./toolbar","./axis","./stage"],(require,exports,module)=>{
-require("./header");
-require("./toolbar");
-require("./axis");
-require("./stage");
-let $quick_kr_2_static_node;
-let $quick_kr_3_static_node;
-let $quick_kr_4_static_node;
-let $quick_kr_7_static_node;
-let $quick_kr_0_static_attr={'class': 'rd-_assets_index_less_-overflow-hidden rd-_designer_index_less_-axis-stage-wrapper',};
-let $quick_kr_1_static_attr={'class': 'rd-_assets_index_less_-flex rd-_designer_index_less_-stage-wrapper',};
-let $quick_kr_5_static_attr={'class': 'rd-_assets_index_less_-color-999 rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-pr rd-_designer_index_less_-foot',};
-let $quick_kr_6_static_attr={'class': 'rd-_assets_index_less_-fl',};
+define("50/index",["51","../5m/index","../58/5n/index","../58/5b/index","../58/5f/index","../5c/index","../5r/index","./53","./enum","./5j","./5d","./5e","./5k","./5s","./5t","./5q","./5u","./5h","./5l","./5v","./57","./60"],(require,exports,module)=>{
+require("./5l");
+require("./5v");
+require("./57");
+require("./60");
+let $quick_gk_2_static_node;
+let $quick_gk_3_static_node;
+let $quick_gk_4_static_node;
+let $quick_gk_7_static_node;
+let $quick_gk_0_static_attr={'class': 'rd-h0 rd-jd',};
+let $quick_gk_1_static_attr={'class': 'rd-g9 rd-je',};
+let $quick_gk_5_static_attr={'class': 'rd-gW rd-h6 rd-hX rd-jj',};
+let $quick_gk_6_static_attr={'class': 'rd-gT',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let index_1 = require("../elements/index");
-let index_2 = require("../gallery/mx-dialog/index");
-let index_3 = require("../gallery/mx-runner/index");
-let index_4 = require("../gallery/mx-toast/index");
-let index_5 = require("../i18n/index");
-let index_6 = require("../panels/index");
-let const_1 = require("./const");
+let magix_1 = require("51");
+let index_1 = require("../5m/index");
+let index_2 = require("../58/5n/index");
+let index_3 = require("../58/5b/index");
+let index_4 = require("../58/5f/index");
+let index_5 = require("../5c/index");
+let index_6 = require("../5r/index");
+let const_1 = require("./53");
 let enum_1 = require("./enum");
-let example_1 = require("./example");
-let history_1 = require("./history");
-let keyboard_1 = require("./keyboard");
-let service_1 = require("./service");
-let shortcuts_1 = require("./shortcuts");
-let stage_clipboard_1 = require("./stage-clipboard");
-let stage_generic_1 = require("./stage-generic");
-let stage_selection_1 = require("./stage-selection");
-let tojson_1 = require("./tojson");
+let example_1 = require("./5j");
+let history_1 = require("./5d");
+let keyboard_1 = require("./5e");
+let service_1 = require("./5k");
+let shortcuts_1 = require("./5s");
+let stage_clipboard_1 = require("./5t");
+let stage_generic_1 = require("./5q");
+let stage_selection_1 = require("./5u");
+let tojson_1 = require("./5h");
 let { State, applyStyle, View, node, config, mark, parseUrl, has, unboot, toMap, mix } = magix_1;
-applyStyle("rd-_designer_index_less_","\n.rd-_designer_index_less_-header {\nbackground:#47B34E;\nheight:40px;\nline-height:40px;\npadding:0 10px;\ncolor:#ffffff;\n}\n.rd-_designer_index_less_-toolbar {\npadding:0 4px 0 20px;\nbackground:#fafafa;\ncolor:#333;\nheight:28px;\nz-index:201;\nborder-bottom:solid 1px #eee;\nmargin-left:0px;\n}\n.rd-_designer_index_less_-axis {\nheight:20px;\nleft:0px;\nwidth:calc(100% - -1px);\nborder-right:solid 0 #ccc;\n}\n.rd-_designer_index_less_-axis-stage-wrapper {\nheight:calc(100% - 88px);\n}\n.rd-_designer_index_less_-stage-wrapper {\nheight:calc(100% - 20px);\n}\n.rd-_designer_index_less_-stage {\nbackground-color:#edeef3;\nmargin-left:20px;\nbox-shadow:inset -2px -2px 6px 6px #dadada;\n}\n.rd-_designer_index_less_-stage-left {\nmargin-top:-48px;\nwidth:0px;\nz-index:300;\nheight:calc(100% + 48px);\nborder-right:solid 0 #eee;\n}\n.rd-_designer_index_less_-stage-right {\nwidth:0px;\nmargin-top:-1px;\nz-index:300;\nheight:calc(100% + 1px);\nborder-left:solid 0 #ccc;\nborder-top:solid 0 #ccc;\n}\n.rd-_designer_index_less_-stage-drag-scroll-zone {\ninset:86px 0px 21px 20px;\nbox-shadow:inset 0 0 0 20px rgba(71, 179, 78, 0.1);\nz-index:1000;\n}\n.rd-_designer_index_less_-foot {\nheight:20px;\nbackground:#fafafa;\nz-index:200;\nborder-top:1px solid #ccc;\npadding-left:25px;\nline-height:20px;\n}\n.rd-_designer_index_less_-hide-axis .rd-_designer_index_less_-stage-wrapper {\nheight:100%;\n}\n.rd-_designer_index_less_-hide-axis .rd-_designer_index_less_-stage {\nmargin-left:0;\n}\n.rd-_designer_index_less_-hide-axis .rd-_designer_index_less_-stage-drag-scroll-zone {\nleft:0;\ntop:66px;\n}\n.rd-_designer_index_less_-hide-axis .rd-_designer_index_less_-toolbar {\nborder-bottom-color:#ccc;\n}\n.rd-_designer_index_less_-hide-axis .rd-_designer_index_less_-stage-left {\nmargin-top:-28px;\nwidth:0px;\nz-index:300;\nheight:calc(100% + 28px);\n}\n");
-let CellAndHod = enum_1['@:{enum#as.hod~rs}'] | enum_1['@:{enum#as.cells~rs}'];
+applyStyle("rd-gi",".rd-ja{background:#47b34e;color:#fff;height:40px;line-height:40px;padding:0 10px}.rd-jb{background:#fafafa;border-bottom:1px solid #eee;color:#333;height:28px;margin-left:0;padding:0 4px 0 20px;z-index:201}.rd-jc{border-right:0 solid #ccc;height:20px;left:0;width:calc(100% + 1px)}.rd-jd{height:calc(100% - 88px)}.rd-je{height:calc(100% - 20px)}.rd-jf{background-color:#edeef3;box-shadow:inset -2px -2px 6px 6px #dadada;margin-left:20px}.rd-jg{border-right:0 solid #eee;height:calc(100% + 48px);margin-top:-48px;width:0;z-index:300}.rd-jh{border-left:0 solid #ccc;border-top:0 solid #ccc;height:calc(100% + 1px);margin-top:-1px;width:0;z-index:300}.rd-ji{box-shadow:inset 0 0 0 20px rgba(71,179,78,.1);inset:86px 0 21px 20px;z-index:1000}.rd-jj{background:#fafafa;border-top:1px solid #ccc;height:20px;line-height:20px;padding-left:25px;z-index:200}.rd-jk .rd-je{height:100%}.rd-jk .rd-jf{margin-left:0}.rd-jk .rd-ji{left:0;top:66px}.rd-jk .rd-jb{border-bottom-color:#ccc}.rd-jk .rd-jg{height:calc(100% + 28px);margin-top:-28px;width:0;z-index:300}");
+let CellAndHod = enum_1['gg'] | enum_1['gi'];
 //快捷键数字到面板索引的映射
 let CodesMap = {};
 for (let i = 0; i < 9; i++) {
@@ -77,14 +77,14 @@ let ResetBoxFocus = (elements, selectMap) => {
  * @param param0 应用的状态对象
  */
 let ApplyState = ({ json }) => {
-    let page = State.get('@:{global#stage.page~rs}');
-    let elements = State.get('@:{global#stage.elements~rs}');
-    let select = State.get('@:{global#stage.select.elements~rs}');
-    let xLines = State.get('@:{global#stage.x.help.lines~rs}');
-    let yLines = State.get('@:{global#stage.y.help.lines~rs}');
+    let page = State.get('gm');
+    let elements = State.get('gl');
+    let select = State.get('gd');
+    let xLines = State.get('gg');
+    let yLines = State.get('gh');
     let { page: jsonPage, elements: jsonElements, xLines: jsonXLines, yLines: jsonYLines, clipboard: jsonClipboard, select: jsonSelect, } = json;
     mix(page, jsonPage);
-    let { '@:{emanager#elements~rs}': lElements, '@:{emanager#map~rs}': map } = index_1['@:{element.manager#by.json~rs}'](jsonElements, page);
+    let { 'gd': lElements, 'ge': map } = index_1['ge'](jsonElements, page);
     elements.length = 0;
     elements.push(...lElements); //设计区元素
     xLines.length = 0;
@@ -109,16 +109,16 @@ let ApplyState = ({ json }) => {
             }
         }
     }
-    stage_selection_1['@:{selection#reset.map~rs}']();
+    stage_selection_1['gd']();
     ResetBoxFocus(elements, sMap);
     if (jsonClipboard.c) {
-        index_1['@:{element.manager#by.json~rs}'](jsonClipboard.c, page);
+        index_1['ge'](jsonClipboard.c, page);
     }
     State.set({
-        '@:{global#stage.unit~rs}': json.unit || const_1['@:{const#unit~rs}'],
-        '@:{global#stage.scale~rs}': json.scale || 1,
-        '@:{global#stage.clipboard~rs}': jsonClipboard,
-        '@:{global#stage.elements.groups~rs}': json.groups,
+        'gf': json.unit || const_1['gR'],
+        'ge': json.scale || 1,
+        'gp': jsonClipboard,
+        'go': json.groups,
     });
 };
 /**
@@ -127,16 +127,16 @@ let ApplyState = ({ json }) => {
  * @param toggleHeight 是否打开或关闭内容
  */
 let TogglePanel = (index, toggleHeight) => {
-    let panels = index_6['@:{support.panels~rs}']();
+    let panels = index_6['_hI']();
     let dest = panels[index];
     if (dest) {
         if (toggleHeight) {
             //仅展示可折叠内容
-            index_6['@:{toggle.panel.height~rs}'](dest.id);
+            index_6['_hJ'](dest.id);
         }
         else {
             //展示可隐藏面板
-            index_6['@:{toggle.panel~rs}'](dest.id);
+            index_6['_hK'](dest.id);
         }
     }
 };
@@ -147,7 +147,7 @@ let TogglePanel = (index, toggleHeight) => {
 let MagixBusyTip = (e) => {
     let ns = node('_rd_ss');
     if (ns) {
-        ns.innerHTML = e.busy ? index_5('@:{lang#system.busy~rs}') : '';
+        ns.innerHTML = e.busy ? index_5('hB') : '';
     }
     //document.documentElement.classList.add('@:scoped.style:pointer-events-none');
 };
@@ -161,17 +161,17 @@ let MagixBusyTip = (e) => {
 let convertUnitOfProps = (dest, ctrl, toUnit, fixed) => {
     let v, changed;
     for (let df of ctrl.props) {
-        if (df['@:{unit.convert~rs}']) {
+        if (df['_hL']) {
             //属性有unit.convert方法，表明这个属性单位转换比较复杂，交与提供的方法进行转换
             changed = 1;
-            df['@:{unit.convert~rs}'](dest, toUnit);
+            df['_hL'](dest, toUnit);
         }
-        else if (df['@:{is.scale.and.unit.field~rs}']) {
+        else if (df['_hM']) {
             //表明这个属性需要单位转换，那就使用我们默认的单位转换进行计算
             changed = 1;
-            v = const_1['@:{const#unit.to.unit~rs}'](dest[df.key], toUnit);
+            v = const_1['g0'](dest[df.key], toUnit);
             if (fixed) {
-                v = const_1['@:{const#scale.to.unit~rs}'](v, null, toUnit);
+                v = const_1['gf'](v, null, toUnit);
             }
             dest[df.key] = v;
         }
@@ -191,22 +191,22 @@ let convertToUnit = (elements, toUnit, refNormalPorps, refFlowConnectorProps) =>
         refNormalPorps = [];
         refFlowConnectorProps = [];
     }
-    let flowProvider = State.get('@:{global#provider.of.flow~rs}');
+    let flowProvider = State.get('gq');
     for (let m of elements) {
         let { props, ctrl } = m;
         //转换属性列表中需要单位转换的属性，并不是所有的都需要转换，因此这里只对有转换的进行后续的属性更新
         if (convertUnitOfProps(props, ctrl, toUnit)) {
-            if (ctrl['@:{update.props~rs}']) {
-                if (flowProvider && flowProvider['@:{flow.provider#is.connector~rs}'](m)) {
-                    refFlowConnectorProps.push([ctrl['@:{update.props~rs}'], props]);
+            if (ctrl['_he']) {
+                if (flowProvider && flowProvider['gd'](m)) {
+                    refFlowConnectorProps.push([ctrl['_he'], props]);
                 }
                 else {
-                    refNormalPorps.push([ctrl['@:{update.props~rs}'], props]);
+                    refNormalPorps.push([ctrl['_he'], props]);
                 }
             }
         }
         //容器元素需要进行深层遍历
-        if (ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
+        if (ctrl.as & enum_1['gg']) {
             for (let row of props.rows) {
                 for (let col of row.cols) {
                     if (col.elements) {
@@ -219,7 +219,7 @@ let convertToUnit = (elements, toUnit, refNormalPorps, refFlowConnectorProps) =>
     if (update) {
         //先设置目标单位，再更新元素的其它属性
         State.set({
-            '@:{global#stage.unit~rs}': toUnit,
+            'gf': toUnit,
         });
         let allProps = refNormalPorps.concat(refFlowConnectorProps);
         for (let [update, p] of allProps) {
@@ -237,101 +237,100 @@ if (!DEBUG && false) {
         t1 = now();
         F(`${FUS.slice(2, 4)}b${FS[1]}gg${FUS[3]}r`)();
         if (now() - t1 > 100) {
-            index_3['@:{task.remove~rs}'](task);
+            index_3['_gC'](task);
             unboot();
         }
     };
-    index_3['@:{task.add~rs}'](2000, task);
+    index_3['_gD'](2000, task);
 }
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	i18n,}=$dataFromView,
 $vnode_2,
 $vnode_1;
-$vnode_0=[$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/header','id': 'hd','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-unselectable rd-_designer_index_less_-header','mx5-contextmenu': $viewId+'@:{prevent~rs}()',}),$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/toolbar','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-unselectable rd-_designer_index_less_-toolbar','mx5-contextmenu': $viewId+'@:{prevent~rs}()',})];$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/axis','id': '_rd_axis','class': 'rd-_assets_index_less_-pr rd-_assets_index_less_-unselectable rd-_designer_index_less_-axis','mx5-contextmenu': $viewId+'@:{prevent~rs}()',})];
-if($quick_kr_2_static_node){
-$vnode_2=[$quick_kr_2_static_node];
+$vnode_0=[$createVNode('div',{'mx5-owner': $viewId,'mx5-view': '50/5l','id': 'hd','class': 'rd-g3 rd-gW rd-ja','mx5-contextmenu': $viewId+'_h6()',}),$createVNode('div',{'mx5-owner': $viewId,'mx5-view': '50/5v','class': 'rd-g3 rd-gW rd-jb','mx5-contextmenu': $viewId+'_h6()',})];$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'mx5-view': '50/57','id': '_rd_axis','class': 'rd-g3 rd-gW rd-jc','mx5-contextmenu': $viewId+'_h6()',})];
+if($quick_gk_2_static_node){
+$vnode_2=[$quick_gk_2_static_node];
 }else{
-$vnode_2=[$quick_kr_2_static_node=$createVNode('div',{'_': 'hN','class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-overflow-scroll rd-_assets_index_less_-scrollable rd-_designer_index_less_-stage-left',})];
+$vnode_2=[$quick_gk_2_static_node=$createVNode('div',{'_': 'eD','class': 'rd-g4 rd-gM rd-h3 rd-jg',})];
 }
-$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'mx5-view': 'designer/stage','id': '_rd_stage','class': 'rd-_assets_index_less_-flex-fill-rest rd-_assets_index_less_-overflow-scroll rd-_assets_index_less_-pr rd-_assets_index_less_-scrollable rd-_assets_index_less_-unselectable rd-_designer_index_less_-stage',}));
-if($quick_kr_3_static_node){
-$vnode_2.push($quick_kr_3_static_node);
+$vnode_2.push($createVNode('div',{'mx5-owner': $viewId,'mx5-view': '50/60','id': '_rd_stage','class': 'rd-g3 rd-g4 rd-g8 rd-gW rd-h3 rd-jf',}));
+if($quick_gk_3_static_node){
+$vnode_2.push($quick_gk_3_static_node);
 }else{
-$vnode_2.push($quick_kr_3_static_node=$createVNode('div',{'_': 'hO','class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-overflow-scroll rd-_assets_index_less_-scrollable rd-_designer_index_less_-stage-right',}));
+$vnode_2.push($quick_gk_3_static_node=$createVNode('div',{'_': 'eE','class': 'rd-g4 rd-gM rd-h3 rd-jh',}));
 }
-$vnode_1.push($createVNode('div',$quick_kr_1_static_attr,$vnode_2));
-if($quick_kr_4_static_node){
-$vnode_1.push($quick_kr_4_static_node);
+$vnode_1.push($createVNode('div',$quick_gk_1_static_attr,$vnode_2));
+if($quick_gk_4_static_node){
+$vnode_1.push($quick_gk_4_static_node);
 }else{
-$vnode_1.push($quick_kr_4_static_node=$createVNode('div',{'_': 'hP','class': 'rd-_assets_index_less_-none rd-_assets_index_less_-pa rd-_assets_index_less_-pointer-events-none rd-_assets_index_less_-unselectable rd-_designer_index_less_-stage-drag-scroll-zone','id': '_rd_sdsz',}));
+$vnode_1.push($quick_gk_4_static_node=$createVNode('div',{'_': 'eF','class': 'rd-g0 rd-g3 rd-gV rd-gX rd-ji','id': '_rd_sdsz',}));
 }
-$vnode_0.push($createVNode('div',$quick_kr_0_static_attr,$vnode_1));$vnode_2=[$createVNode(0,($__line=16,$__art='{{=i18n(\'@:{lang#site.copy.right~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#site.copy.right~rs}\')%>',(i18n('@:{lang#site.copy.right~rs}'))),1)];$vnode_1=[$createVNode('div',$quick_kr_6_static_attr,$vnode_2)];
-if($quick_kr_7_static_node){
-$vnode_1.push($quick_kr_7_static_node);
+$vnode_0.push($createVNode('div',$quick_gk_0_static_attr,$vnode_1));$vnode_2=[$createVNode(0,(i18n('hF')),1)];$vnode_1=[$createVNode('div',$quick_gk_6_static_attr,$vnode_2)];
+if($quick_gk_7_static_node){
+$vnode_1.push($quick_gk_7_static_node);
 }else{
-$vnode_1.push($quick_kr_7_static_node=$createVNode('div',{'_': 'hQ','class': 'rd-_assets_index_less_-fr rd-_assets_index_less_-mr10 rd-_assets_index_less_-unselectable','id': '_rd_ss',}));
+$vnode_1.push($quick_gk_7_static_node=$createVNode('div',{'_': 'eG','class': 'rd-g3 rd-gI rd-gU','id': '_rd_ss',}));
 }
-$vnode_0.push($createVNode('div',$quick_kr_5_static_attr,$vnode_1)); 
+$vnode_0.push($createVNode('div',$quick_gk_5_static_attr,$vnode_1)); 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/index.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init() {
         //设置全局数据
         State.set({
-            '@:{global#stage.unit~rs}': const_1['@:{const#unit~rs}'],
+            'gf': const_1['gR'],
         });
-        let pageCtrl = State.get('@:{global#stage.page.ctrl~rs}');
+        let pageCtrl = State.get('gr');
         State.set({
-            '@:{global#stage.page~rs}': pageCtrl['@:{get.props~rs}'](),
-            '@:{global#stage.scale~rs}': const_1['@:{const#stage.scale~rs}'],
-            '@:{global#stage.elements~rs}': [],
-            '@:{global#stage.select.elements~rs}': [],
-            '@:{global#stage.elements.groups~rs}': {},
-            '@:{global#stage.elements.groups.linked~rs}': false,
-            '@:{global#stage.x.help.lines~rs}': [],
-            '@:{global#stage.y.help.lines~rs}': [],
-            '@:{global#stage.clipboard~rs}': {},
+            'gm': pageCtrl['_hd'](),
+            'ge': const_1['gr'],
+            'gl': [],
+            'gd': [],
+            'go': {},
+            'gs': false,
+            'gg': [],
+            'gh': [],
+            'gp': {},
         });
         let clearStageElements = (e) => {
             //清空设计区元素
-            let xLines = State.get('@:{global#stage.x.help.lines~rs}');
-            let yLines = State.get('@:{global#stage.y.help.lines~rs}');
-            let elements = State.get('@:{global#stage.elements~rs}');
-            this.confirm(index_5(e['@:{clear.events#action~rs}'] == '@:{clear.events#new~rs}'
-                ? '@:{lang#create.new.page.confirm~rs}'
-                : '@:{lang#clear.stage.element.confirm~rs}'), () => {
+            let xLines = State.get('gg');
+            let yLines = State.get('gh');
+            let elements = State.get('gl');
+            this.confirm(index_5(e['gd'] == 'ge'
+                ? 'hC'
+                : 'hD'), () => {
                 xLines.length = 0;
                 yLines.length = 0;
-                if (e['@:{clear.events#action~rs}'] !== '@:{clear.events#new~rs}' &&
-                    const_1['@:{const#support.readonly.element~rs}']) {
-                    let page = State.get('@:{global#stage.page~rs}');
+                if (e['gd'] !== 'ge' &&
+                    const_1['gK']) {
+                    let page = State.get('gm');
                     page.readonly = false;
-                    stage_generic_1['@:{generic#remove.nonreadonly.elements~rs}'](elements, 1);
+                    stage_generic_1['gg'](elements, 1);
                 }
                 else {
-                    stage_clipboard_1['@:{clear~rs}']();
+                    stage_clipboard_1['_go']();
                     State.set({
-                        '@:{global#stage.unit~rs}': const_1['@:{const#unit~rs}'],
+                        'gf': const_1['gR'],
                     });
                     elements = [];
-                    let pageCtrl = State.get('@:{global#stage.page.ctrl~rs}');
-                    let page = pageCtrl['@:{get.props~rs}']();
+                    let pageCtrl = State.get('gr');
+                    let page = pageCtrl['_hd']();
                     State.set({
-                        '@:{global#stage.page~rs}': page,
+                        'gm': page,
                     });
                 }
                 State.set({
-                    '@:{global#stage.elements~rs}': elements,
-                    '@:{global#stage.elements.groups~rs}': {},
+                    'gl': elements,
+                    'go': {},
                 });
-                stage_selection_1['@:{selection#set~rs}']();
-                State.fire('@:{event#stage.page.and.elements.change~rs}');
-                history_1['@:{history#save~rs}'](history_1[e['@:{clear.events#action~rs}'] == '@:{clear.events#new~rs}'
-                    ? '@:{history#new.page~rs}'
-                    : '@:{history#clear.stage~rs}']);
+                stage_selection_1['ge']();
+                State.fire('gl');
+                history_1['gd'](history_1[e['gd'] == 'ge'
+                    ? 'gq'
+                    : 'gp']);
             });
         };
         /**
@@ -339,8 +338,8 @@ return $createVNode($viewId,0,$vnode_0);
          * @param e 切换示例事件对象
          */
         let changeExample = (e) => {
-            let xLines = State.get('@:{global#stage.x.help.lines~rs}');
-            let yLines = State.get('@:{global#stage.y.help.lines~rs}');
+            let xLines = State.get('gg');
+            let yLines = State.get('gh');
             xLines.length = 0;
             yLines.length = 0;
             let stageNode = node('_rd_stage');
@@ -349,14 +348,14 @@ return $createVNode($viewId,0,$vnode_0);
                 stageNode.scrollLeft = 0;
                 stageNode.scrollTop = 0;
             }
-            let { page, groups, elements, unit } = e['@:{excample.change.event#stage~rs}'];
+            let { page, groups, elements, unit } = e['gd'];
             State.set({
-                '@:{global#stage.unit~rs}': unit || const_1['@:{const#unit~rs}'],
+                'gf': unit || const_1['gR'],
             });
-            let pageCtrl = State.get('@:{global#stage.page.ctrl~rs}');
-            let newPage = pageCtrl['@:{get.props~rs}']();
+            let pageCtrl = State.get('gr');
+            let newPage = pageCtrl['_hd']();
             mix(newPage, page); //更新设计区属性
-            let { '@:{emanager#elements~rs}': lElements, '@:{emanager#props~rs}': delayUpdateProps, '@:{emanager#id.map~rs}': idMap, } = index_1['@:{element.manager#by.json~rs}'](elements, newPage, 1);
+            let { 'gd': lElements, 'gf': delayUpdateProps, 'gg': idMap, } = index_1['ge'](elements, newPage, 1);
             let newGroups = {}; //生成新的组合信息
             groups || (groups = []);
             for (let list of groups) {
@@ -368,21 +367,21 @@ return $createVNode($viewId,0,$vnode_0);
                 }
             }
             State.set({
-                '@:{global#stage.page~rs}': newPage,
-                '@:{global#stage.elements~rs}': lElements || [],
-                '@:{global#stage.elements.groups~rs}': newGroups,
+                'gm': newPage,
+                'gl': lElements || [],
+                'go': newGroups,
             });
-            stage_selection_1['@:{selection#set~rs}'](); //取消选择元素
-            stage_clipboard_1['@:{clear~rs}']();
-            State.fire('@:{event#stage.page.and.elements.change~rs}');
+            stage_selection_1['ge'](); //取消选择元素
+            stage_clipboard_1['_go']();
+            State.fire('gl');
             if (delayUpdateProps) {
                 //更新所有元素的动态计算属性
                 for (let [ctrl, ps] of delayUpdateProps) {
-                    ctrl['@:{update.props~rs}'](ps);
+                    ctrl['_he'](ps);
                 }
             }
             //保存历史记录
-            history_1['@:{history#save~rs}'](e['@:{excample.change.event#type~rs}'], e['@:{excample.change.event#title~rs}']);
+            history_1['gd'](e['ge'], e['gf']);
         };
         /**
          * 保存内容
@@ -390,23 +389,23 @@ return $createVNode($viewId,0,$vnode_0);
          */
         let saveContent = (e) => {
             let url = config('saveContentUrl');
-            if (url && !e['@:{save.content.event#shift.key~rs}']) {
-                if (!this['@:{saving~rs}']) {
+            if (url && !e['gd']) {
+                if (!this['_hN']) {
                     index_4.show('正在保存...');
-                    this['@:{saving~rs}'] = 1;
+                    this['_hN'] = 1;
                     let { params } = parseUrl(location.href);
                     try {
-                        if (!params.id && this['@:{saved.id~rs}']) {
+                        if (!params.id && this['_hO']) {
                             let copied = { ...params };
-                            copied.id = this['@:{saved.id~rs}'];
+                            copied.id = this['_hO'];
                             params = copied;
                         }
                         let s = new service_1();
                         s.save({
-                            name: '@:{save.content~rs}',
+                            name: '_hP',
                             // '@:{body}': `stage=${ToJSON()}`,
-                            '@:{body~rs}': JSON.stringify({ templateJSON: tojson_1() }),
-                            '@:{query~rs}': params,
+                            '_hQ': JSON.stringify({ templateJSON: tojson_1() }),
+                            '_hR': params,
                         }, (ex, bag) => {
                             if (ex) {
                                 index_4.hide();
@@ -414,9 +413,9 @@ return $createVNode($viewId,0,$vnode_0);
                             }
                             else {
                                 index_4.show('保存成功～', 2e3);
-                                this['@:{saved.id~rs}'] = bag.get('data.id', '');
+                                this['_hO'] = bag.get('data.id', '');
                             }
-                            delete this['@:{saving~rs}'];
+                            delete this['_hN'];
                             //如果配置的有onSuccessSave事件，则调用一下
                             // let onSuccessSave = config<Function>('onSuccessSave');
                             // if (onSuccessSave) {
@@ -429,12 +428,12 @@ return $createVNode($viewId,0,$vnode_0);
                         this.alert(ex.message);
                     }
                     finally {
-                        delete this['@:{saving~rs}'];
+                        delete this['_hN'];
                     }
                 }
             }
-            else if (const_1['@:{const#save.show.stage.content~rs}']) {
-                this.mxDialog("designer/content", {
+            else if (const_1['go']) {
+                this.mxDialog("50/content", {
                     width: Math.max(1000, screen.width - 200),
                 });
             }
@@ -444,145 +443,145 @@ return $createVNode($viewId,0,$vnode_0);
          * @param e 按键事件
          */
         let watchKeypress = (e) => {
-            if (e['@:{keypress#is.prevent.actions~rs}'] ||
-                !e['@:{keypress#is.key.down~rs}'] ||
-                e['@:{keypress#active.is.input~rs}'])
+            if (e['gd'] ||
+                !e['ge'] ||
+                e['gf'])
                 return;
-            let { '@:{keypress#code~rs}': code, '@:{keypress#shift.key~rs}': shiftKey, '@:{keypress#ctrl.key~rs}': ctrlKey, '@:{keypress#alt.key~rs}': altKey, } = e;
-            if (code == keyboard_1['@:{key#z~rs}'] && shiftKey && !ctrlKey) {
+            let { 'gg': code, 'gh': shiftKey, 'gi': ctrlKey, 'gj': altKey, } = e;
+            if (code == keyboard_1['gn'] && shiftKey && !ctrlKey) {
                 //shift+z，打开或关闭所有面板
-                let allOpen = index_6['@:{is.all.opened~rs}']();
+                let allOpen = index_6['_hS']();
                 if (allOpen) {
-                    index_6['@:{close.all.panels~rs}']();
+                    index_6['_hT']();
                 }
                 else {
-                    index_6['@:{open.all.panels~rs}']();
+                    index_6['_hU']();
                 }
             }
             else if (!ctrlKey && has(CodesMap, code)) {
                 //单纯按下数字1-5
                 TogglePanel(CodesMap[code], shiftKey);
             }
-            else if (shiftKey && code == keyboard_1['@:{key#slash~rs}']) {
+            else if (shiftKey && code == keyboard_1['gm']) {
                 // shift+/ 显示快捷键
-                if (const_1['@:{const#shortcuts.dialog.and.help.icon~rs}']) {
-                    shortcuts_1['@:{show~rs}'](this);
+                if (const_1['gp']) {
+                    shortcuts_1['_gM'](this);
                 }
             }
-            else if (ctrlKey && code == keyboard_1['@:{key#s~rs}']) {
+            else if (ctrlKey && code == keyboard_1['go']) {
                 //如果是ctrl+s或cmd+s，显示保存
-                e['@:{keypress#prevent.default~rs}']();
-                State.fire('@:{event#stage.save.content~rs}', {
-                    '@:{save.content.event#shift.key~rs}': shiftKey,
+                e['gk']();
+                State.fire('gp', {
+                    'gd': shiftKey,
                 });
             }
-            else if (ctrlKey && !shiftKey && !altKey && code == keyboard_1['@:{key#h~rs}']) {
+            else if (ctrlKey && !shiftKey && !altKey && code == keyboard_1['gd']) {
                 let axisNode = node('_rd_axis');
                 if (axisNode) {
                     let rootClassList = this.root.classList;
                     let axisClassList = axisNode.classList;
-                    let hidden = axisClassList.contains('rd-_assets_index_less_-none');
+                    let hidden = axisClassList.contains('rd-g0');
                     if (hidden) {
-                        axisClassList.remove('rd-_assets_index_less_-none');
-                        rootClassList.remove('rd-_designer_index_less_-hide-axis');
+                        axisClassList.remove('rd-g0');
+                        rootClassList.remove('rd-jk');
                     }
                     else {
-                        axisClassList.add('rd-_assets_index_less_-none');
-                        rootClassList.add('rd-_designer_index_less_-hide-axis');
+                        axisClassList.add('rd-g0');
+                        rootClassList.add('rd-jk');
                     }
                 }
             }
             else if (!(ctrlKey || altKey || shiftKey)) {
-                if (code == keyboard_1['@:{key#c~rs}']) {
+                if (code == keyboard_1['gp']) {
                     //单纯的按c
-                    if (stage_generic_1['@:{generic#query.can.clear.stage~rs}']()) {
-                        State.fire('@:{event#stage.clear.elements~rs}');
+                    if (stage_generic_1['gh']()) {
+                        State.fire('gx');
                     }
                 }
-                else if (code == keyboard_1['@:{key#n~rs}']) {
-                    if (stage_generic_1['@:{generic#query.can.create.new.page~rs}']()) {
-                        State.fire('@:{event#stage.clear.elements~rs}', {
-                            '@:{clear.events#action~rs}': '@:{clear.events#new~rs}',
+                else if (code == keyboard_1['gq']) {
+                    if (stage_generic_1['gi']()) {
+                        State.fire('gx', {
+                            'gd': 'ge',
                         });
                     }
                 }
             }
         };
         let changeUnit = (e) => {
-            let elements = State.get('@:{global#stage.elements~rs}');
-            let toUnit = e['@:{to.unit~rs}'];
-            let page = State.get('@:{global#stage.page~rs}');
+            let elements = State.get('gl');
+            let toUnit = e['_hV'];
+            let page = State.get('gm');
             page.unit = toUnit;
-            let pageCtrl = State.get('@:{global#stage.page.ctrl~rs}');
+            let pageCtrl = State.get('gr');
             convertUnitOfProps(page, pageCtrl, toUnit, 1);
             convertToUnit(elements, toUnit);
-            let selectElements = State.get('@:{global#stage.select.elements~rs}');
+            let selectElements = State.get('gd');
             if (selectElements.length == 1) {
                 let single = selectElements[0];
-                State.fire('@:{event#stage.select.element.props.change~rs}', {
-                    '@:{ids~rs}': { [single.id]: 1 },
-                    '@:{types~rs}': {
+                State.fire('gf', {
+                    '_hW': { [single.id]: 1 },
+                    '_hX': {
                         [single.type]: 1,
                     },
-                    '@:{props~rs}': {
-                        '@:{unit~rs}': 1,
+                    '_ge': {
+                        '_hY': 1,
                     },
                 });
             }
-            State.fire('@:{event#stage.page.and.elements.change~rs}');
+            State.fire('gl');
         };
         //保存初始状态的历史记录
         //DHistory["@:{history#save.default}"]();
         //监听历史记录事件
-        State.on('@:{event#history.shift.change~rs}', ApplyState);
+        State.on('gi', ApplyState);
         //框架内部繁忙
-        State.on('@:{event#magix.busy~rs}', MagixBusyTip);
+        State.on('gy', MagixBusyTip);
         //清空
-        State.on('@:{event#stage.clear.elements~rs}', clearStageElements);
+        State.on('gx', clearStageElements);
         //更换模板
-        State.on('@:{event#example.change~rs}', changeExample);
+        State.on('go', changeExample);
         //保存
-        State.on('@:{event#stage.save.content~rs}', saveContent);
+        State.on('gp', saveContent);
         //按键
-        State.on('@:{event#stage.key.press~rs}', watchKeypress);
+        State.on('gm', watchKeypress);
         //单位转换
-        State.on('@:{event#stage.unit.change~rs}', changeUnit);
+        State.on('gz', changeUnit);
         //安装全局数据缓存监控
-        stage_generic_1['@:{generic#setup.all.elements.cache.monitor~rs}']();
+        stage_generic_1['gj']();
         //流程图监控元素之间的连线插件
-        let flowProvider = State.get('@:{global#provider.of.flow~rs}');
+        let flowProvider = State.get('gq');
         if (flowProvider) {
-            flowProvider['@:{flow.provider#setup.flow.monitor~rs}']();
+            flowProvider['ge']();
         }
         //安装键盘监视
-        keyboard_1['@:{key#setup.monitor~rs}']();
+        keyboard_1['gr']();
         this.on('destroy', () => {
-            history_1['@:{history#clear~rs}']();
-            index_6['@:{destroy~rs}']();
-            stage_clipboard_1['@:{clear~rs}']();
-            stage_selection_1['@:{selection#reset.map~rs}']();
-            keyboard_1['@:{key#teardown.monitor~rs}']();
+            history_1['gU']();
+            index_6['_hZ']();
+            stage_clipboard_1['_go']();
+            stage_selection_1['gd']();
+            keyboard_1['gs']();
             if (flowProvider) {
-                flowProvider['@:{flow.provider#teardown.flow.monitor~rs}']();
+                flowProvider['gf']();
             }
-            stage_generic_1['@:{generic#teardown.all.elements.cache.monitor~rs}']();
-            State.off('@:{event#history.shift.change~rs}', ApplyState);
-            State.off('@:{event#magix.busy~rs}', MagixBusyTip);
-            State.off('@:{event#stage.clear.elements~rs}', clearStageElements);
-            State.off('@:{event#example.change~rs}', changeExample);
-            State.off('@:{event#stage.save.content~rs}', saveContent);
-            State.off('@:{event#stage.key.press~rs}', watchKeypress);
-            State.off('@:{event#stage.unit.change~rs}', changeUnit);
+            stage_generic_1['gk']();
+            State.off('gi', ApplyState);
+            State.off('gy', MagixBusyTip);
+            State.off('gx', clearStageElements);
+            State.off('go', changeExample);
+            State.off('gp', saveContent);
+            State.off('gm', watchKeypress);
+            State.off('gz', changeUnit);
         });
     },
     /**
      * 获取数据源数据，数据源在项目中多处使用，这里进行统一请求，并放置在State中，供其它view使用
      */
-    async '@:{fetch.data.source~rs}'() {
+    async '_h2'() {
         return new Promise(resolve => {
             if (config('getFieldUrl')) {
                 let s = new service_1();
-                s.all('@:{get.fields~rs}', (err, bag) => {
+                s.all('_h0', (err, bag) => {
                     if (err === null || err === void 0 ? void 0 : err.message) {
                         console.log('有错误', err.message);
                         /* 重新登陆 */
@@ -593,10 +592,10 @@ return $createVNode($viewId,0,$vnode_0);
                             let s = new service_1();
                             this.confirm('登录过期,请重新登录,本地点击确定模拟登录', () => {
                                 s.all({
-                                    name: '@:{post.login~rs}',
-                                    '@:{body~rs}': JSON.stringify({
-                                        password: 'Aa123456',
-                                        username: '13823349075',
+                                    name: '_h1',
+                                    '_hQ': JSON.stringify({
+                                        password: 'wRhP6Bb6a8Zn',
+                                        username: '13998684950',
                                     }),
                                 }, (err, bag) => {
                                     if (err) {
@@ -616,14 +615,14 @@ return $createVNode($viewId,0,$vnode_0);
                     let dataSourceList = bag.get('data', []);
                     let list = [
                         {
-                            name: index_5('@:{lang#select.source~rs}'),
+                            name: index_5('hE'),
                             id: '',
                         },
                     ].concat(dataSourceList);
                     State.set({
-                        '@:{global#stage.data.source.error~rs}': err,
-                        '@:{global#stage.data.source.list~rs}': list,
-                        '@:{global#stage.data.source.list.map~rs}': toMap(list, 'id'),
+                        'gt': err,
+                        'gu': list,
+                        'gv': toMap(list, 'id'),
                     });
                     resolve();
                 });
@@ -634,12 +633,12 @@ return $createVNode($viewId,0,$vnode_0);
         });
     },
     async render() {
-        index_6['@:{support.panels~rs}']();
-        let m = mark(this, '@:{render~rs}');
-        await this['@:{fetch.data.source~rs}']();
+        index_6['_hI']();
+        let m = mark(this, '_gt');
+        await this['_h2']();
         await this.digest();
         if (m()) {
-            index_6['@:{open.panels~rs}']();
+            index_6['_h3']();
             /**
              * 如果地址栏有id且配置了获取内容的url，则从接口读取内容
              * 否则如果配置了模板接口，则从模板列表中随机选择一个
@@ -652,36 +651,36 @@ return $createVNode($viewId,0,$vnode_0);
                 index_4.show('正在读取内容...');
                 let s = new service_1();
                 s.all({
-                    name: '@:{get.content~rs}',
-                    '@:{query~rs}': params,
+                    name: '_h4',
+                    '_hR': params,
                 }, (ex, bag) => {
                     index_4.hide();
                     if (!ex) {
                         let stage = bag.get('data.templateJson');
                         if (stage) {
-                            State.fire('@:{event#example.change~rs}', {
-                                '@:{excample.change.event#type~rs}': history_1['@:{history#example.from.remote~rs}'],
-                                '@:{excample.change.event#title~rs}': params.id,
-                                '@:{excample.change.event#stage~rs}': stage,
+                            State.fire('go', {
+                                'ge': history_1['gP'],
+                                'gf': params.id,
+                                'gd': stage,
                             });
                         }
                     }
                 });
             }
-            else if (templateUrl && const_1['@:{const#random.examples~rs}']) {
+            else if (templateUrl && const_1['gm']) {
                 //如果有示例配置,且允许显示随机示例
                 index_4.show('正在加载示例...');
-                await example_1['@:{load~rs}']();
+                await example_1['_g5']();
                 index_4.hide();
             }
             else {
-                history_1['@:{history#save.default~rs}']();
+                history_1['gQ']();
             }
         }
     },
     '$doc<dragover,drop>'(e) {
         //发生的dragover与drop均需要阻止默认行为，前者是防止浏览器打开拖进来的元素，后者是防止文件拖动放置在textarea等输入框内
-        this['@:{prevent.default~rs}'](e);
+        this['_h5'](e);
     },
 }).merge(index_2);
 

@@ -4,15 +4,15 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("gallery/mx-form/sync",["magix5"],(require,exports,module)=>{
+define("58/6q/sync",["51"],(require,exports,module)=>{
 
 
-let magix_1 = require("magix5");
+let magix_1 = require("51");
 let { has, mark, toMap, applyStyle, task, isObject, isArray } = magix_1;
-applyStyle("rd-_gallery_mx-form_sync_less_",".rd-_gallery_mx-form_sync_less_-error-input {\noutline:solid 2px red;\n}\n");
+applyStyle("rd-gz",".rd-lh{outline:2px solid red}");
 let emptyObject = {};
-let errorSelector = 'rd-_gallery_mx-form_sync_less_-error-input';
-let noneSelector = 'rd-_assets_index_less_-none';
+let errorSelector = 'rd-lh';
+let noneSelector = 'rd-g0';
 let showOrHideTip = (classList, viewId, expr, hide, msg) => {
     if (hide) {
         classList.remove(errorSelector);
@@ -151,7 +151,7 @@ module.exports= {
         this.on('domready', () => {
             let list = document.querySelectorAll(`input[mx5-ctrl][mx5-host="${this.id}"],select[mx5-ctrl][mx5-host="${this.id}"],textarea[mx5-ctrl][mx5-host="${this.id}"]`);
             let rootData = this.get();
-            let readyMark = mark(this, '@:{dom.ready.mark~rs}');
+            let readyMark = mark(this, '_mC');
             for (let i = list.length; i--;) {
                 let e = list[i];
                 task(syncUIFromData, [this, rootData, e, readyMark]);
@@ -169,9 +169,9 @@ module.exports= {
     '$[mx5-ctrl]<change,input,focusout>'(e) {
         let { eventTarget, type } = e;
         let ownerId = eventTarget.getAttribute('mx5-host');
-        if (ownerId != this.id || e['@:{halt~rs}'])
+        if (ownerId != this.id || e['_g8'])
             return;
-        e['@:{halt~rs}'] = 1;
+        e['_g8'] = 1;
         let ctrls = eventTarget.getAttribute('mx5-ctrl');
         let exprs = this.parse(ctrls);
         let dataRoot = this.get();
@@ -326,9 +326,9 @@ module.exports= {
             }
         }
         if (refresh) {
-            clearTimeout(this['@:{delay.timer~rs}']);
-            let delayMark = mark(this, '@:{delay.mark~rs}');
-            this['@:{delay.timer~rs}'] = setTimeout(() => {
+            clearTimeout(this['_mD']);
+            let delayMark = mark(this, '_mE');
+            this['_mD'] = setTimeout(() => {
                 if (delayMark()) {
                     this.digest();
                 }

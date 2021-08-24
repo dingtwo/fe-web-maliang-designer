@@ -4,13 +4,13 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("designer/stage-selection",["magix5"],(require,exports,module)=>{
+define("50/5u",["51"],(require,exports,module)=>{
 
 
 /**
  * 元素选区相关
  */
-let magix_1 = require("magix5");
+let magix_1 = require("51");
 let { toMap, State } = magix_1;
 let selectedMap;
 module.exports= {
@@ -18,8 +18,8 @@ module.exports= {
      * 设置单个元素选中状态
      * @param element 被选择的元素
      */
-    '@:{selection#set~rs}'(element) {
-        let selectElements = State.get('@:{global#stage.select.elements~rs}');
+    'ge'(element) {
+        let selectElements = State.get('gd');
         let oldCount = selectElements.length;
         if (oldCount || element) {
             let oldSelectElements = selectElements.slice();
@@ -40,7 +40,7 @@ module.exports= {
             }
             if (update) {
                 selectedMap = 0;
-                State.fire('@:{event#stage.select.elements.change~rs}');
+                State.fire('gg');
                 return oldSelectElements;
             }
         }
@@ -49,8 +49,8 @@ module.exports= {
      * 向选区追加选中的元素
      * @param element 添加到选区中的元素
      */
-    '@:{selection#add~rs}'(element) {
-        let selectElements = State.get('@:{global#stage.select.elements~rs}');
+    'gh'(element) {
+        let selectElements = State.get('gd');
         let find;
         for (let e of selectElements) { //先查找是否已经存在
             if (e.id === element.id) {
@@ -61,7 +61,7 @@ module.exports= {
         if (!find) { //如果未存在，则更新
             selectElements.push(element);
             selectedMap = 0;
-            State.fire('@:{event#stage.select.elements.change~rs}');
+            State.fire('gg');
             return 1;
         }
     },
@@ -69,9 +69,9 @@ module.exports= {
      * 获取选中元素根据id组成的集合对象
      * @returns id集合对象
      */
-    '@:{selection#get.selected.map~rs}'() {
+    'gi'() {
         if (!selectedMap) {
-            let selectElements = State.get('@:{global#stage.select.elements~rs}');
+            let selectElements = State.get('gd');
             selectedMap = toMap(selectElements, 'id');
         }
         return selectedMap;
@@ -80,14 +80,14 @@ module.exports= {
      * 移除选中的元素
      * @param element 待移除的元素
      */
-    '@:{selection#remove~rs}'(element) {
-        let selectElements = State.get('@:{global#stage.select.elements~rs}');
+    'gg'(element) {
+        let selectElements = State.get('gd');
         for (let i = selectElements.length; i--;) {
             let e = selectElements[i];
             if (e.id === element.id) {
                 selectElements.splice(i, 1);
                 selectedMap = 0;
-                State.fire('@:{event#stage.select.elements.change~rs}');
+                State.fire('gg');
                 return 1;
             }
         }
@@ -96,32 +96,32 @@ module.exports= {
      * 清除之前的元素并把传递来的列表做为选中
      * @param elements 元素列表
      */
-    '@:{selection#set.all~rs}'(elements) {
-        let last = this['@:{selection#get.selected.map~rs}']();
-        let selectElements = State.get('@:{global#stage.select.elements~rs}');
+    'gf'(elements) {
+        let last = this['gi']();
+        let selectElements = State.get('gd');
         selectElements.length = 0;
         selectedMap = 0;
         if (elements) {
             selectElements.push(...elements);
         }
-        let changed = this["@:{selection#has.changed~rs}"](last)['@:{selection.changed#has.diffed~rs}'];
+        let changed = this["gj"](last)['gg'];
         if (changed) {
-            State.fire('@:{event#stage.select.elements.change~rs}');
+            State.fire('gg');
         }
         return changed;
     },
     /**
      * 清除id对象
      */
-    '@:{selection#reset.map~rs}'() {
+    'gd'() {
         selectedMap = 0;
     },
     /**
      * 判断选中状态是否发生过改变
      * @param last 历史选中状态的id映射
      */
-    '@:{selection#has.changed~rs}'(last) {
-        let now = this['@:{selection#get.selected.map~rs}']();
+    'gj'(last) {
+        let now = this['gi']();
         let nowCount = 0, diff = 0, selectedElements = [], deselectedElements = [];
         for (let p in last) {
             if (!now[p]) {
@@ -140,10 +140,10 @@ module.exports= {
             }
         }
         return {
-            '@:{selection.changed#now.count~rs}': nowCount,
-            '@:{selection.changed#has.diffed~rs}': diff,
-            '@:{selection.changed#selected.elements~rs}': selectedElements,
-            '@:{selection.changed#deselected.elements~rs}': deselectedElements
+            'gd': nowCount,
+            'gg': diff,
+            'ge': selectedElements,
+            'gf': deselectedElements
         };
     }
 };

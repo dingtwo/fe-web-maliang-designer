@@ -4,25 +4,25 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("designer/content",["magix5","../gallery/mx-toast/index","../i18n/index","../provider/fs","./history","./tojson"],(require,exports,module)=>{
-let $quick_ko_0_static_node;
-let $quick_ko_3_static_node;
-let $quick_ko_6_static_node;
-let $quick_ko_1_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-dialog-header rd-_assets_index_less_-dialog-header-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-position-sticky rd-_assets_index_less_-top-0 rd-_assets_index_less_-z-index-8',};
-let $quick_ko_2_static_attr={'class': 'rd-_assets_index_less_-tag-h5',};
-let $quick_ko_4_static_attr={'class': 'rd-_assets_index_less_-dialog-body',};
-let $quick_ko_5_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-bottom-0 rd-_assets_index_less_-dialog-footer rd-_assets_index_less_-dialog-footer-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-justify-content-flex-end rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-6',};
+define("50/content",["51","../58/5f/index","../5c/index","../5g/fs","./5d","./5h"],(require,exports,module)=>{
+let $quick_gh_0_static_node;
+let $quick_gh_3_static_node;
+let $quick_gh_6_static_node;
+let $quick_gh_1_static_attr={'class': 'rd-g9 rd-gM rd-gn rd-go rd-ha rd-he rd-hf rd-ik',};
+let $quick_gh_2_static_attr={'class': 'rd-gy',};
+let $quick_gh_4_static_attr={'class': 'rd-gr',};
+let $quick_gh_5_static_attr={'class': 'rd-g9 rd-gM rd-gt rd-gu rd-ha rd-he rd-ht rd-id rd-ii',};
 let $special_2={'value':'value',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let index_1 = require("../gallery/mx-toast/index");
-let index_2 = require("../i18n/index");
-let fs_1 = require("../provider/fs");
-let history_1 = require("./history");
-let tojson_1 = require("./tojson");
+let magix_1 = require("51");
+let index_1 = require("../58/5f/index");
+let index_2 = require("../5c/index");
+let fs_1 = require("../5g/fs");
+let history_1 = require("./5d");
+let tojson_1 = require("./5h");
 let padStart = (str, n, char) => {
     str += '';
     if (str.length < n) {
@@ -31,7 +31,7 @@ let padStart = (str, n, char) => {
     return str;
 };
 let { node, State, applyStyle, View, Vframe, mark } = magix_1;
-applyStyle("rd-_designer_content_less_","\n.rd-_designer_content_less_-content-area {\nheight:calc(100vh - 180px);\n}\n");
+applyStyle("rd-gf",".rd-iT{height:calc(100vh - 180px)}");
 let prefix = atob('LyohUmVwb3J0IERlc2lnbmVyIEZpbGUKRnJvbTpodHRwczovL2dpdGh1Yi5jb20veGluZ2xpZS9yZXBvcnQtZGVzaWduZXIKQXV0aG9yOmtvb2JveV9saUAxNjMuY29tKi8K');
 let alertMsg = msg => {
     Vframe.root().invoke('alert', [msg]);
@@ -46,68 +46,67 @@ let tryApplyContent = (content) => {
         json = JSON.parse(content);
     }
     catch (ex) {
-        alertMsg(index_2('@:{lang#read.failure~rs}') + ex.message);
+        alertMsg(index_2('gu') + ex.message);
         return;
     }
-    State.fire('@:{event#example.change~rs}', {
-        '@:{excample.change.event#stage~rs}': json,
-        '@:{excample.change.event#type~rs}': history_1['@:{history#example.from.custom~rs}'],
-        '@:{excample.change.event#title~rs}': ''
+    State.fire('go', {
+        'gd': json,
+        'ge': history_1['gi'],
+        'gf': ''
     });
     return 1;
 };
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	i18n,
 	body,}=$dataFromView,
 $vnode_2,
 $vnode_1;
 
-if($quick_ko_0_static_node){
-$vnode_0=[$quick_ko_0_static_node];
+if($quick_gh_0_static_node){
+$vnode_0=[$quick_gh_0_static_node];
 }else{
-$vnode_0=[$quick_ko_0_static_node=$createVNode('div',{'_': 'hN','class': 'rd-_assets_index_less_-dialog-header-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-7',})];
+$vnode_0=[$quick_gh_0_static_node=$createVNode('div',{'_': 'eD','class': 'rd-gp rd-he rd-ij',})];
 }
-$vnode_2=[$createVNode(0,($__line=3,$__art='{{=i18n(\'@:{lang#save.content.title~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#save.content.title~rs}\')%>',(i18n('@:{lang#save.content.title~rs}'))))];$vnode_1=[$createVNode('h5',$quick_ko_2_static_attr,$vnode_2)];
-if($quick_ko_3_static_node){
-$vnode_1.push($quick_ko_3_static_node);
+$vnode_2=[$createVNode(0,(i18n('gy')))];$vnode_1=[$createVNode('h5',$quick_gh_2_static_attr,$vnode_2)];
+if($quick_gh_3_static_node){
+$vnode_1.push($quick_gh_3_static_node);
 }else{
-$vnode_2=[$createVNode(0,'如何保存数据到数据库?')];$vnode_1.push($quick_ko_3_static_node=$createVNode('a',{'_': 'hO','class': 'rd-_assets_index_less_-ml10 rd-_assets_index_less_-tag-a','href': 'https://github.com/xinglie/report-designer/issues/29','rel': 'noopener noreferrer','target': '_blank',},$vnode_2));
+$vnode_2=[$createVNode(0,'如何保存数据到数据库?')];$vnode_1.push($quick_gh_3_static_node=$createVNode('a',{'_': 'eE','class': 'rd-gA rd-gJ','href': 'https://github.com/xinglie/report-designer/issues/29','rel': 'noopener noreferrer','target': '_blank',},$vnode_2));
 }
-$vnode_0.push($createVNode('div',$quick_ko_1_static_attr,$vnode_1));$vnode_1=[$createVNode('textarea',{'class': 'rd-_assets_index_less_-textarea rd-_assets_index_less_-wp100 rd-_designer_content_less_-content-area','spellcheck': 'false','id': '_rd_ta_'+($__line=7,$__art='{{=$viewId}}','')+$viewId,'value': ($__line=7,$__art='{{=body}}',$__ctrl='<%=body%>',(body)),},0,$special_2)];$vnode_0.push($createVNode('div',$quick_ko_4_static_attr,$vnode_1));$vnode_2=[$createVNode(0,($__line=10,$__art='{{=i18n(\'@:{lang#btn.apply~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#btn.apply~rs}\')%>',(i18n('@:{lang#btn.apply~rs}'))))];$vnode_1=[$createVNode('button',{'mx5-click': $viewId+'@:{apply~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','type': 'button',},$vnode_2)];$vnode_2=[$createVNode(0,($__line=11,$__art='{{=i18n(\'@:{lang#btn.cancel~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#btn.cancel~rs}\')%>',(i18n('@:{lang#btn.cancel~rs}'))))];$vnode_1.push($createVNode('button',{'mx5-click': $viewId+'@:{cancel~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-ml10 rd-_assets_index_less_-tc','type': 'button',},$vnode_2));$vnode_0.push($createVNode('div',$quick_ko_5_static_attr,$vnode_1));
-if($quick_ko_6_static_node){
-$vnode_0.push($quick_ko_6_static_node);
+$vnode_0.push($createVNode('div',$quick_gh_1_static_attr,$vnode_1));$vnode_1=[$createVNode('textarea',{'class': 'rd-gN rd-gh rd-iT','spellcheck': 'false','id': '_rd_ta_'+$viewId,'value': (body),},0,$special_2)];$vnode_0.push($createVNode('div',$quick_gh_4_static_attr,$vnode_1));$vnode_2=[$createVNode(0,(i18n('gz')))];$vnode_1=[$createVNode('button',{'mx5-click': $viewId+'_gV()','class': 'rd-gS rd-gk rd-gm rd-hw','type': 'button',},$vnode_2)];$vnode_2=[$createVNode(0,(i18n('gA')))];$vnode_1.push($createVNode('button',{'mx5-click': $viewId+'_gU()','class': 'rd-gJ rd-gS rd-gk rd-hw','type': 'button',},$vnode_2));$vnode_0.push($createVNode('div',$quick_gh_5_static_attr,$vnode_1));
+if($quick_gh_6_static_node){
+$vnode_0.push($quick_gh_6_static_node);
 }else{
-$vnode_0.push($quick_ko_6_static_node=$createVNode('div',{'_': 'hP','class': 'rd-_assets_index_less_-dialog-footer-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-5',}));
+$vnode_0.push($quick_gh_6_static_node=$createVNode('div',{'_': 'eF','class': 'rd-gs rd-he rd-ih',}));
 }
  
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/content.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init(data) {
-        this['@:{dialog~rs}'] = data.dialog;
+        this['_gT'] = data.dialog;
     },
     render() {
         this.digest({
             body: tojson_1()
         });
     },
-    '@:{cancel~rs}<click>'() {
-        this['@:{dialog~rs}'].close();
+    '_gU<click>'() {
+        this['_gT'].close();
     },
-    '@:{apply~rs}<click>'() {
+    '_gV<click>'() {
         let value = node('_rd_ta_' + this.id).value.trim();
         if (tryApplyContent(value)) {
-            this['@:{dialog~rs}'].close();
+            this['_gT'].close();
         }
     }
 }).static({
-    async '@:{read.file~rs}'(target) {
-        let readMark = mark(this, '@:{save.async~rs}');
+    async '_gX'(target) {
+        let readMark = mark(this, '_gW');
         try {
-            let content = await fs_1['@:{read.file~rs}'](target);
+            let content = await fs_1['_gX'](target);
             tryApplyContent(content);
         }
         catch (ex) {
@@ -116,17 +115,17 @@ return $createVNode($viewId,0,$vnode_0);
             }
         }
     },
-    async '@:{save~rs}'() {
-        let saveMark = mark(this, '@:{save.async~rs}');
+    async '_g0'() {
+        let saveMark = mark(this, '_gW');
         try {
-            await fs_1['@:{prepare~rs}']();
+            await fs_1['_gY']();
         }
         catch (ex) {
             Vframe.root().invoke('alert', [ex.message]);
             return;
         }
         if (saveMark()) {
-            index_1.show(index_2('@:{lang#export.file.processing~rs}'));
+            index_1.show(index_2('gv'));
             let now = new Date();
             let time = [
                 now.getFullYear(),
@@ -139,8 +138,8 @@ return $createVNode($viewId,0,$vnode_0);
             let value = tojson_1();
             try {
                 value = prefix + btoa(encodeURIComponent(value));
-                await fs_1['@:{save.file~rs}'](`${index_2('@:{lang#site.name~rs}')}-${time}.rd`, value);
-                index_1.show(index_2('@:{lang#export.success~rs}'), 3e3);
+                await fs_1['_gZ'](`${index_2('gw')}-${time}.rd`, value);
+                index_1.show(index_2('gx'), 3e3);
             }
             catch (ex) {
                 index_1.hide();

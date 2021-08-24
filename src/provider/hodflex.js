@@ -4,33 +4,33 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("provider/hodflex",["magix5","../designer/const","../designer/history","../designer/transform","../gallery/mx-pointer/cursor","../gallery/mx-pointer/tip","./cell"],(require,exports,module)=>{
+define("5g/hodflex",["51","../50/53","../50/5d","../50/54","../58/5a/cursor","../58/5a/tip","./cell"],(require,exports,module)=>{
 
 
-let magix_1 = require("magix5");
-let const_1 = require("../designer/const");
-let history_1 = require("../designer/history");
-let transform_1 = require("../designer/transform");
-let cursor_1 = require("../gallery/mx-pointer/cursor");
-let tip_1 = require("../gallery/mx-pointer/tip");
+let magix_1 = require("51");
+let const_1 = require("../50/53");
+let history_1 = require("../50/5d");
+let transform_1 = require("../50/54");
+let cursor_1 = require("../58/5a/cursor");
+let tip_1 = require("../58/5a/tip");
 let cell_1 = require("./cell");
 let { State } = magix_1;
 module.exports= {
-    '@:{start.resize~rs}<pointerdown>'(e) {
-        if (e['@:{halt~rs}'] || e.button)
+    '_ks<pointerdown>'(e) {
+        if (e['_g8'] || e.button)
             return;
-        e['@:{halt~rs}'] = 1;
+        e['_g8'] = 1;
         let me = this;
         let element = this.get('element');
         let { props, ctrl, id } = element;
         let { focusRow, focusCol, rows, ename, x: elementX, y: elementY } = props;
         if (focusRow == -1 || focusCol == -1)
             return;
-        State.fire('@:{event#stage.toggle.scroll~rs}', {
+        State.fire('gC', {
             show: 1,
             size: 1
         });
-        let scale = State.get('@:{global#stage.scale~rs}');
+        let scale = State.get('ge');
         let row = rows[focusRow];
         let cell = row.cols[focusCol];
         let { key } = e.params;
@@ -47,22 +47,22 @@ module.exports= {
         let oppsiteWidth = handX == 'l' ? -1 : 1;
         let oppsiteHeight = handY == 't' ? -1 : 1;
         let movedX = 0, movedY = 0;
-        let minWidth = const_1['@:{const#to.unit~rs}'](cell_1["@:{min.width~rs}"] * scale);
-        let minHeight = const_1['@:{const#to.unit~rs}'](cell_1["@:{min.height~rs}"] * scale);
+        let minWidth = const_1['ge'](cell_1["_lh"] * scale);
+        let minHeight = const_1['ge'](cell_1["_lj"] * scale);
         let moveEvent, nearsideScrollOffset;
         let moveCallback = async () => {
             if (!moved) {
-                cursor_1["@:{show~rs}"](current);
+                cursor_1["_gM"](current);
                 moved = 1;
             }
             let diffWidth = moveEvent.pageX - beginX;
             let diffHeight = moveEvent.pageY - beginY;
             if (nearsideScrollOffset) {
-                diffHeight += nearsideScrollOffset['@:{interval.move.event#y~rs}'];
-                diffWidth += nearsideScrollOffset['@:{interval.move.event#x~rs}'];
+                diffHeight += nearsideScrollOffset['gd'];
+                diffWidth += nearsideScrollOffset['ge'];
             }
-            let offsetHeight = const_1['@:{const#to.unit~rs}']((modifyHeight ? diffHeight : 0) * oppsiteHeight);
-            let offsetWidth = const_1['@:{const#to.unit~rs}']((modifyWidth ? diffWidth : 0) * oppsiteWidth);
+            let offsetHeight = const_1['ge']((modifyHeight ? diffHeight : 0) * oppsiteHeight);
+            let offsetWidth = const_1['ge']((modifyWidth ? diffWidth : 0) * oppsiteWidth);
             let newWidth = beginWidth + offsetWidth;
             let newHeight = beginHeight + offsetHeight;
             if (newWidth <= minWidth) {
@@ -92,49 +92,49 @@ module.exports= {
                 }
                 props.x = elementX + movedX;
                 props.y = elementY + movedY;
-                ctrl['@:{update.props~rs}'](props);
-                await parent.invoke('@:{update~rs}', [element]);
-                State.fire('@:{event#stage.select.element.props.change~rs}', {
-                    '@:{ids~rs}': {
+                ctrl['_he'](props);
+                await parent.invoke('_iA', [element]);
+                State.fire('gf', {
+                    '_hW': {
                         [id]: 1
                     },
-                    '@:{types~rs}': {
+                    '_hX': {
                         [element.type]: 1
                     },
-                    '@:{props~rs}': {
-                        '@:{size~rs}': 1
+                    '_ge': {
+                        '_gg': 1
                     }
                 });
             }
             if (nearsideScrollOffset &&
-                !nearsideScrollOffset['@:{interval.move.event#called~rs}']) {
-                nearsideScrollOffset['@:{interval.move.event#called~rs}'] = 1;
-                nearsideScrollOffset['@:{interval.move.event#ready~rs}']();
+                !nearsideScrollOffset['gf']) {
+                nearsideScrollOffset['gf'] = 1;
+                nearsideScrollOffset['gg']();
             }
-            let tipWidth = transform_1['@:{transform#to.show.value~rs}'](newWidth), tipHeight = transform_1['@:{transform#to.show.value~rs}'](newHeight), tipMsg = `${tipWidth} x ${tipHeight}`;
-            tip_1['@:{show.text~rs}'](tipMsg);
-            tip_1['@:{update.position~rs}'](moveEvent.pageX, moveEvent.pageY);
+            let tipWidth = transform_1['gg'](newWidth), tipHeight = transform_1['gg'](newHeight), tipMsg = `${tipWidth} x ${tipHeight}`;
+            tip_1['_iY'](tipMsg);
+            tip_1['_i1'](moveEvent.pageX, moveEvent.pageY);
         };
         let watchIntervalMove = (e) => {
             nearsideScrollOffset = e;
             moveCallback();
         };
-        State.on('@:{event#stage.interval.move~rs}', watchIntervalMove);
-        me['@:{drag.drop~rs}'](e, evt => {
-            State.fire('@:{event#drag.element.move~rs}', evt);
+        State.on('gs', watchIntervalMove);
+        me['_gL'](e, evt => {
+            State.fire('gr', evt);
             moveEvent = evt;
             moveCallback();
         }, () => {
-            State.off('@:{event#stage.interval.move~rs}', watchIntervalMove);
-            State.fire('@:{event#drag.element.stop~rs}');
+            State.off('gs', watchIntervalMove);
+            State.fire('gu');
             if (moved) {
-                history_1["@:{history#save~rs}"](history_1['@:{history#element.modified.size~rs}'], ename);
-                cursor_1["@:{hide~rs}"]();
+                history_1["gd"](history_1['gJ'], ename);
+                cursor_1["_gN"]();
             }
-            State.fire('@:{event#stage.toggle.scroll~rs}', {
+            State.fire('gC', {
                 hide: 1
             });
-            tip_1['@:{hide~rs}']();
+            tip_1['_gN']();
         });
     }
 };

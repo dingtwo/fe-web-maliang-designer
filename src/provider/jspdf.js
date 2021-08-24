@@ -4,7 +4,7 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("provider/jspdf",[],(require,exports,module)=>{
+define("5g/jspdf",[],(require,exports,module)=>{
 
 
 let dest = '//cdn.bootcdn.net/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js';

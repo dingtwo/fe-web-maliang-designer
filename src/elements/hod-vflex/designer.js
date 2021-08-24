@@ -4,18 +4,18 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/hod-vflex/designer",["../../designer/const","../../designer/enum","../../designer/props","../../designer/transform","../../provider/cell","../normal"],(require,exports,module)=>{
+define("5m/hod-vflex/designer",["../../50/53","../../50/enum","../../50/61","../../50/54","../../5g/cell","../6e"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let const_1 = require("../../designer/const");
-let enum_1 = require("../../designer/enum");
-let props_1 = require("../../designer/props");
-let transform_1 = require("../../designer/transform");
-let cell_1 = require("../../provider/cell");
-let normal_1 = require("../normal");
+let const_1 = require("../../50/53");
+let enum_1 = require("../../50/enum");
+let props_1 = require("../../50/61");
+let transform_1 = require("../../50/54");
+let cell_1 = require("../../5g/cell");
+let normal_1 = require("../6e");
 let transformFields = [
     'width',
     'height',
@@ -27,16 +27,16 @@ let transformFields = [
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/hod-vflex/dshow",
+            view: "5m/hod-vflex/dshow",
         });
     },
 }).static({
     type: 'hod-vflex',
-    as: enum_1['@:{enum#as.hod~rs}'],
-    title: '@:{lang#elements.v-flexbox~rs}',
+    as: enum_1['gg'],
+    title: 'kd',
     icon: '&#xeb9d;',
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.icon~rs}'] | enum_1['@:{enum#modifier.nomask~rs}'],
-    '@:{move.props~rs}': [
+    '_iV': enum_1['gl'] | enum_1['gr'],
+    '_iy': [
         {
             key: 'x',
             use: 'x',
@@ -46,7 +46,7 @@ module.exports= normal_1.extend({
             use: 'y',
         },
     ],
-    '@:{update.props~rs}'(props) {
+    '_he'(props) {
         let { rows } = props;
         let height = 0, width = 0;
         for (let row of rows) {
@@ -68,11 +68,11 @@ module.exports= normal_1.extend({
         //     props.y += old.y - n.y;
         // }
     },
-    '@:{get.props~rs}'(x, y) {
-        let borderWidth = const_1['@:{const#to.unit~rs}'](1);
+    '_hd'(x, y) {
+        let borderWidth = const_1['ge'](1);
         return {
-            x: const_1['@:{const#to.unit~rs}'](x),
-            y: const_1['@:{const#to.unit~rs}'](y),
+            x: const_1['ge'](x),
+            y: const_1['ge'](y),
             //rotate: 0,
             alpha: 1,
             focusRow: -1,
@@ -80,10 +80,10 @@ module.exports= normal_1.extend({
             help: '//github.com/xinglie/report-designer/issues/12',
             rows: [
                 {
-                    width: const_1['@:{const#to.unit~rs}'](cell_1['@:{default.height~rs}']),
+                    width: const_1['ge'](cell_1['_kq']),
                     cols: [
                         {
-                            height: const_1['@:{const#to.unit~rs}'](cell_1['@:{default.width~rs}']),
+                            height: const_1['ge'](cell_1['_kr']),
                             elements: [],
                             borderLeftTopRadius: 0,
                             borderRightTopRadius: 0,
@@ -111,50 +111,50 @@ module.exports= normal_1.extend({
     props: [
         {
             key: 'rows',
-            '@:{json.encode~rs}'(dest, { rows }) {
-                transform_1['@:{transform#json.encode.cells~rs}'](dest, rows, transformFields);
+            '_jx'(dest, { rows }) {
+                transform_1['gt'](dest, rows, transformFields);
             },
-            '@:{unit.convert~rs}'({ rows }, toUnit) {
-                transform_1['@:{transform#unit.convert.cells~rs}'](rows, toUnit, transformFields);
+            '_hL'({ rows }, toUnit) {
+                transform_1['gu'](rows, toUnit, transformFields);
             },
-            '@:{stage.scale~rs}'(props, step, dest) {
-                transform_1['@:{transform#stage.scale.cells~rs}'](props, step, transformFields, dest);
+            '_iN'(props, step, dest) {
+                transform_1['gs'](props, step, transformFields, dest);
             },
         },
         {
-            tip: '@:{lang#props.x~rs}',
-            type: props_1['@:{eprops#number~rs}'],
+            tip: 'h1',
+            type: props_1['gd'],
             key: 'x',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1['@:{const#unit.fixed~rs}'],
-            step: const_1['@:{const#unit.step~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
+            '_hM': 1,
+            fixed: const_1['gU'],
+            step: const_1['gT'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.y~rs}',
-            type: props_1['@:{eprops#number~rs}'],
+            tip: 'h2',
+            type: props_1['gd'],
             key: 'y',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1['@:{const#unit.fixed~rs}'],
-            step: const_1['@:{const#unit.step~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
+            '_hM': 1,
+            fixed: const_1['gU'],
+            step: const_1['gT'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.width~rs}',
+            tip: 'h3',
             key: 'width',
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            type: props_1['@:{eprops#label~rs}'],
+            read: transform_1['gg'],
+            type: props_1['gp'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.height~rs}',
+            tip: 'h4',
             key: 'height',
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            type: props_1['@:{eprops#label~rs}'],
+            read: transform_1['gg'],
+            type: props_1['gp'],
             json: 1,
         } /*, {
             tip: '@:{lang#props.rotate}',
@@ -165,9 +165,9 @@ module.exports= normal_1.extend({
             json: 1
         }*/,
         {
-            tip: '@:{lang#props.alpha~rs}',
+            tip: 'h6',
             key: 'alpha',
-            type: props_1['@:{eprops#number~rs}'],
+            type: props_1['gd'],
             step: 0.1,
             fixed: 1,
             min: 0,
@@ -175,35 +175,35 @@ module.exports= normal_1.extend({
             json: 1,
         },
         {
-            type: props_1['@:{eprops#spliter~rs}'],
-            '@:{if.show~rs}'(props) {
+            type: props_1['gE'],
+            '_jN'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
             },
         },
         {
-            tip: '@:{lang#props.cell.size~rs}',
-            type: props_1['@:{eprops#v.cell.size~rs}'],
-            '@:{dock.top~rs}': 1,
-            '@:{if.show~rs}'(props) {
+            tip: 'iY',
+            type: props_1['gx'],
+            '_ka': 1,
+            '_jN'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
             },
         },
         {
-            tip: '@:{lang#props.cell.operate~rs}',
-            type: props_1['@:{eprops#v.cell.operate~rs}'],
-            '@:{dock.top~rs}': 1,
-            '@:{if.show~rs}'(props) {
+            tip: 'i0',
+            type: props_1['gw'],
+            '_ka': 1,
+            '_jN'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
             },
         },
         {
-            type: props_1['@:{eprops#cell.style~rs}'],
-            '@:{if.show~rs}'(props) {
+            type: props_1['gs'],
+            '_jN'(props) {
                 return props.focusRow != -1 && props.focusCol != -1;
             },
         },
         {
-            type: props_1['@:{eprops#spliter~rs}'],
+            type: props_1['gE'],
         },
         // {
         //   tip: '@:{lang#props.help}',
@@ -211,15 +211,15 @@ module.exports= normal_1.extend({
         //   key: 'help',
         // },
         {
-            tip: '@:{lang#props.title~rs}',
+            tip: 'id',
             key: 'ename',
-            type: props_1['@:{eprops#text.input~rs}'],
+            type: props_1['gm'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.locked~rs}',
+            tip: 'ie',
             key: 'locked',
-            type: props_1['@:{eprops#boolean~rs}'],
+            type: props_1['gf'],
             free: true,
             json: 1,
         },

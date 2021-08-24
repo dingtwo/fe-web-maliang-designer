@@ -4,20 +4,20 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("gallery/mx-box/v-size",["magix5","../../designer/transform","../../provider/cell","../../designer/const","../mx-number/index"],(require,exports,module)=>{
-require("../mx-number/index");
+define("58/6h/v-size",["51","../../50/54","../../5g/cell","../../50/53","../6j/index"],(require,exports,module)=>{
+require("../6j/index");
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let transform_1 = require("../../designer/transform");
-let cell_1 = require("../../provider/cell");
-let const_1 = require("../../designer/const");
+let magix_1 = require("51");
+let transform_1 = require("../../50/54");
+let cell_1 = require("../../5g/cell");
+let const_1 = require("../../50/53");
 let { View, dispatch } = magix_1;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	disabled,
 	minWidth,
@@ -27,17 +27,16 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 	row,
 	minHeight,
 	cell,}=$dataFromView;
-$vnode_0=[$createVNode('div',{'mx5-owner': $viewId,'$': 'minWidth,fixed,step,row','disabled': ($temp_var=($__line=1,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-box/v-size.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'class': 'rd-_assets_index_less_-input rd-_assets_index_less_-margin-bottom-4 rd-_assets_index_less_-pr','mx5-change': $viewId+'@:{stop~rs}()','mx5-input': $viewId+'@:{update.row.width~rs}()','mx5-view': 'gallery/mx-number/index?min='+($__line=1,$__art='{{#minWidth}}',$__ctrl='<%#minWidth,\'auto_key_minWidth\'%>',$keyOf($refData,minWidth,'auto_key_minWidth'))+'&fixed='+($__line=1,$__art='{{#fixed}}',$__ctrl='<%#fixed,\'auto_key_fixed\'%>',$keyOf($refData,fixed,'auto_key_fixed'))+'&step='+($__line=1,$__art='{{#step}}',$__ctrl='<%#step,\'auto_key_step\'%>',$keyOf($refData,step,'auto_key_step'))+'&value='+($__line=1,$__art='{{#read(row.width)}}',$__ctrl='<%#read(row.width),\'auto_key_read.row.read(row.width)\'%>',$keyOf($refData,read(row.width),'auto_key_read.row.read(row.width)')),}),$createVNode('div',{'mx5-owner': $viewId,'$': 'minHeight,fixed,step,cell','disabled': ($temp_var=($__line=2,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-box/v-size.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-change': $viewId+'@:{stop~rs}()','mx5-input': $viewId+'@:{update.cell.height~rs}()','class': 'rd-_assets_index_less_-input rd-_assets_index_less_-pr','mx5-view': 'gallery/mx-number/index?min='+($__line=2,$__art='{{#minHeight}}',$__ctrl='<%#minHeight,\'auto_key_minHeight\'%>',$keyOf($refData,minHeight,'auto_key_minHeight'))+'&fixed='+($__line=2,$__art='{{#fixed}}',$__ctrl='<%#fixed,\'auto_key_fixed\'%>',$keyOf($refData,fixed,'auto_key_fixed'))+'&step='+($__line=2,$__art='{{#step}}',$__ctrl='<%#step,\'auto_key_step\'%>',$keyOf($refData,step,'auto_key_step'))+'&value='+($__line=2,$__art='{{#read(cell.height)}}',$__ctrl='<%#read(cell.height),\'auto_key_read.cell.read(cell.height)\'%>',$keyOf($refData,read(cell.height),'auto_key_read.cell.read(cell.height)')),})]; 
+$vnode_0=[$createVNode('div',{'mx5-owner': $viewId,'$': 'minWidth,fixed,step,row','disabled': (disabled),'class': 'rd-gW rd-gg rd-hg','mx5-change': $viewId+'_kg()','mx5-input': $viewId+'_lr()','mx5-view': '58/6j/index?min='+$keyOf($refData,minWidth,'eD')+'&fixed='+$keyOf($refData,fixed,'eE')+'&step='+$keyOf($refData,step,'eF')+'&value='+$keyOf($refData,read(row.width),'eG'),}),$createVNode('div',{'mx5-owner': $viewId,'$': 'minHeight,fixed,step,cell','disabled': (disabled),'mx5-change': $viewId+'_kg()','mx5-input': $viewId+'_lq()','class': 'rd-gW rd-gg','mx5-view': '58/6j/index?min='+$keyOf($refData,minHeight,'eH')+'&fixed='+$keyOf($refData,fixed,'eE')+'&step='+$keyOf($refData,step,'eF')+'&value='+$keyOf($refData,read(cell.height),'eI'),})]; 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-box/v-size.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init() {
         this.set({
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.fixed~rs}"],
-            minWidth: () => const_1["@:{const#to.unit~rs}"](cell_1["@:{min.width~rs}"]),
-            minHeight: () => const_1["@:{const#to.unit~rs}"](cell_1["@:{min.height~rs}"]),
-            read: transform_1["@:{transform#to.show.value~rs}"]
+            fixed: const_1["gU"],
+            step: const_1["gU"],
+            minWidth: () => const_1["ge"](cell_1["_lh"]),
+            minHeight: () => const_1["ge"](cell_1["_lj"]),
+            read: transform_1["gg"]
         });
     },
     assign(data) {
@@ -62,20 +61,20 @@ return $createVNode($viewId,0,$vnode_0);
     render() {
         this.digest();
     },
-    '@:{update.cell.height~rs}<input>'(e) {
-        this['@:{stop.propagation~rs}'](e);
+    '_lq<input>'(e) {
+        this['_kt'](e);
         let rows = this.get('rows');
         let cell = this.get('cell');
-        cell.height = transform_1["@:{transform#to.real.value~rs}"](e.value);
+        cell.height = transform_1["gl"](e.value);
         dispatch(this.root, 'change', {
             rows
         });
     },
-    '@:{update.row.width~rs}<input>'(e) {
-        this['@:{stop.propagation~rs}'](e);
+    '_lr<input>'(e) {
+        this['_kt'](e);
         let rows = this.get('rows');
         let row = this.get('row');
-        row.width = transform_1["@:{transform#to.real.value~rs}"](e.value);
+        row.width = transform_1["gl"](e.value);
         dispatch(this.root, 'change', {
             rows
         });

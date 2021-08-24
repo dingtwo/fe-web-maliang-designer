@@ -4,13 +4,13 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/data-coltable/consts",[],(require,exports,module)=>{
+define("5m/data-coltable/consts",[],(require,exports,module)=>{
 
 
 module.exports= {
-    '@:{default.cell.width~rs}': 120,
-    '@:{default.empty.width~rs}': 200,
-    '@:{loading.tip.height~rs}': 100,
+    '_ki': 120,
+    '_kj': 200,
+    '_kk': 100,
 };
 
 });

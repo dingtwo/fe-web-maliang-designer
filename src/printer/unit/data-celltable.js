@@ -4,7 +4,7 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("printer/unit/data-celltable",[],(require,exports,module)=>{
+define("78/7b/data-celltable",[],(require,exports,module)=>{
 
 
 /**
@@ -19,7 +19,7 @@ module.exports= (dataCenter, resLoader, table, fromIndex, newPage, inHod) => {
     let { props } = table;
     let { bind, rows } = props;
     if (bind.url) {
-        let { '@:{error~rs}': err, '@:{data~rs}': list } = dataCenter[bind.url];
+        let { '_h7': err, '_h8': list } = dataCenter[bind.url];
         if (err) {
             bind._tip = err;
         }
@@ -29,7 +29,7 @@ module.exports= (dataCenter, resLoader, table, fromIndex, newPage, inHod) => {
                 for (let col of row.cols) {
                     if (col.type == 'qrcode' ||
                         col.type == 'barcode') {
-                        resLoader['@:{add~rs}']('@:{provider~rs}', col.type);
+                        resLoader['_lU']('_pj', col.type);
                     }
                     //  else if (col.type == 'image' &&
                     //     col.bindKey) {

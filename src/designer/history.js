@@ -4,14 +4,14 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("designer/history",["magix5","./const"],(require,exports,module)=>{
+define("50/5d",["51","./53"],(require,exports,module)=>{
 
 
 /**
  * 历史记录
  */
-let magix_1 = require("magix5");
-let const_1 = require("./const");
+let magix_1 = require("51");
+let const_1 = require("./53");
 let { State, toMap } = magix_1;
 /**
  * 以下常量用于对存放的历史记录增加相应的描述，用于历史面板的展示。比如用户清除了所有辅助线，则记录历史时，声明当前历史记录是类型10，则记录10对应的历史描述
@@ -58,143 +58,143 @@ let Enum_Example_From_Custom = 92;
  * 以下用于对数字类型翻译成相应的描述及icon
  */
 let HistoryActions = [{
-        '@:{history.action#description~rs}': '@:{lang#history.action.init~rs}',
-        '@:{history.action#icon~rs}': '&#xe653;',
-        '@:{history.action#type~rs}': Enum_History_Init
+        'gd': 'g4',
+        'ge': '&#xe653;',
+        'gf': Enum_History_Init
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.clear.help.line~rs}',
-        '@:{history.action#icon~rs}': '&#xe68b;',
-        '@:{history.action#type~rs}': Enum_Clear_Help_Line
+        'gd': 'g5',
+        'ge': '&#xe68b;',
+        'gf': Enum_Clear_Help_Line
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.add.help.line~rs}',
-        '@:{history.action#icon~rs}': '&#xe68b;',
-        '@:{history.action#type~rs}': Enum_Add_Help_Line
+        'gd': 'g6',
+        'ge': '&#xe68b;',
+        'gf': Enum_Add_Help_Line
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.delete.help.line~rs}',
-        '@:{history.action#icon~rs}': '&#xe68b;',
-        '@:{history.action#type~rs}': Enum_Delete_Help_Line
+        'gd': 'g7',
+        'ge': '&#xe68b;',
+        'gf': Enum_Delete_Help_Line
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.move.help.line~rs}',
-        '@:{history.action#icon~rs}': '&#xe68b;',
-        '@:{history.action#type~rs}': Enum_Move_Help_Line
+        'gd': 'g8',
+        'ge': '&#xe68b;',
+        'gf': Enum_Move_Help_Line
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.clear.stage~rs}',
-        '@:{history.action#icon~rs}': '&#xe7db;',
-        '@:{history.action#type~rs}': Enum_Clear_Stage
+        'gd': 'g9',
+        'ge': '&#xe7db;',
+        'gf': Enum_Clear_Stage
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.zoomin.stage~rs}',
-        '@:{history.action#icon~rs}': '&#xe699;',
-        '@:{history.action#type~rs}': Enum_Zoomin_Stage
+        'gd': 'h_',
+        'ge': '&#xe699;',
+        'gf': Enum_Zoomin_Stage
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.zoomout.stage~rs}',
-        '@:{history.action#icon~rs}': '&#xe602;',
-        '@:{history.action#type~rs}': Enum_Zoomout_Stage
+        'gd': 'ha',
+        'ge': '&#xe602;',
+        'gf': Enum_Zoomout_Stage
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.new.page~rs}',
-        '@:{history.action#icon~rs}': '&#xe612;',
-        '@:{history.action#type~rs}': Enum_Create_Page
+        'gd': 'hb',
+        'ge': '&#xe612;',
+        'gf': Enum_Create_Page
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.lost.focus~rs}',
-        '@:{history.action#icon~rs}': '&#xe65d;',
-        '@:{history.action#type~rs}': Enum_Element_Lost_Focus
+        'gd': 'hc',
+        'ge': '&#xe65d;',
+        'gf': Enum_Element_Lost_Focus
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.get.focus~rs}',
-        '@:{history.action#icon~rs}': '&#xe65d;',
-        '@:{history.action#type~rs}': Enum_Element_Get_Focus
+        'gd': 'hd',
+        'ge': '&#xe65d;',
+        'gf': Enum_Element_Get_Focus
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.moved~rs}',
-        '@:{history.action#icon~rs}': '&#xe648;',
-        '@:{history.action#type~rs}': Enum_Element_Moved
+        'gd': 'he',
+        'ge': '&#xe648;',
+        'gf': Enum_Element_Moved
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.aligned~rs}',
-        '@:{history.action#icon~rs}': '&#xe694;',
-        '@:{history.action#type~rs}': Enum_Element_Aligned
+        'gd': 'hf',
+        'ge': '&#xe694;',
+        'gf': Enum_Element_Aligned
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.sync.size~rs}',
-        '@:{history.action#icon~rs}': '&#xe662;',
-        '@:{history.action#type~rs}': Enum_Element_Sync_Size
+        'gd': 'hg',
+        'ge': '&#xe662;',
+        'gf': Enum_Element_Sync_Size
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.added~rs}',
-        '@:{history.action#icon~rs}': '&#xe652;',
-        '@:{history.action#type~rs}': Enum_Element_Added
+        'gd': 'hh',
+        'ge': '&#xe652;',
+        'gf': Enum_Element_Added
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.removed~rs}',
-        '@:{history.action#icon~rs}': '&#xe6b3;',
-        '@:{history.action#type~rs}': Enum_Element_Removed
+        'gd': 'hi',
+        'ge': '&#xe6b3;',
+        'gf': Enum_Element_Removed
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.grouped~rs}',
-        '@:{history.action#icon~rs}': '&#xe669;',
-        '@:{history.action#type~rs}': Enum_Element_Grouped
+        'gd': 'hj',
+        'ge': '&#xe669;',
+        'gf': Enum_Element_Grouped
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.ungrouped~rs}',
-        '@:{history.action#icon~rs}': '&#xe684;',
-        '@:{history.action#type~rs}': Enum_Element_Ungrouped
+        'gd': 'hk',
+        'ge': '&#xe684;',
+        'gf': Enum_Element_Ungrouped
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.locked~rs}',
-        '@:{history.action#icon~rs}': '&#xe63e;',
-        '@:{history.action#type~rs}': Enum_Element_Locked
+        'gd': 'hl',
+        'ge': '&#xe63e;',
+        'gf': Enum_Element_Locked
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.unlocked~rs}',
-        '@:{history.action#icon~rs}': '&#xe637;',
-        '@:{history.action#type~rs}': Enum_Element_Unlocked
+        'gd': 'hm',
+        'ge': '&#xe637;',
+        'gf': Enum_Element_Unlocked
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.zindex~rs}',
-        '@:{history.action#icon~rs}': '&#xe656;',
-        '@:{history.action#type~rs}': Enum_Element_ZIndex
+        'gd': 'hn',
+        'ge': '&#xe656;',
+        'gf': Enum_Element_ZIndex
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.pasted~rs}',
-        '@:{history.action#icon~rs}': '&#xe6c1;',
-        '@:{history.action#type~rs}': Enum_Element_Pasted
+        'gd': 'ho',
+        'ge': '&#xe6c1;',
+        'gf': Enum_Element_Pasted
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.rotated~rs}',
-        '@:{history.action#icon~rs}': '&#xe641;',
-        '@:{history.action#type~rs}': Enum_Element_Rotated
+        'gd': 'hp',
+        'ge': '&#xe641;',
+        'gf': Enum_Element_Rotated
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.modified.ctrl.point~rs}',
-        '@:{history.action#icon~rs}': '&#xe6da;',
-        '@:{history.action#type~rs}': Enum_Element_Modified_Ctrl_Point
+        'gd': 'hq',
+        'ge': '&#xe6da;',
+        'gf': Enum_Element_Modified_Ctrl_Point
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.modified.mod.point~rs}',
-        '@:{history.action#icon~rs}': '&#xe6da;',
-        '@:{history.action#type~rs}': Enum_Element_Modified_Mod_Point
+        'gd': 'hr',
+        'ge': '&#xe6da;',
+        'gf': Enum_Element_Modified_Mod_Point
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.modified.size~rs}',
-        '@:{history.action#icon~rs}': '&#xe673;',
-        '@:{history.action#type~rs}': Enum_Element_Modified_Size
+        'gd': 'hs',
+        'ge': '&#xe673;',
+        'gf': Enum_Element_Modified_Size
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.modified.props~rs}',
-        '@:{history.action#icon~rs}': '&#xe655;',
-        '@:{history.action#type~rs}': Enum_Element_Props
+        'gd': 'ht',
+        'ge': '&#xe655;',
+        'gf': Enum_Element_Props
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.cut~rs}',
-        '@:{history.action#icon~rs}': '&#xe6bf;',
-        '@:{history.action#type~rs}': Enum_Element_Cut
+        'gd': 'hu',
+        'ge': '&#xe6bf;',
+        'gf': Enum_Element_Cut
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.duplicate~rs}',
-        '@:{history.action#icon~rs}': '&#xe6b1;',
-        '@:{history.action#type~rs}': Enum_Element_Duplicate
+        'gd': 'hv',
+        'ge': '&#xe6b1;',
+        'gf': Enum_Element_Duplicate
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.avg.h~rs}',
-        '@:{history.action#icon~rs}': '&#xe6bb;',
-        '@:{history.action#type~rs}': Enum_Element_Avg_Hor
+        'gd': 'hw',
+        'ge': '&#xe6bb;',
+        'gf': Enum_Element_Avg_Hor
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.element.avg.v~rs}',
-        '@:{history.action#icon~rs}': '&#xe6cf;',
-        '@:{history.action#type~rs}': Enum_Element_Avg_Ver
+        'gd': 'hx',
+        'ge': '&#xe6cf;',
+        'gf': Enum_Element_Avg_Ver
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.example.from.list~rs}',
-        '@:{history.action#icon~rs}': '&#xe63f;',
-        '@:{history.action#type~rs}': Enum_Example_From_List
+        'gd': 'hy',
+        'ge': '&#xe63f;',
+        'gf': Enum_Example_From_List
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.example.from.remote~rs}',
-        '@:{history.action#icon~rs}': '&#xe63f;',
-        '@:{history.action#type~rs}': Enum_Example_From_Remote
+        'gd': 'hz',
+        'ge': '&#xe63f;',
+        'gf': Enum_Example_From_Remote
     }, {
-        '@:{history.action#description~rs}': '@:{lang#history.action.example.from.custom~rs}',
-        '@:{history.action#icon~rs}': '&#xe63f;',
-        '@:{history.action#type~rs}': Enum_Example_From_Custom
+        'gd': 'hA',
+        'ge': '&#xe63f;',
+        'gf': Enum_Example_From_Custom
     }];
-let HistoryActionsMap = toMap(HistoryActions, '@:{history.action#type~rs}');
+let HistoryActionsMap = toMap(HistoryActions, 'gf');
 let HistoryList = []; //历史记录
 let HistoryIndex = -1; //当前索引
 let BuferStage = null; //对于连续操作的动作，比如按下键盘移动，并不是每次都记录历史记录。会采用延迟多少毫秒后未有新的动作则进行记录
@@ -219,19 +219,19 @@ let FilterRelease = (key, value) => key.startsWith('_') ? undefined : value;
 let GetSnapshot = (type, extDescription = '') => {
     let i = HistoryActionsMap[type];
     return {
-        '@:{history#icon~rs}': i['@:{history.action#icon~rs}'],
-        '@:{history#description~rs}': i['@:{history.action#description~rs}'],
-        '@:{history#ext.description~rs}': extDescription,
-        '@:{history#content~rs}': JSON.stringify({
-            unit: State.get('@:{global#stage.unit~rs}'),
-            page: State.get('@:{global#stage.page~rs}'),
-            scale: State.get('@:{global#stage.scale~rs}'),
-            elements: State.get('@:{global#stage.elements~rs}'),
-            select: State.get('@:{global#stage.select.elements~rs}'),
-            groups: State.get('@:{global#stage.elements.groups~rs}'),
-            xLines: State.get('@:{global#stage.x.help.lines~rs}'),
-            yLines: State.get('@:{global#stage.y.help.lines~rs}'),
-            clipboard: State.get('@:{global#stage.clipboard~rs}')
+        'gk': i['ge'],
+        'gl': i['gd'],
+        'gm': extDescription,
+        'gn': JSON.stringify({
+            unit: State.get('gf'),
+            page: State.get('gm'),
+            scale: State.get('ge'),
+            elements: State.get('gl'),
+            select: State.get('gd'),
+            groups: State.get('go'),
+            xLines: State.get('gg'),
+            yLines: State.get('gh'),
+            clipboard: State.get('gp')
         }, DEBUG ? FilterDebug : FilterRelease)
     };
 };
@@ -242,8 +242,8 @@ let GetSnapshot = (type, extDescription = '') => {
  */
 let PushUndo = (history, holdEvent) => {
     if (DefaultStage) {
-        HistoryList.splice(HistoryIndex + 1, const_1["@:{const#history.max.count~rs}"], history);
-        while (HistoryList.length > const_1["@:{const#history.max.count~rs}"]) {
+        HistoryList.splice(HistoryIndex + 1, const_1["gl"], history);
+        while (HistoryList.length > const_1["gl"]) {
             DefaultStage = HistoryList.shift();
         }
         HistoryIndex = HistoryList.length - 1;
@@ -253,14 +253,14 @@ let PushUndo = (history, holdEvent) => {
         DefaultStage = history;
     }
     if (!holdEvent) {
-        State.fire('@:{event#history.status.change~rs}');
+        State.fire('gw');
     }
 };
 /**
  * 检查是否有等待中的历史记录，比如快速输入,500ms延迟记录历史，如果这时有其它不同类型的历史记录进来，则需要立即推入延迟等待中的历史
  * @param type 当前要记录的历史类型
  */
-let CheckLastWaitingHistory = (type = '@:{history#default.check.save.type~rs}') => {
+let CheckLastWaitingHistory = (type = 'go') => {
     if (type != LastType) { //如果当前类型不与最后一个类型相同
         if (BuferStage) { //如果有缓存记录，则立即记录到历史记录里
             clearTimeout(BuferTimer);
@@ -281,8 +281,8 @@ let SetHistory = (index, canUseDefault) => {
         current = DefaultStage;
     }
     if (current) {
-        State.fire('@:{event#history.shift.change~rs}', {
-            json: JSON.parse(current['@:{history#content~rs}'])
+        State.fire('gi', {
+            json: JSON.parse(current['gn'])
         });
     }
 };
@@ -290,43 +290,43 @@ module.exports= {
     /**
      * 以下把定义的数字常量转成字符串导出，方便外部使用
      */
-    '@:{history#clear.help.line~rs}': Enum_Clear_Help_Line,
-    '@:{history#add.help.line~rs}': Enum_Add_Help_Line,
-    '@:{history#delete.help.line~rs}': Enum_Delete_Help_Line,
-    '@:{history#move.help.line~rs}': Enum_Move_Help_Line,
-    '@:{history#clear.stage~rs}': Enum_Clear_Stage,
-    '@:{history#new.page~rs}': Enum_Create_Page,
-    '@:{history#zoomin.stage~rs}': Enum_Zoomin_Stage,
-    '@:{history#zoomout.stage~rs}': Enum_Zoomout_Stage,
-    '@:{history#element.lost.focus~rs}': Enum_Element_Lost_Focus,
-    '@:{history#element.get.focus~rs}': Enum_Element_Get_Focus,
-    '@:{history#element.moved~rs}': Enum_Element_Moved,
-    '@:{history#element.aligned~rs}': Enum_Element_Aligned,
-    '@:{history#element.sync.size~rs}': Enum_Element_Sync_Size,
-    '@:{history#element.added~rs}': Enum_Element_Added,
-    '@:{history#element.removed~rs}': Enum_Element_Removed,
-    '@:{history#element.grouped~rs}': Enum_Element_Grouped,
-    '@:{history#element.ungrouped~rs}': Enum_Element_Ungrouped,
-    '@:{history#element.locked~rs}': Enum_Element_Locked,
-    '@:{history#element.unlocked~rs}': Enum_Element_Unlocked,
-    '@:{history#element.z.index~rs}': Enum_Element_ZIndex,
-    '@:{history#element.pasted~rs}': Enum_Element_Pasted,
-    '@:{history#element.rotated~rs}': Enum_Element_Rotated,
-    '@:{history#element.modified.ctrl.point~rs}': Enum_Element_Modified_Ctrl_Point,
-    '@:{history#element.modified.mod.point~rs}': Enum_Element_Modified_Mod_Point,
-    '@:{history#element.modified.size~rs}': Enum_Element_Modified_Size,
-    '@:{history#element.modified.props~rs}': Enum_Element_Props,
-    '@:{history#element.cut~rs}': Enum_Element_Cut,
-    '@:{history#element.duplicate~rs}': Enum_Element_Duplicate,
-    '@:{history#element.avg.h~rs}': Enum_Element_Avg_Hor,
-    '@:{history#element.avg.v~rs}': Enum_Element_Avg_Ver,
-    '@:{history#example.from.list~rs}': Enum_Example_From_List,
-    '@:{history#example.from.remote~rs}': Enum_Example_From_Remote,
-    '@:{history#example.from.custom~rs}': Enum_Example_From_Custom,
+    'ge': Enum_Clear_Help_Line,
+    'gf': Enum_Add_Help_Line,
+    'gg': Enum_Delete_Help_Line,
+    'gh': Enum_Move_Help_Line,
+    'gp': Enum_Clear_Stage,
+    'gq': Enum_Create_Page,
+    'gr': Enum_Zoomin_Stage,
+    'gs': Enum_Zoomout_Stage,
+    'gt': Enum_Element_Lost_Focus,
+    'gu': Enum_Element_Get_Focus,
+    'gv': Enum_Element_Moved,
+    'gw': Enum_Element_Aligned,
+    'gx': Enum_Element_Sync_Size,
+    'gy': Enum_Element_Added,
+    'gz': Enum_Element_Removed,
+    'gA': Enum_Element_Grouped,
+    'gB': Enum_Element_Ungrouped,
+    'gC': Enum_Element_Locked,
+    'gD': Enum_Element_Unlocked,
+    'gE': Enum_Element_ZIndex,
+    'gF': Enum_Element_Pasted,
+    'gG': Enum_Element_Rotated,
+    'gH': Enum_Element_Modified_Ctrl_Point,
+    'gI': Enum_Element_Modified_Mod_Point,
+    'gJ': Enum_Element_Modified_Size,
+    'gK': Enum_Element_Props,
+    'gL': Enum_Element_Cut,
+    'gM': Enum_Element_Duplicate,
+    'gN': Enum_Element_Avg_Hor,
+    'gO': Enum_Element_Avg_Ver,
+    'gj': Enum_Example_From_List,
+    'gP': Enum_Example_From_Remote,
+    'gi': Enum_Example_From_Custom,
     /**
      * 设计器初始化时，需要先保存一下默认状态
      */
-    '@:{history#save.default~rs}'() {
+    'gQ'() {
         if (!DefaultStage) {
             DefaultStage = GetSnapshot(Enum_History_Init);
         }
@@ -334,7 +334,7 @@ module.exports= {
     /**
      * 查询当前能否进行undo与redo
      */
-    '@:{history#query.status~rs}'() {
+    'gR'() {
         return {
             canRedo: HistoryList.length - 1 > HistoryIndex,
             canUndo: HistoryIndex >= 0
@@ -343,18 +343,18 @@ module.exports= {
     /**
      * 获取历史记录当前状态，历史列表、当前历史状态和最原始的历史状态
      */
-    '@:{history#get.history.info~rs}'() {
+    'gS'() {
         return {
-            '@:{list~rs}': HistoryList,
-            '@:{index~rs}': HistoryIndex,
-            '@:{bottom~rs}': DefaultStage
+            '_hF': HistoryList,
+            '_hG': HistoryIndex,
+            '_hH': DefaultStage
         };
     },
     /**
      * 通过索引更新历史
      * @param index 历史索引
      */
-    '@:{history#set.history~rs}'(index) {
+    'gT'(index) {
         if (HistoryIndex != index) {
             HistoryIndex = index;
             SetHistory(index, 1);
@@ -363,7 +363,7 @@ module.exports= {
     /**
      * 清空历史记录
      */
-    '@:{history#clear~rs}'() {
+    'gU'() {
         clearTimeout(BuferTimer);
         HistoryIndex = -1;
         HistoryList.length = 0;
@@ -373,7 +373,7 @@ module.exports= {
     /**
      * 撤销操作
      */
-    '@:{history#undo~rs}'() {
+    'gV'() {
         CheckLastWaitingHistory();
         let c = HistoryList.length;
         //当有历史记录时我们才进行还原操作
@@ -387,7 +387,7 @@ module.exports= {
     /**
      * 重做操作
      */
-    '@:{history#redo~rs}'() {
+    'gW'() {
         CheckLastWaitingHistory();
         let c = HistoryList.length;
         if (c &&
@@ -400,7 +400,7 @@ module.exports= {
      * 删除指定位置的历史记录
      * @param at 历史记录位置
      */
-    '@:{history#remove.at~rs}'(at) {
+    'gX'(at) {
         CheckLastWaitingHistory();
         HistoryList.splice(at, 1);
         if (at == HistoryIndex &&
@@ -412,7 +412,7 @@ module.exports= {
             if (at < HistoryIndex) {
                 HistoryIndex -= 1;
             }
-            State.fire('@:{event#history.status.change~rs}');
+            State.fire('gw');
         }
     },
     /**
@@ -422,7 +422,7 @@ module.exports= {
      * @param type 历史类型，配合waiting使用
      * @param waiting 延迟多少毫秒后写入历史记录，即一定时间内type相同的历史只记录一次，比如按下键盘箭头进行元素位置移动。
      */
-    '@:{history#save~rs}'(action, extTitle = '', type = '@:{history#default.save.type~rs}', waiting = 0) {
+    'gd'(action, extTitle = '', type = 'gY', waiting = 0) {
         let stage = GetSnapshot(action, extTitle); //获取当前快照
         CheckLastWaitingHistory(type);
         if (waiting) { //如果有等待

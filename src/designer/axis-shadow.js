@@ -4,7 +4,7 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("designer/axis-shadow",["magix5","./const","./transform"],(require,exports,module)=>{
+define("50/52",["51","./53","./54"],(require,exports,module)=>{
 
 
 /*
@@ -13,9 +13,9 @@ define("designer/axis-shadow",["magix5","./const","./transform"],(require,export
 /**
  * 投影
  */
-let magix_1 = require("magix5");
-let const_1 = require("./const");
-let transform_1 = require("./transform");
+let magix_1 = require("51");
+let const_1 = require("./53");
+let transform_1 = require("./54");
 let { State, node, mark, lowTaskFinale, LOW } = magix_1;
 let shadow = {}; //用于异步标识对象
 //排序
@@ -26,8 +26,8 @@ let { max } = Math;
  * @param e 事件对象
  */
 let computeShadow = (e) => {
-    let selectElements = State.get('@:{global#stage.select.elements~rs}');
-    let srcSizesOfX = [], srcSizesOfY = [], stageBound = transform_1['@:{transform#get.stage.dom.rect~rs}']();
+    let selectElements = State.get('gd');
+    let srcSizesOfX = [], srcSizesOfY = [], stageBound = transform_1['gd']();
     //先获取当前选中元素的所有坐标及尺寸
     for (let { id } of selectElements) {
         let maskNode = node(`_rdm_${id}`);
@@ -64,7 +64,7 @@ let computeShadow = (e) => {
         }
     }
     //派发事件
-    State.fire('@:{event#stage.axis.shadow.change~rs}', {
+    State.fire('ge', {
         x: mergeSizesOfX,
         y: mergeSizesOfY
     });
@@ -73,7 +73,7 @@ let computeShadow = (e) => {
  * 监视选中元素的改变
  */
 let watchSelectElementsChange = async () => {
-    let dealyMark = mark(shadow, '@:{delay.compute.shadow~rs}');
+    let dealyMark = mark(shadow, '_gd');
     await lowTaskFinale();
     if (dealyMark()) {
         computeShadow();
@@ -87,12 +87,12 @@ let delayChange = () => {
 //监视属性改变，只对引起影子变化的属性进行处理
 let watchPropsChange = (e) => {
     //console.log(e);
-    let props = e['@:{props~rs}'];
-    if (props['@:{position~rs}'] ||
-        props['@:{size~rs}'] ||
-        props['@:{rotate~rs}'] ||
-        props['@:{protated~rs}'] ||
-        props['@:{kped~rs}'] ||
+    let props = e['_ge'];
+    if (props['_gf'] ||
+        props['_gg'] ||
+        props['_gh'] ||
+        props['_gi'] ||
+        props['_gj'] ||
         props.x ||
         props.y ||
         props.width ||
@@ -104,20 +104,20 @@ let watchPropsChange = (e) => {
     }
 };
 module.exports= {
-    '@:{axis.shadow#setup~rs}'() {
-        if (const_1['@:{const#axis.show.shadow~rs}']) {
-            State.on('@:{event#stage.select.element.props.change~rs}', watchPropsChange, LOW);
-            State.on('@:{event#stage.select.elements.change~rs}', delayChange, LOW);
-            State.on('@:{event#stage.scale.change~rs}', delayChange, LOW);
-            State.on('@:{event#history.shift.change~rs}', delayChange, LOW);
+    'gd'() {
+        if (const_1['gd']) {
+            State.on('gf', watchPropsChange, LOW);
+            State.on('gg', delayChange, LOW);
+            State.on('gh', delayChange, LOW);
+            State.on('gi', delayChange, LOW);
         }
     },
-    '@:{axis.shadow#teardown~rs}'() {
-        if (const_1['@:{const#axis.show.shadow~rs}']) {
-            State.off('@:{event#stage.select.element.props.change~rs}', watchPropsChange);
-            State.off('@:{event#stage.select.elements.change~rs}', delayChange);
-            State.off('@:{event#stage.scale.change~rs}', delayChange);
-            State.off('@:{event#history.shift.change~rs}', delayChange);
+    'ge'() {
+        if (const_1['gd']) {
+            State.off('gf', watchPropsChange);
+            State.off('gg', delayChange);
+            State.off('gh', delayChange);
+            State.off('gi', delayChange);
         }
     }
 };

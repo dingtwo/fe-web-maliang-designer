@@ -4,68 +4,67 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("panels/res/index",["magix5","../../designer/const","../../designer/enum","../../designer/history","../../designer/stage-clipboard","../../designer/stage-generic","../../elements/index","../../gallery/mx-dialog/index"],(require,exports,module)=>{
-let $quick_mL_1_static_node;
-let $quick_mL_3_static_node;
-let $quick_mL_4_static_node;
-let $quick_lz_static_text;
-let $quick_lA_static_text;
-let $quick_lB_static_text;
-let $quick_lC_static_text;
-let $quick_lD_static_text;
-let $quick_lE_static_text;
-let $quick_lF_static_text;
-let $quick_lG_static_text;
-let $quick_lH_static_text;
-let $quick_lI_static_text;
-let $quick_mL_0_static_attr={'class': 'rd-_panels_res_index_less_-debug-wrap',};
-let $quick_mL_5_static_attr={'class': 'rd-_panels_res_index_less_-mt5',};
+define("5r/res/index",["51","../../50/53","../../50/enum","../../50/5d","../../50/5t","../../50/5q","../../5m/index","../../58/5n/index"],(require,exports,module)=>{
+let $quick_iE_1_static_node;
+let $quick_iE_3_static_node;
+let $quick_iE_4_static_node;
+let $quick_hs_static_text;
+let $quick_ht_static_text;
+let $quick_hu_static_text;
+let $quick_hv_static_text;
+let $quick_hw_static_text;
+let $quick_hx_static_text;
+let $quick_hy_static_text;
+let $quick_hz_static_text;
+let $quick_hA_static_text;
+let $quick_hB_static_text;
+let $quick_iE_0_static_attr={'class': 'rd-mE',};
+let $quick_iE_5_static_attr={'class': 'rd-mF',};
 
-let magix_1 = require("magix5");
-let const_1 = require("../../designer/const");
-let enum_1 = require("../../designer/enum");
-let history_1 = require("../../designer/history");
-let stage_clipboard_1 = require("../../designer/stage-clipboard");
-let stage_generic_1 = require("../../designer/stage-generic");
-let index_1 = require("../../elements/index");
-let index_2 = require("../../gallery/mx-dialog/index");
+let magix_1 = require("51");
+let const_1 = require("../../50/53");
+let enum_1 = require("../../50/enum");
+let history_1 = require("../../50/5d");
+let stage_clipboard_1 = require("../../50/5t");
+let stage_generic_1 = require("../../50/5q");
+let index_1 = require("../../5m/index");
+let index_2 = require("../../58/5n/index");
 let randomRange = (min, max) => min + ((Math.random() * (max - min + 1)) | 0);
 let { View, applyStyle, State, Vframe, type, isFunction } = magix_1;
-applyStyle("rd-_panels_res_index_less_","\n.rd-_panels_res_index_less_-debug-wrap {\npadding:5px 4px;\n}\n.rd-_panels_res_index_less_-mt5 {\nmargin-top:5px;\n}\n");
+applyStyle("rd-gR",".rd-mE{padding:5px 4px}.rd-mF{margin-top:5px}");
 let c = window.console;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	d,}=$dataFromView,
 $vnode_2,
 $vnode_3,
 $vnode_1;
 $vnode_1=[];
-if($quick_mL_1_static_node){
-$vnode_1.push($quick_mL_1_static_node);
+if($quick_iE_1_static_node){
+$vnode_1.push($quick_iE_1_static_node);
 }else{
-$vnode_2=[$createVNode(0,'<a href="https://space.bilibili.com/1699691485" class="rd-_assets_index_less_-tag-a" target="_blank" rel="noopener noreferrer">B站源码讲解视频</a><a href="https://github.com/xinglie/report-designer/issues/36" class="rd-_assets_index_less_-ml10 rd-_assets_index_less_-tag-a" target="_blank" rel="noopener noreferrer">源码讲解文字版</a><a href="https://github.com/xinglie/report-designer/issues/44" class="rd-_assets_index_less_-ml10 rd-_assets_index_less_-tag-a" target="_blank" rel="noopener noreferrer">开发新的元素</a>',1)];$vnode_1.push($quick_mL_1_static_node=$createVNode('div',{'_': 'hN','class': 'rd-_assets_index_less_-flex',},$vnode_2));
+$vnode_2=[$createVNode(0,'<a href="https://space.bilibili.com/1699691485" class="rd-gA" target="_blank" rel="noopener noreferrer">B站源码讲解视频</a><a href="https://github.com/xinglie/report-designer/issues/36" class="rd-gA rd-gJ" target="_blank" rel="noopener noreferrer">源码讲解文字版</a><a href="https://github.com/xinglie/report-designer/issues/44" class="rd-gA rd-gJ" target="_blank" rel="noopener noreferrer">开发新的元素</a>',1)];$vnode_1.push($quick_iE_1_static_node=$createVNode('div',{'_': 'eD','class': 'rd-g9',},$vnode_2));
 }
-$__line=13;$__art="{{if d}}";$__ctrl="if(d){";
+
 if(d){
 
-if($quick_mL_3_static_node){
-$vnode_1.push($quick_mL_3_static_node);
+if($quick_iE_3_static_node){
+$vnode_1.push($quick_iE_3_static_node);
 }else{
-$vnode_1.push($quick_mL_3_static_node=$createVNode('div',{'_': 'hO','class': 'rd-_assets_index_less_-item-spliter',}));
+$vnode_1.push($quick_iE_3_static_node=$createVNode('div',{'_': 'eE','class': 'rd-g7',}));
 }
 
-if($quick_mL_4_static_node){
-$vnode_1.push($quick_mL_4_static_node);
+if($quick_iE_4_static_node){
+$vnode_1.push($quick_iE_4_static_node);
 }else{
-$vnode_2=[$createVNode(0,'以下采用console.log输出，需要打开浏览器的调试工具，在console面板查看')];$vnode_1.push($quick_mL_4_static_node=$createVNode('div',{'_': 'hP','class': 'rd-_assets_index_less_-color-999 rd-_assets_index_less_-fontsize-12',},$vnode_2));
+$vnode_2=[$createVNode(0,'以下采用console.log输出，需要打开浏览器的调试工具，在console面板查看')];$vnode_1.push($quick_iE_4_static_node=$createVNode('div',{'_': 'eF','class': 'rd-h6 rd-hX',},$vnode_2));
 }
-$vnode_3=[$quick_lz_static_text||($quick_lz_static_text=$createVNode(0,'查看State对象'))];$vnode_2=[$createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer','mx5-click': $viewId+'@:{log.state~rs}()',},$vnode_3)];$vnode_3=[$quick_lA_static_text||($quick_lA_static_text=$createVNode(0,'查看State中的数据'))];$vnode_2.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-ml10','mx5-click': $viewId+'@:{log.state.data~rs}()',},$vnode_3));$vnode_3=[$quick_lB_static_text||($quick_lB_static_text=$createVNode(0,'查看历史记录'))];$vnode_2.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-ml10','mx5-click': $viewId+'@:{log.history.data~rs}()',},$vnode_3));$vnode_3=[$quick_lC_static_text||($quick_lC_static_text=$createVNode(0,'查看组件结构'))];$vnode_2.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_panels_res_index_less_-mt5','mx5-click': $viewId+'@:{log.vom~rs}()',},$vnode_3));$vnode_3=[$quick_lD_static_text||($quick_lD_static_text=$createVNode(0,'查看设计区元素'))];$vnode_2.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-ml10 rd-_panels_res_index_less_-mt5','mx5-click': $viewId+'@:{log.stage.elements~rs}()',},$vnode_3));$vnode_3=[$quick_lE_static_text||($quick_lE_static_text=$createVNode(0,'查看设选中元素'))];$vnode_2.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-ml10 rd-_panels_res_index_less_-mt5','mx5-click': $viewId+'@:{log.select.elements~rs}()',},$vnode_3));$vnode_3=[$quick_lF_static_text||($quick_lF_static_text=$createVNode(0,'查看剪切板'))];$vnode_2.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_panels_res_index_less_-mt5','mx5-click': $viewId+'@:{log.clipboard~rs}()',},$vnode_3));$vnode_3=[$quick_lG_static_text||($quick_lG_static_text=$createVNode(0,'清空剪切板'))];$vnode_2.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-ml10 rd-_panels_res_index_less_-mt5','mx5-click': $viewId+'@:{clear.clipboard~rs}()',},$vnode_3));$vnode_3=[$quick_lH_static_text||($quick_lH_static_text=$createVNode(0,'向格子内添加文本元素'))];$vnode_2.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-ml10 rd-_panels_res_index_less_-mt5','mx5-click': $viewId+'@:{add.text.to.cell~rs}()',},$vnode_3));$vnode_3=[$quick_lI_static_text||($quick_lI_static_text=$createVNode(0,'添加到设计区'))];$vnode_2.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_panels_res_index_less_-mt5','mx5-click': $viewId+'@:{add.text.to.stage~rs}()',},$vnode_3));$vnode_1.push($createVNode('div',$quick_mL_5_static_attr,$vnode_2));
-}$vnode_0=[$createVNode('div',$quick_mL_0_static_attr,$vnode_1)]; 
+$vnode_3=[$quick_hs_static_text||($quick_hs_static_text=$createVNode(0,'查看State对象'))];$vnode_2=[$createVNode('button',{'class': 'rd-gk rd-gm rd-hw','mx5-click': $viewId+'_oS()',},$vnode_3)];$vnode_3=[$quick_ht_static_text||($quick_ht_static_text=$createVNode(0,'查看State中的数据'))];$vnode_2.push($createVNode('button',{'class': 'rd-gJ rd-gk rd-gm rd-hw','mx5-click': $viewId+'_oT()',},$vnode_3));$vnode_3=[$quick_hu_static_text||($quick_hu_static_text=$createVNode(0,'查看历史记录'))];$vnode_2.push($createVNode('button',{'class': 'rd-gJ rd-gk rd-gm rd-hw','mx5-click': $viewId+'_oU()',},$vnode_3));$vnode_3=[$quick_hv_static_text||($quick_hv_static_text=$createVNode(0,'查看组件结构'))];$vnode_2.push($createVNode('button',{'class': 'rd-gk rd-gm rd-hw rd-mF','mx5-click': $viewId+'_oV()',},$vnode_3));$vnode_3=[$quick_hw_static_text||($quick_hw_static_text=$createVNode(0,'查看设计区元素'))];$vnode_2.push($createVNode('button',{'class': 'rd-gJ rd-gk rd-gm rd-hw rd-mF','mx5-click': $viewId+'_oW()',},$vnode_3));$vnode_3=[$quick_hx_static_text||($quick_hx_static_text=$createVNode(0,'查看设选中元素'))];$vnode_2.push($createVNode('button',{'class': 'rd-gJ rd-gk rd-gm rd-hw rd-mF','mx5-click': $viewId+'_oX()',},$vnode_3));$vnode_3=[$quick_hy_static_text||($quick_hy_static_text=$createVNode(0,'查看剪切板'))];$vnode_2.push($createVNode('button',{'class': 'rd-gk rd-gm rd-hw rd-mF','mx5-click': $viewId+'_oY()',},$vnode_3));$vnode_3=[$quick_hz_static_text||($quick_hz_static_text=$createVNode(0,'清空剪切板'))];$vnode_2.push($createVNode('button',{'class': 'rd-gJ rd-gk rd-gm rd-hw rd-mF','mx5-click': $viewId+'_oZ()',},$vnode_3));$vnode_3=[$quick_hA_static_text||($quick_hA_static_text=$createVNode(0,'向格子内添加文本元素'))];$vnode_2.push($createVNode('button',{'class': 'rd-gJ rd-gk rd-gm rd-hw rd-mF','mx5-click': $viewId+'_o0()',},$vnode_3));$vnode_3=[$quick_hB_static_text||($quick_hB_static_text=$createVNode(0,'添加到设计区'))];$vnode_2.push($createVNode('button',{'class': 'rd-gk rd-gm rd-hw rd-mF','mx5-click': $viewId+'_o1()',},$vnode_3));$vnode_1.push($createVNode('div',$quick_iE_5_static_attr,$vnode_2));
+}$vnode_0=[$createVNode('div',$quick_iE_0_static_attr,$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:panels/res/index.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     render() {
         if (DEBUG) {
             this.digest({
@@ -76,29 +75,29 @@ return $createVNode($viewId,0,$vnode_0);
             this.digest();
         }
     },
-    '@:{log.state~rs}<click>'() {
+    '_oS<click>'() {
         c.log(State);
     },
-    '@:{log.state.data~rs}<click>'() {
+    '_oT<click>'() {
         c.log(State.get());
     },
-    '@:{log.history.data~rs}<click>'() {
-        c.log(history_1['@:{history#get.history.info~rs}']());
+    '_oU<click>'() {
+        c.log(history_1['gS']());
     },
-    '@:{log.vom~rs}<click>'() {
+    '_oV<click>'() {
         c.log(Vframe.all());
     },
-    '@:{log.stage.elements~rs}<click>'() {
-        c.log(State.get('@:{global#stage.elements~rs}'));
+    '_oW<click>'() {
+        c.log(State.get('gl'));
     },
-    '@:{log.select.elements~rs}<click>'() {
-        c.log(State.get('@:{global#stage.select.elements~rs}'));
+    '_oX<click>'() {
+        c.log(State.get('gd'));
     },
-    '@:{log.clipboard~rs}<click>'() {
-        let list = stage_clipboard_1['@:{get.copy.list~rs}']();
+    '_oY<click>'() {
+        let list = stage_clipboard_1['_iE']();
         if (list &&
             list.length) {
-            let isCut = stage_clipboard_1['@:{is.cut~rs}']();
+            let isCut = stage_clipboard_1['_iF']();
             if (isCut) {
                 c.log('剪切的元素', list);
             }
@@ -110,39 +109,39 @@ return $createVNode($viewId,0,$vnode_0);
             c.log('剪切板无内容');
         }
     },
-    '@:{clear.clipboard~rs}<click>'() {
-        stage_clipboard_1['@:{clear~rs}']();
+    '_oZ<click>'() {
+        stage_clipboard_1['_go']();
     },
-    '@:{add.text.to.cell~rs}<click>'() {
-        let selectElements = State.get('@:{global#stage.select.elements~rs}');
+    '_o0<click>'() {
+        let selectElements = State.get('gd');
         let find;
         if (selectElements &&
             selectElements.length == 1) {
             let { ctrl, props } = selectElements[0];
-            if (ctrl.as & enum_1['@:{enum#as.hod~rs}']) {
+            if (ctrl.as & enum_1['gg']) {
                 let { focusRow, focusCol, rows } = props;
                 if (focusRow > -1 &&
                     focusCol > -1) {
                     find = 1;
-                    let page = State.get('@:{global#stage.page~rs}');
+                    let page = State.get('gm');
                     let addText = {
                         id: magix_1.guid('text_'),
                         type: 'text',
                         props: {
-                            x: const_1['@:{const#to.unit~rs}'](randomRange(0, 30)),
-                            y: const_1['@:{const#to.unit~rs}'](randomRange(0, 20)),
+                            x: const_1['ge'](randomRange(0, 30)),
+                            y: const_1['ge'](randomRange(0, 20)),
                             text: '测试内容'
                         }
                     };
-                    let { '@:{emanager#elements~rs}': translatedElements } = index_1['@:{element.manager#by.json~rs}']([addText], page, true);
+                    let { 'gd': translatedElements } = index_1['ge']([addText], page, true);
                     let cell = rows[focusRow].cols[focusCol];
                     if (cell.elements) {
-                        let historyTitle = stage_generic_1['@:{generic#query.element.name~rs}'](translatedElements);
+                        let historyTitle = stage_generic_1['gp'](translatedElements);
                         cell.elements.push(...translatedElements);
                         //以下事件必须派发，通知其它view元素有变化
-                        State.fire('@:{event#stage.elements.change~rs}');
+                        State.fire('gB');
                         //历史记录可根据情况可存可不存
-                        history_1['@:{history#save~rs}'](history_1['@:{history#element.added~rs}'], historyTitle);
+                        history_1['gd'](history_1['gy'], historyTitle);
                     }
                 }
             }
@@ -151,42 +150,42 @@ return $createVNode($viewId,0,$vnode_0);
             this.alert('请选中一个容器的格子查看效果');
         }
     },
-    '@:{add.text.to.stage~rs}<click>'() {
-        let stageElements = State.get('@:{global#stage.elements~rs}');
-        let scale = State.get('@:{global#stage.scale~rs}');
-        let page = State.get('@:{global#stage.page~rs}');
-        let elementsMap = State.get('@:{global#stage.elements.map~rs}');
+    '_o1<click>'() {
+        let stageElements = State.get('gl');
+        let scale = State.get('ge');
+        let page = State.get('gm');
+        let elementsMap = State.get('gy');
         let textCtrl = elementsMap.text;
         let addText = {
             id: magix_1.guid('text_'),
             ctrl: textCtrl,
             type: 'text',
-            props: textCtrl['@:{get.props~rs}'](0, 0)
+            props: textCtrl['_hd'](0, 0)
         };
-        addText.props.x = const_1['@:{const#to.unit~rs}'](randomRange(0, 30));
-        addText.props.y = const_1['@:{const#to.unit~rs}'](randomRange(0, 20));
+        addText.props.x = const_1['ge'](randomRange(0, 30));
+        addText.props.y = const_1['ge'](randomRange(0, 20));
         addText.props.text = '测试内容';
         addText.props.ename = '测试文本';
         if (page.readonly) { //如果整个设计区只读，则元素只读
             addText.props.readonly = true;
         }
         for (let s of textCtrl.props) {
-            if (isFunction(s['@:{stage.scale~rs}'])) {
-                s['@:{stage.scale~rs}'](addText.props, scale);
+            if (isFunction(s['_iN'])) {
+                s['_iN'](addText.props, scale);
             }
-            else if (s['@:{is.scale.and.unit.field~rs}']) {
+            else if (s['_hM']) {
                 addText.props[s.key] *= scale;
             }
         }
-        if (textCtrl['@:{update.props~rs}']) {
-            textCtrl['@:{update.props~rs}'](addText.props);
+        if (textCtrl['_he']) {
+            textCtrl['_he'](addText.props);
         }
         stageElements.push(addText);
-        let historyTitle = stage_generic_1['@:{generic#query.element.name~rs}']([addText]);
+        let historyTitle = stage_generic_1['gp']([addText]);
         //以下事件必须派发，通知其它view元素有变化
-        State.fire('@:{event#stage.elements.change~rs}');
+        State.fire('gB');
         //历史记录根据情况可存可不存
-        history_1['@:{history#save~rs}'](history_1['@:{history#element.added~rs}'], historyTitle);
+        history_1['gd'](history_1['gy'], historyTitle);
     }
 }).merge(index_2);
 

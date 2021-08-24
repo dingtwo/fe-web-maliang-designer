@@ -4,25 +4,25 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("provider/hodext",["magix5","../designer/history","../designer/stage-selection","../gallery/mx-dragdrop/index","./table"],(require,exports,module)=>{
+define("5g/hodext",["51","../50/5d","../50/5u","../58/59/index","./table"],(require,exports,module)=>{
 
 
-let magix_1 = require("magix5");
-let history_1 = require("../designer/history");
-let stage_selection_1 = require("../designer/stage-selection");
-let index_1 = require("../gallery/mx-dragdrop/index");
+let magix_1 = require("51");
+let history_1 = require("../50/5d");
+let stage_selection_1 = require("../50/5u");
+let index_1 = require("../58/59/index");
 let table_1 = require("./table");
 let { State } = magix_1;
 let dragLocker = {};
 module.exports= {
-    '@:{when.data.field.enter~rs}<dragenter>'(e) {
+    '_jW<dragenter>'(e) {
         let props = this.get('props');
         if (props.locked)
             return;
         let { row, col } = e.params;
-        e['@:{halt~rs}'] = 1;
-        if (index_1['@:{is.dragenter~rs}'](dragLocker, `${row}_${col}`)) {
-            table_1["@:{table.provider#add.ext.meta~rs}"](props, true);
+        e['_g8'] = 1;
+        if (index_1['_kb'](dragLocker, `${row}_${col}`)) {
+            table_1["gd"](props, true);
             let { rows } = props;
             let ri = 0, dataRowIndex = -1;
             for (let row of rows) {
@@ -32,7 +32,7 @@ module.exports= {
                 ri++;
             }
             if (row == dataRowIndex) {
-                let src = State.get('@:{global#bind.field.drag.data~rs}');
+                let src = State.get('gx');
                 if (src) {
                     this.digest({
                         fieldRow: row,
@@ -42,9 +42,9 @@ module.exports= {
             }
         }
     },
-    '@:{when.data.field.leave~rs}<dragleave>'(e) {
+    '_jX<dragleave>'(e) {
         let { row, col } = e.params;
-        if (index_1['@:{is.dragleave~rs}'](dragLocker, `${row}_${col}`) &&
+        if (index_1['_kc'](dragLocker, `${row}_${col}`) &&
             this.get('fieldRow') == row &&
             this.get('fieldCol') == col) {
             this.digest({
@@ -53,30 +53,30 @@ module.exports= {
             });
         }
     },
-    '@:{when.data.field.drop~rs}<drop>'(e) {
-        this['@:{prevent.default~rs}'](e);
+    '_jY<drop>'(e) {
+        this['_h5'](e);
         dragLocker = {};
         let row = this.get('fieldRow'), col = this.get('fieldCol');
-        let src = State.get('@:{global#bind.field.drag.data~rs}');
+        let src = State.get('gx');
         //let inNode = inside(e.target as HTMLElement, this.root);
         if (src &&
             //inNode &&
             row != -1 &&
             col != -1) {
-            e['@:{halt~rs}'] = 1;
+            e['_g8'] = 1;
             let props = this.get('props');
-            table_1["@:{table.provider#add.ext.meta~rs}"](props, true);
+            table_1["gd"](props, true);
             let element = this.get('element');
             let { rows, ename } = props;
             if (props.bind.id != src.id) {
                 let bindRow = rows[row];
                 let headRow = rows[row - 1];
                 for (let br of bindRow.cols) {
-                    let startColIndex = br['@:{start.col.index~rs}'];
-                    let endColIndex = br['@:{end.col.index~rs}'];
+                    let startColIndex = br['_ky'];
+                    let endColIndex = br['_kz'];
                     for (let col of headRow.cols) {
-                        if (col['@:{start.col.index~rs}'] == startColIndex &&
-                            col['@:{end.col.index~rs}'] == endColIndex &&
+                        if (col['_ky'] == startColIndex &&
+                            col['_kz'] == endColIndex &&
                             col.textContent == br.bindName) {
                             col.textContent = '';
                         }
@@ -92,12 +92,12 @@ module.exports= {
             props.focusRow = row;
             props.focusCol = col;
             let cell = rows[row].cols[col];
-            let startColIndex = cell['@:{start.col.index~rs}'];
-            let endColIndex = cell['@:{end.col.index~rs}'];
+            let startColIndex = cell['_ky'];
+            let endColIndex = cell['_kz'];
             let headRow = rows[row - 1];
             for (let col of headRow.cols) {
-                if (col['@:{start.col.index~rs}'] == startColIndex &&
-                    col['@:{end.col.index~rs}'] == endColIndex) {
+                if (col['_ky'] == startColIndex &&
+                    col['_kz'] == endColIndex) {
                     if (!col.textContent ||
                         cell.bindName == col.textContent) {
                         col.textContent = src.field.name;
@@ -110,39 +110,39 @@ module.exports= {
                 fieldRow: -1,
                 fieldCol: -1
             });
-            this.owner.parent().invoke('@:{update~rs}', [element]);
-            if (!stage_selection_1["@:{selection#set~rs}"](element)) {
-                State.fire('@:{event#stage.select.element.props.change~rs}', {
-                    '@:{ids~rs}': {
+            this.owner.parent().invoke('_iA', [element]);
+            if (!stage_selection_1["ge"](element)) {
+                State.fire('gf', {
+                    '_hW': {
                         [element.id]: 1
                     },
-                    '@:{types~rs}': {
+                    '_hX': {
                         [element.type]: 1
                     },
-                    '@:{props~rs}': {
-                        '@:{bind~rs}': 1
+                    '_ge': {
+                        '_kd': 1
                     }
                 });
             }
-            history_1["@:{history#save~rs}"](history_1['@:{history#element.modified.props~rs}'], ename);
+            history_1["gd"](history_1['gK'], ename);
         }
     },
-    '@:{delete.bind.field~rs}<click>'(e) {
+    '_ke<click>'(e) {
         let props = this.get('props');
         if (props.locked)
             return;
         let element = this.get('element');
         let { row, col } = e.params;
-        table_1["@:{table.provider#add.ext.meta~rs}"](props, true);
+        table_1["gd"](props, true);
         let { rows, ename } = props;
         let bindRow = rows[row];
         let cell = bindRow.cols[col];
-        let startColIndex = cell['@:{start.col.index~rs}'];
-        let endColIndex = cell['@:{end.col.index~rs}'];
+        let startColIndex = cell['_ky'];
+        let endColIndex = cell['_kz'];
         let headRow = rows[row - 1];
         for (let col of headRow.cols) {
-            if (col['@:{start.col.index~rs}'] == startColIndex &&
-                col['@:{end.col.index~rs}'] == endColIndex &&
+            if (col['_ky'] == startColIndex &&
+                col['_kz'] == endColIndex &&
                 col.textContent == cell.bindName) {
                 col.textContent = '';
             }
@@ -160,19 +160,19 @@ module.exports= {
             props.bind.id = '';
             props.bind.url = '';
         }
-        this.owner.parent().invoke('@:{update~rs}', [element]);
-        State.fire('@:{event#stage.select.element.props.change~rs}', {
-            '@:{ids~rs}': {
+        this.owner.parent().invoke('_iA', [element]);
+        State.fire('gf', {
+            '_hW': {
                 [element.id]: 1
             },
-            '@:{types~rs}': {
+            '_hX': {
                 [element.type]: 1
             },
-            '@:{props~rs}': {
-                '@:{bind~rs}': 1
+            '_ge': {
+                '_kd': 1
             }
         });
-        history_1["@:{history#save~rs}"](history_1['@:{history#element.modified.props~rs}'], ename);
+        history_1["gd"](history_1['gK'], ename);
     },
 };
 

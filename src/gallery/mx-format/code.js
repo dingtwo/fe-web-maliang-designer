@@ -4,21 +4,21 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("gallery/mx-format/code",["magix5","../../provider/format","./share","../mx-codemirror/index"],(require,exports,module)=>{
-require("../mx-codemirror/index");
-let $quick_mf_0_static_node;
-let $quick_mf_1_static_node;
-let $quick_kV_static_text;
-let $quick_lg_static_text;
-let $quick_lh_static_text;
-let $quick_mf_5_static_node;
-let $quick_mf_3_static_attr={'class': 'rd-_assets_index_less_-dialog-body rd-_assets_index_less_-min-height-500 rd-_assets_index_less_-unselectable',};
-let $quick_mf_4_static_attr={'class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-bottom-0 rd-_assets_index_less_-dialog-footer rd-_assets_index_less_-dialog-footer-with-shadow rd-_assets_index_less_-flex rd-_assets_index_less_-justify-content-flex-end rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-6',};
+define("58/6p/code",["51","../../5g/format","./share","../6f/index"],(require,exports,module)=>{
+require("../6f/index");
+let $quick_h9_0_static_node;
+let $quick_h9_1_static_node;
+let $quick_gO_static_text;
+let $quick_h__static_text;
+let $quick_ha_static_text;
+let $quick_h9_5_static_node;
+let $quick_h9_3_static_attr={'class': 'rd-g3 rd-gr rd-in',};
+let $quick_h9_4_static_attr={'class': 'rd-g9 rd-gM rd-gt rd-gu rd-he rd-ht rd-id rd-ii',};
 
 
 require("./share");
-let magix_1 = require("magix5");
-let format_1 = require("../../provider/format");
+let magix_1 = require("51");
+let format_1 = require("../../5g/format");
 let defaultFx = `/*
     item是完整的单条数据对象
     page是当前页面使用的数据列表
@@ -32,61 +32,60 @@ function(item,page,all){
 }`;
 module.exports= magix_1.View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	parts,}=$dataFromView,
 $vnode_1,
 $vnode_2;
 
-if($quick_mf_0_static_node){
-$vnode_0=[$quick_mf_0_static_node];
+if($quick_h9_0_static_node){
+$vnode_0=[$quick_h9_0_static_node];
 }else{
-$vnode_0=[$quick_mf_0_static_node=$createVNode('div',{'_': 'hN','class': 'rd-_assets_index_less_-dialog-header-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-7',})];
+$vnode_0=[$quick_h9_0_static_node=$createVNode('div',{'_': 'eD','class': 'rd-gp rd-he rd-ij',})];
 }
 
-if($quick_mf_1_static_node){
-$vnode_0.push($quick_mf_1_static_node);
+if($quick_h9_1_static_node){
+$vnode_0.push($quick_h9_1_static_node);
 }else{
-$vnode_1=[$createVNode(0,'<h5 class="rd-_assets_index_less_-tag-h5">自定义函数</h5>',1)];$vnode_0.push($quick_mf_1_static_node=$createVNode('div',{'_': 'hO','class': 'rd-_assets_index_less_-background-color-fff rd-_assets_index_less_-dialog-header rd-_assets_index_less_-dialog-header-with-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-top-0 rd-_assets_index_less_-z-index-8',},$vnode_1));
+$vnode_1=[$createVNode(0,'<h5 class="rd-gy">自定义函数</h5>',1)];$vnode_0.push($quick_h9_1_static_node=$createVNode('div',{'_': 'eE','class': 'rd-gM rd-gn rd-go rd-he rd-hf rd-ik',},$vnode_1));
 }
-$vnode_2=[$quick_kV_static_text||($quick_kV_static_text=$createVNode(0,'loading...'))];$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'$': 'parts','class': 'rd-_gallery_mx-format_share_less_-codemirror','style': 'width:848px;height:480px','mx5-cmchange': $viewId+'@:{update.format~rs}()','mx5-view': 'gallery/mx-codemirror/index?value='+($__line=6,$__art='{{#parts[1]}}',$__ctrl='<%#parts[1],\'auto_key_parts.parts[1]\'%>',$keyOf($refData,parts[1],'auto_key_parts.parts[1]')),},$vnode_2)];$vnode_0.push($createVNode('div',$quick_mf_3_static_attr,$vnode_1));$vnode_2=[$quick_lg_static_text||($quick_lg_static_text=$createVNode(0,'应用'))];$vnode_1=[$createVNode('button',{'mx5-click': $viewId+'@:{apply~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-tc','type': 'button',},$vnode_2)];$vnode_2=[$quick_lh_static_text||($quick_lh_static_text=$createVNode(0,'取消'))];$vnode_1.push($createVNode('button',{'mx5-click': $viewId+'@:{close~rs}()','class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-ml10 rd-_assets_index_less_-tc','type': 'button',},$vnode_2));$vnode_0.push($createVNode('div',$quick_mf_4_static_attr,$vnode_1));
-if($quick_mf_5_static_node){
-$vnode_0.push($quick_mf_5_static_node);
+$vnode_2=[$quick_gO_static_text||($quick_gO_static_text=$createVNode(0,'loading...'))];$vnode_1=[$createVNode('div',{'mx5-owner': $viewId,'$': 'parts','class': 'rd-lt','style': 'width:848px;height:480px','mx5-cmchange': $viewId+'_mI()','mx5-view': '58/6f/index?value='+$keyOf($refData,parts[1],'eD'),},$vnode_2)];$vnode_0.push($createVNode('div',$quick_h9_3_static_attr,$vnode_1));$vnode_2=[$quick_h__static_text||($quick_h__static_text=$createVNode(0,'应用'))];$vnode_1=[$createVNode('button',{'mx5-click': $viewId+'_gV()','class': 'rd-gS rd-gk rd-gm rd-hw','type': 'button',},$vnode_2)];$vnode_2=[$quick_ha_static_text||($quick_ha_static_text=$createVNode(0,'取消'))];$vnode_1.push($createVNode('button',{'mx5-click': $viewId+'_g3()','class': 'rd-gJ rd-gS rd-gk rd-hw','type': 'button',},$vnode_2));$vnode_0.push($createVNode('div',$quick_h9_4_static_attr,$vnode_1));
+if($quick_h9_5_static_node){
+$vnode_0.push($quick_h9_5_static_node);
 }else{
-$vnode_0.push($quick_mf_5_static_node=$createVNode('div',{'_': 'hP','class': 'rd-_assets_index_less_-dialog-footer-shadow rd-_assets_index_less_-position-sticky rd-_assets_index_less_-z-index-5',}));
+$vnode_0.push($quick_h9_5_static_node=$createVNode('div',{'_': 'eF','class': 'rd-gs rd-he rd-ih',}));
 }
  
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-format/code.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init(data) {
         let me = this;
-        me['@:{format~rs}'] = data.format;
-        me['@:{default.fx~rs}'] = data.defaultFx;
-        me['@:{dialog~rs}'] = data.dialog;
-        me['@:{done.callback~rs}'] = data.done;
+        me['_j1'] = data.format;
+        me['_mF'] = data.defaultFx;
+        me['_gT'] = data.dialog;
+        me['_mG'] = data.done;
     },
     render() {
-        let parts = format_1["@:{get.parts~rs}"](this['@:{format~rs}']);
+        let parts = format_1["_mH"](this['_j1']);
         if (!parts[1]) {
-            parts[1] = this['@:{default.fx~rs}'] || defaultFx;
+            parts[1] = this['_mF'] || defaultFx;
         }
         console.log(parts);
         this.digest({
             parts
         });
     },
-    '@:{update.format~rs}<cmchange>'(e) {
+    '_mI<cmchange>'(e) {
         let parts = this.get('parts');
         parts[1] = e.value.trim();
     },
-    '@:{apply~rs}<click>'() {
-        this['@:{dialog~rs}'].close();
+    '_gV<click>'() {
+        this['_gT'].close();
         let parts = this.get('parts');
-        this['@:{done.callback~rs}']('custom:' + parts[1]);
+        this['_mG']('custom:' + parts[1]);
     },
-    '@:{close~rs}<click>'() {
-        this['@:{dialog~rs}'].close();
+    '_g3<click>'() {
+        this['_gT'].close();
     }
 });
 

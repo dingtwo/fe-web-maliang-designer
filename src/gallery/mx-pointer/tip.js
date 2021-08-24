@@ -4,40 +4,40 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("gallery/mx-pointer/tip",["magix5"],(require,exports,module)=>{
+define("58/5a/tip",["51"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
+let magix_1 = require("51");
 let { applyStyle } = magix_1;
-applyStyle("rd-_gallery_mx-pointer_tip_less_","\n.rd-_gallery_mx-pointer_tip_less_-root {\nbackground:#47B34E;\nborder-radius:2px;\npadding:2px 4px;\ncolor:#ffffff;\n}\n");
+applyStyle("rd-gH",".rd-lW{background:#47b34e;border-radius:2px;color:#fff;padding:2px 4px}");
 let tipNode;
 let tipNodeClassList;
-let none = 'rd-_assets_index_less_-none';
+let none = 'rd-g0';
 let xOffset = 10, yOffset = 15;
 let init = () => {
     if (!tipNode) {
         tipNode = document.createElement('div');
-        tipNode.className = `rd-_assets_index_less_-pa rd-_assets_index_less_-designer-root rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-z-index-8 rd-_gallery_mx-pointer_tip_less_-root ${none}`;
+        tipNode.className = `rd-gV rd-gd rd-h6 rd-ik rd-lW ${none}`;
         document.body.appendChild(tipNode);
         tipNodeClassList = tipNode.classList;
     }
 };
 module.exports= {
-    '@:{show.text~rs}'(text) {
+    '_iY'(text) {
         init();
         tipNode.innerHTML = text;
         if (tipNodeClassList.contains(none)) {
             tipNodeClassList.remove(none);
         }
     },
-    '@:{update.position~rs}'(x, y) {
+    '_i1'(x, y) {
         tipNode.style.left = (x + xOffset) + 'px';
         tipNode.style.top = (y + yOffset) + 'px';
     },
-    '@:{hide~rs}'() {
+    '_gN'() {
         if (tipNodeClassList) {
             tipNodeClassList.add(none);
         }

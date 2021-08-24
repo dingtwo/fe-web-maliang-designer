@@ -4,11 +4,11 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("printer/unit/data-repeater",["magix5","../../designer/const"],(require,exports,module)=>{
+define("78/7b/data-repeater",["51","../../50/53"],(require,exports,module)=>{
 
 
-let magix_1 = require("magix5");
-let const_1 = require("../../designer/const");
+let magix_1 = require("51");
+let const_1 = require("../../50/53");
 let { guid, isArray } = magix_1;
 /**
  * 填充重复容器元素数据
@@ -29,13 +29,13 @@ module.exports= async (dataCenter, element, fromIndex, page, pageFooterHeight, c
     //let currentLineStart = 0;
     for (;;) {
         //属性需要克隆
-        let clonedProps = const_1['@:{const#clone~rs}'](props);
+        let clonedProps = const_1['g1'](props);
         //更新坐标
         clonedProps.x = nextX;
         clonedProps.y = nextY;
         let bind = clonedProps.bind;
         if (bind.url) {
-            let { '@:{error~rs}': err, '@:{data~rs}': data } = dataCenter[bind.url];
+            let { '_h7': err, '_h8': data } = dataCenter[bind.url];
             if (err) {
                 bind._tip = err;
             }

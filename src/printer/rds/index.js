@@ -4,7 +4,7 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("printer/rds/index",[],(require,exports,module)=>{
+define("78/7a/index",[],(require,exports,module)=>{
 
 
 let whites = {
@@ -12,7 +12,7 @@ let whites = {
     'localhost': 1
 };
 module.exports= {
-    '@:{get.config~rs}'() {
+    '_pI'() {
         let config = {
             name: '',
             nc: 1,
@@ -31,14 +31,14 @@ module.exports= {
         }
         return config;
     },
-    '@:{set.config~rs}'(config) {
+    '_pN'(config) {
         try {
             localStorage.setItem('rds.printer', JSON.stringify(config));
         }
         catch (_a) {
         }
     },
-    '@:{format.ex.message~rs}'(ex) {
+    '_pw'(ex) {
         let host = location.hostname; //.split('.').slice(-2).join('.');
         if (!whites[host]) {
             return host + '环境不支持RDS服务，进一步了解详情可以添加作者微信：qq84685009';

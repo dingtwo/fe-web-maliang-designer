@@ -4,24 +4,24 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("gallery/mx-dtable/operate",["magix5","../../designer/const","../../provider/cell","../../provider/table","../mx-table/coperate"],(require,exports,module)=>{
-let $quick_kY_static_text;
-let $quick_kZ_static_text;
-let $quick_k3_static_text;
-let $quick_k0_static_text;
-let $quick_k2_static_text;
-let $quick_k1_static_text;
-let $quick_ma_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-flex-wrap-wrap rd-_assets_index_less_-justify-content-space-between',};
+define("58/6t/operate",["51","../../50/53","../../5g/cell","../../5g/table","../6i/coperate"],(require,exports,module)=>{
+let $quick_gR_static_text;
+let $quick_gS_static_text;
+let $quick_gW_static_text;
+let $quick_gT_static_text;
+let $quick_gV_static_text;
+let $quick_gU_static_text;
+let $quick_h4_0_static_attr={'class': 'rd-g9 rd-ha rd-hr rd-hu',};
 /*
     author:https://github.com/xinglie
 */
 
 
-let magix_1 = require("magix5");
-let const_1 = require("../../designer/const");
-let cell_1 = require("../../provider/cell");
-let table_1 = require("../../provider/table");
-require("../mx-table/coperate");
+let magix_1 = require("51");
+let const_1 = require("../../50/53");
+let cell_1 = require("../../5g/cell");
+let table_1 = require("../../5g/table");
+require("../6i/coperate");
 let { View, dispatch } = magix_1;
 let { max } = Math;
 let defaultCellProps = {
@@ -45,18 +45,18 @@ let getDefaultProps = () => {
         ...cell_1.text
     };
     for (let e of toUnits) {
-        defaultCellContentProps[e] = const_1['@:{const#to.unit~rs}'](defaultCellContentProps[e]);
+        defaultCellContentProps[e] = const_1['ge'](defaultCellContentProps[e]);
     }
     return defaultCellContentProps;
 };
 let queryCellStatus = (table) => {
-    let { rows, focusRow, focusCol, '@:{row.max~rs}': rowMax, '@:{col.max~rs}': colMax } = table;
+    let { rows, focusRow, focusCol, '_j7': rowMax, '_j8': colMax } = table;
     let canDeleteRow = false, canDeleteCol = false, canMergeLeft = false, canMergeTop = false, canMergeRight = false, canMergeBottom = false, canSplitH = false, canSplitV = false, canInsertRowBottom = false, canInsertRowTop = false;
     if (focusRow > -1 && focusCol > -1) {
         let destRow = rows[focusRow];
         let dest = destRow.cols[focusCol];
-        let rowSpanned = dest['@:{end.row.index~rs}'] - dest['@:{start.row.index~rs}'] + 1;
-        let colSpanned = dest['@:{end.col.index~rs}'] - dest['@:{start.col.index~rs}'] + 1;
+        let rowSpanned = dest['_lv'] - dest['_lw'] + 1;
+        let colSpanned = dest['_kz'] - dest['_ky'] + 1;
         let totalRowIndex = -1;
         let labelRowIndex = -1;
         let dataRowIndex = -1;
@@ -81,18 +81,18 @@ let queryCellStatus = (table) => {
             ri++;
         }
         dataRowIndex = labelRowIndex + labelRows;
-        canSplitV = dest['@:{end.row.index~rs}'] < dataRowIndex ||
-            dest['@:{start.row.index~rs}'] > totalRowIndex;
-        let notDataAndTotalRow = dest['@:{start.row.index~rs}'] > totalRowIndex || dest['@:{end.row.index~rs}'] < dataRowIndex;
+        canSplitV = dest['_lv'] < dataRowIndex ||
+            dest['_lw'] > totalRowIndex;
+        let notDataAndTotalRow = dest['_lw'] > totalRowIndex || dest['_lv'] < dataRowIndex;
         canInsertRowTop = notDataAndTotalRow;
         canSplitH = canSplitV;
         canInsertRowBottom = notDataAndTotalRow;
         canDeleteRow = rowSpanned < rowMax &&
-            ((headRows > 1 && dest['@:{end.row.index~rs}'] < labelRowIndex && rowSpanned < headRows) ||
-                (labelRows > 1 && dest['@:{start.row.index~rs}'] >= labelRowIndex && rowSpanned < labelRows && dest['@:{end.row.index~rs}'] < dataRowIndex) ||
-                (footRows > 1 && dest['@:{start.row.index~rs}'] > totalRowIndex && rowSpanned < footRows));
+            ((headRows > 1 && dest['_lv'] < labelRowIndex && rowSpanned < headRows) ||
+                (labelRows > 1 && dest['_lw'] >= labelRowIndex && rowSpanned < labelRows && dest['_lv'] < dataRowIndex) ||
+                (footRows > 1 && dest['_lw'] > totalRowIndex && rowSpanned < footRows));
         canDeleteCol = colSpanned < colMax;
-        let maxRowIndex = dest['@:{end.row.index~rs}'] + 1, maxColIndex = dest['@:{end.col.index~rs}'] + 1;
+        let maxRowIndex = dest['_lv'] + 1, maxColIndex = dest['_kz'] + 1;
         for (let rowIndex = 0; rowIndex <= maxRowIndex; rowIndex++) {
             for (let colIndex = 0; colIndex <= maxColIndex; colIndex++) {
                 let row = rows[rowIndex];
@@ -100,21 +100,21 @@ let queryCellStatus = (table) => {
                     let cell = row.cols[colIndex];
                     if (cell &&
                         cell != dest) {
-                        if (cell['@:{start.col.index~rs}'] == dest['@:{start.col.index~rs}'] &&
-                            cell['@:{end.col.index~rs}'] == dest['@:{end.col.index~rs}']) {
-                            if (cell['@:{end.row.index~rs}'] + 1 == dest['@:{start.row.index~rs}']) {
+                        if (cell['_ky'] == dest['_ky'] &&
+                            cell['_kz'] == dest['_kz']) {
+                            if (cell['_lv'] + 1 == dest['_lw']) {
                                 canMergeTop = true;
                             }
-                            else if (dest['@:{end.row.index~rs}'] + 1 == cell['@:{start.row.index~rs}']) {
+                            else if (dest['_lv'] + 1 == cell['_lw']) {
                                 canMergeBottom = true;
                             }
                         }
-                        if (cell['@:{start.row.index~rs}'] == dest['@:{start.row.index~rs}'] &&
-                            cell['@:{end.row.index~rs}'] == dest['@:{end.row.index~rs}']) {
-                            if (cell['@:{end.col.index~rs}'] + 1 == dest['@:{start.col.index~rs}']) {
+                        if (cell['_lw'] == dest['_lw'] &&
+                            cell['_lv'] == dest['_lv']) {
+                            if (cell['_kz'] + 1 == dest['_ky']) {
                                 canMergeLeft = true;
                             }
-                            else if (dest['@:{end.col.index~rs}'] + 1 == cell['@:{start.col.index~rs}']) {
+                            else if (dest['_kz'] + 1 == cell['_ky']) {
                                 canMergeRight = true;
                             }
                         }
@@ -125,30 +125,30 @@ let queryCellStatus = (table) => {
         canMergeLeft = canMergeLeft && canSplitV;
         canMergeRight = canMergeRight && canSplitV;
         canMergeTop = canMergeTop &&
-            (dest['@:{start.row.index~rs}'] < labelRowIndex ||
-                (dest['@:{start.row.index~rs}'] > labelRowIndex && dest['@:{end.row.index~rs}'] < dataRowIndex) ||
-                dest['@:{start.row.index~rs}'] > totalRowIndex + 1);
+            (dest['_lw'] < labelRowIndex ||
+                (dest['_lw'] > labelRowIndex && dest['_lv'] < dataRowIndex) ||
+                dest['_lw'] > totalRowIndex + 1);
         canMergeBottom = canMergeBottom &&
-            (dest['@:{end.row.index~rs}'] < labelRowIndex - 1 ||
-                (dest['@:{start.row.index~rs}'] >= labelRowIndex && dest['@:{end.row.index~rs}'] < dataRowIndex - 1) ||
-                dest['@:{start.row.index~rs}'] > totalRowIndex);
+            (dest['_lv'] < labelRowIndex - 1 ||
+                (dest['_lw'] >= labelRowIndex && dest['_lv'] < dataRowIndex - 1) ||
+                dest['_lw'] > totalRowIndex);
     }
     return {
-        '@:{table.cell#can.delete.row~rs}': canDeleteRow,
-        '@:{table.cell#can.delete.col~rs}': canDeleteCol,
-        '@:{table.cell#can.mrege.left~rs}': canMergeLeft,
-        '@:{table.cell#can.merge.top~rs}': canMergeTop,
-        '@:{table.cell#can.merge.right~rs}': canMergeRight,
-        '@:{table.cell#can.merge.bottom~rs}': canMergeBottom,
-        '@:{can.insert.row.bottom~rs}': canInsertRowBottom,
-        '@:{can.insert.row.top~rs}': canInsertRowTop,
-        '@:{can.split.h~rs}': canSplitH,
-        '@:{can.split.v~rs}': canSplitV
+        'gd': canDeleteRow,
+        'ge': canDeleteCol,
+        'gf': canMergeLeft,
+        'gg': canMergeTop,
+        'gh': canMergeRight,
+        'gi': canMergeBottom,
+        '_lx': canInsertRowBottom,
+        '_ly': canInsertRowTop,
+        '_lz': canSplitH,
+        '_lA': canSplitV
     };
 };
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	disabled,
 	topRow,
@@ -165,47 +165,46 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 $$_class,
 $vnode_2,
 $vnode_1;
-$vnode_2=[$quick_kY_static_text||($quick_kY_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-margin-bottom-4'+($__line=2,$__art='{{if disabled||!topRow}}','');$__ctrl='<%if(disabled||!topRow){%>';if(disabled||!topRow){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=2,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1=[$createVNode('i',{'title': ($__line=2,$__art='{{=i18n(\'@:{lang#mx-gallery.table.insert.row.before~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.table.insert.row.before~rs}\')%>',(i18n('@:{lang#mx-gallery.table.insert.row.before~rs}'))),'mx5-click': (($temp_var=($__line=2,$__art='{{=!disabled&&topRow}}',$__ctrl='<%=!disabled&&topRow%>',!disabled&&topRow),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-dtable/operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{add.row~rs}({to:\'top\'})'),'class': $$_class,},$vnode_2)];$vnode_2=[$quick_kY_static_text||($quick_kY_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-flipy rd-_assets_index_less_-margin-bottom-4'+($__line=3,$__art='{{if disabled||!bottomRow}}','');$__ctrl='<%if(disabled||!bottomRow){%>';if(disabled||!bottomRow){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=3,$__art='{{=i18n(\'@:{lang#mx-gallery.table.insert.row.after~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.table.insert.row.after~rs}\')%>',(i18n('@:{lang#mx-gallery.table.insert.row.after~rs}'))),'mx5-click': (($temp_var=($__line=3,$__art='{{=!disabled&&bottomRow}}',$__ctrl='<%=!disabled&&bottomRow%>',!disabled&&bottomRow),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-dtable/operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{add.row~rs}()'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_kZ_static_text||($quick_kZ_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-flipx rd-_assets_index_less_-margin-bottom-4'+($__line=4,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=4,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=4,$__art='{{=i18n(\'@:{lang#mx-gallery.table.insert.col.left~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.table.insert.col.left~rs}\')%>',(i18n('@:{lang#mx-gallery.table.insert.col.left~rs}'))),'mx5-click': (($temp_var=($__line=4,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-dtable/operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{add.col~rs}({to:\'left\'})'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_kZ_static_text||($quick_kZ_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-margin-bottom-4'+($__line=5,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=5,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=5,$__art='{{=i18n(\'@:{lang#mx-gallery.table.insert.col.right~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.table.insert.col.right~rs}\')%>',(i18n('@:{lang#mx-gallery.table.insert.col.right~rs}'))),'mx5-click': (($temp_var=($__line=5,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-dtable/operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{add.col~rs}()'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_k3_static_text||($quick_k3_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-margin-bottom-4'+($__line=7,$__art='{{if disabled||!deleteRow}}','');$__ctrl='<%if(disabled||!deleteRow){%>';if(disabled||!deleteRow){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=7,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=7,$__art='{{=i18n(\'@:{lang#mx-gallery.table.delete.row~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.table.delete.row~rs}\')%>',(i18n('@:{lang#mx-gallery.table.delete.row~rs}'))),'mx5-click': (($temp_var=($__line=7,$__art='{{=!disabled&&deleteRow}}',$__ctrl='<%=!disabled&&deleteRow%>',!disabled&&deleteRow),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-dtable/operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{del.row~rs}()'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_k0_static_text||($quick_k0_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-margin-bottom-4'+($__line=8,$__art='{{if disabled||!deleteCol}}','');$__ctrl='<%if(disabled||!deleteCol){%>';if(disabled||!deleteCol){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=8,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=8,$__art='{{=i18n(\'@:{lang#mx-gallery.table.delete.col~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.table.delete.col~rs}\')%>',(i18n('@:{lang#mx-gallery.table.delete.col~rs}'))),'mx5-click': (($temp_var=($__line=8,$__art='{{=!disabled&&deleteCol}}',$__ctrl='<%=!disabled&&deleteCol%>',!disabled&&deleteCol),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-dtable/operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{del.col~rs}()'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_k2_static_text||($quick_k2_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-margin-bottom-4'+($__line=10,$__art='{{if disabled||!splitH}}','');$__ctrl='<%if(disabled||!splitH){%>';if(disabled||!splitH){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=10,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=10,$__art='{{=i18n(\'@:{lang#mx-gallery.table.split.col.h~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.table.split.col.h~rs}\')%>',(i18n('@:{lang#mx-gallery.table.split.col.h~rs}'))),'mx5-click': (($temp_var=($__line=10,$__art='{{=!disabled&&splitH}}',$__ctrl='<%=!disabled&&splitH%>',!disabled&&splitH),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-dtable/operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{split.cell~rs}({h:1})'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_k2_static_text||($quick_k2_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-margin-bottom-4 rd-_assets_index_less_-r90'+($__line=11,$__art='{{if disabled||!splitV}}','');$__ctrl='<%if(disabled||!splitV){%>';if(disabled||!splitV){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=11,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=11,$__art='{{=i18n(\'@:{lang#mx-gallery.table.split.col.v~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.table.split.col.v~rs}\')%>',(i18n('@:{lang#mx-gallery.table.split.col.v~rs}'))),'mx5-click': (($temp_var=($__line=11,$__art='{{=!disabled&&splitV}}',$__ctrl='<%=!disabled&&splitV%>',!disabled&&splitV),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-dtable/operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{split.cell~rs}({v:1})'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_k1_static_text||($quick_k1_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-margin-bottom-4 rd-_assets_index_less_-r180'+($__line=13,$__art='{{if disabled||!mergeLeft}}','');$__ctrl='<%if(disabled||!mergeLeft){%>';if(disabled||!mergeLeft){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=13,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=13,$__art='{{=i18n(\'@:{lang#mx-gallery.table.merge.to.left~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.table.merge.to.left~rs}\')%>',(i18n('@:{lang#mx-gallery.table.merge.to.left~rs}'))),'mx5-click': (($temp_var=($__line=13,$__art='{{=!disabled&&mergeLeft}}',$__ctrl='<%=!disabled&&mergeLeft%>',!disabled&&mergeLeft),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-dtable/operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{merge.cell~rs}({to:\'left\'})'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_k1_static_text||($quick_k1_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-margin-bottom-4'+($__line=14,$__art='{{if disabled||!mergeRight}}','');$__ctrl='<%if(disabled||!mergeRight){%>';if(disabled||!mergeRight){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=14,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=14,$__art='{{=i18n(\'@:{lang#mx-gallery.table.merge.to.right~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.table.merge.to.right~rs}\')%>',(i18n('@:{lang#mx-gallery.table.merge.to.right~rs}'))),'mx5-click': (($temp_var=($__line=14,$__art='{{=!disabled&&mergeRight}}',$__ctrl='<%=!disabled&&mergeRight%>',!disabled&&mergeRight),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-dtable/operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{merge.cell~rs}({to:\'right\'})'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_k1_static_text||($quick_k1_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-margin-bottom-4 rd-_assets_index_less_-r270'+($__line=15,$__art='{{if disabled||!mergeTop}}','');$__ctrl='<%if(disabled||!mergeTop){%>';if(disabled||!mergeTop){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=15,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=15,$__art='{{=i18n(\'@:{lang#mx-gallery.table.merge.to.top~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.table.merge.to.top~rs}\')%>',(i18n('@:{lang#mx-gallery.table.merge.to.top~rs}'))),'mx5-click': (($temp_var=($__line=15,$__art='{{=!disabled&&mergeTop}}',$__ctrl='<%=!disabled&&mergeTop%>',!disabled&&mergeTop),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-dtable/operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{merge.cell~rs}({to:\'top\'})'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_k1_static_text||($quick_k1_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-fontsize-26 rd-_gallery_mx-table_coperate_less_-icon rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-margin-bottom-4 rd-_assets_index_less_-r90'+($__line=16,$__art='{{if disabled||!mergeBottom}}','');$__ctrl='<%if(disabled||!mergeBottom){%>';if(disabled||!mergeBottom){;$$_class+=' rd-_gallery_mx-table_coperate_less_-icon-disabled'+($__line=16,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('i',{'title': ($__line=16,$__art='{{=i18n(\'@:{lang#mx-gallery.table.merge.to.bottom~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#mx-gallery.table.merge.to.bottom~rs}\')%>',(i18n('@:{lang#mx-gallery.table.merge.to.bottom~rs}'))),'mx5-click': (($temp_var=($__line=16,$__art='{{=!disabled&&mergeBottom}}',$__ctrl='<%=!disabled&&mergeBottom%>',!disabled&&mergeBottom),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-dtable/operate.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{merge.cell~rs}({to:\'bottom\'})'),'class': $$_class,},$vnode_2));$vnode_0=[$createVNode('div',$quick_ma_0_static_attr,$vnode_1)]; 
+$vnode_2=[$quick_gR_static_text||($quick_gR_static_text=$createVNode(0,''))];;$$_class='rd-ge rd-h9 rd-kj rd-hw rd-hg';if(disabled||!topRow){;$$_class+=' rd-kk';};$vnode_1=[$createVNode('i',{'title': (i18n('me')),'mx5-click': ((!disabled&&topRow))&&($viewId+'_ld({to:\'top\'})'),'class': $$_class,},$vnode_2)];$vnode_2=[$quick_gR_static_text||($quick_gR_static_text=$createVNode(0,''))];;$$_class='rd-ge rd-h9 rd-kj rd-hw rd-hc rd-hg';if(disabled||!bottomRow){;$$_class+=' rd-kk';};$vnode_1.push($createVNode('i',{'title': (i18n('mf')),'mx5-click': ((!disabled&&bottomRow))&&($viewId+'_ld()'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_gS_static_text||($quick_gS_static_text=$createVNode(0,''))];;$$_class='rd-ge rd-h9 rd-kj rd-hw rd-hb rd-hg';if(disabled){;$$_class+=' rd-kk';};$vnode_1.push($createVNode('i',{'title': (i18n('mg')),'mx5-click': ((!disabled))&&($viewId+'_le({to:\'left\'})'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_gS_static_text||($quick_gS_static_text=$createVNode(0,''))];;$$_class='rd-ge rd-h9 rd-kj rd-hw rd-hg';if(disabled){;$$_class+=' rd-kk';};$vnode_1.push($createVNode('i',{'title': (i18n('mh')),'mx5-click': ((!disabled))&&($viewId+'_le()'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_gW_static_text||($quick_gW_static_text=$createVNode(0,''))];;$$_class='rd-ge rd-h9 rd-kj rd-hw rd-hg';if(disabled||!deleteRow){;$$_class+=' rd-kk';};$vnode_1.push($createVNode('i',{'title': (i18n('mi')),'mx5-click': ((!disabled&&deleteRow))&&($viewId+'_lB()'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_gT_static_text||($quick_gT_static_text=$createVNode(0,''))];;$$_class='rd-ge rd-h9 rd-kj rd-hw rd-hg';if(disabled||!deleteCol){;$$_class+=' rd-kk';};$vnode_1.push($createVNode('i',{'title': (i18n('mj')),'mx5-click': ((!disabled&&deleteCol))&&($viewId+'_lC()'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_gV_static_text||($quick_gV_static_text=$createVNode(0,''))];;$$_class='rd-ge rd-h9 rd-kj rd-hw rd-hg';if(disabled||!splitH){;$$_class+=' rd-kk';};$vnode_1.push($createVNode('i',{'title': (i18n('mk')),'mx5-click': ((!disabled&&splitH))&&($viewId+'_li({h:1})'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_gV_static_text||($quick_gV_static_text=$createVNode(0,''))];;$$_class='rd-ge rd-h9 rd-kj rd-hw rd-hg rd-gF';if(disabled||!splitV){;$$_class+=' rd-kk';};$vnode_1.push($createVNode('i',{'title': (i18n('ml')),'mx5-click': ((!disabled&&splitV))&&($viewId+'_li({v:1})'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_gU_static_text||($quick_gU_static_text=$createVNode(0,''))];;$$_class='rd-ge rd-h9 rd-kj rd-hw rd-hg rd-gE';if(disabled||!mergeLeft){;$$_class+=' rd-kk';};$vnode_1.push($createVNode('i',{'title': (i18n('mm')),'mx5-click': ((!disabled&&mergeLeft))&&($viewId+'_lg({to:\'left\'})'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_gU_static_text||($quick_gU_static_text=$createVNode(0,''))];;$$_class='rd-ge rd-h9 rd-kj rd-hw rd-hg';if(disabled||!mergeRight){;$$_class+=' rd-kk';};$vnode_1.push($createVNode('i',{'title': (i18n('mn')),'mx5-click': ((!disabled&&mergeRight))&&($viewId+'_lg({to:\'right\'})'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_gU_static_text||($quick_gU_static_text=$createVNode(0,''))];;$$_class='rd-ge rd-h9 rd-kj rd-hw rd-hg rd-gG';if(disabled||!mergeTop){;$$_class+=' rd-kk';};$vnode_1.push($createVNode('i',{'title': (i18n('mo')),'mx5-click': ((!disabled&&mergeTop))&&($viewId+'_lg({to:\'top\'})'),'class': $$_class,},$vnode_2));$vnode_2=[$quick_gU_static_text||($quick_gU_static_text=$createVNode(0,''))];;$$_class='rd-ge rd-h9 rd-kj rd-hw rd-hg rd-gF';if(disabled||!mergeBottom){;$$_class+=' rd-kk';};$vnode_1.push($createVNode('i',{'title': (i18n('mp')),'mx5-click': ((!disabled&&mergeBottom))&&($viewId+'_lg({to:\'bottom\'})'),'class': $$_class,},$vnode_2));$vnode_0=[$createVNode('div',$quick_h4_0_static_attr,$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-dtable/operate.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     assign(data) {
-        table_1["@:{table.provider#add.ext.meta~rs}"](data.props, 1);
+        table_1["gd"](data.props, 1);
         let state = queryCellStatus(data.props);
         this.set({
             props: data.props,
             disabled: data.disabled,
-            splitH: state["@:{can.split.h~rs}"],
-            splitV: state["@:{can.split.v~rs}"],
-            bottomRow: state["@:{can.insert.row.bottom~rs}"],
-            topRow: state["@:{can.insert.row.top~rs}"],
-            deleteRow: state["@:{table.cell#can.delete.row~rs}"],
-            deleteCol: state["@:{table.cell#can.delete.col~rs}"],
-            mergeLeft: state["@:{table.cell#can.mrege.left~rs}"],
-            mergeTop: state["@:{table.cell#can.merge.top~rs}"],
-            mergeRight: state["@:{table.cell#can.merge.right~rs}"],
-            mergeBottom: state["@:{table.cell#can.merge.bottom~rs}"]
+            splitH: state["_lz"],
+            splitV: state["_lA"],
+            bottomRow: state["_lx"],
+            topRow: state["_ly"],
+            deleteRow: state["gd"],
+            deleteCol: state["ge"],
+            mergeLeft: state["gf"],
+            mergeTop: state["gg"],
+            mergeRight: state["gh"],
+            mergeBottom: state["gi"]
         });
     },
     render() {
         this.digest();
     },
-    '@:{add.row~rs}<click>'(e) {
+    '_ld<click>'(e) {
         let { to } = e.params;
         let props = this.get('props');
         let { focusRow, focusCol, rows } = props;
         if (focusRow != -1 &&
             focusCol != -1) {
             let dest = rows[focusRow].cols[focusCol];
-            let startIndx = dest['@:{start.col.index~rs}'];
-            let index = to == 'top' ? focusRow : dest['@:{end.row.index~rs}'] + 1;
-            table_1["@:{table.provider#insert.row.at~rs}"](props, index, getDefaultProps(), const_1['@:{const#to.unit~rs}'](30));
-            table_1["@:{table.provider#add.ext.meta~rs}"](props);
+            let startIndx = dest['_ky'];
+            let index = to == 'top' ? focusRow : dest['_lv'] + 1;
+            table_1["gf"](props, index, getDefaultProps(), const_1['ge'](30));
+            table_1["gd"](props);
             props.focusRow = index;
             dest = rows[index];
             for (let c of dest.cols) {
-                if (c['@:{start.col.index~rs}'] >= startIndx) {
-                    props.focusCol = c['@:{col.index~rs}'];
+                if (c['_ky'] >= startIndx) {
+                    props.focusCol = c['_i5'];
                     break;
                 }
             }
@@ -214,7 +213,7 @@ return $createVNode($viewId,0,$vnode_0);
             });
         }
     },
-    '@:{add.col~rs}<click>'(e) {
+    '_le<click>'(e) {
         let { to } = e.params;
         let props = this.get('props');
         let { focusRow, focusCol, rows } = props;
@@ -222,15 +221,15 @@ return $createVNode($viewId,0,$vnode_0);
             focusCol != -1) {
             let dest = rows[focusRow].cols[focusCol];
             //let startIndx = dest['@:{start.col.index}'];
-            let index = to == 'left' ? focusCol : dest['@:{end.col.index~rs}'] + 1;
-            table_1["@:{table.provider#insert.col.at~rs}"](props, index, getDefaultProps(), const_1['@:{const#to.unit~rs}'](150));
-            table_1["@:{table.provider#add.ext.meta~rs}"](props);
+            let index = to == 'left' ? focusCol : dest['_kz'] + 1;
+            table_1["gh"](props, index, getDefaultProps(), const_1['ge'](150));
+            table_1["gd"](props);
             dest = rows[focusRow];
             if (to != 'left') {
                 //let ci = 0;
                 for (let c of dest.cols) {
-                    if (c['@:{start.col.index~rs}'] >= index) {
-                        props.focusCol = c['@:{col.index~rs}'];
+                    if (c['_ky'] >= index) {
+                        props.focusCol = c['_i5'];
                         break;
                     }
                 }
@@ -243,57 +242,57 @@ return $createVNode($viewId,0,$vnode_0);
             });
         }
     },
-    '@:{del.row~rs}<click>'() {
+    '_lB<click>'() {
         let props = this.get('props');
         let { focusRow, focusCol, rows } = props;
         if (focusRow != -1 &&
             focusCol != -1) {
-            table_1["@:{table.provider#delete.row~rs}"](props);
-            table_1["@:{table.provider#add.ext.meta~rs}"](props);
+            table_1["gg"](props);
+            table_1["gd"](props);
             props.focusCol = 0;
-            if (focusRow >= props['@:{row.max~rs}']) {
-                props.focusRow = props['@:{row.max~rs}'] - 1;
+            if (focusRow >= props['_j7']) {
+                props.focusRow = props['_j7'] - 1;
             }
             dispatch(this.root, 'change', {
                 rows
             });
         }
     },
-    '@:{del.col~rs}<click>'() {
+    '_lC<click>'() {
         let props = this.get('props');
         let { focusRow, focusCol, rows } = props;
         if (focusRow != -1 &&
             focusCol != -1) {
-            table_1["@:{table.provider#delete.col~rs}"](props);
-            table_1["@:{table.provider#add.ext.meta~rs}"](props);
+            table_1["gi"](props);
+            table_1["gd"](props);
             props.focusCol = max(0, props.focusCol - 1);
             dispatch(this.root, 'change', {
                 rows
             });
         }
     },
-    '@:{merge.cell~rs}<click>'(e) {
+    '_lg<click>'(e) {
         let { to } = e.params;
         let props = this.get('props');
         let { focusRow, focusCol, rows } = props;
         if (focusRow != -1 &&
             focusCol != -1) {
-            table_1["@:{table.provider#merge.cell~rs}"](props, to);
-            table_1["@:{table.provider#add.ext.meta~rs}"](props);
+            table_1["gj"](props, to);
+            table_1["gd"](props);
             dispatch(this.root, 'change', {
                 rows
             });
         }
     },
-    '@:{split.cell~rs}<click>'(e) {
+    '_li<click>'(e) {
         let props = this.get('props');
         let { focusRow, focusCol, rows } = props;
         if (focusRow != -1 &&
             focusCol != -1) {
             let { h } = e.params;
-            let min = const_1['@:{const#to.unit~rs}'](20);
-            table_1["@:{table.provider#split.cell~rs}"](props, h, getDefaultProps(), min, min);
-            table_1["@:{table.provider#add.ext.meta~rs}"](props);
+            let min = const_1['ge'](20);
+            table_1["gk"](props, h, getDefaultProps(), min, min);
+            table_1["gd"](props);
             dispatch(this.root, 'change', {
                 rows
             });

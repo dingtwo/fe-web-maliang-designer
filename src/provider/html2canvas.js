@@ -4,7 +4,7 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("provider/html2canvas",[],(require,exports,module)=>{
+define("5g/html2canvas",[],(require,exports,module)=>{
 
 
 let dest = '//cdn.jsdelivr.net/npm/html2canvas@1.1.4/dist/html2canvas.min.js';

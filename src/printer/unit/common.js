@@ -4,10 +4,10 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("printer/unit/common",["magix5"],(require,exports,module)=>{
+define("78/7b/common",["51"],(require,exports,module)=>{
 
 
-let magix_1 = require("magix5");
+let magix_1 = require("51");
 let { isArray } = magix_1;
 /**
  * 填充普通元素数据
@@ -19,7 +19,7 @@ module.exports= (dataCenter, resLoader, element, newPage, inHod) => {
     if (bind.url &&
         !bind._tip &&
         !bind._data) {
-        let { '@:{error~rs}': err, '@:{data~rs}': data } = dataCenter[bind.url];
+        let { '_h7': err, '_h8': data } = dataCenter[bind.url];
         if (err) {
             bind._tip = err;
         }
@@ -37,7 +37,7 @@ module.exports= (dataCenter, resLoader, element, newPage, inHod) => {
             let bindField = bind.fields[0];
             image = src[bindField.id];
         }
-        resLoader['@:{add~rs}']('@:{image~rs}', image);
+        resLoader['_lU']('_pS', image);
     }
     if (!inHod) {
         newPage.push(element);

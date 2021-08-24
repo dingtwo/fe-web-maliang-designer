@@ -4,36 +4,36 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("panels/data/index",["magix5","../../designer/enum","../../designer/stage-generic","./branch"],(require,exports,module)=>{
+define("5r/data/index",["51","../../50/enum","../../50/5q","./branch"],(require,exports,module)=>{
 require("./branch");
-let $quick_k5_static_text;
-let $quick_mD_0_static_attr={'class': 'rd-_assets_index_less_-padding-4 rd-_assets_index_less_-unselectable',};
-let $quick_mD_1_static_attr={'class': 'rd-_assets_index_less_-background-color-fff rd-_panels_data_index_less_-search-input',};
-let $quick_mD_2_static_attr={'class': 'rd-_assets_index_less_-color-999',};
+let $quick_gY_static_text;
+let $quick_iw_0_static_attr={'class': 'rd-g3 rd-ir',};
+let $quick_iw_1_static_attr={'class': 'rd-gM rd-l8',};
+let $quick_iw_2_static_attr={'class': 'rd-hX',};
 let $special_2={'value':'value',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let enum_1 = require("../../designer/enum");
-let stage_generic_1 = require("../../designer/stage-generic");
+let magix_1 = require("51");
+let enum_1 = require("../../50/enum");
+let stage_generic_1 = require("../../50/5q");
 let { State, View, applyStyle, toMap } = magix_1;
-applyStyle("rd-_panels_data_index_less_","\n.rd-_panels_data_index_less_-item-draggable {\nborder:solid 1px #e6e6e6;\nborder-radius:2px;\nmargin:2px 0;\nbackground-color:#fff;\n}\n.rd-_panels_data_index_less_-opacity-40 {\nopacity:0.4;\n}\n.rd-_panels_data_index_less_-branch-title {\nheight:22px;\nline-height:22px;\nborder-radius:2px;\n}\n.rd-_panels_data_index_less_-branch-title:hover {\nbackground:#f0f0f0;\n}\n.rd-_panels_data_index_less_-search-input {\nmargin:-4px -4px 0;\ntop:0;\npadding:4px;\nz-index:2;\n}\n.rd-_panels_data_index_less_-search-highlight {\ncolor:#bd0303;\n}\n.rd-_panels_data_index_less_-search-remove {\nright:8px;\ntop:8px;\nopacity:0.2;\n}\n.rd-_panels_data_index_less_-search-remove:hover {\nopacity:0.5;\n}\n");
+applyStyle("rd-gL",".rd-l5{background-color:#fff;border:1px solid #e6e6e6;border-radius:2px;margin:2px 0}.rd-l6{opacity:.4}.rd-l7{border-radius:2px;height:22px;line-height:22px}.rd-l7:hover{background:#f0f0f0}.rd-l8{margin:-4px -4px 0;padding:4px;top:0;z-index:2}.rd-l9{color:#bd0303}.rd-m_{opacity:.2;right:8px;top:8px}.rd-m_:hover{opacity:.5}");
 let querySelectAndParent = () => {
     let select, parentElement, atRow, atCol;
-    let elements = State.get('@:{global#stage.select.elements~rs}');
+    let elements = State.get('gd');
     if (elements &&
         elements.length == 1) {
         select = elements[0];
-        let find = stage_generic_1['@:{generic#query.element.parent~rs}'](select);
-        parentElement = find['@:{element~rs}'];
-        atRow = find['@:{at.row~rs}'];
-        atCol = find['@:{at.col~rs}'];
+        let find = stage_generic_1['gq'](select);
+        parentElement = find['_iP'];
+        atRow = find['_iQ'];
+        atCol = find['_iR'];
         if (parentElement) {
             let { props: pProps, ctrl: pCtrl } = parentElement;
-            if (pCtrl.as & enum_1['@:{enum#as.data.hod~rs}']) {
-                let update = pCtrl['@:{update.props~rs}'];
+            if (pCtrl.as & enum_1['gh']) {
+                let update = pCtrl['_he'];
                 if (update) {
                     update(pProps);
                 }
@@ -41,10 +41,10 @@ let querySelectAndParent = () => {
         }
     }
     return {
-        '@:{select~rs}': select,
-        '@:{parent.element~rs}': parentElement,
-        '@:{at.row~rs}': atRow,
-        '@:{at.col~rs}': atCol
+        '_ml': select,
+        '_n7': parentElement,
+        '_iQ': atRow,
+        '_iR': atCol
     };
 };
 /**
@@ -122,7 +122,7 @@ let updateTeeViewDataDisabled = (treeViewData, parentBindId) => {
 };
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0=[],
+let $temp_var,$vnode_0=[],
 {
 	error,
 	canUseBind,
@@ -135,31 +135,30 @@ $$_class,
 $vnode_3,
 $vnode_2,
 $vnode_1;
-$__line=1;$__art="{{if error}}";$__ctrl="if(error){";
+
 if(error){
-$vnode_0.push($createVNode(0,($__line=2,$__art='{{=error.message||error}}',$__ctrl='<%=error.message||error%>',(error.message||error))));
+$vnode_0.push($createVNode(0,(error.message||error)));
 }else{
-$vnode_1=[];$__line=5;$__art="{{if canUseBind}}";$__ctrl="if(canUseBind){";
+$vnode_1=[];
 if(canUseBind){
-$vnode_2=[$createVNode('input',{'class': 'rd-_assets_index_less_-input rd-_assets_index_less_-position-sticky rd-_assets_index_less_-tag-input rd-_assets_index_less_-wp100','value': ($__line=8,$__art='{{=kw}}',$__ctrl='<%=kw%>',(kw)),'placeholder': '搜索数据源','mx5-input': $viewId+'@:{search.data.source~rs}()',},1,$special_2)];$vnode_3=[$quick_k5_static_text||($quick_k5_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_panels_data_index_less_-search-remove rd-_assets_index_less_-fontsize-14 rd-_assets_index_less_-pa rd-_assets_index_less_-cursor-pointer'+($__line=9,$__art='{{if !kw}}','');$__ctrl='<%if(!kw){%>';if(!kw){;$$_class+=' rd-_assets_index_less_-none'+($__line=9,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2.push($createVNode('i',{'mx5-click': $viewId+'@:{clear.keyword~rs}()','title': ($__line=9,$__art='{{=i18n(\'@:{lang#remove.keyword~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#remove.keyword~rs}\')%>',(i18n('@:{lang#remove.keyword~rs}'))),'class': $$_class,},$vnode_3));$vnode_1.push($createVNode('div',$quick_mD_1_static_attr,$vnode_2));$__line=11;$__art="{{if source.length}}";$__ctrl="if(source.length){";
+$vnode_2=[$createVNode('input',{'class': 'rd-gN rd-gf rd-gg rd-he','value': (kw),'placeholder': '搜索数据源','mx5-input': $viewId+'_oc()',},1,$special_2)];$vnode_3=[$quick_gY_static_text||($quick_gY_static_text=$createVNode(0,''))];;$$_class='rd-ge rd-m_ rd-h7 rd-gV rd-hw';if(!kw){;$$_class+=' rd-g0';};$vnode_2.push($createVNode('i',{'mx5-click': $viewId+'_ob()','title': (i18n('or')),'class': $$_class,},$vnode_3));$vnode_1.push($createVNode('div',$quick_iw_1_static_attr,$vnode_2));
 if(source.length){
-$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'source,bindFieldsMap,readonly,kw','mx5-view': 'panels/data/branch?list='+($__line=12,$__art='{{#source}}',$__ctrl='<%#source,\'auto_key_source\'%>',$keyOf($refData,source,'auto_key_source'))+'&bindMap='+($__line=12,$__art='{{#bindFieldsMap}}',$__ctrl='<%#bindFieldsMap,\'auto_key_bindFieldsMap\'%>',$keyOf($refData,bindFieldsMap,'auto_key_bindFieldsMap'))+'&readonly='+($__line=12,$__art='{{#readonly}}',$__ctrl='<%#readonly,\'auto_key_readonly\'%>',$keyOf($refData,readonly,'auto_key_readonly'))+'&kw='+($__line=12,$__art='{{#kw}}',$__ctrl='<%#kw,\'auto_key_kw\'%>',$keyOf($refData,kw,'auto_key_kw')),'mx5-treeitempointerdown': $viewId+'@:{fix.drag.clip.bug~rs}()','mx5-contextmenu': $viewId+'@:{prevent~rs}()',}));
-}else if(($__line=13,$__art="{{else if kw}}",$__ctrl="else if(kw){"),kw){
-$vnode_2=[$createVNode(0,'暂无“'+($__line=14,$__art='{{=kw}}',$__ctrl='<%=kw%>',(kw))+'”数据')];$vnode_1.push($createVNode('span',$quick_mD_2_static_attr,$vnode_2));
+$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'source,bindFieldsMap,readonly,kw','mx5-view': '5r/data/branch?list='+$keyOf($refData,source,'eD')+'&bindMap='+$keyOf($refData,bindFieldsMap,'eE')+'&readonly='+$keyOf($refData,readonly,'eF')+'&kw='+$keyOf($refData,kw,'eG'),'mx5-treeitempointerdown': $viewId+'_n6()','mx5-contextmenu': $viewId+'_h6()',}));
+}else if(kw){
+$vnode_2=[$createVNode(0,'暂无“'+(kw)+'”数据')];$vnode_1.push($createVNode('span',$quick_iw_2_static_attr,$vnode_2));
 }
 }else{
-$vnode_1.push($createVNode(0,($__line=33,$__art='{{=i18n(\'@:{lang#data.choose.support.element~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#data.choose.support.element~rs}\')%>',(i18n('@:{lang#data.choose.support.element~rs}')))));
-}$vnode_0.push($createVNode('div',$quick_mD_0_static_attr,$vnode_1));
+$vnode_1.push($createVNode(0,(i18n('mV'))));
+}$vnode_0.push($createVNode('div',$quick_iw_0_static_attr,$vnode_1));
 } 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:panels/data/index.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init() {
         // this.set({
         //     treeView: Const['@:{const#data.source.panel.tree.view}']
         // });
-        this['@:{imme.search~rs}'] = (kw = '') => {
-            let source = this['@:{origional.data.source~rs}'];
+        this['_n8'] = (kw = '') => {
+            let source = this['_n9'];
             let searchedList;
             if (kw) {
                 searchedList = [];
@@ -193,54 +192,54 @@ return $createVNode($viewId,0,$vnode_0);
                 source: searchedList
             });
         };
-        this['@:{delay.search~rs}'] = this['@:{debounce~rs}'](kw => {
-            this['@:{imme.search~rs}'](kw);
+        this['_o_'] = this['_gn'](kw => {
+            this['_n8'](kw);
         }, 300);
-        let delayUpdate = this['@:{debounce~rs}'](this['@:{update.ui~rs}'], 30);
-        let propWatch = ({ '@:{props~rs}': props }) => {
+        let delayUpdate = this['_gn'](this['_oa'], 30);
+        let propWatch = ({ '_ge': props }) => {
             //console.log(props);
-            if (props['@:{focus.cell~rs}'] ||
-                props['@:{bind~rs}'] ||
+            if (props['_jz'] ||
+                props['_kd'] ||
                 props.bind) {
-                let { '@:{select~rs}': current, '@:{parent.element~rs}': pElement, '@:{at.row~rs}': atRow, '@:{at.col~rs}': atCol } = querySelectAndParent();
+                let { '_ml': current, '_n7': pElement, '_iQ': atRow, '_iR': atCol } = querySelectAndParent();
                 delayUpdate(current, pElement, atRow, atCol);
             }
         };
-        let normalWatch = this['@:{debounce~rs}'](() => {
-            let { '@:{select~rs}': current, '@:{parent.element~rs}': pElement, '@:{at.row~rs}': atRow, '@:{at.col~rs}': atCol } = querySelectAndParent();
-            this['@:{update.ui~rs}'](current, pElement, atRow, atCol);
+        let normalWatch = this['_gn'](() => {
+            let { '_ml': current, '_n7': pElement, '_iQ': atRow, '_iR': atCol } = querySelectAndParent();
+            this['_oa'](current, pElement, atRow, atCol);
         }, 30);
-        State.on('@:{event#stage.select.elements.change~rs}', normalWatch);
-        State.on('@:{event#stage.select.element.props.change~rs}', propWatch);
-        State.on('@:{event#history.shift.change~rs}', normalWatch);
-        State.on('@:{event#stage.page.change~rs}', normalWatch);
-        State.on('@:{event#stage.page.and.elements.change~rs}', normalWatch);
+        State.on('gg', normalWatch);
+        State.on('gf', propWatch);
+        State.on('gi', normalWatch);
+        State.on('gj', normalWatch);
+        State.on('gl', normalWatch);
         this.on('destroy', () => {
-            State.off('@:{event#stage.select.elements.change~rs}', normalWatch);
-            State.off('@:{event#stage.select.element.props.change~rs}', propWatch);
-            State.off('@:{event#history.shift.change~rs}', normalWatch);
-            State.off('@:{event#stage.page.change~rs}', normalWatch);
-            State.off('@:{event#stage.page.and.elements.change~rs}', normalWatch);
+            State.off('gg', normalWatch);
+            State.off('gf', propWatch);
+            State.off('gi', normalWatch);
+            State.off('gj', normalWatch);
+            State.off('gl', normalWatch);
         });
     },
-    '@:{update.ui~rs}'(m, parentElement, atRow, atCol) {
-        let { readonly } = State.get('@:{global#stage.page~rs}');
+    '_oa'(m, parentElement, atRow, atCol) {
+        let { readonly } = State.get('gm');
         //let treeView = Const['@:{const#data.source.panel.tree.view}']
         let canUseBind = false, bindFieldsMap = {}, ddDisabled = readonly;
-        let providerOfStageDrop = State.get('@:{global#provider.of.stage.drop~rs}');
+        let providerOfStageDrop = State.get('gB');
         if (providerOfStageDrop) {
             canUseBind = true;
         }
         let pBind, currentIsDataHod, currentBind, hasDisableOthers, currentDisableOthers;
         if (m) {
             let { props, ctrl } = m;
-            if (ctrl.as & enum_1['@:{enum#as.data.hod~rs}']) {
+            if (ctrl.as & enum_1['gh']) {
                 currentIsDataHod = 1;
                 currentBind = props.bind;
-                if (ctrl['@:{disable.other.data.source~rs}']) {
+                if (ctrl['_kp']) {
                     hasDisableOthers = 1;
                     let { focusCol, focusRow } = props;
-                    currentDisableOthers = ctrl['@:{disable.other.data.source~rs}'](props, focusRow, focusCol);
+                    currentDisableOthers = ctrl['_kp'](props, focusRow, focusCol);
                 }
             }
             let pCtrl, pProps;
@@ -250,15 +249,15 @@ return $createVNode($viewId,0,$vnode_0);
                 pBind = pProps.bind;
             }
             if (pCtrl &&
-                (pCtrl.as & enum_1['@:{enum#as.data.hod~rs}'])) {
+                (pCtrl.as & enum_1['gh'])) {
                 ddDisabled = true;
-                if (pCtrl['@:{disable.other.data.source~rs}']) {
-                    ddDisabled = pCtrl['@:{disable.other.data.source~rs}'](pProps, atRow, atCol);
+                if (pCtrl['_kp']) {
+                    ddDisabled = pCtrl['_kp'](pProps, atRow, atCol);
                 }
             }
             let { bind } = props;
-            if (ctrl['@:{get.bind.info~rs}']) {
-                bind = ctrl['@:{get.bind.info~rs}'](props);
+            if (ctrl['_j6']) {
+                bind = ctrl['_j6'](props);
             }
             // let map = State.get('@:{global#stage.data.source.list.map}'),
             //     ddSettled;
@@ -323,22 +322,22 @@ return $createVNode($viewId,0,$vnode_0);
         });
     },
     render() {
-        let error = State.get('@:{global#stage.data.source.error~rs}');
-        let source = State.get('@:{global#stage.data.source.list~rs}');
+        let error = State.get('gt');
+        let source = State.get('gu');
         //if (Const['@:{const#data.source.panel.tree.view}']) {
         //树形数据需要跳过第一个选择数据源的提示
         //因数据源在其它地方也有使用，所以不能直接删除提示
         source = prepareTreeViewData(source.slice(1));
         //}
-        this['@:{origional.data.source~rs}'] = source;
+        this['_n9'] = source;
         this.set({
             error,
             kw: '',
             source,
             selected: ''
         });
-        let { '@:{select~rs}': current, '@:{parent.element~rs}': parentElement } = querySelectAndParent();
-        this['@:{update.ui~rs}'](current, parentElement);
+        let { '_ml': current, '_n7': parentElement } = querySelectAndParent();
+        this['_oa'](current, parentElement);
     },
     // '@:{update.source}<change>'(e) {
     //     this.digest({
@@ -404,15 +403,15 @@ return $createVNode($viewId,0,$vnode_0);
     //     });
     //     State.fire('@:{event#bind.field.drag.end}');
     // },
-    '@:{clear.keyword~rs}<click>'() {
-        this['@:{imme.search~rs}']();
+    '_ob<click>'() {
+        this['_n8']();
     },
-    '@:{search.data.source~rs}<input>'(e) {
+    '_oc<input>'(e) {
         let target = e.eventTarget;
-        this['@:{delay.search~rs}'](target.value.trim());
+        this['_o_'](target.value.trim());
     },
     //https://github.com/xinglie/report-designer/issues/45
-    '@:{fix.drag.clip.bug~rs}<pointerdown,treeitempointerdown>'(e) {
+    '_n6<pointerdown,treeitempointerdown>'(e) {
         let { eventTarget, treeDOMNode } = e;
         let target = treeDOMNode || eventTarget;
         let targetBound = target.getBoundingClientRect();

@@ -4,48 +4,48 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/html/designer",["../../designer/const","../../designer/enum","../../designer/props","../../designer/transform","../normal"],(require,exports,module)=>{
+define("5m/html/designer",["../../50/53","../../50/enum","../../50/61","../../50/54","../6e"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let const_1 = require("../../designer/const");
-let enum_1 = require("../../designer/enum");
-let props_1 = require("../../designer/props");
-let transform_1 = require("../../designer/transform");
-let normal_1 = require("../normal");
+let const_1 = require("../../50/53");
+let enum_1 = require("../../50/enum");
+let props_1 = require("../../50/61");
+let transform_1 = require("../../50/54");
+let normal_1 = require("../6e");
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/html/dshow"
+            view: "5m/html/dshow"
         });
     }
 }).static({
     type: 'html',
-    title: '@:{lang#elements.html~rs}',
+    title: 'ke',
     icon: '&#xe895;',
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.width~rs}'] |
-        enum_1['@:{enum#modifier.height~rs}'] |
-        enum_1['@:{enum#modifier.nomask~rs}'] |
-        enum_1['@:{enum#modifier.icon~rs}'],
-    '@:{allowed.to.hod~rs}': {
+    '_iV': enum_1['gn'] |
+        enum_1['go'] |
+        enum_1['gr'] |
+        enum_1['gl'],
+    '_ix': {
         root: 1
     },
-    '@:{move.props~rs}': [{
+    '_iy': [{
             key: 'x',
             use: 'x'
         }, {
             key: 'y',
             use: 'y'
         }],
-    '@:{get.props~rs}'(x, y) {
+    '_hd'(x, y) {
         return {
             alpha: 1,
-            width: const_1['@:{const#to.unit~rs}'](300),
-            height: const_1['@:{const#to.unit~rs}'](150),
-            x: const_1['@:{const#to.unit~rs}'](x),
-            y: const_1['@:{const#to.unit~rs}'](y),
+            width: const_1['ge'](300),
+            height: const_1['ge'](150),
+            x: const_1['ge'](x),
+            y: const_1['ge'](y),
             value: '',
             locked: false,
             bind: {
@@ -59,75 +59,75 @@ module.exports= normal_1.extend({
             key: 'value',
             json: 1
         }, {
-            tip: '@:{lang#props.x~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'h1',
+            type: props_1["gd"],
             key: 'x',
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            step: const_1["gT"],
+            fixed: const_1["gU"],
+            read: transform_1["gg"],
+            write: transform_1["gl"],
+            '_hM': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.y~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'h2',
+            type: props_1["gd"],
             key: 'y',
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            step: const_1["gT"],
+            fixed: const_1["gU"],
+            read: transform_1["gg"],
+            write: transform_1["gl"],
+            '_hM': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.width~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'h3',
+            type: props_1["gd"],
             key: 'width',
-            min: () => const_1['@:{const#to.unit~rs}'](200),
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            min: () => const_1['ge'](200),
+            step: const_1["gT"],
+            fixed: const_1["gU"],
+            read: transform_1["gg"],
+            write: transform_1["gl"],
+            '_hM': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.height~rs}',
+            tip: 'h4',
             key: 'height',
-            type: props_1["@:{eprops#number~rs}"],
-            min: () => const_1['@:{const#to.unit~rs}'](100),
-            step: const_1["@:{const#unit.step~rs}"],
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            type: props_1["gd"],
+            min: () => const_1['ge'](100),
+            step: const_1["gT"],
+            fixed: const_1["gU"],
+            read: transform_1["gg"],
+            write: transform_1["gl"],
+            '_hM': 1,
             json: 1
         }, {
-            tip: '@:{lang#props.alpha~rs}',
+            tip: 'h6',
             key: 'alpha',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["gd"],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"]
+            type: props_1["gE"]
         }, {
-            tip: '@:{lang#props.bind.fields~rs}',
+            tip: 'h8',
             key: 'bind',
-            type: props_1["@:{eprops#bind.field~rs}"],
+            type: props_1["gn"],
             json: 1,
             max: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"]
+            type: props_1["gE"]
         }, {
-            tip: '@:{lang#props.title~rs}',
+            tip: 'id',
             key: 'ename',
-            type: props_1["@:{eprops#text.input~rs}"],
+            type: props_1["gm"],
             json: 1
         }, {
-            tip: '@:{lang#props.locked~rs}',
+            tip: 'ie',
             key: 'locked',
-            type: props_1["@:{eprops#boolean~rs}"],
+            type: props_1["gf"],
             free: true,
             json: 1
         }]

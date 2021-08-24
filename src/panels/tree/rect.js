@@ -4,34 +4,34 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("panels/tree/rect",["magix5","../../designer/const","../../designer/stage-elements","../../designer/stage-generic","../../designer/transform"],(require,exports,module)=>{
+define("5r/tree/rect",["51","../../50/53","../../50/5p","../../50/5q","../../50/54"],(require,exports,module)=>{
 
 
-let magix_1 = require("magix5");
-let const_1 = require("../../designer/const");
-let stage_elements_1 = require("../../designer/stage-elements");
-let stage_generic_1 = require("../../designer/stage-generic");
-let transform_1 = require("../../designer/transform");
+let magix_1 = require("51");
+let const_1 = require("../../50/53");
+let stage_elements_1 = require("../../50/5p");
+let stage_generic_1 = require("../../50/5q");
+let transform_1 = require("../../50/54");
 let { node, config, guid, inside } = magix_1;
 let RId = guid('rp_');
 let { max } = Math;
 let root;
 let RectPole = {
-    '@:{init~rs}'() {
+    '_hf'() {
         let n = node(RId);
         if (!n) {
             root = node(config('rootId'));
-            root.insertAdjacentHTML("beforeend", `<div class="rd-_assets_index_less_-pa rd-_assets_index_less_-z-index-1 rd-_panels_tree_index_less_-rect" id="${RId}"></div>`);
+            root.insertAdjacentHTML("beforeend", `<div class="rd-gV rd-ig rd-mN" id="${RId}"></div>`);
         }
     },
-    '@:{show~rs}'(element, dest) {
+    '_gM'(element, dest) {
         let ns = node(RId).style;
         let rb = root.getBoundingClientRect();
         let styles = getComputedStyle(root);
         let borderLeft = parseInt(styles.borderLeftWidth, 10) || 0;
         let borderTop = parseInt(styles.borderTopWidth, 10) || 0;
         let { props } = element, pos;
-        let x = const_1['@:{const#to.px~rs}'](props.x), y = const_1['@:{const#to.px~rs}'](props.y), width = const_1['@:{const#to.px~rs}'](props.width), height = const_1['@:{const#to.px~rs}'](props.height);
+        let x = const_1['gY'](props.x), y = const_1['gY'](props.y), width = const_1['gY'](props.width), height = const_1['gY'](props.height);
         if (dest) {
             let n = node(dest);
             if (n) {
@@ -47,7 +47,7 @@ let RectPole = {
             }
         }
         else {
-            pos = transform_1["@:{transform#stage.to.real.coord~rs}"]({
+            pos = transform_1["gi"]({
                 x,
                 y
             });
@@ -59,46 +59,46 @@ let RectPole = {
         let r = props.rotate || 0;
         ns.transform = `rotate(${r}deg)`;
     },
-    '@:{hide~rs}'() {
+    '_gN'() {
         let styles = node(RId).style;
         styles.left = '-10000px';
         styles.top = '-10000px';
     }
 };
 module.exports= {
-    '@:{setup~rs}'() {
-        RectPole['@:{init~rs}']();
+    '_lD'() {
+        RectPole['_hf']();
     },
-    '@:{hide.pole~rs}'() {
-        RectPole['@:{hide~rs}']();
+    '_o5'() {
+        RectPole['_gN']();
     },
-    '@:{show.rect~rs}<pointerover>'(e) {
+    '_o6<pointerover>'(e) {
         let flag = inside(e.relatedTarget, e.eventTarget);
         if (!flag) {
             let { element, dest } = e.params;
-            RectPole["@:{show~rs}"](element, dest);
+            RectPole["_gM"](element, dest);
         }
     },
-    '@:{hide.rect~rs}<pointerout>'(e) {
+    '_o7<pointerout>'(e) {
         let flag = inside(e.relatedTarget, e.eventTarget);
         if (!flag) {
-            RectPole["@:{hide~rs}"]();
+            RectPole["_gN"]();
         }
     },
-    '@:{select.element~rs}<click>'(e) {
-        if (e['@:{halt~rs}'])
+    '_o8<click>'(e) {
+        if (e['_g8'])
             return;
         let { params, shiftKey, ctrlKey, metaKey } = e;
         let { element, dest } = params;
-        stage_elements_1['@:{elements#single.or.multi.select~rs}'](element, shiftKey || ctrlKey || metaKey);
+        stage_elements_1['gg'](element, shiftKey || ctrlKey || metaKey);
         //修正元素聚焦滚动到视区内时，hover高亮元素的指示元素也需要更新位置
-        RectPole["@:{show~rs}"](element, dest);
+        RectPole["_gM"](element, dest);
     },
-    '@:{remove.element~rs}<click>'(e) {
-        e['@:{halt~rs}'] = 1;
+    '_o9<click>'(e) {
+        e['_g8'] = 1;
         let { element } = e.params;
-        stage_generic_1['@:{generic#delete.select.elements~rs}'](element, '@:{delete.from.tree.panel~rs}');
-        RectPole['@:{hide~rs}']();
+        stage_generic_1['gG'](element, '_p_');
+        RectPole['_gN']();
     }
 };
 

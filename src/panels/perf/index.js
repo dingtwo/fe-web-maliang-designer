@@ -4,33 +4,33 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("panels/perf/index",["magix5"],(require,exports,module)=>{
-let $quick_mH_0_static_node;
-let $quick_mH_1_static_node;
+define("5r/perf/index",["51"],(require,exports,module)=>{
+let $quick_iA_0_static_node;
+let $quick_iA_1_static_node;
 
-let magix_1 = require("magix5");
+let magix_1 = require("51");
 let { View, applyStyle, node, mark, mix } = magix_1;
-applyStyle("rd-_panels_perf_index_less_",".rd-_panels_perf_index_less_-canvas {\nwidth:200px;\nheight:30px;\n}\n");
+applyStyle("rd-gP",".rd-mA{height:30px;width:200px}");
 //canvas宽
 let grapWidth = 400;
 //canvas高
 let graphHeight = 60;
 let Data = function (d) {
-    this['@:{samples~rs}'] = [];
-    this['@:{decimals~rs}'] = d;
+    this['_oB'] = [];
+    this['_gk'] = d;
 };
 mix(Data.prototype, {
-    '@:{add.sample~rs}'(v) {
+    '_oC'(v) {
         //采样多于图表宽度，画不下，删除
-        if (this['@:{samples~rs}'].length > grapWidth) {
-            this['@:{samples~rs}'].shift();
+        if (this['_oB'].length > grapWidth) {
+            this['_oB'].shift();
         }
-        this['@:{samples~rs}'].push(v);
+        this['_oB'].push(v);
     },
-    '@:{calc~rs}'() {
+    '_oE'() {
         //从采样中计算最大值，最小值，及当前对应的值
-        let samples = this['@:{samples~rs}'];
-        let d = this['@:{decimals~rs}'];
+        let samples = this['_oB'];
+        let d = this['_gk'];
         let min = samples[0];
         let max = samples[0];
         for (let i = 0; i < samples.length; i++) {
@@ -44,81 +44,80 @@ mix(Data.prototype, {
         }
         let now = samples[samples.length - 1];
         return {
-            '@:{max~rs}': max.toFixed(d),
-            '@:{min~rs}': min.toFixed(d),
-            '@:{now~rs}': now.toFixed(d)
+            '_m5': max.toFixed(d),
+            '_m6': min.toFixed(d),
+            '_oD': now.toFixed(d)
         };
     }
 });
 //图表
 let Widget = function (id) {
-    this['@:{results~rs}'] = [];
-    this['@:{text.node~rs}'] = node(`${id}_text`);
-    this['@:{canvas.ctx~rs}'] = node(`${id}_canvas`).getContext('2d');
+    this['_oF'] = [];
+    this['_oG'] = node(`${id}_text`);
+    this['_oH'] = node(`${id}_canvas`).getContext('2d');
 };
 mix(Widget.prototype, {
-    '@:{add.result~rs}'(r) {
-        if (this['@:{results~rs}'].length > grapWidth) {
-            this['@:{results~rs}'].shift();
+    '_oK'(r) {
+        if (this['_oF'].length > grapWidth) {
+            this['_oF'].shift();
         }
-        this['@:{results~rs}'].push(r);
-        if (!this['@:{dirty~rs}']) {
-            this['@:{dirty~rs}'] = 1;
-            this['@:{draw~rs}']();
+        this['_oF'].push(r);
+        if (!this['_oI']) {
+            this['_oI'] = 1;
+            this['_oJ']();
         }
     },
-    '@:{draw~rs}'() {
-        let results = this['@:{results~rs}'];
+    '_oJ'() {
+        let results = this['_oF'];
         let len = results.length;
         let result = results[len - 1];
-        let scale = graphHeight / (result['@:{max~rs}'] * 1.2);
-        this['@:{text.node~rs}'].innerHTML = `min:${result['@:{min~rs}']}&nbsp;max:${result['@:{max~rs}']}&nbsp;now:${result['@:{now~rs}']}`;
-        let ctx = this['@:{canvas.ctx~rs}'];
+        let scale = graphHeight / (result['_m5'] * 1.2);
+        this['_oG'].innerHTML = `min:${result['_m6']}&nbsp;max:${result['_m5']}&nbsp;now:${result['_oD']}`;
+        let ctx = this['_oH'];
         ctx.fillStyle = "#fafafa";
         ctx.fillRect(0, 0, grapWidth, graphHeight);
         ctx.fillStyle = "#FA742B";
         let diff = grapWidth - len;
         for (let i = 0; i < len; i++) {
-            ctx.fillRect(diff + i, graphHeight, 1, -(results[i]['@:{now~rs}'] * scale));
+            ctx.fillRect(diff + i, graphHeight, 1, -(results[i]['_oD'] * scale));
         }
-        this['@:{dirty~rs}'] = 0;
+        this['_oI'] = 0;
     }
 });
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 $vnode_1;
 
-if($quick_mH_0_static_node){
-$vnode_0=[$quick_mH_0_static_node];
+if($quick_iA_0_static_node){
+$vnode_0=[$quick_iA_0_static_node];
 }else{
-$vnode_1=[$createVNode(0,'FPS')];$vnode_0=[$quick_mH_0_static_node=$createVNode('div',{'_': 'hN','class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-fontsize-16 rd-_assets_index_less_-justify-content-center',},$vnode_1)];
+$vnode_1=[$createVNode(0,'FPS')];$vnode_0=[$quick_iA_0_static_node=$createVNode('div',{'_': 'eD','class': 'rd-g9 rd-h8 rd-hs',},$vnode_1)];
 }
-$vnode_0.push($createVNode('div',{'class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-justify-content-center','id': ($__line=2,$__art='{{= $viewId}}','')+$viewId+'_fps_text',}),$createVNode('canvas',{'width': 400,'height': 60,'class': 'rd-_panels_perf_index_less_-canvas','id': ($__line=3,$__art='{{= $viewId}}','')+$viewId+'_fps_canvas',}));
-if($quick_mH_1_static_node){
-$vnode_0.push($quick_mH_1_static_node);
+$vnode_0.push($createVNode('div',{'class': 'rd-g9 rd-h6 rd-hs','id': $viewId+'_fps_text',}),$createVNode('canvas',{'width': 400,'height': 60,'class': 'rd-mA','id': $viewId+'_fps_canvas',}));
+if($quick_iA_1_static_node){
+$vnode_0.push($quick_iA_1_static_node);
 }else{
-$vnode_1=[$createVNode(0,'Memory(MB)')];$vnode_0.push($quick_mH_1_static_node=$createVNode('div',{'_': 'hO','class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-fontsize-16 rd-_assets_index_less_-justify-content-center',},$vnode_1));
+$vnode_1=[$createVNode(0,'Memory(MB)')];$vnode_0.push($quick_iA_1_static_node=$createVNode('div',{'_': 'eE','class': 'rd-g9 rd-h8 rd-hs',},$vnode_1));
 }
-$vnode_0.push($createVNode('div',{'class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-fontsize-12 rd-_assets_index_less_-justify-content-center','id': ($__line=5,$__art='{{= $viewId}}','')+$viewId+'_mem_text',}),$createVNode('canvas',{'width': 400,'height': 60,'class': 'rd-_panels_perf_index_less_-canvas','id': ($__line=6,$__art='{{= $viewId}}','')+$viewId+'_mem_canvas',})); 
+$vnode_0.push($createVNode('div',{'class': 'rd-g9 rd-h6 rd-hs','id': $viewId+'_mem_text',}),$createVNode('canvas',{'width': 400,'height': 60,'class': 'rd-mA','id': $viewId+'_mem_canvas',})); 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:panels/perf/index.html'; throw msg; }  } ,
-    '@:{show~rs}'(shrink) {
-        delete this['@:{hidden~rs}'];
-        if (!this['@:{started~rs}'] &&
+return $createVNode($viewId,0,$vnode_0); } ,
+    '_gM'(shrink) {
+        delete this['_oL'];
+        if (!this['_oM'] &&
             !shrink) {
-            this['@:{started~rs}'] = 1;
-            requestAnimationFrame(this['@:{fps.update~rs}']);
-            this['@:{mem.update~rs}']();
+            this['_oM'] = 1;
+            requestAnimationFrame(this['_oN']);
+            this['_oO']();
         }
     },
-    '@:{hide~rs}'() {
-        delete this['@:{started~rs}'];
-        this['@:{hidden~rs}'] = 1;
+    '_gN'() {
+        delete this['_oM'];
+        this['_oL'] = 1;
     },
     async render() {
-        let renderMark = mark(this, '@:{render~rs}');
+        let renderMark = mark(this, '_gt');
         await this.digest();
         if (renderMark()) {
             let fpsData = new Data(0);
@@ -127,7 +126,7 @@ return $createVNode($viewId,0,$vnode_0);
             let last = 0;
             let fpsUpdate = now => {
                 if (renderMark() &&
-                    !this['@:{hidden~rs}']) {
+                    !this['_oL']) {
                     let elapsed = (now - (last === 0 ? now : last)) / 1000;
                     let fps = 1 / elapsed;
                     if (fps !== Infinity) {
@@ -140,27 +139,27 @@ return $createVNode($viewId,0,$vnode_0);
                             sum += samples[i];
                         }
                         let mean = sum / samples.length;
-                        fpsData['@:{add.sample~rs}'](mean);
-                        fpsWidget['@:{add.result~rs}'](fpsData['@:{calc~rs}']());
+                        fpsData['_oC'](mean);
+                        fpsWidget['_oK'](fpsData['_oE']());
                     }
                     last = now;
                     requestAnimationFrame(fpsUpdate);
                 }
             };
-            this['@:{fps.update~rs}'] = fpsUpdate;
+            this['_oN'] = fpsUpdate;
             let memData = new Data(1);
             let memWidget = new Widget(`${this.id}_mem`);
             let updateMem = () => {
                 if (renderMark() &&
-                    !this['@:{hidden~rs}'] &&
+                    !this['_oL'] &&
                     performance.memory) {
-                    memData['@:{add.sample~rs}'](performance.memory.usedJSHeapSize / (1024 * 1024));
-                    memWidget['@:{add.result~rs}'](memData['@:{calc~rs}']());
+                    memData['_oC'](performance.memory.usedJSHeapSize / (1024 * 1024));
+                    memWidget['_oK'](memData['_oE']());
                     setTimeout(updateMem, 30);
                 }
             };
-            this['@:{mem.update~rs}'] = updateMem;
-            this['@:{show~rs}']();
+            this['_oO'] = updateMem;
+            this['_gM']();
         }
     },
 });

@@ -4,21 +4,21 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/richtext/dshow",["magix5","../../provider/ckeditor5","../../designer/history","../../designer/stage-selection"],(require,exports,module)=>{
-let $quick_kW_static_text;
+define("5m/richtext/dshow",["51","../../5g/ckeditor5","../../50/5d","../../50/5u"],(require,exports,module)=>{
+let $quick_gP_static_text;
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let ckeditor5_1 = require("../../provider/ckeditor5");
-let history_1 = require("../../designer/history");
-let stage_selection_1 = require("../../designer/stage-selection");
+let magix_1 = require("51");
+let ckeditor5_1 = require("../../5g/ckeditor5");
+let history_1 = require("../../50/5d");
+let stage_selection_1 = require("../../50/5u");
 let { applyStyle, View, mark, node } = magix_1;
-applyStyle("rd-_elements_richtext_dshow_less_","\n  .ck-editor,\n  .ck .ck-editor__main {\nheight:100%!important;\n  }\n  .ck-editor__editable_inline {\nheight:calc(100% - 40px);\n  }\n\n");
+applyStyle("rd-gq",".ck-editor,.ck .ck-editor__main{height:100%!important}.ck-editor__editable_inline{height:calc(100% - 40px)}");
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	props,
 	unit,
@@ -29,16 +29,15 @@ $vnode_2,
 $$_class,
 $vnode_3,
 $vnode_1;
-$vnode_1=[];$__line=2;$__art="{{if !readonly}}";$__ctrl="if(!readonly){";
+$vnode_1=[];
 if(!readonly){
-$vnode_2=[$createVNode(0,($__line=3,$__art='{{=pv?\'&#xe638;\':\'&#xe75a;\'}}',$__ctrl='<%=pv?\'&#xe638;\':\'&#xe75a;\'%>',(pv?'&#xe638;':'&#xe75a;')),1)];$vnode_1.push($createVNode('i',{'class': 'rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-iconfont rd-_assets_index_less_-pa','style': 'top:-19px;left:20px','title': ($__line=3,$__art='{{=pv?\'编辑\':\'预览\'}}',$__ctrl='<%=pv?\'编辑\':\'预览\'%>',(pv?'编辑':'预览')),'mx5-click': $viewId+'@:{toggle.state~rs}()',},$vnode_2));
-}$vnode_2=[$createVNode(0,($__line=5,$__art='{{=text}}',$__ctrl='<%=text%>',(text)),1)];;$$_class='rd-_assets_index_less_-hp100 rd-_assets_index_less_-overflow-auto'+($__line=5,$__art='{{if !pv}}','');$__ctrl='<%if(!pv){%>';if(!pv){;$$_class+=' rd-_assets_index_less_-none'+($__line=5,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'id': ($__line=5,$__art='{{=$viewId}}','')+$viewId+'_pv','class': $$_class,},$vnode_2));$vnode_3=[$quick_kW_static_text||($quick_kW_static_text=$createVNode(0,'正在加载编辑器插件...'))];$vnode_2=[$createVNode('div',{'id': ($__line=7,$__art='{{=$viewId}}','')+$viewId+'_ed',},$vnode_3)];;$$_class='rd-_assets_index_less_-hp100'+($__line=6,$__art='{{if pv}}','');$__ctrl='<%if(pv){%>';if(pv){;$$_class+=' rd-_assets_index_less_-none'+($__line=6,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'id': ($__line=6,$__art='{{=$viewId}}','')+$viewId+'_e','class': $$_class,},$vnode_2));$vnode_0=[$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-touch-action-none rd-_assets_index_less_-z-index-1','style': 'left:'+($__line=1,$__art='{{=props.x}}',$__ctrl='<%=props.x%>',(props.x))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';top:'+($__line=1,$__art='{{=props.y}}',$__ctrl='<%=props.y%>',(props.y))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';opacity:'+($__line=1,$__art='{{=props.alpha}}',$__ctrl='<%=props.alpha%>',(props.alpha))+';width:'+($__line=1,$__art='{{=props.width}}',$__ctrl='<%=props.width%>',(props.width))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=1,$__art='{{=props.height}}',$__ctrl='<%=props.height%>',(props.height))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit)),'mx5-pointerdown': $viewId+'@:{stop~rs}()','mx5-contextmenu': $viewId+'@:{stop~rs}()',},$vnode_1)]; 
+$vnode_2=[$createVNode(0,(pv?'&#xe638;':'&#xe75a;'),1)];$vnode_1.push($createVNode('i',{'class': 'rd-gV rd-ge rd-hw','style': 'top:-19px;left:20px','title': (pv?'编辑':'预览'),'mx5-click': $viewId+'_k7()',},$vnode_2));
+}$vnode_2=[$createVNode(0,(text),1)];;$$_class='rd-gO rd-h2';if(!pv){;$$_class+=' rd-g0';};$vnode_1.push($createVNode('div',{'id': $viewId+'_pv','class': $$_class,},$vnode_2));$vnode_3=[$quick_gP_static_text||($quick_gP_static_text=$createVNode(0,'正在加载编辑器插件...'))];$vnode_2=[$createVNode('div',{'id': $viewId+'_ed',},$vnode_3)];;$$_class='rd-gO';if(pv){;$$_class+=' rd-g0';};$vnode_1.push($createVNode('div',{'id': $viewId+'_e','class': $$_class,},$vnode_2));$vnode_0=[$createVNode('div',{'class': 'rd-gV rd-ig rd-iz','style': 'left:'+(props.x)+(unit)+';top:'+(props.y)+(unit)+';opacity:'+(props.alpha)+';width:'+(props.width)+(unit)+';height:'+(props.height)+(unit),'mx5-pointerdown': $viewId+'_kg()','mx5-contextmenu': $viewId+'_kg()',},$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:elements/richtext/dshow.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init() {
         this.on('destroy', () => {
-            let editor = this['@:{editor~rs}'];
+            let editor = this['_k6'];
             if (editor && editor !== 1) {
                 editor.destroy();
             }
@@ -48,7 +47,7 @@ return $createVNode($viewId,0,$vnode_0);
         this.set(data);
     },
     async render() {
-        let marker = mark(this, '@:{render~rs}');
+        let marker = mark(this, '_gt');
         let props = this.get('props');
         let readonly = props.readonly;
         await this.digest({
@@ -57,18 +56,18 @@ return $createVNode($viewId,0,$vnode_0);
         if (!readonly) {
             await ckeditor5_1();
             if (marker()) {
-                if (!this['@:{editor~rs}']) {
-                    this['@:{editor~rs}'] = 1;
+                if (!this['_k6']) {
+                    this['_k6'] = 1;
                     let editor = await CKEditor.Classic.create(node(`${this.id}_ed`), {
                         initialData: props.text
                     });
-                    this['@:{editor~rs}'] = editor;
+                    this['_k6'] = editor;
                     editor.model.document.on('change', () => {
                         this.get('props').text = editor.getData();
                     });
                 }
-                else if (this['@:{editor~rs}'] != 1) {
-                    this['@:{editor~rs}'].setData(props.text);
+                else if (this['_k6'] != 1) {
+                    this['_k6'].setData(props.text);
                 }
             }
         }
@@ -79,7 +78,7 @@ return $createVNode($viewId,0,$vnode_0);
             });
         }
     },
-    '@:{toggle.state~rs}<click>'(e) {
+    '_k7<click>'(e) {
         let pv = this.get('pv');
         let props = this.get('props');
         this.digest({
@@ -87,15 +86,15 @@ return $createVNode($viewId,0,$vnode_0);
             text: props.text
         });
     },
-    '@:{stop~rs}<pointerdown,contextmenu>'(e) {
-        if (e['@:{halt~rs}'])
+    '_kg<pointerdown,contextmenu>'(e) {
+        if (e['_g8'])
             return;
         let { target } = e;
         if (target.id != `${this.id}_pv`) {
-            e['@:{halt~rs}'] = 1;
+            e['_g8'] = 1;
             let element = this.get('element');
-            if (stage_selection_1["@:{selection#set~rs}"](element)) {
-                history_1["@:{history#save~rs}"](history_1['@:{history#element.get.focus~rs}'], element.props.ename);
+            if (stage_selection_1["ge"](element)) {
+                history_1["gd"](history_1['gu'], element.props.ename);
             }
         }
     }

@@ -4,13 +4,13 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("gallery/mx-dragdrop/index",["magix5"],(require,exports,module)=>{
+define("58/59/index",["51"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
  */
-let magix_1 = require("magix5");
+let magix_1 = require("51");
 let { attach, detach } = magix_1;
 let Win = window;
 let Doc = document;
@@ -27,15 +27,15 @@ let DragPreventEvent = ['keydown', 'wheel', 'DOMMouseScroll', 'fullscreenchange'
 let passiveObject = {
     passive: false
 };
-let dragKey = '@:{drag.count~rs}';
+let dragKey = '_mc';
 module.exports= {
     ctor() {
         let me = this;
         me.on('destroy', () => {
-            me['@:{drag.end~rs}']();
+            me['_md']();
         });
     },
-    '@:{is.dragenter~rs}'(owner, key) {
+    '_kb'(owner, key) {
         key || (key = dragKey);
         let ref = owner[key];
         if (!ref) {
@@ -44,7 +44,7 @@ module.exports= {
         owner[key]++;
         return !ref;
     },
-    '@:{is.dragleave~rs}'(owner, key) {
+    '_kc'(owner, key) {
         key || (key = dragKey);
         let ref = owner[key];
         if (ref) {
@@ -52,54 +52,54 @@ module.exports= {
         }
         return ref === 1;
     },
-    '@:{clear.drag~rs}'(owner, key) {
+    '_me'(owner, key) {
         delete owner[key || dragKey];
     },
-    '@:{drag.end~rs}'(e) {
+    '_md'(e) {
         let me = this;
-        let info = me['@:{move.proxy~rs}'];
+        let info = me['_mf'];
         if (info) {
             let fn;
             for (fn of DragMoveEvent) {
-                detach(Doc, fn, me['@:{move.proxy~rs}']);
+                detach(Doc, fn, me['_mf']);
             }
             for (fn of DragEndEvent) {
-                detach(Doc, fn, me['@:{stop.proxy~rs}']);
+                detach(Doc, fn, me['_mg']);
             }
             for (fn of DragPreventEvent) {
                 detach(Doc, fn, DragPrevent);
             }
-            detach(Win, 'blur', me['@:{stop.proxy~rs}']);
-            delete me['@:{move.proxy~rs}'];
-            let stop = me['@:{stop.callback~rs}'];
+            detach(Win, 'blur', me['_mg']);
+            delete me['_mf'];
+            let stop = me['_mh'];
             if (stop) {
                 stop(e);
             }
         }
     },
-    '@:{drag.drop~rs}'(e, moveCallback, endCallback) {
+    '_gL'(e, moveCallback, endCallback) {
         let me = this;
-        me['@:{drag.end~rs}']();
+        me['_md']();
         if (e) {
             ClearSelection();
-            me['@:{stop.callback~rs}'] = endCallback;
-            me['@:{stop.proxy~rs}'] = me['@:{drag.end~rs}'].bind(me);
-            me['@:{move.proxy~rs}'] = e => {
+            me['_mh'] = endCallback;
+            me['_mg'] = me['_md'].bind(me);
+            me['_mf'] = e => {
                 if (moveCallback) {
                     moveCallback(e);
                 }
             };
             let fn;
             for (fn of DragMoveEvent) {
-                attach(Doc, fn, me['@:{move.proxy~rs}']);
+                attach(Doc, fn, me['_mf']);
             }
             for (fn of DragEndEvent) {
-                attach(Doc, fn, me['@:{stop.proxy~rs}']);
+                attach(Doc, fn, me['_mg']);
             }
             for (fn of DragPreventEvent) {
                 attach(Doc, fn, DragPrevent, passiveObject);
             }
-            attach(Win, 'blur', me['@:{stop.proxy~rs}']);
+            attach(Win, 'blur', me['_mg']);
         }
     },
     /**
@@ -107,14 +107,14 @@ module.exports= {
      * @param x x坐标
      * @param y y坐标
      */
-    '@:{from.point~rs}'(x, y) {
+    '_hm'(x, y) {
         let node;
         if (Doc.elementFromPoint) {
-            if (!DragPrevent['@:{fixed~rs}'] && IsW3C) {
-                DragPrevent['@:{fixed~rs}'] = 1;
-                DragPrevent['@:{add.scroll~rs}'] = Doc.elementFromPoint(-1, -1) !== null;
+            if (!DragPrevent['_mi'] && IsW3C) {
+                DragPrevent['_mi'] = 1;
+                DragPrevent['_mj'] = Doc.elementFromPoint(-1, -1) !== null;
             }
-            if (DragPrevent['@:{add.scroll~rs}']) {
+            if (DragPrevent['_mj']) {
                 x += window.pageXOffset;
                 y += window.pageYOffset;
             }
@@ -124,7 +124,7 @@ module.exports= {
         }
         return node;
     },
-    '@:{clear.selection~rs}': ClearSelection
+    '_mk': ClearSelection
 };
 
 });

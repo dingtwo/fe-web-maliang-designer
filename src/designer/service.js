@@ -4,10 +4,10 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("designer/service",["magix5"],(require,exports,module)=>{
+define("50/5k",["51"],(require,exports,module)=>{
 
 
-let magix_1 = require("magix5");
+let magix_1 = require("51");
 let { Service, toUrl, config, guid } = magix_1;
 /**
  * 提取错误和数据
@@ -26,9 +26,9 @@ let extractErrorAndData = ({ data: response, token }, url) => {
         error = response.message || `接口${url}错误`;
     }
     return {
-        '@:{error~rs}': error,
-        '@:{data~rs}': data,
-        '@:{token~rs}': token,
+        '_h7': error,
+        '_h8': data,
+        '_h9': token,
     };
 };
 /**
@@ -103,9 +103,9 @@ let send = (sendUrl, options) => {
  * 与后端接口交互对象
  */
 let RDService = Service.extend((bag, callback) => {
-    let method = bag.get('@:{method~rs}') || 'GET';
-    let query = bag.get('@:{query~rs}');
-    let body = bag.get('@:{body~rs}');
+    let method = bag.get('_i_') || 'GET';
+    let query = bag.get('_hR');
+    let body = bag.get('_hQ');
     let url = bag.get('url');
     let token;
     try {
@@ -145,7 +145,7 @@ let RDService = Service.extend((bag, callback) => {
     //所以优先使用fetch方法进行跨域请求
     send(url, options)
         .then(res => {
-        let { '@:{error~rs}': error, '@:{data~rs}': data, '@:{token~rs}': token, } = extractErrorAndData(res, url);
+        let { '_h7': error, '_h8': data, '_h9': token, } = extractErrorAndData(res, url);
         console.log('响应', res);
         if (error) {
             callback({
@@ -173,48 +173,48 @@ let RDService = Service.extend((bag, callback) => {
  */
 RDService.add([
     {
-        name: '@:{get.images~rs}',
+        name: '_ia',
         url: config('getImageUrl'),
         cache: 30 * 60 * 1000,
     },
     {
-        name: '@:{get.fields~rs}',
+        name: '_h0',
         url: config('getFieldUrl'),
         cache: 30 * 60 * 1000,
     },
     {
-        name: '@:{get.by.url~rs}',
+        name: '_ib',
         cache: 30 * 60 * 1000,
     },
     {
-        name: '@:{get.templates~rs}',
+        name: '_g1',
         url: config('getTemplateUrl'),
         cache: 30 * 60 * 1000,
     },
     {
-        name: '@:{save.content~rs}',
+        name: '_hP',
         url: config('saveContentUrl'),
-        '@:{method~rs}': 'post',
+        '_i_': 'post',
     },
     {
-        name: '@:{get.content~rs}',
+        name: '_h4',
         url: config('getContentUrl'),
     },
     {
-        name: '@:{get.muti.content~rs}',
+        name: '_ic',
         url: config('getMutiContentUrl'),
     },
     {
-        name: '@:{post.by.url~rs}',
-        '@:{method~rs}': 'post',
+        name: '_id',
+        '_i_': 'post',
     },
     {
-        name: '@:{post.login~rs}',
-        '@:{method~rs}': 'post',
-        url: 'http://10.252.192.35:8000/ucenter/login/web',
+        name: '_h1',
+        '_i_': 'post',
+        url: 'http://api.freshfood.cn/ucenter/login/web',
     },
 ]);
-RDService['@:{extract.error.and.data~rs}'] = extractErrorAndData;
+RDService['_ie'] = extractErrorAndData;
 module.exports= RDService;
 
 });

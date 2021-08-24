@@ -4,13 +4,13 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("printer/unit/data-dtable",["../../provider/table","../generic/index","../generic/resource","../../designer/const"],(require,exports,module)=>{
+define("78/7b/data-dtable",["../../5g/table","../79/index","../79/resource","../../50/53"],(require,exports,module)=>{
 
 
-let table_1 = require("../../provider/table");
-let index_1 = require("../generic/index");
-let resource_1 = require("../generic/resource");
-let const_1 = require("../../designer/const");
+let table_1 = require("../../5g/table");
+let index_1 = require("../79/index");
+let resource_1 = require("../79/resource");
+let const_1 = require("../../50/53");
 let { min, floor } = Math;
 /**
  * 测量dom高度
@@ -92,10 +92,10 @@ module.exports= async (dataCenter, resLoader, table, fromIndex, page, pageFooter
             for (let col of dataRow.cols) {
                 if (col.type == 'qrcode' ||
                     col.type == 'barcode') {
-                    rl['@:{add~rs}']('@:{provider~rs}', col.type);
+                    rl['_lU']('_pj', col.type);
                 }
             }
-            await rl['@:{load~rs}']();
+            await rl['_g5']();
         }
     };
     let measureDataHeight = async (dataRows, elementType) => {
@@ -106,7 +106,7 @@ module.exports= async (dataCenter, resLoader, table, fromIndex, page, pageFooter
             bind._showFoot = false;
             bind._showHead = false;
             props.hideLabel = false;
-            let root = await index_1['@:{mount.display.of.element~rs}'](elementType, {
+            let root = await index_1['_pc'](elementType, {
                 props,
                 unit
             });
@@ -116,7 +116,7 @@ module.exports= async (dataCenter, resLoader, table, fromIndex, page, pageFooter
             let rowHeights = [];
             for (let i = rowNodes.length; i--;) {
                 let tr = rowNodes[i];
-                rowHeights[i] = const_1['@:{const#to.unit~rs}'](tr.clientHeight);
+                rowHeights[i] = const_1['ge'](tr.clientHeight);
             }
             MeasureHeights[table.id] = rowHeights;
             //Toast.hide();
@@ -128,17 +128,17 @@ module.exports= async (dataCenter, resLoader, table, fromIndex, page, pageFooter
         bind._showFoot = false;
         bind._showHead = false;
         calcAcc(list, fromIndex, end, totalRow);
-        let root = await index_1['@:{mount.display.of.element~rs}'](type, {
+        let root = await index_1['_pc'](type, {
             props,
             unit
         });
         let rowNodes = root.getElementsByTagName('tr');
         let last = rowNodes[rowNodes.length - 1];
-        return const_1['@:{const#to.unit~rs}'](last.clientHeight);
+        return const_1['ge'](last.clientHeight);
     };
     //如果有绑定数据
     if (bind.url) {
-        let { '@:{error~rs}': err, '@:{data~rs}': list } = dataCenter[bind.url];
+        let { '_h7': err, '_h8': list } = dataCenter[bind.url];
         if (err) { //出错设置相应的提示信息
             bind._tip = err;
         }
@@ -229,12 +229,12 @@ module.exports= async (dataCenter, resLoader, table, fromIndex, page, pageFooter
                 }
             }
             //向表格对象添加辅助信息，以方便计算单元格尺寸等信息　
-            table_1["@:{table.provider#add.ext.meta~rs}"](props, true);
+            table_1["gd"](props, true);
             /**
              * 以下计算各种行的高度，用于计算页面里面能放多少行数据
              */
-            let sizes = table_1["@:{table.provider#get.sizes~rs}"](props);
-            let heights = sizes["@:{row.heights~rs}"];
+            let sizes = table_1["ge"](props);
+            let heights = sizes["_k_"];
             let totalHeight = heights[totalRowIndex] || 0;
             let srcTotalHeight = totalHeight;
             let headHeight = 0;
@@ -407,7 +407,7 @@ module.exports= async (dataCenter, resLoader, table, fromIndex, page, pageFooter
             for (let col of dataRow.cols) {
                 if (col.type == 'qrcode' ||
                     col.type == 'barcode') {
-                    resLoader['@:{add~rs}']('@:{provider~rs}', col.type);
+                    resLoader['_lU']('_pj', col.type);
                 }
                 // else if (col.type == 'image' &&
                 //     col.bindKey) {

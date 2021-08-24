@@ -4,19 +4,19 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/form-collect/designer",["../../designer/const","../../designer/enum","../../designer/props","../../designer/transform","../../provider/cell","../../provider/table","../normal"],(require,exports,module)=>{
+define("5m/form-collect/designer",["../../50/53","../../50/enum","../../50/61","../../50/54","../../5g/cell","../../5g/table","../6e"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let const_1 = require("../../designer/const");
-let enum_1 = require("../../designer/enum");
-let props_1 = require("../../designer/props");
-let transform_1 = require("../../designer/transform");
-let cell_1 = require("../../provider/cell");
-let table_1 = require("../../provider/table");
-let normal_1 = require("../normal");
+let const_1 = require("../../50/53");
+let enum_1 = require("../../50/enum");
+let props_1 = require("../../50/61");
+let transform_1 = require("../../50/54");
+let cell_1 = require("../../5g/cell");
+let table_1 = require("../../5g/table");
+let normal_1 = require("../6e");
 let transformFields = [
     'width',
     'height',
@@ -34,20 +34,20 @@ let transformFields = [
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/form-collect/dshow",
+            view: "5m/form-collect/dshow",
         });
     },
 }).static({
     type: 'form-collect',
-    as: enum_1['@:{enum#as.hod~rs}'],
-    title: '@:{lang#elements.form.collect~rs}',
+    as: enum_1['gg'],
+    title: 'jI',
     icon: '&#xe6ec;',
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.icon~rs}'] | enum_1['@:{enum#modifier.nomask~rs}'],
-    '@:{allowed.to.hod~rs}': {
+    '_iV': enum_1['gl'] | enum_1['gr'],
+    '_ix': {
         //当前元素允许添加到的其它容器，这里只允许添加到设计区，不能添加到其它容器里
         root: 1,
     },
-    '@:{move.props~rs}': [
+    '_iy': [
         {
             key: 'x',
             use: 'x',
@@ -57,15 +57,15 @@ module.exports= normal_1.extend({
             use: 'y',
         },
     ],
-    '@:{update.props~rs}'(props) {
+    '_he'(props) {
         let { borderwidth: bw, rows, borderdeed, hideFoot, hideTotal, hideHead, hideLabel, excel, excelLeft, excelTop, } = props;
-        table_1['@:{table.provider#add.ext.meta~rs}'](props, true);
-        let sizes = table_1['@:{table.provider#get.sizes~rs}'](props);
+        table_1['gd'](props, true);
+        let sizes = table_1['ge'](props);
         let height = 0, width = 0;
-        for (let w of sizes['@:{col.widths~rs}']) {
+        for (let w of sizes['_j9']) {
             width += w;
         }
-        let heights = sizes['@:{row.heights~rs}'];
+        let heights = sizes['_k_'];
         let total = heights.length;
         let headStart, headEnd, headHeight, labelStart, labelHeight, bodyStart, bodyHeight, totalStart, footStart, totalHeight = 0, footHeight = 0, headRows = 0, footRows = 0;
         for (let i = 0; i < total; i++) {
@@ -96,10 +96,10 @@ module.exports= normal_1.extend({
         //表格宽：所以列宽＋一个边框宽
         //表格高：所以行高＋一个边框宽
         let tableHeight, tableWidth;
-        let oneBorder = const_1['@:{const#to.unit~rs}'](1);
+        let oneBorder = const_1['ge'](1);
         if (borderdeed == 'separate') {
-            tableHeight = height + 2 * (sizes['@:{row.heights~rs}'].length + 1) * oneBorder;
-            tableWidth = width + 2 * (sizes['@:{col.widths~rs}'].length + 1) * oneBorder;
+            tableHeight = height + 2 * (sizes['_k_'].length + 1) * oneBorder;
+            tableWidth = width + 2 * (sizes['_j9'].length + 1) * oneBorder;
             if (excel) {
                 tableWidth += excelLeft + 2 * oneBorder;
                 tableHeight += excelTop + 2 * oneBorder;
@@ -207,11 +207,11 @@ module.exports= normal_1.extend({
         props.footStart = footStart;
         props.footHeight = footHeight;
     },
-    '@:{get.props~rs}'(x, y) {
-        let padding = const_1['@:{const#to.unit~rs}'](5);
+    '_hd'(x, y) {
+        let padding = const_1['ge'](5);
         let defaultProps = {
-            height: const_1['@:{const#to.unit~rs}'](35),
-            width: const_1['@:{const#to.unit~rs}'](150),
+            height: const_1['ge'](35),
+            width: const_1['ge'](150),
             rowspan: 1,
             colspan: 1,
             paddingLeft: padding,
@@ -231,15 +231,15 @@ module.exports= normal_1.extend({
             type: 'text',
             ...cell_1.text,
         };
-        cellProps.textFontsize = const_1['@:{const#to.unit~rs}'](cellProps.textFontsize);
+        cellProps.textFontsize = const_1['ge'](cellProps.textFontsize);
         return {
-            x: const_1['@:{const#to.unit~rs}'](x),
-            y: const_1['@:{const#to.unit~rs}'](y),
+            x: const_1['ge'](x),
+            y: const_1['ge'](y),
             alpha: 1,
-            borderwidth: const_1['@:{const#to.unit~rs}'](1),
+            borderwidth: const_1['ge'](1),
             excel: true,
-            excelLeft: const_1['@:{const#to.unit~rs}'](40),
-            excelTop: const_1['@:{const#to.unit~rs}'](30),
+            excelLeft: const_1['ge'](40),
+            excelTop: const_1['ge'](30),
             excelBackground: '#f6f6f6',
             excelForecolor: '#000000',
             bordercolor: '#000000',
@@ -353,14 +353,14 @@ module.exports= normal_1.extend({
     props: [
         {
             key: 'rows',
-            '@:{json.encode~rs}'(dest, { rows }) {
-                transform_1['@:{transform#json.encode.cells~rs}'](dest, rows, transformFields);
+            '_jx'(dest, { rows }) {
+                transform_1['gt'](dest, rows, transformFields);
             },
-            '@:{unit.convert~rs}'({ rows }, toUnit) {
-                transform_1['@:{transform#unit.convert.cells~rs}'](rows, toUnit, transformFields);
+            '_hL'({ rows }, toUnit) {
+                transform_1['gu'](rows, toUnit, transformFields);
             },
-            '@:{stage.scale~rs}'(props, step, dest) {
-                transform_1['@:{transform#stage.scale.cells~rs}'](props, step, transformFields, dest);
+            '_iN'(props, step, dest) {
+                transform_1['gs'](props, step, transformFields, dest);
             },
         },
         {
@@ -368,41 +368,41 @@ module.exports= normal_1.extend({
             json: 1,
         },
         {
-            tip: '@:{lang#props.x~rs}',
-            type: props_1['@:{eprops#number~rs}'],
+            tip: 'h1',
+            type: props_1['gd'],
             key: 'x',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            step: const_1['@:{const#unit.step~rs}'],
-            fixed: const_1['@:{const#unit.fixed~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
+            '_hM': 1,
+            step: const_1['gT'],
+            fixed: const_1['gU'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.y~rs}',
-            type: props_1['@:{eprops#number~rs}'],
+            tip: 'h2',
+            type: props_1['gd'],
             key: 'y',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            step: const_1['@:{const#unit.step~rs}'],
-            fixed: const_1['@:{const#unit.fixed~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
+            '_hM': 1,
+            step: const_1['gT'],
+            fixed: const_1['gU'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.width~rs}',
+            tip: 'h3',
             key: 'width',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            type: props_1['@:{eprops#label~rs}'],
+            '_hM': 1,
+            read: transform_1['gg'],
+            type: props_1['gp'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.height~rs}',
+            tip: 'h4',
             key: 'height',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            type: props_1['@:{eprops#label~rs}'],
+            '_hM': 1,
+            read: transform_1['gg'],
+            type: props_1['gp'],
             json: 1,
         } /*, {
             tip: '@:{lang#props.rotate}',
@@ -413,17 +413,17 @@ module.exports= normal_1.extend({
             json: 1
         }*/,
         {
-            tip: '@:{lang#props.cell.share~rs}',
-            type: props_1['@:{eprops#table.cell.share~rs}'],
-            '@:{dock.top~rs}': 1,
+            tip: 'iU',
+            type: props_1['gR'],
+            '_ka': 1,
         },
         {
-            type: props_1['@:{eprops#spliter~rs}'],
+            type: props_1['gE'],
         },
         {
-            tip: '@:{lang#props.alpha~rs}',
+            tip: 'h6',
             key: 'alpha',
-            type: props_1['@:{eprops#number~rs}'],
+            type: props_1['gd'],
             step: 0.1,
             fixed: 1,
             min: 0,
@@ -431,58 +431,58 @@ module.exports= normal_1.extend({
             json: 1,
         },
         {
-            tip: '@:{lang#props.border.width~rs}',
+            tip: 'iw',
             key: 'borderwidth',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            type: props_1['@:{eprops#number~rs}'],
-            step: const_1['@:{const#unit.step~rs}'],
-            fixed: const_1['@:{const#unit.fixed~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
+            '_hM': 1,
+            type: props_1['gd'],
+            step: const_1['gT'],
+            fixed: const_1['gU'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
             min: 0,
-            max: () => const_1['@:{const#to.unit~rs}'](10),
+            max: () => const_1['ge'](10),
             json: 1,
         },
         {
-            tip: '@:{lang#props.border.type~rs}',
+            tip: 'ix',
             key: 'bordertype',
-            type: props_1['@:{eprops#dropdown~rs}'],
-            items: const_1['@:{const#border.types~rs}'],
+            type: props_1['gk'],
+            items: const_1['gQ'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.border.color~rs}',
+            tip: 'iy',
             key: 'bordercolor',
-            type: props_1['@:{eprops#color~rs}'],
+            type: props_1['ge'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.table.cell.border.deed~rs}',
+            tip: 'iV',
             key: 'borderdeed',
-            type: props_1['@:{eprops#dropdown~rs}'],
+            type: props_1['gk'],
             items: [
                 {
-                    text: '@:{lang#props.table.cell.border.collapse~rs}',
+                    text: 'iW',
                     value: 'collapse',
                 },
                 {
-                    text: '@:{lang#props.table.cell.border.separate~rs}',
+                    text: 'iX',
                     value: 'separate',
                 },
             ],
             json: 1,
         },
         {
-            type: props_1['@:{eprops#spliter~rs}'],
+            type: props_1['gE'],
         },
         {
-            tip: '@:{lang#props.hide.head~rs}',
+            tip: 'ji',
             key: 'hideHead',
-            type: props_1['@:{eprops#boolean~rs}'],
+            type: props_1['gf'],
             json: 1,
             write(v, props) {
                 let { focusRow, rows } = props;
-                table_1['@:{table.provider#add.ext.meta~rs}'](props, true);
+                table_1['gd'](props, true);
                 let ri = 0, labelRowIndex = -1;
                 for (let row of rows) {
                     if (row.label) {
@@ -499,13 +499,13 @@ module.exports= normal_1.extend({
             },
         },
         {
-            tip: '@:{lang#props.hide.label~rs}',
+            tip: 'jj',
             key: 'hideLabel',
-            type: props_1['@:{eprops#boolean~rs}'],
+            type: props_1['gf'],
             json: 1,
             write(v, props) {
                 let { focusRow, rows } = props;
-                table_1['@:{table.provider#add.ext.meta~rs}'](props, true);
+                table_1['gd'](props, true);
                 let ri = 0, labelRowIndex = -1;
                 for (let row of rows) {
                     if (row.label) {
@@ -522,13 +522,13 @@ module.exports= normal_1.extend({
             },
         },
         {
-            tip: '@:{lang#props.hide.total~rs}',
+            tip: 'jl',
             key: 'hideTotal',
-            type: props_1['@:{eprops#boolean~rs}'],
+            type: props_1['gf'],
             json: 1,
             write(v, props) {
                 let { focusRow, rows } = props;
-                table_1['@:{table.provider#add.ext.meta~rs}'](props, true);
+                table_1['gd'](props, true);
                 let ri = 0, totalRowIndex = -1;
                 for (let row of rows) {
                     if (row.total) {
@@ -545,13 +545,13 @@ module.exports= normal_1.extend({
             },
         },
         {
-            tip: '@:{lang#props.hide.foot~rs}',
+            tip: 'jm',
             key: 'hideFoot',
-            type: props_1['@:{eprops#boolean~rs}'],
+            type: props_1['gf'],
             json: 1,
             write(v, props) {
                 let { focusRow, rows } = props;
-                table_1['@:{table.provider#add.ext.meta~rs}'](props, true);
+                table_1['gd'](props, true);
                 let ri = 0, totalRowIndex = -1;
                 for (let row of rows) {
                     if (row.total) {
@@ -568,95 +568,95 @@ module.exports= normal_1.extend({
             },
         },
         {
-            type: props_1['@:{eprops#spliter~rs}'],
+            type: props_1['gE'],
         },
         {
-            tip: '@:{lang#props.excel.title~rs}',
-            type: props_1['@:{eprops#boolean~rs}'],
+            tip: 'jJ',
+            type: props_1['gf'],
             key: 'excel',
             json: 1,
         },
         {
-            tip: '@:{lang#props.excel.title.background~rs}',
-            type: props_1['@:{eprops#color~rs}'],
+            tip: 'jK',
+            type: props_1['ge'],
             key: 'excelBackground',
             json: 1,
-            '@:{if.show~rs}'(props) {
+            '_jN'(props) {
                 return props.excel;
             },
         },
         {
-            tip: '@:{lang#props.forecolor~rs}',
-            type: props_1['@:{eprops#color~rs}'],
+            tip: 'it',
+            type: props_1['ge'],
             key: 'excelForecolor',
             json: 1,
-            '@:{if.show~rs}'(props) {
+            '_jN'(props) {
                 return props.excel;
             },
         },
         {
-            tip: '@:{lang#props.excel.title.top.height~rs}',
-            type: props_1['@:{eprops#number~rs}'],
-            step: const_1['@:{const#unit.step~rs}'],
-            fixed: const_1['@:{const#unit.fixed~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
-            min: () => const_1['@:{const#to.unit~rs}'](20),
-            '@:{is.scale.and.unit.field~rs}': 1,
+            tip: 'jL',
+            type: props_1['gd'],
+            step: const_1['gT'],
+            fixed: const_1['gU'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
+            min: () => const_1['ge'](20),
+            '_hM': 1,
             key: 'excelTop',
             json: 1,
-            '@:{if.show~rs}'(props) {
+            '_jN'(props) {
                 return props.excel;
             },
         },
         {
-            tip: '@:{lang#props.excel.title.left.width~rs}',
-            type: props_1['@:{eprops#number~rs}'],
-            step: const_1['@:{const#unit.step~rs}'],
-            fixed: const_1['@:{const#unit.fixed~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
-            min: () => const_1['@:{const#to.unit~rs}'](20),
-            '@:{is.scale.and.unit.field~rs}': 1,
+            tip: 'jM',
+            type: props_1['gd'],
+            step: const_1['gT'],
+            fixed: const_1['gU'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
+            min: () => const_1['ge'](20),
+            '_hM': 1,
             key: 'excelLeft',
             json: 1,
-            '@:{if.show~rs}'(props) {
+            '_jN'(props) {
                 return props.excel;
             },
         },
         {
-            type: props_1['@:{eprops#spliter~rs}'],
-            '@:{if.show~rs}'(props) {
+            type: props_1['gE'],
+            '_jN'(props) {
                 return props.focusRow > -1 && props.focusCol > -1;
             },
         },
         {
-            tip: '@:{lang#props.cell.size~rs}',
-            type: props_1['@:{eprops#table.cell.size~rs}'],
-            '@:{dock.top~rs}': 1,
+            tip: 'iY',
+            type: props_1['gv'],
+            '_ka': 1,
             //'@:{auto.height}': 1,
-            '@:{if.show~rs}'(props) {
+            '_jN'(props) {
                 return props.focusRow > -1 && props.focusCol > -1;
             },
         },
         {
-            tip: '@:{lang#props.table.cell.border~rs}',
-            type: props_1['@:{eprops#table.cell.border~rs}'],
-            '@:{if.show~rs}'(props) {
+            tip: 'iZ',
+            type: props_1['gI'],
+            '_jN'(props) {
                 return props.focusRow > -1 && props.focusCol > -1;
             },
         },
         {
-            tip: '@:{lang#props.cell.operate~rs}',
-            type: props_1['@:{eprops#form.collect.cell.operate~rs}'],
-            '@:{dock.top~rs}': 1,
-            '@:{if.show~rs}'(props) {
+            tip: 'i0',
+            type: props_1['gL'],
+            '_ka': 1,
+            '_jN'(props) {
                 return props.focusRow > -1 && props.focusCol > -1;
             },
         },
         {
-            type: props_1['@:{eprops#spliter~rs}'],
-            '@:{if.show~rs}'(props) {
+            type: props_1['gE'],
+            '_jN'(props) {
                 let { focusRow, focusCol, rows } = props;
                 let show = false;
                 if (focusCol > -1 && focusCol > -1) {
@@ -670,8 +670,8 @@ module.exports= normal_1.extend({
             },
         },
         {
-            type: props_1['@:{eprops#form.collect.cell.content~rs}'],
-            '@:{if.show~rs}'(props) {
+            type: props_1['gM'],
+            '_jN'(props) {
                 let { focusRow, focusCol, rows } = props;
                 let show = false;
                 if (focusCol > -1 && focusCol > -1) {
@@ -685,7 +685,7 @@ module.exports= normal_1.extend({
             },
         },
         {
-            type: props_1['@:{eprops#spliter~rs}'],
+            type: props_1['gE'],
         },
         // {
         //   tip: '@:{lang#props.help}',
@@ -693,15 +693,15 @@ module.exports= normal_1.extend({
         //   key: 'help',
         // },
         {
-            tip: '@:{lang#props.title~rs}',
+            tip: 'id',
             key: 'ename',
-            type: props_1['@:{eprops#text.input~rs}'],
+            type: props_1['gm'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.locked~rs}',
+            tip: 'ie',
             key: 'locked',
-            type: props_1['@:{eprops#boolean~rs}'],
+            type: props_1['gf'],
             free: true,
             json: 1,
         },

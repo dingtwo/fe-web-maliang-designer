@@ -4,51 +4,51 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/data-richtext/designer",["magix5","../../designer/const","../../designer/props","../../designer/transform","../normal","../../designer/enum"],(require,exports,module)=>{
+define("5m/data-richtext/designer",["51","../../50/53","../../50/61","../../50/54","../6e","../../50/enum"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let const_1 = require("../../designer/const");
-let props_1 = require("../../designer/props");
-let transform_1 = require("../../designer/transform");
-let normal_1 = require("../normal");
-let enum_1 = require("../../designer/enum");
+let magix_1 = require("51");
+let const_1 = require("../../50/53");
+let props_1 = require("../../50/61");
+let transform_1 = require("../../50/54");
+let normal_1 = require("../6e");
+let enum_1 = require("../../50/enum");
 let { config } = magix_1;
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/data-richtext/dshow"
+            view: "5m/data-richtext/dshow"
         });
     }
 }).static({
     type: 'data-richtext',
-    title: '@:{lang#elements.richtext~rs}',
+    title: 'jA',
     icon: '&#xe642;',
-    '@:{allowed.to.hod~rs}': {
+    '_ix': {
         root: 1
     },
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.width~rs}'] |
-        enum_1['@:{enum#modifier.nomask~rs}'],
-    '@:{move.props~rs}': [{
+    '_iV': enum_1['gn'] |
+        enum_1['gr'],
+    '_iy': [{
             key: 'x',
             use: 'x'
         }, {
             key: 'y',
             use: 'y'
         }],
-    '@:{get.props~rs}'(x, y) {
+    '_hd'(x, y) {
         return {
             background: '',
-            height: const_1['@:{const#to.unit~rs}'](30),
+            height: const_1['ge'](30),
             alpha: 1,
             text: '',
-            tfs: const_1['@:{const#to.unit~rs}'](14),
-            x: const_1['@:{const#to.unit~rs}'](x),
-            y: const_1['@:{const#to.unit~rs}'](y),
-            width: const_1['@:{const#to.unit~rs}'](300),
+            tfs: const_1['ge'](14),
+            x: const_1['ge'](x),
+            y: const_1['ge'](y),
+            width: const_1['ge'](300),
             bind: {
                 url: '',
                 id: '',
@@ -58,72 +58,72 @@ module.exports= normal_1.extend({
     },
     props: [{
             key: 'tfs',
-            '@:{is.scale.and.unit.field~rs}': 1,
+            '_hM': 1,
         }, {
             key: 'height',
-            '@:{is.scale.and.unit.field~rs}': 1,
+            '_hM': 1,
         }, {
-            tip: '@:{lang#props.x~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'h1',
+            type: props_1["gd"],
             key: 'x',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            '_hM': 1,
+            fixed: const_1["gU"],
+            step: const_1["gT"],
+            read: transform_1["gg"],
+            write: transform_1["gl"],
             json: 1,
         }, {
-            tip: '@:{lang#props.y~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'h2',
+            type: props_1["gd"],
             key: 'y',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            '_hM': 1,
+            fixed: const_1["gU"],
+            step: const_1["gT"],
+            read: transform_1["gg"],
+            write: transform_1["gl"],
             json: 1,
         }, {
-            tip: '@:{lang#props.width~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'h3',
+            type: props_1["gd"],
             key: 'width',
-            '@:{is.scale.and.unit.field~rs}': 1,
+            '_hM': 1,
             min: () => 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            fixed: const_1["gU"],
+            step: const_1["gT"],
+            read: transform_1["gg"],
+            write: transform_1["gl"],
             json: 1
         }, {
-            tip: '@:{lang#props.alpha~rs}',
+            tip: 'h6',
             key: 'alpha',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["gd"],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"],
+            type: props_1["gE"],
         }, {
-            tip: '@:{lang#props.bind.fields~rs}',
+            tip: 'h8',
             key: 'bind',
-            type: props_1["@:{eprops#bind.field~rs}"],
+            type: props_1["gn"],
             json: 1,
             max: 1,
-            '@:{if.show~rs}'(props) {
+            '_jN'(props) {
                 return config('getFieldUrl');
             }
         }, {
-            type: props_1["@:{eprops#spliter~rs}"],
+            type: props_1["gE"],
         }, {
-            tip: '@:{lang#props.title~rs}',
+            tip: 'id',
             key: 'ename',
-            type: props_1["@:{eprops#text.input~rs}"],
+            type: props_1["gm"],
             json: 1
         }, {
-            tip: '@:{lang#props.locked~rs}',
+            tip: 'ie',
             key: 'locked',
-            type: props_1["@:{eprops#boolean~rs}"],
+            type: props_1["gf"],
             free: true,
             json: 1
         }]

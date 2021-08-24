@@ -4,32 +4,31 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("gallery/mx-number/index",["magix5"],(require,exports,module)=>{
+define("58/6j/index",["51"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
  */
-let magix_1 = require("magix5");
+let magix_1 = require("51");
 let { node, View, applyStyle, has, mark, dispatch, isFunction } = magix_1;
 let Max_Value = Number.MAX_SAFE_INTEGER;
-applyStyle("rd-_gallery_mx-number_index_less_","\n.rd-_gallery_mx-number_index_less_-ipt {\nborder:none;\nbackground:none;\ncolor:#333;\npadding:0 20px 0 0;\nfont-size:100%;\n}\n.rd-_gallery_mx-number_index_less_-ipt:focus {\noutline:0;\n}\n.rd-_gallery_mx-number_index_less_-ipt:disabled {\ncursor:not-allowed;\ncolor:#999;\nbackground:#f5f5f5;\n}\n.rd-_gallery_mx-number_index_less_-up,\n.rd-_gallery_mx-number_index_less_-down {\nwidth:20px;\nheight:50%;\nborder:2px solid #fff;\nborder-radius:2px;\n}\n.rd-_gallery_mx-number_index_less_-up:hover,\n.rd-_gallery_mx-number_index_less_-down:hover {\nbackground-color:#f0f0f0;\n}\n.rd-_gallery_mx-number_index_less_-up {\ntop:1px;\n}\n.rd-_gallery_mx-number_index_less_-down {\nbottom:1px;\n}\n.rd-_gallery_mx-number_index_less_-arrow::after {\nwidth:0;\nheight:0;\nposition:absolute;\ninset:0;\nborder-left:4px solid rgba(0, 0, 0, 0);\nborder-right:4px solid rgba(0, 0, 0, 0);\ncontent:'';\ndisplay:block;\nmargin:auto;\n}\n.rd-_gallery_mx-number_index_less_-down:after {\nborder-top:4px solid #ccc;\n}\n.rd-_gallery_mx-number_index_less_-up:after {\nborder-bottom:4px solid #ccc;\n}\n.rd-_gallery_mx-number_index_less_-up.rd-_gallery_mx-number_index_less_-notallowed,\n.rd-_gallery_mx-number_index_less_-down.rd-_gallery_mx-number_index_less_-notallowed {\ncursor:not-allowed;\nborder-color:transparent;\n}\n.rd-_gallery_mx-number_index_less_-up.rd-_gallery_mx-number_index_less_-notallowed:hover,\n.rd-_gallery_mx-number_index_less_-down.rd-_gallery_mx-number_index_less_-notallowed:hover {\nbackground-color:transparent;\n}\n");
+applyStyle("rd-gC",".rd-lA{background:none;border:none;color:#333;font-size:100%;padding:0 20px 0 0}.rd-lA:focus{outline:0}.rd-lA:disabled{background:#f5f5f5;color:#999;cursor:not-allowed}.rd-lB,.rd-lC{border:2px solid #fff;border-radius:2px;height:50%;width:20px}.rd-lB:hover,.rd-lC:hover{background-color:#f0f0f0}.rd-lC{top:1px}.rd-lB{bottom:1px}.rd-lD:after{border-left:4px solid transparent;border-right:4px solid transparent;content:\"\";display:block;height:0;inset:0;margin:auto;position:absolute;width:0}.rd-lB:after{border-top:4px solid #ccc}.rd-lC:after{border-bottom:4px solid #ccc}.rd-lB.rd-lE,.rd-lC.rd-lE{border-color:transparent;cursor:not-allowed}.rd-lB.rd-lE:hover,.rd-lC.rd-lE:hover{background-color:transparent}");
 let getFlagByCtrlKey = e => e.shiftKey ? 1 : (e.metaKey || e.ctrlKey ? 2 : 0);
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	disabled,}=$dataFromView,
 $$_class;
-$vnode_0=[$createVNode('input',{'class': 'rd-_assets_index_less_-display-block rd-_assets_index_less_-hp100 rd-_assets_index_less_-wp100 rd-_gallery_mx-number_index_less_-ipt','id': '_mx_ipt_'+($__line=1,$__art='{{=$viewId}}','')+$viewId,'mx5-focusin': $viewId+'@:{active~rs}()','mx5-focusout': $viewId+'@:{deactive~rs}()','mx5-change': $viewId+'@:{stop~rs}()','mx5-keydown': $viewId+'@:{press.check~rs}()','disabled': ($temp_var=($__line=1,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-number/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'autocomplete': 'off','mx5-input': $viewId+'@:{input.check~rs}()','mx5-wheel': $viewId+'@:{wheel~rs}()',},1)];;$$_class='rd-_gallery_mx-number_index_less_-up rd-_assets_index_less_-right-0 rd-_assets_index_less_-pa rd-_gallery_mx-number_index_less_-arrow rd-_assets_index_less_-unselectable rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-touch-action-none'+($__line=2,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-number_index_less_-notallowed'+($__line=2,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('span',{'mx5-click': $viewId+'@:{key.num.change~rs}({i:1})','mx5-pointerdown': $viewId+'@:{fast.start~rs}({i:1})','mx5-contextmenu': $viewId+'@:{prevent~rs}()','class': $$_class,}));;$$_class='rd-_gallery_mx-number_index_less_-down rd-_assets_index_less_-right-0 rd-_assets_index_less_-pa rd-_gallery_mx-number_index_less_-arrow rd-_assets_index_less_-unselectable rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-touch-action-none'+($__line=3,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_gallery_mx-number_index_less_-notallowed'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('span',{'mx5-click': $viewId+'@:{key.num.change~rs}()','mx5-pointerdown': $viewId+'@:{fast.start~rs}()','mx5-contextmenu': $viewId+'@:{prevent~rs}()','class': $$_class,})); 
+$vnode_0=[$createVNode('input',{'class': 'rd-g1 rd-gN rd-gO rd-lA','id': '_mx_ipt_'+$viewId,'mx5-focusin': $viewId+'_ng()','mx5-focusout': $viewId+'_ni()','mx5-change': $viewId+'_kg()','mx5-keydown': $viewId+'_no()','disabled': (disabled),'autocomplete': 'off','mx5-input': $viewId+'_nq()','mx5-wheel': $viewId+'_np()',},1)];;$$_class='rd-lC rd-ia rd-gV rd-lD rd-g3 rd-hw rd-iz';if(disabled){;$$_class+=' rd-lE';};$vnode_0.push($createVNode('span',{'mx5-click': $viewId+'_nc({i:1})','mx5-pointerdown': $viewId+'_nn({i:1})','mx5-contextmenu': $viewId+'_h6()','class': $$_class,}));;$$_class='rd-lB rd-ia rd-gV rd-lD rd-g3 rd-hw rd-iz';if(disabled){;$$_class+=' rd-lE';};$vnode_0.push($createVNode('span',{'mx5-click': $viewId+'_nc()','mx5-pointerdown': $viewId+'_nn()','mx5-contextmenu': $viewId+'_h6()','class': $$_class,})); 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-number/index.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     assign(ops) {
         let me = this;
         let { root } = me;
-        if (!root.classList.contains('rd-_assets_index_less_-input-focus')) {
-            delete me['@:{value.when.active~rs}'];
+        if (!root.classList.contains('rd-gi')) {
+            delete me['_m1'];
             if (isFunction(ops.max)) { //!important callback with ops.props
                 ops.max = ops.max(ops.props);
             }
@@ -42,86 +41,86 @@ return $createVNode($viewId,0,$vnode_0);
             if (isFunction(ops.step)) {
                 ops.step = ops.step();
             }
-            me['@:{step~rs}'] = +ops.step || 1;
-            me['@:{support.empty~rs}'] = ops.empty;
-            me['@:{disabled~rs}'] = root.hasAttribute('disabled');
-            me['@:{max~rs}'] = has(ops, 'max') ? +ops.max : Max_Value;
-            me['@:{min~rs}'] = has(ops, 'min') ? +ops.min : -Max_Value;
-            me['@:{ratio~rs}'] = +ops.ratio || 10;
-            me['@:{tail.length~rs}'] = +ops.fixed || 0;
-            me['@:{value~rs}'] = me['@:{get.value~rs}'](ops.value);
+            me['_m2'] = +ops.step || 1;
+            me['_m3'] = ops.empty;
+            me['_m4'] = root.hasAttribute('disabled');
+            me['_m5'] = has(ops, 'max') ? +ops.max : Max_Value;
+            me['_m6'] = has(ops, 'min') ? +ops.min : -Max_Value;
+            me['_m7'] = +ops.ratio || 10;
+            me['_m8'] = +ops.fixed || 0;
+            me['_m9'] = me['_n_'](ops.value);
             return true;
         }
         else {
-            me['@:{value.when.active~rs}'] = me['@:{get.value~rs}'](ops.value);
+            me['_m1'] = me['_n_'](ops.value);
         }
         return false;
     },
     async render() {
         let { root } = this;
-        let m = mark(this, '@:{render~rs}');
+        let m = mark(this, '_gt');
         await this.digest({
-            disabled: this['@:{disabled~rs}']
+            disabled: this['_m4']
         });
         if (m() &&
-            !root.classList.contains('rd-_assets_index_less_-input-focus')) {
-            this['@:{fix.value~rs}']();
+            !root.classList.contains('rd-gi')) {
+            this['_na']();
         }
     },
-    '@:{fix.value~rs}'(v) {
+    '_na'(v) {
         let me = this;
-        v = v === undefined ? (me['@:{value.when.active~rs}'] === undefined ? me['@:{value~rs}'] : me['@:{value.when.active~rs}']) : v;
+        v = v === undefined ? (me['_m1'] === undefined ? me['_m9'] : me['_m1']) : v;
         node('_mx_ipt_' + me.id).value = v; //.toFixed(me['@:{tail.length}']);
     },
-    '@:{get.value~rs}'(v) {
+    '_n_'(v) {
         let me = this;
         v = +v;
         if (v || v === 0) {
-            let max = me['@:{max~rs}'];
-            let min = me['@:{min~rs}'];
+            let max = me['_m5'];
+            let min = me['_m6'];
             if (v > max) {
                 v = max;
             }
             else if (v < min) {
                 v = min;
             }
-            v = +v.toFixed(me['@:{tail.length~rs}']);
+            v = +v.toFixed(me['_m8']);
         }
-        return isNaN(v) ? (me['@:{support.empty~rs}'] ? '' : 0) : v;
+        return isNaN(v) ? (me['_m3'] ? '' : 0) : v;
     },
-    '@:{set.value~rs}'(v, ignoreFill) {
+    '_nb'(v, ignoreFill) {
         let me = this;
         if (v === '' &&
-            me['@:{support.empty~rs}']) {
+            me['_m3']) {
             dispatch(me.root, 'input', {
-                value: me['@:{value~rs}'] = v
+                value: me['_m9'] = v
             });
             return;
         }
-        v = me['@:{get.value~rs}'](v);
-        if (v !== me['@:{value~rs}']) {
+        v = me['_n_'](v);
+        if (v !== me['_m9']) {
             if (!ignoreFill) {
-                me['@:{fix.value~rs}'](v);
+                me['_na'](v);
             }
             dispatch(me.root, 'input', {
-                value: me['@:{value~rs}'] = v
+                value: me['_m9'] = v
             });
         }
-        return me['@:{value~rs}'];
+        return me['_m9'];
     },
-    '@:{key.num.change~rs}'(increase, flag) {
+    '_nc'(increase, flag) {
         let me = this;
-        let value = me['@:{value~rs}'];
+        let value = me['_m9'];
         if (value === '')
             value = 0; //for init
-        let step = me['@:{step~rs}'];
+        let step = me['_m2'];
         if (flag) {
             if (flag == 1) {
-                step *= me['@:{ratio~rs}'];
+                step *= me['_m7'];
             }
             else {
-                let len = me['@:{tail.length~rs}'];
-                let t = Number((step / me['@:{ratio~rs}']).toFixed(len));
+                let len = me['_m8'];
+                let t = Number((step / me['_m7']).toFixed(len));
                 if (t != 0) {
                     step = t;
                 }
@@ -133,9 +132,9 @@ return $createVNode($viewId,0,$vnode_0);
         else {
             value -= step;
         }
-        me['@:{set.value~rs}'](value);
+        me['_nb'](value);
     },
-    '@:{cursor.show~rs}'() {
+    '_nd'() {
         let me = this;
         let ipt = node('_mx_ipt_' + me.id);
         if (ipt) {
@@ -143,86 +142,86 @@ return $createVNode($viewId,0,$vnode_0);
             ipt.selectionStart = ipt.selectionEnd = ipt.value.length;
         }
     },
-    '@:{simulator.active~rs}'() {
+    '_nf'() {
         let me = this;
-        me.root.classList.add('rd-_assets_index_less_-input-focus');
-        if (!has(me, '@:{last.value~rs}')) {
-            me['@:{last.value~rs}'] = me['@:{value~rs}'];
+        me.root.classList.add('rd-gi');
+        if (!has(me, '_ne')) {
+            me['_ne'] = me['_m9'];
         }
     },
-    '@:{active~rs}<focusin>'() {
-        this['@:{simulator.active~rs}']();
+    '_ng<focusin>'() {
+        this['_nf']();
     },
-    '@:{deactive~rs}<focusout>'() {
+    '_ni<focusout>'() {
         let me = this;
-        if (!me['@:{ui.keep.active~rs}']) {
-            me.root.classList.remove('rd-_assets_index_less_-input-focus');
-            me['@:{fix.value~rs}']();
-            if (me['@:{last.value~rs}'] != me['@:{value~rs}']) {
+        if (!me['_nh']) {
+            me.root.classList.remove('rd-gi');
+            me['_na']();
+            if (me['_ne'] != me['_m9']) {
                 dispatch(me.root, 'change', {
-                    value: me['@:{value~rs}']
+                    value: me['_m9']
                 });
             }
-            delete me['@:{last.value~rs}'];
+            delete me['_ne'];
         }
     },
-    '@:{key.num.change~rs}<click>'(e) {
+    '_nc<click>'(e) {
         let me = this;
-        if (!me['@:{disabled~rs}'] &&
-            !me['@:{fast.change.start~rs}']) {
-            me['@:{key.num.change~rs}'](e.params.i, getFlagByCtrlKey(e));
-            me['@:{cursor.show~rs}']();
+        if (!me['_m4'] &&
+            !me['_nj']) {
+            me['_nc'](e.params.i, getFlagByCtrlKey(e));
+            me['_nd']();
         }
     },
-    '@:{fast.start~rs}<pointerdown>'(e) {
+    '_nn<pointerdown>'(e) {
         let me = this;
-        if (!me['@:{disabled~rs}']) {
-            me['@:{ui.keep.active~rs}'] = 1;
-            me['@:{simulator.active~rs}']();
+        if (!me['_m4']) {
+            me['_nh'] = 1;
+            me['_nf']();
             let i = e.params.i;
-            let m = mark(this, '@:{pointerdown~rs}');
-            me['@:{long.tap.timer~rs}'] = setTimeout(() => {
+            let m = mark(this, '_nk');
+            me['_nl'] = setTimeout(() => {
                 if (m()) {
-                    me['@:{interval.timer~rs}'] = setInterval(() => {
+                    me['_nm'] = setInterval(() => {
                         if (m()) {
-                            me['@:{fast.change.start~rs}'] = 1;
-                            me['@:{key.num.change~rs}'](i, getFlagByCtrlKey(e));
-                            me['@:{cursor.show~rs}']();
+                            me['_nj'] = 1;
+                            me['_nc'](i, getFlagByCtrlKey(e));
+                            me['_nd']();
                         }
                     }, 50);
                 }
             }, 300);
         }
     },
-    '@:{press.check~rs}<keydown>'(e) {
+    '_no<keydown>'(e) {
         if (e.code == 'ArrowUp' ||
             e.code == 'ArrowDown') {
-            this['@:{prevent.default~rs}'](e);
+            this['_h5'](e);
             let me = this;
-            me['@:{key.num.change~rs}'](e.code == 'ArrowUp', getFlagByCtrlKey(e));
+            me['_nc'](e.code == 'ArrowUp', getFlagByCtrlKey(e));
         }
     },
-    '@:{wheel~rs}<wheel>&{passive:false}'(e) {
-        if (this.root.classList.contains('rd-_assets_index_less_-input-focus')) {
-            this['@:{prevent.default~rs}'](e);
+    '_np<wheel>&{passive:false}'(e) {
+        if (this.root.classList.contains('rd-gi')) {
+            this['_h5'](e);
             let delta = e.deltaY;
-            this['@:{key.num.change~rs}'](delta > 0, getFlagByCtrlKey(e));
+            this['_nc'](delta > 0, getFlagByCtrlKey(e));
         }
     },
-    '@:{input.check~rs}<input>'(e) {
-        this['@:{stop.propagation~rs}'](e);
+    '_nq<input>'(e) {
+        this['_kt'](e);
         let target = e.eventTarget;
-        this['@:{set.value~rs}'](target.value, 1);
+        this['_nb'](target.value, 1);
     },
     '$doc<pointerup>'() {
         let me = this;
-        clearTimeout(me['@:{long.tap.timer~rs}']);
-        clearInterval(me['@:{interval.timer~rs}']);
-        delete me['@:{ui.keep.active~rs}'];
+        clearTimeout(me['_nl']);
+        clearInterval(me['_nm']);
+        delete me['_nh'];
         let m = mark(this, '@:pointerup');
         setTimeout(() => {
             if (m()) {
-                delete me['@:{fast.change.start~rs}'];
+                delete me['_nj'];
             }
         }, 0);
     }

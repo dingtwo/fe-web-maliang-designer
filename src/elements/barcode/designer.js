@@ -4,37 +4,37 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/barcode/designer",["magix5","../../designer/const","../../designer/enum","../../designer/props","../../designer/transform","../../provider/barcode","../normal"],(require,exports,module)=>{
+define("5m/barcode/designer",["51","../../50/53","../../50/enum","../../50/61","../../50/54","../../5g/barcode","../6e"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let const_1 = require("../../designer/const");
-let enum_1 = require("../../designer/enum");
-let props_1 = require("../../designer/props");
-let transform_1 = require("../../designer/transform");
-let barcode_1 = require("../../provider/barcode");
-let normal_1 = require("../normal");
+let magix_1 = require("51");
+let const_1 = require("../../50/53");
+let enum_1 = require("../../50/enum");
+let props_1 = require("../../50/61");
+let transform_1 = require("../../50/54");
+let barcode_1 = require("../../5g/barcode");
+let normal_1 = require("../6e");
 let { config } = magix_1;
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/barcode/dshow",
+            view: "5m/barcode/dshow",
         });
     },
 }).static({
     type: 'barcode',
-    title: '@:{lang#elements.barcode~rs}',
+    title: 'h0',
     icon: '&#xe6c8;',
     //元素在设计器里，支持哪些修改操作。特指在设计区中能快捷修改的，非属性面板中的修改。
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.width~rs}'] | //允许修改宽
-        enum_1['@:{enum#modifier.height~rs}'] | //允许修改高
-        enum_1['@:{enum#modifier.rotate~rs}'] | //允许旋转
-        enum_1['@:{enum#modifier.nomask~rs}'],
+    '_iV': enum_1['gn'] | //允许修改宽
+        enum_1['go'] | //允许修改高
+        enum_1['gq'] | //允许旋转
+        enum_1['gr'],
     //哪些属性参与移动，大部分元素只有x y参与移动，但对于svg元素，会有多个点参与移动
-    '@:{move.props~rs}': [
+    '_iy': [
         {
             key: 'x',
             use: 'x',
@@ -46,17 +46,17 @@ module.exports= normal_1.extend({
     ],
     //'@:{allowed.total.count}':3,
     //获取元素默认的属性
-    '@:{get.props~rs}'(x, y) {
+    '_hd'(x, y) {
         return {
-            height: const_1['@:{const#to.unit~rs}'](80),
+            height: const_1['ge'](80),
             alpha: 1,
-            x: const_1['@:{const#to.unit~rs}'](x),
-            y: const_1['@:{const#to.unit~rs}'](y),
+            x: const_1['ge'](x),
+            y: const_1['ge'](y),
             rotate: 0,
-            width: const_1['@:{const#to.unit~rs}'](200),
+            width: const_1['ge'](200),
             text: '',
             linewidth: 2,
-            tfs: const_1['@:{const#to.unit~rs}'](14),
+            tfs: const_1['ge'](14),
             color: '#000000',
             format: 'code128',
             showText: true,
@@ -74,66 +74,66 @@ module.exports= normal_1.extend({
     props: [
         {
             key: 'tfs',
-            '@:{is.scale.and.unit.field~rs}': 1,
+            '_hM': 1,
         },
         {
-            tip: '@:{lang#props.x~rs}',
-            type: props_1['@:{eprops#number~rs}'],
+            tip: 'h1',
+            type: props_1['gd'],
             key: 'x',
-            step: const_1['@:{const#unit.step~rs}'],
-            fixed: const_1['@:{const#unit.fixed~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            step: const_1['gT'],
+            fixed: const_1['gU'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
+            '_hM': 1,
             json: 1, //最终从设计器获取数据时，是否序列化当前属性
         },
         {
-            tip: '@:{lang#props.y~rs}',
-            type: props_1['@:{eprops#number~rs}'],
+            tip: 'h2',
+            type: props_1['gd'],
             key: 'y',
-            step: const_1['@:{const#unit.step~rs}'],
-            fixed: const_1['@:{const#unit.fixed~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            step: const_1['gT'],
+            fixed: const_1['gU'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
+            '_hM': 1,
             json: 1,
         },
         {
-            tip: '@:{lang#props.width~rs}',
-            type: props_1['@:{eprops#number~rs}'],
+            tip: 'h3',
+            type: props_1['gd'],
             key: 'width',
-            min: () => const_1['@:{const#to.unit~rs}'](20),
-            step: const_1['@:{const#unit.step~rs}'],
-            fixed: const_1['@:{const#unit.fixed~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            min: () => const_1['ge'](20),
+            step: const_1['gT'],
+            fixed: const_1['gU'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
+            '_hM': 1,
             json: 1,
         },
         {
-            tip: '@:{lang#props.height~rs}',
+            tip: 'h4',
             key: 'height',
-            type: props_1['@:{eprops#number~rs}'],
-            min: () => const_1['@:{const#to.unit~rs}'](20),
-            step: const_1['@:{const#unit.step~rs}'],
-            fixed: const_1['@:{const#unit.fixed~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            type: props_1['gd'],
+            min: () => const_1['ge'](20),
+            step: const_1['gT'],
+            fixed: const_1['gU'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
+            '_hM': 1,
             json: 1,
         },
         {
-            tip: '@:{lang#props.rotate~rs}',
-            type: props_1['@:{eprops#number~rs}'],
+            tip: 'h5',
+            type: props_1['gd'],
             key: 'rotate',
             min: -360,
             max: 360,
             json: 1,
         },
         {
-            tip: '@:{lang#props.alpha~rs}',
+            tip: 'h6',
             key: 'alpha',
-            type: props_1['@:{eprops#number~rs}'],
+            type: props_1['gd'],
             step: 0.1,
             fixed: 1,
             min: 0,
@@ -141,73 +141,73 @@ module.exports= normal_1.extend({
             json: 1,
         },
         {
-            type: props_1['@:{eprops#spliter~rs}'],
-            '@:{if.show~rs}'(props) {
+            type: props_1['gE'],
+            '_jN'(props) {
                 return !props.bind.url;
             },
         },
         {
-            tip: '@:{lang#props.text.content~rs}',
+            tip: 'h7',
             key: 'text',
-            type: props_1['@:{eprops#text.area~rs}'],
+            type: props_1['gi'],
             json: 1,
-            '@:{if.show~rs}'(props) {
+            '_jN'(props) {
                 return !props.bind.url;
             },
         },
         {
-            type: props_1['@:{eprops#spliter~rs}'],
-            '@:{if.show~rs}'(props) {
+            type: props_1['gE'],
+            '_jN'(props) {
                 return !props.text && config('getFieldUrl');
             },
         },
         {
-            tip: '@:{lang#props.bind.fields~rs}',
+            tip: 'h8',
             key: 'bind',
-            type: props_1['@:{eprops#bind.field~rs}'],
+            type: props_1['gn'],
             json: 1,
             max: 1,
-            '@:{if.show~rs}'(props) {
+            '_jN'(props) {
                 return !props.text && config('getFieldUrl');
             },
         },
         {
-            type: props_1['@:{eprops#spliter~rs}'],
+            type: props_1['gE'],
         },
         {
-            tip: '@:{lang#props.barcode.format~rs}',
+            tip: 'h9',
             key: 'format',
-            type: props_1['@:{eprops#dropdown~rs}'],
-            items: barcode_1['@:{types~rs}'],
+            type: props_1['gk'],
+            items: barcode_1['_hX'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.show.text~rs}',
+            tip: 'i_',
             key: 'showText',
-            type: props_1['@:{eprops#boolean~rs}'],
+            type: props_1['gf'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.line.color~rs}',
+            tip: 'ia',
             key: 'color',
-            type: props_1['@:{eprops#color~rs}'],
+            type: props_1['ge'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.line.width~rs}',
+            tip: 'ib',
             key: 'linewidth',
-            type: props_1['@:{eprops#number~rs}'],
+            type: props_1['gd'],
             min: 1,
             max: 8,
             json: 1,
         },
         {
-            type: props_1['@:{eprops#spliter~rs}'],
+            type: props_1['gE'],
         },
         {
-            tip: '@:{lang#props.official.website~rs}',
+            tip: 'ic',
             key: 'ow',
-            type: props_1['@:{eprops#link~rs}'],
+            type: props_1['gy'],
         },
         // {
         //   tip: '@:{lang#props.help}',
@@ -215,15 +215,15 @@ module.exports= normal_1.extend({
         //   key: 'help',
         // },
         {
-            tip: '@:{lang#props.title~rs}',
+            tip: 'id',
             key: 'ename',
-            type: props_1['@:{eprops#text.input~rs}'],
+            type: props_1['gm'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.locked~rs}',
+            tip: 'ie',
             key: 'locked',
-            type: props_1['@:{eprops#boolean~rs}'],
+            type: props_1['gf'],
             free: true,
             json: 1,
         },

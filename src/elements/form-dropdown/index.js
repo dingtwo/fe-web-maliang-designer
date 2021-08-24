@@ -4,17 +4,17 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/form-dropdown/index",["magix5"],(require,exports,module)=>{
+define("5m/form-dropdown/index",["51"],(require,exports,module)=>{
 let $special_2={'selected':'selected',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
+let magix_1 = require("51");
 let { View, node, dispatch } = magix_1;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	props,
 	unit,}=$dataFromView,
@@ -22,14 +22,13 @@ $$_class,
 $vnode_3,
 $vnode_2,
 $vnode_1;
-$vnode_2=[];$__line=3;$__art="{{each props.items as item}}";$__ctrl="for(let $q_a_sgsancg=props.items,$q_c_hbbcepj=$q_a_sgsancg.length,$q_key_acacjjt=0;$q_key_acacjjt<$q_c_hbbcepj;$q_key_acacjjt++){let item=$q_a_sgsancg[$q_key_acacjjt];";
-for(let $q_a_sgsancg=props.items,$q_c_hbbcepj=$q_a_sgsancg.length,$q_key_acacjjt=0;$q_key_acacjjt<$q_c_hbbcepj;$q_key_acacjjt+=1){
-let item=$q_a_sgsancg[$q_key_acacjjt];
-$vnode_3=[$createVNode(0,($__line=5,$__art='{{=item.text}}',$__ctrl='<%=item.text%>',(item.text)))];$vnode_2.push($createVNode('option',{'disabled': ($temp_var=($__line=4,$__art='{{=item.disabled}}',$__ctrl='<%=item.disabled%>',item.disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:elements/form-dropdown/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'selected': ($temp_var=($__line=4,$__art='{{=item.checked}}',$__ctrl='<%=item.checked%>',item.checked),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"selected" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:elements/form-dropdown/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'value': ($__line=4,$__art='{{=item.value}}',$__ctrl='<%=item.value%>',(item.value)),},$vnode_3,$special_2));
-};$$_class='rd-_assets_index_less_-wp100 rd-_assets_index_less_-hp100'+($__line=2,$__art='{{if props.className}}','');$__ctrl='<%if(props.className){%>';if(props.className){;$$_class+=' '+($__line=2,$__art='{{=props.className}}',$__ctrl='<%=props.className%>',(props.className))+($__line=2,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1=[$createVNode('select',{'multiple': ($temp_var=($__line=2,$__art='{{=props.multipleSelect}}',$__ctrl='<%=props.multipleSelect%>',props.multipleSelect),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"multiple" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:elements/form-dropdown/index.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'style': 'color:'+($__line=2,$__art='{{=props.forecolor}}',$__ctrl='<%=props.forecolor%>',(props.forecolor))+';font-size:'+($__line=2,$__art='{{=props.fontsize}}',$__ctrl='<%=props.fontsize%>',(props.fontsize))+($__line=2,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';letter-spacing:'+($__line=2,$__art='{{=props.letterspacing}}',$__ctrl='<%=props.letterspacing%>',(props.letterspacing))+($__line=2,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';font-family:'+($__line=2,$__art='{{=props.fontfamily}}',$__ctrl='<%=props.fontfamily%>',(props.fontfamily)),'name': ($__line=2,$__art='{{=props.inputName}}',$__ctrl='<%=props.inputName%>',(props.inputName)),'class': $$_class,},$vnode_2)];$vnode_0=[$createVNode('div',{'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-overflow-hidden rd-_assets_index_less_-pa rd-_assets_index_less_-z-index-1','style': 'left:'+($__line=1,$__art='{{=props.x}}',$__ctrl='<%=props.x%>',(props.x))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';top:'+($__line=1,$__art='{{=props.y}}',$__ctrl='<%=props.y%>',(props.y))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=1,$__art='{{=props.height}}',$__ctrl='<%=props.height%>',(props.height))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';opacity:'+($__line=1,$__art='{{=props.alpha}}',$__ctrl='<%=props.alpha%>',(props.alpha))+';width:'+($__line=1,$__art='{{=props.width}}',$__ctrl='<%=props.width%>',(props.width))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';transform:rotate('+($__line=1,$__art='{{=props.rotate}}',$__ctrl='<%=props.rotate%>',(props.rotate))+'deg)',},$vnode_1)]; 
+$vnode_2=[];
+for(let $q_a_suuvfob=props.items,$q_c_ytyrmdr=$q_a_suuvfob.length,$q_key_gbqggqyc=0;$q_key_gbqggqyc<$q_c_ytyrmdr;$q_key_gbqggqyc+=1){
+let item=$q_a_suuvfob[$q_key_gbqggqyc];
+$vnode_3=[$createVNode(0,(item.text))];$vnode_2.push($createVNode('option',{'disabled': (item.disabled),'selected': (item.checked),'value': (item.value),},$vnode_3,$special_2));
+};$$_class='rd-gN rd-gO';if(props.className){;$$_class+=' '+(props.className);};$vnode_1=[$createVNode('select',{'multiple': (props.multipleSelect),'style': 'color:'+(props.forecolor)+';font-size:'+(props.fontsize)+(unit)+';letter-spacing:'+(props.letterspacing)+(unit)+';font-family:'+(props.fontfamily),'name': (props.inputName),'class': $$_class,},$vnode_2)];$vnode_0=[$createVNode('div',{'class': 'rd-g9 rd-gV rd-h0 rd-ha rd-ig','style': 'left:'+(props.x)+(unit)+';top:'+(props.y)+(unit)+';height:'+(props.height)+(unit)+';opacity:'+(props.alpha)+';width:'+(props.width)+(unit)+';transform:rotate('+(props.rotate)+'deg)',},$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:elements/form-dropdown/index.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     assign(data) {
         this.set(data);
     },
@@ -52,8 +51,8 @@ return $createVNode($viewId,0,$vnode_0);
             elementInput: input
         };
     },
-    '@:{update.value~rs}<input>'(e) {
-        this['@:{stop.propagation~rs}'](e);
+    '_ku<input>'(e) {
+        this['_kt'](e);
         let { eventTarget } = e;
         let value = eventTarget.value.trim();
         let props = this.get('props');

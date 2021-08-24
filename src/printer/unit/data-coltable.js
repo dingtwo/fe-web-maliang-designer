@@ -4,10 +4,10 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("printer/unit/data-coltable",["../../elements/data-coltable/consts"],(require,exports,module)=>{
+define("78/7b/data-coltable",["../../5m/data-coltable/consts"],(require,exports,module)=>{
 
 
-let consts_1 = require("../../elements/data-coltable/consts");
+let consts_1 = require("../../5m/data-coltable/consts");
 let { floor } = Math;
 /**
  * 填充列表格元素数据
@@ -33,10 +33,10 @@ module.exports= (dataCenter, table, fromIndex, page, footerHeight, newPage, inHo
         }
         props.width = width + 1;
         //从数据中心拿数据
-        let { '@:{error~rs}': err, '@:{data~rs}': list } = dataCenter[bind.url];
+        let { '_h7': err, '_h8': list } = dataCenter[bind.url];
         if (err) {
             //如果数据出错，则设置出错皐　信息
-            props.loadingHeight = consts_1["@:{loading.tip.height~rs}"];
+            props.loadingHeight = consts_1["_kk"];
             bind._tip = err;
         }
         else {
@@ -59,7 +59,7 @@ module.exports= (dataCenter, table, fromIndex, page, footerHeight, newPage, inHo
     }
     else {
         //如果未绑定数据，则宽度默认为初始宽度
-        props.width = consts_1["@:{default.empty.width~rs}"];
+        props.width = consts_1["_kj"];
     }
     //返回-1表明分页完毕
     return -1;

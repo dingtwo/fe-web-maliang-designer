@@ -4,7 +4,7 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("provider/filesaver",[],(require,exports,module)=>{
+define("5g/filesaver",[],(require,exports,module)=>{
 
 
 let dest = '//cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js';

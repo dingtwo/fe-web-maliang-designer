@@ -4,30 +4,30 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/data-coltable/designer",["magix5","../../designer/const","../../designer/enum","../../designer/props","../../designer/service","../../designer/transform","../normal","./consts"],(require,exports,module)=>{
+define("5m/data-coltable/designer",["51","../../50/53","../../50/enum","../../50/61","../../50/5k","../../50/54","../6e","./consts"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let const_1 = require("../../designer/const");
-let enum_1 = require("../../designer/enum");
-let props_1 = require("../../designer/props");
-let service_1 = require("../../designer/service");
-let transform_1 = require("../../designer/transform");
-let normal_1 = require("../normal");
+let magix_1 = require("51");
+let const_1 = require("../../50/53");
+let enum_1 = require("../../50/enum");
+let props_1 = require("../../50/61");
+let service_1 = require("../../50/5k");
+let transform_1 = require("../../50/54");
+let normal_1 = require("../6e");
 let consts_1 = require("./consts");
 let BaseDesigner = normal_1.prototype;
 let { State, Cache, mark, config, mix } = magix_1;
 let { floor } = Math;
 let calcTableSize = (props, list, err) => {
     let { bind, columns } = props;
-    let scale = State.get('@:{global#stage.scale~rs}');
+    let scale = State.get('ge');
     //console.log('calc');
     if (bind.fields && bind.fields.length) {
         let footerHeight = 0;
-        let stageElements = State.get('@:{global#stage.elements~rs}');
+        let stageElements = State.get('gl');
         for (let e of stageElements) {
             if (e.type == 'hod-footer') {
                 footerHeight = e.props.height;
@@ -35,21 +35,21 @@ let calcTableSize = (props, list, err) => {
         }
         let width = 0;
         for (let field of bind.fields) {
-            width += columns[field.id] || consts_1['@:{default.cell.width~rs}'] * scale;
+            width += columns[field.id] || consts_1['_ki'] * scale;
         }
-        let oneBorder = const_1['@:{const#to.unit~rs}'](1);
+        let oneBorder = const_1['ge'](1);
         props.width = width + oneBorder;
         if (err || !list) {
-            props.loadingHeight = consts_1['@:{loading.tip.height~rs}'] * scale;
+            props.loadingHeight = consts_1['_kk'] * scale;
             props.height =
-                consts_1['@:{loading.tip.height~rs}'] * scale +
+                consts_1['_kk'] * scale +
                     props.theadRowHeight +
-                    const_1['@:{const#to.unit~rs}'](3) +
+                    const_1['ge'](3) +
                     props.tfootSpacing;
             props.bind._tip = (err === null || err === void 0 ? void 0 : err.message) || '正在加载数据...';
         }
         else {
-            let page = State.get('@:{global#stage.page~rs}');
+            let page = State.get('gm');
             let y = props.y;
             let rh = page.height * scale;
             let pn = y / rh;
@@ -84,33 +84,33 @@ let calcTableSize = (props, list, err) => {
         props.height =
             props.theadRowHeight +
                 props.tbodyRowHeight +
-                const_1['@:{const#to.unit~rs}'](3) +
+                const_1['ge'](3) +
                 props.tfootSpacing;
-        props.width = const_1['@:{const#to.unit~rs}'](consts_1['@:{default.empty.width~rs}']) * scale;
+        props.width = const_1['ge'](consts_1['_kj']) * scale;
     }
 };
 let apiDataCache = new Cache();
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/data-coltable/dshow",
+            view: "5m/data-coltable/dshow",
         });
-        let updateSize = this['@:{debounce~rs}'](e => {
+        let updateSize = this['_gn'](e => {
             //console.log(e);
-            if (!e['@:{types~rs}'] || e['@:{types~rs}']['hod-footer']) {
+            if (!e['_hX'] || e['_hX']['hod-footer']) {
                 let element = this.get('element');
-                this['@:{update~rs}'](element);
+                this['_iA'](element);
             }
         }, 20);
-        State.on('@:{event#stage.page.change~rs}', updateSize);
-        State.on('@:{event#stage.select.element.props.change~rs}', updateSize);
+        State.on('gj', updateSize);
+        State.on('gf', updateSize);
         // State.on('@:{event#stage.scale.change}', updateSize);
         this.on('destroy', () => {
-            State.off('@:{event#stage.page.change~rs}', updateSize);
-            State.off('@:{event#stage.select.element.props.change~rs}', updateSize);
+            State.off('gj', updateSize);
+            State.off('gf', updateSize);
         });
     },
-    '@:{attach.data~rs}'(element) {
+    '_kl'(element) {
         let { props } = element;
         let { bind } = props;
         if (bind.url) {
@@ -120,10 +120,10 @@ module.exports= normal_1.extend({
             }
             else {
                 calcTableSize(props);
-                let m = mark(this, '@:{attach.data~rs}');
+                let m = mark(this, '_kl');
                 let s = new service_1();
                 s.all({
-                    name: '@:{get.by.url~rs}',
+                    name: '_ib',
                     url: bind.url,
                 }, (err, bag) => {
                     let list = bag.get('data', []);
@@ -134,21 +134,21 @@ module.exports= normal_1.extend({
                     calcTableSize(props, list, err);
                     let element = this.get('element');
                     if (m()) {
-                        if (element.ctrl['@:{update.props~rs}']) {
-                            element.ctrl['@:{update.props~rs}'](props);
+                        if (element.ctrl['_he']) {
+                            element.ctrl['_he'](props);
                         }
                         this.digest({
                             element,
                         });
-                        State.fire('@:{event#stage.select.element.props.change~rs}', {
-                            '@:{ids~rs}': {
+                        State.fire('gf', {
+                            '_hW': {
                                 [element.id]: 1,
                             },
-                            '@:{types~rs}': {
+                            '_hX': {
                                 [element.type]: 1,
                             },
-                            '@:{props~rs}': {
-                                '@:{bind~rs}': 1,
+                            '_ge': {
+                                '_kd': 1,
                             },
                         });
                     }
@@ -160,18 +160,18 @@ module.exports= normal_1.extend({
         }
     },
     assign(data) {
-        this['@:{attach.data~rs}'](data.element);
+        this['_kl'](data.element);
         BaseDesigner.assign.call(this, data);
     },
-    '@:{update~rs}'(element) {
-        this['@:{attach.data~rs}'](element);
-        BaseDesigner['@:{update~rs}'].call(this, element);
+    '_iA'(element) {
+        this['_kl'](element);
+        BaseDesigner['_iA'].call(this, element);
     },
 }).static({
     type: 'data-coltable',
-    title: '@:{lang#elements.data.coltable~rs}',
+    title: 'i4',
     icon: '&#xeb47;',
-    '@:{move.props~rs}': [
+    '_iy': [
         {
             key: 'x',
             use: 'x',
@@ -181,26 +181,26 @@ module.exports= normal_1.extend({
             use: 'y',
         },
     ],
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.dheight~rs}'],
-    '@:{allowed.to.hod~rs}': {
+    '_iV': enum_1['gu'],
+    '_ix': {
         root: 1,
     },
-    '@:{get.props~rs}'(x, y) {
+    '_hd'(x, y) {
         return {
             alpha: 1,
-            x: const_1['@:{const#to.unit~rs}'](x),
-            y: const_1['@:{const#to.unit~rs}'](y),
+            x: const_1['ge'](x),
+            y: const_1['ge'](y),
             //rotate: 0,
-            width: const_1['@:{const#to.unit~rs}'](200),
-            height: const_1['@:{const#to.unit~rs}'](93),
+            width: const_1['ge'](200),
+            height: const_1['ge'](93),
             locked: false,
             cellAlign: 'center',
-            tfootSpacing: const_1['@:{const#to.unit~rs}'](20),
-            theadFontsize: const_1['@:{const#to.unit~rs}'](16),
-            theadRowHeight: const_1['@:{const#to.unit~rs}'](40),
+            tfootSpacing: const_1['ge'](20),
+            theadFontsize: const_1['ge'](16),
+            theadRowHeight: const_1['ge'](40),
             theadForecolor: '#000000',
-            tbodyRowHeight: const_1['@:{const#to.unit~rs}'](30),
-            tbodyFontsize: const_1['@:{const#to.unit~rs}'](14),
+            tbodyRowHeight: const_1['ge'](30),
+            tbodyFontsize: const_1['ge'](14),
             tbodyForecolor: '#000000',
             theadRowBackground: '#ffda95',
             tbodyEvenRowBackground: '#dde09d',
@@ -217,25 +217,25 @@ module.exports= normal_1.extend({
     },
     props: [
         {
-            tip: '@:{lang#props.x~rs}',
-            type: props_1['@:{eprops#number~rs}'],
+            tip: 'h1',
+            type: props_1['gd'],
             key: 'x',
-            step: const_1['@:{const#unit.step~rs}'],
-            fixed: const_1['@:{const#unit.fixed~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            step: const_1['gT'],
+            fixed: const_1['gU'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
+            '_hM': 1,
             json: 1,
         },
         {
-            tip: '@:{lang#props.y~rs}',
-            type: props_1['@:{eprops#number~rs}'],
+            tip: 'h2',
+            type: props_1['gd'],
             key: 'y',
-            step: const_1['@:{const#unit.step~rs}'],
-            fixed: const_1['@:{const#unit.fixed~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            step: const_1['gT'],
+            fixed: const_1['gU'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
+            '_hM': 1,
             json: 1,
         } /*, {
             tip: '@:{lang#props.width}',
@@ -243,16 +243,16 @@ module.exports= normal_1.extend({
             key: 'width'
         }*/,
         {
-            type: props_1['@:{eprops#spliter~rs}'],
+            type: props_1['gE'],
         },
         {
-            tip: '@:{lang#props.bind.fields~rs}',
+            tip: 'h8',
             key: 'bind',
-            type: props_1['@:{eprops#bind.field~rs}'],
+            type: props_1['gn'],
             json: 1,
             max: -1,
             //'@:{dock.top}': 1,
-            '@:{if.show~rs}'() {
+            '_jN'() {
                 return config('getFieldUrl');
             },
             write(v, props) {
@@ -264,24 +264,24 @@ module.exports= normal_1.extend({
                 }
                 for (let p of v.fields) {
                     columns[p.id] =
-                        (_a = old[p.id]) !== null && _a !== void 0 ? _a : const_1['@:{const#to.unit~rs}'](consts_1['@:{default.cell.width~rs}']);
+                        (_a = old[p.id]) !== null && _a !== void 0 ? _a : const_1['ge'](consts_1['_ki']);
                 }
                 return v;
             },
         },
         {
-            tip: '@:{lang#props.table.columns.width~rs}',
+            tip: 'i5',
             key: 'columns',
-            type: props_1['@:{eprops#column.width~rs}'],
-            min: () => const_1['@:{const#to.unit~rs}'](20),
-            max: () => const_1['@:{const#to.unit~rs}'](300),
-            '@:{unit.convert~rs}'(props, toUnit) {
+            type: props_1['go'],
+            min: () => const_1['ge'](20),
+            max: () => const_1['ge'](300),
+            '_hL'(props, toUnit) {
                 let { columns } = props;
                 for (let e in columns) {
-                    columns[e] = const_1['@:{const#unit.to.unit~rs}'](columns[e], toUnit);
+                    columns[e] = const_1['g0'](columns[e], toUnit);
                 }
             },
-            '@:{stage.scale~rs}'(props, step, dest) {
+            '_iN'(props, step, dest) {
                 let { columns } = props;
                 for (let e in columns) {
                     columns[e] *= step;
@@ -293,14 +293,14 @@ module.exports= normal_1.extend({
             read(values) {
                 let newColumns = {};
                 for (let p in values) {
-                    newColumns[p] = transform_1['@:{transform#to.show.value~rs}'](values[p]);
+                    newColumns[p] = transform_1['gg'](values[p]);
                 }
                 return newColumns;
             },
             write(values) {
                 let newColumns = {};
                 for (let p in values) {
-                    newColumns[p] = transform_1['@:{transform#to.real.value~rs}'](values[p]);
+                    newColumns[p] = transform_1['gl'](values[p]);
                 }
                 return newColumns;
             },
@@ -308,146 +308,146 @@ module.exports= normal_1.extend({
             //'@:{dock.top}': 1
         },
         {
-            tip: '@:{lang#props.table.foot.spacing~rs}',
+            tip: 'i6',
             min: 0,
             key: 'tfootSpacing',
-            type: props_1['@:{eprops#number~rs}'],
-            step: const_1['@:{const#unit.step~rs}'],
-            fixed: const_1['@:{const#unit.fixed~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
-            '@:{is.scale.and.unit.field~rs}': 1,
+            type: props_1['gd'],
+            step: const_1['gT'],
+            fixed: const_1['gU'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
+            '_hM': 1,
             json: 1,
         },
         {
-            type: props_1['@:{eprops#spliter~rs}'],
+            type: props_1['gE'],
         },
         {
-            tip: '@:{lang#props.table.style~rs}',
-            type: props_1['@:{eprops#table.style~rs}'],
+            tip: 'i7',
+            type: props_1['gq'],
             //'@:{dock.top}': 1,
             write(skin, props) {
                 mix(props, skin);
             },
         },
         {
-            tip: '@:{lang#props.border.color~rs}',
+            tip: 'iy',
             key: 'bordercolor',
-            type: props_1['@:{eprops#color~rs}'],
+            type: props_1['ge'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.table.cell.align~rs}',
+            tip: 'i8',
             key: 'cellAlign',
-            type: props_1['@:{eprops#dropdown~rs}'],
+            type: props_1['gk'],
             items: [
                 {
-                    text: '@:{lang#props.table.cell.align.left~rs}',
+                    text: 'i9',
                     value: 'left',
                 },
                 {
-                    text: '@:{lang#props.table.cell.align.center~rs}',
+                    text: 'j_',
                     value: 'center',
                 },
                 {
-                    text: '@:{lang#props.table.cell.align.right~rs}',
+                    text: 'ja',
                     value: 'right',
                 },
             ],
             json: 1,
         },
         {
-            tip: '@:{lang#props.table.head.row.height~rs}',
-            min: () => const_1['@:{const#to.unit~rs}'](25),
-            max: () => const_1['@:{const#to.unit~rs}'](100),
-            step: const_1['@:{const#unit.step~rs}'],
-            fixed: const_1['@:{const#unit.fixed~rs}'],
+            tip: 'jb',
+            min: () => const_1['ge'](25),
+            max: () => const_1['ge'](100),
+            step: const_1['gT'],
+            fixed: const_1['gU'],
             key: 'theadRowHeight',
-            type: props_1['@:{eprops#number~rs}'],
-            '@:{is.scale.and.unit.field~rs}': 1,
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
+            type: props_1['gd'],
+            '_hM': 1,
+            read: transform_1['gg'],
+            write: transform_1['gl'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.table.body.row.height~rs}',
-            min: () => const_1['@:{const#to.unit~rs}'](25),
-            max: () => const_1['@:{const#to.unit~rs}'](100),
-            '@:{is.scale.and.unit.field~rs}': 1,
+            tip: 'jc',
+            min: () => const_1['ge'](25),
+            max: () => const_1['ge'](100),
+            '_hM': 1,
             key: 'tbodyRowHeight',
-            type: props_1['@:{eprops#number~rs}'],
-            step: const_1['@:{const#unit.step~rs}'],
-            fixed: const_1['@:{const#unit.fixed~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
+            type: props_1['gd'],
+            step: const_1['gT'],
+            fixed: const_1['gU'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.table.head.font.size~rs}',
-            min: () => const_1['@:{const#to.unit~rs}'](12),
-            max: () => const_1['@:{const#to.unit~rs}'](100),
-            '@:{is.scale.and.unit.field~rs}': 1,
+            tip: 'iB',
+            min: () => const_1['ge'](12),
+            max: () => const_1['ge'](100),
+            '_hM': 1,
             key: 'theadFontsize',
-            type: props_1['@:{eprops#number~rs}'],
-            step: const_1['@:{const#unit.step~rs}'],
-            fixed: const_1['@:{const#unit.fixed~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
+            type: props_1['gd'],
+            step: const_1['gT'],
+            fixed: const_1['gU'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.forecolor~rs}',
+            tip: 'it',
             key: 'theadForecolor',
-            type: props_1['@:{eprops#color~rs}'],
+            type: props_1['ge'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.table.head.row.background~rs}',
+            tip: 'iC',
             key: 'theadRowBackground',
-            type: props_1['@:{eprops#color~rs}'],
+            type: props_1['ge'],
             clear: true,
             alpha: true,
             json: 1,
         },
         {
-            tip: '@:{lang#props.table.body.font.size~rs}',
-            min: () => const_1['@:{const#to.unit~rs}'](12),
-            max: () => const_1['@:{const#to.unit~rs}'](100),
-            '@:{is.scale.and.unit.field~rs}': 1,
-            step: const_1['@:{const#unit.step~rs}'],
-            fixed: const_1['@:{const#unit.fixed~rs}'],
+            tip: 'iD',
+            min: () => const_1['ge'](12),
+            max: () => const_1['ge'](100),
+            '_hM': 1,
+            step: const_1['gT'],
+            fixed: const_1['gU'],
             key: 'tbodyFontsize',
-            type: props_1['@:{eprops#number~rs}'],
-            read: transform_1['@:{transform#to.show.value~rs}'],
-            write: transform_1['@:{transform#to.real.value~rs}'],
+            type: props_1['gd'],
+            read: transform_1['gg'],
+            write: transform_1['gl'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.forecolor~rs}',
+            tip: 'it',
             key: 'tbodyForecolor',
-            type: props_1['@:{eprops#color~rs}'],
+            type: props_1['ge'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.table.body.even.row.background~rs}',
+            tip: 'jd',
             key: 'tbodyEvenRowBackground',
-            type: props_1['@:{eprops#color~rs}'],
+            type: props_1['ge'],
             clear: true,
             alpha: true,
             json: 1,
         },
         {
-            tip: '@:{lang#props.table.body.odd.row.background~rs}',
+            tip: 'je',
             key: 'tbodyOddRowBackground',
-            type: props_1['@:{eprops#color~rs}'],
+            type: props_1['ge'],
             clear: true,
             alpha: true,
             json: 1,
         },
         {
-            tip: '@:{lang#props.alpha~rs}',
+            tip: 'h6',
             key: 'alpha',
-            type: props_1['@:{eprops#number~rs}'],
+            type: props_1['gd'],
             step: 0.1,
             fixed: 1,
             min: 0,
@@ -461,7 +461,7 @@ module.exports= normal_1.extend({
             min: -360,
             max: 360
         },*/ {
-            type: props_1['@:{eprops#spliter~rs}'],
+            type: props_1['gE'],
         },
         // {
         //   tip: '@:{lang#props.help}',
@@ -469,15 +469,15 @@ module.exports= normal_1.extend({
         //   key: 'help',
         // },
         {
-            tip: '@:{lang#props.title~rs}',
+            tip: 'id',
             key: 'ename',
-            type: props_1['@:{eprops#text.input~rs}'],
+            type: props_1['gm'],
             json: 1,
         },
         {
-            tip: '@:{lang#props.locked~rs}',
+            tip: 'ie',
             key: 'locked',
-            type: props_1['@:{eprops#boolean~rs}'],
+            type: props_1['gf'],
             free: true,
             json: 1,
         },

@@ -4,52 +4,52 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/pager/designer",["../../designer/const","../../designer/enum","../../designer/props","../../designer/transform","../normal"],(require,exports,module)=>{
+define("5m/pager/designer",["../../50/53","../../50/enum","../../50/61","../../50/54","../6e"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let const_1 = require("../../designer/const");
-let enum_1 = require("../../designer/enum");
-let props_1 = require("../../designer/props");
-let transform_1 = require("../../designer/transform");
-let normal_1 = require("../normal");
+let const_1 = require("../../50/53");
+let enum_1 = require("../../50/enum");
+let props_1 = require("../../50/61");
+let transform_1 = require("../../50/54");
+let normal_1 = require("../6e");
 module.exports= normal_1.extend({
     ctor() {
         this.set({
-            view: "elements/pager/index"
+            view: "5m/pager/index"
         });
     }
 }).static({
     type: 'pager',
-    title: '@:{lang#elements.pager~rs}',
+    title: 'la',
     icon: '&#xe646;',
-    '@:{modifier~rs}': enum_1['@:{enum#modifier.width~rs}'] |
-        enum_1['@:{enum#modifier.height~rs}'] |
-        enum_1['@:{enum#modifier.rotate~rs}'] |
-        enum_1['@:{enum#modifier.text~rs}'],
-    '@:{move.props~rs}': [{
+    '_iV': enum_1['gn'] |
+        enum_1['go'] |
+        enum_1['gq'] |
+        enum_1['gs'],
+    '_iy': [{
             key: 'x',
             use: 'x'
         }, {
             key: 'y',
             use: 'y'
         }],
-    '@:{get.props~rs}'(x, y) {
+    '_hd'(x, y) {
         return {
             background: '',
-            height: const_1['@:{const#to.unit~rs}'](50),
+            height: const_1['ge'](50),
             alpha: 1,
             text: '当前第${currentPage}页，共${totalPage}页',
             //'@:{show.text}': 1,
-            letterspacing: const_1['@:{const#to.unit~rs}'](0),
-            x: const_1['@:{const#to.unit~rs}'](x),
-            y: const_1['@:{const#to.unit~rs}'](y),
+            letterspacing: const_1['ge'](0),
+            x: const_1['ge'](x),
+            y: const_1['ge'](y),
             rotate: 0,
-            width: const_1['@:{const#to.unit~rs}'](200),
+            width: const_1['ge'](200),
             forecolor: '#000000',
-            fontsize: const_1['@:{const#to.unit~rs}'](14),
+            fontsize: const_1['ge'](14),
             fontfamily: 'Microsoft YaHei',
             locked: false,
             styleBold: false,
@@ -65,115 +65,115 @@ module.exports= normal_1.extend({
             key: 'ext',
             json: 1
         }, {
-            tip: '@:{lang#props.x~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'h1',
+            type: props_1["gd"],
             key: 'x',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            '_hM': 1,
+            fixed: const_1["gU"],
+            step: const_1["gT"],
+            read: transform_1["gg"],
+            write: transform_1["gl"],
             json: 1
         }, {
-            tip: '@:{lang#props.y~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'h2',
+            type: props_1["gd"],
             key: 'y',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            '_hM': 1,
+            fixed: const_1["gU"],
+            step: const_1["gT"],
+            read: transform_1["gg"],
+            write: transform_1["gl"],
             json: 1
         }, {
-            tip: '@:{lang#props.width~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'h3',
+            type: props_1["gd"],
             key: 'width',
-            '@:{is.scale.and.unit.field~rs}': 1,
+            '_hM': 1,
             min: () => 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            fixed: const_1["gU"],
+            step: const_1["gT"],
+            read: transform_1["gg"],
+            write: transform_1["gl"],
             json: 1
         }, {
-            tip: '@:{lang#props.height~rs}',
+            tip: 'h4',
             key: 'height',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            type: props_1["@:{eprops#number~rs}"],
+            '_hM': 1,
+            type: props_1["gd"],
             min: () => 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            fixed: const_1["gU"],
+            step: const_1["gT"],
+            read: transform_1["gg"],
+            write: transform_1["gl"],
             json: 1
         }, {
-            tip: '@:{lang#props.rotate~rs}',
-            type: props_1["@:{eprops#number~rs}"],
+            tip: 'h5',
+            type: props_1["gd"],
             key: 'rotate',
             min: -360,
             max: 360,
             json: 1
         }, {
-            type: props_1["@:{eprops#spliter~rs}"],
+            type: props_1["gE"],
         }, {
-            tip: '@:{lang#props.text.content~rs}',
+            tip: 'h7',
             key: 'text',
-            type: props_1["@:{eprops#text.area~rs}"],
+            type: props_1["gi"],
             //'@:{dock.top}': 1,
             json: 1,
         }, {
-            tip: '@:{lang#props.font.size~rs}',
+            tip: 'ip',
             key: 'fontsize',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            type: props_1["@:{eprops#number~rs}"],
+            '_hM': 1,
+            type: props_1["gd"],
             min: 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            fixed: const_1["gU"],
+            step: const_1["gT"],
+            read: transform_1["gg"],
+            write: transform_1["gl"],
             json: 1
         }, {
-            tip: '@:{lang#props.font.family~rs}',
+            tip: 'iq',
             key: 'fontfamily',
-            type: props_1["@:{eprops#dropdown~rs}"],
-            items: const_1["@:{const#font.family~rs}"],
+            type: props_1["gk"],
+            items: const_1["gP"],
             json: 1
         }, {
-            tip: '@:{lang#props.alpha~rs}',
+            tip: 'h6',
             key: 'alpha',
-            type: props_1["@:{eprops#number~rs}"],
+            type: props_1["gd"],
             step: 0.1,
             fixed: 1,
             min: 0,
             max: 1,
             json: 1
         }, {
-            tip: '@:{lang#props.letter.spacing~rs}',
+            tip: 'ir',
             key: 'letterspacing',
-            '@:{is.scale.and.unit.field~rs}': 1,
-            type: props_1["@:{eprops#number~rs}"],
+            '_hM': 1,
+            type: props_1["gd"],
             min: 0,
-            fixed: const_1["@:{const#unit.fixed~rs}"],
-            step: const_1["@:{const#unit.step~rs}"],
-            read: transform_1["@:{transform#to.show.value~rs}"],
-            write: transform_1["@:{transform#to.real.value~rs}"],
+            fixed: const_1["gU"],
+            step: const_1["gT"],
+            read: transform_1["gg"],
+            write: transform_1["gl"],
             json: 1
         }, {
-            tip: '@:{lang#props.background~rs}',
+            tip: 'is',
             key: 'background',
             clear: true,
             alpha: true,
-            type: props_1["@:{eprops#color~rs}"],
+            type: props_1["ge"],
             json: 1
         }, {
-            tip: '@:{lang#props.forecolor~rs}',
+            tip: 'it',
             key: 'forecolor',
-            type: props_1["@:{eprops#color~rs}"],
+            type: props_1["ge"],
             json: 1
         }, {
-            tip: '@:{lang#props.font.style~rs}',
-            type: props_1["@:{eprops#font.style~rs}"],
-            '@:{json.encode~rs}'(dest, props) {
+            tip: 'iu',
+            type: props_1["gg"],
+            '_jx'(dest, props) {
                 dest.styleBold = props.styleBold;
                 dest.styleUnderline = props.styleUnderline;
                 dest.styleItalic = props.styleItalic;
@@ -181,23 +181,23 @@ module.exports= normal_1.extend({
                 dest.styleOverline = props.styleOverline;
             }
         }, {
-            tip: '@:{lang#props.font.align~rs}',
-            type: props_1["@:{eprops#align~rs}"],
-            '@:{json.encode~rs}'(dest, props) {
+            tip: 'iv',
+            type: props_1["gh"],
+            '_jx'(dest, props) {
                 dest.hpos = props.hpos;
                 dest.vpos = props.vpos;
             }
         }, {
-            type: props_1["@:{eprops#spliter~rs}"]
+            type: props_1["gE"]
         }, {
-            tip: '@:{lang#props.title~rs}',
+            tip: 'id',
             key: 'ename',
-            type: props_1["@:{eprops#text.input~rs}"],
+            type: props_1["gm"],
             json: 1
         }, {
-            tip: '@:{lang#props.locked~rs}',
+            tip: 'ie',
             key: 'locked',
-            type: props_1["@:{eprops#boolean~rs}"],
+            type: props_1["gf"],
             free: true,
             json: 1
         }]

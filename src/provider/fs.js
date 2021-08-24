@@ -4,13 +4,13 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("provider/fs",["../gallery/mx-toast/index","../i18n/index","magix5","../provider/filesaver"],(require,exports,module)=>{
+define("5g/fs",["../58/5f/index","../5c/index","51","../5g/filesaver"],(require,exports,module)=>{
 
 
-let index_1 = require("../gallery/mx-toast/index");
-let index_2 = require("../i18n/index");
-let magix_1 = require("magix5");
-let filesaver_1 = require("../provider/filesaver");
+let index_1 = require("../58/5f/index");
+let index_2 = require("../5c/index");
+let magix_1 = require("51");
+let filesaver_1 = require("../5g/filesaver");
 let { guid } = magix_1;
 //检测是否支持最新的对话框读取和保存文件
 let transitional = !window.showOpenFilePicker && !window.showSaveFilePicker;
@@ -39,17 +39,17 @@ module.exports= {
      * 是否使用原生的文件上传
      * @returns
      */
-    '@:{native.file.element~rs}'() {
+    '_g7'() {
         return transitional;
     },
     /**
      * 环境准备，如果不支持最新的对话框的形式，则采用`saveAs`插件进行保存
      */
-    async '@:{prepare~rs}'() {
+    async '_gY'() {
         if (transitional &&
             !window.saveAs) {
             try {
-                index_1.show(index_2('@:{lang#elements.loading.library.tip~rs}'));
+                index_1.show(index_2('kz'));
                 await filesaver_1();
             }
             catch (ex) {
@@ -65,7 +65,7 @@ module.exports= {
      * @param nativeInputElement <input type="file"/>节点对象
      * @returns
      */
-    async '@:{read.file~rs}'(nativeInputElement) {
+    async '_gX'(nativeInputElement) {
         if (transitional) {
             let file = nativeInputElement.files[0];
             if (file) {
@@ -94,7 +94,7 @@ module.exports= {
      * @param name 文件名称
      * @param content 文件内容
      */
-    async '@:{save.file~rs}'(name, content, accept = ['.rd']) {
+    async '_gZ'(name, content, accept = ['.rd']) {
         if (transitional) {
             let b = new Blob([content]);
             saveAs(b, name);

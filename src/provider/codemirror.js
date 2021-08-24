@@ -4,10 +4,10 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("provider/codemirror",["../gallery/mx-runner/index"],(require,exports,module)=>{
+define("5g/codemirror",["../58/5b/index"],(require,exports,module)=>{
 
 
-let index_1 = require("../gallery/mx-runner/index");
+let index_1 = require("../58/5b/index");
 let loadingList = [];
 let state = 1;
 let rejectMsg = 'can not load codemirror library';
@@ -36,11 +36,11 @@ let loadResource = src => {
                     isLoaded = 1;
                 }
                 if (isLoaded) {
-                    index_1["@:{task.remove~rs}"](check);
+                    index_1["_gC"](check);
                     resolve();
                 }
             };
-            index_1["@:{task.add~rs}"](30, check);
+            index_1["_gD"](30, check);
         }
         else {
             let proxy = document.createElement('script');

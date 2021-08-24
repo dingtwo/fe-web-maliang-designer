@@ -4,21 +4,21 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("gallery/mx-fx/help",["magix5","../mx-dropdown/index","../mx-number/index"],(require,exports,module)=>{
-require("../mx-dropdown/index");
-require("../mx-number/index");
-let $quick_kk_static_text;
-let $quick_li_static_text;
-let $quick_mk_2_static_node;
-let $quick_lj_static_text;
-let $quick_mk_0_static_attr={'class': 'rd-_assets_index_less_-align-items-flex-start rd-_assets_index_less_-flex rd-_assets_index_less_-margin-bottom-4',};
-let $quick_mk_1_static_attr={'class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',};
+define("58/70/help",["51","../6k/index","../6j/index"],(require,exports,module)=>{
+require("../6k/index");
+require("../6j/index");
+let $quick_gd_static_text;
+let $quick_hb_static_text;
+let $quick_id_2_static_node;
+let $quick_hc_static_text;
+let $quick_id_0_static_attr={'class': 'rd-g9 rd-hO rd-hg',};
+let $quick_id_1_static_attr={'class': 'rd-gR rd-hM',};
 let $special_2={'value':'value',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
+let magix_1 = require("51");
 let { View, dispatch } = magix_1;
 let LineTypes = [{
         text: 'X轴',
@@ -29,7 +29,7 @@ let LineTypes = [{
     }];
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0=[],
+let $temp_var,$vnode_0=[],
 {
 	data,
 	disabled,
@@ -38,26 +38,25 @@ $$_class,
 $vnode_3,
 $vnode_2,
 $vnode_1;
-$__line=1;$__art="{{each data as l i}}";$__ctrl="for(let $q_c_cjhpfafxm=data.length,i=0;i<$q_c_cjhpfafxm;i++){let l=data[i];";
-for(let $q_c_cjhpfafxm=data.length,i=0;i<$q_c_cjhpfafxm;i+=1){
-let l=data[i];
-$vnode_3=[$quick_kk_static_text||($quick_kk_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_assets_index_less_-mr5'+($__line=4,$__art='{{if disabled}}','');$__ctrl='<%if(disabled){%>';if(disabled){;$$_class+=' rd-_assets_index_less_-color-666 rd-_assets_index_less_-cursor-not-allowed'+($__line=4,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$$_class+=' rd-_assets_index_less_-gray rd-_assets_index_less_-cursor-pointer'+($__line=4,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2=[$createVNode('span',{'mx5-click': (($temp_var=($__line=4,$__art='{{=!disabled}}',$__ctrl='<%=!disabled%>',!disabled),($temp_var||$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&console.error('make sure attr:"mx5-click" returned only null or false falsy value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/help.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var)))&&($viewId+'@:{remove.fx~rs}({i:'+($__line=4,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+'})'),'title': '删除辅助线','class': $$_class,},$vnode_3),$quick_li_static_text||($quick_li_static_text=$createVNode(0,'辅助线：'))];$vnode_1=[$createVNode('span',$quick_mk_1_static_attr,$vnode_2),$createVNode('div',{'mx5-owner': $viewId,'$': 'disabled,lineTypes','class': 'rd-_assets_index_less_-flex rd-_assets_index_less_-width-140','mx5-change': $viewId+'@:{update.line.type~rs}({i:'+($__line=7,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+'})','mx5-view': 'gallery/mx-dropdown/index?disabled='+($__line=7,$__art='{{#disabled}}',$__ctrl='<%#disabled,\'auto_key_disabled\'%>',$keyOf($refData,disabled,'auto_key_disabled'))+'&selected='+($__line=7,$__art='{{=l.x!=null?\'x\':\'y\'}}',$__ctrl='<%=$encodeUrl(l.x!=null?\'x\':\'y\')%>',($encodeUrl(l.x!=null?'x':'y')))+'&list='+($__line=7,$__art='{{#lineTypes}}',$__ctrl='<%#lineTypes,\'auto_key_lineTypes\'%>',$keyOf($refData,lineTypes,'auto_key_lineTypes'))+'&textKey=text&valueKey=value',})];$vnode_0.push($createVNode('div',$quick_mk_0_static_attr,$vnode_1));
-if($quick_mk_2_static_node){
-$vnode_1=[$quick_mk_2_static_node];
-}else{
-$vnode_1=[$quick_mk_2_static_node=$createVNode('span',{'_': 'hN','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',})];
-}
-$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'data','class': 'rd-_assets_index_less_-input rd-_assets_index_less_-pr rd-_assets_index_less_-width-140','disabled': ($temp_var=($__line=11,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/help.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-change': $viewId+'@:{stop~rs}()','mx5-input': $viewId+'@:{update.line.value~rs}({i:'+($__line=11,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+'})','mx5-view': 'gallery/mx-number/index?value='+($__line=11,$__art='{{#l.x!=null?l.x:l.y}}',$__ctrl='<%#l.x!=null?l.x:l.y,\'auto_key_data.\'+(i)+\'.l.x!%3Dnull%3Fl.x:l.y\'%>',$keyOf($refData,l.x!=null?l.x:l.y,'auto_key_data.'+(i)+'.l.x!%3Dnull%3Fl.x:l.y')),}));$vnode_0.push($createVNode('div',$quick_mk_0_static_attr,$vnode_1));
-if($quick_mk_2_static_node){
-$vnode_1=[$quick_mk_2_static_node];
-}else{
-$vnode_1=[$quick_mk_2_static_node=$createVNode('span',{'_': 'hN','class': 'rd-_assets_index_less_-props-item-title rd-_assets_index_less_-tr',})];
-}
-$vnode_1.push($createVNode('input',{'placeholder': '辅助线名称','class': 'rd-_assets_index_less_-input','value': ($__line=15,$__art='{{=l.text}}',$__ctrl='<%=l.text%>',(l.text)),'disabled': ($temp_var=($__line=15,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/help.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-change': $viewId+'@:{stop~rs}()','mx5-input': $viewId+'@:{update.line.text~rs}({i:'+($__line=15,$__art='{{=i}}',$__ctrl='<%=i%>',(i))+'})',},1,$special_2));$vnode_0.push($createVNode('div',$quick_mk_0_static_attr,$vnode_1));
-}$vnode_1=[$quick_lj_static_text||($quick_lj_static_text=$createVNode(0,'添加辅助线'))];$vnode_0.push($createVNode('button',{'class': 'rd-_assets_index_less_-btn rd-_assets_index_less_-btn-brand rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-fr rd-_assets_index_less_-tc','disabled': ($temp_var=($__line=18,$__art='{{=disabled}}',$__ctrl='<%=disabled%>',disabled),$temp_var!=null&&$temp_var!==false&&$temp_var!==true&&$temp_var!==null&&console.error('make sure attr:"disabled" returned only true , false or null value\r\nat line:'+$__line+'\r\nat file:gallery/mx-fx/help.html\r\ncurrent returned value is:',JSON.stringify($temp_var)),$temp_var),'mx5-click': $viewId+'@:{add.fx~rs}()',},$vnode_1)); 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:gallery/mx-fx/help.html'; throw msg; }  } ,
+for(let $q_c_sjoyflhfs=data.length,i=0;i<$q_c_sjoyflhfs;i+=1){
+let l=data[i];
+$vnode_3=[$quick_gd_static_text||($quick_gd_static_text=$createVNode(0,''))];;$$_class='rd-ge rd-gH';if(disabled){;$$_class+=' rd-hZ rd-hV';}else{;$$_class+=' rd-hW rd-hw';};$vnode_2=[$createVNode('span',{'mx5-click': ((!disabled))&&($viewId+'_mT({i:'+(i)+'})'),'title': '删除辅助线','class': $$_class,},$vnode_3),$quick_hb_static_text||($quick_hb_static_text=$createVNode(0,'辅助线：'))];$vnode_1=[$createVNode('span',$quick_id_1_static_attr,$vnode_2),$createVNode('div',{'mx5-owner': $viewId,'$': 'disabled,lineTypes','class': 'rd-g9 rd-hj','mx5-change': $viewId+'_mP({i:'+(i)+'})','mx5-view': '58/6k/index?disabled='+$keyOf($refData,disabled,'eD')+'&selected='+($encodeUrl(l.x!=null?'x':'y'))+'&list='+$keyOf($refData,lineTypes,'eE')+'&textKey=text&valueKey=value',})];$vnode_0.push($createVNode('div',$quick_id_0_static_attr,$vnode_1));
+if($quick_id_2_static_node){
+$vnode_1=[$quick_id_2_static_node];
+}else{
+$vnode_1=[$quick_id_2_static_node=$createVNode('span',{'_': 'eD','class': 'rd-gR rd-hM',})];
+}
+$vnode_1.push($createVNode('div',{'mx5-owner': $viewId,'$': 'data','class': 'rd-gW rd-gg rd-hj','disabled': (disabled),'mx5-change': $viewId+'_kg()','mx5-input': $viewId+'_mQ({i:'+(i)+'})','mx5-view': '58/6j/index?value='+$keyOf($refData,l.x!=null?l.x:l.y,'eF.'+(i)+'.eG'),}));$vnode_0.push($createVNode('div',$quick_id_0_static_attr,$vnode_1));
+if($quick_id_2_static_node){
+$vnode_1=[$quick_id_2_static_node];
+}else{
+$vnode_1=[$quick_id_2_static_node=$createVNode('span',{'_': 'eD','class': 'rd-gR rd-hM',})];
+}
+$vnode_1.push($createVNode('input',{'placeholder': '辅助线名称','class': 'rd-gg','value': (l.text),'disabled': (disabled),'mx5-change': $viewId+'_kg()','mx5-input': $viewId+'_mR({i:'+(i)+'})',},1,$special_2));$vnode_0.push($createVNode('div',$quick_id_0_static_attr,$vnode_1));
+}$vnode_1=[$quick_hc_static_text||($quick_hc_static_text=$createVNode(0,'添加辅助线'))];$vnode_0.push($createVNode('button',{'class': 'rd-gS rd-gU rd-gk rd-gm rd-hw','disabled': (disabled),'mx5-click': $viewId+'_mS()',},$vnode_1)); 
+
+return $createVNode($viewId,0,$vnode_0); } ,
     init() {
         this.set({
             lineTypes: LineTypes
@@ -73,8 +72,8 @@ return $createVNode($viewId,0,$vnode_0);
     render() {
         this.digest();
     },
-    '@:{update.line.type~rs}<change>'(e) {
-        this['@:{stop.propagation~rs}'](e);
+    '_mP<change>'(e) {
+        this['_kt'](e);
         let { i } = e.params;
         let data = this.get('data');
         let dest = data[i];
@@ -90,8 +89,8 @@ return $createVNode($viewId,0,$vnode_0);
             data
         });
     },
-    '@:{update.line.value~rs}<input>'(e) {
-        this['@:{stop.propagation~rs}'](e);
+    '_mQ<input>'(e) {
+        this['_kt'](e);
         let { i } = e.params;
         let data = this.get('data');
         let dest = data[i];
@@ -105,8 +104,8 @@ return $createVNode($viewId,0,$vnode_0);
             data
         });
     },
-    '@:{update.line.text~rs}<input>'(e) {
-        this['@:{stop.propagation~rs}'](e);
+    '_mR<input>'(e) {
+        this['_kt'](e);
         let { i } = e.params;
         let data = this.get('data');
         let dest = data[i];
@@ -115,7 +114,7 @@ return $createVNode($viewId,0,$vnode_0);
             data
         });
     },
-    '@:{add.fx~rs}<click>'() {
+    '_mS<click>'() {
         let data = this.get('data');
         data.push({
             x: 1,
@@ -125,7 +124,7 @@ return $createVNode($viewId,0,$vnode_0);
             data
         });
     },
-    '@:{remove.fx~rs}<click>'(e) {
+    '_mT<click>'(e) {
         let { i } = e.params;
         let data = this.get('data');
         data.splice(i, 1);

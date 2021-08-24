@@ -4,13 +4,13 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("printer/unit/richtext",["magix5","../../designer/const","../../provider/html2canvas","../generic/index"],(require,exports,module)=>{
+define("78/7b/richtext",["51","../../50/53","../../5g/html2canvas","../79/index"],(require,exports,module)=>{
 
 
-let magix_1 = require("magix5");
-let const_1 = require("../../designer/const");
-let html2canvas_1 = require("../../provider/html2canvas");
-let index_1 = require("../generic/index");
+let magix_1 = require("51");
+let const_1 = require("../../50/53");
+let html2canvas_1 = require("../../5g/html2canvas");
+let index_1 = require("../79/index");
 let { task, lowTaskFinale, isArray, has } = magix_1;
 let ignoreTagNames = {
     TD: 1,
@@ -120,9 +120,9 @@ let fillPieceImages = async (lines, canvas, scale, images) => {
             temp.height = h;
             ctx.drawImage(canvas, 0, pre * scale, width, h, 0, 0, width, h);
             images.push({
-                '@:{data~rs}': temp.toDataURL('image/png', 1.0),
-                '@:{width~rs}': width / scale,
-                '@:{height~rs}': h / scale
+                '_h8': temp.toDataURL('image/png', 1.0),
+                '_hC': width / scale,
+                '_hD': h / scale
             });
         }
         ctx.clearRect(0, 0, width, h);
@@ -139,16 +139,16 @@ let getImages = async (props, unit, type) => {
     let oldX = props.x, oldY = props.y;
     props.x = 0;
     props.y = 0;
-    index_1['@:{show.msg~rs}']('富文本:正在检测图片...');
-    let root = await index_1['@:{mount.display.of.element~rs}'](type, {
+    index_1['_pa']('富文本:正在检测图片...');
+    let root = await index_1['_pc'](type, {
         props,
         unit
     });
     props.x = oldX;
     props.y = oldY;
     let textNode = root.firstElementChild;
-    await index_1['@:{double.check.images~rs}'](textNode, false);
-    index_1['@:{show.msg~rs}']('富文本:正在准备环境和数据...');
+    await index_1['_pe'](textNode, false);
+    index_1['_pa']('富文本:正在准备环境和数据...');
     await html2canvas_1();
     window.scrollTo(0, 0);
     let canvas = await html2canvas(textNode, {
@@ -157,24 +157,24 @@ let getImages = async (props, unit, type) => {
     });
     // canvas.style.cssText='position:absolute;left:0;top:0';
     // document.body.appendChild(canvas);
-    index_1['@:{show.msg~rs}']('富文本:正在检测分割点...');
+    index_1['_pa']('富文本:正在检测分割点...');
     let rootBound = textNode.getBoundingClientRect();
     let rects = await getRectsFromNode([textNode]);
     let lines = await getSplitLines(rootBound, rects);
-    index_1['@:{show.msg~rs}']('富文本:正在分割...');
+    index_1['_pa']('富文本:正在分割...');
     await fillPieceImages(lines, canvas, scale, images);
     return images;
 };
 module.exports= async (dataCenter, resLoader, richText, fromIndex, page, pageFooterHeight, unit, newPage) => {
     let { props, type, id } = richText;
-    let validHeight = const_1['@:{const#to.px~rs}'](page.height - pageFooterHeight - props.y);
+    let validHeight = const_1['gY'](page.height - pageFooterHeight - props.y);
     let useType = 'richtext';
     if (type == 'data-richtext') {
         richText.type = 'richtext';
         let bind = props.bind;
         if (bind.url) {
             props.splitToPages = true;
-            let { '@:{error~rs}': err, '@:{data~rs}': list } = dataCenter[bind.url];
+            let { '_h7': err, '_h8': list } = dataCenter[bind.url];
             let bindField = bind.fields[0];
             if (err) {
                 props.text = err;
@@ -185,14 +185,14 @@ module.exports= async (dataCenter, resLoader, richText, fromIndex, page, pageFoo
             }
         }
         else {
-            props.height = const_1['@:{const#to.unit~rs}'](30);
+            props.height = const_1['ge'](30);
         }
     }
     else if (type == 'html') {
         let bind = props.bind;
         props.splitToPages = true;
         if (bind.url) {
-            let { '@:{error~rs}': err, '@:{data~rs}': list } = dataCenter[bind.url];
+            let { '_h7': err, '_h8': list } = dataCenter[bind.url];
             if (!err) {
                 bind._data = list;
             }
@@ -202,17 +202,17 @@ module.exports= async (dataCenter, resLoader, richText, fromIndex, page, pageFoo
     }
     if (props.splitToPages) {
         try {
-            let imgs = resLoader[`@:{source.of.images~rs}_${id}`];
+            let imgs = resLoader[`_pV_${id}`];
             if (!imgs) {
                 imgs = await getImages(props, unit, useType);
-                resLoader[`@:{source.of.images~rs}_${id}`] = imgs;
+                resLoader[`_pV_${id}`] = imgs;
             }
             let start = fromIndex;
             let end = imgs.length;
             let usedImages = [];
             while (start < end) {
                 let i = imgs[start];
-                if (validHeight < i['@:{height~rs}']) {
+                if (validHeight < i['_hD']) {
                     if (!usedImages.length) {
                         start++;
                         usedImages.push(i);
@@ -220,14 +220,14 @@ module.exports= async (dataCenter, resLoader, richText, fromIndex, page, pageFoo
                     break;
                 }
                 else {
-                    validHeight -= i['@:{height~rs}'];
+                    validHeight -= i['_hD'];
                     usedImages.push(i);
                 }
                 start++;
             }
             let recastHTML = `<div style="display:flex;flex-direction:column;">`;
             for (let i of usedImages) {
-                recastHTML += `<img src="${i['@:{data~rs}']}" style="width:${i['@:{width~rs}']}px;height:${i['@:{height~rs}']}px"/>`;
+                recastHTML += `<img src="${i['_h8']}" style="width:${i['_hC']}px;height:${i['_hD']}px"/>`;
             }
             recastHTML += `</div>`;
             props.text = recastHTML;
@@ -238,7 +238,7 @@ module.exports= async (dataCenter, resLoader, richText, fromIndex, page, pageFoo
             props.text = ex.message || ex.name;
         }
         finally {
-            index_1['@:{hide.msg~rs}']();
+            index_1['_pb']();
         }
     }
     newPage.push(richText);

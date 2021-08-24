@@ -4,16 +4,16 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("elements/map/dshow",["magix5","../../provider/map","../../designer/history","../../designer/stage-selection"],(require,exports,module)=>{
+define("5m/map/dshow",["51","../../5g/map","../../50/5d","../../50/5u"],(require,exports,module)=>{
 
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let map_1 = require("../../provider/map");
-let history_1 = require("../../designer/history");
-let stage_selection_1 = require("../../designer/stage-selection");
+let magix_1 = require("51");
+let map_1 = require("../../5g/map");
+let history_1 = require("../../50/5d");
+let stage_selection_1 = require("../../50/5u");
 let { State, View, mark, node } = magix_1;
 let triggerEvent = (element, map) => {
     let center = map.getCenter().wrap();
@@ -25,29 +25,29 @@ let triggerEvent = (element, map) => {
         props.lat = center.lat;
         props.lng = center.lng;
         changed = 1;
-        p['@:{latlng~rs}'] = 1;
+        p['_kT'] = 1;
     }
     if (props.zoom != zoom) {
         props.zoom = zoom;
         changed = 1;
-        p['@:{zoom~rs}'] = 1;
+        p['_kQ'] = 1;
     }
     if (changed) {
-        State.fire('@:{event#stage.select.element.props.change~rs}', {
-            '@:{ids~rs}': {
+        State.fire('gf', {
+            '_hW': {
                 [element.id]: 1
             },
-            '@:{types~rs}': {
+            '_hX': {
                 [element.type]: 1
             },
-            '@:{props~rs}': p
+            '_ge': p
         });
-        history_1["@:{history#save~rs}"](history_1['@:{history#element.modified.props~rs}'], props.ename);
+        history_1["gd"](history_1['gK'], props.ename);
     }
 };
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	props,
 	unit,
@@ -56,13 +56,12 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 $text,
 $vnode_2,
 $vnode_1;
-$text=($__line=3,$__art='{{if error}}','');$__ctrl='<%if(error){%>';if(error){;$text+=' '+($__line=4,$__art='{{=error}}',$__ctrl='<%=error%>',(error))+' '+($__line=5,$__art='{{else}}','');$__ctrl='<%}else{%>';}else{;$text+=' '+($__line=6,$__art='{{=i18n(\'@:{lang#elements.loading.library.tip~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#elements.loading.library.tip~rs}\')%>',(i18n('@:{lang#elements.loading.library.tip~rs}')))+' '+($__line=7,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_2=[$createVNode(0,$text)];$vnode_1=[$createVNode('div',{'id': 'tip_'+($__line=2,$__art='{{=$viewId}}','')+$viewId,'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-hp100 rd-_assets_index_less_-justify-content-center',},$vnode_2)];$vnode_0=[$createVNode('div',{'class': 'rd-_assets_index_less_-pa rd-_assets_index_less_-touch-action-none rd-_assets_index_less_-z-index-1','style': 'left:'+($__line=1,$__art='{{=props.x}}',$__ctrl='<%=props.x%>',(props.x))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';top:'+($__line=1,$__art='{{=props.y}}',$__ctrl='<%=props.y%>',(props.y))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';height:'+($__line=1,$__art='{{=props.height}}',$__ctrl='<%=props.height%>',(props.height))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit))+';opacity:'+($__line=1,$__art='{{=props.alpha}}',$__ctrl='<%=props.alpha%>',(props.alpha))+';width:'+($__line=1,$__art='{{=props.width}}',$__ctrl='<%=props.width%>',(props.width))+($__line=1,$__art='{{=unit}}',$__ctrl='<%=unit%>',(unit)),'id': 'map_'+($__line=1,$__art='{{=$viewId}}','')+$viewId,'mx5-pointerdown': $viewId+'@:{stop~rs}()','mx5-contextmenu': $viewId+'@:{stop~rs}()',},$vnode_1)]; 
+$text='';if(error){;$text+=' '+(error)+' ';}else{;$text+=' '+(i18n('kz'))+' ';};$vnode_2=[$createVNode(0,$text)];$vnode_1=[$createVNode('div',{'id': 'tip_'+$viewId,'class': 'rd-g9 rd-gO rd-ha rd-hs',},$vnode_2)];$vnode_0=[$createVNode('div',{'class': 'rd-gV rd-ig rd-iz','style': 'left:'+(props.x)+(unit)+';top:'+(props.y)+(unit)+';height:'+(props.height)+(unit)+';opacity:'+(props.alpha)+';width:'+(props.width)+(unit),'id': 'map_'+$viewId,'mx5-pointerdown': $viewId+'_kg()','mx5-contextmenu': $viewId+'_kg()',},$vnode_1)]; 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:elements/map/dshow.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init() {
         this.on('destroy', () => {
-            let map = this['@:{map.instance~rs}'];
+            let map = this['_kU'];
             if (map) {
                 map.remove();
             }
@@ -72,12 +71,12 @@ return $createVNode($viewId,0,$vnode_0);
         this.set(data);
     },
     async render() {
-        let m = mark(this, '@:{render~rs}');
+        let m = mark(this, '_gt');
         let props = this.get('props');
         let readonly = props.readonly;
-        if (!this['@:{exception~rs}']) {
+        if (!this['_kV']) {
             await this.digest();
-            let map = this['@:{map.instance~rs}'];
+            let map = this['_kU'];
             try {
                 if (!map) {
                     await map_1();
@@ -91,57 +90,57 @@ return $createVNode($viewId,0,$vnode_0);
                             dragging: !readonly,
                             doubleClickZoom: !readonly
                         });
-                        this['@:{map.instance~rs}'] = map;
-                        this['@:{change.listener~rs}'] = (e) => {
+                        this['_kU'] = map;
+                        this['_kW'] = (e) => {
                             triggerEvent(this.get('element'), map);
                         };
                         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
                         }).addTo(map);
-                        map.addEventListener('zoomend', this['@:{change.listener~rs}']);
-                        map.addEventListener('moveend', this['@:{change.listener~rs}']);
+                        map.addEventListener('zoomend', this['_kW']);
+                        map.addEventListener('moveend', this['_kW']);
                         let tipNode = node(`tip_${this.id}`);
                         tipNode.parentNode.removeChild(tipNode);
                     }
                 }
                 else {
-                    map.removeEventListener('zoomend', this['@:{change.listener~rs}']);
-                    map.removeEventListener('moveend', this['@:{change.listener~rs}']);
+                    map.removeEventListener('zoomend', this['_kW']);
+                    map.removeEventListener('moveend', this['_kW']);
                     map.setView({
                         lat: props.lat,
                         lng: props.lng
                     }, props.zoom);
                     map.invalidateSize(true);
-                    let addMark = mark(this, '@:{add.mark~rs}');
+                    let addMark = mark(this, '_kX');
                     setTimeout(() => {
                         if (addMark()) {
-                            map.addEventListener('zoomend', this['@:{change.listener~rs}']);
-                            map.addEventListener('moveend', this['@:{change.listener~rs}']);
+                            map.addEventListener('zoomend', this['_kW']);
+                            map.addEventListener('moveend', this['_kW']);
                         }
                     }, 300);
                 }
             }
             catch (ex) {
                 this.digest({
-                    error: this['@:{exception~rs}'] = ex
+                    error: this['_kV'] = ex
                 });
             }
         }
         else {
             this.digest({
-                error: this['@:{exception~rs}']
+                error: this['_kV']
             });
         }
     },
-    '@:{stop~rs}<pointerdown,contextmenu>'(e) {
-        if (e['@:{halt~rs}'])
+    '_kg<pointerdown,contextmenu>'(e) {
+        if (e['_g8'])
             return;
         // let { target } = e;
         // if (target.id != `${this.id}_pv`) {
-        e['@:{halt~rs}'] = 1;
+        e['_g8'] = 1;
         let element = this.get('element');
-        if (stage_selection_1["@:{selection#set~rs}"](element)) {
-            history_1["@:{history#save~rs}"](history_1['@:{history#element.get.focus~rs}'], element.props.ename);
+        if (stage_selection_1["ge"](element)) {
+            history_1["gd"](history_1['gu'], element.props.ename);
         }
         //}
     }

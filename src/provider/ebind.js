@@ -4,24 +4,24 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("provider/ebind",["magix5","../designer/history","../designer/stage-generic","../designer/stage-selection","../gallery/mx-dragdrop/index"],(require,exports,module)=>{
+define("5g/ebind",["51","../50/5d","../50/5q","../50/5u","../58/59/index"],(require,exports,module)=>{
 
 
 /**
  * 普通元素通用数据绑定
  */
-let magix_1 = require("magix5");
-let history_1 = require("../designer/history");
-let stage_generic_1 = require("../designer/stage-generic");
-let stage_selection_1 = require("../designer/stage-selection");
-let index_1 = require("../gallery/mx-dragdrop/index");
+let magix_1 = require("51");
+let history_1 = require("../50/5d");
+let stage_generic_1 = require("../50/5q");
+let stage_selection_1 = require("../50/5u");
+let index_1 = require("../58/59/index");
 let { State } = magix_1;
 module.exports= {
-    '@:{when.data.field.enter~rs}<dragenter>'(e) {
+    '_jW<dragenter>'(e) {
         let props = this.get('props');
         if (props.locked)
             return;
-        let contents = this['@:{has.contents~rs}'];
+        let contents = this['_jO'];
         if (contents) {
             for (let c of contents) {
                 if (props[c]) {
@@ -29,9 +29,9 @@ module.exports= {
                 }
             }
         }
-        e['@:{halt~rs}'] = 1;
-        if (index_1['@:{is.dragenter~rs}'](this)) {
-            let src = State.get('@:{global#bind.field.drag.data~rs}');
+        e['_g8'] = 1;
+        if (index_1['_kb'](this)) {
+            let src = State.get('gx');
             if (src) {
                 this.digest({
                     enter: 1
@@ -39,9 +39,9 @@ module.exports= {
             }
         }
     },
-    '@:{when.data.field.leave~rs}<dragleave>'(e) {
+    '_jX<dragleave>'(e) {
         let enter = this.get('enter');
-        if (index_1['@:{is.dragleave~rs}'](this)) {
+        if (index_1['_kc'](this)) {
             if (enter) {
                 this.digest({
                     enter: 0
@@ -49,14 +49,14 @@ module.exports= {
             }
         }
     },
-    '@:{when.data.field.drop~rs}<drop>'(e) {
-        this['@:{prevent.default~rs}'](e);
-        index_1['@:{clear.drag~rs}'](this);
+    '_jY<drop>'(e) {
+        this['_h5'](e);
+        index_1['_me'](this);
         let enter = this.get('enter');
-        let src = State.get('@:{global#bind.field.drag.data~rs}');
+        let src = State.get('gx');
         if (src &&
             enter) {
-            e['@:{halt~rs}'] = 1;
+            e['_g8'] = 1;
             let props = this.get('props');
             let { bind } = props;
             let element = this.get('element');
@@ -66,22 +66,22 @@ module.exports= {
                 bind.id = src.id;
                 bind.url = src.url;
                 bind.fields = [src.field];
-                stage_selection_1["@:{selection#set~rs}"](element);
-                State.fire('@:{event#stage.select.element.props.change~rs}', {
-                    '@:{ids~rs}': {
+                stage_selection_1["ge"](element);
+                State.fire('gf', {
+                    '_hW': {
                         [element.id]: 1
                     },
-                    '@:{types~rs}': {
+                    '_hX': {
                         [element.type]: 1
                     },
-                    '@:{props~rs}': {
-                        '@:{bind~rs}': 1
+                    '_ge': {
+                        '_kd': 1
                     }
                 });
                 this.assign({
                     props
                 });
-                history_1["@:{history#save~rs}"](history_1['@:{history#element.modified.props~rs}'], stage_generic_1['@:{generic#query.element.name~rs}']([element]));
+                history_1["gd"](history_1['gK'], stage_generic_1['gp']([element]));
             }
             this.set({
                 enter: 0

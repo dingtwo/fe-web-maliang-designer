@@ -4,56 +4,56 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("designer/header",["magix5","../elements/index","../gallery/mx-dialog/index","../gallery/mx-dragdrop/index","../gallery/mx-pointer/cursor","../gallery/mx-pointer/select","../gallery/mx-runner/index","../provider/fs","./const","./content","./example","./keyboard","./stage-align","./stage-elements","./stage-generic","./tojson"],(require,exports,module)=>{
-let $quick_kq_1_static_node;
-let $quick_kq_2_static_node;
-let $quick_kq_6_static_node;
-let $quick_kq_9_static_node;
-let $quick_kq_10_static_node;
-let $quick_kq_11_static_node;
-let $quick_kq_12_static_node;
-let $quick_kq_13_static_node;
-let $quick_kq_14_static_node;
-let $quick_kq_15_static_node;
-let $quick_kq_16_static_node;
-let $quick_kq_17_static_node;
-let $quick_kq_18_static_node;
-let $quick_kq_19_static_node;
-let $quick_kq_20_static_node;
-let $quick_kq_21_static_node;
-let $quick_kq_22_static_node;
-let $quick_kq_23_static_node;
-let $quick_kq_0_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-fl rd-_assets_index_less_-flex rd-_assets_index_less_-fontsize-16',};
-let $quick_kq_3_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-pr rd-_designer_header_less_-header-item rd-_designer_header_less_-header-item-has-subs rd-_designer_header_less_-header-item-z-index',};
-let $quick_kq_4_static_attr={'class': 'rd-_assets_index_less_-iconfont rd-_designer_header_less_-header-item-icon',};
-let $quick_kq_5_static_attr={'class': 'rd-_assets_index_less_-fontsize-12 rd-_designer_header_less_-header-item-text',};
-let $quick_kq_7_static_attr={'class': 'rd-_assets_index_less_-cursor-default rd-_assets_index_less_-none rd-_assets_index_less_-pa rd-_assets_index_less_-padding-4 rd-_designer_header_less_-header-item-more',};
-let $quick_kq_8_static_attr={'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-fr rd-_assets_index_less_-unselectable',};
+define("50/5l",["51","../5m/index","../58/5n/index","../58/59/index","../58/5a/cursor","../58/5a/select","../58/5b/index","../5g/fs","./53","./content","./5j","./5e","./5o","./5p","./5q","./5h"],(require,exports,module)=>{
+let $quick_gj_1_static_node;
+let $quick_gj_2_static_node;
+let $quick_gj_6_static_node;
+let $quick_gj_9_static_node;
+let $quick_gj_10_static_node;
+let $quick_gj_11_static_node;
+let $quick_gj_12_static_node;
+let $quick_gj_13_static_node;
+let $quick_gj_14_static_node;
+let $quick_gj_15_static_node;
+let $quick_gj_16_static_node;
+let $quick_gj_17_static_node;
+let $quick_gj_18_static_node;
+let $quick_gj_19_static_node;
+let $quick_gj_20_static_node;
+let $quick_gj_21_static_node;
+let $quick_gj_22_static_node;
+let $quick_gj_23_static_node;
+let $quick_gj_0_static_attr={'class': 'rd-g9 rd-gT rd-h8 rd-ha',};
+let $quick_gj_3_static_attr={'class': 'rd-gW rd-ha rd-hw rd-i2 rd-iV rd-iY',};
+let $quick_gj_4_static_attr={'class': 'rd-ge rd-i3',};
+let $quick_gj_5_static_attr={'class': 'rd-h6 rd-i4',};
+let $quick_gj_7_static_attr={'class': 'rd-g0 rd-gV rd-hx rd-i0 rd-ir',};
+let $quick_gj_8_static_attr={'class': 'rd-g3 rd-g9 rd-gU rd-ha',};
 
 /*
     author:https://github.com/xinglie
 */
-let magix_1 = require("magix5");
-let index_1 = require("../elements/index");
-let index_2 = require("../gallery/mx-dialog/index");
-let index_3 = require("../gallery/mx-dragdrop/index");
-let cursor_1 = require("../gallery/mx-pointer/cursor");
-let select_1 = require("../gallery/mx-pointer/select");
-let index_4 = require("../gallery/mx-runner/index");
-let fs_1 = require("../provider/fs");
-let const_1 = require("./const");
+let magix_1 = require("51");
+let index_1 = require("../5m/index");
+let index_2 = require("../58/5n/index");
+let index_3 = require("../58/59/index");
+let cursor_1 = require("../58/5a/cursor");
+let select_1 = require("../58/5a/select");
+let index_4 = require("../58/5b/index");
+let fs_1 = require("../5g/fs");
+let const_1 = require("./53");
 let content_1 = require("./content");
-let example_1 = require("./example");
-let keyboard_1 = require("./keyboard");
-let stage_align_1 = require("./stage-align");
-let stage_elements_1 = require("./stage-elements");
-let stage_generic_1 = require("./stage-generic");
-let tojson_1 = require("./tojson");
+let example_1 = require("./5j");
+let keyboard_1 = require("./5e");
+let stage_align_1 = require("./5o");
+let stage_elements_1 = require("./5p");
+let stage_generic_1 = require("./5q");
+let tojson_1 = require("./5h");
 let { node, State, applyStyle, config, View, inside, mix, isFunction } = magix_1;
 let Stage_Line = 1;
 let { random, max, round } = Math;
-let StagePadding = const_1['@:{const#stage.padding~rs}'];
-applyStyle("rd-_designer_header_less_","\n.rd-_designer_header_less_-header-item,\n.rd-_designer_header_less_-sub-item {\nwidth:50px;\nheight:40px;\ndisplay:grid;\ngrid-template-rows:20px 20px;\nmargin:0 2px;\njustify-items:center;\n}\n.rd-_designer_header_less_-header-upon-select {\nz-index:400;\n}\n.rd-_designer_header_less_-header-item-has-subs {\ngrid-template-columns:50px 10px;\nwidth:60px;\n}\n.rd-_designer_header_less_-sub-item {\nborder-radius:2px;\n}\n.rd-_designer_header_less_-sub-item:hover {\nbackground:#398e3e;\n}\n.rd-_designer_header_less_-item-image {\nmax-width:90%;\nmax-height:90%;\n}\n.rd-_designer_header_less_-header-item-more {\ntop:100%;\nleft:0;\nbackground:#40a146;\nwidth:278px;\nborder-radius:0 0 2px 2px;\n}\n.rd-_designer_header_less_-header-item-more-menu {\ntop:100%;\nmin-width:160px;\nborder-radius:0 0 2px 2px;\nbackground:#40a146;\n}\n.rd-_designer_header_less_-header-item:hover {\nbackground:#40a146;\n}\n.rd-_designer_header_less_-header-item:hover .rd-_designer_header_less_-header-item-more {\ndisplay:block;\n}\n.rd-_designer_header_less_-header-item:hover .rd-_designer_header_less_-header-item-more-menu {\ndisplay:block;\n}\n.rd-_designer_header_less_-header-item-z-index:hover {\nz-index:700;\n}\n.rd-_designer_header_less_-header-item-icon {\ngrid-column:1/2;\ngrid-row:1/2;\nalign-self:flex-end;\n}\n.rd-_designer_header_less_-header-item-text {\nfont-weight:400;\nline-height:12px;\ngrid-column:1/2;\ngrid-row:2/3;\n}\n.rd-_designer_header_less_-header-item-arrow {\nmargin-left:-10px;\ngrid-row:1/3;\ngrid-column:2/3;\ntransition:all 0.25s;\nopacity:0.6;\n}\n.rd-_designer_header_less_-header-item:hover .rd-_designer_header_less_-header-item-arrow {\ntransform:rotate(180deg);\n}\n.rd-_designer_header_less_-header-item-spliter {\nheight:30px;\nbackground:linear-gradient(rgba(255, 255, 255, 0.25), #ffffff 30%, #ffffff 70%, rgba(255, 255, 255, 0.25));\nmargin:2px 12px;\n}\n.rd-_designer_header_less_-menu-text {\nword-break:keep-all;\nwhite-space:nowrap;\n}\n.rd-_designer_header_less_-menu-item {\nheight:28px;\nborder-radius:2px;\npadding:0 8px;\nmargin:2px;\nline-height:1.5;\n}\n.rd-_designer_header_less_-menu-item:hover {\nbackground:#398e3e;\n}\n.rd-_designer_header_less_-short {\ncolor:rgba(255, 255, 255, 0.6);\nmargin-left:20px;\n}\n.rd-_designer_header_less_-menu-icon {\nmargin-right:5px;\n}\n");
+let StagePadding = const_1['gs'];
+applyStyle("rd-gh",".rd-iV,.rd-iW{display:grid;grid-template-rows:20px 20px;height:40px;justify-items:center;margin:0 2px;width:50px}.rd-iX{z-index:400}.rd-iY{grid-template-columns:50px 10px;width:60px}.rd-iW{border-radius:2px}.rd-iW:hover{background:#398e3e}.rd-iZ{max-height:90%;max-width:90%}.rd-i0{left:0;width:278px}.rd-i0,.rd-i1{background:#40a146;border-radius:0 0 2px 2px;top:100%}.rd-i1{min-width:160px}.rd-iV:hover{background:#40a146}.rd-iV:hover .rd-i0,.rd-iV:hover .rd-i1{display:block}.rd-i2:hover{z-index:700}.rd-i3{align-self:flex-end;grid-column:1/2;grid-row:1/2}.rd-i4{font-weight:400;grid-column:1/2;grid-row:2/3;line-height:12px}.rd-i5{grid-column:2/3;grid-row:1/3;margin-left:-10px;opacity:.6;transition:all .25s}.rd-iV:hover .rd-i5{transform:rotate(180deg)}.rd-i6{background:linear-gradient(hsla(0,0%,100%,.25),#fff 30%,#fff 70%,hsla(0,0%,100%,.25));height:30px;margin:2px 12px}.rd-i7{white-space:nowrap;word-break:keep-all}.rd-i8{border-radius:2px;height:28px;line-height:1.5;margin:2px;padding:0 8px}.rd-i8:hover{background:#398e3e}.rd-i9{color:hsla(0,0%,100%,.6);margin-left:20px}.rd-j_{margin-right:5px}");
 //不同浏览器对全屏的处理方式不一样，这里进行统一尝试
 let Fullscreens = ['requestFullscreen',
     'webkitRequestFullScreen',
@@ -62,7 +62,7 @@ let Fullscreens = ['requestFullscreen',
     'msRequestFullscreen'];
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId,$encodeUrl,$refData,$keyOf)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0=[],
+let $temp_var,$vnode_0=[],
 {
 	mini,
 	i18n,
@@ -82,221 +82,220 @@ $vnode_5,
 $vnode_4,
 $$_title,
 $text;
-$__line=1;$__art="{{if !mini}}";$__ctrl="if(!mini){";
+
 if(!mini){
 
-if($quick_kq_1_static_node){
-$vnode_1=[$quick_kq_1_static_node];
+if($quick_gj_1_static_node){
+$vnode_1=[$quick_gj_1_static_node];
 }else{
-$vnode_2=[$createVNode(0,'')];$vnode_1=[$quick_kq_1_static_node=$createVNode('i',{'_': 'hN','class': 'rd-_assets_index_less_-iconfont rd-_assets_index_less_-mr10',},$vnode_2)];
+$vnode_2=[$createVNode(0,'')];$vnode_1=[$quick_gj_1_static_node=$createVNode('i',{'_': 'eD','class': 'rd-gI rd-ge',},$vnode_2)];
 }
-$vnode_1.push($createVNode(0,($__line=4,$__art='{{=i18n(\'@:{lang#site.name~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#site.name~rs}\')%>',(i18n('@:{lang#site.name~rs}')))));$vnode_0.push($createVNode('div',$quick_kq_0_static_attr,$vnode_1));
-}$vnode_1=[];$__line=8;$__art="{{each elements as e}}";$__ctrl="for(let $q_c_azzfgptn=elements.length,$q_key_heldsli=0;$q_key_heldsli<$q_c_azzfgptn;$q_key_heldsli++){let e=elements[$q_key_heldsli];";
-for(let $q_c_azzfgptn=elements.length,$q_key_heldsli=0;$q_key_heldsli<$q_c_azzfgptn;$q_key_heldsli+=1){
-let e=elements[$q_key_heldsli];
-$__line=9;$__art="{{if e.spliter}}";$__ctrl="if(e.spliter){";
+$vnode_1.push($createVNode(0,(i18n('gw'))));$vnode_0.push($createVNode('div',$quick_gj_0_static_attr,$vnode_1));
+}$vnode_1=[];
+for(let $q_c_yiraq=elements.length,$q_key_homcgmki=0;$q_key_homcgmki<$q_c_yiraq;$q_key_homcgmki+=1){
+let e=elements[$q_key_homcgmki];
+
 if(e.spliter){
 
-if($quick_kq_2_static_node){
-$vnode_1.push($quick_kq_2_static_node);
+if($quick_gj_2_static_node){
+$vnode_1.push($quick_gj_2_static_node);
 }else{
-$vnode_1.push($quick_kq_2_static_node=$createVNode('div',{'_': 'hO','class': 'rd-_assets_index_less_-fl rd-_assets_index_less_-width-1 rd-_designer_header_less_-header-item-spliter',}));
+$vnode_1.push($quick_gj_2_static_node=$createVNode('div',{'_': 'eE','class': 'rd-gT rd-hp rd-i6',}));
 }
 
 }else{
-$__line=12;$__art="{{if e.subs}}";$__ctrl="if(e.subs){";
+
 if(e.subs){
-$vnode_3=[$createVNode(0,($__line=14,$__art='{{=e.icon}}',$__ctrl='<%=e.icon%>',(e.icon)),1)];$vnode_2=[$createVNode('i',$quick_kq_4_static_attr,$vnode_3)];$vnode_3=[$createVNode(0,($__line=15,$__art='{{=i18n(e.title)}}',$__ctrl='<%=i18n(e.title)%>',(i18n(e.title))))];$vnode_2.push($createVNode('b',$quick_kq_5_static_attr,$vnode_3));
-if($quick_kq_6_static_node){
-$vnode_2.push($quick_kq_6_static_node);
+$vnode_3=[$createVNode(0,(e.icon),1)];$vnode_2=[$createVNode('i',$quick_gj_4_static_attr,$vnode_3)];$vnode_3=[$createVNode(0,(i18n(e.title)))];$vnode_2.push($createVNode('b',$quick_gj_5_static_attr,$vnode_3));
+if($quick_gj_6_static_node){
+$vnode_2.push($quick_gj_6_static_node);
 }else{
-$vnode_3=[$createVNode(0,'')];$vnode_2.push($quick_kq_6_static_node=$createVNode('i',{'_': 'hP','class': 'rd-_assets_index_less_-fontsize-10 rd-_assets_index_less_-iconfont rd-_designer_header_less_-header-item-arrow',},$vnode_3));
+$vnode_3=[$createVNode(0,'')];$vnode_2.push($quick_gj_6_static_node=$createVNode('i',{'_': 'eF','class': 'rd-ge rd-h5 rd-i5',},$vnode_3));
 }
-$vnode_3=[];$__line=18;$__art="{{each e.subs as es}}";$__ctrl="for(let $q_a_znkhzvwppu=e.subs,$q_c_syimrtsudle=$q_a_znkhzvwppu.length,$q_key_lcvyzwy=0;$q_key_lcvyzwy<$q_c_syimrtsudle;$q_key_lcvyzwy++){let es=$q_a_znkhzvwppu[$q_key_lcvyzwy];";
-for(let $q_a_znkhzvwppu=e.subs,$q_c_syimrtsudle=$q_a_znkhzvwppu.length,$q_key_lcvyzwy=0;$q_key_lcvyzwy<$q_c_syimrtsudle;$q_key_lcvyzwy+=1){
-let es=$q_a_znkhzvwppu[$q_key_lcvyzwy];
-$vnode_4=[];$__line=20;$__art="{{if e.image}}";$__ctrl="if(e.image){";
+$vnode_3=[];
+for(let $q_a_jywxnrsj=e.subs,$q_c_asgwhetks=$q_a_jywxnrsj.length,$q_key_bkcxgc=0;$q_key_bkcxgc<$q_c_asgwhetks;$q_key_bkcxgc+=1){
+let es=$q_a_jywxnrsj[$q_key_bkcxgc];
+$vnode_4=[];
 if(e.image){
-$vnode_4.push($createVNode('img',{'class': 'rd-_assets_index_less_-mwp100 rd-_assets_index_less_-tag-img rd-_designer_header_less_-item-image','src': ($__line=21,$__art='{{=es.image}}',$__ctrl='<%=es.image%>',(es.image)),},1));
+$vnode_4.push($createVNode('img',{'class': 'rd-gB rd-gP rd-iZ','src': (es.image),},1));
 }else{
-$vnode_5=[$createVNode(0,($__line=23,$__art='{{=es.icon||es.ctrl.icon}}',$__ctrl='<%=es.icon||es.ctrl.icon%>',(es.icon||es.ctrl.icon)),1)];$vnode_4.push($createVNode('i',$quick_kq_4_static_attr,$vnode_5));
-}$vnode_5=[$createVNode(0,($__line=25,$__art='{{=i18n(es.title||es.ctrl.title)}}',$__ctrl='<%=i18n(es.title||es.ctrl.title)%>',(i18n(es.title||es.ctrl.title))))];$vnode_4.push($createVNode('b',$quick_kq_5_static_attr,$vnode_5));$vnode_3.push($createVNode('div',{'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-fl rd-_assets_index_less_-touch-action-none rd-_designer_header_less_-sub-item','mx5-pointerdown': $viewId+'@:{add.element~rs}({src:\''+($__line=19,$__art='{{#es}}',$__ctrl='<%#es,\'auto_key_elements.\'+($q_key_heldsli)+\'.subs.\'+($q_key_lcvyzwy)+\'.es\'%>',$keyOf($refData,es,'auto_key_elements.'+($q_key_heldsli)+'.subs.'+($q_key_lcvyzwy)+'.es'))+'\',hide:true})',},$vnode_4));
-}$vnode_2.push($createVNode('div',$quick_kq_7_static_attr,$vnode_3));$vnode_1.push($createVNode('div',$quick_kq_3_static_attr,$vnode_2));
+$vnode_5=[$createVNode(0,(es.icon||es.ctrl.icon),1)];$vnode_4.push($createVNode('i',$quick_gj_4_static_attr,$vnode_5));
+}$vnode_5=[$createVNode(0,(i18n(es.title||es.ctrl.title)))];$vnode_4.push($createVNode('b',$quick_gj_5_static_attr,$vnode_5));$vnode_3.push($createVNode('div',{'class': 'rd-gT rd-ha rd-hw rd-iW rd-iz','mx5-pointerdown': $viewId+'_hp({src:\''+$keyOf($refData,es,'eD.'+($q_key_homcgmki)+'.eE.'+($q_key_bkcxgc)+'.eF')+'\',hide:true})',},$vnode_4));
+}$vnode_2.push($createVNode('div',$quick_gj_7_static_attr,$vnode_3));$vnode_1.push($createVNode('div',$quick_gj_3_static_attr,$vnode_2));
 }else{
-$vnode_3=[$createVNode(0,($__line=32,$__art='{{=e.icon||e.ctrl.icon}}',$__ctrl='<%=e.icon||e.ctrl.icon%>',(e.icon||e.ctrl.icon)),1)];$vnode_2=[$createVNode('i',$quick_kq_4_static_attr,$vnode_3)];$vnode_3=[$createVNode(0,($__line=33,$__art='{{=i18n(e.title||e.ctrl.title)}}',$__ctrl='<%=i18n(e.title||e.ctrl.title)%>',(i18n(e.title||e.ctrl.title))))];$vnode_2.push($createVNode('b',$quick_kq_5_static_attr,$vnode_3));$vnode_1.push($createVNode('div',{'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-pr rd-_assets_index_less_-touch-action-none rd-_designer_header_less_-header-item','mx5-pointerdown': $viewId+'@:{add.element~rs}({src:\''+($__line=31,$__art='{{#e}}',$__ctrl='<%#e,\'auto_key_elements.\'+($q_key_heldsli)+\'.e\'%>',$keyOf($refData,e,'auto_key_elements.'+($q_key_heldsli)+'.e'))+'\'})',},$vnode_2));
+$vnode_3=[$createVNode(0,(e.icon||e.ctrl.icon),1)];$vnode_2=[$createVNode('i',$quick_gj_4_static_attr,$vnode_3)];$vnode_3=[$createVNode(0,(i18n(e.title||e.ctrl.title)))];$vnode_2.push($createVNode('b',$quick_gj_5_static_attr,$vnode_3));$vnode_1.push($createVNode('div',{'class': 'rd-gW rd-ha rd-hw rd-iV rd-iz','mx5-pointerdown': $viewId+'_hp({src:\''+$keyOf($refData,e,'eD.'+($q_key_homcgmki)+'.eG')+'\'})',},$vnode_2));
 }
 }
-};$$_class='rd-_assets_index_less_-flex rd-_assets_index_less_-align-items-center rd-_assets_index_less_-fl rd-_assets_index_less_-unselectable'+($__line=7,$__art='{{if !mini}}','');$__ctrl='<%if(!mini){%>';if(!mini){;$$_class+=' rd-_assets_index_less_-ml80'+($__line=7,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('div',{'class': $$_class,},$vnode_1));$vnode_1=[];$__line=40;$__art="{{if template}}";$__ctrl="if(template){";
+};$$_class='rd-g9 rd-ha rd-gT rd-g3';if(!mini){;$$_class+=' rd-hd';};$vnode_0.push($createVNode('div',{'class': $$_class,},$vnode_1));$vnode_1=[];
 if(template){
 
-if($quick_kq_9_static_node){
-$vnode_2=[$quick_kq_9_static_node];
+if($quick_gj_9_static_node){
+$vnode_2=[$quick_gj_9_static_node];
 }else{
-$vnode_3=[$createVNode(0,'')];$vnode_2=[$quick_kq_9_static_node=$createVNode('i',{'_': 'hQ','class': 'rd-_assets_index_less_-iconfont',},$vnode_3)];
+$vnode_3=[$createVNode(0,'')];$vnode_2=[$quick_gj_9_static_node=$createVNode('i',{'_': 'eG','class': 'rd-ge',},$vnode_3)];
 }
 
-if($quick_kq_10_static_node){
-$vnode_2.push($quick_kq_10_static_node);
+if($quick_gj_10_static_node){
+$vnode_2.push($quick_gj_10_static_node);
 }else{
-$vnode_3=[$createVNode(0,'示例')];$vnode_2.push($quick_kq_10_static_node=$createVNode('b',{'_': 'hR','class': 'rd-_assets_index_less_-fontsize-12 rd-_designer_header_less_-header-item-text',},$vnode_3));
+$vnode_3=[$createVNode(0,'示例')];$vnode_2.push($quick_gj_10_static_node=$createVNode('b',{'_': 'eH','class': 'rd-h6 rd-i4',},$vnode_3));
 }
-$vnode_1.push($createVNode('div',{'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-cursor-pointer rd-_designer_header_less_-header-item','mx5-click': $viewId+'@:{show.examples~rs}()',},$vnode_2));
-}$__line=46;$__art="{{if su||cssc||cunf}}";$__ctrl="if(su||cssc||cunf){";
+$vnode_1.push($createVNode('div',{'class': 'rd-ha rd-hw rd-iV','mx5-click': $viewId+'_hz()',},$vnode_2));
+}
 if(su||cssc||cunf){
 $vnode_2=[];
-if($quick_kq_11_static_node){
-$vnode_2.push($quick_kq_11_static_node);
+if($quick_gj_11_static_node){
+$vnode_2.push($quick_gj_11_static_node);
 }else{
-$vnode_3=[$createVNode(0,'')];$vnode_2.push($quick_kq_11_static_node=$createVNode('i',{'_': 'hS','class': 'rd-_assets_index_less_-iconfont',},$vnode_3));
+$vnode_3=[$createVNode(0,'')];$vnode_2.push($quick_gj_11_static_node=$createVNode('i',{'_': 'eI','class': 'rd-ge',},$vnode_3));
 }
 
-if($quick_kq_12_static_node){
-$vnode_2.push($quick_kq_12_static_node);
+if($quick_gj_12_static_node){
+$vnode_2.push($quick_gj_12_static_node);
 }else{
-$vnode_3=[$createVNode(0,'保存')];$vnode_2.push($quick_kq_12_static_node=$createVNode('b',{'_': 'hT','class': 'rd-_assets_index_less_-fontsize-12 rd-_designer_header_less_-header-item-text',},$vnode_3));
+$vnode_3=[$createVNode(0,'保存')];$vnode_2.push($quick_gj_12_static_node=$createVNode('b',{'_': 'eJ','class': 'rd-h6 rd-i4',},$vnode_3));
 }
-$__line=50;$__art="{{if dd}}";$__ctrl="if(dd){";
+
 if(dd){
 
-if($quick_kq_6_static_node){
-$vnode_2.push($quick_kq_6_static_node);
+if($quick_gj_6_static_node){
+$vnode_2.push($quick_gj_6_static_node);
 }else{
-$vnode_3=[$createVNode(0,'')];$vnode_2.push($quick_kq_6_static_node=$createVNode('i',{'_': 'hP','class': 'rd-_assets_index_less_-fontsize-10 rd-_assets_index_less_-iconfont rd-_designer_header_less_-header-item-arrow',},$vnode_3));
+$vnode_3=[$createVNode(0,'')];$vnode_2.push($quick_gj_6_static_node=$createVNode('i',{'_': 'eF','class': 'rd-ge rd-h5 rd-i5',},$vnode_3));
 }
-$vnode_3=[];$__line=53;$__art="{{if su}}";$__ctrl="if(su){";
+$vnode_3=[];
 if(su){
 
-if($quick_kq_13_static_node){
-$vnode_4=[$quick_kq_13_static_node];
+if($quick_gj_13_static_node){
+$vnode_4=[$quick_gj_13_static_node];
 }else{
-$vnode_5=[$createVNode(0,'')];$vnode_4=[$quick_kq_13_static_node=$createVNode('i',{'_': 'hU','class': 'rd-_assets_index_less_-fontsize-14 rd-_assets_index_less_-iconfont rd-_designer_header_less_-menu-icon',},$vnode_5)];
+$vnode_5=[$createVNode(0,'')];$vnode_4=[$quick_gj_13_static_node=$createVNode('i',{'_': 'eK','class': 'rd-ge rd-h7 rd-j_',},$vnode_5)];
 }
-$vnode_5=[$createVNode(0,($__line=57,$__art='{{=i18n(\'@:{lang#menu.save.to.remote~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.save.to.remote~rs}\')%>',(i18n('@:{lang#menu.save.to.remote~rs}'))))];$vnode_4.push($createVNode('span',{'class': 'rd-_assets_index_less_-flex-fill-rest rd-_designer_header_less_-menu-text','title': ($__line=56,$__art='{{=i18n(\'@:{lang#menu.save.to.remote~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.save.to.remote~rs}\')%>',(i18n('@:{lang#menu.save.to.remote~rs}'))),},$vnode_5));
-if($quick_kq_14_static_node){
-$vnode_4.push($quick_kq_14_static_node);
+$vnode_5=[$createVNode(0,(i18n('g1')))];$vnode_4.push($createVNode('span',{'class': 'rd-g8 rd-i7','title': (i18n('g1')),},$vnode_5));
+if($quick_gj_14_static_node){
+$vnode_4.push($quick_gj_14_static_node);
 }else{
-$vnode_5=[$createVNode(0,'Ctrl+S')];$vnode_4.push($quick_kq_14_static_node=$createVNode('code',{'_': 'hV','class': 'rd-_assets_index_less_-fontsize-12 rd-_designer_header_less_-short','title': '快捷键:Ctrl+S',},$vnode_5));
+$vnode_5=[$createVNode(0,'Ctrl+S')];$vnode_4.push($quick_gj_14_static_node=$createVNode('code',{'_': 'eL','class': 'rd-h6 rd-i9','title': '快捷键:Ctrl+S',},$vnode_5));
 }
-$vnode_3.push($createVNode('div',{'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_designer_header_less_-menu-item','mx5-click': $viewId+'@:{save~rs}()',},$vnode_4));
-}$__line=62;$__art="{{if cssc}}";$__ctrl="if(cssc){";
+$vnode_3.push($createVNode('div',{'class': 'rd-g9 rd-ha rd-i8','mx5-click': $viewId+'_g0()',},$vnode_4));
+}
 if(cssc){
 
-if($quick_kq_15_static_node){
-$vnode_4=[$quick_kq_15_static_node];
+if($quick_gj_15_static_node){
+$vnode_4=[$quick_gj_15_static_node];
 }else{
-$vnode_5=[$createVNode(0,'')];$vnode_4=[$quick_kq_15_static_node=$createVNode('i',{'_': 'hW','class': 'rd-_assets_index_less_-fontsize-14 rd-_assets_index_less_-iconfont rd-_designer_header_less_-menu-icon',},$vnode_5)];
+$vnode_5=[$createVNode(0,'')];$vnode_4=[$quick_gj_15_static_node=$createVNode('i',{'_': 'eM','class': 'rd-ge rd-h7 rd-j_',},$vnode_5)];
 }
-$vnode_5=[$createVNode(0,($__line=66,$__art='{{=i18n(\'@:{lang#save.content.title~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#save.content.title~rs}\')%>',(i18n('@:{lang#save.content.title~rs}'))))];$vnode_4.push($createVNode('span',{'class': 'rd-_assets_index_less_-flex-fill-rest rd-_designer_header_less_-menu-text','title': ($__line=65,$__art='{{=i18n(\'@:{lang#save.content.title~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#save.content.title~rs}\')%>',(i18n('@:{lang#save.content.title~rs}'))),},$vnode_5));$text='Ctrl+'+($__line=68,$__art='{{if su}}','');$__ctrl='<%if(su){%>';if(su){;$text+='Shift+'+($__line=68,$__art='{{/if}}','');$__ctrl='<%}%>';};$text+='S';$vnode_5=[$createVNode(0,$text)];;$$_title='快捷键:Ctrl+'+($__line=68,$__art='{{if su}}','');$__ctrl='<%if(su){%>';if(su){;$$_title+='Shift+'+($__line=68,$__art='{{/if}}','');$__ctrl='<%}%>';};$$_title+='S';$vnode_4.push($createVNode('code',{'class': 'rd-_designer_header_less_-short','title': $$_title,},$vnode_5));$vnode_3.push($createVNode('div',{'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_designer_header_less_-menu-item','mx5-click': $viewId+'@:{show.stage.content~rs}()',},$vnode_4));
-}$__line=71;$__art="{{if cunf}}";$__ctrl="if(cunf){";
+$vnode_5=[$createVNode(0,(i18n('gy')))];$vnode_4.push($createVNode('span',{'class': 'rd-g8 rd-i7','title': (i18n('gy')),},$vnode_5));$text='Ctrl+';if(su){;$text+='Shift+';};$text+='S';$vnode_5=[$createVNode(0,$text)];;$$_title='快捷键:Ctrl+';if(su){;$$_title+='Shift+';};$$_title+='S';$vnode_4.push($createVNode('code',{'class': 'rd-i9','title': $$_title,},$vnode_5));$vnode_3.push($createVNode('div',{'class': 'rd-g9 rd-ha rd-i8','mx5-click': $viewId+'_h_()',},$vnode_4));
+}
 if(cunf){
 
-if($quick_kq_16_static_node){
-$vnode_4=[$quick_kq_16_static_node];
+if($quick_gj_16_static_node){
+$vnode_4=[$quick_gj_16_static_node];
 }else{
-$vnode_5=[$createVNode(0,'')];$vnode_4=[$quick_kq_16_static_node=$createVNode('i',{'_': 'hX','class': 'rd-_assets_index_less_-fontsize-14 rd-_assets_index_less_-iconfont rd-_designer_header_less_-menu-icon',},$vnode_5)];
+$vnode_5=[$createVNode(0,'')];$vnode_4=[$quick_gj_16_static_node=$createVNode('i',{'_': 'eN','class': 'rd-ge rd-h7 rd-j_',},$vnode_5)];
 }
-$vnode_5=[$createVNode(0,($__line=75,$__art='{{=i18n(\'@:{lang#menu.save.to.local~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.save.to.local~rs}\')%>',(i18n('@:{lang#menu.save.to.local~rs}'))))];$vnode_4.push($createVNode('span',{'class': 'rd-_assets_index_less_-flex-fill-rest rd-_designer_header_less_-menu-text','title': ($__line=74,$__art='{{=i18n(\'@:{lang#menu.save.to.local~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.save.to.local~rs}\')%>',(i18n('@:{lang#menu.save.to.local~rs}'))),},$vnode_5));$vnode_3.push($createVNode('div',{'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_designer_header_less_-menu-item','mx5-click': $viewId+'@:{save.to.local~rs}()',},$vnode_4));$vnode_4=[];
-if($quick_kq_17_static_node){
-$vnode_4.push($quick_kq_17_static_node);
+$vnode_5=[$createVNode(0,(i18n('g2')))];$vnode_4.push($createVNode('span',{'class': 'rd-g8 rd-i7','title': (i18n('g2')),},$vnode_5));$vnode_3.push($createVNode('div',{'class': 'rd-g9 rd-ha rd-i8','mx5-click': $viewId+'_ha()',},$vnode_4));$vnode_4=[];
+if($quick_gj_17_static_node){
+$vnode_4.push($quick_gj_17_static_node);
 }else{
-$vnode_5=[$createVNode(0,'')];$vnode_4.push($quick_kq_17_static_node=$createVNode('i',{'_': 'hY','class': 'rd-_assets_index_less_-fontsize-14 rd-_assets_index_less_-iconfont rd-_designer_header_less_-menu-icon',},$vnode_5));
+$vnode_5=[$createVNode(0,'')];$vnode_4.push($quick_gj_17_static_node=$createVNode('i',{'_': 'eO','class': 'rd-ge rd-h7 rd-j_',},$vnode_5));
 }
-$vnode_5=[$createVNode(0,($__line=81,$__art='{{=i18n(\'@:{lang#menu.import.from.local~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.import.from.local~rs}\')%>',(i18n('@:{lang#menu.import.from.local~rs}'))))];$vnode_4.push($createVNode('span',{'class': 'rd-_assets_index_less_-flex-fill-rest rd-_designer_header_less_-menu-text','title': ($__line=80,$__art='{{=i18n(\'@:{lang#menu.import.from.local~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#menu.import.from.local~rs}\')%>',(i18n('@:{lang#menu.import.from.local~rs}'))),},$vnode_5));$__line=83;$__art="{{if native}}";$__ctrl="if(native){";
+$vnode_5=[$createVNode(0,(i18n('g3')))];$vnode_4.push($createVNode('span',{'class': 'rd-g8 rd-i7','title': (i18n('g3')),},$vnode_5));
 if(native){
-$vnode_4.push($createVNode('input',{'type': 'file','accept': '.rd','class': 'rd-_assets_index_less_-full-fill rd-_assets_index_less_-opacity-0 rd-_assets_index_less_-pa','mx5-change': $viewId+'@:{read.file.from.input~rs}()',},1));
-}$vnode_3.push($createVNode('div',{'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-flex rd-_assets_index_less_-pr rd-_designer_header_less_-menu-item','mx5-click': $viewId+'@:{read.from.local~rs}()',},$vnode_4));
-}$vnode_2.push($createVNode('div',{'class': 'rd-_assets_index_less_-cursor-default rd-_assets_index_less_-none rd-_assets_index_less_-pa rd-_assets_index_less_-padding-2 rd-_assets_index_less_-right-0 rd-_designer_header_less_-header-item-more-menu','mx5-click': $viewId+'@:{stop.event~rs}()',},$vnode_3));
-};$$_class='rd-_designer_header_less_-header-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center'+($__line=47,$__art='{{if dd}}','');$__ctrl='<%if(dd){%>';if(dd){;$$_class+=' rd-_designer_header_less_-header-item-z-index rd-_designer_header_less_-header-item-has-subs rd-_assets_index_less_-pr'+($__line=47,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_1.push($createVNode('div',{'mx5-click': $viewId+'@:{save~rs}()','class': $$_class,},$vnode_2));
-}$__line=92;$__art="{{if !mini}}";$__ctrl="if(!mini){";
+$vnode_4.push($createVNode('input',{'type': 'file','accept': '.rd','class': 'rd-gV rd-hK rd-iw','mx5-change': $viewId+'_hc()',},1));
+}$vnode_3.push($createVNode('div',{'class': 'rd-g9 rd-gW rd-ha rd-i8','mx5-click': $viewId+'_hb()',},$vnode_4));
+}$vnode_2.push($createVNode('div',{'class': 'rd-g0 rd-gV rd-hx rd-i1 rd-ia rd-is','mx5-click': $viewId+'_g9()',},$vnode_3));
+};$$_class='rd-iV rd-hw rd-ha';if(dd){;$$_class+=' rd-i2 rd-iY rd-gW';};$vnode_1.push($createVNode('div',{'mx5-click': $viewId+'_g0()','class': $$_class,},$vnode_2));
+}
 if(!mini){
 
-if($quick_kq_2_static_node){
-$vnode_1.push($quick_kq_2_static_node);
+if($quick_gj_2_static_node){
+$vnode_1.push($quick_gj_2_static_node);
 }else{
-$vnode_1.push($quick_kq_2_static_node=$createVNode('div',{'_': 'hO','class': 'rd-_assets_index_less_-fl rd-_assets_index_less_-width-1 rd-_designer_header_less_-header-item-spliter',}));
+$vnode_1.push($quick_gj_2_static_node=$createVNode('div',{'_': 'eE','class': 'rd-gT rd-hp rd-i6',}));
 }
 
-if($quick_kq_18_static_node){
-$vnode_2=[$quick_kq_18_static_node];
+if($quick_gj_18_static_node){
+$vnode_2=[$quick_gj_18_static_node];
 }else{
-$vnode_3=[$createVNode(0,'')];$vnode_2=[$quick_kq_18_static_node=$createVNode('i',{'_': 'hZ','class': 'rd-_assets_index_less_-iconfont',},$vnode_3)];
+$vnode_3=[$createVNode(0,'')];$vnode_2=[$quick_gj_18_static_node=$createVNode('i',{'_': 'eP','class': 'rd-ge',},$vnode_3)];
 }
 
-if($quick_kq_19_static_node){
-$vnode_2.push($quick_kq_19_static_node);
+if($quick_gj_19_static_node){
+$vnode_2.push($quick_gj_19_static_node);
 }else{
-$vnode_3=[$createVNode(0,'大屏预览')];$vnode_2.push($quick_kq_19_static_node=$createVNode('b',{'_': 'h0','class': 'rd-_assets_index_less_-fontsize-12 rd-_designer_header_less_-header-item-text',},$vnode_3));
+$vnode_3=[$createVNode(0,'大屏预览')];$vnode_2.push($quick_gj_19_static_node=$createVNode('b',{'_': 'eQ','class': 'rd-h6 rd-i4',},$vnode_3));
 }
-$vnode_1.push($createVNode('div',{'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-cursor-pointer rd-_designer_header_less_-header-item','mx5-click': $viewId+'@:{preview~rs}()',},$vnode_2));
+$vnode_1.push($createVNode('div',{'class': 'rd-ha rd-hw rd-iV','mx5-click': $viewId+'_hs()',},$vnode_2));
 }
-if($quick_kq_20_static_node){
-$vnode_2=[$quick_kq_20_static_node];
+if($quick_gj_20_static_node){
+$vnode_2=[$quick_gj_20_static_node];
 }else{
-$vnode_3=[$createVNode(0,'')];$vnode_2=[$quick_kq_20_static_node=$createVNode('i',{'_': 'h1','class': 'rd-_assets_index_less_-iconfont',},$vnode_3)];
+$vnode_3=[$createVNode(0,'')];$vnode_2=[$quick_gj_20_static_node=$createVNode('i',{'_': 'eR','class': 'rd-ge',},$vnode_3)];
 }
 
-if($quick_kq_21_static_node){
-$vnode_2.push($quick_kq_21_static_node);
+if($quick_gj_21_static_node){
+$vnode_2.push($quick_gj_21_static_node);
 }else{
-$vnode_3=[$createVNode(0,'打印')];$vnode_2.push($quick_kq_21_static_node=$createVNode('b',{'_': 'h2','class': 'rd-_assets_index_less_-fontsize-12 rd-_designer_header_less_-header-item-text',},$vnode_3));
+$vnode_3=[$createVNode(0,'打印')];$vnode_2.push($quick_gj_21_static_node=$createVNode('b',{'_': 'eS','class': 'rd-h6 rd-i4',},$vnode_3));
 }
-$vnode_1.push($createVNode('div',{'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-cursor-pointer rd-_designer_header_less_-header-item','mx5-click': $viewId+'@:{print~rs}()',},$vnode_2));$__line=103;$__art="{{if help}}";$__ctrl="if(help){";
+$vnode_1.push($createVNode('div',{'class': 'rd-ha rd-hw rd-iV','mx5-click': $viewId+'_g6()',},$vnode_2));
 if(help){
 
-if($quick_kq_2_static_node){
-$vnode_1.push($quick_kq_2_static_node);
+if($quick_gj_2_static_node){
+$vnode_1.push($quick_gj_2_static_node);
 }else{
-$vnode_1.push($quick_kq_2_static_node=$createVNode('div',{'_': 'hO','class': 'rd-_assets_index_less_-fl rd-_assets_index_less_-width-1 rd-_designer_header_less_-header-item-spliter',}));
+$vnode_1.push($quick_gj_2_static_node=$createVNode('div',{'_': 'eE','class': 'rd-gT rd-hp rd-i6',}));
 }
 
-if($quick_kq_22_static_node){
-$vnode_2=[$quick_kq_22_static_node];
+if($quick_gj_22_static_node){
+$vnode_2=[$quick_gj_22_static_node];
 }else{
-$vnode_3=[$createVNode(0,'')];$vnode_2=[$quick_kq_22_static_node=$createVNode('i',{'_': 'h3','class': 'rd-_assets_index_less_-iconfont',},$vnode_3)];
+$vnode_3=[$createVNode(0,'')];$vnode_2=[$quick_gj_22_static_node=$createVNode('i',{'_': 'eT','class': 'rd-ge',},$vnode_3)];
 }
 
-if($quick_kq_23_static_node){
-$vnode_2.push($quick_kq_23_static_node);
+if($quick_gj_23_static_node){
+$vnode_2.push($quick_gj_23_static_node);
 }else{
-$vnode_3=[$createVNode(0,'帮助')];$vnode_2.push($quick_kq_23_static_node=$createVNode('b',{'_': 'h4','class': 'rd-_assets_index_less_-fontsize-12 rd-_designer_header_less_-header-item-text',},$vnode_3));
+$vnode_3=[$createVNode(0,'帮助')];$vnode_2.push($quick_gj_23_static_node=$createVNode('b',{'_': 'eU','class': 'rd-h6 rd-i4',},$vnode_3));
 }
-$vnode_1.push($createVNode('div',{'class': 'rd-_assets_index_less_-align-items-center rd-_assets_index_less_-cursor-pointer rd-_designer_header_less_-header-item','mx5-click': $viewId+'@:{help~rs}()',},$vnode_2));
-}$vnode_0.push($createVNode('div',$quick_kq_8_static_attr,$vnode_1)); 
+$vnode_1.push($createVNode('div',{'class': 'rd-ha rd-hw rd-iV','mx5-click': $viewId+'_hy()',},$vnode_2));
+}$vnode_0.push($createVNode('div',$quick_gj_8_static_attr,$vnode_1)); 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/header.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init() {
         this.set({
-            help: const_1['@:{const#shortcuts.dialog.and.help.icon~rs}'],
-            mini: State.get('@:{global#provider.of.use.mini~rs}'),
+            help: const_1['gp'],
+            mini: State.get('gk'),
             template: config('getTemplateUrl')
         });
         let watchKeypress = (e) => {
-            let { '@:{keypress#code~rs}': keyCode, '@:{keypress#ctrl.key~rs}': ctrlKey, '@:{keypress#alt.key~rs}': altKey, '@:{keypress#shift.key~rs}': shiftKey } = e;
-            if (keyCode == keyboard_1['@:{key#p~rs}'] &&
+            let { 'gg': keyCode, 'gi': ctrlKey, 'gj': altKey, 'gh': shiftKey } = e;
+            if (keyCode == keyboard_1['gl'] &&
                 ctrlKey &&
                 !shiftKey &&
                 !altKey) {
-                e['@:{keypress#prevent.default~rs}']();
-                this['@:{print~rs}<click>']();
+                e['gk']();
+                this['_g6<click>']();
             }
         };
-        State.on('@:{event#stage.key.press~rs}', watchKeypress);
+        State.on('gm', watchKeypress);
         this.on('destroy', () => {
-            State.off('@:{event#stage.key.press~rs}', watchKeypress);
+            State.off('gm', watchKeypress);
         });
     },
     render() {
-        let elements = index_1["@:{element.manager#element.list~rs}"]();
+        let elements = index_1["gd"]();
         let saveUrl = config('saveContentUrl');
-        let canShowStageContent = const_1['@:{const#save.show.stage.content~rs}'];
-        let canUseNativeFile = const_1['@:{const#save.native.file~rs}'];
+        let canShowStageContent = const_1['go'];
+        let canUseNativeFile = const_1['gn'];
         /**
          * 如果要对项目中可使用的设计元素控制，则在这里对elements数组进行控制即可
          * 比如在这里发送请求，根据服务端返回的数据进行控制
          */
         this.digest({
-            native: fs_1['@:{native.file.element~rs}'](),
+            native: fs_1['_g7'](),
             dd: canUseNativeFile || (saveUrl && canShowStageContent),
             su: saveUrl,
             cssc: canShowStageContent,
@@ -304,36 +303,36 @@ return $createVNode($viewId,0,$vnode_0);
             elements
         });
     },
-    '@:{stop.event~rs}<click>'(e) {
-        e['@:{halt~rs}'] = 1;
+    '_g9<click>'(e) {
+        e['_g8'] = 1;
     },
-    '@:{show.stage.content~rs}<click>'() {
-        State.fire('@:{event#stage.save.content~rs}', {
-            '@:{save.content.event#shift.key~rs}': 1
+    '_h_<click>'() {
+        State.fire('gp', {
+            'gd': 1
         });
     },
-    '@:{save.to.local~rs}<click>'() {
-        content_1['@:{save~rs}']();
+    '_ha<click>'() {
+        content_1['_g0']();
     },
-    '@:{read.from.local~rs}<click>'(e) {
+    '_hb<click>'(e) {
         let native = this.get('native');
         if (!native) {
-            content_1['@:{read.file~rs}'](e.eventTarget);
+            content_1['_gX'](e.eventTarget);
         }
     },
-    '@:{read.file.from.input~rs}<change>'(e) {
-        content_1['@:{read.file~rs}'](e.eventTarget);
+    '_hc<change>'(e) {
+        content_1['_gX'](e.eventTarget);
     },
     /**
      * 当鼠标在设计元素上按下时，可能是拖动或点击动作
      * @param e 鼠标事件
      */
-    '@:{add.element~rs}<pointerdown>'(e) {
+    '_hp<pointerdown>'(e) {
         let { params, eventTarget, altKey, pageX: beginX, pageY: beginY } = e;
         beginY -= window.scrollY;
         beginX -= window.screenX;
         let { classList: rootClassList } = this.root;
-        rootClassList.add('rd-_designer_header_less_-header-upon-select'); //让header在拖动的虚线框之上
+        rootClassList.add('rd-iX'); //让header在拖动的虚线框之上
         let { src, hide } = params;
         let { props: definedProps, ctrl } = src; //获取鼠标下的元素控制对象和预设属性
         let moreNode = eventTarget.parentNode; //有可能是更多面板里的元素
@@ -341,34 +340,34 @@ return $createVNode($viewId,0,$vnode_0);
         let moved;
         let stage = node('_rd_stage');
         //以下props仅为了拿到尺寸，鼠标松开添加时，会在stage-elements.ts的add.element里重新生成一份新的props，因此不要在这里对props做修改，否则会不生效
-        let props = ctrl['@:{get.props~rs}'](0, 0); //获取元素的属性，主要是为了拿到尺寸，生成相应的鼠标跟随矩形
+        let props = ctrl['_hd'](0, 0); //获取元素的属性，主要是为了拿到尺寸，生成相应的鼠标跟随矩形
         //如果有预设属性，则需要合并进去
         if (isFunction(definedProps)) {
             definedProps = definedProps();
         }
         mix(props, definedProps);
-        if (ctrl['@:{update.props~rs}']) { //如果元素需要动态确定属性，则调用
-            ctrl['@:{update.props~rs}'](props);
+        if (ctrl['_he']) { //如果元素需要动态确定属性，则调用
+            ctrl['_he'](props);
         }
         let { width, height } = props; //拿到元素的尺寸
-        width = round(const_1['@:{const#to.px~rs}'](width));
-        height = round(const_1['@:{const#to.px~rs}'](height));
-        let scale = State.get('@:{global#stage.scale~rs}');
+        width = round(const_1['gY'](width));
+        height = round(const_1['gY'](height));
+        let scale = State.get('ge');
         width *= scale; //根据当前缩放，生成相应的尺寸
         height *= scale;
-        select_1["@:{init~rs}"](); //准备显示矩形
-        cursor_1["@:{root.show.by.type~rs}"]('move'); //全局显示可移动的鼠标样式
-        let allowedTotalCount = ctrl['@:{allowed.total.count~rs}'], //获取当前元素一共能添加多少个
-        allowedStageCount = ctrl['@:{allowed.stage.count~rs}'], //获取当前元素允许向设计区添加多少个
+        select_1["_hf"](); //准备显示矩形
+        cursor_1["_hg"]('move'); //全局显示可移动的鼠标样式
+        let allowedTotalCount = ctrl['_hh'], //获取当前元素一共能添加多少个
+        allowedStageCount = ctrl['_hi'], //获取当前元素允许向设计区添加多少个
         allCount = 0, stageCount = 0;
         if (allowedTotalCount || allowedStageCount) {
-            let { '@:{generic.all#elements~rs}': allElements } = stage_generic_1["@:{generic#get.all.elements.and.map~rs}"]();
-            allCount = stage_generic_1["@:{generic#filter.elements~rs}"](allElements, ctrl.type).length; //获取当前一共添加了多少个
-            stageCount = stage_generic_1["@:{generic#filter.elements~rs}"](State.get('@:{global#stage.elements~rs}'), ctrl.type).length; //获取当前设计区添加了多少个
+            let { 'gd': allElements } = stage_generic_1["gd"]();
+            allCount = stage_generic_1["ge"](allElements, ctrl.type).length; //获取当前一共添加了多少个
+            stageCount = stage_generic_1["ge"](State.get('gl'), ctrl.type).length; //获取当前设计区添加了多少个
         }
         let nearestElements = []; //吸附对齐的其它元素
-        let page = State.get('@:{global#stage.page~rs}'), isSpecialHod = ctrl.type == 'hod-header' ||
-            ctrl.type == 'hod-footer', supportSnapElement = const_1['@:{const#page.enable.snap.align.elements~rs}'] &&
+        let page = State.get('gm'), isSpecialHod = ctrl.type == 'hod-header' ||
+            ctrl.type == 'hod-footer', supportSnapElement = const_1['gz'] &&
             !isSpecialHod && !page.readonly, //头尾元素手动时，不需要使用吸附对齐到其它元素，只读模式关闭对齐功能
         snapElement = page.snapElement; //
         let pos = {
@@ -376,26 +375,26 @@ return $createVNode($viewId,0,$vnode_0);
             y: 0,
             width: 0,
             height: 0
-        }, snapOffset = const_1['@:{const#drag.snap.to.other.element.offset~rs}'] * scale;
+        }, snapOffset = const_1['gJ'] * scale;
         let startX = beginX, startY = beginY, testX, testY, sizesMap, aberration;
         //元素吸附
         if (supportSnapElement) {
-            aberration = const_1['@:{const#unit.px.aberration~rs}']();
+            aberration = const_1['gZ']();
             //先计算出其它元素的可对齐坐标
-            let { '@:{generic.all#elements~rs}': allElements } = stage_generic_1['@:{generic#get.all.elements.and.map~rs}']();
-            let alignElements = stage_align_1['@:{align#query.align.elements~rs}'](allElements);
-            nearestElements = alignElements['@:{align.queried#align.elements.sizes~rs}'];
-            pos = alignElements['@:{align.queried#root.bound~rs}'];
-            let sInfo = stage_generic_1['@:{generic#query.test.position.and.sizes~rs}'](0, 0, [{
-                    '@:{align.queried#left~rs}': 0,
-                    '@:{align.queried#top~rs}': 0,
-                    '@:{align.queried#ctrl~rs}': ctrl,
-                    '@:{align.queried#width~rs}': width,
-                    '@:{align.queried#height~rs}': height,
+            let { 'gd': allElements } = stage_generic_1['gd']();
+            let alignElements = stage_align_1['gd'](allElements);
+            nearestElements = alignElements['gd'];
+            pos = alignElements['ge'];
+            let sInfo = stage_generic_1['gf'](0, 0, [{
+                    'gf': 0,
+                    'gg': 0,
+                    'gh': ctrl,
+                    'gi': width,
+                    'gj': height,
                 }]);
-            testX = sInfo['@:{test.x~rs}'];
-            testY = sInfo['@:{test.y~rs}'];
-            sizesMap = sInfo['@:{sizes.map~rs}'];
+            testX = sInfo['_hj'];
+            testY = sInfo['_hk'];
+            sizesMap = sInfo['_hl'];
         }
         //开始坐标，拖动时以元素中心为移动点
         startX -= width / 2 + pos.x;
@@ -407,8 +406,8 @@ return $createVNode($viewId,0,$vnode_0);
             if (!moveInfo)
                 return;
             if (magixEvent) {
-                scrollOffsetY = -magixEvent['@:{interval.move.event#y~rs}'];
-                scrollOffsetX - magixEvent['@:{interval.move.event#x~rs}'];
+                scrollOffsetY = -magixEvent['gd'];
+                scrollOffsetX - magixEvent['ge'];
             }
             if (!moved) { //在移动时，如果是首次回调，则更多面板需要隐藏
                 if (hide) {
@@ -424,15 +423,15 @@ return $createVNode($viewId,0,$vnode_0);
             pageX -= window.scrollX;
             offsetX = pageX - beginX;
             offsetY = pageY - beginY;
-            let hoverNode = index_3["@:{from.point~rs}"](moveInfo.clientX, moveInfo.clientY), insideStageZone = inside(hoverNode, stage);
+            let hoverNode = index_3["_hm"](moveInfo.clientX, moveInfo.clientY), insideStageZone = inside(hoverNode, stage);
             let lastElement = nearestElements[nearestElements.length - 1];
             if (hoverNode != lastHoverNode) {
-                lastHod = stage_elements_1['@:{elements#get.best.hod~rs}'](hoverNode, ctrl);
+                lastHod = stage_elements_1['gd'](hoverNode, ctrl);
                 lastHoverNode = hoverNode;
                 //新容器装入，旧容器移除
                 if (lastElement && (!lastHod ||
-                    lastElement['@:{align.queried#mask.id~rs}'] != lastHod['@:{mask.id~rs}'])) {
-                    if (lastElement['@:{align.queried#mask.id~rs}']) {
+                    lastElement['gk'] != lastHod['_hn'])) {
+                    if (lastElement['gk']) {
                         nearestElements.pop();
                     }
                 }
@@ -441,30 +440,30 @@ return $createVNode($viewId,0,$vnode_0);
                 if (insideStageZone) { //在设计区才判断
                     if (!altPressed && //未按alt键
                         lastHod &&
-                        lastElement['@:{align.queried#mask.id~rs}'] != lastHod['@:{mask.id~rs}']) {
-                        let maskNode = node(lastHod['@:{mask.id~rs}']);
+                        lastElement['gk'] != lastHod['_hn']) {
+                        let maskNode = node(lastHod['_hn']);
                         if (maskNode) {
                             let db = maskNode.getBoundingClientRect();
                             nearestElements.push({
-                                '@:{align.queried#type~rs}': Stage_Line,
-                                '@:{align.queried#mask.id~rs}': lastHod['@:{mask.id~rs}'],
-                                '@:{align.queried#left~rs}': db.x - pos.x - scrollOffsetX,
-                                '@:{align.queried#top~rs}': db.y - pos.y - scrollOffsetY,
-                                '@:{align.queried#width~rs}': db.width,
-                                '@:{align.queried#height~rs}': db.height
+                                'gl': Stage_Line,
+                                'gk': lastHod['_hn'],
+                                'gf': db.x - pos.x - scrollOffsetX,
+                                'gg': db.y - pos.y - scrollOffsetY,
+                                'gi': db.width,
+                                'gj': db.height
                             });
                         }
                     }
                     //console.log(nearestElements);
-                    let snapInfo = stage_align_1['@:{align#find.and.fire.align.position~rs}'](nearestElements, startX, offsetX, startY, offsetY, sizesMap, testX, testY, 0, 0, altPressed, snapOffset, aberration, scrollOffsetX, scrollOffsetY, maxWidth, maxHeight);
-                    offsetX = snapInfo['@:{align#new.offset.x~rs}'];
-                    offsetY = snapInfo['@:{align#new.offset.y~rs}'];
+                    let snapInfo = stage_align_1['ge'](nearestElements, startX, offsetX, startY, offsetY, sizesMap, testX, testY, 0, 0, altPressed, snapOffset, aberration, scrollOffsetX, scrollOffsetY, maxWidth, maxHeight);
+                    offsetX = snapInfo['gf'];
+                    offsetY = snapInfo['gg'];
                 }
                 else {
-                    stage_align_1['@:{align#reset.snap.lines~rs}']();
+                    stage_align_1['gh']();
                 }
             }
-            State.fire('@:{event#toolbox.drag.element.move~rs}', {
+            State.fire('gq', {
                 width,
                 height,
                 ctrl,
@@ -479,40 +478,40 @@ return $createVNode($viewId,0,$vnode_0);
                 pageY: startY + offsetY + pos.y
             });
             //触发鼠标移动事件，用于贴边滚动
-            State.fire('@:{event#drag.element.move~rs}', moveInfo);
-            if (magixEvent && !magixEvent['@:{interval.move.event#called~rs}']) {
-                magixEvent['@:{interval.move.event#called~rs}'] = 1;
-                magixEvent['@:{interval.move.event#ready~rs}']();
+            State.fire('gr', moveInfo);
+            if (magixEvent && !magixEvent['gf']) {
+                magixEvent['gf'] = 1;
+                magixEvent['gg']();
             }
         };
         let watchKeypress = e => {
-            altPressed = snapElement ? e['@:{keypress#alt.key~rs}'] : !e['@:{keypress#alt.key~rs}'];
+            altPressed = snapElement ? e['gj'] : !e['gj'];
             moveCallback();
         };
         //如果按alt键，则需要实时响应界面，即拖动过程中停下来，未松开鼠标，而此时按alt键，则界面需要实时显示或隐藏吸附线，同时元素做偏移
-        State.on('@:{event#stage.key.press~rs}', watchKeypress);
+        State.on('gm', watchKeypress);
         //如果设计区滚动，鼠标未动，则辅助线也需要实时更新
-        State.on('@:{event#stage.interval.move~rs}', moveCallback);
-        this['@:{drag.drop~rs}'](e, ex => {
+        State.on('gs', moveCallback);
+        this['_gL'](e, ex => {
             moveInfo = ex;
             moveCallback();
         }, (ex) => {
-            State.off('@:{event#stage.key.press~rs}', watchKeypress);
-            State.off('@:{event#stage.interval.move~rs}', moveCallback);
+            State.off('gm', watchKeypress);
+            State.off('gs', moveCallback);
             if (hide) {
                 moreNode.style.display = '';
             }
-            rootClassList.remove('rd-_designer_header_less_-header-upon-select');
+            rootClassList.remove('rd-iX');
             //拖动结束，隐藏矩形
-            select_1["@:{hide~rs}"]();
+            select_1["_gN"]();
             //恢复鼠标形状
-            cursor_1["@:{root.hide~rs}"]();
+            cursor_1["_ho"]();
             State.set({
-                '@:{global#memory.cache.element~rs}': [src] //一次性添加多个，只需要向这个数组添加其它元素即可
+                'gn': [src] //一次性添加多个，只需要向这个数组添加其它元素即可
             });
             if (!moved) { //如果未移动过，则是点击添加
                 //位置随机到左上角
-                State.fire('@:{event#toolbox.add.element~rs}', {
+                State.fire('gt', {
                     // width,
                     // height,
                     pageX: stage.scrollLeft + ((random() * 50) | 0),
@@ -522,25 +521,25 @@ return $createVNode($viewId,0,$vnode_0);
             }
             if (ex) {
                 //获取当前鼠标下的节点，并
-                let hoverNode = index_3["@:{from.point~rs}"](ex.clientX, ex.clientY);
-                State.fire('@:{event#toolbox.add.element~rs}', {
+                let hoverNode = index_3["_hm"](ex.clientX, ex.clientY);
+                State.fire('gt', {
                     node: hoverNode,
                     // width,
                     // height,
                     pageX: startX + offsetX + pos.x,
                     pageY: startY + offsetY + pos.y, // + (list.length - i) * 20
                 });
-                State.fire('@:{event#drag.element.stop~rs}');
+                State.fire('gu');
                 if (supportSnapElement) {
-                    State.fire('@:{event#stage.find.snap.element~rs}');
+                    State.fire('gd');
                 }
             }
         });
     },
-    '@:{preview~rs}<click>'() {
+    '_hs<click>'() {
         let cavans = node('_rd_so');
-        this['@:{cached.screen.size.width~rs}'] = screen.width;
-        this['@:{cached.screen.size.height~rs}'] = screen.height;
+        this['_hq'] = screen.width;
+        this['_hr'] = screen.height;
         for (let fs of Fullscreens) {
             if (cavans[fs]) {
                 cavans[fs]();
@@ -548,9 +547,9 @@ return $createVNode($viewId,0,$vnode_0);
             }
         }
     },
-    '@:{save~rs}<click>'(e) {
-        if (!e['@:{halt~rs}']) {
-            State.fire('@:{event#stage.save.content~rs}');
+    '_g0<click>'(e) {
+        if (!e['_g8']) {
+            State.fire('gp');
         }
     },
     // '@:{display}<click>'() {
@@ -571,47 +570,47 @@ return $createVNode($viewId,0,$vnode_0);
     //     };
     //     Runner["@:{task.add.background}"](400, this['@:{display.post.fn}'] = post);
     // },
-    '@:{print~rs}<click>'() {
-        if (const_1['@:{const#new.page.print~rs}']) {
+    '_g6<click>'() {
+        if (const_1['gG']) {
             //this.alert('打印功能正开发中...');
-            let old = this['@:{printer.post.fn~rs}'];
+            let old = this['_ht'];
             if (old) {
-                index_4["@:{task.remove.background~rs}"](old);
+                index_4["_hu"](old);
             }
-            this['@:{printer.try.send.message~rs}'] = 0;
-            let w = window.open(DEBUG ? '/print-debug.html' : './print.html', '@:{printer~rs}');
+            this['_hv'] = 0;
+            let w = window.open(DEBUG ? '/print-debug.html' : './print.html', '_hw');
             w.focus();
             let origin = location.protocol + '//' + location.host;
             let post = () => {
                 w.postMessage(tojson_1(), origin);
-                this['@:{printer.try.send.message~rs}']++;
-                if (this['@:{printer.try.send.message~rs}'] > 20) {
-                    index_4["@:{task.remove.background~rs}"](post);
+                this['_hv']++;
+                if (this['_hv'] > 20) {
+                    index_4["_hu"](post);
                 }
             };
-            index_4["@:{task.add.background~rs}"](400, this['@:{printer.post.fn~rs}'] = post);
+            index_4["_hx"](400, this['_ht'] = post);
         }
         else {
-            this.mxDialog("designer/print", {
+            this.mxDialog("50/print", {
                 width: max(1200, screen.width - 100)
             });
         }
     },
-    '@:{help~rs}<click>'() {
-        State.fire('@:{event#stage.key.press~rs}', {
-            '@:{keypress#is.key.down~rs}': 1,
-            '@:{keypress#shift.key~rs}': 1,
-            '@:{keypress#code~rs}': keyboard_1['@:{key#slash~rs}']
+    '_hy<click>'() {
+        State.fire('gm', {
+            'ge': 1,
+            'gh': 1,
+            'gg': keyboard_1['gm']
         });
     },
-    '@:{show.examples~rs}<click>'() {
-        example_1["@:{show~rs}"](this);
+    '_hz<click>'() {
+        example_1["_gM"](this);
     },
     '$win<message>'(e) {
         let origin = location.protocol + '//' + location.host;
         if (e.origin == origin &&
-            e.data == '@:{printer.message.received~rs}') {
-            index_4["@:{task.remove.background~rs}"](this['@:{printer.post.fn~rs}']);
+            e.data == '_hA') {
+            index_4["_hu"](this['_ht']);
         } /* else if (e.data == '@:{display.message.received}') {
             Runner["@:{task.remove.background}"](this['@:{display.post.fn}']);
         }*/
@@ -621,11 +620,11 @@ return $createVNode($viewId,0,$vnode_0);
         let element = doc.fullscreenElement ||
             doc.webkitCurrentFullScreenElement ||
             doc.mozFullScreenElement || null;
-        State.fire('@:{event#preview~rs}', {
-            '@:{fullscreen~rs}': 1,
-            '@:{width~rs}': this['@:{cached.screen.size.width~rs}'],
-            '@:{height~rs}': this['@:{cached.screen.size.height~rs}'],
-            '@:{is.full.screen~rs}': !!element
+        State.fire('gv', {
+            '_hB': 1,
+            '_hC': this['_hq'],
+            '_hD': this['_hr'],
+            '_hE': !!element
         });
     }
 }).merge(index_3, index_2);

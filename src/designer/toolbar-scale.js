@@ -4,23 +4,23 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("designer/toolbar-scale",["magix5","./history","./keyboard","./const"],(require,exports,module)=>{
-let $quick_ky_static_text;
-let $quick_kz_static_text;
-let $quick_kE_0_static_attr={'class': 'rd-_assets_index_less_-tc rd-_designer_toolbar_less_-toolbar-text',};
+define("50/6c",["51","./5d","./5e","./53"],(require,exports,module)=>{
+let $quick_gr_static_text;
+let $quick_gs_static_text;
+let $quick_gx_0_static_attr={'class': 'rd-gS rd-jA',};
 /*
     author:https://github.com/xinglie
 */
 
 
-let magix_1 = require("magix5");
-let history_1 = require("./history");
-let keyboard_1 = require("./keyboard");
-let const_1 = require("./const");
+let magix_1 = require("51");
+let history_1 = require("./5d");
+let keyboard_1 = require("./5e");
+let const_1 = require("./53");
 let { State, View } = magix_1;
 module.exports= View.extend({
     tmpl: ($dataFromView, $createVNode,$viewId)=> { 
-let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
+let $temp_var,$vnode_0,
 {
 	scale,
 	min,
@@ -28,68 +28,67 @@ let $__art, $__line, $__ctrl; try { let $temp_var,$vnode_0,
 	max,}=$dataFromView,
 $$_class,
 $vnode_1;
-$vnode_1=[$quick_ky_static_text||($quick_ky_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=1,$__art='{{if scale<=min}}','');$__ctrl='<%if(scale<=min){%>';if(scale<=min){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-disabled'+($__line=1,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0=[$createVNode('i',{'mx5-click': $viewId+'@:{stage.scale~rs}({s:\'-\'})','title': ($__line=1,$__art='{{=i18n(\'@:{lang#zoom.out~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#zoom.out~rs}\')%>',(i18n('@:{lang#zoom.out~rs}'))),'class': $$_class,},$vnode_1)];$vnode_1=[$createVNode(0,($__line=2,$__art='{{=scale*100}}',$__ctrl='<%=scale*100%>',(scale*100))+'%')];$vnode_0.push($createVNode('b',$quick_kE_0_static_attr,$vnode_1));$vnode_1=[$quick_kz_static_text||($quick_kz_static_text=$createVNode(0,''))];;$$_class='rd-_assets_index_less_-iconfont rd-_designer_toolbar_less_-toolbar-item rd-_assets_index_less_-cursor-pointer rd-_assets_index_less_-align-items-center rd-_assets_index_less_-justify-content-center'+($__line=3,$__art='{{if scale>=max}}','');$__ctrl='<%if(scale>=max){%>';if(scale>=max){;$$_class+=' rd-_designer_toolbar_less_-toolbar-item-disabled'+($__line=3,$__art='{{/if}}','');$__ctrl='<%}%>';};$vnode_0.push($createVNode('i',{'mx5-click': $viewId+'@:{stage.scale~rs}({s:\'+\'})','title': ($__line=3,$__art='{{=i18n(\'@:{lang#zoom.in~rs}\')}}',$__ctrl='<%=i18n(\'@:{lang#zoom.in~rs}\')%>',(i18n('@:{lang#zoom.in~rs}'))),'class': $$_class,},$vnode_1)); 
+$vnode_1=[$quick_gr_static_text||($quick_gr_static_text=$createVNode(0,''))];;$$_class='rd-ge rd-jv rd-hw rd-ha rd-hs';if(scale<=min){;$$_class+=' rd-jz';};$vnode_0=[$createVNode('i',{'mx5-click': $viewId+'_iN({s:\'-\'})','title': (i18n('hW')),'class': $$_class,},$vnode_1)];$vnode_1=[$createVNode(0,(scale*100)+'%')];$vnode_0.push($createVNode('b',$quick_gx_0_static_attr,$vnode_1));$vnode_1=[$quick_gs_static_text||($quick_gs_static_text=$createVNode(0,''))];;$$_class='rd-ge rd-jv rd-hw rd-ha rd-hs';if(scale>=max){;$$_class+=' rd-jz';};$vnode_0.push($createVNode('i',{'mx5-click': $viewId+'_iN({s:\'+\'})','title': (i18n('hX')),'class': $$_class,},$vnode_1)); 
 
-return $createVNode($viewId,0,$vnode_0); 
-} catch (ex) { let msg = 'render view error:' + (ex.message || ex); msg += '\r\n\tsrc art: ' + $__art + '\r\n\tat line: ' + $__line; msg += '\r\n\ttranslate to: ' + $__ctrl + '\r\n\tat file:designer/toolbar-scale.html'; throw msg; }  } ,
+return $createVNode($viewId,0,$vnode_0); } ,
     init() {
         let update = this.render.bind(this);
         let watchKeypress = e => {
-            if (e['@:{keypress#is.prevent.actions~rs}'] ||
-                !e['@:{keypress#is.key.down~rs}'])
+            if (e['gd'] ||
+                !e['ge'])
                 return;
-            let scale = this.get('scale'), old = scale, max = const_1["@:{const#max.scale~rs}"], min = const_1["@:{const#min.scale~rs}"], step = const_1["@:{const#step.scale~rs}"];
-            let { '@:{keypress#code~rs}': code, '@:{keypress#shift.key~rs}': shiftKey, '@:{keypress#ctrl.key~rs}': ctrlKey, '@:{keypress#alt.key~rs}': altKey } = e;
+            let scale = this.get('scale'), old = scale, max = const_1["gD"], min = const_1["gE"], step = const_1["gF"];
+            let { 'gg': code, 'gh': shiftKey, 'gi': ctrlKey, 'gj': altKey } = e;
             if (!(shiftKey || altKey) &&
                 ctrlKey) {
-                if (code == keyboard_1["@:{key#ctrl.plus~rs}"]) {
-                    e['@:{keypress#prevent.default~rs}']();
+                if (code == keyboard_1["gH"]) {
+                    e['gk']();
                     scale += step;
                     if (scale > max)
                         scale = max;
                 }
-                else if (code == keyboard_1["@:{key#ctrl.minus~rs}"]) {
-                    e['@:{keypress#prevent.default~rs}']();
+                else if (code == keyboard_1["gI"]) {
+                    e['gk']();
                     scale -= step;
                     if (scale < min)
                         scale = min;
                 }
-                else if (code == keyboard_1["@:{key#num.zero~rs}"]) {
+                else if (code == keyboard_1["gJ"]) {
                     //e['@:{keypress#prevent.default}']();
                     //恢复我们不阻止，万－浏览器真有缩放存在，可以通过该操作进行恢复
                     scale = 1;
                 }
                 if (old != scale &&
-                    !e['@:{keypress#active.is.input~rs}']) {
+                    !e['gf']) {
                     State.set({
-                        '@:{global#stage.scale~rs}': scale
+                        'ge': scale
                     });
-                    State.fire('@:{event#stage.scale.change~rs}', {
+                    State.fire('gh', {
                         step: scale / old
                     });
-                    history_1["@:{history#save~rs}"](scale > old ? history_1['@:{history#zoomin.stage~rs}'] : history_1['@:{history#zoomout.stage~rs}']);
+                    history_1["gd"](scale > old ? history_1['gr'] : history_1['gs']);
                 }
             }
         };
-        State.on('@:{event#stage.scale.change~rs}', update);
-        State.on('@:{event#history.shift.change~rs}', update);
-        State.on('@:{event#stage.key.press~rs}', watchKeypress);
+        State.on('gh', update);
+        State.on('gi', update);
+        State.on('gm', watchKeypress);
         this.on('destroy', () => {
-            State.off('@:{event#stage.scale.change~rs}', update);
-            State.off('@:{event#history.shift.change~rs}', update);
-            State.off('@:{event#stage.key.press~rs}', watchKeypress);
+            State.off('gh', update);
+            State.off('gi', update);
+            State.off('gm', watchKeypress);
         });
     },
     render() {
         this.digest({
-            max: const_1["@:{const#max.scale~rs}"],
-            min: const_1["@:{const#min.scale~rs}"],
-            scale: State.get('@:{global#stage.scale~rs}')
+            max: const_1["gD"],
+            min: const_1["gE"],
+            scale: State.get('ge')
         });
     },
-    '@:{stage.scale~rs}<click>'(e) {
+    '_iN<click>'(e) {
         let { s } = e.params;
-        let scale = this.get('scale'), old = scale, max = const_1["@:{const#max.scale~rs}"], min = const_1["@:{const#min.scale~rs}"], step = const_1["@:{const#step.scale~rs}"];
+        let scale = this.get('scale'), old = scale, max = const_1["gD"], min = const_1["gE"], step = const_1["gF"];
         if (s == '+') {
             scale += step;
             if (scale > max)
@@ -102,13 +101,13 @@ return $createVNode($viewId,0,$vnode_0);
         }
         if (old != scale) {
             State.set({
-                '@:{global#stage.scale~rs}': scale
+                'ge': scale
             });
             //this.render();
-            State.fire('@:{event#stage.scale.change~rs}', {
+            State.fire('gh', {
                 step: scale / old
             });
-            history_1["@:{history#save~rs}"](scale > old ? history_1['@:{history#zoomin.stage~rs}'] : history_1['@:{history#zoomout.stage~rs}']);
+            history_1["gd"](scale > old ? history_1['gr'] : history_1['gs']);
         }
     }
 });

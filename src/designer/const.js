@@ -4,10 +4,10 @@
     author: https://github.com/xinglie
     loader:cmd_es
  */
-define("designer/const",["magix5","./enum"],(require,exports,module)=>{
+define("50/53",["51","./enum"],(require,exports,module)=>{
 
 
-let magix_1 = require("magix5");
+let magix_1 = require("51");
 let enum_1 = require("./enum");
 let { State, isArray, isObject } = magix_1;
 let { round, pow, abs } = Math;
@@ -18,7 +18,7 @@ let approachZero = 1e-7;
  */
 let ScalesMap = {
     'px': {
-        '@:{decimals~rs}': 0,
+        '_gk': 0,
         '0.5': {
             space: 200,
             step: 10 //多长显示一个小刻度
@@ -58,7 +58,7 @@ let ScalesMap = {
          * 未缩放的情况下，一个格子占多长，step = space/10*scale;
          * 确定space即可
          */
-        '@:{decimals~rs}': 0,
+        '_gk': 0,
         '0.5': {
             space: 151.2,
             step: 7.56 //多长显示一个小刻度
@@ -93,7 +93,7 @@ let ScalesMap = {
         }
     },
     'in': {
-        '@:{decimals~rs}': 2,
+        '_gk': 2,
         '0.5': {
             space: 192,
             step: 9.6
@@ -128,7 +128,7 @@ let ScalesMap = {
         }
     },
     'pt': {
-        '@:{decimals~rs}': 0,
+        '_gk': 0,
         '0.5': {
             space: 213.28,
             step: 10.664
@@ -163,7 +163,7 @@ let ScalesMap = {
         }
     },
     'cm': {
-        '@:{decimals~rs}': 1,
+        '_gk': 1,
         '0.5': {
             space: 151.18,
             step: 7.559 //多长显示一个小刻度
@@ -198,7 +198,7 @@ let ScalesMap = {
         }
     },
     'pc': {
-        '@:{decimals~rs}': 1,
+        '_gk': 1,
         '0.5': {
             space: 160,
             step: 8
@@ -233,7 +233,7 @@ let ScalesMap = {
         }
     },
     'q': {
-        '@:{decimals~rs}': 0,
+        '_gk': 0,
         '0.5': {
             space: 151.2,
             step: 7.56 //多长显示一个小刻度
@@ -288,8 +288,8 @@ let unitSteps = {
 };
 let unitPools = {
     px: {
-        '@:{unit-pools#px.to.unit~rs}': 1,
-        '@:{unit-pools#unit.to.px~rs}': 1,
+        'gd': 1,
+        'ge': 1,
         //'@:{unit-pools#aberration}': 0
     }
 };
@@ -328,23 +328,23 @@ let prepareUnit = unit => {
         let toUnit = enlarge / width;
         let toPx = width / enlarge;
         unitPools[unit] = {
-            '@:{unit-pools#px.to.unit~rs}': toUnit,
+            'gd': toUnit,
             //目标单位转像素，即1unit=?px
-            '@:{unit-pools#unit.to.px~rs}': toPx,
+            'ge': toPx,
             //误差，磁吸时使用
             //'@:{unit-pools#aberration}': enlarge - scaleToUnit(enlarge * toUnit, null, unit) * toPx
         };
     }
 };
 let toPx = (v, unit) => {
-    unit = unit || State.get('@:{global#stage.unit~rs}');
+    unit = unit || State.get('gf');
     prepareUnit(unit);
     let dest = unitPools[unit];
     //结果不要转整数，svg的点需要小数，否则显示会不精准
-    return v * dest['@:{unit-pools#unit.to.px~rs}'];
+    return v * dest['ge'];
 };
 let unitAberration = (unit) => {
-    unit = unit || State.get('@:{global#stage.unit~rs}');
+    unit = unit || State.get('gf');
     let decimals = unitDecimals[unit];
     return 1 / pow(10, decimals);
 };
@@ -377,26 +377,26 @@ let clone = a => {
  * !的多少表示对性能的影响，越多表示越有可能影响性能
  */
 module.exports= {
-    '@:{const#history.max.count~rs}': 50,
-    '@:{const#random.examples~rs}': 1,
-    '@:{const#save.native.file~rs}': 1,
-    '@:{const#save.show.stage.content~rs}': 1,
-    '@:{const#shortcuts.dialog.and.help.icon~rs}': 1,
-    '@:{const#clear.copy.list.when.cut.action~rs}': 1,
-    '@:{const#stage.scale~rs}': 1,
-    '@:{const#stage.padding~rs}': [80, 480, 80, 240],
-    '@:{const#page.width~rs}': 791,
-    '@:{const#page.height~rs}': 1120,
-    '@:{const#page.max.width~rs}': 10000,
-    '@:{const#page.max.height~rs}': 10000,
-    '@:{const#move.near.side.area~rs}': 20,
-    '@:{const#move.near.step~rs}': 5,
+    'gl': 50,
+    'gm': 1,
+    'gn': 1,
+    'go': 1,
+    'gp': 1,
+    'gq': 1,
+    'gr': 1,
+    'gs': [80, 480, 80, 240],
+    'gt': 791,
+    'gu': 1120,
+    'gv': 10000,
+    'gw': 10000,
+    'gx': 20,
+    'gy': 5,
     //'@:{const#page.enable.snap.grid}': 1,//是否启用吸附网格功能
-    '@:{const#page.enable.snap.align.elements~rs}': 1,
-    '@:{const#page.follow.snap.align.elements~rs}': enum_1["@:{enum#follow.align.selected~rs}"],
+    'gz': 1,
+    'gA': enum_1["gd"],
     //对齐点　默认4条线中间点，元素中间点，4个拐角
-    '@:{const#align.points~rs}': enum_1["@:{enum#align.centers~rs}"] | enum_1["@:{enum#align.coners~rs}"],
-    '@:{const#contextmenu.paste.exactly.source.position~rs}': 0,
+    'gB': enum_1["ge"] | enum_1["gf"],
+    'gC': 0,
     // '@:{const#page.grid.width}': 10,//默认网格宽
     // '@:{const#page.grid.height}': 10,//网格高
     // '@:{const#page.grid.max.width}': 40,//网格最大宽
@@ -404,46 +404,46 @@ module.exports= {
     // '@:{const#page.grid.min.width}': 4,//最小宽
     // '@:{const#page.grid.min.height}': 4,//最小高
     //'@:{const#table.cell.min.size}': 20,//容器格子小尺寸
-    '@:{const#axis.size~rs}': 20,
-    '@:{const#axis.padding~rs}': 500,
-    '@:{const#axis.show.shadow~rs}': 1,
-    '@:{const#max.scale~rs}': 4,
-    '@:{const#min.scale~rs}': 0.5,
-    '@:{const#step.scale~rs}': 0.5,
-    '@:{const#new.page.print~rs}': 0,
-    '@:{const#keyboard.move.step~rs}': 1,
-    '@:{const#keyboard.with.shift.move.step~rs}': 10,
-    '@:{const#keyboard.rotate.step~rs}': 1,
-    '@:{const#keyboard.with.shift.rotate.step~rs}': 5,
-    '@:{const#drag.snap.to.other.element.offset~rs}': 8,
-    '@:{const#support.readonly.element~rs}': 1,
-    '@:{const#support.panels.hide.when.nearside~rs}': 1,
-    '@:{const#element.same.position.offset~rs}': 10,
+    'gh': 20,
+    'gg': 500,
+    'gd': 1,
+    'gD': 4,
+    'gE': 0.5,
+    'gF': 0.5,
+    'gG': 0,
+    'gk': 1,
+    'gj': 10,
+    'gH': 1,
+    'gI': 5,
+    'gJ': 8,
+    'gK': 1,
+    'gL': 1,
+    'gM': 10,
     //'@:{const#data.source.panel.tree.view}': 1,//数据源面板是否使用树形展示
-    '@:{const#element.min.px.size~rs}': 3,
-    '@:{const#element.dblclick.interval.ms.time~rs}': 200,
+    'gN': 3,
+    'gO': 200,
     //常用字体集合
-    '@:{const#font.family~rs}': [{
+    'gP': [{
             "value": 'SimSun',
-            "text": '@:{lang#font.simsun~rs}'
+            "text": 'gj'
         }, {
             "value": 'SimHei',
-            "text": '@:{lang#font.simhei~rs}'
+            "text": 'gk'
         }, {
             "value": 'Microsoft YaHei',
-            "text": "@:{lang#font.yahei~rs}"
+            "text": "gl"
         }, {
             "value": "Microsoft JhengHei",
-            "text": "@:{lang#font.jhei~rs}"
+            "text": "gm"
         }, {
             "value": "KaiTi",
-            "text": "@:{lang#font.kaiti~rs}"
+            "text": "gn"
         }, {
             "value": "LiSu",
-            "text": "@:{lang#font.lisu~rs}"
+            "text": "go"
         }, {
             "value": "YouYuan",
-            "text": "@:{lang#font.youyuan~rs}"
+            "text": "gp"
         }, {
             "value": "Arial",
             "text": "Arial"
@@ -469,33 +469,33 @@ module.exports= {
             "value": "monospace",
             "text": "Monospace"
         }],
-    '@:{const#border.types~rs}': [{
-            text: '@:{lang#props.border.type.solid~rs}',
+    'gQ': [{
+            text: 'gq',
             value: 'solid'
         }, {
-            text: '@:{lang#props.border.type.dotted~rs}',
+            text: 'gr',
             value: 'dotted'
         }, {
-            text: '@:{lang#props.border.type.dashed~rs}',
+            text: 'gs',
             value: 'dashed'
         }, {
-            text: '@:{lang#props.border.type.double~rs}',
+            text: 'gt',
             value: 'double'
         }],
     //以下用于切换默认单位，目前默认是mm，仅支持px cm q in mm pt pc这7种
-    '@:{const#unit~rs}': 'mm',
-    '@:{const#unit.allow.change~rs}': 1,
-    '@:{const#unit.step~rs}'(unit) {
-        unit = unit || State.get('@:{global#stage.unit~rs}');
+    'gR': 'mm',
+    'gS': 1,
+    'gT'(unit) {
+        unit = unit || State.get('gf');
         return unitSteps[unit];
     },
-    '@:{const#unit.fixed~rs}'(unit) {
-        unit = unit || State.get('@:{global#stage.unit~rs}');
+    'gU'(unit) {
+        unit = unit || State.get('gf');
         return unitDecimals[unit];
     },
-    '@:{const#axis.unit.map~rs}': ScalesMap,
-    '@:{const#scale.to.unit~rs}'(v, l, unit) {
-        unit = unit || State.get('@:{global#stage.unit~rs}');
+    'gi': ScalesMap,
+    'gf'(v, l, unit) {
+        unit = unit || State.get('gf');
         if (l == null) {
             l = unitDecimals[unit];
         }
@@ -503,22 +503,22 @@ module.exports= {
         v *= s;
         return (round(v) / s);
     },
-    '@:{const#to.unit~rs}'(v, unit) {
+    'ge'(v, unit) {
         //把系统使用的px单位转成相应的需求单位
-        unit = unit || State.get('@:{global#stage.unit~rs}');
+        unit = unit || State.get('gf');
         prepareUnit(unit);
         let dest = unitPools[unit];
-        v *= dest['@:{unit-pools#px.to.unit~rs}'];
+        v *= dest['gd'];
         return v;
     },
-    '@:{const#approach.zero~rs}': approachZero,
-    '@:{const#great.than.or.approach~rs}'(value, anchor) {
+    'gV': approachZero,
+    'gW'(value, anchor) {
         if (value < anchor) {
             return abs(value - anchor) < approachZero;
         }
         return 1;
     },
-    '@:{const#approach~rs}'(v1, v2) {
+    'gX'(v1, v2) {
         return abs(v1 - v2) < approachZero;
     },
     // '@:{const#int.approach.unit}'(v: number, unit?: string) {
@@ -530,13 +530,13 @@ module.exports= {
     //     }
     //     return i;
     // },
-    '@:{const#to.px~rs}': toPx,
+    'gY': toPx,
     //'@:{const#unit.aberration}': unitAberration,
     // '@:{const#unit.half.step.aberration}'(unit?: string) {
     //     unit = unit || State.get('@:{global#stage.unit}');
     //     return unitSteps[unit] / 2;
     // },
-    '@:{const#unit.px.aberration~rs}'(unit) {
+    'gZ'(unit) {
         let aberration = toPx(unitAberration(unit));
         if (aberration > 0.5) {
             aberration = 0.5;
@@ -550,14 +550,14 @@ module.exports= {
      * @param unit 来源单位
      * @returns 转换后的新单位数值
      */
-    '@:{const#unit.to.unit~rs}'(v, toUnit, unit) {
-        unit = unit || State.get('@:{global#stage.unit~rs}');
+    'g0'(v, toUnit, unit) {
+        unit = unit || State.get('gf');
         prepareUnit(unit);
         prepareUnit(toUnit);
         let from = unitPools[unit], to = unitPools[toUnit];
-        return v * from['@:{unit-pools#unit.to.px~rs}'] * to['@:{unit-pools#px.to.unit~rs}'];
+        return v * from['ge'] * to['gd'];
     },
-    '@:{const#clone~rs}': clone
+    'g1': clone
 };
 
 });
