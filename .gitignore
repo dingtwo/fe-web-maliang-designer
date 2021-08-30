@@ -5,6 +5,8 @@
 node_modules
 todo.md
 
+src
+
 # Sublime Project files
 *.sublime-*
 build
