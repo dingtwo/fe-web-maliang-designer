@@ -21,9 +21,11 @@ let calcAcc = (list, fromIndex, end, totalRow) => {
         let count = 0;
         for (let start = fromIndex; start < end; start++) {
             let src = list[start];
-            sum += src[key];
+            // NOTICE: 字符串格式转为数字
+            sum += Number(src[key]);
             count++;
         }
+        
         if (isNaN(sum)) {
             sum = 0;
         }

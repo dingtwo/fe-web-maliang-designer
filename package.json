@@ -4,6 +4,7 @@
   "version": "2021.8.24",
   "author": "kooboy_li <kooboy_li@163.com>",
   "dependencies": {
+    "@csx/calc": "^0.0.15",
     "del": "6.0.0",
     "gulp": "4.0.2",
     "gulp-concat": "2.6.1",

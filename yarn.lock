@@ -2,6 +2,15 @@
 # yarn lockfile v1
 
 
+"@csx/calc@^0.0.15":
+  version "0.0.15"
+  resolved "http://10.252.201.11:4873/@csx%2fcalc/-/calc-0.0.15.tgz#843793ef032c5b92abb70718573c38c3beb87707"
+  integrity sha512-Z6uR5nNXvyDqK2thRqs/6yTYRDyof1WpPVmiuQ1SpVA3bRMGyetrVgbLDVndEB2b2EYah3vLayTi6yLxEpDrQQ==
+  dependencies:
+    big.js "^6.0.3"
+    nzh "^1.0.4"
+    toformat "^2.0.0"
+
 "@csx/magix-composer@^1.0.0":
   version "1.0.0"
   resolved "http://10.252.201.11:4873/@csx%2fmagix-composer/-/magix-composer-1.0.0.tgz#f19a4bfb39b10335ddf44ad55bce629153fd5cf8"
@@ -293,6 +302,11 @@ base@^0.11.1:
     isobject "^3.0.1"
     mixin-deep "^1.2.0"
     pascalcase "^0.1.1"
+
+big.js@^6.0.3:
+  version "6.1.1"
+  resolved "http://10.252.201.11:4873/big.js/-/big.js-6.1.1.tgz#63b35b19dc9775c94991ee5db7694880655d5537"
+  integrity sha1-Y7NbGdyXdclJke5dt2lIgGVdVTc=
 
 binary-extensions@^1.0.0:
   version "1.13.1"
@@ -2234,6 +2248,11 @@ number-is-nan@^1.0.0:
   resolved "http://10.252.201.11:4873/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
+nzh@^1.0.4:
+  version "1.0.5"
+  resolved "http://10.252.201.11:4873/nzh/-/nzh-1.0.5.tgz#5d8057ca10a93b9b198ae7bdc5dd7a0b865af03f"
+  integrity sha1-XYBXyhCpO5sZiue9xd16C4Za8D8=
+
 object-assign@^4.1.0:
   version "4.1.1"
   resolved "http://10.252.201.11:4873/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
@@ -3345,6 +3364,11 @@ to-through@^2.0.0:
   integrity sha1-/JKtq6ByZHvAtn1rA2ZKoZUJOvY=
   dependencies:
     through2 "^2.0.3"
+
+toformat@^2.0.0:
+  version "2.0.0"
+  resolved "http://10.252.201.11:4873/toformat/-/toformat-2.0.0.tgz#7a043fd2dfbe9021a4e36e508835ba32056739d8"
+  integrity sha1-egQ/0t++kCGk425QiDW6MgVnOdg=
 
 tslib@^1.10.0:
   version "1.14.1"
