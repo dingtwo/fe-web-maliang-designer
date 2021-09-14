@@ -49,7 +49,8 @@ let calcAcc = (list, fromIndex, end, totalRow) => {
         count = 0;
         for (let start = 0; start < list.length; start++) {
             let src = list[start];
-            sum += src[key];
+            // NOTICE: 转为数字格式
+            sum += Number(src[key]);
             count++;
         }
         if (isNaN(sum)) {
