@@ -1,5 +1,6 @@
 import Magix from 'magix';
-import nzhCn from './nzhcn.js';
+import { nzhCn } from './calc.js';
+import _ from './lodash.min.js';
 
 let decimals = [
   {
@@ -28,6 +29,7 @@ let decimals = [
     example: '0.0001',
   },
 ];
+
 let groups = [
   {
     title: '数字',
@@ -280,21 +282,56 @@ let groups = [
     id: 'transform',
     groups: [
       {
+        title: '四舍五入',
+        list: [
+          {
+            title: '无小数，向上',
+            format: 'toFixed_3_0#',
+            example: '1.0001 => 2',
+          },
+          {
+            title: '无小数，向下',
+            format: 'toFixed_0_0#',
+            example: '1.9999 => 1',
+          },
+          {
+            title: '无小数，四舍五入',
+            format: 'toFixed_1_0#',
+            example: '1.9999 => 2; 1.424 => 1',
+          },
+          {
+            title: '一位小数，向上',
+            format: 'toFixed_3_1#',
+            example: '1.0001 => 1.1',
+          },
+          {
+            title: '一位小数，向下',
+            format: 'toFixed_0_1#',
+            example: '1.9999 => 1.9',
+          },
+          {
+            title: '一位小数，四舍五入',
+            format: 'toFixed_1_1#',
+            example: '1.4999 => 1.5; 1.424 => 1.4',
+          },
+        ],
+      },
+      {
         title: '数字转换',
         list: [
           {
             title: '转中文小写',
-            format: 'encodeS',
+            format: 'encodeS#',
             example: '十万零一百一十一',
           },
           {
             title: '转中文大写',
-            format: 'encodeB',
+            format: 'encodeB#',
             example: '壹拾万零壹佰壹拾壹',
           },
           {
             title: '转中文金额',
-            format: 'toMoney',
+            format: 'toMoney#',
             example: '人民币壹佰壹拾壹元壹角壹分',
           },
         ],
@@ -305,15 +342,16 @@ let groups = [
     title: '自定义',
     id: 'custom',
     defaults: `/*
-    data是根据根据当前绑定的字段取到的数据
-    item是完整的单条数据对象
-    可以把下面的console前的注释去掉查看相应的数据
-*/
-function(data,item){
-    //console.log(data,item);
-    //return data+item.name;
-    return data;
-}`,
+      data是根据根据当前绑定的字段取到的数据
+      item是完整的单条数据对象
+      可以把下面的console前的注释去掉查看相应的数据
+    */
+
+    function(data,item){
+      //console.log(data,item);
+      //return data+item.name;
+      return data;
+    }`,
   },
 ];
 
@@ -426,37 +464,52 @@ export default {
       } else if (prefix == 'custom') {
         return [prefix, rest];
       } else if (prefix === 'transform') {
-        return [prefix, rest];
+        const ruleList = _.filter(_.split(rest, '#'), item => item);
+        const rules = _.map(ruleList, item => `${item}#`);
+
+        return [prefix, ...rules];
       }
     }
 
     return [];
   },
+
+  /**
+   * @description 通过遍历显示格式的配置数据来获取显示遍历的title
+   * @param {*} format
+   * @return {string} title
+   */
   '@:{translate}'(format) {
     let parts = this['@:{get.parts}'](format);
+    const [groupId, ...rules] = parts;
 
-    let text = '';
-    for (let g of groups) {
-      if (g.id == parts[0]) {
-        text = g.title + ':';
-        if (g.id == 'custom') {
-          text += '函数';
-        } else {
-          let gi = 1;
-          for (let sub of g.groups) {
-            for (let e of sub.list) {
-              if (e.format == parts[gi]) {
-                text += e.title;
-                break;
-              }
-            }
-            gi++;
+    if (!groupId) {
+      return '';
+    }
+
+    const group = _.find(groups, item => item.id === groupId);
+
+    if (groupId === 'custom') {
+      return `${group.title}:函数`;
+    }
+
+    const titles = _.reduce(
+      rules,
+      (prev, item) => {
+        for (let sub of group.groups) {
+          const isElm = _.find(sub.list, i => i.format === item);
+
+          if (isElm) {
+            return [...prev, isElm.title];
           }
         }
-        break;
-      }
-    }
-    return text;
+
+        return prev;
+      },
+      [group.title],
+    );
+
+    return _.join(titles, ':');
   },
   '@:{format}'(format, data, ...exts) {
     format += '';
@@ -548,17 +601,18 @@ export default {
         return data;
       }
     } else if (prefix === 'transform') {
+      console.log('parts', parts);
       const [integer] = parts;
 
       switch (integer) {
         // 转中文小写
-        case 'encodeS':
+        case 'encodeS#':
           return nzhCn.encodeS(data);
         // 转中文大写
-        case 'encodeB':
+        case 'encodeB#':
           return nzhCn.encodeB(data);
         // 转中文金额
-        case 'toMoney':
+        case 'toMoney#':
           return nzhCn.toMoney(data);
       }
     }
