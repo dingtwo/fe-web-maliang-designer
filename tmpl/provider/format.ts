@@ -80,57 +80,6 @@ let groups = [
   },
 ];
 
-let dateReg = [
-  {
-    reg: /y+/gi,
-    fn(m, d) {
-      return (d.getFullYear() + '').slice(-m.length);
-    },
-  },
-  {
-    reg: /M+/g,
-    fn(m, d) {
-      return ('0' + (d.getMonth() + 1)).slice(-m.length);
-    },
-  },
-  {
-    reg: /d+/gi,
-    fn(m, d) {
-      return ('0' + d.getDate()).slice(-m.length);
-    },
-  },
-  {
-    reg: /h+/gi,
-    fn(m, d) {
-      return ('0' + d.getHours()).slice(-m.length);
-    },
-  },
-  {
-    reg: /m+/g,
-    fn(m, d) {
-      return ('0' + d.getMinutes()).slice(-m.length);
-    },
-  },
-  {
-    reg: /s+/g,
-    fn(m, d) {
-      return ('0' + d.getSeconds()).slice(-m.length);
-    },
-  },
-];
-
-let dateParse = date => {
-  if (date instanceof Date) {
-    return date;
-  } else {
-    date = new Date(Date.parse(String(date).replace(/-/g, '/')));
-  }
-  if (date instanceof Date && date.toString() != 'Invalid Date') {
-    return date;
-  }
-  return null;
-};
-
 let fnCache = new Magix.Cache();
 let fnReg = /\bfunction\s*\(([\s\S]*?)\)\s*\{([\s\S]*?)\}\s*;?\s*$/i;
 
