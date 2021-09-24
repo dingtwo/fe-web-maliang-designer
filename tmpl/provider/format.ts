@@ -1,6 +1,7 @@
 import Magix from 'magix';
-import { nzhCn } from './calc.js';
 import _ from './lodash.min.js';
+import HandleFormat from './handleFormat';
+import { myDecimals } from './formatConfig';
 
 let decimals = [
   {
@@ -282,56 +283,25 @@ let groups = [
     id: 'transform',
     groups: [
       {
-        title: '四舍五入',
-        list: [
-          {
-            title: '无小数，向上',
-            format: 'toFixed_3_0#',
-            example: '1.0001 => 2',
-          },
-          {
-            title: '无小数，向下',
-            format: 'toFixed_0_0#',
-            example: '1.9999 => 1',
-          },
-          {
-            title: '无小数，四舍五入',
-            format: 'toFixed_1_0#',
-            example: '1.9999 => 2; 1.424 => 1',
-          },
-          {
-            title: '一位小数，向上',
-            format: 'toFixed_3_1#',
-            example: '1.0001 => 1.1',
-          },
-          {
-            title: '一位小数，向下',
-            format: 'toFixed_0_1#',
-            example: '1.9999 => 1.9',
-          },
-          {
-            title: '一位小数，四舍五入',
-            format: 'toFixed_1_1#',
-            example: '1.4999 => 1.5; 1.424 => 1.4',
-          },
-        ],
+        title: '小数',
+        list: myDecimals,
       },
       {
         title: '数字转换',
         list: [
           {
             title: '转中文小写',
-            format: 'encodeS#',
+            format: 'nzh.encodeS#',
             example: '十万零一百一十一',
           },
           {
             title: '转中文大写',
-            format: 'encodeB#',
+            format: 'nzh.encodeB#',
             example: '壹拾万零壹佰壹拾壹',
           },
           {
             title: '转中文金额',
-            format: 'toMoney#',
+            format: 'nzh.toMoney#',
             example: '人民币壹佰壹拾壹元壹角壹分',
           },
         ],
@@ -601,20 +571,8 @@ export default {
         return data;
       }
     } else if (prefix === 'transform') {
-      console.log('parts', parts);
-      const [integer] = parts;
-
-      switch (integer) {
-        // 转中文小写
-        case 'encodeS#':
-          return nzhCn.encodeS(data);
-        // 转中文大写
-        case 'encodeB#':
-          return nzhCn.encodeB(data);
-        // 转中文金额
-        case 'toMoney#':
-          return nzhCn.toMoney(data);
-      }
+      const handleFormat = new HandleFormat(parts, data);
+      return handleFormat.value;
     }
 
     return data;
