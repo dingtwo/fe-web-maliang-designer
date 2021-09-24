@@ -16,6 +16,7 @@ export default Magix.View.extend({
   render() {
     let list = FormatProvider['@:{get.groups}'](),
       parts = FormatProvider['@:{get.parts}'](this['@:{format}']);
+
     if (!parts[0]) parts[0] = list[0].id;
     this.digest({
       list,

@@ -3,7 +3,7 @@
  * @Author: jiawei
  * @Date: 2021-09-24 11:13:31
  * @Last Modified by: jiawei
- * @Last Modified time: 2021-09-24 14:04:53
+ * @Last Modified time: 2021-09-24 17:26:33
  */
 
 import _ from './lodash.min.js';
@@ -28,6 +28,11 @@ export default class HandleFormat {
 
   value: string;
 
+  getRules = (format: string) => {
+    const [formatText] = _.split(format, '#');
+    return _.split(formatText, '_');
+  };
+
   distribute = (formats: string[]) => {
     if (formats.length <= 0) {
       return;
@@ -35,24 +40,30 @@ export default class HandleFormat {
 
     const format = _.first(formats);
 
+    // 小数
     if (format.includes('toFixed')) {
       this.value = this.toFixed(format, this.value);
-    } else if (format.includes('nzh')) {
+    }
+    // 转汉字
+    else if (format.includes('nzh')) {
       this.value = this.nzh(format, this.value);
+    }
+    // 整数分隔
+    else if (format.includes('separator')) {
+      this.value = this.separator(format, this.value);
+    }
+    // 比例
+    else if (format.includes('ratio')) {
+      this.value = this.ratio(format, this.value);
     }
 
     this.distribute(_.drop(formats));
   };
 
-  // 小数
-  toFixed = (format: string, val: string) => {
-    const [formatText] = _.split(format, '#');
-    const [, rm, num] = _.split(formatText);
-    return calc(val).toFixed(num, rm);
-  };
-
   // 数字中文转换
   nzh = (format: string, val: string) => {
+    console.log('nzh val', val);
+
     switch (format) {
       // 转中文小写
       case 'nzh.encodeS#':
@@ -64,5 +75,28 @@ export default class HandleFormat {
       case 'nzh.toMoney#':
         return nzhCn.toMoney(val);
     }
+  };
+
+  // 小数
+  toFixed = (format: string, val: string) => {
+    const [, rm, num] = this.getRules(format);
+    const rmN = calc(rm).toNumber();
+    const numN = calc(num).toNumber();
+
+    return calc(val).toFixed(numN, rmN);
+  };
+
+  // 整数分隔
+  separator = (format: string, val: string) => {
+    const [, size] = this.getRules(format);
+
+    return calc(val).toFormat(undefined, undefined, { groupSize: size });
+  };
+
+  // 比例
+  ratio = (format: string, val: string) => {
+    const [, ratio, sym] = this.getRules(format);
+
+    return calc(val).mul(ratio).valueOf() + sym;
   };
 }
