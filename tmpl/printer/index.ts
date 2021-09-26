@@ -140,7 +140,6 @@ let checkFlag = 0.1;
  * @param api api地址
  */
 let fetchOneAPI = api => {
-  console.log('获取数据接口', api, parseUrl(api));
   // 当前接口的参数, sql 的 id
   const { params: apiParams } = parseUrl(api);
   let extraParams = '';
@@ -148,6 +147,7 @@ let fetchOneAPI = api => {
   const {
     params: { params, order, scene },
   } = parseUrl(window.location.href);
+  console.log('获取数据接口', api, parseUrl(api), params, apiParams);
   if (apiParams && apiParams.id && params) {
     console.log('当前参数', apiParams);
     extraParams = `&params=${encodeURIComponent(params)}`;
