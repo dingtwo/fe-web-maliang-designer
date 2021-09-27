@@ -30,6 +30,36 @@ export const decimals = [
     format: 'toFixed_1_1#',
     example: '1.4999 => 1.5; 1.424 => 1.4',
   },
+  {
+    title: '二位小数，向上',
+    format: 'toFixed_3_2#',
+    example: '1.0001 => 1.01',
+  },
+  {
+    title: '二位小数，向下',
+    format: 'toFixed_0_2#',
+    example: '1.9999 => 1.99',
+  },
+  {
+    title: '二位小数，四舍五入',
+    format: 'toFixed_1_2#',
+    example: '1.4999 => 1.50; 1.424 => 1.42',
+  },
+  {
+    title: '三位小数，向上',
+    format: 'toFixed_3_3#',
+    example: '1.0001 => 1.001',
+  },
+  {
+    title: '三位小数，向下',
+    format: 'toFixed_0_3#',
+    example: '1.9999 => 1.999',
+  },
+  {
+    title: '三位小数，四舍五入',
+    format: 'toFixed_1_3#',
+    example: '1.43599 => 1.436; 1.4244 => 1.424',
+  },
 ];
 
 export const integer = [
