@@ -64,6 +64,47 @@ let groups = [
     ],
   },
   {
+    title: '单位转换',
+    id: 'unitConversion',
+    groups: [
+      {
+        title: '重量',
+        list: [
+          {
+            title: '千克转斤',
+            format: 'ratio.kgToJ_2_斤#',
+            example: '1kg => 2斤',
+          },
+          {
+            title: '千克转公斤',
+            format: 'ratio.kgToGJ_1_公斤#',
+            example: '1kg => 1公斤',
+          },
+          {
+            title: '千克转克',
+            format: 'ratio.kgTog_1000_g#',
+            example: '1kg => 1000克',
+          },
+          {
+            title: '斤转千克',
+            format: 'ratio.jToKg_0.5_kg#',
+            example: '1斤 => 0.5kg',
+          },
+          {
+            title: '公斤转千克',
+            format: 'ratio.GJToKg_1_kg#',
+            example: '1公斤 => 1kg'
+          },
+          {
+            title: '克转千克',
+            format: 'ratio.gToKg_0.001_kg#',
+            example: '1g => 0.001kg',
+          },
+        ],
+      },
+    ],
+  },
+  {
     title: '自定义',
     id: 'custom',
     defaults: `/*
@@ -100,7 +141,12 @@ export default {
 
       if (prefix == 'custom') {
         return [prefix, rest];
-      } else if (prefix === 'transform' || prefix === 'number' || prefix == 'date') {
+      } else if (
+        prefix === 'transform' ||
+        prefix === 'number' ||
+        prefix == 'date' ||
+        prefix === 'unitConversion'
+      ) {
         const ruleList = _.filter(_.split(rest, '#'), item => item);
         const rules = _.map(ruleList, item => `${item}#`);
 
@@ -188,7 +234,7 @@ export default {
       );
 
       return moment(data).format(rulesText);
-    } else if (prefix === 'transform' || prefix === 'number') {
+    } else if (prefix === 'transform' || prefix === 'number' || prefix === 'unitConversion') {
       const handleFormat = new HandleFormat(parts, data);
       return handleFormat.value;
     }
