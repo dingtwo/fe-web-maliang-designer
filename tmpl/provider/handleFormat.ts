@@ -62,8 +62,6 @@ export default class HandleFormat {
 
   // 数字中文转换
   nzh = (format: string, val: string) => {
-    console.log('nzh val', val);
-
     switch (format) {
       // 转中文小写
       case 'nzh.encodeS#':
