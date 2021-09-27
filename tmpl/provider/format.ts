@@ -93,7 +93,7 @@ let groups = [
           {
             title: '公斤转千克',
             format: 'ratio.GJToKg_1_kg#',
-            example: '1公斤 => 1kg'
+            example: '1公斤 => 1kg',
           },
           {
             title: '克转千克',
@@ -150,7 +150,9 @@ export default {
         const ruleList = _.filter(_.split(rest, '#'), item => item);
         const rules = _.map(ruleList, item => `${item}#`);
 
-        return [prefix, ...rules];
+        if (_.size(rules) > 0) {
+          return [prefix, ...rules];
+        }
       }
     }
 
