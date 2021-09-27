@@ -56,6 +56,11 @@ export default class HandleFormat {
     else if (format.includes('ratio')) {
       this.value = this.ratio(format, this.value);
     }
+    // 替换单位
+    // 比例
+    else if (format.includes('unit')) {
+      this.value = this.unitTransform(format, this.value);
+    }
 
     this.distribute(_.drop(formats));
   };
@@ -94,7 +99,19 @@ export default class HandleFormat {
   // 比例
   ratio = (format: string, val: string) => {
     const [, ratio, sym] = this.getRules(format);
+    console.log('ratio', ratio);
+    console.log('sym', sym);
+    return calc(val).mul(ratio).valueOf() + (sym || '');
+  };
 
-    return calc(val).mul(ratio).valueOf() + sym;
+  // 单位替换
+  unitTransform = (format: string, val: string) => {
+    const [, orgUnit, unit] = this.getRules(format);
+
+    if (_.toLower(val) === orgUnit) {
+      return unit;
+    }
+
+    return val;
   };
 }
