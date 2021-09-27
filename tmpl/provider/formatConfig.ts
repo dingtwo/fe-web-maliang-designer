@@ -200,3 +200,61 @@ export const time = [
     example: '09:02:08',
   },
 ];
+
+// 换算
+export const conversion = [
+  {
+    title: '千克转斤',
+    format: 'ratio_2#',
+    example: '1 => 2',
+  },
+  {
+    title: '千克转克',
+    format: 'ratio_1000#',
+    example: '1 => 1000',
+  },
+  {
+    title: '斤转千克',
+    format: 'ratio_0.5#',
+    example: '1 => 0.5',
+  },
+  {
+    title: '克转千克',
+    format: 'ratio_0.001#',
+    example: '1 => 0.001',
+  },
+];
+
+// 单位转换
+export const unitTransform = [
+  {
+    title: '千克转斤',
+    format: 'unit_kg_斤#',
+    example: 'kg => 斤',
+  },
+  {
+    title: '千克转公斤',
+    format: 'unit_kg_公斤#',
+    example: 'kg => 公斤',
+  },
+  {
+    title: '千克转克',
+    format: 'unit_kg_g#',
+    example: 'kg => g',
+  },
+  {
+    title: '斤转千克',
+    format: 'unit_斤_kg#',
+    example: '斤 => kg',
+  },
+  {
+    title: '公斤转千克',
+    format: 'unit_公斤_kg#',
+    example: '公斤 => kg',
+  },
+  {
+    title: '克转千克',
+    format: 'unit_g_kg#',
+    example: 'g => kg',
+  },
+];
