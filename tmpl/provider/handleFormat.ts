@@ -59,7 +59,7 @@ export default class HandleFormat {
       this.value = this.ratio(format, this.value);
     }
     // 单位比例转换
-    else if (format.includes('unitRatio')) {
+    else if (format.includes('uRatio')) {
       this.value = this.unitRatio(format, this.value, this.itemData);
     }
     // 替换单位

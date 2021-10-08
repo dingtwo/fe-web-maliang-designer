@@ -205,22 +205,22 @@ export const time = [
 export const conversion = [
   {
     title: '千克转斤',
-    format: 'unitRatio_kg_2#',
+    format: 'uRatio_kg_2#',
     example: '1 => 2',
   },
   {
     title: '千克转克',
-    format: 'unitRatio_kg_1000#',
+    format: 'uRatio_kg_1000#',
     example: '1 => 1000',
   },
   {
     title: '斤转千克',
-    format: 'unitRatio_斤_0.5#',
+    format: 'uRatio_斤_0.5#',
     example: '1 => 0.5',
   },
   {
     title: '克转千克',
-    format: 'unitRatio_g_0.001#',
+    format: 'uRatio_g_0.001#',
     example: '1 => 0.001',
   },
 ];
