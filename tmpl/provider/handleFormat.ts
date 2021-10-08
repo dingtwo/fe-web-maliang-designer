@@ -21,12 +21,14 @@ export default class HandleFormat {
    * @param {Record<string, any>} record
    * @memberof HandleFormat
    */
-  constructor(formats: string[], val: string) {
+  constructor(formats: string[], val: string, itemData: Record<string, any>) {
     this.value = val;
+    this.itemData = itemData;
     this.distribute(formats);
   }
 
   value: string;
+  itemData: Record<string, any>;
 
   getRules = (format: string) => {
     const [formatText] = _.split(format, '#');
@@ -56,8 +58,11 @@ export default class HandleFormat {
     else if (format.includes('ratio')) {
       this.value = this.ratio(format, this.value);
     }
+    // 单位比例转换
+    else if (format.includes('unitRatio')) {
+      this.value = this.unitRatio(format, this.value, this.itemData);
+    }
     // 替换单位
-    // 比例
     else if (format.includes('unit')) {
       this.value = this.unitTransform(format, this.value);
     }
@@ -99,9 +104,20 @@ export default class HandleFormat {
   // 比例
   ratio = (format: string, val: string) => {
     const [, ratio, sym] = this.getRules(format);
-    console.log('ratio', ratio);
-    console.log('sym', sym);
+
     return calc(val).mul(ratio).valueOf() + (sym || '');
+  };
+
+  // 单位比例转换
+  unitRatio = (format: string, val: string, itemData: Record<string, any>) => {
+    const itemUnit = _.get(itemData, 'unit');
+    const [, orgUnit, ratio] = this.getRules(format);
+
+    if (_.toLower(itemUnit) === orgUnit) {
+      return calc(val).mul(ratio).valueOf();
+    }
+
+    return val;
   };
 
   // 单位替换

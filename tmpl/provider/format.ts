@@ -211,7 +211,9 @@ export default {
 
       return moment(data).format(rulesText);
     } else if (prefix) {
-      const handleFormat = new HandleFormat(parts, data);
+      const [itemData] = exts;
+      const handleFormat = new HandleFormat(parts, data, itemData);
+
       return handleFormat.value;
     }
 
