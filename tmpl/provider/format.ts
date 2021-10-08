@@ -1,8 +1,11 @@
 import Magix from 'magix';
 import _ from './lodash.min.js';
-import moment from './moment/moment';
+import dayjs from './dayjs/dayjs.min.js';
+import customParseFormat from './dayjs/plugin/customParseFormat.js';
 import HandleFormat from './handleFormat';
 import { decimals, integer, date, time, conversion, unitTransform } from './formatConfig';
+
+dayjs.extend(customParseFormat);
 
 let groups = [
   {
@@ -209,9 +212,11 @@ export default {
         ' ',
       );
 
-      return moment(data).format(rulesText);
+      return dayjs(data, rulesText).format(rulesText);
     } else if (prefix) {
-      const handleFormat = new HandleFormat(parts, data);
+      const [itemData] = exts;
+      const handleFormat = new HandleFormat(parts, data, itemData);
+
       return handleFormat.value;
     }
 

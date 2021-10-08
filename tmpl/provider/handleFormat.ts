@@ -9,6 +9,13 @@
 import _ from './lodash.min.js';
 import { calc, nzhCn } from './calc.js';
 
+const unitRatioMap = new Map([
+  ['ratio_2#', 'kg'],
+  ['ratio_1000#', 'kg'],
+  ['ratio_0.5#', '斤'],
+  ['ratio_0.001#', 'g'],
+]);
+
 /**
  * @description
  * @class HandleFormat
@@ -21,12 +28,14 @@ export default class HandleFormat {
    * @param {Record<string, any>} record
    * @memberof HandleFormat
    */
-  constructor(formats: string[], val: string) {
+  constructor(formats: string[], val: string, itemData: Record<string, any>) {
     this.value = val;
+    this.itemData = itemData;
     this.distribute(formats);
   }
 
   value: string;
+  itemData: Record<string, any>;
 
   getRules = (format: string) => {
     const [formatText] = _.split(format, '#');
@@ -54,10 +63,9 @@ export default class HandleFormat {
     }
     // 比例
     else if (format.includes('ratio')) {
-      this.value = this.ratio(format, this.value);
+      this.value = this.ratio(format, this.value, this.itemData);
     }
     // 替换单位
-    // 比例
     else if (format.includes('unit')) {
       this.value = this.unitTransform(format, this.value);
     }
@@ -97,11 +105,28 @@ export default class HandleFormat {
   };
 
   // 比例
-  ratio = (format: string, val: string) => {
+  ratio = (format: string, val: string, itemData: Record<string, any>) => {
+    // 判断转换规则是否存在于单位比例转换
+    if (unitRatioMap.has(format)) {
+      return this.unitRatio(format, val, itemData);
+    }
+
     const [, ratio, sym] = this.getRules(format);
-    console.log('ratio', ratio);
-    console.log('sym', sym);
+
     return calc(val).mul(ratio).valueOf() + (sym || '');
+  };
+
+  // 单位比例转换
+  unitRatio = (format: string, val: string, itemData: Record<string, any>) => {
+    const itemUnit = _.get(itemData, 'unit');
+    const orgUnit = unitRatioMap.get(format);
+    const [, ratio] = this.getRules(format);
+
+    if (_.toLower(itemUnit) === orgUnit) {
+      return calc(val).mul(ratio).valueOf();
+    }
+
+    return val;
   };
 
   // 单位替换
