@@ -28,6 +28,8 @@ import FillRepeater from './unit/data-repeater';
 import FillPager from './unit/pager';
 import FillRichText from './unit/richtext';
 
+import { printCount } from './printCount';
+
 let {
   State,
   View,
@@ -675,8 +677,11 @@ export default View.extend({
     Toast.hide();
     // this['@:{to.pdf}']();
   },
+  // 浏览器打印
   '@:{print}<click>'() {
     window.print();
+
+    printCount();
   },
   // '@:{lodop.setting}<click>'() {
   //     this.mxDialog('@:./lodop/setting', {
