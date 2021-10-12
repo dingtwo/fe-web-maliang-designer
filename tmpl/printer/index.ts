@@ -680,7 +680,6 @@ export default View.extend({
   // 浏览器打印
   '@:{print}<click>'() {
     window.print();
-
     printCount();
   },
   // '@:{lodop.setting}<click>'() {
