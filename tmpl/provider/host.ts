@@ -1,5 +1,12 @@
+enum HOST {
+  prod = 'http://api.freshfood.cn',
+  pre = 'http://pre.kong.b2bcsx.cn:8000',
+  dev = 'http://10.252.192.35:8000',
+  test = 'http://10.252.192.35:8000',
+}
+
 // 获取 host
-function getEnv() {
+const getEnv = () => {
   var hostname = window.location.hostname;
 
   switch (hostname) {
@@ -11,16 +18,12 @@ function getEnv() {
     case 'devzt.b2bcsx.com':
       return 'test';
     case 'zt.freshfood.cn':
-    default:
       return 'prod';
+    default:
+      return 'test';
   }
-}
-
-var host = {
-  prod: 'http://api.freshfood.cn',
-  test: 'http://10.252.192.35:8000',
-  dev: 'http://10.252.192.35:8000',
-  pre: 'http://pre.kong.b2bcsx.cn:8000',
 };
 
-export const getHost = () => host[getEnv()];
+const getHost = () => HOST[getEnv()];
+
+export default getHost;
