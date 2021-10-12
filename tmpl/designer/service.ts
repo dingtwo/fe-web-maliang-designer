@@ -1,4 +1,5 @@
 import Magix from 'magix';
+import getHost from '../provider/host';
 let { Service, toUrl, config, guid } = Magix;
 
 /**
@@ -206,7 +207,14 @@ RDService.add([
     '@:{method}': 'post',
     url: 'http://10.252.192.35:8000/ucenter/login/web',
   },
+  {
+    name: '@:{print.count}',
+    '@:{method}': 'post',
+    url: `${getHost()}/wms/print/templates/printRecords`,
+  },
 ]);
+
+// {"orderCodes":["OM21101100000091"],"entryType":"3"}
 
 RDService['@:{extract.error.and.data}'] = extractErrorAndData;
 export default RDService;
