@@ -3,7 +3,15 @@ import _ from './lodash.min.js';
 import dayjs from './dayjs/dayjs.min.js';
 import customParseFormat from './dayjs/plugin/customParseFormat.js';
 import HandleFormat from './handleFormat';
-import { decimals, integer, date, time, conversion, unitTransform } from './formatConfig';
+import {
+  decimals,
+  integer,
+  date,
+  time,
+  conversion,
+  unitTransform,
+  testReplace,
+} from './formatConfig';
 
 dayjs.extend(customParseFormat);
 
@@ -83,6 +91,16 @@ let groups = [
       {
         title: '单位',
         list: unitTransform,
+      },
+    ],
+  },
+  {
+    title: '文案',
+    id: 'testReplace',
+    groups: [
+      {
+        title: '文案替换',
+        list: testReplace,
       },
     ],
   },

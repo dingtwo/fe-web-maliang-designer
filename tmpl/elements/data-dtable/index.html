@@ -98,7 +98,7 @@
                                         {{value=data[col.bindKey]}}
                                         {{value=format(col.textFormat,value,data)}}
                                     {{/if}}
-                                    {{if value}}
+                                    {{if value || value === 0}}
                                         <div class="{{=!col.textAutoReturn}}?ellipsis" x-html="{{=value}}"></div>
                                     {{/if}}
                                 {{else if col.type=='image'}}

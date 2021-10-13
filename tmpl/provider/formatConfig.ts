@@ -258,3 +258,12 @@ export const unitTransform = [
     example: 'g => kg',
   },
 ];
+
+// 文案替换
+export const testReplace = [
+  {
+    title: '替换换行符',
+    format: 'textReplace_n#',
+    example: '',
+  },
+];

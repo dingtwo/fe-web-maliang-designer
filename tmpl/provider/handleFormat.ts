@@ -69,6 +69,10 @@ export default class HandleFormat {
     else if (format.includes('unit')) {
       this.value = this.unitTransform(format, this.value);
     }
+    // 文案
+    else if (format.includes('textReplace')) {
+      this.value = this.textReplace(format, this.value);
+    }
 
     this.distribute(_.drop(formats));
   };
@@ -138,5 +142,11 @@ export default class HandleFormat {
     }
 
     return val;
+  };
+  // 文字替换，这里需要单独写了
+  textReplace = (format: string, val: string) => {
+    if (format === 'textReplace_n#') {
+      return _.replace(val, /\n/g, ' ');
+    }
   };
 }
