@@ -4,6 +4,7 @@ import dayjs from './dayjs/dayjs.min.js';
 import customParseFormat from './dayjs/plugin/customParseFormat.js';
 import HandleFormat from './handleFormat';
 import {
+  ratioList,
   decimals,
   integer,
   date,
@@ -20,6 +21,10 @@ let groups = [
     title: '数字',
     id: 'number',
     groups: [
+      {
+        title: '倍数',
+        list: ratioList,
+      },
       {
         title: '小数',
         list: decimals,

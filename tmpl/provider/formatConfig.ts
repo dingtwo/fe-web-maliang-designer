@@ -1,3 +1,47 @@
+// 比例转换
+export const ratioList = [
+  {
+    title: '二分之一',
+    format: 'ratio_0.5_#',
+    example: '1 => 0.5',
+  },
+  {
+    title: '十分之一',
+    format: 'ratio_0.1_#',
+    example: '1 => 0.1',
+  },
+  {
+    title: '百分之一',
+    format: 'ratio_0.01_#',
+    example: '1 => 0.01',
+  },
+  {
+    title: '千分之一',
+    format: 'ratio_0.001_#',
+    example: '1 => 0.001',
+  },
+  {
+    title: '二倍',
+    format: 'ratio_2_#',
+    example: '1 => 2',
+  },
+  {
+    title: '十倍',
+    format: 'ratio_10_#',
+    example: '1 => 10',
+  },
+  {
+    title: '百倍',
+    format: 'ratio_100_#',
+    example: '1 => 100',
+  },
+  {
+    title: '千倍',
+    format: 'ratio_1000_#',
+    example: '1 => 1000',
+  },
+];
+
 // 小数
 export const decimals = [
   {
@@ -62,6 +106,7 @@ export const decimals = [
   },
 ];
 
+// 整数
 export const integer = [
   {
     title: '千分位',
@@ -204,24 +249,44 @@ export const time = [
 // 换算
 export const conversion = [
   {
-    title: '千克转斤',
+    title: '重量：千克转斤',
     format: 'ratio_2#',
     example: '1 => 2',
   },
   {
-    title: '千克转克',
+    title: '重量：千克转克',
     format: 'ratio_1000#',
     example: '1 => 1000',
   },
   {
-    title: '斤转千克',
+    title: '重量：斤转千克',
     format: 'ratio_0.5#',
     example: '1 => 0.5',
   },
   {
-    title: '克转千克',
+    title: '重量：克转千克',
     format: 'ratio_0.001#',
     example: '1 => 0.001',
+  },
+  {
+    title: '金额：千克转斤',
+    format: 'ratio_price_0.5#',
+    example: '1 => 0.5',
+  },
+  {
+    title: '金额：千克转克',
+    format: 'ratio_price_0.001#',
+    example: '1 => 0.001',
+  },
+  {
+    title: '金额：斤转千克',
+    format: 'ratio_price_2#',
+    example: '0.5 => 1',
+  },
+  {
+    title: '金额：克转千克',
+    format: 'ratio_price_1000#',
+    example: '0.001 => 1',
   },
 ];
 

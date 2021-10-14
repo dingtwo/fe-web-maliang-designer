@@ -14,6 +14,10 @@ const unitRatioMap = new Map([
   ['ratio_1000#', 'kg'],
   ['ratio_0.5#', '斤'],
   ['ratio_0.001#', 'g'],
+  ['ratio_price_0.5#', 'kg'],
+  ['ratio_price_0.001#', 'kg'],
+  ['ratio_price_2#', '斤'],
+  ['ratio_price_1000#', 'g'],
 ]);
 
 /**
@@ -61,9 +65,13 @@ export default class HandleFormat {
     else if (format.includes('separator')) {
       this.value = this.separator(format, this.value);
     }
+    // 判断转换规则是否存在于单位比例转换
+    else if (unitRatioMap.has(format)) {
+      this.value = this.unitRatio(format, this.value, this.itemData);
+    }
     // 比例
     else if (format.includes('ratio')) {
-      this.value = this.ratio(format, this.value, this.itemData);
+      this.value = this.ratio(format, this.value);
     }
     // 替换单位
     else if (format.includes('unit')) {
@@ -109,12 +117,7 @@ export default class HandleFormat {
   };
 
   // 比例
-  ratio = (format: string, val: string, itemData: Record<string, any>) => {
-    // 判断转换规则是否存在于单位比例转换
-    if (unitRatioMap.has(format)) {
-      return this.unitRatio(format, val, itemData);
-    }
-
+  ratio = (format: string, val: string) => {
     const [, ratio, sym] = this.getRules(format);
 
     return calc(val).mul(ratio).valueOf() + (sym || '');
@@ -124,7 +127,16 @@ export default class HandleFormat {
   unitRatio = (format: string, val: string, itemData: Record<string, any>) => {
     const itemUnit = _.get(itemData, 'unit');
     const orgUnit = unitRatioMap.get(format);
-    const [, ratio] = this.getRules(format);
+
+    // 这里有两种配置
+    // 总量 ratio_0.5
+    // 金额 ratio_price_0.001
+
+    let [, ratio, ratio2] = this.getRules(format);
+
+    if (ratio === 'price') {
+      ratio = ratio2;
+    }
 
     if (_.toLower(itemUnit) === orgUnit) {
       return calc(val).mul(ratio).valueOf();
