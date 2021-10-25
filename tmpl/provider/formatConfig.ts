@@ -130,6 +130,16 @@ export const integer = [
   },
 ];
 
+// 自定义日期增减
+export const calcDate = [
+  {
+    title: '减7天',
+    format: 'date_sub_7_day#',
+    example: '20211027 => 20211020',
+  },
+];
+
+// 年月日
 export const date = [
   {
     title: '年月日',
