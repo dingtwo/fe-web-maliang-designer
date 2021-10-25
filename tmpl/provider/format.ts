@@ -12,6 +12,7 @@ import {
   conversion,
   unitTransform,
   testReplace,
+  calcDate,
 } from './formatConfig';
 
 dayjs.extend(customParseFormat);
@@ -39,6 +40,10 @@ let groups = [
     title: '日期',
     id: 'date',
     groups: [
+      {
+        title: '日期增减',
+        list: calcDate,
+      },
       {
         title: '日期',
         list: date,
@@ -230,12 +235,27 @@ export default {
         return '';
       }
 
+      let newParts = parts;
+      let dateData = data;
+      const [firstFormat] = newParts;
+
+      // 增减
+      if (_.includes(firstFormat, 'date')) {
+        newParts = _.drop(newParts);
+
+        const [, type, num, unit] = _.split(_.first(_.split(firstFormat, '#')), '_');
+
+        if (type === 'sub') {
+          dateData = dayjs(dateData).subtract(num, unit);
+        }
+      }
+
       const rulesText = _.join(
-        _.filter(_.split(_.join(parts, ''), '#'), item => item),
+        _.filter(_.split(_.join(newParts, ''), '#'), item => item),
         ' ',
       );
 
-      return dayjs(data, rulesText).format(rulesText);
+      return dayjs(dateData, rulesText).format(rulesText);
     } else if (prefix) {
       const [itemData] = exts;
       const handleFormat = new HandleFormat(parts, data, itemData);
