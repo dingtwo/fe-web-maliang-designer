@@ -13,7 +13,7 @@
             try {
                 userInfo = JSON.parse(JSON.parse(localStorage.getItem('userInfos'))) || {};
             } catch (error) {}
-        const aegis = new Aegis({
+        var aegis = new Aegis({
             id: 'XaKVn5BzYa1GMRyjbO', // 上报 id
             uin: userInfo.username, // 用户唯一 ID（可选）
             reportApiSpeed: true, // 接口测速
