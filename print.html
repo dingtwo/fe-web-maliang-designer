@@ -9,6 +9,20 @@
         <link type="image/x-icon" href="//gw.alicdn.com/tfs/TB1gRomUlr0gK0jSZFnXXbRRXXa-200-200.png"
             rel="shortcut icon">
         <title>Loading</title>
+        <script src="https://cdn-go.cn/aegis/aegis-sdk/latest/aegis.min.js"></script>
+        <script>
+            var userInfo = {};
+            try {
+                userInfo = JSON.parse(JSON.parse(localStorage.getItem('userInfos'))) || {};
+            } catch (error) {}
+        var aegis = new Aegis({
+            id: 'WoakZYMDv1qqAepK2R', // 上报 id
+            uin: userInfo.username, // 用户唯一 ID（可选）
+            reportApiSpeed: true, // 接口测速
+            reportAssetSpeed: true, // 静态资源测速
+            spa: false // spa 应用页面跳转的时候开启 pv 计算
+        });
+    </script>
         <style>
             html,
             body {
