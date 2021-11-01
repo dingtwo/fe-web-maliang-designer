@@ -13,6 +13,8 @@ import HTML2CanvasProvider from '../provider/html2canvas';
 import JSPDFProvider from '../provider/jspdf';
 import Generic from './generic/index';
 import ResourcesLoader from './generic/resource';
+import _ from '../provider/lodash.min.js';
+import { calc } from '../provider/calc.js';
 /**
  * Lodop打印对象可以从 root/trash/lodop中拿出来放到./目录下即可
  */
@@ -30,6 +32,27 @@ import FillRichText from './unit/richtext';
 
 import { printCount } from './printCount';
 
+class Progress {
+  len = 0;
+  count = 0;
+
+  start = len => {
+    this.len = len;
+    this.toast();
+  };
+
+  toast = () => {
+    Toast.show(`正在准备数据...（${calc(this.count).div(this.len).mul(100).toFixed(0)}%/100%）`);
+  };
+
+  update = () => {
+    this.count++;
+    this.toast();
+  };
+}
+
+const progress = new Progress();
+
 let {
   State,
   View,
@@ -45,6 +68,35 @@ let {
   delay,
   task,
 } = Magix;
+
+// 获取url上的id，合成接口 api
+const mergeApi = (url, idIndex) => {
+  const { params: apiParams } = parseUrl(url);
+  let extraParams = '';
+  // 当前页面 url 的参数
+  const {
+    params: { params, order, scene, ids },
+  } = parseUrl(window.location.href);
+
+  if (_.get(apiParams, 'id')) {
+    if (params) {
+      extraParams = `&params=${encodeURIComponent(params)}`;
+    } else if (order) {
+      const orderParams = JSON.stringify({ $ORDER_CODE: order });
+      extraParams = `&params=${encodeURIComponent(orderParams)}`;
+    } else if (ids) {
+      const orderId = _.get(_.split(ids, ','), idIndex);
+
+      if (orderId) {
+        const orderParams = JSON.stringify({ $ORDER_CODE: orderId });
+        extraParams = `&params=${encodeURIComponent(orderParams)}`;
+      }
+    }
+  }
+
+  return url + extraParams;
+};
+
 /**
  * 反调试
  */
@@ -142,22 +194,6 @@ let checkFlag = 0.1;
  * @param api api地址
  */
 let fetchOneAPI = api => {
-  // 当前接口的参数, sql 的 id
-  const { params: apiParams } = parseUrl(api);
-  let extraParams = '';
-  // 当前页面 url 的参数
-  const {
-    params: { params, order, scene },
-  } = parseUrl(window.location.href);
-  console.log('获取数据接口', api, parseUrl(api), params, apiParams);
-  if (apiParams && apiParams.id && params) {
-    console.log('当前参数', apiParams);
-    extraParams = `&params=${encodeURIComponent(params)}`;
-  } else if (apiParams && apiParams.id && order) {
-    const orderParams = JSON.stringify({ $ORDER_CODE: order });
-    console.log('订单参数', orderParams);
-    extraParams = `&params=${encodeURIComponent(orderParams)}`;
-  }
   // 从 api 中获取 id, 把参数传给对应的 id;
   return new Promise<void>(resolve => {
     let dest = DataCenter[api];
@@ -174,9 +210,10 @@ let fetchOneAPI = api => {
       s.all(
         {
           name: '@:{get.by.url}',
-          url: api + extraParams,
+          url: api,
         },
         (err: { message: string }, bag) => {
+          progress.update();
           let list = bag.get('data', []);
           dest['@:{data}'] = list;
           dest['@:{loaded}'] = 1;
@@ -194,13 +231,15 @@ let fetchOneAPI = api => {
  * 请求所有的api数据回来备用
  * @param apis api数组对象
  */
-let fetchAllAPI = apis => {
+let fetchAllAPI = async apis => {
   let promises = [];
   for (let api of apis) {
-    promises.push(fetchOneAPI(api));
+    promises.push(await fetchOneAPI(api));
   }
+
   return Promise.all(promises);
 };
+
 export default View.extend({
   tmpl: '@:./index.html',
   async render() {
@@ -218,11 +257,7 @@ export default View.extend({
             以下根据地址栏有无id来决定是否发送请求来获取某个id的具体内容
         */
     let { params } = parseUrl(location.href);
-    // 单独打印
-    let contentUrl = config('getContentUrl');
-    // 批量打印
-    let mutiContentUrl = config('getMutiContentUrl');
-    console.log('______', params, contentUrl, mutiContentUrl);
+
     // 分两种,单个模板打印和批量打印
     if (params && params.id) {
       this['@:{get.stages}'](false, params);
@@ -280,12 +315,20 @@ export default View.extend({
    * @param oy 垂直偏移
    * @param footerHeight 页脚高度
    */
-  async '@:{fill.page}'(elements, page, pages, pagers, ox, oy, footerHeight) {
+  async '@:{fill.page}'(elements, page, pages, pagers, ox, oy, footerHeight, idIndex) {
     let logicCurrentPage = 0;
     let resLoader = this['@:{resources}'];
     let unit = this.get('unit');
+
     for (let e of elements) {
       if (e.type == 'data-dtable' || e.type == 'data-ftable') {
+        const bindUrl = _.get(e, ['props', 'bind', 'url']);
+
+        if (bindUrl) {
+          const api = mergeApi(bindUrl, idIndex);
+          e.props.bind.url = api;
+        }
+
         Generic['@:{recast.table.by.data}'](e, DataCenter);
       }
     }
@@ -349,6 +392,16 @@ export default View.extend({
                 id: e.id,
                 props: Const['@:{const#clone}'](e.props),
               };
+
+          if (newElement.type !== 'data-dtable' && newElement.type !== 'data-ftable') {
+            const bindUrl = _.get(newElement, ['props', 'bind', 'url']);
+
+            if (bindUrl) {
+              const api = mergeApi(bindUrl, idIndex);
+              newElement.props.bind.url = api;
+            }
+          }
+
           if (!inHod) {
             //如果页头和页脚不偏移，则放开if语句
             // if (e.type != 'hod-footer' &&
@@ -525,6 +578,7 @@ export default View.extend({
     let { page, elements, unit } = stage;
     if (!page || !elements || !unit) return;
     Toast.show('正在准备数据...');
+
     /**
      * 这里进行四个边距进行相应的宽高处理，边距在设计器里未开放
      */
@@ -567,32 +621,44 @@ export default View.extend({
      * 收集所有元素的接口地址
      * @param elements 元素列表
      */
-    let collectBindInfo = elements => {
+    let collectBindInfo = (elements, idIndex) => {
       for (let e of elements) {
         if (!e.id) {
           e.id = guid('e');
         }
         let { props, type } = e;
         let { bind } = props;
-        //有可能不同的元素使用了相同的api,而数据只需要取一份即可
-        if (bind && bind.url && apis.indexOf(bind.url) == -1) {
-          apis.push(bind.url);
+
+        if (bind && bind.url) {
+          // 当前接口的参数, sql 的 id
+
+          const api = mergeApi(bind.url, idIndex);
+
+          if (!_.includes(apis, api)) {
+            apis.push(api);
+          }
         }
+
+        //有可能不同的元素使用了相同的api,而数据只需要取一份即可
+
         //容器需要递归处理
         if (has(HodElements, type)) {
           let { rows } = props;
           for (let row of rows) {
             for (let col of row.cols) {
               if (col.elements) {
-                collectBindInfo(col.elements);
+                collectBindInfo(col.elements, idIndex);
               }
             }
           }
         }
+
         if (type == 'data-richtext') {
           type = 'richtext';
         }
+
         resourcesLoader['@:{add}']('@:{script}', type);
+
         if (type == 'hod-footer') {
           //页脚
           footerHeight = props.height;
@@ -621,19 +687,21 @@ export default View.extend({
         }
       }
     };
-    collectBindInfo(elements);
+
+    collectBindInfo(elements, 0);
     // 所有的都遍历一次
-    others.forEach(stage => {
-      collectBindInfo(stage.elements);
+    others.forEach((stage, index) => {
+      collectBindInfo(stage.elements, index + 1);
     });
 
+    progress.start(_.size(apis));
     //先加载数据
     await fetchAllAPI(apis);
     Toast.show('正在准备资源...');
     await resourcesLoader['@:{load}'](); //等资源加载
     Toast.show('正在计算分页...');
     //再进行分页处理
-    await this['@:{fill.page}'](elements, page, pages, pagers, ox, oy, footerHeight);
+    await this['@:{fill.page}'](elements, page, pages, pagers, ox, oy, footerHeight, 0);
     // NOTICE: 理论上从这里再渲染一套就行了, 试试
     for (let i = 0; i < others.length; i++) {
       const otherStage = others[i];
@@ -645,6 +713,7 @@ export default View.extend({
         ox,
         oy,
         footerHeight,
+        i + 1,
       );
     }
     //设置页码器的总页数
