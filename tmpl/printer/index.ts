@@ -699,6 +699,8 @@ export default View.extend({
       collectBindInfo(stage.elements, index + 1);
     });
 
+    console.log('apis',apis)
+
     progress.start(_.size(apis));
     //先加载数据
     await fetchAllAPI(apis);
