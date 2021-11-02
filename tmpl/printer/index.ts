@@ -234,7 +234,10 @@ let fetchOneAPI = api => {
 let fetchAllAPI = async apis => {
   let promises = [];
   for (let api of apis) {
+    console.time()
     promises.push(await fetchOneAPI(api));
+    console.timeEnd()
+    console.log('-------------------------------------')
   }
 
   return Promise.all(promises);
