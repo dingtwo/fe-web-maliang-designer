@@ -42,7 +42,7 @@ class Progress {
   };
 
   toast = () => {
-    Toast.show(`正在准备数据...（${calc(this.count).div(this.len).mul(100).toFixed(0)}%/100%）`);
+    Toast.show(`正在准备数据...（${calc(this.count).div(this.len).mul(100).toFixed(0)}%）`);
   };
 
   update = () => {
@@ -75,7 +75,7 @@ const mergeApi = (url, idIndex) => {
   let extraParams = '';
   // 当前页面 url 的参数
   const {
-    params: { params, order, scene, ids },
+    params: { params, order, scene, orders },
   } = parseUrl(window.location.href);
 
   if (_.get(apiParams, 'id')) {
@@ -84,8 +84,8 @@ const mergeApi = (url, idIndex) => {
     } else if (order) {
       const orderParams = JSON.stringify({ $ORDER_CODE: order });
       extraParams = `&params=${encodeURIComponent(orderParams)}`;
-    } else if (ids) {
-      const orderId = _.get(_.split(ids, ','), idIndex);
+    } else if (orders) {
+      const orderId = _.get(_.split(orders, ','), idIndex);
 
       if (orderId) {
         const orderParams = JSON.stringify({ $ORDER_CODE: orderId });
@@ -261,7 +261,7 @@ export default View.extend({
     // 分两种,单个模板打印和批量打印
     if (params && params.id) {
       this['@:{get.stages}'](false, params);
-    } else if (params && params.ids) {
+    } else if (params && params.orders) {
       this['@:{get.stages}'](true, params);
     } else if (params && params.order) {
       if (!params.scene) {
@@ -279,6 +279,8 @@ export default View.extend({
    * @param {any} params 打印参数
    */
   '@:{get.stages}'(isMuti, params) {
+    Toast.show('正在加载模板...');
+
     let s = new Service();
     const url = isMuti ? '@:{get.muti.content}' : '@:{get.content}';
     s.all(
