@@ -234,10 +234,7 @@ let fetchOneAPI = api => {
 let fetchAllAPI = async apis => {
   let promises = [];
   for (let api of apis) {
-    console.time()
     promises.push(await fetchOneAPI(api));
-    console.timeEnd()
-    console.log('-------------------------------------')
   }
 
   return Promise.all(promises);
@@ -418,7 +415,7 @@ export default View.extend({
           }
           if (e.type == 'pager') {
             //页码器
-            FillPager(newElement, newPage, inHod, pagers, pages.length);
+            FillPager(newElement, newPage, inHod, pagers, pages.length, idIndex);
           } else if (e.type == 'data-coltable') {
             //列表格
             let last = indexesCache[i] || 0;
@@ -699,7 +696,7 @@ export default View.extend({
       collectBindInfo(stage.elements, index + 1);
     });
 
-    console.log('apis',apis)
+    console.log('apis', apis);
 
     progress.start(_.size(apis));
     //先加载数据
@@ -723,10 +720,53 @@ export default View.extend({
         i + 1,
       );
     }
-    //设置页码器的总页数
-    for (let pager of pagers) {
-      pager.props.ext._totalPage = pages.length;
+
+    // 计算每条数据分页总数
+    // 一条数据只生成一个总页数
+    const totalGroup = [];
+    for (let i = 0; i < pagers.length; i++) {
+      // 当前分页数据
+      const pager = pagers[i];
+      // 下一条分页数据
+      const nextPager = pagers[i + 1];
+
+      // 当前分页的页码
+      const pagerPage = _.get(pager, ['props', 'ext', '_currentPage']);
+
+      // 下一页的页码
+      const nextPagerPage = _.get(nextPager, ['props', 'ext', '_currentPage']);
+
+      // 判断下一页是否为 undefined ，或者下一页页码是否为1
+      // 如果是，当前页则是当前数据的最后一页，将当前页码加到总数array 中
+      if (pagerPage && (nextPagerPage === 1 || nextPagerPage === undefined)) {
+        totalGroup.push(pagerPage);
+      }
     }
+
+    /**
+     *
+     * @param pagerIndex 分页器的下标
+     * @param totalGroup 总页数组
+     * @param groupIndex 总页数下标
+     * @param preTotal 前面总页数相加的和
+     * @returns 返回当前数据的总页数
+     */
+    const getTotal = (pagerIndex, totalGroup, groupIndex, preTotal) => {
+      const total = totalGroup[groupIndex];
+
+      if (pagerIndex + 1 > total + preTotal) {
+        return getTotal(pagerIndex, totalGroup, groupIndex + 1, preTotal + total);
+      }
+
+      return total;
+    };
+
+    //设置页码器的总页数
+    for (let i = 0; i < pagers.length; i++) {
+      const total = getTotal(i, totalGroup, 0, 0);
+      pagers[i].props.ext._totalPage = total;
+    }
+
     // console.log('页面', pages.push(pages[0]), pages);
     Toast.show('等待页面生成...');
     await this.digest({
