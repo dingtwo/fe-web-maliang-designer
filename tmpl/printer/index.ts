@@ -193,48 +193,99 @@ let checkFlag = 0.1;
  * 根据api地址请求数据
  * @param api api地址
  */
-let fetchOneAPI = api => {
-  // 从 api 中获取 id, 把参数传给对应的 id;
-  return new Promise<void>(resolve => {
-    let dest = DataCenter[api];
-    if (!dest) {
-      dest = DataCenter[api] = {};
-    }
-    if (dest['@:{loaded}']) {
-      resolve();
-    } else if (dest['@:{loading}']) {
-      dest['@:{loading}'].push(resolve);
-    } else {
-      dest['@:{loading}'] = [resolve];
-      let s = new Service();
-      s.all(
-        {
-          name: '@:{get.by.url}',
-          url: api,
-        },
-        (err: { message: string }, bag) => {
-          progress.update();
-          let list = bag.get('data', []);
-          dest['@:{data}'] = list;
+// let fetchOneAPI = api => {
+//   // 从 api 中获取 id, 把参数传给对应的 id;
+//   return new Promise<void>(resolve => {
+//     let dest = DataCenter[api];
+//     if (!dest) {
+//       dest = DataCenter[api] = {};
+//     }
+//     if (dest['@:{loaded}']) {
+//       resolve();
+//     } else if (dest['@:{loading}']) {
+//       dest['@:{loading}'].push(resolve);
+//     } else {
+//       dest['@:{loading}'] = [resolve];
+//       let s = new Service();
+//       s.all(
+//         {
+//           name: '@:{get.by.url}',
+//           url: api,
+//         },
+//         (err: { message: string }, bag) => {
+//           progress.update();
+//           let list = bag.get('data', []);
+//           dest['@:{data}'] = list;
+//           dest['@:{loaded}'] = 1;
+//           dest['@:{error}'] = err?.message;
+//           for (let resolve of dest['@:{loading}']) {
+//             resolve();
+//           }
+//           delete dest['@:{loading}'];
+//         },
+//       );
+//     }
+//   });
+// };
+
+// 格式化 请求参数
+const formatApi = (orders, isOrders) => {
+  if (isOrders) {
+    return `&params=${encodeURIComponent(JSON.stringify({ $ORDER_CODES: orders }))}`;
+  }
+
+  return `&params=${encodeURIComponent(JSON.stringify({ $ORDER_CODE: orders }))}`;
+};
+
+// 请求表格数据
+const fetchItemApi = async (api, orders) => {
+  return new Promise(resolve => {
+    const s = new Service();
+    s.all(
+      {
+        name: '@:{get.by.url}',
+        url: api + formatApi(orders, true),
+      },
+      (err: { message: string }, bag) => {
+        progress.update();
+        const data = bag.get('data');
+        const orderList = _.split(orders, ',');
+
+        _.map(orderList, item => {
+          const url = `${api}${formatApi(item, false)}`;
+          let dest = DataCenter[url];
+
+          if (!dest) {
+            dest = DataCenter[url] = {};
+          }
+
+          dest['@:{data}'] = _.get(data, item, []);
           dest['@:{loaded}'] = 1;
           dest['@:{error}'] = err?.message;
-          for (let resolve of dest['@:{loading}']) {
-            resolve();
-          }
+
           delete dest['@:{loading}'];
-        },
-      );
-    }
+        });
+
+        resolve(void 0);
+      },
+    );
   });
 };
+
 /**
  * 请求所有的api数据回来备用
  * @param apis api数组对象
  */
 let fetchAllAPI = async apis => {
   let promises = [];
+
+  const {
+    params: { orders },
+  } = parseUrl(window.location.href);
+
   for (let api of apis) {
-    promises.push(await fetchOneAPI(api));
+    // promises.push(await fetchOneAPI(api));
+    promises.push(await fetchItemApi(api, orders));
   }
 
   return Promise.all(promises);
@@ -614,7 +665,8 @@ export default View.extend({
       '@:{global#stage.page.y.offset}': oy,
     });
     let pages = []; //分页对象
-    let apis = []; //所有绑定元素的接口地址，在渲染前，需要通过接口地址一次性把所有数据拿回来
+    // let apis = []; //所有绑定元素的接口地址，在渲染前，需要通过接口地址一次性把所有数据拿回来
+    let apiList = [];
     let pagers = []; //页码器对象，需要根据分页多少设置每个页码器的当前页码及总共页码
     let footerHeight = 0; //页脚高度
     let resourcesLoader = new ResourcesLoader(); //资源加载收集器
@@ -636,8 +688,12 @@ export default View.extend({
 
           const api = mergeApi(bind.url, idIndex);
 
-          if (!_.includes(apis, api)) {
-            apis.push(api);
+          // if (!_.includes(apis, api)) {
+          //   apis.push(api);
+          // }
+
+          if (!_.includes(apiList, bind.url)) {
+            apiList.push(bind.url);
           }
         }
 
@@ -696,11 +752,12 @@ export default View.extend({
       collectBindInfo(stage.elements, index + 1);
     });
 
-    console.log('apis', apis);
+    console.log('apiList', apiList);
 
-    progress.start(_.size(apis));
+    progress.start(_.size(apiList));
     //先加载数据
-    await fetchAllAPI(apis);
+    await fetchAllAPI(apiList);
+    // await fetchAllAPI(apis);
     Toast.show('正在准备资源...');
     await resourcesLoader['@:{load}'](); //等资源加载
     Toast.show('正在计算分页...');
