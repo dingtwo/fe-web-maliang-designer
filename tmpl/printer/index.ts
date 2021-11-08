@@ -295,14 +295,6 @@ const getOXAndOy = page => {
 };
 
 /**
- * 用来获取页面数据中指定key的数据
- * @param stages 接口返回的页面数据
- * @param key 指定的key
- * @returns array
- */
-const getStageAttr = (stages, key = 'page') => _.map(getNewStages(stages), stage => stage[key]);
-
-/**
  * 用来获取 page 的数据
  * @param pageList 生成的 page 字段组成的lisi
  * @param pageIndex 当前页码
@@ -687,7 +679,7 @@ export default View.extend({
     this.digest({
       enable: false,
       empty: true,
-      pageList: [page],
+      pageList: [{ ...page, unit: unit }],
       unit: unit,
       hasData: true,
       loading: true,
@@ -777,8 +769,6 @@ export default View.extend({
       collectBindInfo(item.elements, index);
     });
 
-    console.log('apiList', apiList);
-
     progress.start(_.size(apiList));
     //先加载数据
     await fetchAllAPI(apiList);
@@ -787,10 +777,13 @@ export default View.extend({
     await resourcesLoader['@:{load}'](); //等资源加载
     Toast.show('正在计算分页...');
 
+    let pageList = [];
+
     //再进行分页处理
     // NOTICE: 理论上从这里再渲染一套就行了, 试试
     for (let i = 0; i < newStages.length; i++) {
       const stage = newStages[i];
+      pageList.push({ ...stage.page, unit: stage.unit });
 
       await this['@:{fill.page}'](
         stage.elements,
@@ -850,15 +843,11 @@ export default View.extend({
       pagers[i].props.ext._totalPage = total;
     }
 
-    const stagePages = getStageAttr(stages, 'page');
-    const stageUnits = getStageAttr(stages, 'unit');
-
-    const pageList = _.map(stagePages, (page, i) => ({
+    pageList = _.map(pageList, (page, i) => ({
       ...page,
       total: totalGroup[i],
-      unit: stageUnits[i],
     }));
-
+    console.log('pageList', pageList);
     // console.log('页面', pages.push(pages[0]), pages);
     Toast.show('等待页面生成...');
     await this.digest({

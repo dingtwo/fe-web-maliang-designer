@@ -25,7 +25,7 @@
   {{if loading}}
   {{set page=pageList[0]}}
   <div class="pr page page-display flex justify-content-center overflow-hidden"
-    style="width:{{=page.width}}{{=unit}};height:{{=page.height}}{{=unit}};background:{{=page.background}};">
+    style="width:{{=page.width}}{{=page.unit}};height:{{=page.height}}{{=page.unit}};background:{{=page.background}};">
     <div class="tip fontsize-16">正在准备基础页面...</div>
   </div>
   {{else}}
@@ -36,12 +36,11 @@
   {{else}}
   {{each pages as item pageIndex last}}
   {{set page=getPageAttr(pageList, pageIndex)}}
-  {{set unit=page.unit}}
   <div class="designer-root pr page page-display overflow-hidden{{if !last}} page-break{{/if}}"
-    style="width:{{=page.width}}{{=unit}};height:{{=page.height}}{{=unit}};background:{{=page.background}};{{if !page.preformat&&page.backgroundImage}}background-image:url({{=page.backgroundImage}});background-repeat:{{=page.backgroundRepeat=='full'?'no-repeat':page.backgroundRepeat}};background-size:{{if page.backgroundRepeat=='full'}}100% 100%{{else}}{{=page.backgroundWidth}}{{=unit}} {{=page.backgroundHeight}}{{=unit}};background-position:{{=page.backgroundXOffset}}{{=unit}} {{=page.backgroundYOffset}}{{=unit}}{{/if}}{{/if}}">
+    style="width:{{=page.width}}{{=page.unit}};height:{{=page.height}}{{=page.unit}};background:{{=page.background}};{{if !page.preformat&&page.backgroundImage}}background-image:url({{=page.backgroundImage}});background-repeat:{{=page.backgroundRepeat=='full'?'no-repeat':page.backgroundRepeat}};background-size:{{if page.backgroundRepeat=='full'}}100% 100%{{else}}{{=page.backgroundWidth}}{{=page.unit}} {{=page.backgroundHeight}}{{=page.unit}};background-position:{{=page.backgroundXOffset}}{{=page.unit}} {{=page.backgroundYOffset}}{{=page.unit}}{{/if}}{{/if}}">
     {{if sf=='web'}}
     {{each item as e}}
-    <mx-vframe src="../elements/{{=e.type}}/index" *props="{{#e.props}}" *unit="{{#unit}}" />
+    <mx-vframe src="../elements/{{=e.type}}/index" *props="{{#e.props}}" *unit="{{#page.unit}}" />
     {{/each}}
     {{else if sf=='image' && images}}
     <img class="tag-img mwp100" src="{{=images[pageIndex]}}" />
