@@ -70,31 +70,36 @@ let {
 } = Magix;
 
 // 获取url上的id，合成接口 api
-const mergeApi = (url, idIndex) => {
-  const { params: apiParams } = parseUrl(url);
-  let extraParams = '';
-  // 当前页面 url 的参数
+const mergeApi = ({
+  url,
+  idIndex,
+  orderId,
+}: {
+  url: string;
+  idIndex?: number;
+  orderId?: string;
+}) => {
   const {
-    params: { params, order, scene, orders },
+    params: { order, scene, orders },
   } = parseUrl(window.location.href);
 
-  if (_.get(apiParams, 'id')) {
-    if (params) {
-      extraParams = `&params=${encodeURIComponent(params)}`;
-    } else if (order) {
-      const orderParams = JSON.stringify({ $ORDER_CODE: order });
-      extraParams = `&params=${encodeURIComponent(orderParams)}`;
-    } else if (orders) {
-      const orderId = _.get(_.split(orders, ','), idIndex);
+  let orderIds = '';
 
-      if (orderId) {
-        const orderParams = JSON.stringify({ $ORDER_CODE: orderId });
-        extraParams = `&params=${encodeURIComponent(orderParams)}`;
-      }
-    }
+  if (idIndex === undefined && orderId === undefined) {
+    orderIds = orders || order;
+  } else if (idIndex !== undefined) {
+    orderIds = _.get(_.split(orders, ','), idIndex);
+  } else if (orderId !== undefined) {
+    orderIds = orderId;
   }
 
-  return url + extraParams;
+  if (orderIds) {
+    const orderParams = JSON.stringify({ $ORDER_CODES: orderIds });
+    const extraParams = `&params=${encodeURIComponent(orderParams)}`;
+    return url + extraParams;
+  }
+
+  return url;
 };
 
 /**
@@ -193,58 +198,13 @@ let checkFlag = 0.1;
  * 根据api地址请求数据
  * @param api api地址
  */
-// let fetchOneAPI = api => {
-//   // 从 api 中获取 id, 把参数传给对应的 id;
-//   return new Promise<void>(resolve => {
-//     let dest = DataCenter[api];
-//     if (!dest) {
-//       dest = DataCenter[api] = {};
-//     }
-//     if (dest['@:{loaded}']) {
-//       resolve();
-//     } else if (dest['@:{loading}']) {
-//       dest['@:{loading}'].push(resolve);
-//     } else {
-//       dest['@:{loading}'] = [resolve];
-//       let s = new Service();
-//       s.all(
-//         {
-//           name: '@:{get.by.url}',
-//           url: api,
-//         },
-//         (err: { message: string }, bag) => {
-//           progress.update();
-//           let list = bag.get('data', []);
-//           dest['@:{data}'] = list;
-//           dest['@:{loaded}'] = 1;
-//           dest['@:{error}'] = err?.message;
-//           for (let resolve of dest['@:{loading}']) {
-//             resolve();
-//           }
-//           delete dest['@:{loading}'];
-//         },
-//       );
-//     }
-//   });
-// };
-
-// 格式化 请求参数
-const formatApi = (orders, isOrders) => {
-  if (isOrders) {
-    return `&params=${encodeURIComponent(JSON.stringify({ $ORDER_CODES: orders }))}`;
-  }
-
-  return `&params=${encodeURIComponent(JSON.stringify({ $ORDER_CODE: orders }))}`;
-};
-
-// 请求表格数据
 const fetchItemApi = async (api, orders) => {
   return new Promise(resolve => {
     const s = new Service();
     s.all(
       {
         name: '@:{get.by.url}',
-        url: api + formatApi(orders, true),
+        url: mergeApi({ url: api, orderId: orders }),
       },
       (err: { message: string }, bag) => {
         progress.update();
@@ -252,7 +212,7 @@ const fetchItemApi = async (api, orders) => {
         const orderList = _.split(orders, ',');
 
         _.map(orderList, item => {
-          const url = `${api}${formatApi(item, false)}`;
+          const url = mergeApi({ url: api, orderId: item });
           let dest = DataCenter[url];
 
           if (!dest) {
@@ -378,7 +338,7 @@ export default View.extend({
         const bindUrl = _.get(e, ['props', 'bind', 'url']);
 
         if (bindUrl) {
-          const api = mergeApi(bindUrl, idIndex);
+          const api = mergeApi({ url: bindUrl, idIndex });
           e.props.bind.url = api;
         }
 
@@ -450,7 +410,7 @@ export default View.extend({
             const bindUrl = _.get(newElement, ['props', 'bind', 'url']);
 
             if (bindUrl) {
-              const api = mergeApi(bindUrl, idIndex);
+              const api = mergeApi({ url: bindUrl, idIndex });
               newElement.props.bind.url = api;
             }
           }
@@ -686,11 +646,7 @@ export default View.extend({
         if (bind && bind.url) {
           // 当前接口的参数, sql 的 id
 
-          const api = mergeApi(bind.url, idIndex);
-
-          // if (!_.includes(apis, api)) {
-          //   apis.push(api);
-          // }
+          const api = mergeApi({ url: bind.url, idIndex });
 
           if (!_.includes(apiList, bind.url)) {
             apiList.push(bind.url);
@@ -777,6 +733,8 @@ export default View.extend({
         i + 1,
       );
     }
+
+    console.log('datacenter', DataCenter);
 
     // 计算每条数据分页总数
     // 一条数据只生成一个总页数
