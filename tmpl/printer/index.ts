@@ -303,6 +303,10 @@ const getOXAndOy = page => {
  * @returns
  */
 const getPageAttr = (pageList, pageIndex, index = 0, preTotal = 0) => {
+  if (index >= _.size(pageList)) {
+    return pageList[0];
+  }
+
   const pageSize = pageIndex + 1;
   let { total } = pageList[index];
 
@@ -828,6 +832,10 @@ export default View.extend({
      * @returns 返回当前数据的总页数
      */
     const getTotal = (pagerIndex, totalGroup, groupIndex, preTotal) => {
+      if (groupIndex >= _.size(totalGroup)) {
+        return 0;
+      }
+
       const total = totalGroup[groupIndex];
 
       if (pagerIndex + 1 > total + preTotal) {
