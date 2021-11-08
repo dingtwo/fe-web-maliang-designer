@@ -314,7 +314,7 @@ const getPageAttr = (pageList, pageIndex, index = 0, preTotal = 0) => {
     return pageList[index];
   }
 
-  return getPageAttr(pageList, pageIndex, index + 1, total);
+  return getPageAttr(pageList, pageIndex, index + 1, total + preTotal);
 };
 
 export default View.extend({
@@ -855,7 +855,7 @@ export default View.extend({
       ...page,
       total: totalGroup[i],
     }));
-    console.log('pageList', pageList);
+
     // console.log('页面', pages.push(pages[0]), pages);
     Toast.show('等待页面生成...');
     await this.digest({
