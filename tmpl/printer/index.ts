@@ -251,8 +251,84 @@ let fetchAllAPI = async apis => {
   return Promise.all(promises);
 };
 
+/**
+ * 生成新的页面数据，用于循环遍历，生成页面
+ * @param stages 接口请求回来的数据
+ * @returns
+ */
+const getNewStages = stages =>
+  _.map(stages, stage => {
+    let { page, elements, unit } = stage;
+
+    /**
+     * 这里进行四个边距进行相应的宽高处理，边距在设计器里未开放
+     */
+
+    let { marginLeft, marginRight, marginTop, marginBottom } = page;
+
+    if (marginLeft != null && marginRight != null) {
+      page.width -= marginLeft + marginRight;
+    }
+
+    if (marginTop != null && marginBottom != null) {
+      page.height -= marginTop + marginBottom;
+    }
+
+    const { ox, oy } = getOXAndOy(page);
+
+    return {
+      page,
+      elements,
+      unit,
+      ox,
+      oy,
+    };
+  });
+
+// 生成页面的 ox oy
+const getOXAndOy = page => {
+  const { marginLeft, marginTop } = page;
+
+  let ox = page.xOffset - (marginLeft != null ? marginLeft : 0);
+  let oy = page.yOffset - (marginTop != null ? marginTop : 0);
+  return { ox, oy };
+};
+
+/**
+ * 用来获取页面数据中指定key的数据
+ * @param stages 接口返回的页面数据
+ * @param key 指定的key
+ * @returns array
+ */
+const getStageAttr = (stages, key = 'page') => _.map(getNewStages(stages), stage => stage[key]);
+
+/**
+ * 用来获取 page 的数据
+ * @param pageList 生成的 page 字段组成的lisi
+ * @param pageIndex 当前页码
+ * @param index page 页面，从 0 开始，用于递归
+ * @param preTotal 上一数据的总条数
+ * @returns
+ */
+const getPageAttr = (pageList, pageIndex, index = 0, preTotal = 0) => {
+  const pageSize = pageIndex + 1;
+  let { total } = pageList[index];
+
+  if (pageSize === total + preTotal) {
+    return pageList[index];
+  }
+
+  return getPageAttr(pageList, pageIndex, index + 1, total);
+};
+
 export default View.extend({
   tmpl: '@:./index.html',
+  init() {
+    this.set({
+      getPageAttr: getPageAttr,
+    });
+  },
+
   async render() {
     /**
      * 先渲染界面
@@ -593,28 +669,11 @@ export default View.extend({
     Toast.show('正在准备数据...');
 
     /**
-     * 这里进行四个边距进行相应的宽高处理，边距在设计器里未开放
-     */
-    let { marginLeft, marginRight, marginTop, marginBottom } = page;
-    if (marginLeft != null && marginRight != null) {
-      page.width -= marginLeft + marginRight;
-    }
-    if (marginTop != null && marginBottom != null) {
-      page.height -= marginTop + marginBottom;
-    }
-    this.digest({
-      enable: false,
-      empty: true,
-      page,
-      unit,
-      hasData: true,
-      loading: true,
-    });
-    /**
      * 根据偏移量和边距，计算新的偏移量
      */
-    let ox = page.xOffset - (marginLeft != null ? marginLeft : 0);
-    let oy = page.yOffset - (marginTop != null ? marginTop : 0);
+
+    const { ox, oy } = getOXAndOy(page);
+
     /**
      * 部分元素需要偏移量进行渲染，比如svg
      * 所以这里需要把计算后的偏移量进行设置，以供需要的元素使用
@@ -624,6 +683,16 @@ export default View.extend({
       '@:{global#stage.page.x.offset}': ox,
       '@:{global#stage.page.y.offset}': oy,
     });
+
+    this.digest({
+      enable: false,
+      empty: true,
+      pageList: [page],
+      unit: unit,
+      hasData: true,
+      loading: true,
+    });
+
     let pages = []; //分页对象
     // let apis = []; //所有绑定元素的接口地址，在渲染前，需要通过接口地址一次性把所有数据拿回来
     let apiList = [];
@@ -702,10 +771,10 @@ export default View.extend({
       }
     };
 
-    collectBindInfo(elements, 0);
-    // 所有的都遍历一次
-    others.forEach((stage, index) => {
-      collectBindInfo(stage.elements, index + 1);
+    const newStages = getNewStages(stages);
+
+    _.forEach(newStages, (item, index) => {
+      collectBindInfo(item.elements, index);
     });
 
     console.log('apiList', apiList);
@@ -717,24 +786,23 @@ export default View.extend({
     Toast.show('正在准备资源...');
     await resourcesLoader['@:{load}'](); //等资源加载
     Toast.show('正在计算分页...');
+
     //再进行分页处理
-    await this['@:{fill.page}'](elements, page, pages, pagers, ox, oy, footerHeight, 0);
     // NOTICE: 理论上从这里再渲染一套就行了, 试试
-    for (let i = 0; i < others.length; i++) {
-      const otherStage = others[i];
+    for (let i = 0; i < newStages.length; i++) {
+      const stage = newStages[i];
+
       await this['@:{fill.page}'](
-        otherStage.elements,
-        otherStage.page,
+        stage.elements,
+        stage.page,
         pages,
         pagers,
-        ox,
-        oy,
+        stage.ox,
+        stage.oy,
         footerHeight,
-        i + 1,
+        i,
       );
     }
-
-    console.log('datacenter', DataCenter);
 
     // 计算每条数据分页总数
     // 一条数据只生成一个总页数
@@ -782,6 +850,15 @@ export default View.extend({
       pagers[i].props.ext._totalPage = total;
     }
 
+    const stagePages = getStageAttr(stages, 'page');
+    const stageUnits = getStageAttr(stages, 'unit');
+
+    const pageList = _.map(stagePages, (page, i) => ({
+      ...page,
+      total: totalGroup[i],
+      unit: stageUnits[i],
+    }));
+
     // console.log('页面', pages.push(pages[0]), pages);
     Toast.show('等待页面生成...');
     await this.digest({
@@ -791,6 +868,7 @@ export default View.extend({
       pdf: null,
       sf: 'web',
       pages,
+      pageList: pageList,
       loading: false,
     });
     await lowTaskFinale(); //等待所有子组件任务完成
@@ -808,6 +886,7 @@ export default View.extend({
     Toast.hide();
     // this['@:{to.pdf}']();
   },
+
   // 浏览器打印
   '@:{print}<click>'() {
     window.print();
