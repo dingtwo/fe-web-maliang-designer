@@ -693,7 +693,6 @@ export default View.extend({
     // let apis = []; //所有绑定元素的接口地址，在渲染前，需要通过接口地址一次性把所有数据拿回来
     let apiList = [];
     let pagers = []; //页码器对象，需要根据分页多少设置每个页码器的当前页码及总共页码
-    let footerHeight = 0; //页脚高度
     let resourcesLoader = new ResourcesLoader(); //资源加载收集器
     this['@:{resources}'] = resourcesLoader;
     /**
@@ -738,10 +737,7 @@ export default View.extend({
 
         resourcesLoader['@:{add}']('@:{script}', type);
 
-        if (type == 'hod-footer') {
-          //页脚
-          footerHeight = props.height;
-        } else if (
+        if (
           type == 'barcode' ||
           type == 'batch-barcode' ||
           type == 'qrcode' ||
@@ -788,6 +784,8 @@ export default View.extend({
     for (let i = 0; i < newStages.length; i++) {
       const stage = newStages[i];
       pageList.push({ ...stage.page, unit: stage.unit });
+      const footerElm = _.find(stage.elements, { type: 'hod-footer' });
+      const footerHeight = _.get(footerElm, ['props', 'height'], 0);
 
       await this['@:{fill.page}'](
         stage.elements,
@@ -800,6 +798,8 @@ export default View.extend({
         i,
       );
     }
+
+    Toast.show('正在计算分页111...');
 
     // 计算每条数据分页总数
     // 一条数据只生成一个总页数
@@ -856,7 +856,6 @@ export default View.extend({
       total: totalGroup[i],
     }));
 
-    // console.log('页面', pages.push(pages[0]), pages);
     Toast.show('等待页面生成...');
     await this.digest({
       stage,
@@ -1316,7 +1315,6 @@ export default View.extend({
   },
   '@:{open.with.id}<click>'() {
     let { params } = parseUrl(parent.location.href);
-    console.log('参数', params, location.href, parent.location.href);
 
     window.open(DEBUG ? `./print-debug.html?id=${params.id}` : `./print.html?id=${params.id}`);
   },

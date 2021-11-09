@@ -36,7 +36,6 @@
   {{else}}
   {{each pages as item pageIndex last}}
   {{set page=getPageAttr(pageList, pageIndex)}}
-  {{console.log('page',page)}}
   <div class="designer-root pr page page-display overflow-hidden{{if !last}} page-break{{/if}}"
     style="width:{{=page.width}}{{=page.unit}};height:{{=page.height}}{{=page.unit}};background:{{=page.background}};{{if !page.preformat&&page.backgroundImage}}background-image:url({{=page.backgroundImage}});background-repeat:{{=page.backgroundRepeat=='full'?'no-repeat':page.backgroundRepeat}};background-size:{{if page.backgroundRepeat=='full'}}100% 100%{{else}}{{=page.backgroundWidth}}{{=page.unit}} {{=page.backgroundHeight}}{{=page.unit}};background-position:{{=page.backgroundXOffset}}{{=page.unit}} {{=page.backgroundYOffset}}{{=page.unit}}{{/if}}{{/if}}">
     {{if sf=='web'}}
