@@ -83,12 +83,10 @@ const mergeApi = ({
     params: { order, scene, orders },
   } = parseUrl(window.location.href);
 
-  let orderIds = '';
+  let orderIds = orders || order;
 
-  if (idIndex === undefined && orderId === undefined) {
-    orderIds = orders || order;
-  } else if (idIndex !== undefined) {
-    orderIds = _.get(_.split(orders, ','), idIndex);
+  if (idIndex !== undefined) {
+    orderIds = _.get(_.split(orderIds, ','), idIndex);
   } else if (orderId !== undefined) {
     orderIds = orderId;
   }
@@ -240,12 +238,18 @@ let fetchAllAPI = async apis => {
   let promises = [];
 
   const {
-    params: { orders },
+    params: { orders, order },
   } = parseUrl(window.location.href);
+
+  if (!orders && !order) {
+    return;
+  }
+
+  const orderCodes = orders || order;
 
   for (let api of apis) {
     // promises.push(await fetchOneAPI(api));
-    promises.push(await fetchItemApi(api, orders));
+    promises.push(await fetchItemApi(api, orderCodes));
   }
 
   return Promise.all(promises);
@@ -341,17 +345,16 @@ export default View.extend({
     let { params } = parseUrl(location.href);
 
     // 分两种,单个模板打印和批量打印
-    if (params && params.id) {
-      this['@:{get.stages}'](false, params);
-    } else if (params && params.orders) {
-      this['@:{get.stages}'](true, params);
-    } else if (params && params.order) {
+    if (params.orders || params.order) {
       if (!params.scene) {
         Toast.show('没有找到场景参数');
         return Promise.reject('没有找到场景参数');
       }
+
       // 订单模式
-      this['@:{get.stages}'](false, params);
+      this['@:{get.stages}']({ orders: params.order || params.orders });
+    } else {
+      Toast.show('没有找到订单号参数');
     }
   },
 
@@ -360,26 +363,21 @@ export default View.extend({
    * @param {boolean} isMuti 是否批量打印
    * @param {any} params 打印参数
    */
-  '@:{get.stages}'(isMuti, params) {
+  '@:{get.stages}'(params) {
     Toast.show('正在加载模板...');
 
     let s = new Service();
-    const url = isMuti ? '@:{get.muti.content}' : '@:{get.content}';
+
     s.all(
       {
-        name: url,
+        name: '@:{get.muti.content}',
         '@:{query}': params,
       },
       (ex, bag) => {
         console.log('请求回来的初始数据', ex, bag);
         if (!ex) {
           //如果请求未有异常，则根据请求回来的数据进行渲染界面
-          let stages;
-          if (isMuti) {
-            stages = bag.get('data').map(({ templateJson }) => templateJson);
-          } else {
-            stages = [bag.get('data.templateJson')];
-          }
+          const stages = bag.get('data').map(({ templateJson }) => templateJson);
           console.log('打印模板', stages);
           this['@:{render.page.by.json}'](stages);
         } else {
@@ -771,7 +769,7 @@ export default View.extend({
     progress.start(_.size(apiList));
     //先加载数据
     await fetchAllAPI(apiList);
-    // await fetchAllAPI(apis);
+
     Toast.show('正在准备资源...');
     await resourcesLoader['@:{load}'](); //等资源加载
     Toast.show('正在计算分页...');
