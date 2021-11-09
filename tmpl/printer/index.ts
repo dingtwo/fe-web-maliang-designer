@@ -309,8 +309,7 @@ const getPageAttr = (pageList, pageIndex, index = 0, preTotal = 0) => {
 
   const pageSize = pageIndex + 1;
   let { total } = pageList[index];
-
-  if (pageSize === total + preTotal) {
+  if (pageSize <= total + preTotal) {
     return pageList[index];
   }
 
@@ -400,10 +399,9 @@ export default View.extend({
    * @param oy 垂直偏移
    * @param footerHeight 页脚高度
    */
-  async '@:{fill.page}'(elements, page, pages, pagers, ox, oy, footerHeight, idIndex) {
+  async '@:{fill.page}'(elements, page, pages, pagers, ox, oy, footerHeight, unit, idIndex) {
     let logicCurrentPage = 0;
     let resLoader = this['@:{resources}'];
-    let unit = this.get('unit');
 
     for (let e of elements) {
       if (e.type == 'data-dtable' || e.type == 'data-ftable') {
@@ -468,6 +466,7 @@ export default View.extend({
        */
       let generatePage = async (elements, page, inHod?) => {
         let newPage = [];
+
         for (let i = 0; i < elements.length; i++) {
           let e = elements[i];
           let newElement = inHod
@@ -795,6 +794,7 @@ export default View.extend({
         stage.ox,
         stage.oy,
         footerHeight,
+        stage.unit,
         i,
       );
     }
@@ -854,6 +854,7 @@ export default View.extend({
     pageList = _.map(pageList, (page, i) => ({
       ...page,
       total: totalGroup[i],
+      id: i,
     }));
 
     Toast.show('等待页面生成...');

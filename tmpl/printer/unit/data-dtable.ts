@@ -103,6 +103,7 @@ export default async (
     hideLabel,
     hideTotal,
   } = props;
+
   let prepareResources = async (dataRow, list) => {
     if (!MeasureHeights[table.id]) {
       let rl = new ResourcesLoader();
@@ -134,7 +135,7 @@ export default async (
 
       for (let i = rowNodes.length; i--; ) {
         let tr = rowNodes[i];
-        rowHeights[i] = Const['@:{const#to.unit}'](tr.clientHeight);
+        rowHeights[i] = Const['@:{const#to.unit}'](tr.clientHeight, unit);
       }
 
       MeasureHeights[table.id] = rowHeights;
@@ -156,7 +157,7 @@ export default async (
     let rowNodes = root.getElementsByTagName('tr');
     let last = rowNodes[rowNodes.length - 1];
 
-    return Const['@:{const#to.unit}'](last.clientHeight);
+    return Const['@:{const#to.unit}'](last.clientHeight, unit);
   };
   //如果有绑定数据
   if (bind.url) {
@@ -269,6 +270,7 @@ export default async (
         showFoot = true,
         showHead = true,
         endPage = false;
+
       if (labelHasAutoReturn) {
         for (let i = labelRowIndex; i < dataRowIndex; i++) {
           let labelRow = rows[i];
@@ -335,7 +337,7 @@ export default async (
 
       let end, dataRows, find;
       let realHeight;
-      let num = 0;
+
       let calcDataRows = async () => {
         for (;;) {
           //强制数据每页至少显示一行
@@ -384,19 +386,15 @@ export default async (
           if (dataRows == 1 || find) {
             break;
           }
-
-          num++;
-
-          if (num >= 100) {
-            break;
-          }
         }
+
         end = dataRows + fromIndex;
       };
 
       /**
        * 如果最后一页显示尾
        */
+
       if (footLast && !hideFoot) {
         dataRows = floor(restHeight / contentHeight);
         await calcDataRows();
