@@ -160,7 +160,7 @@ export default async (
     return Const['@:{const#to.unit}'](last.clientHeight, unit);
   };
   //如果有绑定数据
-  if (bind.url) {
+  if (bind.url && dataCenter[bind.url]) {
     let { '@:{error}': err, '@:{data}': list } = dataCenter[bind.url];
     if (err) {
       //出错设置相应的提示信息
