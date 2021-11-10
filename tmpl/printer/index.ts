@@ -263,7 +263,7 @@ let fetchAllAPI = async apis => {
  */
 const getNewStages = stages => {
   return _.map(stages, stage => {
-    let { page, elements, unit } = stage;
+    let { page, elements, unit, templateId } = stage;
 
     /**
      * 这里进行四个边距进行相应的宽高处理，边距在设计器里未开放
@@ -287,6 +287,7 @@ const getNewStages = stages => {
       unit,
       ox,
       oy,
+      templateId,
     };
   });
 };
@@ -381,7 +382,9 @@ export default View.extend({
         console.log('请求回来的初始数据', ex, bag);
         if (!ex) {
           //如果请求未有异常，则根据请求回来的数据进行渲染界面
-          const stages = bag.get('data').map(({ templateJson }) => templateJson);
+          const stages = bag
+            .get('data')
+            .map(({ templateJson, id }) => ({ ...templateJson, templateId: id }));
           console.log('打印模板', stages);
           this['@:{render.page.by.json}'](stages);
         } else {
@@ -412,6 +415,7 @@ export default View.extend({
     unit,
     idIndex,
     pageSizeList,
+    templateId,
   ) {
     let logicCurrentPage = 0;
     let resLoader = this['@:{resources}'];
@@ -567,6 +571,7 @@ export default View.extend({
                 unit,
                 newPage,
                 inHod,
+                templateId,
               );
             }
           } else if (
@@ -658,6 +663,7 @@ export default View.extend({
         let { newPage, pageSizes } = await generatePage(pageElements, page);
 
         pages.push(newPage);
+        page.total = (page.total || 0) + 1;
         pageSizeList.push(_.last(pageSizes));
       } while (hasNextPage(pageElements, indexesCache));
       /**
@@ -809,7 +815,6 @@ export default View.extend({
     // NOTICE: 理论上从这里再渲染一套就行了, 试试
     for (let i = 0; i < newStages.length; i++) {
       const stage = newStages[i];
-      pageList.push({ ...stage.page, unit: stage.unit });
       const footerElm = _.find(stage.elements, { type: 'hod-footer' });
       const footerHeight = _.get(footerElm, ['props', 'height'], 0);
 
@@ -824,7 +829,10 @@ export default View.extend({
         stage.unit,
         i,
         pageSizeList,
+        stage.templateId,
       );
+
+      pageList.push({ ...stage.page, unit: stage.unit });
     }
 
     Toast.show('正在计算分页...');
@@ -865,7 +873,6 @@ export default View.extend({
 
     pageList = _.map(pageList, (page, i) => ({
       ...page,
-      total: pageTotalList[i] || 1,
       id: i,
     }));
 
