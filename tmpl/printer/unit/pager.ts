@@ -15,4 +15,6 @@ export default (newElement, newPage, inHod, pagers, currentPage, idIndex) => {
   if (!inHod) {
     newPage.push(newElement);
   }
+
+  return newElement.props.ext._currentPage;
 };
