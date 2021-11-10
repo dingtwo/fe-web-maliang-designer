@@ -121,8 +121,8 @@ if (!DEBUG && false) {
   Runner['@:{task.add}'](2000, task);
 }
 
-let { random } = Math;
 applyStyle('@:./index.less');
+
 let doc = document;
 doc.documentElement.classList.add('@:scoped.style:scrollable');
 doc.body.classList.add('@:scoped.style:overflow-y-scroll');
@@ -260,8 +260,8 @@ let fetchAllAPI = async apis => {
  * @param stages 接口请求回来的数据
  * @returns
  */
-const getNewStages = stages =>
-  _.map(stages, stage => {
+const getNewStages = stages => {
+  return _.map(stages, stage => {
     let { page, elements, unit } = stage;
 
     /**
@@ -288,6 +288,7 @@ const getNewStages = stages =>
       oy,
     };
   });
+};
 
 // 生成页面的 ox oy
 const getOXAndOy = page => {
@@ -647,15 +648,16 @@ export default View.extend({
     if (!stages) {
       return;
     }
-    console.log('数据', stages);
-    // NOTICE: 为了兼容,有点丑陋
-    let stage,
-      others = [];
-    if (Array.isArray(stages)) {
-      [stage, ...others] = stages;
-    } else {
-      stage = stages;
+
+    if (!_.isArray(stages)) {
+      stages = [stages];
     }
+
+    console.log('数据', stages);
+
+    // NOTICE: 为了兼容,有点丑陋
+    let [stage] = stages;
+
     if (!stage) return;
     let { page, elements, unit } = stage;
     if (!page || !elements || !unit) return;
