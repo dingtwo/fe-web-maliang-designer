@@ -37,7 +37,7 @@ class Progress {
   count = 0;
 
   start = len => {
-    this.len = len;
+    this.len = len || 1;
     this.toast();
   };
 
@@ -242,7 +242,8 @@ let fetchAllAPI = async apis => {
   } = parseUrl(window.location.href);
 
   if (!orders && !order) {
-    return;
+    Toast.show('没有找到订单号参数');
+    return Promise.reject('没有找到订单号参数');
   }
 
   const orderCodes = orders || order;
@@ -356,6 +357,7 @@ export default View.extend({
       this['@:{get.stages}']({ orders: params.order || params.orders });
     } else {
       Toast.show('没有找到订单号参数');
+      return Promise.reject('没有找到订单号参数');
     }
   },
 
