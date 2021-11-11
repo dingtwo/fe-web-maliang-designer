@@ -370,7 +370,7 @@ export default View.extend({
     // },
     '@:{print}<click>'() {
         if (Const['@:{const#new.page.print}']) {
-            //this.alert('打印功能正开发中...');
+            // this.alert('打印功能正开发中...');
             let old = this['@:{printer.post.fn}'];
             if (old) {
                 Runner["@:{task.remove.background}"](old);

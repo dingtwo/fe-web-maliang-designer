@@ -11,11 +11,11 @@ export default View.extend({
     async render() {
         if (DEBUG) {
             await this.digest({
-                src: './print-debug.html'
+                src: './print-debug.html?orders=OM21082600000129&scene=1'
             });
         } else {
             await this.digest({
-                src: `./print.html?v=${config('version')}`
+                src: `./print.html?v=${config('version')}&orders=OM21092400000777&scene=1`
             });
         }
         let old = this['@:{printer.post.fn}'];
