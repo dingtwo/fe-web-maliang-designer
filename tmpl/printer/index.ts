@@ -906,6 +906,28 @@ export default View.extend({
 
   // 浏览器打印
   '@:{print}<click>'() {
+    const pageList = this.get('pageList') || [];
+
+    const getValue = (obj, keys) => {
+      return _.map(keys, key => _.get(obj, key));
+    };
+
+    // 循环比较，检查模板尺寸是否一致
+    for (let i = 0; i < pageList.length; i++) {
+      const item = pageList[i];
+      const nextPage = pageList[i + 1];
+
+      if (nextPage) {
+        const [tW, tH, tU] = getValue(item, ['width', 'height', 'unit']);
+        const [nW, nH, nU] = getValue(nextPage, ['width', 'height', 'unit']);
+
+        if (tW !== nW || tH !== nH || tU !== nU) {
+          Toast.show('模板尺寸不一致，请检查');
+          return;
+        }
+      }
+    }
+
     window.print();
     printCount();
   },
