@@ -79,6 +79,8 @@ const mergeApi = ({
   idIndex?: number;
   orderId?: string;
 }) => {
+  let api = url;
+
   const {
     params: { order, scene, orders },
   } = parseUrl(window.location.href);
@@ -94,10 +96,11 @@ const mergeApi = ({
   if (orderIds) {
     const orderParams = JSON.stringify({ $ORDER_CODES: orderIds });
     const extraParams = `&params=${encodeURIComponent(orderParams)}`;
-    return url + extraParams;
+
+    return api + extraParams;
   }
 
-  return url;
+  return api;
 };
 
 /**
@@ -235,8 +238,6 @@ const fetchItemApi = async (api, orders) => {
  * @param apis api数组对象
  */
 let fetchAllAPI = async apis => {
-  let promises = [];
-
   const {
     params: { orders, order },
   } = parseUrl(window.location.href);
@@ -248,10 +249,9 @@ let fetchAllAPI = async apis => {
 
   const orderCodes = orders || order;
 
-  for (let api of apis) {
-    // promises.push(await fetchOneAPI(api));
-    promises.push(await fetchItemApi(api, orderCodes));
-  }
+  const promises = _.map(apis, async item => {
+    return await fetchItemApi(item, orderCodes);
+  });
 
   return Promise.all(promises);
 };
@@ -730,7 +730,7 @@ export default View.extend({
      * 收集所有元素的接口地址
      * @param elements 元素列表
      */
-    let collectBindInfo = (elements, idIndex) => {
+    let collectBindInfo = (elements, idIndex, templateId) => {
       for (let e of elements) {
         if (!e.id) {
           e.id = guid('e');
@@ -740,9 +740,6 @@ export default View.extend({
 
         if (bind && bind.url) {
           // 当前接口的参数, sql 的 id
-
-          const api = mergeApi({ url: bind.url, idIndex });
-
           if (!_.includes(apiList, bind.url)) {
             apiList.push(bind.url);
           }
@@ -756,7 +753,7 @@ export default View.extend({
           for (let row of rows) {
             for (let col of row.cols) {
               if (col.elements) {
-                collectBindInfo(col.elements, idIndex);
+                collectBindInfo(col.elements, idIndex, templateId);
               }
             }
           }
@@ -797,7 +794,7 @@ export default View.extend({
     const newStages = getNewStages(stages);
 
     _.forEach(newStages, (item, index) => {
-      collectBindInfo(item.elements, index);
+      collectBindInfo(item.elements, index, item.templateId);
     });
 
     progress.start(_.size(apiList));
