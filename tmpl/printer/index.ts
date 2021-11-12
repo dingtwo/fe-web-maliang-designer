@@ -348,6 +348,11 @@ export default View.extend({
         */
     let { params } = parseUrl(location.href);
 
+    // 检查是不是预览环境，如果是，就不去请求查询模板接口
+    if (params.preview === '1') {
+      return;
+    }
+
     // 分两种,单个模板打印和批量打印
     if (params.orders || params.order) {
       if (!params.scene) {
