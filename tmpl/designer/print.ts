@@ -6,7 +6,7 @@ import Magix from 'magix';
 import Runner from '../gallery/mx-runner/index';
 import ToJSON from './tojson';
 import { getEnv } from '../provider/host';
-
+console.log('getEnv', getEnv);
 let { View, node, config } = Magix;
 const env = getEnv();
 const testOrderCode = env === 'prod' ? 'OM21092400000777' : 'OM21082600000129';

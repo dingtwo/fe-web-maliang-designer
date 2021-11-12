@@ -24,6 +24,4 @@ export const getEnv = () => {
   }
 };
 
-const getHost = () => HOST[getEnv()];
-
-export default getHost;
+export const getHost = () => HOST[getEnv()];

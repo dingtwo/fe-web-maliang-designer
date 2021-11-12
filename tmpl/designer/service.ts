@@ -1,5 +1,5 @@
 import Magix from 'magix';
-import getHost from '../provider/host';
+import { getHost } from '../provider/host';
 let { Service, toUrl, config, guid } = Magix;
 
 /**
