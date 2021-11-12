@@ -35,6 +35,7 @@ import { printCount } from './printCount';
 class Progress {
   len = 0;
   count = 0;
+  isErr = false;
 
   start = len => {
     this.len = len || 1;
@@ -42,12 +43,21 @@ class Progress {
   };
 
   toast = () => {
-    Toast.show(`正在准备数据...（${calc(this.count).div(this.len).mul(100).toFixed(0)}%）`);
+    if (!this.isErr) {
+      Toast.show(`正在准备数据...（${calc(this.count).div(this.len).mul(100).toFixed(0)}%）`);
+    }
   };
 
   update = () => {
     this.count++;
     this.toast();
+  };
+
+  showError = err => {
+    if (!this.isErr) {
+      this.isErr = true;
+      Toast.show(err.message);
+    }
   };
 }
 
@@ -200,7 +210,7 @@ let checkFlag = 0.1;
  * @param api api地址
  */
 const fetchItemApi = async (api, orders) => {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     const s = new Service();
     s.all(
       {
@@ -208,26 +218,32 @@ const fetchItemApi = async (api, orders) => {
         url: mergeApi({ url: api, orderId: orders }),
       },
       (err: { message: string }, bag) => {
-        progress.update();
-        const data = bag.get('data');
-        const orderList = _.split(orders, ',');
+        if (err) {
+          progress.showError(err);
+          reject(err);
+        } else {
+          progress.update();
 
-        _.map(orderList, item => {
-          const url = mergeApi({ url: api, orderId: item });
-          let dest = DataCenter[url];
+          const data = bag.get('data');
+          const orderList = _.split(orders, ',');
 
-          if (!dest) {
-            dest = DataCenter[url] = {};
-          }
+          _.map(orderList, item => {
+            const url = mergeApi({ url: api, orderId: item });
+            let dest = DataCenter[url];
 
-          dest['@:{data}'] = _.get(data, item, []);
-          dest['@:{loaded}'] = 1;
-          dest['@:{error}'] = err?.message;
+            if (!dest) {
+              dest = DataCenter[url] = {};
+            }
 
-          delete dest['@:{loading}'];
-        });
+            dest['@:{data}'] = _.get(data, item, []);
+            dest['@:{loaded}'] = 1;
+            dest['@:{error}'] = err?.message;
 
-        resolve(void 0);
+            delete dest['@:{loading}'];
+          });
+
+          resolve(void 0);
+        }
       },
     );
   });
@@ -238,22 +254,24 @@ const fetchItemApi = async (api, orders) => {
  * @param apis api数组对象
  */
 let fetchAllAPI = async apis => {
-  const {
-    params: { orders, order },
-  } = parseUrl(window.location.href);
+  return new Promise((resolve, reject) => {
+    const {
+      params: { orders, order },
+    } = parseUrl(window.location.href);
 
-  if (!orders && !order) {
-    Toast.show('没有找到订单号参数');
-    return Promise.reject('没有找到订单号参数');
-  }
+    if (!orders && !order) {
+      Toast.show('没有找到订单号参数');
+      return Promise.reject('没有找到订单号参数');
+    }
 
-  const orderCodes = orders || order;
+    const orderCodes = orders || order;
 
-  const promises = _.map(apis, async item => {
-    return await fetchItemApi(item, orderCodes);
+    const promises = _.map(apis, async item => {
+      return await fetchItemApi(item, orderCodes);
+    });
+
+    return Promise.all(promises).then(resolve).catch(reject);
   });
-
-  return Promise.all(promises);
 };
 
 /**
