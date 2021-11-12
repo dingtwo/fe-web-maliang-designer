@@ -142,7 +142,7 @@ export default {
   '@:{lang#elements.table}': '表格',
   '@:{lang#elements.text.content}': '请输入或绑定内容',
   '@:{lang#elements.text}': '文本',
-  '@:{lang#elements.superText}': '超级文本',
+  '@:{lang#elements.superText}': '文本拼接',
   '@:{lang#elements.triangle}': '三角形',
   '@:{lang#elements.v-flexbox}': 'V-Flex',
   '@:{lang#elements.video.empty.tip}': '请输入视频地址',

@@ -21,7 +21,7 @@ export default View.extend({
         return `${item.name}`;
       });
 
-      text = `[绑定:${names.join('-')}]`;
+      text = `[绑定:${names.join(' ')}]`;
     }
     let minSize = min(width, height);
     let half = minSize / 2;

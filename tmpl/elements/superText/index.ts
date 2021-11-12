@@ -27,11 +27,11 @@ export default View.extend({
         }
 
         const values = _.map(bindFields, item => _.get(src, item.id, ''));
-        text = values.filter(item => item).join('-');
+        text = values.filter(item => item).join(' ');
         text = FormatProvider['@:{format}'](format, text, src);
       } else {
         const names = _.map(bindFields, item => _.get(item, name, ''));
-        text = `[绑定:${names.filter(item => item).join('-')}]`;
+        text = `[绑定:${names.filter(item => item).join(' ')}]`;
       }
     }
 
