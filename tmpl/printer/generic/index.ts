@@ -290,7 +290,7 @@ export default {
   '@:{recast.table.by.data}'(table, dataCenter) {
     let { props, type } = table;
     let { bind, rows, dynamicCols, avgDynamicColsWidth } = props;
-    if (bind.url && dynamicCols) {
+    if (bind.url && dynamicCols && dataCenter[bind.url]) {
       let { '@:{error}': err, '@:{data}': list } = dataCenter[bind.url];
       if (!err) {
         let anchorData = isArray(list) ? list[0] : list;

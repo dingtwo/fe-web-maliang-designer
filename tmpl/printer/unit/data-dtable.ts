@@ -81,6 +81,7 @@ export default async (
   unit,
   newPage,
   inHod,
+  templateId,
 ) => {
   if (!inHod) {
     newPage.push(table);
@@ -103,8 +104,9 @@ export default async (
     hideLabel,
     hideTotal,
   } = props;
+
   let prepareResources = async (dataRow, list) => {
-    if (!MeasureHeights[table.id]) {
+    if (!MeasureHeights[`${templateId}_${table.id}`]) {
       let rl = new ResourcesLoader();
       for (let col of dataRow.cols) {
         if (col.type == 'qrcode' || col.type == 'barcode') {
@@ -115,7 +117,7 @@ export default async (
     }
   };
   let measureDataHeight = async (dataRows, elementType) => {
-    if (!MeasureHeights[table.id]) {
+    if (!MeasureHeights[`${templateId}_${table.id}`]) {
       //Toast.show('正在加载依赖资源...');
       bind._data = dataRows;
       bind._showAcc = false;
@@ -126,15 +128,18 @@ export default async (
         props,
         unit,
       });
+
       //await doubleCheckImages(root);
       props.hideLabel = hideLabel;
       let rowNodes = root.getElementsByTagName('tr');
       let rowHeights = [];
+
       for (let i = rowNodes.length; i--; ) {
         let tr = rowNodes[i];
-        rowHeights[i] = Const['@:{const#to.unit}'](tr.clientHeight);
+        rowHeights[i] = Const['@:{const#to.unit}'](tr.clientHeight, unit);
       }
-      MeasureHeights[table.id] = rowHeights;
+
+      MeasureHeights[`${templateId}_${table.id}`] = rowHeights;
       //Toast.hide();
     }
   };
@@ -143,17 +148,20 @@ export default async (
     bind._showAcc = true;
     bind._showFoot = false;
     bind._showHead = false;
+
     calcAcc(list, fromIndex, end, totalRow);
+
     let root = await Generic['@:{mount.display.of.element}'](type, {
       props,
       unit,
     });
     let rowNodes = root.getElementsByTagName('tr');
     let last = rowNodes[rowNodes.length - 1];
-    return Const['@:{const#to.unit}'](last.clientHeight);
+
+    return Const['@:{const#to.unit}'](last.clientHeight, unit);
   };
   //如果有绑定数据
-  if (bind.url) {
+  if (bind.url && dataCenter[bind.url]) {
     let { '@:{error}': err, '@:{data}': list } = dataCenter[bind.url];
     if (err) {
       //出错设置相应的提示信息
@@ -217,7 +225,7 @@ export default async (
       let realHeights = [];
       if (labelOrDataHasAutoReturn) {
         await measureDataHeight(list, type);
-        realHeights = MeasureHeights[table.id];
+        realHeights = MeasureHeights[`${templateId}_${table.id}`];
       }
       //let labelRow = rows[labelRowIndex];
       if (!hideTotal) {
@@ -263,6 +271,7 @@ export default async (
         showFoot = true,
         showHead = true,
         endPage = false;
+
       if (labelHasAutoReturn) {
         for (let i = labelRowIndex; i < dataRowIndex; i++) {
           let labelRow = rows[i];
@@ -300,9 +309,11 @@ export default async (
       if (hideLabel) {
         labelHeight = 0;
       }
+
       //计算剩余高度
       let restHeight =
         page.height - props.y - borderwidth - tfootSpacing - pageFooterHeight - labelHeight;
+
       /**
        * 根据是否显示头，以及是否是首页显示头进行头的高度处理
        */
@@ -324,8 +335,10 @@ export default async (
       if (showAcc) {
         restHeight -= totalHeight;
       }
+
       let end, dataRows, find;
       let realHeight;
+
       let calcDataRows = async () => {
         for (;;) {
           //强制数据每页至少显示一行
@@ -334,6 +347,7 @@ export default async (
           } else if (dataRows + fromIndex > list.length) {
             dataRows = list.length - fromIndex;
           }
+
           if (labelOrDataHasAutoReturn) {
             let dataHeightStartIndex = dataRowIndex - labelRowIndex;
             let rHeights = realHeights.slice(
@@ -348,11 +362,14 @@ export default async (
           } else {
             realHeight = dataRows * contentHeight + borderwidth;
           }
+
           if (totalHasAutoReturn) {
             for (let col of totalRow.cols) {
               col.height = srcTotalHeight;
             }
+
             let h = await measureTotalHeight(list, dataRows + fromIndex, totalRow);
+
             for (let col of totalRow.cols) {
               col.height = h;
             }
@@ -360,6 +377,7 @@ export default async (
             restHeight -= h;
             totalHeight = h;
           }
+
           if (realHeight > restHeight) {
             dataRows--;
           } else {
@@ -370,14 +388,18 @@ export default async (
             break;
           }
         }
+
         end = dataRows + fromIndex;
       };
+
       /**
        * 如果最后一页显示尾
        */
+
       if (footLast && !hideFoot) {
         dataRows = floor(restHeight / contentHeight);
         await calcDataRows();
+
         if (end >= list.length) {
           //数据结束
           end = list.length;
@@ -405,6 +427,7 @@ export default async (
         restHeight -= footHeight;
         dataRows = floor(restHeight / contentHeight);
         await calcDataRows();
+
         if (end >= list.length) {
           end = list.length;
           endPage = true;

@@ -1,0 +1,58 @@
+@import "../../assets/_vars.less";
+
+.drop-zone{
+    min-height: 100px;
+    border:solid 1px @color-border;
+    border-radius: 2px;
+}
+.drop-zone:hover{
+    border-color: @color-border-hover;
+}
+.drop-tip{
+    padding: 10px;
+}
+.item-draggable{
+    border: solid 1px @color-border;
+    border-radius: 2px;
+    margin: 2px;
+    line-height: 20px;
+    height: 20px;
+}
+.item-draggable::after{
+    content: ' ';
+    width:98%;
+    margin:0 1%;
+    height: 2px;
+    left:0;
+    position: absolute;
+}
+.notallowed{
+    background: @color-disabled;
+    cursor: not-allowed;
+    color: @color-third;
+    .item-draggable{
+        background: @color-disabled;
+    }
+    &:hover{
+        border-color: @color-border;
+    }
+}
+.item--top::after{
+    top:-3px;
+    background:darken(@color-brand,12%);
+}
+.item--bottom::after{
+    bottom: -3px;
+    background:darken(@color-brand,12%);
+}
+.item-dragged{
+    background: #fff;
+    opacity: 0.4;
+}
+.drop-zone-enter{
+    background:fade(@color-brand,10%);
+}
+.item-removed{
+    text-decoration: line-through;
+    color: @color-danger;
+}

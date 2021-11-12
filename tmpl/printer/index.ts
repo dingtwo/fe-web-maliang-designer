@@ -13,6 +13,8 @@ import HTML2CanvasProvider from '../provider/html2canvas';
 import JSPDFProvider from '../provider/jspdf';
 import Generic from './generic/index';
 import ResourcesLoader from './generic/resource';
+import _ from '../provider/lodash.min.js';
+import { calc } from '../provider/calc.js';
 /**
  * Lodop打印对象可以从 root/trash/lodop中拿出来放到./目录下即可
  */
@@ -30,6 +32,27 @@ import FillRichText from './unit/richtext';
 
 import { printCount } from './printCount';
 
+class Progress {
+  len = 0;
+  count = 0;
+
+  start = len => {
+    this.len = len || 1;
+    this.toast();
+  };
+
+  toast = () => {
+    Toast.show(`正在准备数据...（${calc(this.count).div(this.len).mul(100).toFixed(0)}%）`);
+  };
+
+  update = () => {
+    this.count++;
+    this.toast();
+  };
+}
+
+const progress = new Progress();
+
 let {
   State,
   View,
@@ -45,6 +68,41 @@ let {
   delay,
   task,
 } = Magix;
+
+// 获取url上的id，合成接口 api
+const mergeApi = ({
+  url,
+  idIndex,
+  orderId,
+}: {
+  url: string;
+  idIndex?: number;
+  orderId?: string;
+}) => {
+  let api = url;
+
+  const {
+    params: { order, scene, orders },
+  } = parseUrl(window.location.href);
+
+  let orderIds = orders || order;
+
+  if (idIndex !== undefined) {
+    orderIds = _.get(_.split(orderIds, ','), idIndex);
+  } else if (orderId !== undefined) {
+    orderIds = orderId;
+  }
+
+  if (orderIds) {
+    const orderParams = JSON.stringify({ $ORDER_CODES: orderIds });
+    const extraParams = `&params=${encodeURIComponent(orderParams)}`;
+
+    return api + extraParams;
+  }
+
+  return api;
+};
+
 /**
  * 反调试
  */
@@ -66,8 +124,8 @@ if (!DEBUG && false) {
   Runner['@:{task.add}'](2000, task);
 }
 
-let { random } = Math;
 applyStyle('@:./index.less');
+
 let doc = document;
 doc.documentElement.classList.add('@:scoped.style:scrollable');
 doc.body.classList.add('@:scoped.style:overflow-y-scroll');
@@ -141,68 +199,139 @@ let checkFlag = 0.1;
  * 根据api地址请求数据
  * @param api api地址
  */
-let fetchOneAPI = api => {
-  // 当前接口的参数, sql 的 id
-  const { params: apiParams } = parseUrl(api);
-  let extraParams = '';
-  // 当前页面 url 的参数
-  const {
-    params: { params, order, scene },
-  } = parseUrl(window.location.href);
-  console.log('获取数据接口', api, parseUrl(api), params, apiParams);
-  if (apiParams && apiParams.id && params) {
-    console.log('当前参数', apiParams);
-    extraParams = `&params=${encodeURIComponent(params)}`;
-  } else if (apiParams && apiParams.id && order) {
-    const orderParams = JSON.stringify({ $ORDER_CODE: order });
-    console.log('订单参数', orderParams);
-    extraParams = `&params=${encodeURIComponent(orderParams)}`;
-  }
-  // 从 api 中获取 id, 把参数传给对应的 id;
-  return new Promise<void>(resolve => {
-    let dest = DataCenter[api];
-    if (!dest) {
-      dest = DataCenter[api] = {};
-    }
-    if (dest['@:{loaded}']) {
-      resolve();
-    } else if (dest['@:{loading}']) {
-      dest['@:{loading}'].push(resolve);
-    } else {
-      dest['@:{loading}'] = [resolve];
-      let s = new Service();
-      s.all(
-        {
-          name: '@:{get.by.url}',
-          url: api + extraParams,
-        },
-        (err: { message: string }, bag) => {
-          let list = bag.get('data', []);
-          dest['@:{data}'] = list;
+const fetchItemApi = async (api, orders) => {
+  return new Promise(resolve => {
+    const s = new Service();
+    s.all(
+      {
+        name: '@:{get.by.url}',
+        url: mergeApi({ url: api, orderId: orders }),
+      },
+      (err: { message: string }, bag) => {
+        progress.update();
+        const data = bag.get('data');
+        const orderList = _.split(orders, ',');
+
+        _.map(orderList, item => {
+          const url = mergeApi({ url: api, orderId: item });
+          let dest = DataCenter[url];
+
+          if (!dest) {
+            dest = DataCenter[url] = {};
+          }
+
+          dest['@:{data}'] = _.get(data, item, []);
           dest['@:{loaded}'] = 1;
           dest['@:{error}'] = err?.message;
-          for (let resolve of dest['@:{loading}']) {
-            resolve();
-          }
+
           delete dest['@:{loading}'];
-        },
-      );
-    }
+        });
+
+        resolve(void 0);
+      },
+    );
   });
 };
+
 /**
  * 请求所有的api数据回来备用
  * @param apis api数组对象
  */
-let fetchAllAPI = apis => {
-  let promises = [];
-  for (let api of apis) {
-    promises.push(fetchOneAPI(api));
+let fetchAllAPI = async apis => {
+  const {
+    params: { orders, order },
+  } = parseUrl(window.location.href);
+
+  if (!orders && !order) {
+    Toast.show('没有找到订单号参数');
+    return Promise.reject('没有找到订单号参数');
   }
+
+  const orderCodes = orders || order;
+
+  const promises = _.map(apis, async item => {
+    return await fetchItemApi(item, orderCodes);
+  });
+
   return Promise.all(promises);
 };
+
+/**
+ * 生成新的页面数据，用于循环遍历，生成页面
+ * @param stages 接口请求回来的数据
+ * @returns
+ */
+const getNewStages = stages => {
+  return _.map(stages, stage => {
+    let { page, elements, unit, templateId } = stage;
+
+    /**
+     * 这里进行四个边距进行相应的宽高处理，边距在设计器里未开放
+     */
+
+    let { marginLeft, marginRight, marginTop, marginBottom } = page;
+
+    if (marginLeft != null && marginRight != null) {
+      page.width -= marginLeft + marginRight;
+    }
+
+    if (marginTop != null && marginBottom != null) {
+      page.height -= marginTop + marginBottom;
+    }
+
+    const { ox, oy } = getOXAndOy(page);
+
+    return {
+      page,
+      elements,
+      unit,
+      ox,
+      oy,
+      templateId,
+    };
+  });
+};
+
+// 生成页面的 ox oy
+const getOXAndOy = page => {
+  const { marginLeft, marginTop } = page;
+
+  let ox = page.xOffset - (marginLeft != null ? marginLeft : 0);
+  let oy = page.yOffset - (marginTop != null ? marginTop : 0);
+  return { ox, oy };
+};
+
+/**
+ * 用来获取 page 的数据
+ * @param pageList 生成的 page 字段组成的list
+ * @param pageIndex 当前页码
+ * @param index page 页面，从 0 开始，用于递归
+ * @param preTotal 上一数据的总条数
+ * @returns
+ */
+const getPageAttr = (pageList, pageIndex, index = 0, preTotal = 0) => {
+  if (index >= _.size(pageList)) {
+    return pageList[0];
+  }
+
+  const pageSize = pageIndex + 1;
+  let { total } = pageList[index];
+
+  if (pageSize <= total + preTotal) {
+    return pageList[index];
+  }
+
+  return getPageAttr(pageList, pageIndex, index + 1, total + preTotal);
+};
+
 export default View.extend({
   tmpl: '@:./index.html',
+  init() {
+    this.set({
+      getPageAttr: getPageAttr,
+    });
+  },
+
   async render() {
     /**
      * 先渲染界面
@@ -218,23 +347,24 @@ export default View.extend({
             以下根据地址栏有无id来决定是否发送请求来获取某个id的具体内容
         */
     let { params } = parseUrl(location.href);
-    // 单独打印
-    let contentUrl = config('getContentUrl');
-    // 批量打印
-    let mutiContentUrl = config('getMutiContentUrl');
-    console.log('______', params, contentUrl, mutiContentUrl);
+
+    // 检查是不是预览环境，如果是，就不去请求查询模板接口
+    if (params.preview === '1') {
+      return;
+    }
+
     // 分两种,单个模板打印和批量打印
-    if (params && params.id) {
-      this['@:{get.stages}'](false, params);
-    } else if (params && params.ids) {
-      this['@:{get.stages}'](true, params);
-    } else if (params && params.order) {
+    if (params.orders || params.order) {
       if (!params.scene) {
         Toast.show('没有找到场景参数');
         return Promise.reject('没有找到场景参数');
       }
+
       // 订单模式
-      this['@:{get.stages}'](false, params);
+      this['@:{get.stages}']({ orders: params.order || params.orders });
+    } else {
+      Toast.show('没有找到订单号参数');
+      return Promise.reject('没有找到订单号参数');
     }
   },
 
@@ -243,24 +373,23 @@ export default View.extend({
    * @param {boolean} isMuti 是否批量打印
    * @param {any} params 打印参数
    */
-  '@:{get.stages}'(isMuti, params) {
+  '@:{get.stages}'(params) {
+    Toast.show('正在加载模板...');
+
     let s = new Service();
-    const url = isMuti ? '@:{get.muti.content}' : '@:{get.content}';
+
     s.all(
       {
-        name: url,
+        name: '@:{get.muti.content}',
         '@:{query}': params,
       },
       (ex, bag) => {
         console.log('请求回来的初始数据', ex, bag);
         if (!ex) {
           //如果请求未有异常，则根据请求回来的数据进行渲染界面
-          let stages;
-          if (isMuti) {
-            stages = bag.get('data').map(({ templateJson }) => templateJson);
-          } else {
-            stages = [bag.get('data.templateJson')];
-          }
+          const stages = bag
+            .get('data')
+            .map(({ templateJson, id }) => ({ ...templateJson, templateId: id }));
           console.log('打印模板', stages);
           this['@:{render.page.by.json}'](stages);
         } else {
@@ -280,12 +409,31 @@ export default View.extend({
    * @param oy 垂直偏移
    * @param footerHeight 页脚高度
    */
-  async '@:{fill.page}'(elements, page, pages, pagers, ox, oy, footerHeight) {
+  async '@:{fill.page}'(
+    elements,
+    page,
+    pages,
+    pagers,
+    ox,
+    oy,
+    footerHeight,
+    unit,
+    idIndex,
+    pageSizeList,
+    templateId,
+  ) {
     let logicCurrentPage = 0;
     let resLoader = this['@:{resources}'];
-    let unit = this.get('unit');
+
     for (let e of elements) {
       if (e.type == 'data-dtable' || e.type == 'data-ftable') {
+        const bindUrl = _.get(e, ['props', 'bind', 'url']);
+
+        if (bindUrl) {
+          const api = mergeApi({ url: bindUrl, idIndex });
+          e.props.bind.url = api;
+        }
+
         Generic['@:{recast.table.by.data}'](e, DataCenter);
       }
     }
@@ -332,6 +480,7 @@ export default View.extend({
       );
       logicCurrentPage++;
       let indexesCache = {};
+      let pageSizes = [];
       /**
        * 生成分页数据
        * @param elements 元素列表
@@ -340,6 +489,7 @@ export default View.extend({
        */
       let generatePage = async (elements, page, inHod?) => {
         let newPage = [];
+
         for (let i = 0; i < elements.length; i++) {
           let e = elements[i];
           let newElement = inHod
@@ -349,6 +499,16 @@ export default View.extend({
                 id: e.id,
                 props: Const['@:{const#clone}'](e.props),
               };
+
+          if (newElement.type !== 'data-dtable' && newElement.type !== 'data-ftable') {
+            const bindUrl = _.get(newElement, ['props', 'bind', 'url']);
+
+            if (bindUrl) {
+              const api = mergeApi({ url: bindUrl, idIndex });
+              newElement.props.bind.url = api;
+            }
+          }
+
           if (!inHod) {
             //如果页头和页脚不偏移，则放开if语句
             // if (e.type != 'hod-footer' &&
@@ -360,7 +520,15 @@ export default View.extend({
           }
           if (e.type == 'pager') {
             //页码器
-            FillPager(newElement, newPage, inHod, pagers, pages.length);
+            const currentPage = FillPager(
+              newElement,
+              newPage,
+              inHod,
+              pagers,
+              pages.length,
+              idIndex,
+            );
+            pageSizes.push(currentPage);
           } else if (e.type == 'data-coltable') {
             //列表格
             let last = indexesCache[i] || 0;
@@ -408,6 +576,7 @@ export default View.extend({
                 unit,
                 newPage,
                 inHod,
+                templateId,
               );
             }
           } else if (
@@ -488,15 +657,19 @@ export default View.extend({
             }
           }
         }
-        return newPage;
+
+        return { newPage, pageSizes };
       };
       /**
        * 根据数据的多少，一直填充元素数据，直到所有数据均填充完
        */
       do {
         Generic['@:{show.msg}'](`正在计算第${pages.length + 1}页`);
-        let newPage = await generatePage(pageElements, page);
+        let { newPage, pageSizes } = await generatePage(pageElements, page);
+
         pages.push(newPage);
+        page.total = (page.total || 0) + 1;
+        pageSizeList.push(_.last(pageSizes));
       } while (hasNextPage(pageElements, indexesCache));
       /**
        * 这里结束之后,再来一轮, 是不是就可以解决批量了
@@ -512,42 +685,27 @@ export default View.extend({
     if (!stages) {
       return;
     }
-    console.log('数据', stages);
-    // NOTICE: 为了兼容,有点丑陋
-    let stage,
-      others = [];
-    if (Array.isArray(stages)) {
-      [stage, ...others] = stages;
-    } else {
-      stage = stages;
+
+    if (!_.isArray(stages)) {
+      stages = [stages];
     }
+
+    console.log('数据', stages);
+
+    // NOTICE: 为了兼容,有点丑陋
+    let [stage] = stages;
+
     if (!stage) return;
     let { page, elements, unit } = stage;
     if (!page || !elements || !unit) return;
     Toast.show('正在准备数据...');
-    /**
-     * 这里进行四个边距进行相应的宽高处理，边距在设计器里未开放
-     */
-    let { marginLeft, marginRight, marginTop, marginBottom } = page;
-    if (marginLeft != null && marginRight != null) {
-      page.width -= marginLeft + marginRight;
-    }
-    if (marginTop != null && marginBottom != null) {
-      page.height -= marginTop + marginBottom;
-    }
-    this.digest({
-      enable: false,
-      empty: true,
-      page,
-      unit,
-      hasData: true,
-      loading: true,
-    });
+
     /**
      * 根据偏移量和边距，计算新的偏移量
      */
-    let ox = page.xOffset - (marginLeft != null ? marginLeft : 0);
-    let oy = page.yOffset - (marginTop != null ? marginTop : 0);
+
+    const { ox, oy } = getOXAndOy(page);
+
     /**
      * 部分元素需要偏移量进行渲染，比如svg
      * 所以这里需要把计算后的偏移量进行设置，以供需要的元素使用
@@ -557,46 +715,62 @@ export default View.extend({
       '@:{global#stage.page.x.offset}': ox,
       '@:{global#stage.page.y.offset}': oy,
     });
+
+    this.digest({
+      enable: false,
+      empty: true,
+      pageList: [{ ...page, unit: unit }],
+      unit: unit,
+      hasData: true,
+      loading: true,
+    });
+
     let pages = []; //分页对象
-    let apis = []; //所有绑定元素的接口地址，在渲染前，需要通过接口地址一次性把所有数据拿回来
+    // let apis = []; //所有绑定元素的接口地址，在渲染前，需要通过接口地址一次性把所有数据拿回来
+    let apiList = [];
     let pagers = []; //页码器对象，需要根据分页多少设置每个页码器的当前页码及总共页码
-    let footerHeight = 0; //页脚高度
     let resourcesLoader = new ResourcesLoader(); //资源加载收集器
     this['@:{resources}'] = resourcesLoader;
     /**
      * 收集所有元素的接口地址
      * @param elements 元素列表
      */
-    let collectBindInfo = elements => {
+    let collectBindInfo = (elements, idIndex, templateId) => {
       for (let e of elements) {
         if (!e.id) {
           e.id = guid('e');
         }
         let { props, type } = e;
         let { bind } = props;
-        //有可能不同的元素使用了相同的api,而数据只需要取一份即可
-        if (bind && bind.url && apis.indexOf(bind.url) == -1) {
-          apis.push(bind.url);
+
+        if (bind && bind.url) {
+          // 当前接口的参数, sql 的 id
+          if (!_.includes(apiList, bind.url)) {
+            apiList.push(bind.url);
+          }
         }
+
+        //有可能不同的元素使用了相同的api,而数据只需要取一份即可
+
         //容器需要递归处理
         if (has(HodElements, type)) {
           let { rows } = props;
           for (let row of rows) {
             for (let col of row.cols) {
               if (col.elements) {
-                collectBindInfo(col.elements);
+                collectBindInfo(col.elements, idIndex, templateId);
               }
             }
           }
         }
+
         if (type == 'data-richtext') {
           type = 'richtext';
         }
+
         resourcesLoader['@:{add}']('@:{script}', type);
-        if (type == 'hod-footer') {
-          //页脚
-          footerHeight = props.height;
-        } else if (
+
+        if (
           type == 'barcode' ||
           type == 'batch-barcode' ||
           type == 'qrcode' ||
@@ -621,38 +795,91 @@ export default View.extend({
         }
       }
     };
-    collectBindInfo(elements);
-    // 所有的都遍历一次
-    others.forEach(stage => {
-      collectBindInfo(stage.elements);
+
+    const newStages = getNewStages(stages);
+
+    _.forEach(newStages, (item, index) => {
+      collectBindInfo(item.elements, index, item.templateId);
     });
 
+    progress.start(_.size(apiList));
     //先加载数据
-    await fetchAllAPI(apis);
+    await fetchAllAPI(apiList);
+
     Toast.show('正在准备资源...');
     await resourcesLoader['@:{load}'](); //等资源加载
     Toast.show('正在计算分页...');
+
+    let pageList = [];
+    let pageSizeList = [];
+
     //再进行分页处理
-    await this['@:{fill.page}'](elements, page, pages, pagers, ox, oy, footerHeight);
     // NOTICE: 理论上从这里再渲染一套就行了, 试试
-    for (let i = 0; i < others.length; i++) {
-      const otherStage = others[i];
+    for (let i = 0; i < newStages.length; i++) {
+      const stage = newStages[i];
+      const footerElm = _.find(stage.elements, { type: 'hod-footer' });
+      const footerHeight = _.get(footerElm, ['props', 'height'], 0);
+
       await this['@:{fill.page}'](
-        otherStage.elements,
-        otherStage.page,
+        stage.elements,
+        stage.page,
         pages,
         pagers,
-        ox,
-        oy,
+        stage.ox,
+        stage.oy,
         footerHeight,
+        stage.unit,
+        i,
+        pageSizeList,
+        stage.templateId,
       );
+
+      pageList.push({ ...stage.page, unit: stage.unit });
     }
-    //设置页码器的总页数
-    for (let pager of pagers) {
-      pager.props.ext._totalPage = pages.length;
+
+    Toast.show('正在计算分页...');
+
+    const pageTotalList = [];
+    for (let i = 0; i < pageSizeList.length; i++) {
+      // 当前分页的页码
+      const pager = pageSizeList[i];
+      // 下一页的页码
+      const nextPager = pageSizeList[i + 1];
+
+      // 判断下一页是否为 undefined ，或者下一页页码是否为1
+      // 如果是，当前页则是当前数据的最后一页，将当前页码加到总数array 中
+      if ((pager && (nextPager === 1 || nextPager === undefined)) || pager === undefined) {
+        pageTotalList.push(pager);
+      }
     }
-    // console.log('页面', pages.push(pages[0]), pages);
+
+    // 获取页面总数
+    const getTotal = (i, pagerTotals, totalIndex = 0, preTotal = 0) => {
+      if (totalIndex >= _.size(pagerTotals)) {
+        return 1;
+      }
+
+      let total = pagerTotals[totalIndex] || 0;
+
+      if (i + 1 <= total + preTotal) {
+        return total;
+      }
+
+      return getTotal(i, pagerTotals, totalIndex + 1, total + preTotal);
+    };
+
+    for (let i = 0; i < pagers.length; i++) {
+      const total = getTotal(i, pageTotalList);
+      pagers[i].props.ext._totalPage = total;
+    }
+
+    pageList = _.map(pageList, (page, i) => ({
+      ...page,
+      id: i,
+    }));
+
     Toast.show('等待页面生成...');
+
     await this.digest({
       stage,
       enable: false,
@@ -660,6 +887,7 @@ export default View.extend({
       pdf: null,
       sf: 'web',
       pages,
+      pageList: pageList,
       loading: false,
     });
     await lowTaskFinale(); //等待所有子组件任务完成
@@ -677,8 +905,31 @@ export default View.extend({
     Toast.hide();
     // this['@:{to.pdf}']();
   },
+
   // 浏览器打印
   '@:{print}<click>'() {
+    const pageList = this.get('pageList') || [];
+
+    const getValue = (obj, keys) => {
+      return _.map(keys, key => _.get(obj, key));
+    };
+
+    // 循环比较，检查模板尺寸是否一致
+    for (let i = 0; i < pageList.length; i++) {
+      const item = pageList[i];
+      const nextPage = pageList[i + 1];
+
+      if (nextPage) {
+        const [tW, tH, tU] = getValue(item, ['width', 'height', 'unit']);
+        const [nW, nH, nU] = getValue(nextPage, ['width', 'height', 'unit']);
+
+        if (tW !== nW || tH !== nH || tU !== nU) {
+          Toast.show('模板尺寸不一致，请检查');
+          return;
+        }
+      }
+    }
+
     window.print();
     printCount();
   },
@@ -1109,7 +1360,6 @@ export default View.extend({
   },
   '@:{open.with.id}<click>'() {
     let { params } = parseUrl(parent.location.href);
-    console.log('参数', params, location.href, parent.location.href);
 
     window.open(DEBUG ? `./print-debug.html?id=${params.id}` : `./print.html?id=${params.id}`);
   },

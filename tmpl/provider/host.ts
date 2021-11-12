@@ -6,7 +6,7 @@ enum HOST {
 }
 
 // 获取 host
-const getEnv = () => {
+export const getEnv = () => {
   var hostname = window.location.hostname;
 
   switch (hostname) {
@@ -24,6 +24,4 @@ const getEnv = () => {
   }
 };
 
-const getHost = () => HOST[getEnv()];
-
-export default getHost;
+export const getHost = () => HOST[getEnv()];
