@@ -1,117 +1,162 @@
 <!-- {{if e}} -->
 <ul class="tag-ul props padding-4 unselectable props-padding-bottom">
-    <li class="props-item flex align-items-center">
-        <span class="props-item-title tr">{{=i18n('@:{lang#props.type}')}}</span>
-        <span>{{=i18n(e.ctrl.title)}}</span>
-    </li>
-    {{set {ctrl,props}=e}}
-    {{each ctrl.props as p}}
-        {{if p.type&&(!p['@:{if.show}']||p['@:{if.show}'](props))}}
-            {{if p.type==propTypes['@:{eprops#spliter}']}}
-                <li class="item-spliter"></li>
-            {{else}}
-            {{set data=props[p.key]}}
-            {{if p.read}}
-                {{data=p.read(data,props);}}
-            {{/if}}
-            <li class="props-item flex {{if p['@:{dock.top}']}}align-items-flex-start{{else}}align-items-center{{/if}}">
-                {{if p.tip&&(he||p.type!=propTypes['@:{eprops#link}'])}}
-                <span class="props-item-title tr">
-                    {{=i18n(p.tip)}}
-                </span>
-                {{/if}}
-                {{set locked=props.locked || (p.key=='x'&&props.pinX) || (p.key=='y'&&props.pinY) || (p.key=='rotate'&&(props.pinX||props.pinY))}}
-                {{set {type:pType,'@:{is.dynamic.type}':dyanmicType}=p}}
-                {{if dyanmicType}}
-                    {{pType=pType(props)}}
-                {{/if}}
-                {{if pType==propTypes['@:{eprops#label}']}}
-                    <span class="{{if locked}}color-999{{/if}}">{{=data}}</span>
-                {{else if pType==propTypes['@:{eprops#number}']}}
-                    <mx-number class="width-140" disabled="{{=locked}}?" *value="{{#data}}" *max="{{#p.max}}??" *props="{{#props}}" *step="{{#p.step}}??" *fixed="{{#p.fixed}}??" *min="{{#p.min}}??" mx-input="@:{update.prop}({key:'{{=p.key}}',use:'value',element:{{#e}},write:{{#p.write}}})"/>
-                {{else if pType==propTypes['@:{eprops#number.range}']}}
-                    <mx-range class="width-140" *disabled="{{#locked}}" *value="{{#data}}" mx-input="@:{update.prop}({key:'{{=p.key}}',use:'range',element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#color}']}}
-                    <mx-color *clear="{{=p.clear}}" class="width-140" *color="{{#data}}" *align="right" *disabled="{{=locked}}" *alpha="{{=p.alpha}}" mx-input="@:{update.prop}({key:'{{=p.key}}',use:'color',element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#boolean}']}}
-                    <label class="tag-label mwp100 cursor-pointer flex align-items-center">
-                        <input class="switch-input pa" type="checkbox" checked="{{=data}}?" disabled="{{=locked&&!p.free}}?" mx-change="@:{update.prop}({key:'{{=p.key}}',native:'checked',element:{{#e}},write:{{#p.write}}})"/>
-                        <i class="switch-button unselectable pr"></i>
-                    </label>
-                {{else if pType==propTypes['@:{eprops#text.area}']}}
-                    <textarea class="textarea width-140 height-100" disabled="{{=locked}}?" mx-input="@:{update.prop}({key:'{{=p.key}}',native:'value',element:{{#e}}})">{{=data}}</textarea>
-                {{else if pType==propTypes['@:{eprops#font.style}']}}
-                    <mx-font.style class="flex width-140" *disabled="{{#locked}}" *value="{{#props}}" mx-input="@:{update.prop}({use:'_',element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#align}']}}
-                    <mx-align class="flex width-140" *disabled="{{#locked}}" *value="{{#props}}" mx-input="@:{update.prop}({use:'_',element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#text.align}']}}
-                    <mx-font.align class="flex width-140" *disabled="{{#locked}}" *value="{{#props}}" *align-key="{{=p.key}}" mx-input="@:{update.prop}({use:'_',element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#dropdown}']}}
-                    <mx-dropdown class="width-140" *disabled="{{#locked}}" *selected="{{=data}}" *list="{{#p.items}}" *icon-key="icon" *text-key="{{=p.textKey||'text'}}" *value-key="{{=p.valueKey||'value'}}" mx-change="@:{update.prop}({key:'{{=p.key}}',use:'value',element:{{#e}},write:{{#p.write}}})"/>
-                {{else if pType==propTypes['@:{eprops#image}']}}
-                    <mx-picture class="width-140" *src="{{=data}}" *disabled="{{#locked}}" mx-change="@:{update.prop}({key:'{{=p.key}}',use:'src',element:{{#e}},write:{{#p.write}}})"/>
-                {{else if pType==propTypes['@:{eprops#image.reset}']}}
-                    <button class="btn tc cursor-pointer btn-brand" disabled="{{=locked}}?" mx-click="@:{update.image.size}({key:'{{=p.key}}',element:{{#e}}})">{{=i18n('@:{lang#elements.image.reset}')}}</button>
-                {{else if pType==propTypes['@:{eprops#text.input}']}}
-                    <input class="input" value="{{=data}}" disabled="{{=locked}}?" mx-input="@:{update.prop}({key:'{{=p.key}}',native:'value',element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#bind.field}']}}
-                    <mx-field class="width-140" *data="{{#data}}" *max="{{#p.max}}?" *disabled="{{#locked}}" mx-change="@:{update.prop}({key:'{{=p.key}}',use:'bindField',element:{{#e}},write:{{#p.write}}})"/>
-                {{else if pType==propTypes['@:{eprops#column.width}']}}
-                    <mx-column class="width-140" *min="{{#p.min}}??" *max="{{#p.max}}??" *columns="{{#data}}" *fields="{{#props.bind.fields}}" *disabled="{{#locked}}" mx-change="@:{update.prop}({key:'{{=p.key}}',use:'columns',element:{{#e}},write:{{#p.write}}})"/>
-                {{else if pType==propTypes['@:{eprops#table.style}']}}
-                    <mx-table.style class="width-140" *disabled="{{#locked}}" mx-change="@:{update.prop}({use:'skin',element:{{#e}},write:{{#p.write}}})" />
-                {{else if pType==propTypes['@:{eprops#cell.style}']}}
-                    <mx-box.style *disabled="{{#locked}}" *props="{{#props}}" mx-change="@:{update.prop}({use:'rows',element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#h.cell.operate}']}}
-                    <mx-box.h-operate class="width-140" *disabled="{{#locked}}" *props="{{#props}}" mx-change="@:{update.prop}({use:'rows',size:1,operate:1,element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#v.cell.operate}']}}
-                    <mx-box.v-operate class="width-140" *disabled="{{#locked}}" *props="{{#props}}" mx-change="@:{update.prop}({use:'rows',size:1,operate:1,element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#table.cell.operate}']}}
-                    <mx-table.operate class="width-140" *disabled="{{#locked}}" *props="{{#props}}" *sub="{{=p['@:{elements}']}}??" mx-change="@:{update.prop}({use:'rows',size:1,operate:1,element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#table.cell.border}']}}
-                    <mx-table.border class="width-140" *disabled="{{#locked}}" *props="{{#props}}" mx-change="@:{update.prop}({use:'rows',element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#dtable.cell.operate}']}}
-                    <mx-dtable.operate class="width-140" *disabled="{{#locked}}" *props="{{#props}}" *sub="{{=p['@:{elements}']}}??" mx-change="@:{update.prop}({use:'rows',operate:1,size:1,element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#ftable.cell.operate}']}}
-                    <mx-ftable.operate class="width-140" *disabled="{{#locked}}" *props="{{#props}}" *sub="{{=p['@:{elements}']}}??" mx-change="@:{update.prop}({use:'rows',operate:1,size:1,element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#h.cell.size}']}}
-                    <mx-box.h-size class="width-140" *disabled="{{#locked}}" *props="{{#props}}" mx-change="@:{update.prop}({use:'rows',size:1,element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#v.cell.size}']}}
-                    <mx-box.v-size class="width-140" *disabled="{{#locked}}" *props="{{#props}}" mx-change="@:{update.prop}({use:'rows',size:1,element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#table.cell.size}']}}
-                    <mx-table.size class="width-140" *disabled="{{#locked}}" *props="{{#props}}" *ah="{{=p['@:{auto.height}']}}??" mx-change="@:{update.prop}({use:'rows',size:1,element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#table.cell.share}']}}
-                    <mx-table.share class="width-140" *disabled="{{#locked}}" *props="{{#props}}" *data-pad="{{#p.dataPad}}" mx-change="@:{update.prop}({use:'rows',size:1,element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#table.cell.content}']}}
-                    <mx-table.content class="width-220" *disabled="{{#locked}}" *props="{{#props}}" mx-change="@:{update.prop}({use:'rows',element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#dtable.cell.content}']}}
-                    <mx-dtable.content class="width-220" *disabled="{{#locked}}" *props="{{#props}}" mx-change="@:{update.prop}({use:'rows',element:{{#e}}})"/>
-                {{else if he&&pType==propTypes['@:{eprops#link}']}}
-                    <a href="//{{=data}}" class="tag-a width-140 ellipsis" title="{{=data}}" target="_blank" rel="noopener noreferrer">{{=data}}</a>
-                {{else if pType==propTypes['@:{eprops#fx.expression}']}}
-                    <mx-fx *disabled="{{#locked}}" *data="{{#data}}" mx-change="@:{update.prop}({use:'data',element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#fx.help}']}}
-                    <mx-fx.help class="width-220" *disabled="{{#locked}}" *data="{{#data}}" mx-change="@:{update.prop}({use:'data',element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#svg.key.point}']}}
-                    <mx-svg.kp class="width-220" *disabled="{{#locked}}" *props="{{#props}}" *mod="{{=p.mod}}??" mx-change="@:{update.prop}({use:'kp',element:{{#e}},kp:1})"/>
-                {{else if pType==propTypes['@:{eprops#svg.mod.point}']}}
-                    <mx-svg.mod class="width-220" *disabled="{{#locked}}" *props="{{#props}}" mx-change="@:{update.prop}({use:'mod',element:{{#e}},mod:1})"/>
-                {{else if pType==propTypes['@:{eprops#format}']}}
-                    <mx-format class="width-140" *format="{{#data}}" *disabled="{{#locked}}" mx-change="@:{update.prop}({key:'{{=p.key}}',use:'format',element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#form.collect.cell.operate}']}}
-                    <mx-collect.operate class="width-140" *disabled="{{#locked}}" *props="{{#props}}" *sub="{{=p['@:{elements}']}}??" mx-change="@:{update.prop}({use:'rows',size:1,operate:1,element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#form.collect.cell.content}']}}
-                    <mx-collect.content class="width-220" *disabled="{{#locked}}" *props="{{#props}}" mx-change="@:{update.prop}({use:'rows',element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#color.series}']}}
-                    <mx-color.series *colors="{{#data}}" class="width-140" *disabled="{{#locked}}" *multi="{{#p.multi}}" mx-change="@:{update.prop}({use:'colors',element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#format.fx}']}}
-                    <mx-format.fx class="width-140" *format="{{#data}}" *disabled="{{#locked}}" *default-fx="{{#p['@:{default.fx}']}}?" mx-change="@:{update.prop}({key:'{{=p.key}}',use:'format',element:{{#e}}})"/>
-                {{else if pType==propTypes['@:{eprops#form.items}']}}
-                    <mx-form.items *items="{{#data}}" *disabled="{{#locked}}" *mutual="{{#p.mutual&&p.mutual(props)}}" mx-change="@:{update.prop}({use:'items',element:{{#e}}})"/>
-                {{/if}}
-            </li>
-            {{/if}}
-        {{/if}}
-    {{/each}}
+  <li class="props-item flex align-items-center">
+    <span class="props-item-title tr">{{=i18n('@:{lang#props.type}')}}</span>
+    <span>{{=i18n(e.ctrl.title)}}</span>
+  </li>
+  {{set {ctrl,props}=e}}
+  {{each ctrl.props as p}}
+  {{if p.type&&(!p['@:{if.show}']||p['@:{if.show}'](props))}}
+  {{if p.type==propTypes['@:{eprops#spliter}']}}
+  <li class="item-spliter"></li>
+  {{else}}
+  {{set data=props[p.key]}}
+  {{if p.read}}
+  {{data=p.read(data,props);}}
+  {{/if}}
+  <li class="props-item flex {{if p['@:{dock.top}']}}align-items-flex-start{{else}}align-items-center{{/if}}">
+    {{if p.tip&&(he||p.type!=propTypes['@:{eprops#link}'])}}
+    <span class="props-item-title tr">
+      {{=i18n(p.tip)}}
+    </span>
+    {{/if}}
+    {{set locked=props.locked || (p.key=='x'&&props.pinX) || (p.key=='y'&&props.pinY) ||
+    (p.key=='rotate'&&(props.pinX||props.pinY))}}
+    {{set {type:pType,'@:{is.dynamic.type}':dyanmicType}=p}}
+    {{if dyanmicType}}
+    {{pType=pType(props)}}
+    {{/if}}
+    {{if pType==propTypes['@:{eprops#label}']}}
+    <span class="{{if locked}}color-999{{/if}}">{{=data}}</span>
+    {{else if pType==propTypes['@:{eprops#number}']}}
+    <mx-number class="width-140" disabled="{{=locked}}?" *value="{{#data}}" *max="{{#p.max}}??" *props="{{#props}}"
+      *step="{{#p.step}}??" *fixed="{{#p.fixed}}??" *min="{{#p.min}}??"
+      mx-input="@:{update.prop}({key:'{{=p.key}}',use:'value',element:{{#e}},write:{{#p.write}}})" />
+    {{else if pType==propTypes['@:{eprops#number.range}']}}
+    <mx-range class="width-140" *disabled="{{#locked}}" *value="{{#data}}"
+      mx-input="@:{update.prop}({key:'{{=p.key}}',use:'range',element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#color}']}}
+    <mx-color *clear="{{=p.clear}}" class="width-140" *color="{{#data}}" *align="right" *disabled="{{=locked}}"
+      *alpha="{{=p.alpha}}" mx-input="@:{update.prop}({key:'{{=p.key}}',use:'color',element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#boolean}']}}
+    <label class="tag-label mwp100 cursor-pointer flex align-items-center">
+      <input class="switch-input pa" type="checkbox" checked="{{=data}}?" disabled="{{=locked&&!p.free}}?"
+        mx-change="@:{update.prop}({key:'{{=p.key}}',native:'checked',element:{{#e}},write:{{#p.write}}})" />
+      <i class="switch-button unselectable pr"></i>
+    </label>
+    {{else if pType==propTypes['@:{eprops#text.area}']}}
+    <textarea class="textarea width-140 height-100" disabled="{{=locked}}?"
+      mx-input="@:{update.prop}({key:'{{=p.key}}',native:'value',element:{{#e}}})">{{=data}}</textarea>
+    {{else if pType==propTypes['@:{eprops#font.style}']}}
+    <mx-font.style class="flex width-140" *disabled="{{#locked}}" *value="{{#props}}"
+      mx-input="@:{update.prop}({use:'_',element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#align}']}}
+    <mx-align class="flex width-140" *disabled="{{#locked}}" *value="{{#props}}"
+      mx-input="@:{update.prop}({use:'_',element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#text.align}']}}
+    <mx-font.align class="flex width-140" *disabled="{{#locked}}" *value="{{#props}}" *align-key="{{=p.key}}"
+      mx-input="@:{update.prop}({use:'_',element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#dropdown}']}}
+    <mx-dropdown class="width-140" *disabled="{{#locked}}" *selected="{{=data}}" *list="{{#p.items}}" *icon-key="icon"
+      *text-key="{{=p.textKey||'text'}}" *value-key="{{=p.valueKey||'value'}}"
+      mx-change="@:{update.prop}({key:'{{=p.key}}',use:'value',element:{{#e}},write:{{#p.write}}})" />
+    {{else if pType==propTypes['@:{eprops#image}']}}
+    <mx-picture class="width-140" *src="{{=data}}" *disabled="{{#locked}}"
+      mx-change="@:{update.prop}({key:'{{=p.key}}',use:'src',element:{{#e}},write:{{#p.write}}})" />
+    {{else if pType==propTypes['@:{eprops#image.reset}']}}
+    <button class="btn tc cursor-pointer btn-brand" disabled="{{=locked}}?"
+      mx-click="@:{update.image.size}({key:'{{=p.key}}',element:{{#e}}})">{{=i18n('@:{lang#elements.image.reset}')}}</button>
+    {{else if pType==propTypes['@:{eprops#text.input}']}}
+    <input class="input" value="{{=data}}" disabled="{{=locked}}?"
+      mx-input="@:{update.prop}({key:'{{=p.key}}',native:'value',element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#bind.field}']}}
+    <mx-field class="width-140" *data="{{#data}}" *max="{{#p.max}}?" *disabled="{{#locked}}"
+      mx-change="@:{update.prop}({key:'{{=p.key}}',use:'bindField',element:{{#e}},write:{{#p.write}}})" />
+    {{else if pType==propTypes['@:{eprops#bind.superField}']}}
+    <mx-superField class="width-140" *data="{{#data}}" *max="{{#p.max}}?" *disabled="{{#locked}}"
+      mx-change="@:{update.prop}({key:'{{=p.key}}',use:'bindField',element:{{#e}},write:{{#p.write}}})" />
+    {{else if pType==propTypes['@:{eprops#column.width}']}}
+    <mx-column class="width-140" *min="{{#p.min}}??" *max="{{#p.max}}??" *columns="{{#data}}"
+      *fields="{{#props.bind.fields}}" *disabled="{{#locked}}"
+      mx-change="@:{update.prop}({key:'{{=p.key}}',use:'columns',element:{{#e}},write:{{#p.write}}})" />
+    {{else if pType==propTypes['@:{eprops#table.style}']}}
+    <mx-table.style class="width-140" *disabled="{{#locked}}"
+      mx-change="@:{update.prop}({use:'skin',element:{{#e}},write:{{#p.write}}})" />
+    {{else if pType==propTypes['@:{eprops#cell.style}']}}
+    <mx-box.style *disabled="{{#locked}}" *props="{{#props}}"
+      mx-change="@:{update.prop}({use:'rows',element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#h.cell.operate}']}}
+    <mx-box.h-operate class="width-140" *disabled="{{#locked}}" *props="{{#props}}"
+      mx-change="@:{update.prop}({use:'rows',size:1,operate:1,element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#v.cell.operate}']}}
+    <mx-box.v-operate class="width-140" *disabled="{{#locked}}" *props="{{#props}}"
+      mx-change="@:{update.prop}({use:'rows',size:1,operate:1,element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#table.cell.operate}']}}
+    <mx-table.operate class="width-140" *disabled="{{#locked}}" *props="{{#props}}" *sub="{{=p['@:{elements}']}}??"
+      mx-change="@:{update.prop}({use:'rows',size:1,operate:1,element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#table.cell.border}']}}
+    <mx-table.border class="width-140" *disabled="{{#locked}}" *props="{{#props}}"
+      mx-change="@:{update.prop}({use:'rows',element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#dtable.cell.operate}']}}
+    <mx-dtable.operate class="width-140" *disabled="{{#locked}}" *props="{{#props}}" *sub="{{=p['@:{elements}']}}??"
+      mx-change="@:{update.prop}({use:'rows',operate:1,size:1,element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#ftable.cell.operate}']}}
+    <mx-ftable.operate class="width-140" *disabled="{{#locked}}" *props="{{#props}}" *sub="{{=p['@:{elements}']}}??"
+      mx-change="@:{update.prop}({use:'rows',operate:1,size:1,element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#h.cell.size}']}}
+    <mx-box.h-size class="width-140" *disabled="{{#locked}}" *props="{{#props}}"
+      mx-change="@:{update.prop}({use:'rows',size:1,element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#v.cell.size}']}}
+    <mx-box.v-size class="width-140" *disabled="{{#locked}}" *props="{{#props}}"
+      mx-change="@:{update.prop}({use:'rows',size:1,element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#table.cell.size}']}}
+    <mx-table.size class="width-140" *disabled="{{#locked}}" *props="{{#props}}" *ah="{{=p['@:{auto.height}']}}??"
+      mx-change="@:{update.prop}({use:'rows',size:1,element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#table.cell.share}']}}
+    <mx-table.share class="width-140" *disabled="{{#locked}}" *props="{{#props}}" *data-pad="{{#p.dataPad}}"
+      mx-change="@:{update.prop}({use:'rows',size:1,element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#table.cell.content}']}}
+    <mx-table.content class="width-220" *disabled="{{#locked}}" *props="{{#props}}"
+      mx-change="@:{update.prop}({use:'rows',element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#dtable.cell.content}']}}
+    <mx-dtable.content class="width-220" *disabled="{{#locked}}" *props="{{#props}}"
+      mx-change="@:{update.prop}({use:'rows',element:{{#e}}})" />
+    {{else if he&&pType==propTypes['@:{eprops#link}']}}
+    <a href="//{{=data}}" class="tag-a width-140 ellipsis" title="{{=data}}" target="_blank"
+      rel="noopener noreferrer">{{=data}}</a>
+    {{else if pType==propTypes['@:{eprops#fx.expression}']}}
+    <mx-fx *disabled="{{#locked}}" *data="{{#data}}" mx-change="@:{update.prop}({use:'data',element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#fx.help}']}}
+    <mx-fx.help class="width-220" *disabled="{{#locked}}" *data="{{#data}}"
+      mx-change="@:{update.prop}({use:'data',element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#svg.key.point}']}}
+    <mx-svg.kp class="width-220" *disabled="{{#locked}}" *props="{{#props}}" *mod="{{=p.mod}}??"
+      mx-change="@:{update.prop}({use:'kp',element:{{#e}},kp:1})" />
+    {{else if pType==propTypes['@:{eprops#svg.mod.point}']}}
+    <mx-svg.mod class="width-220" *disabled="{{#locked}}" *props="{{#props}}"
+      mx-change="@:{update.prop}({use:'mod',element:{{#e}},mod:1})" />
+    {{else if pType==propTypes['@:{eprops#format}']}}
+    <mx-format class="width-140" *format="{{#data}}" *disabled="{{#locked}}"
+      mx-change="@:{update.prop}({key:'{{=p.key}}',use:'format',element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#form.collect.cell.operate}']}}
+    <mx-collect.operate class="width-140" *disabled="{{#locked}}" *props="{{#props}}" *sub="{{=p['@:{elements}']}}??"
+      mx-change="@:{update.prop}({use:'rows',size:1,operate:1,element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#form.collect.cell.content}']}}
+    <mx-collect.content class="width-220" *disabled="{{#locked}}" *props="{{#props}}"
+      mx-change="@:{update.prop}({use:'rows',element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#color.series}']}}
+    <mx-color.series *colors="{{#data}}" class="width-140" *disabled="{{#locked}}" *multi="{{#p.multi}}"
+      mx-change="@:{update.prop}({use:'colors',element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#format.fx}']}}
+    <mx-format.fx class="width-140" *format="{{#data}}" *disabled="{{#locked}}" *default-fx="{{#p['@:{default.fx}']}}?"
+      mx-change="@:{update.prop}({key:'{{=p.key}}',use:'format',element:{{#e}}})" />
+    {{else if pType==propTypes['@:{eprops#form.items}']}}
+    <mx-form.items *items="{{#data}}" *disabled="{{#locked}}" *mutual="{{#p.mutual&&p.mutual(props)}}"
+      mx-change="@:{update.prop}({use:'items',element:{{#e}}})" />
+    {{/if}}
+  </li>
+  {{/if}}
+  {{/if}}
+  {{/each}}
 </ul>
 <!-- {{/if}} -->
