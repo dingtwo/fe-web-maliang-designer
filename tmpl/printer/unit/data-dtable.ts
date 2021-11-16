@@ -140,7 +140,7 @@ export default async (
         rowHeights[i] = Const['@:{const#to.unit}'](tr.clientHeight, unit);
       }
 
-      MeasureHeights[`${templateId}_${table.id}`] = rowHeights;
+      MeasureHeights[`${orderCode}_${templateId}_${table.id}`] = rowHeights;
       //Toast.hide();
     }
   };
@@ -221,12 +221,13 @@ export default async (
           break;
         }
       }
+
       let labelOrDataHasAutoReturn = dataHasAutoReturn || labelHasAutoReturn;
       //await prepareResources(dataRow, list);
       let realHeights = [];
       if (labelOrDataHasAutoReturn) {
         await measureDataHeight(list, type);
-        realHeights = MeasureHeights[`${templateId}_${table.id}`];
+        realHeights = MeasureHeights[`${orderCode}_${templateId}_${table.id}`];
       }
       //let labelRow = rows[labelRowIndex];
       if (!hideTotal) {

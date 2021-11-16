@@ -388,9 +388,11 @@ export default View.extend({
         console.log('请求回来的初始数据', ex, bag);
         if (!ex) {
           //如果请求未有异常，则根据请求回来的数据进行渲染界面
-          const stages = bag
-            .get('data')
-            .map(({ templateJson, id }) => ({ ...templateJson, templateId: id }));
+          const stages = bag.get('data').map(({ templateJson, id, orderCode }) => ({
+            ...templateJson,
+            templateId: id,
+            orderCode,
+          }));
           console.log('打印模板', stages);
           this['@:{render.page.by.json}'](stages);
         } else {
