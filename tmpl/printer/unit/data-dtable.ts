@@ -106,7 +106,7 @@ export default async (
   } = props;
 
   let prepareResources = async (dataRow, list) => {
-    if (!MeasureHeights[`${orderId}__${table.id}`]) {
+    if (!MeasureHeights[`${orderId}_${table.id}`]) {
       let rl = new ResourcesLoader();
       for (let col of dataRow.cols) {
         if (col.type == 'qrcode' || col.type == 'barcode') {
@@ -117,7 +117,7 @@ export default async (
     }
   };
   let measureDataHeight = async (dataRows, elementType) => {
-    if (!MeasureHeights[`${orderId}__${table.id}`]) {
+    if (!MeasureHeights[`${orderId}_${table.id}`]) {
       //Toast.show('正在加载依赖资源...');
       bind._data = dataRows;
       bind._showAcc = false;
@@ -220,6 +220,7 @@ export default async (
           break;
         }
       }
+
       let labelOrDataHasAutoReturn = dataHasAutoReturn || labelHasAutoReturn;
       //await prepareResources(dataRow, list);
       let realHeights = [];
