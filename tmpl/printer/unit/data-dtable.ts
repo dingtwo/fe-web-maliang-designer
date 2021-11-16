@@ -82,6 +82,7 @@ export default async (
   newPage,
   inHod,
   templateId,
+  orderCode,
 ) => {
   if (!inHod) {
     newPage.push(table);
@@ -106,7 +107,7 @@ export default async (
   } = props;
 
   let prepareResources = async (dataRow, list) => {
-    if (!MeasureHeights[`${templateId}_${table.id}`]) {
+    if (!MeasureHeights[`${orderCode}_${templateId}_${table.id}`]) {
       let rl = new ResourcesLoader();
       for (let col of dataRow.cols) {
         if (col.type == 'qrcode' || col.type == 'barcode') {
@@ -117,7 +118,7 @@ export default async (
     }
   };
   let measureDataHeight = async (dataRows, elementType) => {
-    if (!MeasureHeights[`${templateId}_${table.id}`]) {
+    if (!MeasureHeights[`${orderCode}_${templateId}_${table.id}`]) {
       //Toast.show('正在加载依赖资源...');
       bind._data = dataRows;
       bind._showAcc = false;

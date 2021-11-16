@@ -263,7 +263,7 @@ let fetchAllAPI = async apis => {
  */
 const getNewStages = stages => {
   return _.map(stages, stage => {
-    let { page, elements, unit, templateId } = stage;
+    let { page, elements, unit, templateId, orderCode } = stage;
 
     /**
      * 这里进行四个边距进行相应的宽高处理，边距在设计器里未开放
@@ -288,6 +288,7 @@ const getNewStages = stages => {
       ox,
       oy,
       templateId,
+      orderCode,
     };
   });
 };
@@ -421,6 +422,7 @@ export default View.extend({
     idIndex,
     pageSizeList,
     templateId,
+    orderCode,
   ) {
     let logicCurrentPage = 0;
     let resLoader = this['@:{resources}'];
@@ -577,6 +579,7 @@ export default View.extend({
                 newPage,
                 inHod,
                 templateId,
+                orderCode,
               );
             }
           } else if (
@@ -832,6 +835,7 @@ export default View.extend({
         i,
         pageSizeList,
         stage.templateId,
+        stage.orderCode,
       );
 
       pageList.push({ ...stage.page, unit: stage.unit });
