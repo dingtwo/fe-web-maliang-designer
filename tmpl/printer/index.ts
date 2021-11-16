@@ -263,7 +263,7 @@ let fetchAllAPI = async apis => {
  */
 const getNewStages = stages => {
   return _.map(stages, stage => {
-    let { page, elements, unit, templateId } = stage;
+    let { page, elements, unit, templateId, orderCode } = stage;
 
     /**
      * 这里进行四个边距进行相应的宽高处理，边距在设计器里未开放
@@ -288,6 +288,7 @@ const getNewStages = stages => {
       ox,
       oy,
       templateId,
+      orderCode,
     };
   });
 };
@@ -387,9 +388,11 @@ export default View.extend({
         console.log('请求回来的初始数据', ex, bag);
         if (!ex) {
           //如果请求未有异常，则根据请求回来的数据进行渲染界面
-          const stages = bag
-            .get('data')
-            .map(({ templateJson, id }) => ({ ...templateJson, templateId: id }));
+          const stages = bag.get('data').map(({ templateJson, id, orderCode }) => ({
+            ...templateJson,
+            templateId: id,
+            orderCode,
+          }));
           console.log('打印模板', stages);
           this['@:{render.page.by.json}'](stages);
         } else {
@@ -421,6 +424,7 @@ export default View.extend({
     idIndex,
     pageSizeList,
     templateId,
+    orderCode,
   ) {
     let logicCurrentPage = 0;
     let resLoader = this['@:{resources}'];
@@ -577,6 +581,7 @@ export default View.extend({
                 newPage,
                 inHod,
                 templateId,
+                orderCode,
               );
             }
           } else if (
@@ -832,6 +837,7 @@ export default View.extend({
         i,
         pageSizeList,
         stage.templateId,
+        stage.orderCode,
       );
 
       pageList.push({ ...stage.page, unit: stage.unit });
