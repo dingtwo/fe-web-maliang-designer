@@ -82,6 +82,7 @@ export default async (
   newPage,
   inHod,
   templateId,
+  orderCode,
 ) => {
   if (!inHod) {
     newPage.push(table);
@@ -106,7 +107,7 @@ export default async (
   } = props;
 
   let prepareResources = async (dataRow, list) => {
-    if (!MeasureHeights[`${templateId}_${table.id}`]) {
+    if (!MeasureHeights[`${orderCode}_${templateId}_${table.id}`]) {
       let rl = new ResourcesLoader();
       for (let col of dataRow.cols) {
         if (col.type == 'qrcode' || col.type == 'barcode') {
@@ -117,7 +118,7 @@ export default async (
     }
   };
   let measureDataHeight = async (dataRows, elementType) => {
-    if (!MeasureHeights[`${templateId}_${table.id}`]) {
+    if (!MeasureHeights[`${orderCode}_${templateId}_${table.id}`]) {
       //Toast.show('正在加载依赖资源...');
       bind._data = dataRows;
       bind._showAcc = false;
@@ -139,7 +140,7 @@ export default async (
         rowHeights[i] = Const['@:{const#to.unit}'](tr.clientHeight, unit);
       }
 
-      MeasureHeights[`${templateId}_${table.id}`] = rowHeights;
+      MeasureHeights[`${orderCode}_${templateId}_${table.id}`] = rowHeights;
       //Toast.hide();
     }
   };
@@ -220,12 +221,13 @@ export default async (
           break;
         }
       }
+
       let labelOrDataHasAutoReturn = dataHasAutoReturn || labelHasAutoReturn;
       //await prepareResources(dataRow, list);
       let realHeights = [];
       if (labelOrDataHasAutoReturn) {
         await measureDataHeight(list, type);
-        realHeights = MeasureHeights[`${templateId}_${table.id}`];
+        realHeights = MeasureHeights[`${orderCode}_${templateId}_${table.id}`];
       }
       //let labelRow = rows[labelRowIndex];
       if (!hideTotal) {

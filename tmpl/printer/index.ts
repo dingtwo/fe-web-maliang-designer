@@ -577,6 +577,7 @@ export default View.extend({
                 newPage,
                 inHod,
                 templateId,
+                orderId,
               );
             }
           } else if (
