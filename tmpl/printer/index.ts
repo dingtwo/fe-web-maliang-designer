@@ -835,7 +835,6 @@ export default View.extend({
         stage.unit,
         i,
         pageSizeList,
-        stage.templateId,
         stage.orderCode,
       );
 
