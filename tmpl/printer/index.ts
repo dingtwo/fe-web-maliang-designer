@@ -258,8 +258,14 @@ const fetchAllAPI = async apiMap => {
  * @returns
  */
 const getNewStages = stages => {
+  const { params } = parseUrl(location.href);
+  let preOrderCode = '';
+  if (params.preview === '1') {
+    preOrderCode = params.orders;
+  }
+
   return _.map(stages, stage => {
-    let { page, elements, unit, templateId, orderCode } = stage;
+    let { page, elements, unit, templateId, orderCode = preOrderCode } = stage;
 
     /**
      * 这里进行四个边距进行相应的宽高处理，边距在设计器里未开放
