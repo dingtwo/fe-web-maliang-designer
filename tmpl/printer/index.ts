@@ -425,6 +425,7 @@ export default View.extend({
     unit,
     idIndex,
     pageSizeList,
+    templateId,
     orderId,
   ) {
     let logicCurrentPage = 0;
@@ -581,6 +582,7 @@ export default View.extend({
                 unit,
                 newPage,
                 inHod,
+                templateId,
                 orderId,
               );
             }
