@@ -2,6 +2,8 @@ import TableProvider from '../../provider/table';
 import Generic from '../generic/index';
 import ResourcesLoader from '../generic/resource';
 import Const from '../../designer/const';
+import _ from '../../provider/lodash.min';
+
 let { min, floor } = Math;
 /**
  * 测量dom高度
@@ -229,6 +231,7 @@ export default async (
         await measureDataHeight(list, type);
         realHeights = MeasureHeights[`${orderCode}_${templateId}_${table.id}`];
       }
+
       //let labelRow = rows[labelRowIndex];
       if (!hideTotal) {
         //如果未隐藏总计，则查询是否需要显示，只有本页合计，本页累计才需要显示
@@ -442,6 +445,7 @@ export default async (
        * 处理数据以及各种行是否需要显示
        */
       bind._data = list.slice(fromIndex, end);
+      showAcc = !!_.size(bind._data);
       bind._all = list;
       bind._showAcc = showAcc;
       bind._showFoot = showFoot;
