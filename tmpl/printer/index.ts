@@ -259,13 +259,15 @@ const fetchAllAPI = async apiMap => {
  */
 const getNewStages = stages => {
   const { params } = parseUrl(location.href);
-  let preOrderCode = '';
+  let preOrderCode = '',
+    preTemplateId = '';
   if (params.preview === '1') {
     preOrderCode = params.orders;
+    preTemplateId = params.templateId;
   }
 
   return _.map(stages, stage => {
-    let { page, elements, unit, templateId, orderCode = preOrderCode } = stage;
+    let { page, elements, unit, templateId = preTemplateId, orderCode = preOrderCode } = stage;
 
     /**
      * 这里进行四个边距进行相应的宽高处理，边距在设计器里未开放
@@ -425,7 +427,6 @@ export default View.extend({
     unit,
     idIndex,
     pageSizeList,
-    templateId,
     orderId,
   ) {
     let logicCurrentPage = 0;
@@ -582,7 +583,6 @@ export default View.extend({
                 unit,
                 newPage,
                 inHod,
-                templateId,
                 orderId,
               );
             }
@@ -889,7 +889,8 @@ export default View.extend({
     }));
 
     Toast.show('等待页面生成...');
-
+    console.log('dataCenter', DataCenter);
+    console.log('pages', pages);
     await this.digest({
       stage,
       enable: false,

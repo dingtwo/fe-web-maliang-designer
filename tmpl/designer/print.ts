@@ -7,20 +7,24 @@ import Runner from '../gallery/mx-runner/index';
 import ToJSON from './tojson';
 import { getEnv } from '../provider/host';
 
-let { View, node, config } = Magix;
+let { View, node, config, parseUrl } = Magix;
 const env = getEnv();
 const testOrderCode = env === 'prod' ? 'OM21092400000777' : 'OM21082600000129';
 
 export default View.extend({
   tmpl: '@:./print.html',
   async render() {
+    let { params } = parseUrl(location.href);
+
     if (DEBUG) {
       await this.digest({
-        src: `./print-debug.html?orders=${testOrderCode}&scene=1&preview=1`,
+        src: `./print-debug.html?orders=${testOrderCode}&scene=1&preview=1&templateId=${params.id}`,
       });
     } else {
       await this.digest({
-        src: `./print.html?orders=${testOrderCode}&scene=1&preview=1&v=${config('version')}`,
+        src: `./print.html?orders=${testOrderCode}&scene=1&preview=1&v=${config(
+          'version',
+        )}&templateId=${params.id}`,
       });
     }
     let old = this['@:{printer.post.fn}'];
