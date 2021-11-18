@@ -35,19 +35,29 @@ import { printCount } from './printCount';
 class Progress {
   len = 0;
   count = 0;
+  isErr = false;
 
-  start = len => {
+  start = (len: number) => {
     this.len = len || 1;
     this.toast();
   };
 
   toast = () => {
-    Toast.show(`正在准备数据...（${calc(this.count).div(this.len).mul(100).toFixed(0)}%）`);
+    if (!this.isErr) {
+      Toast.show(`正在准备数据...（${calc(this.count).div(this.len).mul(100).toFixed(0)}%）`);
+    }
   };
 
   update = () => {
     this.count++;
     this.toast();
+  };
+
+  showError = err => {
+    if (!this.isErr) {
+      this.isErr = true;
+      Toast.show(err.message);
+    }
   };
 }
 
@@ -70,37 +80,8 @@ let {
 } = Magix;
 
 // 获取url上的id，合成接口 api
-const mergeApi = ({
-  url,
-  idIndex,
-  orderId,
-}: {
-  url: string;
-  idIndex?: number;
-  orderId?: string;
-}) => {
-  let api = url;
-
-  const {
-    params: { order, scene, orders },
-  } = parseUrl(window.location.href);
-
-  let orderIds = orders || order;
-
-  if (idIndex !== undefined) {
-    orderIds = _.get(_.split(orderIds, ','), idIndex);
-  } else if (orderId !== undefined) {
-    orderIds = orderId;
-  }
-
-  if (orderIds) {
-    const orderParams = JSON.stringify({ $ORDER_CODES: orderIds });
-    const extraParams = `&params=${encodeURIComponent(orderParams)}`;
-
-    return api + extraParams;
-  }
-
-  return api;
+const mergeApi = ({ url, orderId }: { url: string; orderId: string }) => {
+  return `${url}&orderId=${orderId}`;
 };
 
 /**
@@ -193,41 +174,46 @@ let cleanHTML = (html: string) => {
 /**
  * 防止生产包被使用的设置
  */
-let checkFlag = 0.1;
 
 /**
  * 根据api地址请求数据
  * @param api api地址
  */
-const fetchItemApi = async (api, orders) => {
-  return new Promise(resolve => {
+const fetchItemApi = async (api, params) => {
+  return new Promise((resolve, reject) => {
     const s = new Service();
     s.all(
       {
-        name: '@:{get.by.url}',
-        url: mergeApi({ url: api, orderId: orders }),
+        name: '@:{post.by.url}',
+        url: api,
+        '@:{body}': JSON.stringify({ params }),
       },
       (err: { message: string }, bag) => {
-        progress.update();
-        const data = bag.get('data');
-        const orderList = _.split(orders, ',');
+        if (err) {
+          progress.showError(err);
+          reject(err);
+        } else {
+          progress.update();
 
-        _.map(orderList, item => {
-          const url = mergeApi({ url: api, orderId: item });
-          let dest = DataCenter[url];
+          const data = bag.get('data');
 
-          if (!dest) {
-            dest = DataCenter[url] = {};
-          }
+          _.map(data, (item, key) => {
+            const url = mergeApi({ url: api, orderId: key });
+            let dest = DataCenter[url];
 
-          dest['@:{data}'] = _.get(data, item, []);
-          dest['@:{loaded}'] = 1;
-          dest['@:{error}'] = err?.message;
+            if (!dest) {
+              dest = DataCenter[url] = {};
+            }
 
-          delete dest['@:{loading}'];
-        });
+            dest['@:{data}'] = item || [];
+            dest['@:{loaded}'] = 1;
+            dest['@:{error}'] = err?.message;
 
-        resolve(void 0);
+            delete dest['@:{loading}'];
+          });
+
+          resolve(void 0);
+        }
       },
     );
   });
@@ -235,25 +221,35 @@ const fetchItemApi = async (api, orders) => {
 
 /**
  * 请求所有的api数据回来备用
- * @param apis api数组对象
+ * @param apiMap api数组对象
  */
-let fetchAllAPI = async apis => {
-  const {
-    params: { orders, order },
-  } = parseUrl(window.location.href);
+const fetchAllAPI = async apiMap => {
+  return new Promise((resolve, reject) => {
+    const {
+      params: { orders, order },
+    } = parseUrl(window.location.href);
 
-  if (!orders && !order) {
-    Toast.show('没有找到订单号参数');
-    return Promise.reject('没有找到订单号参数');
-  }
+    if (!orders && !order) {
+      Toast.show('没有找到订单号参数');
+      return Promise.reject('没有找到订单号参数');
+    }
 
-  const orderCodes = orders || order;
+    const apis = [...apiMap];
 
-  const promises = _.map(apis, async item => {
-    return await fetchItemApi(item, orderCodes);
+    const promises = _.map(apis, async item => {
+      const [url, orders] = item;
+      const orderList = [...orders];
+
+      const params = _.map(orderList, order => ({
+        orderCode: _.first(order),
+        templateId: _.last(order),
+      }));
+
+      return await fetchItemApi(url, params);
+    });
+
+    return Promise.all(promises).then(resolve).catch(reject);
   });
-
-  return Promise.all(promises);
 };
 
 /**
@@ -262,8 +258,16 @@ let fetchAllAPI = async apis => {
  * @returns
  */
 const getNewStages = stages => {
+  const { params } = parseUrl(location.href);
+  let preOrderCode = '',
+    preTemplateId = '';
+  if (params.preview === '1') {
+    preOrderCode = params.orders;
+    preTemplateId = params.templateId;
+  }
+
   return _.map(stages, stage => {
-    let { page, elements, unit, templateId, orderCode } = stage;
+    let { page, elements, unit, templateId = preTemplateId, orderCode = preOrderCode } = stage;
 
     /**
      * 这里进行四个边距进行相应的宽高处理，边距在设计器里未开放
@@ -423,8 +427,7 @@ export default View.extend({
     unit,
     idIndex,
     pageSizeList,
-    templateId,
-    orderCode,
+    orderId,
   ) {
     let logicCurrentPage = 0;
     let resLoader = this['@:{resources}'];
@@ -434,7 +437,7 @@ export default View.extend({
         const bindUrl = _.get(e, ['props', 'bind', 'url']);
 
         if (bindUrl) {
-          const api = mergeApi({ url: bindUrl, idIndex });
+          const api = mergeApi({ url: bindUrl, orderId });
           e.props.bind.url = api;
         }
 
@@ -508,7 +511,7 @@ export default View.extend({
             const bindUrl = _.get(newElement, ['props', 'bind', 'url']);
 
             if (bindUrl) {
-              const api = mergeApi({ url: bindUrl, idIndex });
+              const api = mergeApi({ url: bindUrl, orderId });
               newElement.props.bind.url = api;
             }
           }
@@ -580,8 +583,7 @@ export default View.extend({
                 unit,
                 newPage,
                 inHod,
-                templateId,
-                orderCode,
+                orderId,
               );
             }
           } else if (
@@ -732,7 +734,7 @@ export default View.extend({
 
     let pages = []; //分页对象
     // let apis = []; //所有绑定元素的接口地址，在渲染前，需要通过接口地址一次性把所有数据拿回来
-    let apiList = [];
+    const apiMap = new Map();
     let pagers = []; //页码器对象，需要根据分页多少设置每个页码器的当前页码及总共页码
     let resourcesLoader = new ResourcesLoader(); //资源加载收集器
     this['@:{resources}'] = resourcesLoader;
@@ -740,7 +742,7 @@ export default View.extend({
      * 收集所有元素的接口地址
      * @param elements 元素列表
      */
-    let collectBindInfo = (elements, idIndex, templateId) => {
+    let collectBindInfo = (elements, templateId, orderCode) => {
       for (let e of elements) {
         if (!e.id) {
           e.id = guid('e');
@@ -750,8 +752,10 @@ export default View.extend({
 
         if (bind && bind.url) {
           // 当前接口的参数, sql 的 id
-          if (!_.includes(apiList, bind.url)) {
-            apiList.push(bind.url);
+          if (!apiMap.has(bind.url)) {
+            apiMap.set(bind.url, new Map([[orderCode, templateId]]));
+          } else {
+            apiMap.get(bind.url).set(orderCode, templateId);
           }
         }
 
@@ -763,7 +767,7 @@ export default View.extend({
           for (let row of rows) {
             for (let col of row.cols) {
               if (col.elements) {
-                collectBindInfo(col.elements, idIndex, templateId);
+                collectBindInfo(col.elements, templateId, orderCode);
               }
             }
           }
@@ -803,13 +807,14 @@ export default View.extend({
 
     const newStages = getNewStages(stages);
 
-    _.forEach(newStages, (item, index) => {
-      collectBindInfo(item.elements, index, item.templateId);
+    _.forEach(newStages, item => {
+      collectBindInfo(item.elements, item.templateId, item.orderCode);
     });
 
-    progress.start(_.size(apiList));
+    progress.start(apiMap.size);
+
     //先加载数据
-    await fetchAllAPI(apiList);
+    await fetchAllAPI(apiMap);
 
     Toast.show('正在准备资源...');
     await resourcesLoader['@:{load}'](); //等资源加载
@@ -836,7 +841,6 @@ export default View.extend({
         stage.unit,
         i,
         pageSizeList,
-        stage.templateId,
         stage.orderCode,
       );
 
@@ -885,7 +889,8 @@ export default View.extend({
     }));
 
     Toast.show('等待页面生成...');
-
+    console.log('dataCenter', DataCenter);
+    console.log('pages', pages);
     await this.digest({
       stage,
       enable: false,

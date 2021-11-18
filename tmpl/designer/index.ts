@@ -573,7 +573,7 @@ export default View.extend({
             console.log('有错误', err.message);
             /* 重新登陆 */
             if (!DEBUG) {
-              window.location.href = `/?from=${encodeURIComponent(location.href)}`;
+              window.location.href = `/?backUrl=${encodeURIComponent(location.href)}`;
             } else {
               let s = new Service();
               this.confirm(
