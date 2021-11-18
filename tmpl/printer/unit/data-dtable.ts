@@ -3,6 +3,7 @@ import Generic from '../generic/index';
 import ResourcesLoader from '../generic/resource';
 import Const from '../../designer/const';
 import _ from '../../provider/lodash.min';
+import { calc } from '../../provider/calc.js';
 
 let { min, floor } = Math;
 /**
@@ -23,35 +24,39 @@ let calcAcc = (list, fromIndex, end, totalRow) => {
     for (let start = fromIndex; start < end; start++) {
       let src = list[start];
       // NOTICE: 字符串格式转为数字
-      sum += Number(src[key]);
+      sum = calc(sum).add(src[key]).toNumber();
       count++;
     }
 
     if (isNaN(sum)) {
       sum = 0;
     }
+
     //计算本页求和及平均
     totalData[key + 'Sumpage'] = sum;
-    totalData[key + 'Avgpage'] = count > 0 ? sum / count : 0;
+    totalData[key + 'Avgpage'] = count > 0 ? calc(sum).div(count).toNumber() : 0;
     sum = 0;
     count = 0;
+
     for (let start = 0; start < end; start++) {
       let src = list[start];
-      sum += src[key];
+      sum = calc(sum).add(src[key]).toNumber();
       count++;
     }
+
     if (isNaN(sum)) {
       sum = 0;
     }
     //计算累计求和及平均
     totalData[key + 'Acc'] = sum;
-    totalData[key + 'Avgacc'] = count > 0 ? sum / count : 0;
+    totalData[key + 'Avgacc'] = count > 0 ? calc(sum).div(count).toNumber() : 0;
     sum = 0;
     count = 0;
+
     for (let start = 0; start < list.length; start++) {
       let src = list[start];
       // NOTICE: 转为数字格式
-      sum += Number(src[key]);
+      sum = calc(sum).add(src[key]).toNumber();
       count++;
     }
     if (isNaN(sum)) {
@@ -59,7 +64,7 @@ let calcAcc = (list, fromIndex, end, totalRow) => {
     }
     //计算整体求和及平均
     totalData[key + 'Sum'] = sum;
-    totalData[key + 'Avg'] = count > 0 ? sum / count : 0;
+    totalData[key + 'Avg'] = count > 0 ? calc(sum).div(count).toNumber() : 0;
   }
   for (let i = totalRow.cols.length; i--; ) {
     let col = totalRow.cols[i];
