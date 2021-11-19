@@ -189,13 +189,13 @@ let getDTableRemovedInfo = (rows, anchorData) => {
       for (let i = row.cols.length; i--; ) {
         let col = row.cols[i];
         if (col.bindKey && anchorData[col.bindKey] == null) {
-          removedColIndexes.push(i);
-          removedColWidth += col.width;
+          // removedColIndexes.push(i);
+          // removedColWidth += col.width;
         }
       }
       break;
     }
-    dataRowIndex++;
+    // dataRowIndex++;
   }
   return {
     '@:{generic.recast.table#data.row.index}': dataRowIndex,
