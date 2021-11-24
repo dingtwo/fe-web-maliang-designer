@@ -358,6 +358,8 @@ export default View.extend({
       return;
     }
 
+    const { templateId, scene } = params;
+
     // 分两种,单个模板打印和批量打印
     if (params.orders || params.order) {
       if (!params.scene) {
@@ -366,7 +368,7 @@ export default View.extend({
       }
 
       // 订单模式
-      this['@:{get.stages}']({ orders: params.order || params.orders });
+      this['@:{get.stages}']({ orders: params.order || params.orders, id: templateId, scene });
     } else {
       Toast.show('没有找到订单号参数');
       return Promise.reject('没有找到订单号参数');
@@ -380,13 +382,19 @@ export default View.extend({
    */
   '@:{get.stages}'(params) {
     Toast.show('正在加载模板...');
+    const { id } = params;
+    let name = '@:{post.muti.content}';
+
+    if (id) {
+      name = '@:{post.content}';
+    }
 
     let s = new Service();
 
     s.all(
       {
-        name: '@:{get.muti.content}',
-        '@:{query}': params,
+        name,
+        '@:{body}': JSON.stringify(params),
       },
       (ex, bag) => {
         console.log('请求回来的初始数据', ex, bag);

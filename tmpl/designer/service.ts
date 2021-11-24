@@ -191,11 +191,13 @@ RDService.add([
     '@:{method}': 'post',
   },
   {
-    name: '@:{get.content}',
+    name: '@:{post.content}',
+    '@:{method}': 'post',
     url: config('getContentUrl'),
   },
   {
-    name: '@:{get.muti.content}',
+    name: '@:{post.muti.content}',
+    '@:{method}': 'post',
     url: config('getMutiContentUrl'),
   },
   {
