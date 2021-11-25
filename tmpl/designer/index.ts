@@ -642,14 +642,16 @@ export default View.extend({
       let templateUrl = config<string>('getTemplateUrl');
       let contentUrl = config<string>('getContentUrl');
       let { params } = parseUrl(location.href);
+
       console.log('______', params, contentUrl, parent);
+
       if (params.id && contentUrl) {
         Toast.show('正在读取内容...');
         let s = new Service();
         s.all(
           {
-            name: '@:{get.content}',
-            '@:{query}': params,
+            name: '@:{post.content}',
+            '@:{body}': JSON.stringify({ ...params, isEdit: true }),
           },
           (ex, bag) => {
             Toast.hide();
