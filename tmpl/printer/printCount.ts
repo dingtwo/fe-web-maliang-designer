@@ -15,16 +15,17 @@ export const printCount = () => {
   let { params } = parseUrl(location.href);
   const { scene, orders } = params;
 
-  if (scene !== '1') {
+  if (scene !== '1' || !orders) {
     return;
   }
 
-  let service = new Service();
+  const service = new Service();
+  const orderStr = decodeURIComponent(orders);
 
   service.all(
     {
       name: '@:{print.count}',
-      '@:{body}': JSON.stringify({ orderCodes: _.split(orders, ','), entryType: '3' }),
+      '@:{body}': JSON.stringify({ orderCodes: _.split(orderStr, ','), entryType: '3' }),
     },
     (err: { message: string }, bag) => {
       console.log('打印计数 err is', err);
