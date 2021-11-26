@@ -13,14 +13,15 @@ let { parseUrl } = Magix;
 
 export const printCount = () => {
   let { params } = parseUrl(location.href);
-  const { scene, orders } = params;
+  const { scene, orders, order } = params;
+  const orderCode = orders || order;
 
-  if (scene !== '1' || !orders) {
+  if (scene !== '1' || !orderCode) {
     return;
   }
 
   const service = new Service();
-  const orderStr = decodeURIComponent(orders);
+  const orderStr = decodeURIComponent(orderCode);
 
   service.all(
     {
