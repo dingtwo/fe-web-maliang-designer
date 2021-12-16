@@ -187,7 +187,8 @@ const fetchItemApi = async (api, params) => {
       {
         name: '@:{post.by.url}',
         url: api,
-        '@:{body}': JSON.stringify({ params, orderType: params.orderType || 's01S18' }),
+        // 增加订单类型标记,多种订单可以复用模板, 默认是配送单
+        '@:{body}': JSON.stringify({ params, orderType: urlParams.orderType }),
       },
       (err: { message: string }, bag) => {
         if (err) {
