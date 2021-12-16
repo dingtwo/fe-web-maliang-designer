@@ -180,13 +180,14 @@ let cleanHTML = (html: string) => {
  * @param api api地址
  */
 const fetchItemApi = async (api, params) => {
+  const { params: urlParams } = parseUrl(location.href);
   return new Promise((resolve, reject) => {
     const s = new Service();
     s.all(
       {
         name: '@:{post.by.url}',
         url: api,
-        '@:{body}': JSON.stringify({ params }),
+        '@:{body}': JSON.stringify({ params, orderType: params.orderType || 's01S18' }),
       },
       (err: { message: string }, bag) => {
         if (err) {
