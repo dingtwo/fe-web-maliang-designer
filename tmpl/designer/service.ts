@@ -1,6 +1,6 @@
 import Magix from 'magix';
 import { getHost } from '../provider/host';
-let { Service, toUrl, config, guid } = Magix;
+let { Service, toUrl, config, guid, parseUrl } = Magix;
 
 /**
  * 提取错误和数据
@@ -122,6 +122,10 @@ let RDService = Service.extend((bag, callback) => {
     query = {};
   }
   query.v = version;
+  let { params } = parseUrl(location.href);
+  if (params && params.scene) {
+    query.scene = params.scene;
+  }
   /**
    * query放url里，body放请求的body里，某些后端严格区分取参数时，从body里还是request里面取
    */

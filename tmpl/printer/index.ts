@@ -180,13 +180,15 @@ let cleanHTML = (html: string) => {
  * @param api api地址
  */
 const fetchItemApi = async (api, params) => {
+  const { params: urlParams } = parseUrl(location.href);
   return new Promise((resolve, reject) => {
     const s = new Service();
     s.all(
       {
         name: '@:{post.by.url}',
         url: api,
-        '@:{body}': JSON.stringify({ params }),
+        // 增加订单类型标记,多种订单可以复用模板, 默认是配送单
+        '@:{body}': JSON.stringify({ params, orderType: urlParams.orderType }),
       },
       (err: { message: string }, bag) => {
         if (err) {
@@ -226,10 +228,10 @@ const fetchItemApi = async (api, params) => {
 const fetchAllAPI = async apiMap => {
   return new Promise((resolve, reject) => {
     const {
-      params: { orders, order },
+      params: { orders, order, puppeteer },
     } = parseUrl(window.location.href);
 
-    if (!orders && !order) {
+    if (!orders && !order && puppeteer !== '1') {
       Toast.show('没有找到订单号参数');
       return Promise.reject('没有找到订单号参数');
     }
@@ -335,6 +337,11 @@ export default View.extend({
     this.set({
       getPageAttr: getPageAttr,
     });
+
+    // 获取渲染进度
+    (window as any).getRenderStatus = () => {
+      return this.get('renderStatus');
+    };
   },
 
   async render() {
@@ -354,7 +361,7 @@ export default View.extend({
     let { params } = parseUrl(location.href);
 
     // 检查是不是预览环境，如果是，就不去请求查询模板接口
-    if (params.preview === '1') {
+    if (params.preview === '1' || params.puppeteer === '1') {
       return;
     }
 
@@ -436,6 +443,7 @@ export default View.extend({
     idIndex,
     pageSizeList,
     orderId,
+    templateId,
   ) {
     let logicCurrentPage = 0;
     let resLoader = this['@:{resources}'];
@@ -592,6 +600,7 @@ export default View.extend({
                 newPage,
                 inHod,
                 orderId,
+                templateId,
               );
             }
           } else if (
@@ -732,6 +741,7 @@ export default View.extend({
     });
 
     this.digest({
+      renderStatus: 'pending',
       enable: false,
       empty: true,
       pageList: [{ ...page, unit: unit }],
@@ -850,6 +860,7 @@ export default View.extend({
         i,
         pageSizeList,
         stage.orderCode,
+        stage.templateId,
       );
 
       pageList.push({ ...stage.page, unit: stage.unit });
@@ -900,6 +911,7 @@ export default View.extend({
     console.log('dataCenter', DataCenter);
     console.log('pages', pages);
     await this.digest({
+      renderStatus: 'pending',
       stage,
       enable: false,
       images: null,
@@ -922,7 +934,10 @@ export default View.extend({
     });
     await delay(200); //800+500 等待部分组件，如qrcode的异步渲染、图表的动画完成等，此1300ms是预估时间，因为无法知道这些第三方插件什么时候结束，通常是小于1000ms，这里用1300ms来确保无问题
     Toast.hide();
-    // this['@:{to.pdf}']();
+
+    await this.digest({
+      renderStatus: 'end',
+    });
   },
 
   // 浏览器打印
