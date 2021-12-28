@@ -181,6 +181,9 @@ let cleanHTML = (html: string) => {
  */
 const fetchItemApi = async (api, params) => {
   const { params: urlParams } = parseUrl(location.href);
+  console.log('url params', JSON.stringify(urlParams));
+  console.log('order params', JSON.stringify(params));
+  
   return new Promise((resolve, reject) => {
     const s = new Service();
     s.all(
@@ -188,7 +191,7 @@ const fetchItemApi = async (api, params) => {
         name: '@:{post.by.url}',
         url: api,
         // 增加订单类型标记,多种订单可以复用模板, 默认是配送单
-        '@:{body}': JSON.stringify({ params, orderType: urlParams.orderType }),
+        '@:{body}': JSON.stringify({ params, ...urlParams }),
       },
       (err: { message: string }, bag) => {
         if (err) {
@@ -830,9 +833,11 @@ export default View.extend({
     });
 
     progress.start(apiMap.size);
+    console.log('收集接口', apiMap);
 
     //先加载数据
     await fetchAllAPI(apiMap);
+    console.log('数据中心', DataCenter);
 
     Toast.show('正在准备资源...');
     await resourcesLoader['@:{load}'](); //等资源加载
