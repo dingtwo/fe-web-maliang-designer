@@ -26,7 +26,7 @@ export const printCount = () => {
   service.all(
     {
       name: '@:{print.count}',
-      '@:{body}': JSON.stringify({ orderCodes: _.split(orderStr, ','), entryType: '4' }),
+      '@:{body}': JSON.stringify({ orderCodes: _.split(orderStr, ','), entryType: '3' }),
     },
     (err: { message: string }, bag) => {
       console.log('打印计数 err is', err);
