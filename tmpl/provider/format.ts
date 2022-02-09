@@ -1,5 +1,6 @@
 import Magix from 'magix';
 import _ from './lodash.min.js';
+import { calc } from './calc.js';
 import dayjs from './dayjs/dayjs.min.js';
 import customParseFormat from './dayjs/plugin/customParseFormat.js';
 import HandleFormat from './handleFormat';
@@ -123,7 +124,7 @@ let groups = [
       可以把下面的console前的注释去掉查看相应的数据
     */
 
-    function(data,item){
+    function(data, item, {lodash, calc}){
       //console.log(data,item);
       //return data+item.name;
       return data;
@@ -223,7 +224,7 @@ export default {
           fnCache.set(key, fn);
         }
         try {
-          return fn(data, ...exts);
+          return fn(data, ...exts, { lodash: _, calc });
         } catch (ex) {
           return ex.message;
         }
