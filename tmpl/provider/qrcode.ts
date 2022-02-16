@@ -1,4 +1,4 @@
-let dest = '//unpkg.com/@keeex/qrcodejs-kx@1.0.2/qrcode.min.js';
+let dest = '//img.freshfood.cn/qrcode.min.js';
 let loadingList = [];
 let state = 1;
 let rejectMsg = 'can not load qrcode library';
