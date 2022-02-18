@@ -124,7 +124,12 @@ let RDService = Service.extend((bag, callback) => {
   query.v = version;
   let { params } = parseUrl(location.href);
   if (params && params.scene) {
-    query.scene = params.scene;
+    // query.scene = params.scene;
+    // url上的所有参数都拼上
+    query = {
+      ...query,
+      ...params,
+    };
   }
   /**
    * query放url里，body放请求的body里，某些后端严格区分取参数时，从body里还是request里面取
