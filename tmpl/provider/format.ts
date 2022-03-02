@@ -93,6 +93,10 @@ let groups = [
         title: '换算',
         list: conversion,
       },
+      {
+        title: '小数',
+        list: decimals,
+      },
     ],
   },
   {
