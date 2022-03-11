@@ -1,7 +1,7 @@
 {
   "name": "report-designer",
   "description": "element online editor",
-  "version": "2021.8.24",
+  "version": "2022.2.25",
   "author": "kooboy_li <kooboy_li@163.com>",
   "dependencies": {
     "@csx/calc": "^0.0.15",
@@ -18,7 +18,8 @@
   "scripts": {
     "server": "anywhere -h localhost -p 8888",
     "watch": "gulp watch",
-    "dist": "gulp dist"
+    "dist": "gulp dist",
+    "dll": "node -v"
   },
   "devDependencies": {
     "@csx/magix-composer": "^1.0.0",

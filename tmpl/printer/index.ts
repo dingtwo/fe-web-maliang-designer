@@ -183,7 +183,7 @@ const fetchItemApi = async (api, params) => {
   const { params: urlParams } = parseUrl(location.href);
   console.log('url params', JSON.stringify(urlParams));
   console.log('order params', JSON.stringify(params));
-  
+
   return new Promise((resolve, reject) => {
     const s = new Service();
     s.all(
@@ -837,7 +837,7 @@ export default View.extend({
 
     //先加载数据
     await fetchAllAPI(apiMap);
-    console.log('数据中心', DataCenter);
+    console.log('数据中心', apiMap, DataCenter);
 
     Toast.show('正在准备资源...');
     await resourcesLoader['@:{load}'](); //等资源加载
@@ -850,6 +850,13 @@ export default View.extend({
     // NOTICE: 理论上从这里再渲染一套就行了, 试试
     for (let i = 0; i < newStages.length; i++) {
       const stage = newStages[i];
+      const { orderCode } = stage;
+      // 检查返回的数据里有没有此订单
+      const hasData = this['@:{check.data}'](orderCode);
+      if (!hasData) {
+        continue;
+      }
+      // 数据中有没有此订单号的数据
       const footerElm = _.find(stage.elements, { type: 'hod-footer' });
       const footerHeight = _.get(footerElm, ['props', 'height'], 0);
 
@@ -942,6 +949,19 @@ export default View.extend({
 
     await this.digest({
       renderStatus: 'end',
+    });
+  },
+
+  /**
+   * 检查stage中的订单是否有数据，没有数据则不渲染
+   */
+  '@:{check.data}'(orderCode) {
+    return Object.keys(DataCenter).some(url => {
+      // const { '@:{data~rs}': list } = DataCenter[url];
+      const {
+        params: { orderId },
+      } = parseUrl(url);
+      return orderId === orderCode;
     });
   },
 

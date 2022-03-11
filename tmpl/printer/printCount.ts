@@ -11,22 +11,38 @@ import _ from '../provider/lodash.min';
 
 let { parseUrl } = Magix;
 
+/**
+ * 订单号是否计划单号
+ * @param orderCode 订单号
+ * @returns
+ */
+const ifPlanOrder = (orderCode: string) => /(PS|ZS|ZT)$/.test(orderCode.toUpperCase());
+
 export const printCount = () => {
   let { params } = parseUrl(location.href);
   const { scene, orders, order } = params;
   const orderCode = orders || order;
 
-  if (scene !== '1' || !orderCode) {
+  /** 出库单和装车单需要计数 */
+  const needPrintScenes = ['1', '7'];
+  if (!needPrintScenes.includes(scene) || !orderCode) {
     return;
   }
 
   const service = new Service();
   const orderStr = decodeURIComponent(orderCode);
 
+  const orderCodeList = _.split(orderStr, ',');
+
+  let entryType = '4';
+  if (ifPlanOrder(orderCodeList[0])) {
+    entryType = '7';
+  }
+
   service.all(
     {
       name: '@:{print.count}',
-      '@:{body}': JSON.stringify({ orderCodes: _.split(orderStr, ','), entryType: '4' }),
+      '@:{body}': JSON.stringify({ orderCodes: orderCodeList, entryType }),
     },
     (err: { message: string }, bag) => {
       console.log('打印计数 err is', err);
