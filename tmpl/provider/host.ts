@@ -2,6 +2,7 @@ enum HOST {
   prod = 'http://api.freshfood.cn',
   pre = 'http://pre.kong.b2bcsx.cn:8000',
   dev = 'http://10.252.192.35:8000',
+  sit = 'http://sitapi.freshfood.cn:8000',
   test = 'http://10.252.192.35:8000',
 }
 
@@ -17,6 +18,8 @@ export const getEnv = () => {
     case '10.252.192.20':
     case 'devzt.b2bcsx.com':
       return 'test';
+    case 'sitzt.freshfood.cn':
+      return 'sit';
     case 'zt.freshfood.cn':
       return 'prod';
     default:
