@@ -370,7 +370,7 @@ export default View.extend({
       dev: '8',
       test: '2',
       sit: '8',
-      pre: '',
+      pre: '328',
       prod: '434',
     };
     console.log(getEnv());
