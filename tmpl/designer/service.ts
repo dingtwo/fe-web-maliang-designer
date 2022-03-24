@@ -223,6 +223,12 @@ RDService.add([
     '@:{method}': 'post',
     url: `${getHost()}/wms/print/templates/printRecords`,
   },
+  {
+    name: '@:{print.excel}',
+    '@:{method}': 'get',
+    url: `${getHost()}/maliang/print/excel`,
+    // url: `http://localhost:9000/print/excel`,
+  },
 ]);
 
 // {"orderCodes":["OM21101100000091"],"entryType":"3"}
