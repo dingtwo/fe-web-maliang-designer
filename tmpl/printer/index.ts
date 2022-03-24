@@ -373,16 +373,15 @@ export default View.extend({
       pre: '328',
       prod: '434',
     };
-    console.log(getEnv());
-
-    if (params.templateId === excelTemplateMap[getEnv()]) {
-      Toast.show('生成中...');
-      return getExcel(console.log);
-    }
 
     // 检查是不是预览环境，如果是，就不去请求查询模板接口
     if (params.preview === '1' || params.puppeteer === '1') {
       return;
+    }
+
+    if (params.templateId === excelTemplateMap[getEnv()]) {
+      Toast.show('生成中...');
+      return getExcel(console.log);
     }
 
     const { templateId, scene } = params;
