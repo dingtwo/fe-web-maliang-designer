@@ -31,6 +31,8 @@ import FillPager from './unit/pager';
 import FillRichText from './unit/richtext';
 
 import { printCount } from './printCount';
+import { getExcel } from './excel';
+import { getEnv } from '../provider/host';
 
 class Progress {
   len = 0;
@@ -358,10 +360,25 @@ export default View.extend({
       empty: true,
       sf: 'web',
     });
+
     /*
-            以下根据地址栏有无id来决定是否发送请求来获取某个id的具体内容
-        */
+    以下根据地址栏有无id来决定是否发送请求来获取某个id的具体内容
+    */
     let { params } = parseUrl(location.href);
+    // 如果是走 excel 的,直接他妈的跳过去
+    const excelTemplateMap = {
+      dev: '8',
+      test: '2',
+      sit: '8',
+      pre: '',
+      prod: '434',
+    };
+    console.log(getEnv());
+
+    if (params.templateId === excelTemplateMap[getEnv()]) {
+      Toast.show('生成中...');
+      return getExcel(console.log);
+    }
 
     // 检查是不是预览环境，如果是，就不去请求查询模板接口
     if (params.preview === '1' || params.puppeteer === '1') {
