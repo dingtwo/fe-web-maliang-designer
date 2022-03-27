@@ -1,4 +1,4 @@
-let dest = '//img.freshfood.cn/JsBarcode.all.js';
+let dest = '//cdn.bootcdn.net/ajax/libs/jsbarcode/3.11.4/JsBarcode.all.min.js';
 let loadingList = [];
 let state = 1;
 let rejectMsg = 'can not load barcode library';
