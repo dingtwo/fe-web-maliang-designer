@@ -31,8 +31,7 @@ import FillPager from './unit/pager';
 import FillRichText from './unit/richtext';
 
 import { printCount } from './printCount';
-import { getExcel } from './excel';
-import { getEnv } from '../provider/host';
+import { generateExcel } from './excel';
 
 class Progress {
   len = 0;
@@ -365,23 +364,10 @@ export default View.extend({
     以下根据地址栏有无id来决定是否发送请求来获取某个id的具体内容
     */
     let { params } = parseUrl(location.href);
-    // 如果是走 excel 的,直接他妈的跳过去
-    const excelTemplateMap = {
-      dev: '8',
-      test: '2',
-      sit: '8',
-      pre: '328',
-      prod: '434',
-    };
 
     // 检查是不是预览环境，如果是，就不去请求查询模板接口
     if (params.preview === '1' || params.puppeteer === '1') {
       return;
-    }
-
-    if (params.templateId === excelTemplateMap[getEnv()]) {
-      Toast.show('生成中...');
-      return getExcel(console.log);
     }
 
     const { templateId, scene } = params;
@@ -426,34 +412,18 @@ export default View.extend({
         console.log('请求回来的初始数据', ex, bag);
         if (!ex) {
           //如果请求未有异常，则根据请求回来的数据进行渲染界面
-
-        const data =  _.reduce(bag.get('data'), (prev, item) => {
-            if (item.type === 2) {
-              return { excel: [...prev.excel, item.orderCode], stages: prev.stages }
-            }
-
-            return {
-              excel: prev.excel,
-              stages: [
-                ...prev.stages,
-                {
-                  ...item.templateJson,
-                  templateId: item.id,
-                  orderCode:item.orderCode,
-                }
-              ]
-            }
-          }, { excel: [], stages: [] })
+          // excel 导出的模板
           const excelTemplates = _.filter(bag.get('data'), {type:2});
-          const maliangTemplates = _.filter(bag.get('data'), item=>item.type!);
+          // 马良打印的模板
+          const maliangTemplates = _.filter(bag.get('data'), item=>item.type!==2);
+          generateExcel(excelTemplates)
 
-          console.log('data',data)
-
-          const stages = bag.get('data').map(({ templateJson, id, orderCode }) => ({
+          const stages = _.map(maliangTemplates, ({ templateJson, id, orderCode }) => ({
             ...templateJson,
             templateId: id,
             orderCode,
           }));
+
           console.log('打印模板', stages);
           this['@:{render.page.by.json}'](stages);
         } else {

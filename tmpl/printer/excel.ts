@@ -1,17 +1,13 @@
 import Magix from 'magix';
 import Service from '../designer/service';
+import _ from '../provider/lodash.min.js';
 
-let { parseUrl } = Magix;
-export const getExcel = errcb => {
-  const { params } = parseUrl(location.href);
-
-  const { orders } = params;
-
+export const getExcel = (params) => {
   const service = new Service();
   service.all(
     {
       name: '@:{print.excel}',
-      '@:{query}': { orderCode: orders },
+      '@:{query}': params,
     },
     (err: { message: string }, bag) => {
       console.log('excel err is', err);
@@ -20,8 +16,13 @@ export const getExcel = errcb => {
       window.location.href = bag.get('data');
       if (err) {
         console.log('excel 异常', `${err.message}`);
-        errcb();
       }
     },
   );
 };
+
+
+export const generateExcel = (templates)=>{
+  console.log('excel 模板数据',templates)
+  _.map(templates,({id, orderCode})=>getExcel({templateId: id, orderCode}))
+}
