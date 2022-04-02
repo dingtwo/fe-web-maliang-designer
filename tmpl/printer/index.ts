@@ -426,6 +426,27 @@ export default View.extend({
         console.log('请求回来的初始数据', ex, bag);
         if (!ex) {
           //如果请求未有异常，则根据请求回来的数据进行渲染界面
+
+        const data =  _.reduce(bag.get('data'), (prev, item) => {
+            if (item.type === 2) {
+              return { excel: [...prev.excel, item.orderCode], stages: prev.stages }
+            }
+
+            return {
+              excel: prev.excel,
+              stages: [
+                ...prev.stages,
+                {
+                  ...item.templateJson,
+                  templateId: item.id,
+                  orderCode:item.orderCode,
+                }
+              ]
+            }
+          }, { excel: [], stages: [] })
+
+          console.log('data',data)
+
           const stages = bag.get('data').map(({ templateJson, id, orderCode }) => ({
             ...templateJson,
             templateId: id,
@@ -485,7 +506,7 @@ export default View.extend({
      * @param indexesCache 元素的分页下标索引对象
      */
     let hasNextPage = (elements, indexesCache) => {
-      for (let i = elements.length; i--; ) {
+      for (let i = elements.length; i--;) {
         let e = elements[i];
         if (
           e.type == 'data-coltable' ||
@@ -537,10 +558,10 @@ export default View.extend({
           let newElement = inHod
             ? e
             : {
-                type: e.type,
-                id: e.id,
-                props: Const['@:{const#clone}'](e.props),
-              };
+              type: e.type,
+              id: e.id,
+              props: Const['@:{const#clone}'](e.props),
+            };
 
           if (newElement.type !== 'data-dtable' && newElement.type !== 'data-ftable') {
             const bindUrl = _.get(newElement, ['props', 'bind', 'url']);
