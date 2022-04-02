@@ -444,6 +444,8 @@ export default View.extend({
               ]
             }
           }, { excel: [], stages: [] })
+          const excelTemplates = _.filter(bag.get('data'), {type:2});
+          const maliangTemplates = _.filter(bag.get('data'), item=>item.type!);
 
           console.log('data',data)
 
