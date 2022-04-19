@@ -1,6 +1,7 @@
 import Magix from 'magix';
 import Service from '../designer/service';
 import _ from '../provider/lodash.min.js';
+import { printCount } from './printCount';
 
 export const getExcel = (params) => {
   const service = new Service();
@@ -10,13 +11,15 @@ export const getExcel = (params) => {
       '@:{query}': params,
     },
     (err: { message: string }, bag) => {
+      if (err) {
+        console.log('excel 异常', `${err.message}`);
+      }
+
       console.log('excel err is', err);
       console.log('excel bag is', bag);
       console.log(bag.get('data'));
       window.location.href = bag.get('data');
-      if (err) {
-        console.log('excel 异常', `${err.message}`);
-      }
+      printCount();
     },
   );
 };
