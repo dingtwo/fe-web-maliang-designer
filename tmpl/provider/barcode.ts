@@ -3,7 +3,8 @@ let loadingList = [];
 let state = 1;
 let rejectMsg = 'can not load barcode library';
 export default {
-    '@:{types}': [{ value: 'CODE128', text: 'CODE128' },//条形码类型
+  '@:{types}': [
+    { value: 'CODE128', text: 'CODE128' }, //条形码类型
     { value: 'CODE128A', text: 'CODE128A' },
     { value: 'CODE128B', text: 'CODE128B' },
     { value: 'CODE128C', text: 'CODE128C' },
@@ -24,36 +25,42 @@ export default {
     { value: 'upce', text: 'UPC-E' },
     { value: 'codabar', text: 'codabar' },
     { value: 'pharmacode', text: 'pharmacode' },
-    { value: 'GenericBarcode', text: 'GenericBarcode' }],
-    '@:{load.library}'() {
-        return new Promise<void>((resolve, reject) => {
-            if (state & 2) {
-                if (window.JsBarcode) {
-                    resolve();
-                } else {
-                    reject(rejectMsg);
-                }
-            } else if (state & 4) {
-                loadingList.push([resolve, reject]);
+    { value: 'GenericBarcode', text: 'GenericBarcode' },
+  ],
+  '@:{load.library}'() {
+    return new Promise<void>((resolve, reject) => {
+      // NOTICE: 为了安全,二维码和条码都在 print.html 里了
+      if (window.JsBarcode) {
+        resolve();
+        return;
+      }
+      if (state & 2) {
+        if (window.JsBarcode) {
+          resolve();
+        } else {
+          reject(rejectMsg);
+        }
+      } else if (state & 4) {
+        loadingList.push([resolve, reject]);
+      } else {
+        state |= 4;
+        loadingList.push([resolve, reject]);
+        let script = document.createElement('script');
+        script.src = dest;
+        script.onload = script.onerror = () => {
+          document.head.removeChild(script);
+          state |= 2;
+          for (let [res, rej] of loadingList) {
+            if (window.JsBarcode) {
+              res();
             } else {
-                state |= 4;
-                loadingList.push([resolve, reject]);
-                let script = document.createElement('script');
-                script.src = dest;
-                script.onload = script.onerror = () => {
-                    document.head.removeChild(script);
-                    state |= 2;
-                    for (let [res, rej] of loadingList) {
-                        if (window.JsBarcode) {
-                            res();
-                        } else {
-                            rej(rejectMsg);
-                        }
-                    }
-                    loadingList.length = 0;
-                };
-                document.head.appendChild(script);
+              rej(rejectMsg);
             }
-        });
-    }
+          }
+          loadingList.length = 0;
+        };
+        document.head.appendChild(script);
+      }
+    });
+  },
 };

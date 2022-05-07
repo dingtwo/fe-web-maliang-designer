@@ -4,6 +4,11 @@ let state = 1;
 let rejectMsg = 'can not load qrcode library';
 export default () => {
     return new Promise<void>((resolve, reject) => {
+        // NOTICE: 为了安全,二维码和条码都在 print.html 里了
+        if (window.QRCode) {
+            resolve();
+            return;
+        }
         if (state & 2) {
             if (window.QRCode) {
                 resolve();
