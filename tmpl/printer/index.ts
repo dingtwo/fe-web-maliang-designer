@@ -73,6 +73,7 @@ let {
   has,
   applyStyle,
   parseUrl,
+  toUrl,
   config,
   mark,
   guid,
@@ -83,6 +84,11 @@ let {
 
 // 获取url上的id，合成接口 api
 const mergeApi = ({ url, orderId }: { url: string; orderId: string }) => {
+  const { params, path } = parseUrl(url);
+  if (params.orderId) {
+    // 替换
+    return toUrl(path, { ...params, orderId });
+  }
   return `${url}&orderId=${orderId}`;
 };
 
@@ -771,7 +777,7 @@ export default View.extend({
 
     let pages = []; //分页对象
     // let apis = []; //所有绑定元素的接口地址，在渲染前，需要通过接口地址一次性把所有数据拿回来
-    const apiMap = new Map();
+    const apiMap = new Map<string, Map<string, string>>();
     let pagers = []; //页码器对象，需要根据分页多少设置每个页码器的当前页码及总共页码
     let resourcesLoader = new ResourcesLoader(); //资源加载收集器
     this['@:{resources}'] = resourcesLoader;
@@ -853,7 +859,12 @@ export default View.extend({
 
     //先加载数据
     await fetchAllAPI(apiMap);
-    console.log('数据中心', apiMap, DataCenter);
+
+    this['@:{update.api.by.tax}'](apiMap);
+    // 数据算完要算新的 stages;
+    this['@:{update.stages.by.tax}'](apiMap, newStages);
+    // DataCenter的 key 就是 apiMap 里的 key+orderId=xxx
+    console.log('数据中心', apiMap, DataCenter, newStages.length);
 
     Toast.show('正在准备资源...');
     await resourcesLoader['@:{load}'](); //等资源加载
@@ -966,6 +977,52 @@ export default View.extend({
     await this.digest({
       renderStatus: 'end',
     });
+  },
+  /**
+   * 根据税率拆单的结果更新 apiMap
+   */
+  '@:{update.api.by.tax}'(apiMap: Map<string, Map<string, string>>) {
+    // 遍历 apiMap, 每一个元素是一个接口,查看接口下的订单,是否有拆单的订单
+    // 遍历DataCenter,每一个接口返回的数据,apiMap 的每个接口来匹配,看有没有这个订单,如果单号带税率标志,就加进去
+
+    Object.keys(DataCenter).forEach(key => {
+      const {
+        params: { orderId },
+      } = parseUrl(key);
+      if (orderId.includes('tax')) {
+        const rawOrderId = orderId.split('-')[0];
+        apiMap.forEach(values => {
+          values.set(orderId, values.get(rawOrderId));
+        });
+      }
+    });
+  },
+  /**
+   * 根据税率拆单的结果修改 stage, 如果有新的就插入
+   * @param apiMap
+   * @param newStages
+   * @returns
+   */
+  '@:{update.stages.by.tax}'(apiMap, newStages) {
+    apiMap.forEach(values => {
+      // 订单号
+      values.forEach((templateId, orderId) => {
+        // 如果这个订单号 stages 里没有,就插入一个
+        const rawOrderId = orderId.split('-')[0];
+        const stageOrders = _.map(newStages, 'orderCode');
+        if (!stageOrders.includes(orderId)) {
+          console.log('要插入了', orderId);
+
+          const currentIdx = stageOrders.findIndex(x => x === rawOrderId);
+          if (currentIdx < 0) {
+            console.error('没找着应该有问题');
+            return;
+          }
+          newStages.splice(currentIdx + 1, 0, { ...newStages[currentIdx], orderCode: orderId });
+        }
+      });
+    });
+    return newStages;
   },
 
   /**
