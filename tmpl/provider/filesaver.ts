@@ -4,6 +4,10 @@ let state = 1;
 let rejectMsg = 'can not load filesaver library';
 export default () => {
     return new Promise<void>((resolve, reject) => {
+        if (window.saveAs) {
+            resolve();
+            return;
+        }
         if (state & 2) {
             if (window.saveAs) {
                 resolve();
