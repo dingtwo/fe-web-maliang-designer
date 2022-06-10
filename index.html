@@ -21,10 +21,14 @@
         </script>
         <script src="https://cdn-go.cn/aegis/aegis-sdk/latest/aegis.min.js"></script>
         <script>
-            var userInfo = {};
+            function initAegis() {
+                var userInfo = {};
             try {
                 userInfo = JSON.parse(JSON.parse(localStorage.getItem('userInfos'))) || {};
             } catch (error) {}
+            if (!Aegis) {
+                return;
+            }
         var aegis = new Aegis({
             id: 'XaKVn5BzYa1GMRyjbO', // 上报 id
             uin: userInfo.username, // 用户唯一 ID（可选）
@@ -32,6 +36,9 @@
             reportAssetSpeed: true, // 静态资源测速
             spa: false // spa 应用页面跳转的时候开启 pv 计算
         });
+            }
+            initAegis();
+
     </script>
     </head>
     <body>

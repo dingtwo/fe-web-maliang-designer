@@ -9,7 +9,7 @@ import { getEnv } from '../provider/host';
 
 let { View, node, config, parseUrl } = Magix;
 const env = getEnv();
-const testOrderCode = env === 'prod' ? 'OM21092400000777' : 'OM21082600000129';
+const testOrderCode = env === 'prod' ? 'OM22060900004508PS' : 'OM21082600000129';
 
 export default View.extend({
   tmpl: '@:./print.html',
