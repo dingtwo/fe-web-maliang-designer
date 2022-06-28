@@ -185,7 +185,7 @@ export default {
                 Panels.push({
                     title: '@:{lang#panel.data}',
                     icon: '&#xe609;',
-                    width: 200,
+                    width: 230,
                     cm: 1,
                     height: mini ? height - 140 : 385,
                     fixedSize: mini,

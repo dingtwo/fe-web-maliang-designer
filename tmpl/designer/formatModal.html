@@ -1,0 +1,12 @@
+<div class="dialog-header-shadow position-sticky z-index-7"></div>
+<div class="dialog-header position-sticky top-0 background-color-fff flex align-items-center dialog-header-with-shadow z-index-8">
+    <h5 class="tag-h5">{{=i18n(itemData.name)}}</h5>
+</div>
+<div class="dialog-body">
+    <textarea class="textarea content-area wp100" spellcheck="false" id="_rd_ta_{{=$viewId}}">{{=body}}</textarea>
+</div>
+<div class="dialog-footer flex justify-content-flex-end align-items-center  position-sticky bottom-0 z-index-6 dialog-footer-with-shadow background-color-fff">
+    <button mx-click="@:{apply}();" class="btn tc btn-brand cursor-pointer" type="button">{{=i18n('@:{lang#btn.apply}')}}</button>
+    <button mx-click="@:{cancel}();" class="btn cursor-pointer tc ml10" type="button">{{=i18n('@:{lang#btn.cancel}')}}</button>
+</div>
+<div class="dialog-footer-shadow position-sticky z-index-5"></div>

@@ -6,16 +6,22 @@
         <!--整体只读readonly-->
         <!--当前元素已经绑定过当前数据字段bindMap[item.id]-->
         <!--以上情形均需要禁用及禁止拖动-->
-        <div class="flex align-items-center{{if disabled||item.disabled||readonly||bindMap[item.id]}} opacity-40{{/if}}{{if children}} branch-title cursor-pointer{{else}} item-draggable{{/if}}" mx-click="{{=children}}?@:{toggle.children}({item:'{{#item}}'})" draggable="{{=!children && !bindMap[item.id] && !readonly && !disabled && !item.disabled}}?true" mx-dragstart="@:{drag.field.start}({url:'{{=ownerUrl}}',field:'{{#item}}',id:'{{=ownerId}}'})" mx-dragend="@:{drag.field.end}()" mx-pointerdown="{{= !children && !bindMap[item.id] && !readonly && !disabled && !item.disabled}}?@:{fix.drag.clip.bug}()">
+        <div class="flex justify-content-space-between align-items-center{{if disabled||item.disabled||readonly||bindMap[item.id]}} opacity-40{{/if}}{{if children}} branch-title cursor-pointer{{else}} item-draggable{{/if}}" draggable="{{=!children && !bindMap[item.id] && !readonly && !disabled && !item.disabled}}?true" mx-dragstart="@:{drag.field.start}({url:'{{=ownerUrl}}',field:'{{#item}}',id:'{{=ownerId}}'})" mx-dragend="@:{drag.field.end}()" mx-pointerdown="{{= !children && !bindMap[item.id] && !readonly && !disabled && !item.disabled}}?@:{fix.drag.clip.bug}()">
             <!-- !children && !bindMap[item.id] && !readonly && !disabled && !item.disabled -->
             <!-- 无子节点可拖动  选中元素还未绑定当前字段 非只读 父级非禁用 当前未禁用 -->
             <!-- 元素只要无draggable属性，相关的dragstart dragend事件不会触发 -->
-            {{if children}}
+            <div class="flex-fill-rest align-items-center ellipsis" mx-click="{{=children}}?@:{toggle.children}({item:'{{#item}}'})">
+              {{if children}}
                 <i class="iconfont fontsize-12 transition{{if item.expand}} r90{{/if}}">&#xe63b;</i>
-            {{else}}
+              {{else}}
                 <i class="iconfont">&#xe69c;</i>
+              {{/if}}
+              <span x-html="{{=highlight(item.name)}}"></span>
+            </div>
+
+            {{if children}}
+              <div class="iconfont" mx-click="@:{codeModal.show}({item:'{{#item}}'})">&#xe651;</div>
             {{/if}}
-            <span x-html="{{=highlight(item.name)}}"></span>
         </div>
         {{if children && item.expand}}
             <mx-vframe src="./branch" *indent="true" *list="{{#children}}" *bind-map="{{#bindMap}}" *owner-id="{{#item.id}}" *owner-url="{{#item.url}}" *disabled="{{#disabled||item.disabled}}" *readonly="{{#readonly}}" *kw="{{#kw}}" class="ml5"/>
