@@ -255,7 +255,8 @@ const fetchAllAPI = async apiMap => {
 
       const params = _.map(orderList, order => ({
         orderCode: _.first(order),
-        templateId: _.last(order),
+        templateId: _.first(_.last(order)),
+        dataSourceId: _.last(_.last(order)),
       }));
 
       return await fetchItemApi(url, params);
@@ -777,7 +778,7 @@ export default View.extend({
 
     let pages = []; //分页对象
     // let apis = []; //所有绑定元素的接口地址，在渲染前，需要通过接口地址一次性把所有数据拿回来
-    const apiMap = new Map<string, Map<string, string>>();
+    const apiMap = new Map<string, Map<string, any[]>>();
     let pagers = []; //页码器对象，需要根据分页多少设置每个页码器的当前页码及总共页码
     let resourcesLoader = new ResourcesLoader(); //资源加载收集器
     this['@:{resources}'] = resourcesLoader;
@@ -796,9 +797,9 @@ export default View.extend({
         if (bind && bind.url) {
           // 当前接口的参数, sql 的 id
           if (!apiMap.has(bind.url)) {
-            apiMap.set(bind.url, new Map([[orderCode, templateId]]));
+            apiMap.set(bind.url, new Map([[orderCode, [templateId, bind.id]]]));
           } else {
-            apiMap.get(bind.url).set(orderCode, templateId);
+            apiMap.get(bind.url).set(orderCode, [templateId, bind.id]);
           }
         }
 

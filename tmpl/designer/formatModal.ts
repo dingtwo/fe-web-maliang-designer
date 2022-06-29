@@ -2,79 +2,94 @@
     author:https://github.com/xinglie
 */
 import Magix from 'magix';
-let { node, applyStyle, View } = Magix;
+import Service from './service';
+
+let { node, applyStyle, View, parseUrl } = Magix;
+
 applyStyle('@:content.less');
+
+const defaultFun = `/**
+*
+* @param data 打印接口返回的数据
+* @param R ramda
+* @param calc @csx/calc
+* @param nzhCn @csx/calc nzhcn
+* @param request 用于发起请求的方法，返回 promise，支持 post 请求，request(url, data)
+* @returns 处理后的数据
+*/
+function (data, { R, calc, nzhcn, request }) {
+ console.log("data is", data);
+
+ return data;
+}
+`;
 
 export default View.extend({
   tmpl: '@:formatModal.html',
   init(data) {
+    console.log(data.dialog);
+
     this['@:{dialog}'] = data.dialog;
     this['@:{itemData}'] = data.itemData;
+    this['@:{get.formatFun}'](data.itemData);
   },
   render(data) {
-    console.log('render data', data);
-    this.digest({
-      body: 123123,
-      itemData: this['@:{itemData}'],
-    });
+    // this.digest({
+    //   itemData: this['@:{itemData}'],
+    // });
+  },
+  '@:{get.formatFun}'(itemData) {
+    let { params } = parseUrl(location.href);
+
+    const s = new Service();
+    s.save(
+      {
+        name: '@:{get.format.fun}',
+        '@:{body}': JSON.stringify({ templateId: params.id, dataSourceId: itemData.id }),
+      },
+      (
+        ex: {
+          message: string;
+        },
+        bag,
+      ) => {
+        this.digest({
+          body: bag.get('data', defaultFun),
+          itemData: itemData,
+        });
+      },
+    );
   },
   '@:{cancel}<click>'() {
     this['@:{dialog}'].close();
   },
   '@:{apply}<click>'() {
     let value = (node('_rd_ta_' + this.id) as HTMLTextAreaElement).value.trim();
-    console.log('value value', value);
-    console.log('this.id this.id', this.id);
-    console.log(" this['@:{itemData}']", this['@:{itemData}']);
 
+    this['@:{save}'](value);
     this['@:{dialog}'].close();
   },
-}).static({
-  // async '@:{read.file}'(target: HTMLElement) {
-  //   console.log('123132', 123123);
-  //   let readMark = mark(this, '@:{save.async}');
-  //   try {
-  //     let content = await FileSystemProvider['@:{read.file}'](target as HTMLInputElement);
-  //     tryApplyContent(content);
-  //   } catch (ex) {
-  //     if (readMark() && ex.name != 'AbortError') {
-  //       Vframe.root().invoke('alert', [ex.message]);
-  //     }
-  //   }
-  // },
-  // async '@:{save}'() {
-  //   let saveMark = mark(this, '@:{save.async}');
-  //   try {
-  //     await FileSystemProvider['@:{prepare}']();
-  //   } catch (ex) {
-  //     Vframe.root().invoke('alert', [ex.message]);
-  //     return;
-  //   }
-  //   if (saveMark()) {
-  //     Toast.show(I18n('@:{lang#export.file.processing}'));
-  //     let now = new Date();
-  //     let time = [
-  //       now.getFullYear(),
-  //       padStart(now.getMonth() + 1, 2, '0'),
-  //       padStart(now.getDate(), 2, '0'),
-  //       padStart(now.getHours(), 2, '0'),
-  //       padStart(now.getMinutes(), 2, '0'),
-  //       padStart(now.getSeconds(), 2, '0'),
-  //     ].join('');
-  //     let value = ToJSON();
-  //     try {
-  //       value = prefix + btoa(encodeURIComponent(value));
-  //       await FileSystemProvider['@:{save.file}'](
-  //         `${I18n('@:{lang#site.name}')}-${time}.rd`,
-  //         value,
-  //       );
-  //       Toast.show(I18n('@:{lang#export.success}'), 3e3);
-  //     } catch (ex) {
-  //       Toast.hide();
-  //       if (saveMark() && ex.name != 'AbortError') {
-  //         Vframe.root().invoke('alert', [ex.message]);
-  //       }
-  //     }
-  //   }
-  // },
+  '@:{save}'(val) {
+    let { params } = parseUrl(location.href);
+
+    const s = new Service();
+    s.save(
+      {
+        name: '@:{set.format.fun}',
+        '@:{body}': JSON.stringify({
+          templateId: params.id,
+          dataSourceId: this['@:{itemData}'].id,
+          formatFun: val,
+        }),
+      },
+      (
+        ex: {
+          message: string;
+        },
+        bag,
+      ) => {
+        console.log(bag.get('data', ''));
+      },
+    );
+  },
 });

@@ -1,6 +1,6 @@
 <div class="dialog-header-shadow position-sticky z-index-7"></div>
 <div class="dialog-header position-sticky top-0 background-color-fff flex align-items-center dialog-header-with-shadow z-index-8">
-    <h5 class="tag-h5">{{=i18n(itemData.name)}}</h5>
+    <h5 class="tag-h5">{{=i18n(itemData && itemData.name)}}</h5>
 </div>
 <div class="dialog-body">
     <textarea class="textarea content-area wp100" spellcheck="false" id="_rd_ta_{{=$viewId}}">{{=body}}</textarea>
