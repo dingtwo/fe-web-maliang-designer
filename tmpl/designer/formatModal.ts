@@ -15,9 +15,10 @@ const defaultFun = `/**
 * @param calc @csx/calc
 * @param nzhCn @csx/calc nzhcn
 * @param request 用于发起请求的方法，返回 promise，支持 post 请求，request(url, data)
+* @param sync
 * @returns 处理后的数据
 */
-function (data, { R, calc, nzhcn, request }) {
+function (data, { R, calc, nzhcn, request, sync }) {
  console.log("data is", data);
 
  return data;
@@ -32,11 +33,7 @@ export default View.extend({
     this['@:{dialog}'] = data.dialog;
     this['@:{itemData}'] = data.itemData;
     this['@:{get.formatFun}'](data.itemData);
-  },
-  render(data) {
-    // this.digest({
-    //   itemData: this['@:{itemData}'],
-    // });
+    this['@:bodyData'] = defaultFun;
   },
   '@:{get.formatFun}'(itemData) {
     let { params } = parseUrl(location.href);
@@ -53,20 +50,25 @@ export default View.extend({
         },
         bag,
       ) => {
+        const bodyData = bag.get('data', defaultFun);
+
         this.digest({
-          body: bag.get('data', defaultFun),
+          body: bodyData,
           itemData: itemData,
         });
+
+        this['@:bodyData'] = bodyData;
       },
     );
+  },
+  '@:{update.value}<cmchange>'(e) {
+    this['@:bodyData'] = e.value.trim();
   },
   '@:{cancel}<click>'() {
     this['@:{dialog}'].close();
   },
   '@:{apply}<click>'() {
-    let value = (node('_rd_ta_' + this.id) as HTMLTextAreaElement).value.trim();
-
-    this['@:{save}'](value);
+    this['@:{save}'](this['@:bodyData']);
     this['@:{dialog}'].close();
   },
   '@:{save}'(val) {
