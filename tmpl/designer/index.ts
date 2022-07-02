@@ -366,6 +366,15 @@ export default View.extend({
         e['@:{excample.change.event#title}'],
       );
     };
+
+    // 展示format fun弹窗
+    let showDataFormat = (e: Report.EventOfSaveContent) => {
+      this.mxDialog('@:./formatModal', {
+        width: Math.max(1000, screen.width - 200),
+        itemData: e['@:{item.data}'],
+      });
+    };
+
     /**
      * 保存内容
      * @param e 保存内容事件对象
@@ -529,6 +538,7 @@ export default View.extend({
     State.on('@:{event#example.change}', changeExample);
     //保存
     State.on('@:{event#stage.save.content}', saveContent);
+    State.on('@:{event#data.source.format.show}', showDataFormat);
     //按键
     State.on('@:{event#stage.key.press}', watchKeypress);
     //单位转换

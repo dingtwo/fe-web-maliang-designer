@@ -229,6 +229,16 @@ RDService.add([
     url: `${getHost()}/maliang/print/excel`,
     // url: `http://localhost:9000/print/excel`,
   },
+  {
+    name: '@:{get.format.fun}',
+    '@:{method}': 'post',
+    url: config('getFormatFunUrl'),
+  },
+  {
+    name: '@:{set.format.fun}',
+    '@:{method}': 'post',
+    url: config('setFormatFunUrl'),
+  },
 ]);
 
 // {"orderCodes":["OM21101100000091"],"entryType":"3"}
