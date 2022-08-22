@@ -393,6 +393,24 @@ export default View.extend({
 
     const { templateId, scene } = params;
 
+    /**
+     * 自助打印和中台都会有标签打印标识传过来, 统一用needSplitTag=1 来标识
+     */
+    if (params.needSplitTag === '1') {
+      // TODO: 就是这里,在这里先把订单分出来,然后做标签拆单
+      const orders = params.order || params.orders;
+      const TAG_SPLIT_ORDER_SCENES = ['1', '7'];
+      if (TAG_SPLIT_ORDER_SCENES.includes(scene)) {
+        return this['@:{split.orders.by.tag}']({
+          orders,
+          scene,
+          templateId,
+        });
+      } else {
+        this['@:{get.stages}']({ orders, id: templateId, scene });
+      }
+    }
+
     // 分两种,单个模板打印和批量打印
     if (params.orders || params.order) {
       if (!params.scene) {
@@ -406,6 +424,56 @@ export default View.extend({
       Toast.show('没有找到订单号参数');
       return Promise.reject('没有找到订单号参数');
     }
+  },
+
+  /**
+   * 根据 tag 拆分订单
+   */
+  async '@:{split.orders.by.tag}'({ scene, orders, templateId }) {
+    /**
+     * 调用 maliang 的接口
+     * 订单->子客户->几个标签->模版
+     * 返回之后, 可能要改成调用几次 get.stages 方法
+     * 下午设计一下数据格式,下班之前一定要搞个 demo 出来
+     * 干他
+     *
+     * // 走新的逻辑
+      // 根据 tag 里面的模版信息(模版尺寸是否一样),决定在当前页面打印,还是弹新页面打印
+      // 标签,模版,订单
+      // 三个标签,不管模版一不一样,都需要分开打印三次
+      // 第一个,传标签,模版 id,订单号
+      // 如果用订单号+标签名拼接,后端再拆分处理,是不是就和原来的逻辑一样了, 试试
+      // orders 遍历
+     */
+    // tag里面带模版信息
+    const tags = await this.mock();
+    // 订单模式
+    if (tags.length === 0) {
+      console.log('没有标签,走原来的逻辑');
+      this['@:{get.stages}']({ orders, id: templateId, scene });
+    } else {
+      console.log('有标签了,来吧', tags);
+      const orderTags = [
+        {
+          subCustomerCode: 'SC195270000002',
+          planOrderCode: 'OM22082200000018',
+          customerGroupTags: ['2222', '白菜'],
+        },
+      ];
+      this['@:{get.stages}']({ orderTags, scene });
+    }
+  },
+
+  mock() {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve([
+          { tagName: '净菜', order: 'OM22082200000018PS' },
+          { tagName: '肉类', order: 'OM22082200000018PS' },
+          { tagName: '豆类', order: 'OM22082200000018PS' },
+        ]);
+      }, 1000);
+    });
   },
 
   /**
