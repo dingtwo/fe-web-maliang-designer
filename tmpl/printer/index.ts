@@ -446,33 +446,55 @@ export default View.extend({
       // orders 遍历
      */
     // tag里面带模版信息
-    const tags = await this.mock();
+    const orderTags = await this.collectTags(orders);
     // 订单模式
-    if (tags.length === 0) {
-      console.log('没有标签,走原来的逻辑');
-      this['@:{get.stages}']({ orders, id: templateId, scene });
-    } else {
-      console.log('有标签了,来吧', tags);
-      const orderTags = [
-        {
-          subCustomerCode: 'SC195270000002',
-          planOrderCode: 'OM22082200000018',
-          customerGroupTags: ['2222', '白菜'],
-        },
-      ];
-      this['@:{get.stages}']({ orderTags, scene });
-    }
+    // if (tags.length === 0) {
+    //   console.log('没有标签,走原来的逻辑');
+    //   this['@:{get.stages}']({ orders, id: templateId, scene });
+    // } else {
+    console.log('有标签了,来吧', orderTags);
+    // 从 orders 里面找出来 orderTags 里没有的,剩下的是没有标签的
+    this['@:{get.stages}']({ orderTags, scene });
   },
 
-  mock() {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve([
-          { tagName: '净菜', order: 'OM22082200000018PS' },
-          { tagName: '肉类', order: 'OM22082200000018PS' },
-          { tagName: '豆类', order: 'OM22082200000018PS' },
-        ]);
-      }, 1000);
+  /**
+   * 查看订单都有哪些标签
+   * @param orders
+   * @returns
+   */
+  collectTags(orders) {
+    console.log('订单', orders);
+
+    const orderList = orders.split(',');
+    return new Promise((resolve, reject) => {
+      let s = new Service();
+      s.all(
+        {
+          name: '@:{post.collect.tags}',
+          '@:{body}': JSON.stringify(orderList),
+        },
+        (ex, bag) => {
+          console.log('请求回来的初始数据', ex, bag);
+          if (!ex) {
+            const orderTags = bag.get('data');
+            console.log('打印标签', orderTags);
+            const res = orderList.map(orderCode => {
+              const hasTagOrder = orderTags.find(o => o.planOrderCode === orderCode);
+              return (
+                hasTagOrder || {
+                  planOrderCode: orderCode,
+                  // subCustomerCode: '100002',
+                  customerGroupTags: [],
+                }
+              );
+            });
+            resolve(res);
+          } else {
+            Toast.show(ex.message);
+            reject(ex.message);
+          }
+        },
+      );
     });
   },
 
