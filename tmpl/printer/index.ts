@@ -454,7 +454,7 @@ export default View.extend({
     // } else {
     console.log('有标签了,来吧', orderTags);
     // 从 orders 里面找出来 orderTags 里没有的,剩下的是没有标签的
-    this['@:{get.stages}']({ orderTags, scene });
+    this['@:{get.stages}']({ orderTags, scene, orders });
   },
 
   /**
@@ -478,17 +478,7 @@ export default View.extend({
           if (!ex) {
             const orderTags = bag.get('data');
             console.log('打印标签', orderTags);
-            const res = orderList.map(orderCode => {
-              const hasTagOrder = orderTags.find(o => o.planOrderCode === orderCode);
-              return (
-                hasTagOrder || {
-                  planOrderCode: orderCode,
-                  // subCustomerCode: '100002',
-                  customerGroupTags: [],
-                }
-              );
-            });
-            resolve(res);
+            resolve(orderTags);
           } else {
             Toast.show(ex.message);
             reject(ex.message);
