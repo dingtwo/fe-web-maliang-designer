@@ -105,12 +105,20 @@
                 'dev': 'http://10.252.192.35:8000/maliang',
                 'pre': 'http://pre.kong.b2bcsx.cn:8000/maliang'
             }
+            var wmsHost = {
+                'prod': 'http://api.freshfood.cn/wms',
+                'test': 'http://10.252.192.35:8000/wms',
+                'sit': 'http://sitapi.freshfood.cn:8000/wms',
+                'dev': 'http://10.252.192.35:8000/wms',
+                'pre': 'http://pre.kong.b2bcsx.cn:8000/wms'
+            }
             designer.setup({
             version:'202202251841',
                 rds: '//localhost:9988/',
                 getContentUrl: host[getEnv()] +'/template/findById',
                 /** 批量打印 */
                 getMutiContentUrl: host[getEnv()]+'/template/batchFind',
+                collectPrintOrderTags: wmsHost[getEnv()] + '/wms/shippedorders/collectPrintOrderTags'
             });
         </script>
     </body>
