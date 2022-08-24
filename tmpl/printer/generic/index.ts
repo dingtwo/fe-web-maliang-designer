@@ -95,6 +95,8 @@ let tryParseJSON = str => {
   let result;
   try {
     result = JSON.parse(str);
+  } catch (err) {
+    console.error('解析远程 render json 失败', err);
   } finally {
     return result;
   }

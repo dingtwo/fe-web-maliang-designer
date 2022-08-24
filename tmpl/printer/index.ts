@@ -1697,6 +1697,8 @@ export default View.extend({
    * @param e 渲染事件对象
    */
   '$win<render>'(e) {
+    console.log('远程触发', e);
+
     this['@:{render.page.by.json}'](Generic['@:{try.parse.json}'](e.json));
   },
   /**
