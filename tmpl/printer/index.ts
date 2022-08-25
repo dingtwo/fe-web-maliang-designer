@@ -447,11 +447,6 @@ export default View.extend({
      */
     // tag里面带模版信息
     const orderTags = await this.collectTags(orders);
-    // 订单模式
-    // if (tags.length === 0) {
-    //   console.log('没有标签,走原来的逻辑');
-    //   this['@:{get.stages}']({ orders, id: templateId, scene });
-    // } else {
     console.log('有标签了,来吧', orderTags);
     // 从 orders 里面找出来 orderTags 里没有的,剩下的是没有标签的
     this['@:{get.stages}']({ orderTags, scene, orders });
@@ -962,6 +957,7 @@ export default View.extend({
       // 检查返回的数据里有没有此订单
       const hasData = this['@:{check.data}'](orderCode);
       if (!hasData) {
+        console.log('没有数据', orderCode);
         continue;
       }
       // 数据中有没有此订单号的数据
@@ -1088,17 +1084,24 @@ export default View.extend({
     apiMap.forEach(values => {
       // 订单号
       values.forEach((templateId, orderId) => {
+        console.log('这俩 id 是啥', templateId, orderId);
+
         // 如果这个订单号 stages 里没有,就插入一个
-        const rawOrderId = orderId.split('-')[0];
+        const [rawOrderId] = orderId.split('-tax-');
+        // 如果后面的也一样,还得再插一个
+        // 当前取出所有的单号
         const stageOrders = _.map(newStages, 'orderCode');
         if (!stageOrders.includes(orderId)) {
           console.log('要插入了', orderId);
 
-          const currentIdx = stageOrders.findIndex(x => x === rawOrderId);
+          let currentIdx = stageOrders.findIndex(x => x === rawOrderId);
           if (currentIdx < 0) {
-            console.error('没找着应该有问题');
-            return;
+            console.log('额外拆出来的');
+            currentIdx = newStages.length - 1;
+            // 改造 orderId
+            // orderId = `${rawOrderId}-${others[0]}${others[others.length - 1]}`;
           }
+          // 需要知道模版, 如果后面比前面只多了-tax-idx,那就用同一个模版
           newStages.splice(currentIdx + 1, 0, { ...newStages[currentIdx], orderCode: orderId });
         }
       });
