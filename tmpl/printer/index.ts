@@ -34,6 +34,14 @@ import { printCount } from './printCount';
 import { getExcel } from './excel';
 import { getEnv } from '../provider/host';
 
+// 各环境接口地址
+const host = {
+  test: 'http://10.252.192.35:8000/maliang/',
+  sit: 'http://sitapi.freshfood.cn:8000/maliang/',
+  dev: 'http://localhost:3000/',
+  pre: 'http://preapi.freshfood.cn/maliang/',
+};
+
 class Progress {
   len = 0;
   count = 0;
@@ -194,10 +202,17 @@ const fetchItemApi = async (api, params) => {
 
   return new Promise((resolve, reject) => {
     const s = new Service();
+    // 在这做一次 url 的替换
+    let reqUrl = api;
+    // http://preapi.freshfood.cn/maliang/data-source/wms?isItems=1&id=1&v=202208251429&orders=OM22082500001531ZS%2COM22082500001553ZT%2COM22082500001546PS&scene=1&needSplitTag=1
+    if (window.RUN_CONFIG && window.RUN_CONFIG.env !== 'prod') {
+      const origin = host[window.RUN_CONFIG.env];
+      reqUrl = api.replace(/^http(s)?:\/\/(.*?)\/maliang\//, origin);
+    }
     s.all(
       {
         name: '@:{post.by.url}',
-        url: api,
+        url: reqUrl,
         // 增加订单类型标记,多种订单可以复用模板, 默认是配送单
         '@:{body}': JSON.stringify({ params, ...urlParams }),
       },
