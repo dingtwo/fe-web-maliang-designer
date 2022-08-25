@@ -292,6 +292,7 @@ export default {
   '@:{recast.table.by.data}'(table, dataCenter) {
     let { props, type } = table;
     let { bind, rows, dynamicCols, avgDynamicColsWidth } = props;
+    bind.url = decodeURIComponent(bind.url);
     if (bind.url && dynamicCols && dataCenter[bind.url]) {
       let { '@:{error}': err, '@:{data}': list } = dataCenter[bind.url];
       if (!err) {

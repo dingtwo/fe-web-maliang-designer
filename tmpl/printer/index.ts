@@ -1084,8 +1084,6 @@ export default View.extend({
     apiMap.forEach(values => {
       // 订单号
       values.forEach((templateId, orderId) => {
-        console.log('这俩 id 是啥', templateId, orderId);
-
         // 如果这个订单号 stages 里没有,就插入一个
         const [rawOrderId] = orderId.split('-tax-');
         // 如果后面的也一样,还得再插一个
