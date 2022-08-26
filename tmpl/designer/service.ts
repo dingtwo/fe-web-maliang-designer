@@ -239,6 +239,11 @@ RDService.add([
     '@:{method}': 'post',
     url: config('setFormatFunUrl'),
   },
+  {
+    name: '@:{post.collect.tags}',
+    '@:{method}': 'post',
+    url: config('collectPrintOrderTags'),
+  },
 ]);
 
 // {"orderCodes":["OM21101100000091"],"entryType":"3"}

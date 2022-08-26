@@ -34,6 +34,14 @@ import { printCount } from './printCount';
 import { getExcel } from './excel';
 import { getEnv } from '../provider/host';
 
+// 各环境接口地址
+const host = {
+  test: 'http://10.252.192.35:8000/maliang/',
+  sit: 'http://sitapi.freshfood.cn:8000/maliang/',
+  dev: 'http://localhost:3000/',
+  pre: 'http://preapi.freshfood.cn/maliang/',
+};
+
 class Progress {
   len = 0;
   count = 0;
@@ -194,10 +202,17 @@ const fetchItemApi = async (api, params) => {
 
   return new Promise((resolve, reject) => {
     const s = new Service();
+    // 在这做一次 url 的替换
+    let reqUrl = api;
+    // http://preapi.freshfood.cn/maliang/data-source/wms?isItems=1&id=1&v=202208251429&orders=OM22082500001531ZS%2COM22082500001553ZT%2COM22082500001546PS&scene=1&needSplitTag=1
+    if (window.RUN_CONFIG && window.RUN_CONFIG.env !== 'prod') {
+      const origin = host[window.RUN_CONFIG.env];
+      reqUrl = api.replace(/^http(s)?:\/\/(.*?)\/maliang\//, origin);
+    }
     s.all(
       {
         name: '@:{post.by.url}',
-        url: api,
+        url: reqUrl,
         // 增加订单类型标记,多种订单可以复用模板, 默认是配送单
         '@:{body}': JSON.stringify({ params, ...urlParams }),
       },
@@ -393,6 +408,24 @@ export default View.extend({
 
     const { templateId, scene } = params;
 
+    /**
+     * 自助打印和中台都会有标签打印标识传过来, 统一用needSplitTag=1 来标识
+     */
+    if (params.needSplitTag === '1') {
+      // TODO: 就是这里,在这里先把订单分出来,然后做标签拆单
+      const orders = params.order || params.orders;
+      const TAG_SPLIT_ORDER_SCENES = ['1', '7'];
+      if (TAG_SPLIT_ORDER_SCENES.includes(scene)) {
+        return this['@:{split.orders.by.tag}']({
+          orders,
+          scene,
+          templateId,
+        });
+      } else {
+        this['@:{get.stages}']({ orders, id: templateId, scene });
+      }
+    }
+
     // 分两种,单个模板打印和批量打印
     if (params.orders || params.order) {
       if (!params.scene) {
@@ -406,6 +439,63 @@ export default View.extend({
       Toast.show('没有找到订单号参数');
       return Promise.reject('没有找到订单号参数');
     }
+  },
+
+  /**
+   * 根据 tag 拆分订单
+   */
+  async '@:{split.orders.by.tag}'({ scene, orders, templateId }) {
+    /**
+     * 调用 maliang 的接口
+     * 订单->子客户->几个标签->模版
+     * 返回之后, 可能要改成调用几次 get.stages 方法
+     * 下午设计一下数据格式,下班之前一定要搞个 demo 出来
+     * 干他
+     *
+     * // 走新的逻辑
+      // 根据 tag 里面的模版信息(模版尺寸是否一样),决定在当前页面打印,还是弹新页面打印
+      // 标签,模版,订单
+      // 三个标签,不管模版一不一样,都需要分开打印三次
+      // 第一个,传标签,模版 id,订单号
+      // 如果用订单号+标签名拼接,后端再拆分处理,是不是就和原来的逻辑一样了, 试试
+      // orders 遍历
+     */
+    // tag里面带模版信息
+    const orderTags = await this.collectTags(orders);
+    console.log('有标签了,来吧', orderTags);
+    // 从 orders 里面找出来 orderTags 里没有的,剩下的是没有标签的
+    this['@:{get.stages}']({ orderTags, scene, orders });
+  },
+
+  /**
+   * 查看订单都有哪些标签
+   * @param orders
+   * @returns
+   */
+  collectTags(orders) {
+    console.log('订单', orders);
+
+    const orderList = orders.split(',');
+    return new Promise((resolve, reject) => {
+      let s = new Service();
+      s.all(
+        {
+          name: '@:{post.collect.tags}',
+          '@:{body}': JSON.stringify(orderList),
+        },
+        (ex, bag) => {
+          console.log('请求回来的初始数据', ex, bag);
+          if (!ex) {
+            const orderTags = bag.get('data');
+            console.log('打印标签', orderTags);
+            resolve(orderTags);
+          } else {
+            Toast.show(ex.message);
+            reject(ex.message);
+          }
+        },
+      );
+    });
   },
 
   /**
@@ -882,6 +972,7 @@ export default View.extend({
       // 检查返回的数据里有没有此订单
       const hasData = this['@:{check.data}'](orderCode);
       if (!hasData) {
+        console.log('没有数据', orderCode);
         continue;
       }
       // 数据中有没有此订单号的数据
@@ -1009,16 +1100,21 @@ export default View.extend({
       // 订单号
       values.forEach((templateId, orderId) => {
         // 如果这个订单号 stages 里没有,就插入一个
-        const rawOrderId = orderId.split('-')[0];
+        const [rawOrderId] = orderId.split('-tax-');
+        // 如果后面的也一样,还得再插一个
+        // 当前取出所有的单号
         const stageOrders = _.map(newStages, 'orderCode');
         if (!stageOrders.includes(orderId)) {
           console.log('要插入了', orderId);
 
-          const currentIdx = stageOrders.findIndex(x => x === rawOrderId);
+          let currentIdx = stageOrders.findIndex(x => x === rawOrderId);
           if (currentIdx < 0) {
-            console.error('没找着应该有问题');
-            return;
+            console.log('额外拆出来的');
+            currentIdx = newStages.length - 1;
+            // 改造 orderId
+            // orderId = `${rawOrderId}-${others[0]}${others[others.length - 1]}`;
           }
+          // 需要知道模版, 如果后面比前面只多了-tax-idx,那就用同一个模版
           newStages.splice(currentIdx + 1, 0, { ...newStages[currentIdx], orderCode: orderId });
         }
       });
@@ -1617,6 +1713,8 @@ export default View.extend({
    * @param e 渲染事件对象
    */
   '$win<render>'(e) {
+    console.log('远程触发', e);
+
     this['@:{render.page.by.json}'](Generic['@:{try.parse.json}'](e.json));
   },
   /**

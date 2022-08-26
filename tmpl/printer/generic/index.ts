@@ -95,6 +95,8 @@ let tryParseJSON = str => {
   let result;
   try {
     result = JSON.parse(str);
+  } catch (err) {
+    console.error('解析远程 render json 失败', err);
   } finally {
     return result;
   }
@@ -290,6 +292,7 @@ export default {
   '@:{recast.table.by.data}'(table, dataCenter) {
     let { props, type } = table;
     let { bind, rows, dynamicCols, avgDynamicColsWidth } = props;
+    bind.url = decodeURIComponent(bind.url);
     if (bind.url && dynamicCols && dataCenter[bind.url]) {
       let { '@:{error}': err, '@:{data}': list } = dataCenter[bind.url];
       if (!err) {

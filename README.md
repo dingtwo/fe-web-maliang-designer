@@ -13,7 +13,7 @@ TODO:
 yarn
 ```
 
-2. 
+2.
 在 `report-designer` 目录启动开发调试
 ```
 yarn watch
@@ -30,3 +30,17 @@ yarn server
 调试页面访问`http://localhost:8888/index-debug.html`
 
 
+## 项目说明
+
+```sql
+alter table maliang_print_template_relation
+	add tag json default null comment '标签数组格式默认是空';
+```
+
+url 参数支持
+
+| 参数      | 说明              |   |   |   |
+|-----------|-------------------|---|---|---|
+| `orders`  | 订单号,用逗号拼接 |   |   |   |
+| `scene`   | 场景              |   |   |   |
+| puppeteer | 自助打印静默打印  |   |   |   |
