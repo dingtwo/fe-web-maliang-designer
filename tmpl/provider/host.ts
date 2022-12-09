@@ -1,9 +1,9 @@
 enum HOST {
-  prod = 'http://api.freshfood.cn',
-  pre = 'http://pre.kong.b2bcsx.cn:8000',
-  dev = 'http://10.252.192.35:8000',
-  sit = 'http://sitapi.freshfood.cn:8000',
-  test = 'http://10.252.192.35:8000',
+  prod = 'http://api.b2bcsx.com',
+  pre = 'http://pre.api.b2bcsx.com',
+  dev = 'http://dev.api.b2bcsx.com:8000',
+  sit = 'http://sit.api.b2bcsx.com',
+  test = 'http://dev.api.b2bcsx.com:8000',
 }
 
 // 获取 host
@@ -12,6 +12,7 @@ export const getEnv = () => {
 
   switch (hostname) {
     case 'prezt.freshfood.cn':
+    case 'prezt.b2bcsx.com':
       return 'pre';
     case 'localhost':
       return 'dev';
@@ -19,6 +20,7 @@ export const getEnv = () => {
     case 'devzt.b2bcsx.com':
       return 'test';
     case 'sitzt.freshfood.cn':
+    case 'sitzt.b2bcsx.com':
       return 'sit';
     case 'zt.freshfood.cn':
       return 'prod';

@@ -36,10 +36,10 @@ import { getEnv } from '../provider/host';
 
 // 各环境接口地址
 const host = {
-  test: 'http://10.252.192.35:8000/maliang/',
-  sit: 'http://sitapi.freshfood.cn:8000/maliang/',
+  test: 'http://dev.api.b2bcsx.com:8000/maliang/',
+  sit: 'http://sit.api.b2bcsx.com/maliang/',
   dev: 'http://localhost:3000/',
-  pre: 'http://preapi.freshfood.cn/maliang/',
+  pre: 'http://pre.api.b2bcsx.com/maliang/',
 };
 
 class Progress {

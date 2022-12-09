@@ -53,6 +53,7 @@
                 var hostname = window.location.hostname;
                 switch (hostname) {
                     case 'prezt.freshfood.cn':
+                    case 'prezt.b2bcsx.com':
                         return 'pre';
                         break;
                     case 'localhost':
@@ -70,11 +71,11 @@
             }
 
             var host = {
-                'prod': 'http://api.freshfood.cn/maliang',
-                'test': 'http://10.252.192.35:8000/maliang',
-                'sit': 'http://sitapi.freshfood.cn:8000/maliang',
-                'dev': 'http://10.252.192.35:8000/maliang',
-                'pre': 'http://pre.kong.b2bcsx.cn:8000/maliang'
+                'prod': 'http://api.b2bcsx.com/maliang',
+                'test': 'http://dev.api.b2bcsx.com:8000/maliang',
+                'sit': 'http://sit.api.b2bcsx.com/maliang',
+                'dev': 'http://dev.api.b2bcsx.com:8000/maliang',
+                'pre': 'http://pre.api.b2bcsx.com/maliang'
             }
 
             designer.setup({
