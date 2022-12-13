@@ -369,6 +369,8 @@ export default View.extend({
     (window as any).getRenderStatus = () => {
       return this.get('renderStatus');
     };
+
+    window.addEventListener('afterprint', printCount);
   },
 
   async render() {
@@ -1160,7 +1162,6 @@ export default View.extend({
     }
 
     window.print();
-    printCount();
   },
   // '@:{lodop.setting}<click>'() {
   //     this.mxDialog('@:./lodop/setting', {
