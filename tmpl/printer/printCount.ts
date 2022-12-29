@@ -20,12 +20,12 @@ const ifPlanOrder = (orderCode: string) => /(PS|ZS|ZT)$/.test(orderCode.toUpperC
 
 export const printCount = () => {
   let { params } = parseUrl(location.href);
-  const { scene, orders, order } = params;
+  const { scene, orders, order, puppeteer } = params;
   const orderCode = orders || order;
 
   /** 出库单和装车单需要计数 */
   const needPrintScenes = ['1', '7'];
-  if (!needPrintScenes.includes(scene) || !orderCode) {
+  if (!needPrintScenes.includes(scene) || !orderCode || Number(puppeteer) === 1) {
     return;
   }
 
