@@ -23,7 +23,10 @@ export const printCount = () => {
   const { scene, orders, order, puppeteer } = params;
   const orderCode = orders || order;
 
-  /** 出库单和装车单需要计数 */
+  /**
+   * 出库单和装车单需要计数
+   * 马良自助打印: Number(puppeteer) === 1 不需要计数 , 因为计数是在跟客户端交互的时候触发的
+   * */
   const needPrintScenes = ['1', '7'];
   if (!needPrintScenes.includes(scene) || !orderCode || Number(puppeteer) === 1) {
     return;
