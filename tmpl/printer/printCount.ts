@@ -25,9 +25,12 @@ export const printCount = () => {
 
   /** 出库单和装车单需要计数 */
   const needPrintScenes = ['1', '7'];
+  console.log('判断orderCode-1111', orderCode)
+  console.log('判断needPrintScenes.includes(scene) - 2222', needPrintScenes.includes(scene) )
   if (!needPrintScenes.includes(scene) || !orderCode) {
     return;
   }
+  console.log('不回调测试8888', !needPrintScenes.includes(scene) || !orderCode)
 
   const service = new Service();
   const orderStr = decodeURIComponent(orderCode);
