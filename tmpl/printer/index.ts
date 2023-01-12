@@ -866,6 +866,7 @@ export default View.extend({
       unit: unit,
       hasData: true,
       loading: true,
+      page,
     });
 
     let pages = []; //分页对象
@@ -1451,17 +1452,21 @@ export default View.extend({
         Toast.show('正在生成PDF...');
         let width = Const['@:{const#to.px}'](page.width),
           height = Const['@:{const#to.px}'](page.height);
+        // 如果宽度大于高度需要使用横向打印
+        const orientation = width > height ? 'l' : 'p';
+        const format = width > height ? [height, width] : [width, height];
         let doc = new jspdf.jsPDF({
+          orientation: orientation,
           unit: 'px',
           hotfixes: ['px_scaling'],
-          format: [width, width > height ? width + 1 : height],
+          format: format,
         });
         this['@:{js.pdf.document}'] = doc;
         doc.setDocumentProperties({
           title: I18n('@:{lang#site.name}'),
           subject: '打印页面',
           author: 'dingjz',
-          keywords: '打印、可视化、编辑器',
+          keywords: '神笔马良设计器',
           creator: location.host,
         });
         let total = images.length;
