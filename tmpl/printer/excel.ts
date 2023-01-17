@@ -19,7 +19,7 @@ export const getExcel = (params) => {
       console.log('excel bag is', bag);
       console.log(bag.get('data'));
       window.location.href = bag.get('data');
-      printCount();
+      // printCount();
     },
   );
 };
