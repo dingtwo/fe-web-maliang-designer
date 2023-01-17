@@ -33,6 +33,14 @@ import FillRichText from './unit/richtext';
 import { printCount } from './printCount';
 import { generateExcel } from './excel';
 
+// 各环境接口地址
+const host = {
+  test: 'http://dev.api.b2bcsx.com:8000/maliang/',
+  sit: 'http://sit.api.b2bcsx.com/maliang/',
+  dev: 'http://localhost:3000/',
+  pre: 'http://pre.api.b2bcsx.com/maliang/',
+};
+
 class Progress {
   len = 0;
   count = 0;
@@ -72,6 +80,7 @@ let {
   has,
   applyStyle,
   parseUrl,
+  toUrl,
   config,
   mark,
   guid,
@@ -82,6 +91,11 @@ let {
 
 // 获取url上的id，合成接口 api
 const mergeApi = ({ url, orderId }: { url: string; orderId: string }) => {
+  const { params, path } = parseUrl(url);
+  if (params.orderId) {
+    // 替换
+    return toUrl(path, { ...params, orderId });
+  }
   return `${url}&orderId=${orderId}`;
 };
 
@@ -187,10 +201,17 @@ const fetchItemApi = async (api, params) => {
 
   return new Promise((resolve, reject) => {
     const s = new Service();
+    // 在这做一次 url 的替换
+    let reqUrl = api;
+    // http://preapi.freshfood.cn/maliang/data-source/wms?isItems=1&id=1&v=202208251429&orders=OM22082500001531ZS%2COM22082500001553ZT%2COM22082500001546PS&scene=1&needSplitTag=1
+    if (window.RUN_CONFIG && window.RUN_CONFIG.env !== 'prod') {
+      const origin = host[window.RUN_CONFIG.env];
+      reqUrl = api.replace(/^http(s)?:\/\/(.*?)\/maliang\//, origin);
+    }
     s.all(
       {
         name: '@:{post.by.url}',
-        url: api,
+        url: reqUrl,
         // 增加订单类型标记,多种订单可以复用模板, 默认是配送单
         '@:{body}': JSON.stringify({ params, ...urlParams }),
       },
@@ -248,7 +269,8 @@ const fetchAllAPI = async apiMap => {
 
       const params = _.map(orderList, order => ({
         orderCode: _.first(order),
-        templateId: _.last(order),
+        templateId: _.first(_.last(order)),
+        dataSourceId: _.last(_.last(order)),
       }));
 
       return await fetchItemApi(url, params);
@@ -346,6 +368,8 @@ export default View.extend({
     (window as any).getRenderStatus = () => {
       return this.get('renderStatus');
     };
+
+    window.addEventListener('afterprint', printCount);
   },
 
   async render() {
@@ -372,6 +396,24 @@ export default View.extend({
 
     const { templateId, scene } = params;
 
+    /**
+     * 自助打印和中台都会有标签打印标识传过来, 统一用needSplitTag=1 来标识
+     */
+    if (params.needSplitTag === '1') {
+      // TODO: 就是这里,在这里先把订单分出来,然后做标签拆单
+      const orders = params.order || params.orders;
+      const TAG_SPLIT_ORDER_SCENES = ['1', '7'];
+      if (TAG_SPLIT_ORDER_SCENES.includes(scene)) {
+        return this['@:{split.orders.by.tag}']({
+          orders,
+          scene,
+          templateId,
+        });
+      } else {
+        this['@:{get.stages}']({ orders, id: templateId, scene });
+      }
+    }
+
     // 分两种,单个模板打印和批量打印
     if (params.orders || params.order) {
       if (!params.scene) {
@@ -385,6 +427,63 @@ export default View.extend({
       Toast.show('没有找到订单号参数');
       return Promise.reject('没有找到订单号参数');
     }
+  },
+
+  /**
+   * 根据 tag 拆分订单
+   */
+  async '@:{split.orders.by.tag}'({ scene, orders, templateId }) {
+    /**
+     * 调用 maliang 的接口
+     * 订单->子客户->几个标签->模版
+     * 返回之后, 可能要改成调用几次 get.stages 方法
+     * 下午设计一下数据格式,下班之前一定要搞个 demo 出来
+     * 干他
+     *
+     * // 走新的逻辑
+      // 根据 tag 里面的模版信息(模版尺寸是否一样),决定在当前页面打印,还是弹新页面打印
+      // 标签,模版,订单
+      // 三个标签,不管模版一不一样,都需要分开打印三次
+      // 第一个,传标签,模版 id,订单号
+      // 如果用订单号+标签名拼接,后端再拆分处理,是不是就和原来的逻辑一样了, 试试
+      // orders 遍历
+     */
+    // tag里面带模版信息
+    const orderTags = await this.collectTags(orders);
+    console.log('有标签了,来吧', orderTags);
+    // 从 orders 里面找出来 orderTags 里没有的,剩下的是没有标签的
+    this['@:{get.stages}']({ orderTags, scene, orders });
+  },
+
+  /**
+   * 查看订单都有哪些标签
+   * @param orders
+   * @returns
+   */
+  collectTags(orders) {
+    console.log('订单', orders);
+
+    const orderList = orders.split(',');
+    return new Promise((resolve, reject) => {
+      let s = new Service();
+      s.all(
+        {
+          name: '@:{post.collect.tags}',
+          '@:{body}': JSON.stringify(orderList),
+        },
+        (ex, bag) => {
+          console.log('请求回来的初始数据', ex, bag);
+          if (!ex) {
+            const orderTags = bag.get('data');
+            console.log('打印标签', orderTags);
+            resolve(orderTags);
+          } else {
+            Toast.show(ex.message);
+            reject(ex.message);
+          }
+        },
+      );
+    });
   },
 
   /**
@@ -760,11 +859,12 @@ export default View.extend({
       unit: unit,
       hasData: true,
       loading: true,
+      page,
     });
 
     let pages = []; //分页对象
     // let apis = []; //所有绑定元素的接口地址，在渲染前，需要通过接口地址一次性把所有数据拿回来
-    const apiMap = new Map();
+    const apiMap = new Map<string, Map<string, any[]>>();
     let pagers = []; //页码器对象，需要根据分页多少设置每个页码器的当前页码及总共页码
     let resourcesLoader = new ResourcesLoader(); //资源加载收集器
     this['@:{resources}'] = resourcesLoader;
@@ -783,9 +883,9 @@ export default View.extend({
         if (bind && bind.url) {
           // 当前接口的参数, sql 的 id
           if (!apiMap.has(bind.url)) {
-            apiMap.set(bind.url, new Map([[orderCode, templateId]]));
+            apiMap.set(bind.url, new Map([[orderCode, [templateId, bind.id]]]));
           } else {
-            apiMap.get(bind.url).set(orderCode, templateId);
+            apiMap.get(bind.url).set(orderCode, [templateId, bind.id]);
           }
         }
 
@@ -846,7 +946,12 @@ export default View.extend({
 
     //先加载数据
     await fetchAllAPI(apiMap);
-    console.log('数据中心', apiMap, DataCenter);
+
+    this['@:{update.api.by.tax}'](apiMap);
+    // 数据算完要算新的 stages;
+    this['@:{update.stages.by.tax}'](apiMap, newStages);
+    // DataCenter的 key 就是 apiMap 里的 key+orderId=xxx
+    console.log('数据中心', apiMap, DataCenter, newStages.length);
 
     Toast.show('正在准备资源...');
     await resourcesLoader['@:{load}'](); //等资源加载
@@ -863,6 +968,7 @@ export default View.extend({
       // 检查返回的数据里有没有此订单
       const hasData = this['@:{check.data}'](orderCode);
       if (!hasData) {
+        console.log('没有数据', orderCode);
         continue;
       }
       // 数据中有没有此订单号的数据
@@ -960,6 +1066,57 @@ export default View.extend({
       renderStatus: 'end',
     });
   },
+  /**
+   * 根据税率拆单的结果更新 apiMap
+   */
+  '@:{update.api.by.tax}'(apiMap: Map<string, Map<string, string>>) {
+    // 遍历 apiMap, 每一个元素是一个接口,查看接口下的订单,是否有拆单的订单
+    // 遍历DataCenter,每一个接口返回的数据,apiMap 的每个接口来匹配,看有没有这个订单,如果单号带税率标志,就加进去
+
+    Object.keys(DataCenter).forEach(key => {
+      const {
+        params: { orderId },
+      } = parseUrl(key);
+      if (orderId.includes('tax')) {
+        const rawOrderId = orderId.split('-')[0];
+        apiMap.forEach(values => {
+          values.set(orderId, values.get(rawOrderId));
+        });
+      }
+    });
+  },
+  /**
+   * 根据税率拆单的结果修改 stage, 如果有新的就插入
+   * @param apiMap
+   * @param newStages
+   * @returns
+   */
+  '@:{update.stages.by.tax}'(apiMap, newStages) {
+    apiMap.forEach(values => {
+      // 订单号
+      values.forEach((templateId, orderId) => {
+        // 如果这个订单号 stages 里没有,就插入一个
+        const [rawOrderId] = orderId.split('-tax-');
+        // 如果后面的也一样,还得再插一个
+        // 当前取出所有的单号
+        const stageOrders = _.map(newStages, 'orderCode');
+        if (!stageOrders.includes(orderId)) {
+          console.log('要插入了', orderId);
+
+          let currentIdx = stageOrders.findIndex(x => x === rawOrderId);
+          if (currentIdx < 0) {
+            console.log('额外拆出来的');
+            currentIdx = newStages.length - 1;
+            // 改造 orderId
+            // orderId = `${rawOrderId}-${others[0]}${others[others.length - 1]}`;
+          }
+          // 需要知道模版, 如果后面比前面只多了-tax-idx,那就用同一个模版
+          newStages.splice(currentIdx + 1, 0, { ...newStages[currentIdx], orderCode: orderId });
+        }
+      });
+    });
+    return newStages;
+  },
 
   /**
    * 检查stage中的订单是否有数据，没有数据则不渲染
@@ -999,7 +1156,6 @@ export default View.extend({
     }
 
     window.print();
-    printCount();
   },
   // '@:{lodop.setting}<click>'() {
   //     this.mxDialog('@:./lodop/setting', {
@@ -1289,17 +1445,21 @@ export default View.extend({
         Toast.show('正在生成PDF...');
         let width = Const['@:{const#to.px}'](page.width),
           height = Const['@:{const#to.px}'](page.height);
+        // 如果宽度大于高度需要使用横向打印
+        const orientation = width > height ? 'l' : 'p';
+        const format = width > height ? [height, width] : [width, height];
         let doc = new jspdf.jsPDF({
+          orientation: orientation,
           unit: 'px',
           hotfixes: ['px_scaling'],
-          format: [width, width > height ? width + 1 : height],
+          format: format,
         });
         this['@:{js.pdf.document}'] = doc;
         doc.setDocumentProperties({
           title: I18n('@:{lang#site.name}'),
           subject: '打印页面',
           author: 'dingjz',
-          keywords: '打印、可视化、编辑器',
+          keywords: '神笔马良设计器',
           creator: location.host,
         });
         let total = images.length;
@@ -1552,6 +1712,8 @@ export default View.extend({
    * @param e 渲染事件对象
    */
   '$win<render>'(e) {
+    console.log('远程触发', e);
+
     this['@:{render.page.by.json}'](Generic['@:{try.parse.json}'](e.json));
   },
   /**

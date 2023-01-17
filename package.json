@@ -19,10 +19,15 @@
     "server": "anywhere -h localhost -p 8888",
     "watch": "gulp watch",
     "dist": "gulp dist",
+    "sit": "cross-env NODE_ENV=sit gulp dist",
+    "test": "cross-env NODE_ENV=test gulp dist",
+    "pre": "cross-env NODE_ENV=pre gulp dist",
+    "build": "cross-env NODE_ENV=prod gulp dist",
     "dll": "node -v"
   },
   "devDependencies": {
     "@csx/magix-composer": "^1.0.0",
-    "@types/lodash": "^4.14.173"
+    "@types/lodash": "^4.14.173",
+    "cross-env": "^7.0.3"
   }
 }
