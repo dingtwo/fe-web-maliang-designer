@@ -515,10 +515,12 @@ export default View.extend({
           const excelTemplates = _.filter(bag.get('data'), { type: 2 });
           // 马良打印的模板
           const maliangTemplates = _.filter(bag.get('data'), item => item.type !== 2);
-          if (params.scene === '1') {
-            generateExcel(excelTemplates);
-          } else if (params.scene === '7') {
-            generateMergeExcel(excelTemplates);
+          if (excelTemplates.length > 0) {
+            if (params.scene === '1') {
+              generateExcel(excelTemplates);
+            } else if (params.scene === '7') {
+              generateMergeExcel(excelTemplates);
+            }
           }
 
           const stages = _.map(maliangTemplates, ({ templateJson, id, orderCode }) => ({
