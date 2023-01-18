@@ -3,7 +3,7 @@ import Service from '../designer/service';
 import _ from '../provider/lodash.min.js';
 import { printCount } from './printCount';
 
-export const getExcel = (params) => {
+export const getExcel = params => {
   const service = new Service();
   service.all(
     {
@@ -24,8 +24,16 @@ export const getExcel = (params) => {
   );
 };
 
+export const generateExcel = templates => {
+  console.log('excel 模板数据', templates);
+  _.map(templates, ({ id, orderCode }) => getExcel({ templateId: id, orderCode }));
+};
 
-export const generateExcel = (templates)=>{
-  console.log('excel 模板数据',templates)
-  _.map(templates,({id, orderCode})=>getExcel({templateId: id, orderCode}))
-}
+/**
+ * 合并打印
+ * @param templates
+ */
+export const generateMergeExcel = templates => {
+  console.log('excel 模板数据', templates);
+  getExcel({});
+};

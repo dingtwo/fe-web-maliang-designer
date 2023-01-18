@@ -31,7 +31,7 @@ import FillPager from './unit/pager';
 import FillRichText from './unit/richtext';
 
 import { printCount } from './printCount';
-import { generateExcel } from './excel';
+import { generateExcel, generateMergeExcel } from './excel';
 
 // 各环境接口地址
 const host = {
@@ -512,10 +512,14 @@ export default View.extend({
         if (!ex) {
           //如果请求未有异常，则根据请求回来的数据进行渲染界面
           // excel 导出的模板
-          const excelTemplates = _.filter(bag.get('data'), {type:2});
+          const excelTemplates = _.filter(bag.get('data'), { type: 2 });
           // 马良打印的模板
-          const maliangTemplates = _.filter(bag.get('data'), item=>item.type!==2);
-          generateExcel(excelTemplates)
+          const maliangTemplates = _.filter(bag.get('data'), item => item.type !== 2);
+          if (params.scene === '1') {
+            generateExcel(excelTemplates);
+          } else if (params.scene === '7') {
+            generateMergeExcel(excelTemplates);
+          }
 
           const stages = _.map(maliangTemplates, ({ templateJson, id, orderCode }) => ({
             ...templateJson,
@@ -577,7 +581,7 @@ export default View.extend({
      * @param indexesCache 元素的分页下标索引对象
      */
     let hasNextPage = (elements, indexesCache) => {
-      for (let i = elements.length; i--;) {
+      for (let i = elements.length; i--; ) {
         let e = elements[i];
         if (
           e.type == 'data-coltable' ||
@@ -629,10 +633,10 @@ export default View.extend({
           let newElement = inHod
             ? e
             : {
-              type: e.type,
-              id: e.id,
-              props: Const['@:{const#clone}'](e.props),
-            };
+                type: e.type,
+                id: e.id,
+                props: Const['@:{const#clone}'](e.props),
+              };
 
           if (newElement.type !== 'data-dtable' && newElement.type !== 'data-ftable') {
             const bindUrl = _.get(newElement, ['props', 'bind', 'url']);
