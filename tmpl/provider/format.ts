@@ -128,7 +128,7 @@ let groups = [
       可以把下面的console前的注释去掉查看相应的数据
     */
 
-    function(data, item, {lodash, calc}){
+    function(data, item, { lodash, calc, nzhCn }){
       //console.log(data,item);
       //return data+item.name;
       return data;

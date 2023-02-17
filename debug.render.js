@@ -1252,7 +1252,7 @@ this['$win<render>']({
                                       "textStyleStrike": false,
                                       "textAutoReturn": true,
                                       "textContent": "",
-                                      "textFormat": "custom:/*\n      data是根据根据当前绑定的字段取到的数据\n      item是完整的单条数据对象\n      可以把下面的console前的注释去掉查看相应的数据\n    */\n\n    function(data, item, {lodash, calc}){\n      //console.log(data,item);\n      //return data+item.name;\n      return data;\n    }",
+                                      "textFormat": "custom:/*\n      data是根据根据当前绑定的字段取到的数据\n      item是完整的单条数据对象\n      可以把下面的console前的注释去掉查看相应的数据\n    */\n\n    function(data, item, { lodash, calc, nzhCn }){\n      //console.log(data,item);\n      //return data+item.name;\n      return data;\n    }",
                                       "elements": [],
                                       "height": 6.91,
                                       "width": 27.52,
@@ -1582,7 +1582,7 @@ this['$win<render>']({
                                                           }
                                                       ]
                                                   },
-                                                  "format": "custom:/*\n  data是根据根据当前绑定的字段取到的数据\n  item是完整的单条数据对象\n  可以把下面的console前的注释去掉查看相应的数据\n*/\n\nfunction(data, item, { lodash, calc }) {\n  return lodash.get(item, 'sendQtyTotal', '');\n}",
+                                                  "format": "custom:/*\n  data是根据根据当前绑定的字段取到的数据\n  item是完整的单条数据对象\n  可以把下面的console前的注释去掉查看相应的数据\n*/\n\nfunction(data, item, all, { lodash, calc, nzhCn }) {\n  return lodash.get(item, 'sendQtyTotal', '');\n}",
                                                   "autoReturn": false,
                                                   "richtext": false,
                                                   "fontsize": 3.43,
