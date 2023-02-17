@@ -1,6 +1,6 @@
 import Magix from 'magix';
 import _ from './lodash.min.js';
-import { calc } from './calc.js';
+import { calc, nzhCn } from './calc.js';
 import dayjs from './dayjs/dayjs.min.js';
 import customParseFormat from './dayjs/plugin/customParseFormat.js';
 import HandleFormat from './handleFormat';
@@ -228,7 +228,7 @@ export default {
           fnCache.set(key, fn);
         }
         try {
-          return fn(data, ...exts, { lodash: _, calc });
+          return fn(data, ...exts, { lodash: _, calc, nzhCn });
         } catch (ex) {
           return ex.message;
         }
