@@ -22,6 +22,13 @@ import ToJSON from './tojson';
 let { State, applyStyle, View, node, config, mark, parseUrl, has, unboot, toMap, mix } = Magix;
 applyStyle('@:index.less');
 let CellAndHod = Enum['@:{enum#as.hod}'] | Enum['@:{enum#as.cells}'];
+/**
+ * @description: 打印数据拉取形式
+ */
+const printTypeMap = {
+  sql:'1',
+  order:'2'
+}
 //快捷键数字到面板索引的映射
 let CodesMap = {};
 for (let i = 0; i < 9; i++) {
@@ -575,10 +582,21 @@ export default View.extend({
    * 获取数据源数据，数据源在项目中多处使用，这里进行统一请求，并放置在State中，供其它view使用
    */
   async '@:{fetch.data.source}'() {
+    let { params } = parseUrl(location.href);
+    const printType = params && params.printType
+    // sql打印形式: sql, 原来请求数据形式: order
+    let dataType = 'order'
+    if(printType === printTypeMap['sql']){
+      dataType = 'sql'
+    }
     return new Promise<void>(resolve => {
       if (config('getFieldUrl')) {
         let s = new Service();
-        s.all('@:{get.fields}', (err, bag) => {
+        s.all(
+        {
+          name: '@:{get.fields}',
+          '@:{query}': { dataType },
+        }, (err, bag) => {
           if (err?.message) {
             console.log('有错误', err.message);
             /* 重新登陆 */

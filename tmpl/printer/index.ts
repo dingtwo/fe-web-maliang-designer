@@ -70,6 +70,10 @@ class Progress {
     }
   };
 }
+const printTypeMap = {
+  sql:'sql',
+  order:'order'
+}
 
 const progress = new Progress();
 
@@ -227,6 +231,7 @@ const fetchItemApi = async (api, params) => {
 
           _.map(data, (item, key) => {
             const url = mergeApi({ url: api, orderId: key });
+            console.log('请求的url', url, DataCenter)
             let dest = DataCenter[url];
 
             if (!dest) {
@@ -252,6 +257,7 @@ const fetchItemApi = async (api, params) => {
  * @param apiMap api数组对象
  */
 const fetchAllAPI = async apiMap => {
+  console.log('apiMap  in fetchAllAPI is', apiMap)
   return new Promise((resolve, reject) => {
     const {
       params: { orders, order, puppeteer },
@@ -369,7 +375,7 @@ export default View.extend({
     (window as any).getRenderStatus = () => {
       return this.get('renderStatus');
     };
-
+    // 打印完成之后，调用打印次数统计接口
     window.addEventListener('afterprint', printCount);
   },
 
@@ -389,7 +395,10 @@ export default View.extend({
     以下根据地址栏有无id来决定是否发送请求来获取某个id的具体内容
     */
     let { params } = parseUrl(location.href);
-    // 如果是走 excel 的,直接他妈的跳过去
+     /**
+     * 如果是走 excel 的,直接他妈的跳过去
+     * TIPS: 在各个环境中的数据库中， 绑定死了对应的模板
+     */
     const excelTemplateMap = {
       dev: '8',
       test: '2',
@@ -402,7 +411,6 @@ export default View.extend({
     if (params.preview === '1' || params.puppeteer === '1') {
       return;
     }
-
     if (params.templateId === excelTemplateMap[getEnv()]) {
       Toast.show('生成中...');
       return getExcel(console.log);
@@ -416,6 +424,9 @@ export default View.extend({
     if (params.needSplitTag === '1') {
       // TODO: 就是这里,在这里先把订单分出来,然后做标签拆单
       const orders = params.order || params.orders;
+      /**
+       *  TIPS: 1: 出库单打印 7：合并打印，两个场景有标签打印逻辑
+       * */
       const TAG_SPLIT_ORDER_SCENES = ['1', '7'];
       if (TAG_SPLIT_ORDER_SCENES.includes(scene)) {
         return this['@:{split.orders.by.tag}']({
@@ -428,15 +439,24 @@ export default View.extend({
       }
     }
 
-    // 分两种,单个模板打印和批量打印
+    /**
+     * 分两种,单个模板打印和批量打印
+     * TIPS:
+     * 1、参数中一定要有有order或者orders, 一定要有templateId、scene
+     */
     if (params.orders || params.order) {
       if (!params.scene) {
         Toast.show('没有找到场景参数');
         return Promise.reject('没有找到场景参数');
       }
 
-      // 订单模式
-      this['@:{get.stages}']({ orders: params.order || params.orders, id: templateId, scene });
+
+    /**
+     * 订单模式:一个模板打印多个单号数据时， 需要根据单号做出来区分， 订单号只要是个唯一值就行
+     */
+
+
+      this['@:{get.stages}']({ orders: params.order || params.orders, id: templateId, scene, printType:params && params.printType ||  printTypeMap['order']});
     } else {
       Toast.show('没有找到订单号参数');
       return Promise.reject('没有找到订单号参数');
@@ -501,17 +521,22 @@ export default View.extend({
   },
 
   /**
-   * 获取模板
-   * @param {boolean} isMuti 是否批量打印
+   * 获取模板数据
    * @param {any} params 打印参数
+   * @description: 有id： 模板id， 那么就是确定的模板，否则需要根据orders、scene去批量查找模板
    */
-  '@:{get.stages}'(params) {
+  '@:{get.stages}'(params:{orders?:string, id?: string, scene:string, printType?: string}) {
     Toast.show('正在加载模板...');
-    const { id } = params;
+    const { id, printType } = params;
+    // 默认批量查找模板 信息
     let name = '@:{post.muti.content}';
-
+    // 有模板id 查找模板信息
     if (id) {
       name = '@:{post.content}';
+    }
+    // sql打印形式
+    if(printType === printTypeMap['sql']){
+      name = '@:{post.sql.content}';
     }
 
     let s = new Service();
@@ -819,6 +844,7 @@ export default View.extend({
     }
     Generic['@:{hide.msg}']();
   },
+
   /**
    * 根据json对象渲染页面
    * @param stage 设计器产出的json对象
@@ -1126,6 +1152,7 @@ export default View.extend({
 
   /**
    * 检查stage中的订单是否有数据，没有数据则不渲染
+   * TIPS: stage是模板数据， 因此模板数据返回时候， 一定要将orderCode信息，循环塞到模板信息中，并且key一定是orderCode
    */
   '@:{check.data}'(orderCode) {
     return Object.keys(DataCenter).some(url => {
@@ -1702,6 +1729,7 @@ export default View.extend({
     }
   },
   /**
+
    * 当复制设计器中的内容到当前页面进行粘贴时
    * @param e 剪切板事件对象
    */

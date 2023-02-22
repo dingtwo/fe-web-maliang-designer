@@ -210,6 +210,11 @@ RDService.add([
     url: config('getMutiContentUrl'),
   },
   {
+    name: '@:{post.sql.content}',
+    '@:{method}': 'post',
+    url: config('getSqlContentUrl'),
+  },
+  {
     name: '@:{post.by.url}',
     '@:{method}': 'post',
   },
