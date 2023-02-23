@@ -593,7 +593,7 @@ export default View.extend({
                     {
                       name: '@:{post.login}',
                       '@:{body}': JSON.stringify({
-                        password: 'Aa123456',
+                        password: '911315',
                         username: '18500000000',
                       }),
                     },

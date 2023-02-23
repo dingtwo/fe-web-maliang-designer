@@ -5,28 +5,19 @@
 import Magix from 'magix';
 import Runner from '../gallery/mx-runner/index';
 import ToJSON from './tojson';
-import { getEnv } from '../provider/host';
+import { getPreviewUrl } from './previewMock';
 
-let { View, node, config, parseUrl } = Magix;
-const env = getEnv();
-const testOrderCode = env === 'prod' ? 'OM22060900004508PS' : 'OM21082600000129';
+let { View, node } = Magix;
 
 export default View.extend({
   tmpl: '@:./print.html',
   async render() {
-    let { params } = parseUrl(location.href);
+    const src = getPreviewUrl();
+    console.log('src', src);
+    await this.digest({
+      src,
+    });
 
-    if (DEBUG) {
-      await this.digest({
-        src: `./print-debug.html?orders=${testOrderCode}&scene=1&preview=1&templateId=${params.id}`,
-      });
-    } else {
-      await this.digest({
-        src: `./print.html?orders=${testOrderCode}&scene=1&preview=1&v=${config(
-          'version',
-        )}&templateId=${params.id}`,
-      });
-    }
     let old = this['@:{printer.post.fn}'];
     if (old) {
       Runner['@:{task.remove.background}'](old);
