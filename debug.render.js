@@ -68,7 +68,7 @@ this['$win<render>']({
                                                   "rotate": 0,
                                                   "text": "",
                                                   "bind": {
-                                                      "url": "http://10.252.192.35:8000/maliang/data-source/wms/?isItems=0&id=1",
+                                                      "url": "http://dev.zt.b2bcsx.com/maliang/data-source/wms/?isItems=0&id=1",
                                                       "id": "-1",
                                                       "fields": [
                                                           {
@@ -113,7 +113,7 @@ this['$win<render>']({
                                                   "text": "",
                                                   "bind": {
                                                       "id": "-1",
-                                                      "url": "http://10.252.192.35:8000/maliang/data-source/wms/?isItems=0&id=1",
+                                                      "url": "http://dev.zt.b2bcsx.com/maliang/data-source/wms/?isItems=0&id=1",
                                                       "fields": [
                                                           {
                                                               "id": "deliverAreaCode",
@@ -157,7 +157,7 @@ this['$win<render>']({
                                                   "text": "",
                                                   "bind": {
                                                       "id": "-1",
-                                                      "url": "http://10.252.192.35:8000/maliang/data-source/wms/?isItems=0&id=1",
+                                                      "url": "http://dev.zt.b2bcsx.com/maliang/data-source/wms/?isItems=0&id=1",
                                                       "fields": [
                                                           {
                                                               "id": "tms",
@@ -201,7 +201,7 @@ this['$win<render>']({
                                                   "alpha": 1,
                                                   "text": "",
                                                   "bind": {
-                                                      "url": "http://10.252.192.35:8000/maliang/data-source/wms/?isItems=0&id=1",
+                                                      "url": "http://dev.zt.b2bcsx.com/maliang/data-source/wms/?isItems=0&id=1",
                                                       "id": "-1",
                                                       "fields": [
                                                           {
@@ -311,7 +311,7 @@ this['$win<render>']({
                                                                               "rotate": 0,
                                                                               "text": "",
                                                                               "bind": {
-                                                                                  "url": "http://10.252.192.35:8000/maliang/data-source/wms/?isItems=0&id=1",
+                                                                                  "url": "http://dev.zt.b2bcsx.com/maliang/data-source/wms/?isItems=0&id=1",
                                                                                   "id": "-1",
                                                                                   "fields": [
                                                                                       {
@@ -410,7 +410,7 @@ this['$win<render>']({
                                                                               "rotate": 0,
                                                                               "text": "",
                                                                               "bind": {
-                                                                                  "url": "http://10.252.192.35:8000/maliang/data-source/wms/?isItems=0&id=1",
+                                                                                  "url": "http://dev.zt.b2bcsx.com/maliang/data-source/wms/?isItems=0&id=1",
                                                                                   "id": "-1",
                                                                                   "fields": [
                                                                                       {
@@ -507,7 +507,7 @@ this['$win<render>']({
                                                                               "rotate": 0,
                                                                               "text": "",
                                                                               "bind": {
-                                                                                  "url": "http://10.252.192.35:8000/maliang/data-source/wms/?isItems=0&id=1",
+                                                                                  "url": "http://dev.zt.b2bcsx.com/maliang/data-source/wms/?isItems=0&id=1",
                                                                                   "id": "-1",
                                                                                   "fields": [
                                                                                       {
@@ -604,7 +604,7 @@ this['$win<render>']({
                                                                               "rotate": 0,
                                                                               "text": "",
                                                                               "bind": {
-                                                                                  "url": "http://10.252.192.35:8000/maliang/data-source/wms/?isItems=0&id=1",
+                                                                                  "url": "http://dev.zt.b2bcsx.com/maliang/data-source/wms/?isItems=0&id=1",
                                                                                   "id": "-1",
                                                                                   "fields": [
                                                                                       {
@@ -701,7 +701,7 @@ this['$win<render>']({
                                                                               "rotate": 0,
                                                                               "text": "",
                                                                               "bind": {
-                                                                                  "url": "http://10.252.192.35:8000/maliang/data-source/wms/?isItems=0&id=1",
+                                                                                  "url": "http://dev.zt.b2bcsx.com/maliang/data-source/wms/?isItems=0&id=1",
                                                                                   "id": "-1",
                                                                                   "fields": [
                                                                                       {
@@ -1573,7 +1573,7 @@ this['$win<render>']({
                                                   "rotate": 0,
                                                   "text": "",
                                                   "bind": {
-                                                      "url": "http://10.252.192.35:8000/maliang/data-source/wms/?isItems=0&id=1",
+                                                      "url": "http://dev.zt.b2bcsx.com/maliang/data-source/wms/?isItems=0&id=1",
                                                       "id": "-1",
                                                       "fields": [
                                                           {
@@ -1682,7 +1682,7 @@ this['$win<render>']({
                                                   "rotate": 0,
                                                   "text": "",
                                                   "bind": {
-                                                      "url": "http://10.252.192.35:8000/maliang/data-source/wms/?isItems=0&id=1",
+                                                      "url": "http://dev.zt.b2bcsx.com/maliang/data-source/wms/?isItems=0&id=1",
                                                       "id": "-1",
                                                       "fields": [
                                                           {
@@ -1791,7 +1791,7 @@ this['$win<render>']({
                                                   "rotate": 0,
                                                   "text": "",
                                                   "bind": {
-                                                      "url": "http://10.252.192.35:8000/maliang/data-source/wms/?isItems=0&id=1",
+                                                      "url": "http://dev.zt.b2bcsx.com/maliang/data-source/wms/?isItems=0&id=1",
                                                       "id": "-1",
                                                       "fields": [
                                                           {
@@ -1900,7 +1900,7 @@ this['$win<render>']({
                                                   "rotate": 0,
                                                   "text": "",
                                                   "bind": {
-                                                      "url": "http://10.252.192.35:8000/maliang/data-source/wms/?isItems=0&id=1",
+                                                      "url": "http://dev.zt.b2bcsx.com/maliang/data-source/wms/?isItems=0&id=1",
                                                       "id": "-1",
                                                       "fields": [
                                                           {
@@ -2097,7 +2097,7 @@ this['$win<render>']({
                           }
                       ],
                       "bind": {
-                          "url": "http://10.252.192.35:8000/maliang/data-source/wms?isItems=1&id=1",
+                          "url": "http://dev.zt.b2bcsx.com/maliang/data-source/wms?isItems=1&id=1",
                           "id": "-2"
                       },
                       "x": 6.92,

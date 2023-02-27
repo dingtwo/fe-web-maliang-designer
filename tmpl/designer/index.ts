@@ -584,18 +584,12 @@ export default View.extend({
   async '@:{fetch.data.source}'() {
     let { params } = parseUrl(location.href);
     const printType = params && params.printType
-    // sql打印形式: sql, 原来请求数据形式: order
-    let dataType = 'order'
-    if(printType === printTypeMap['sql']){
-      dataType = 'sql'
-    }
     return new Promise<void>(resolve => {
       if (config('getFieldUrl')) {
         let s = new Service();
         s.all(
         {
           name: '@:{get.fields}',
-          '@:{query}': { dataType },
         }, (err, bag) => {
           if (err?.message) {
             console.log('有错误', err.message);
@@ -612,7 +606,7 @@ export default View.extend({
                       name: '@:{post.login}',
                       '@:{body}': JSON.stringify({
                         password: 'Aa123456',
-                        username: '13823349075',
+                        username: '15600644622',
                       }),
                     },
                     (err, bag) => {

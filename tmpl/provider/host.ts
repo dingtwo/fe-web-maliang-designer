@@ -16,7 +16,7 @@ export const getEnv = () => {
       return 'pre';
     case 'localhost':
       return 'dev';
-    case '10.252.192.20':
+    case 'dev.zt.b2bcsx.com':
     case 'devzt.b2bcsx.com':
       return 'test';
     case 'sitzt.freshfood.cn':

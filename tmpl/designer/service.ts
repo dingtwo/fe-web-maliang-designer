@@ -212,7 +212,7 @@ RDService.add([
   {
     name: '@:{post.sql.content}',
     '@:{method}': 'post',
-    url: config('getSqlContentUrl'),
+    url: config('getMutiContentUrl'),
   },
   {
     name: '@:{post.by.url}',
@@ -221,7 +221,7 @@ RDService.add([
   {
     name: '@:{post.login}',
     '@:{method}': 'post',
-    url: 'http://10.252.192.35:8000/ucenter/login/web',
+    url: 'http://dev.zt.b2bcsx.com/ucenter/login/web',
   },
   {
     name: '@:{print.count}',
