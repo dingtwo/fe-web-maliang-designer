@@ -193,7 +193,7 @@ export default View.extend({
             altPressed = snapElement ? altKey : !altKey,
             lastHoverNode,
             lastHod,
-            //0 => top 1 => right 2 => bottom 3 => left 
+            //0 => top 1 => right 2 => bottom 3 => left
             maxWidth = stage.scrollWidth - StagePadding[3],
             maxHeight = stage.scrollHeight - StagePadding[0],
             scrollOffsetX = 0,
