@@ -221,7 +221,7 @@ RDService.add([
   {
     name: '@:{post.login}',
     '@:{method}': 'post',
-    url: 'http://dev.zt.b2bcsx.com/ucenter/login/web',
+    url: 'http://dev.api.b2bcsx.com:8000/ucenter/login/web',
   },
   {
     name: '@:{print.count}',
