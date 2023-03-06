@@ -22,13 +22,7 @@ import ToJSON from './tojson';
 let { State, applyStyle, View, node, config, mark, parseUrl, has, unboot, toMap, mix } = Magix;
 applyStyle('@:index.less');
 let CellAndHod = Enum['@:{enum#as.hod}'] | Enum['@:{enum#as.cells}'];
-/**
- * @description: 打印数据拉取形式
- */
-const printTypeMap = {
-  sql:'1',
-  order:'2'
-}
+
 //快捷键数字到面板索引的映射
 let CodesMap = {};
 for (let i = 0; i < 9; i++) {
@@ -583,7 +577,6 @@ export default View.extend({
    */
   async '@:{fetch.data.source}'() {
     let { params } = parseUrl(location.href);
-    const printType = params && params.printType
     return new Promise<void>(resolve => {
       if (config('getFieldUrl')) {
         let s = new Service();
