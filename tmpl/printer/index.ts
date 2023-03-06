@@ -31,8 +31,7 @@ import FillPager from './unit/pager';
 import FillRichText from './unit/richtext';
 
 import { printCount } from './printCount';
-import { getExcel } from './excel';
-import { getEnv } from '../provider/host';
+import { generateExcel, generateMergeExcel } from './excel';
 
 // 各环境接口地址
 const host = {
@@ -395,25 +394,10 @@ export default View.extend({
     以下根据地址栏有无id来决定是否发送请求来获取某个id的具体内容
     */
     let { params } = parseUrl(location.href);
-     /**
-     * 如果是走 excel 的,直接他妈的跳过去
-     * TIPS: 在各个环境中的数据库中， 绑定死了对应的模板
-     */
-    const excelTemplateMap = {
-      dev: '8',
-      test: '2',
-      sit: '8',
-      pre: '328',
-      prod: '434',
-    };
 
     // 检查是不是预览环境，如果是，就不去请求查询模板接口
     if (params.preview === '1' || params.puppeteer === '1') {
       return;
-    }
-    if (params.templateId === excelTemplateMap[getEnv()]) {
-      Toast.show('生成中...');
-      return getExcel(console.log);
     }
 
     const { templateId, scene } = params;
@@ -550,11 +534,24 @@ export default View.extend({
         console.log('请求回来的初始数据', ex, bag);
         if (!ex) {
           //如果请求未有异常，则根据请求回来的数据进行渲染界面
-          const stages = bag.get('data').map(({ templateJson, id, orderCode }) => ({
+          // excel 导出的模板
+          const excelTemplates = _.filter(bag.get('data'), { type: 2 });
+          // 马良打印的模板
+          const maliangTemplates = _.filter(bag.get('data'), item => item.type !== 2);
+          if (excelTemplates.length > 0) {
+            if (params.scene === '1') {
+              generateExcel(excelTemplates);
+            } else if (params.scene === '7') {
+              generateMergeExcel(excelTemplates);
+            }
+          }
+
+          const stages = _.map(maliangTemplates, ({ templateJson, id, orderCode }) => ({
             ...templateJson,
             templateId: id,
             orderCode,
           }));
+
           console.log('打印模板', stages);
           this['@:{render.page.by.json}'](stages);
         } else {
@@ -892,6 +889,7 @@ export default View.extend({
       unit: unit,
       hasData: true,
       loading: true,
+      page,
     });
 
     let pages = []; //分页对象
@@ -1478,17 +1476,21 @@ export default View.extend({
         Toast.show('正在生成PDF...');
         let width = Const['@:{const#to.px}'](page.width),
           height = Const['@:{const#to.px}'](page.height);
+        // 如果宽度大于高度需要使用横向打印
+        const orientation = width > height ? 'l' : 'p';
+        const format = width > height ? [height, width] : [width, height];
         let doc = new jspdf.jsPDF({
+          orientation: orientation,
           unit: 'px',
           hotfixes: ['px_scaling'],
-          format: [width, width > height ? width + 1 : height],
+          format: format,
         });
         this['@:{js.pdf.document}'] = doc;
         doc.setDocumentProperties({
           title: I18n('@:{lang#site.name}'),
           subject: '打印页面',
           author: 'dingjz',
-          keywords: '打印、可视化、编辑器',
+          keywords: '神笔马良设计器',
           creator: location.host,
         });
         let total = images.length;

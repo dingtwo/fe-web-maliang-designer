@@ -1,31 +1,39 @@
 import Magix from 'magix';
 import Service from '../designer/service';
+import _ from '../provider/lodash.min.js';
 import { printCount } from './printCount';
 
-let { parseUrl } = Magix;
-export const getExcel = errcb => {
-  const { params } = parseUrl(location.href);
-
-  const { orders } = params;
-
+export const getExcel = params => {
   const service = new Service();
   service.all(
     {
       name: '@:{print.excel}',
-      '@:{query}': { orderCode: orders },
+      '@:{query}': params,
     },
     (err: { message: string }, bag) => {
       if (err) {
         console.log('excel 异常', `${err.message}`);
-        errcb();
-        return;
       }
 
       console.log('excel err is', err);
       console.log('excel bag is', bag);
       console.log(bag.get('data'));
       window.location.href = bag.get('data');
-      printCount();
+      // printCount();
     },
   );
+};
+
+export const generateExcel = templates => {
+  console.log('excel 模板数据', templates);
+  _.map(templates, ({ id, orderCode }) => getExcel({ templateId: id, orderCode }));
+};
+
+/**
+ * 合并打印
+ * @param templates
+ */
+export const generateMergeExcel = templates => {
+  console.log('excel 模板数据', templates);
+  getExcel({});
 };
