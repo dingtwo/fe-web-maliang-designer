@@ -426,7 +426,7 @@ export default View.extend({
     /**
      * 分两种,单个模板打印和批量打印
      * TIPS:
-     * 1、参数中一定要有有order或者orders, 一定要有templateId、scene
+     * 1、参数中一定要有有order或者orders, 一定要有scene
      */
     if (params.orders || params.order) {
       if (!params.scene) {
