@@ -1,8 +1,15 @@
+<!--
+ * @Description:
+ * @Author: zhanghao
+ * @Date: 2022-05-25 12:12:53
+ * @LastEditTime: 2023-02-22 15:55:09
+ * @LastEditors: zhanghao
+-->
 <div class="header flex align-items-center">
   {{if inner}}
-  <button class="btn tc cursor-pointer mr10" mx-click="@:{open.with.id}()">独立使用打印页面</button>
+  <button class="btn tc cursor-pointer mr10" mx-click="@:{open.with.id}()">独立使用打印页面-fixme</button>
   {{/if}}
-  <button class="btn tc cursor-pointer mr10" mx-click="@:{silent.print}()">第三方静默打印</button>
+  <button class="btn tc cursor-pointer mr10" mx-click="@:{silent.print}()">第三方静默打印-fixme</button>
   <div class="spliter width-1"></div>
   <div>转换内容为：</div>
   <mx-dropdown *disabled="{{=empty}}?" *list="{{#format}}" *text-key="text" *value-key="value" class="width-120 mr10"

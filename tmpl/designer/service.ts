@@ -210,13 +210,18 @@ RDService.add([
     url: config('getMutiContentUrl'),
   },
   {
+    name: '@:{post.sql.content}',
+    '@:{method}': 'post',
+    url: config('getSqlContentUrl'),
+  },
+  {
     name: '@:{post.by.url}',
     '@:{method}': 'post',
   },
   {
     name: '@:{post.login}',
     '@:{method}': 'post',
-    url: 'http://10.252.192.35:8000/ucenter/login/web',
+    url: 'http://dev.api.b2bcsx.com:8000/ucenter/login/web',
   },
   {
     name: '@:{print.count}',
