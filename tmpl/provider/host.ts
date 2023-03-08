@@ -1,3 +1,10 @@
+/*
+ * @Description:
+ * @Author: zhanghao
+ * @Date: 2023-03-06 14:51:47
+ * @LastEditTime: 2023-03-08 20:26:50
+ * @LastEditors: zhanghao
+ */
 enum HOST {
   prod = 'http://api.b2bcsx.com',
   pre = 'http://pre.api.b2bcsx.com',
@@ -17,6 +24,7 @@ export const getEnv = () => {
     case 'localhost':
       return 'dev';
     case '10.252.192.20':
+    case 'dev.zt.b2bcsx.com':
     case 'devzt.b2bcsx.com':
       return 'test';
     case 'sitzt.freshfood.cn':

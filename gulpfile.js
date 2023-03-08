@@ -570,7 +570,11 @@ gulp.task(
           let reg = new RegExp(`src="dist\\/${f.js}\\.js(\\?v=\\d+)?"`);
           content = content.replace(reg, `src="dist/${f.js}.js?v=${stamp}"`);
           console.log('运行环境', process.env.NODE_ENV);
-          content = content.replace('RUN_ENV', process.env.NODE_ENV);
+          // 本地打包不会有环境变量， 在此做个判断兼容
+          if(process.env.NODE_ENV){
+            content = content.replace('RUN_ENV', process.env.NODE_ENV);
+          }
+
           if (!f.ignoreVersion) {
             content = content.replace(
               /designer\.setup\(\{(?:\s*version:'\d+'(,)?(\s*))?/g,

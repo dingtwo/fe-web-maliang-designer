@@ -7,8 +7,10 @@ todo.md
 
 test
 src
+dist
 
 # Sublime Project files
 *.sublime-*
 build
 types
+
