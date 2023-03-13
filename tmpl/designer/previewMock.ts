@@ -5,7 +5,7 @@ import { toUrl, parseUrl, config } from 'magix';
 import { getEnv } from '../provider/host';
 
 const env = getEnv();
-let baseUrl = DEBUG ? '/print-debug.html' : '/print.html';
+let baseUrl = DEBUG ? './print-debug.html' : './print.html';
 const testOrderCode = env === 'prod' ? 'OM22060900004508PS' : 'OM21082600000129';
 
 /**
