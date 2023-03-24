@@ -1141,7 +1141,13 @@ export default View.extend({
             // orderId = `${rawOrderId}-${others[0]}${others[others.length - 1]}`;
           }
           // 需要知道模版, 如果后面比前面只多了-tax-idx,那就用同一个模版
-          newStages.splice(currentIdx + 1, 0, { ...newStages[currentIdx], orderCode: orderId });
+          try {
+            newStages.splice(currentIdx + 1, 0, { ..._.cloneDeep(newStages[currentIdx]), orderCode: orderId });
+          } catch (error) {
+            console.log('error in @:{update.stages.by.tax~rs} is', error)
+            this.alert(error?.message || '拆单数据出错');
+            return error
+          }
         }
       });
     });
