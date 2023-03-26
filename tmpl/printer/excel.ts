@@ -1,4 +1,5 @@
 import Magix from 'magix';
+import Toast from '../gallery/mx-toast/index';
 import Service from '../designer/service';
 import _ from '../provider/lodash.min.js';
 import { printCount } from './printCount';
@@ -13,6 +14,8 @@ export const getExcel = params => {
     (err: { message: string }, bag) => {
       if (err) {
         console.log('excel 异常', `${err.message}`);
+        Toast.show(err.message);
+        return;
       }
 
       console.log('excel err is', err);
