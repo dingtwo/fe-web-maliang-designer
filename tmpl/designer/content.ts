@@ -69,7 +69,7 @@ export default View.extend({
                 Vframe.root().invoke('alert', [ex.message]);
             }
         }
-        
+
     },
     async '@:{save}'() {
         let saveMark = mark(this, '@:{save.async}');
