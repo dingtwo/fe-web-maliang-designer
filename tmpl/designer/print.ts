@@ -5,7 +5,7 @@
 import Magix from 'magix';
 import Runner from '../gallery/mx-runner/index';
 import ToJSON from './tojson';
-import { getPreviewUrl } from './previewMock';
+import { getPreviewUrl } from './preview';
 
 let { View, node } = Magix;
 
