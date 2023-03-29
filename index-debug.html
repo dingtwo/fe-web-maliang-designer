@@ -16,17 +16,19 @@
         <script>
             console.log('环境', DEBUG);
             console.log('环境', window.RUN_CONFIG);
+            const origin = '//dev.api.b2bcsx.com:8000/maliang';
+            // const origin = '//localhost:3000';
         designer.setup({
             getImageUrl:'./apis/images.json',
-            getFieldUrl:'//localhost:3000/data-source/all',
-            // getFieldUrl:'./apis/fields.json',
-            getTemplateUrl:'//localhost:3000/data-source/example',
-            saveContentUrl:'//localhost:3000/template',
-            getContentUrl:'//localhost:3000/template/findById',
-            getMutiContentUrl: '//localhost:3000/template/batchFind',
-            getSqlContentUrl: '//localhost:3000/template/findSqlTeml',
-            getFormatFunUrl: '//localhost:3000/template/getFormatFun',
-            setFormatFunUrl: '//localhost:3000/template/setFormatFun',
+            getFieldUrl:`${origin}/data-source/all`,
+            // getFieldUrl:`./apis/fields.json`,
+            getTemplateUrl:`${origin}/data-source/example`,
+            saveContentUrl:`${origin}/template`,
+            getContentUrl:`${origin}/template/findById`,
+            getMutiContentUrl: `${origin}/template/batchFind`,
+            getSqlContentUrl: `${origin}/template/findSqlTeml`,
+            getFormatFunUrl: `${origin}/template/getFormatFun`,
+            setFormatFunUrl: `${origin}/template/setFormatFun`,
             helpElement:true
         });
         </script>

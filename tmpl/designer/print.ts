@@ -26,13 +26,15 @@ export default View.extend({
     let w = node<HTMLIFrameElement>(`_rd_print_${this.id}`).contentWindow;
     let origin = location.protocol + '//' + location.host;
     let post = () => {
+      console.log('开始循环尝试');
+
       w.postMessage(ToJSON(), origin);
       this['@:{printer.try.send.message}']++;
       if (this['@:{printer.try.send.message}'] > 20) {
         Runner['@:{task.remove.background}'](post);
       }
     };
-    Runner['@:{task.add.background}'](400, (this['@:{printer.post.fn}'] = post));
+    Runner['@:{task.add.background}'](600, (this['@:{printer.post.fn}'] = post));
   },
   '$win<message>'(e: MessageEvent) {
     let origin = location.protocol + '//' + location.host;

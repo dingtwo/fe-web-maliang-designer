@@ -36,6 +36,7 @@ import { generateExcel, generateMergeExcel } from './excel';
 // 各环境接口地址
 const host = {
   test: 'http://dev.api.b2bcsx.com:8000/maliang/',
+  // dev: 'http://dev.api.b2bcsx.com:8000/maliang/',
   sit: 'http://sit.api.b2bcsx.com/maliang/',
   dev: 'http://localhost:3000/',
   pre: 'http://pre.api.b2bcsx.com/maliang/',
