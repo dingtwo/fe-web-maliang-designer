@@ -14,9 +14,13 @@ export default View.extend({
   async render() {
     const src = getPreviewUrl();
     console.log('src', src);
-    await this.digest({
-      src,
-    });
+    try {
+      await this.digest({
+        src,
+      });
+    } catch (error) {
+      alert(error);
+    }
 
     let old = this['@:{printer.post.fn}'];
     if (old) {
