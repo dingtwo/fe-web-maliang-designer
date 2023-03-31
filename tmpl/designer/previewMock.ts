@@ -29,6 +29,10 @@ export class PreviewMock {
       case '13':
       case '14':
         return this.mockOrder13();
+        case '18':
+        return this.mockOrder18();
+        case '19':
+        return this.mockOrder19();
       default:
         break;
     }
@@ -48,6 +52,38 @@ export class PreviewMock {
         break;
     }
   }
+
+  // TODO: 生产的单子还得单独捞一下
+  private mockOrder18() {
+    switch (env) {
+      case 'dev':
+        return 'JH230213000003';
+      case 'sit':
+        return 'JH230209000009';
+      case 'pre':
+        return 'JH230221000008';
+      case 'prod':
+        return 'JH230221000008';
+      default:
+        break;
+    }
+  }
+
+  private mockOrder19() {
+    switch (env) {
+      case 'dev':
+        return 'BS230111000006';
+      case 'sit':
+        return 'LY230110000003';
+      case 'pre':
+        return 'LY230213000001';
+      case 'prod':
+        return 'LY230329000038';
+      default:
+        break;
+    }
+  }
+
   private mockOrder13() {
     switch (env) {
       case 'dev':
@@ -70,6 +106,10 @@ export class PreviewMock {
       case '13':
       case '14':
         return this.mockParams13();
+        case '18':
+        return this.mockParams18();
+        case '19':
+        return this.mockParams19();
       default:
         return this.mockParams1();
     }
@@ -83,6 +123,22 @@ export class PreviewMock {
     return {
       ...this.baseParams,
       products: JSON.stringify([]),
+    };
+  }
+
+  private mockParams18() {
+    return {
+      orders: this.mockOrder18,
+      scene: 19,
+      warehouseCode: 'W0A8'
+    };
+  }
+
+  private mockParams19() {
+    return {
+      orders: this.mockOrder19,
+      scene: 19,
+      warehouseCode: 'W0A8'
     };
   }
 }
