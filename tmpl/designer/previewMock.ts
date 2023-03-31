@@ -3,16 +3,22 @@
  */
 import { toUrl, parseUrl, config } from 'magix';
 import { getEnv } from '../provider/host';
+import { MesPreViewMock } from './mesPreviewMock';
 
 const env = getEnv();
 
 export class PreviewMock {
   scene: string;
   baseParams: any;
+  mesMock: MesPreViewMock;
+
   constructor() {
     let { params } = parseUrl(location.href);
     const { scene } = params;
     this.scene = scene;
+
+    this.mesMock = new MesPreViewMock({ scene, env });
+
     this.baseParams = {
       preview: 1,
       orders: this.mockOrder,
@@ -29,10 +35,14 @@ export class PreviewMock {
       case '13':
       case '14':
         return this.mockOrder13();
-        case '18':
+      case '18':
         return this.mockOrder18();
-        case '19':
+      case '19':
         return this.mockOrder19();
+      case '9':
+      case '10':
+      case '12':
+        this.mesMock.mesGetOrder();
       default:
         break;
     }
@@ -106,10 +116,14 @@ export class PreviewMock {
       case '13':
       case '14':
         return this.mockParams13();
-        case '18':
+      case '18':
         return this.mockParams18();
-        case '19':
+      case '19':
         return this.mockParams19();
+      case '9':
+      case '10':
+      case '12':
+        this.mesMock.mesGetParams();
       default:
         return this.mockParams1();
     }
@@ -130,7 +144,7 @@ export class PreviewMock {
     return {
       orders: this.mockOrder18,
       scene: 19,
-      warehouseCode: 'W0A8'
+      warehouseCode: 'W0A8',
     };
   }
 
@@ -138,7 +152,7 @@ export class PreviewMock {
     return {
       orders: this.mockOrder19,
       scene: 19,
-      warehouseCode: 'W0A8'
+      warehouseCode: 'W0A8',
     };
   }
 }
