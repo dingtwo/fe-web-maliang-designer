@@ -8,7 +8,8 @@
 enum HOST {
   prod = 'http://api.b2bcsx.com',
   pre = 'http://pre.api.b2bcsx.com',
-  dev = 'http://dev.api.b2bcsx.com:8000',
+  // dev = 'http://dev.api.b2bcsx.com:8000',
+  dev = 'http://localhost:3000',
   sit = 'http://sit.api.b2bcsx.com',
   test = 'http://dev.api.b2bcsx.com:8000',
 }
