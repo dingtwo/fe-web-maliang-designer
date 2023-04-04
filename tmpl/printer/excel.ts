@@ -29,7 +29,8 @@ export const getExcel = params => {
 
 export const generateExcel = templates => {
   console.log('excel 模板数据', templates);
-  _.map(templates, ({ id, orderCode }) => getExcel({ templateId: id, orderCode }));
+  getExcel({});
+  // _.map(templates, ({ id, orderCode }) => getExcel({ templateId: id, orderCode }));
 };
 
 /**
