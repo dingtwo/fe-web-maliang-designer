@@ -31,6 +31,7 @@ export class PreviewMock {
   get mockOrder() {
     switch (this.scene) {
       case '1':
+      case '7':
         return this.mockOrder1();
       case '13':
       case '14':
@@ -51,7 +52,7 @@ export class PreviewMock {
   private mockOrder1() {
     switch (env) {
       case 'dev':
-        return 'OM21082600000129';
+        return 'OM21082600000129PS';
       case 'sit':
         return 'OM23032200000008PS';
       case 'pre':
