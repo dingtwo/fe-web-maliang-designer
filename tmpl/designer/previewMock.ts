@@ -124,7 +124,7 @@ export class PreviewMock {
       case '9':
       case '10':
       case '12':
-        this.mesMock.mesGetParams();
+        return this.mesMock.mesGetParams();
       default:
         return this.mockParams1();
     }
