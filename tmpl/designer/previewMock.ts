@@ -143,7 +143,7 @@ export class PreviewMock {
 
   private mockParams18() {
     return {
-      orders: this.mockOrder18,
+      orders: this.mockOrder18(),
       scene: 19,
       warehouseCode: 'W0A8',
     };
@@ -151,7 +151,7 @@ export class PreviewMock {
 
   private mockParams19() {
     return {
-      orders: this.mockOrder19,
+      orders: this.mockOrder19(),
       scene: 19,
       warehouseCode: 'W0A8',
     };
