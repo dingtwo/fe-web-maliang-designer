@@ -1,4 +1,11 @@
-let dest = '//cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js';
+/*
+ * @Description:
+ * @Author: zhanghao
+ * @Date: 2022-05-25 12:12:53
+ * @LastEditTime: 2023-06-21 16:07:52
+ * @LastEditors: zhanghao
+ */
+let dest = '//test-img.freshfood.cn/20230621160453_underscore-umd-min.js';
 let loadingList = [];
 let state = 1;
 let rejectMsg = 'can not load underscore library';
