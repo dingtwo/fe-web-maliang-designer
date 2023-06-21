@@ -1,4 +1,4 @@
-let dest = '//cdn.jsdelivr.net/npm/html2canvas@1.1.4/dist/html2canvas.min.js';
+let dest = '//test-img.freshfood.cn/20230621163903_html2canvas.min.js';
 let loadingList = [];
 let state = 1;
 let rejectMsg = 'can not load html2canvas library';

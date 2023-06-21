@@ -1,4 +1,11 @@
-let dest = '//cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js';
+/*
+ * @Description:
+ * @Author: zhanghao
+ * @Date: 2022-07-28 19:49:33
+ * @LastEditTime: 2023-06-21 16:52:21
+ * @LastEditors: zhanghao
+ */
+let dest = '//test-img.freshfood.cn/20230621163902_FileSaver.min.js';
 let loadingList = [];
 let state = 1;
 let rejectMsg = 'can not load filesaver library';

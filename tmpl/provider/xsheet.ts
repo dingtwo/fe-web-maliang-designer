@@ -1,16 +1,31 @@
+/*
+ * @Description:
+ * @Author: zhanghao
+ * @Date: 2022-05-25 12:12:53
+ * @LastEditTime: 2023-06-21 16:56:33
+ * @LastEditors: zhanghao
+ */
 import Runner from '../gallery/mx-runner/index';
 let loadingList = [];
 let state = 1;
 let rejectMsg = 'can not load luckysheet library';
-let base = 'https://cdn.jsdelivr.net/npm/luckysheet/dist/';
+// let base = 'https://cdn.jsdelivr.net/npm/luckysheet/dist/';
+// let preloads = [
+//     base + 'plugins/css/pluginsCss.css',
+//     base + 'plugins/plugins.css',
+//     base + 'css/luckysheet.css',
+//     base + 'assets/iconfont/iconfont.css',
+//     base + 'plugins/js/plugin.js'
+// ];
 let preloads = [
-    base + 'plugins/css/pluginsCss.css',
-    base + 'plugins/plugins.css',
-    base + 'css/luckysheet.css',
-    base + 'assets/iconfont/iconfont.css',
-    base + 'plugins/js/plugin.js'
-];
-let main = base + 'luckysheet.umd.js';
+  'http://test-img.freshfood.cn/20230621163904_pluginsCss.css',
+  'http://test-img.freshfood.cn/20230621163904_plugins.css',
+  'http://test-img.freshfood.cn/20230621163903_luckysheet.css',
+  'http://test-img.freshfood.cn/20230621163903_iconfont.css',
+  'test-img.freshfood.cn/20230621163903_plugin.js'
+]
+// let main = base + 'luckysheet.umd.js';
+let main = 'http://test-img.freshfood.cn/20230621163903_luckysheet.umd.js'
 let loadResource = src => {
     return new Promise<void>(resolve => {
         let css = src.endsWith('css'),
