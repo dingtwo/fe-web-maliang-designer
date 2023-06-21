@@ -2,7 +2,7 @@
  * @Description:
  * @Author: zhanghao
  * @Date: 2022-05-25 12:12:53
- * @LastEditTime: 2023-06-21 16:51:03
+ * @LastEditTime: 2023-06-21 16:56:33
  * @LastEditors: zhanghao
  */
 import Runner from '../gallery/mx-runner/index';
@@ -19,7 +19,7 @@ let rejectMsg = 'can not load luckysheet library';
 // ];
 let preloads = [
   'http://test-img.freshfood.cn/20230621163904_pluginsCss.css',
-  'http://test-img.freshfood.cn/20230621163904_pluginsCss.css',
+  'http://test-img.freshfood.cn/20230621163904_plugins.css',
   'http://test-img.freshfood.cn/20230621163903_luckysheet.css',
   'http://test-img.freshfood.cn/20230621163903_iconfont.css',
   'test-img.freshfood.cn/20230621163903_plugin.js'
