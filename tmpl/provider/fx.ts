@@ -1,4 +1,4 @@
-let dest = '//cdn.jsdelivr.net/npm/function-plot/dist/function-plot.js';
+let dest = '//test-img.freshfood.cn/20230621163902_function-plot.js';
 let loadingList = [];
 let state = 1;
 let rejectMsg = 'can not load function-plot library';
