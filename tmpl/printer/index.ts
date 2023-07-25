@@ -71,9 +71,9 @@ class Progress {
   };
 }
 const printTypeMap = {
-  sql:'sql',
-  order:'order'
-}
+  sql: 'sql',
+  order: 'order',
+};
 
 const progress = new Progress();
 
@@ -180,6 +180,9 @@ let FormatList = [
  * 数据中心，用来控制分页
  */
 let DataCenter = {};
+
+// 全局参数,为以后改成post传参准备，现在主持从puppeteer获取
+let GlobalParams = {};
 //标签正则
 let tagReg = /<[^>]+>/g;
 //删除不必要的属性正则
@@ -218,7 +221,7 @@ const fetchItemApi = async (api, params) => {
         name: '@:{post.by.url}',
         url: reqUrl,
         // 增加订单类型标记,多种订单可以复用模板, 默认是配送单
-        '@:{body}': JSON.stringify({ params, ...urlParams }),
+        '@:{body}': JSON.stringify({ params, ...urlParams, ...GlobalParams }),
       },
       (err: { message: string }, bag) => {
         if (err) {
@@ -231,7 +234,7 @@ const fetchItemApi = async (api, params) => {
 
           _.map(data, (item, key) => {
             const url = mergeApi({ url: api, orderId: key });
-            console.log('请求的url', url, DataCenter)
+            console.log('请求的url', url, DataCenter);
             let dest = DataCenter[url];
 
             if (!dest) {
@@ -257,7 +260,7 @@ const fetchItemApi = async (api, params) => {
  * @param apiMap api数组对象
  */
 const fetchAllAPI = async apiMap => {
-  console.log('apiMap  in fetchAllAPI is', apiMap)
+  console.log('apiMap  in fetchAllAPI is', apiMap);
   return new Promise((resolve, reject) => {
     const {
       params: { orders, order, puppeteer },
@@ -435,13 +438,16 @@ export default View.extend({
         return Promise.reject('没有找到场景参数');
       }
 
+      /**
+       * 订单模式:一个模板打印多个单号数据时， 需要根据单号做出来区分， 订单号只要是个唯一值就行
+       */
 
-    /**
-     * 订单模式:一个模板打印多个单号数据时， 需要根据单号做出来区分， 订单号只要是个唯一值就行
-     */
-
-
-      this['@:{get.stages}']({ orders: params.order || params.orders, id: templateId, scene, printType:params && params.printType ||  printTypeMap['order']});
+      this['@:{get.stages}']({
+        orders: params.order || params.orders,
+        id: templateId,
+        scene,
+        printType: (params && params.printType) || printTypeMap['order'],
+      });
     } else {
       Toast.show('没有找到订单号参数');
       return Promise.reject('没有找到订单号参数');
@@ -510,7 +516,7 @@ export default View.extend({
    * @param {any} params 打印参数
    * @description: 有id： 模板id， 那么就是确定的模板，否则需要根据orders、scene去批量查找模板
    */
-  '@:{get.stages}'(params:{orders?:string, id?: string, scene:string, printType?: string}) {
+  '@:{get.stages}'(params: { orders?: string; id?: string; scene: string; printType?: string }) {
     Toast.show('正在加载模板...');
     const { id, printType } = params;
     // 默认批量查找模板 信息
@@ -520,7 +526,7 @@ export default View.extend({
       name = '@:{post.content}';
     }
     // sql打印形式
-    if(printType === printTypeMap['sql']){
+    if (printType === printTypeMap['sql']) {
       name = '@:{post.sql.content}';
     }
 
@@ -1143,11 +1149,14 @@ export default View.extend({
           }
           // 需要知道模版, 如果后面比前面只多了-tax-idx,那就用同一个模版
           try {
-            newStages.splice(currentIdx + 1, 0, { ..._.cloneDeep(newStages[currentIdx]), orderCode: orderId });
+            newStages.splice(currentIdx + 1, 0, {
+              ..._.cloneDeep(newStages[currentIdx]),
+              orderCode: orderId,
+            });
           } catch (error) {
-            console.log('error in @:{update.stages.by.tax~rs} is', error)
+            console.log('error in @:{update.stages.by.tax~rs} is', error);
             this.alert(error?.message || '拆单数据出错');
-            return error
+            return error;
           }
         }
       });
@@ -1752,8 +1761,9 @@ export default View.extend({
    */
   '$win<render>'(e) {
     console.log('远程触发', e);
-
-    this['@:{render.page.by.json}'](Generic['@:{try.parse.json}'](e.json));
+    const stages = Generic['@:{try.parse.json}'](e.json);
+    GlobalParams['products'] = Generic['@:{try.parse.json}'](e.products);
+    this['@:{render.page.by.json}'](stages);
   },
   /**
    * 通过postMessage进行数据通讯
