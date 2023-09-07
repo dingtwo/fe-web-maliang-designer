@@ -80,6 +80,7 @@
             function getEnv() {
                 console.log('环境', window.RUN_CONFIG);
                 var hostname = window.location.hostname;
+                return window.RUN_CONFIG.env
                 switch (hostname) {
                     case 'prezt.freshfood.cn':
                         return 'pre';

@@ -1,3 +1,10 @@
+<!--
+ * @Description:
+ * @Author: zhanghao
+ * @Date: 2023-07-17 11:30:32
+ * @LastEditTime: 2023-09-07 16:20:21
+ * @LastEditors: zhanghao
+-->
 
 <!DOCTYPE html>
 <html>
@@ -52,6 +59,7 @@
                 console.log('环境', window.RUN_CONFIG);
                 // return 'prod'
                 var hostname = window.location.hostname;
+                reutrn window.RUN_CONFIG.env
                 switch (hostname) {
                     case 'prezt.freshfood.cn':
                     case 'prezt.b2bcsx.com':
