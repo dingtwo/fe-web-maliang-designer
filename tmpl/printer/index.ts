@@ -216,6 +216,9 @@ const fetchItemApi = async (api, params) => {
       const origin = host[window.RUN_CONFIG.env];
       reqUrl = api.replace(/^http(s)?:\/\/(.*?)\/maliang\//, origin);
     }
+    if (window.RUN_CONFIG && window.RUN_CONFIG.env === 'prod') {
+      reqUrl = api.replace('api.freshfood.cn', 'api.b2bcsx.com');
+    }
     s.all(
       {
         name: '@:{post.by.url}',
