@@ -2,7 +2,7 @@
  * @Description:
  * @Author: zhanghao
  * @Date: 2023-07-17 11:30:32
- * @LastEditTime: 2023-09-07 19:33:03
+ * @LastEditTime: 2023-09-08 09:44:17
  * @LastEditors: zhanghao
 -->
 
@@ -59,24 +59,7 @@
                 console.log('环境', window.RUN_CONFIG);
                 // return 'prod'
                 var hostname = window.location.hostname;
-                return  window.RUN_CONFIG.env
-                switch (hostname) {
-                    case 'prezt.freshfood.cn':
-                    case 'prezt.b2bcsx.com':
-                        return 'pre';
-                        break;
-                    case 'localhost':
-                        return 'dev';
-                    case 'dev.zt.b2bcsx.com':
-                    case 'devzt.b2bcsx.com':
-                        return 'test'
-                    case 'sitzt.freshfood.cn':
-                        return 'sit'
-                        case 'zt.freshfood.cn':
-                    default:
-                        return 'prod';
-                        break;
-                }
+                return  window.RUN_CONFIG.env || 'prod'
             }
 
             var host = {
