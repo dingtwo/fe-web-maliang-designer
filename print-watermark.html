@@ -133,7 +133,7 @@ function getParams() {
   const params = {};
   url.searchParams.forEach((value, key) => {
     try {
-      params[key] = decodeURI(value);
+      params[key] = decodeURIComponent(value);
       if (key === 'watermark') {
         params[key] = JSON.parse(params[key]);
       }
@@ -142,6 +142,7 @@ function getParams() {
 
     }
   });
+  console.log("🚀 ~ file: print-watermark.html:134 ~ getParams ~ params:", params)
 
   return params;
 }
