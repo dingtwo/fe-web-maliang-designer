@@ -13,4 +13,4 @@ dist
 *.sublime-*
 build
 types
-
+*.pdf

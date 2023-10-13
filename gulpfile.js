@@ -554,6 +554,10 @@ gulp.task(
             js: 'printer',
           },
           {
+            html: './print-watermark.html',
+            js: 'print-watermark',
+          },
+          {
             html: './mini.html',
             js: 'mini',
           },

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+    content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<link type="image/x-icon" href="//gw.alicdn.com/tfs/TB1gRomUlr0gK0jSZFnXXbRRXXa-200-200.png"
+    rel="shortcut icon">
+<title>打印水印</title>
+<script type="text/javascript">window.RUN_CONFIG = { env: "RUN_ENV" };</script>
+<style>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  -webkit-print-color-adjust: exact;
+}
+
+#print_btn {
+  position: fixed;
+  z-index: 9999;
+  top: 30px;
+  right: 30px;
+  border: 1px solid #ddd;
+  border-radius: 15px #ddd;
+  padding: 5px;
+  width: 100px;
+  text-align: center;
+  cursor: pointer;
+}
+
+@media print {
+  #print_btn {
+    display: none;
+  }
+}
+
+#pdf-container {
+  position: relative;
+}
+
+#img-container {
+  position: relative;
+}
+
+#img-container img{
+  width: 100%;
+}
+
+#watermark-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 9;
+  height: 100%;
+  width: 100%;
+  /* background-size: 332px; */
+  pointer-events: none;
+  background-repeat: repeat;
+}
+
+</style>
+</head>
+
+<body>
+
+<button id="print_btn">打印</button>
+<div style="position: relative;">
+  <div id="pdf-container">
+
+  </div>
+  <div id="img-container"></div>
+  <div id="watermark-container">
+  </div>
+</div>
+<script src="http://dev.unpkg.b2bcsx.com/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+<script src="https://unpkg.com/@uiw/watermark.js@1.0.0/dist/watermark.min.js"></script>
+<script>
+
+init();
+
+function init() {
+  const printBtnEle = document.querySelector('#print_btn');
+  const pdfContainerElem = document.querySelector('#pdf-container');
+  const watermarkContainerElem = document.querySelector('#watermark-container');
+
+  const params = getParams();
+  const { url, type, content, } = params;
+
+
+  printBtnEle.addEventListener('click', () => {
+    print();
+  });
+
+  if (content) {
+    showWatermark({
+      container: watermarkContainerElem,
+      content,
+    });
+  }
+
+  if (type === 'pdf') {
+    showPdf({
+      url,
+      container: pdfContainerElem,
+    });
+  } else if (['png', 'jpeg', 'jpg'].includes(type)) {
+    showImg({
+      url,
+    })
+  }
+
+
+}
+
+function getParams() {
+  const url = new URL(location.href);
+  const params = {};
+  url.searchParams.forEach((value, key) => {
+    params[key] = decodeURI(value);
+  });
+
+  return params;
+}
+
+function print() {
+  try {
+    document.execCommand('print');
+  } catch (error) {
+
+  }
+}
+
+function showWatermark(props) {
+  const {
+    container,
+    content,
+    repeat = true,
+  } = props;
+
+  const watermark = new Watermark({
+    content,
+    rotate: 0,
+    offsetLeft: 20,
+    offsetTop: 20,
+    width: 770,
+    gapX: 800,
+    gapY: 1264,
+  });
+
+  watermark.create().then((mark) => {
+    container.style.backgroundImage = `url(${mark})`
+  })
+  .catch((err) => {
+    console.log(err, 'err')
+  })
+}
+
+
+function showImg(props) {
+  const { url } = props;
+
+  const imgContainerElem = document.querySelector('#img-container');
+  const imgElem = document.createElement('img');
+
+  imgElem.src = url;
+  imgContainerElem.appendChild(imgElem);
+
+}
+
+function showPdf(props) {
+  const {
+    url,
+    container,
+  } = props;
+
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'http://dev.unpkg.b2bcsx.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+  const loadingTask = pdfjsLib.getDocument(url);
+
+  loadingTask.promise.then((pdf) => {
+    const numPages = pdf.numPages;
+
+    for (let index = 0; index < numPages; index++) {
+      renderPage(pdf, container, index + 1);
+    }
+  });
+}
+
+function renderPage(pdf, container, pageNum) {
+  pdf.getPage(pageNum)
+  .then((page) => {
+    const scale = 1.5;
+    const viewport = page.getViewport({ scale });
+    // Support HiDPI-screens.
+    const outputScale = window.devicePixelRatio || 1;
+
+    const canvas = document.createElement('canvas');
+    container.appendChild(canvas);
+    const context = canvas.getContext("2d");
+    const width = viewport.width;
+    const height = viewport.height;
+
+    canvas.width = Math.floor(width * outputScale);
+    canvas.height = Math.floor(height * outputScale);
+    canvas.style.width = Math.floor(width) + "px";
+    canvas.style.height = Math.floor(height) + "px";
+
+    const transform = outputScale !== 1
+      ? [outputScale, 0, 0, outputScale, 0, 0]
+      : null;
+
+    const renderContext = {
+      canvasContext: context,
+      transform,
+      viewport,
+    };
+    page.render(renderContext);
+  });
+}
+
+</script>
+</body>
+</html>
