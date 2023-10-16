@@ -89,7 +89,7 @@ function init() {
   const watermarkContainerElem = document.querySelector('#watermark-container');
 
   const params = getParams();
-  const { url, type, content, watermark, watermarkType = 'span'} = params;
+  const { url, type, content, watermark, watermarkType = 'span', isShowPageNum = true} = params;
 
   const size = getTextSize(content);
   const lastWatermark = {
@@ -111,12 +111,14 @@ function init() {
 
   if (type === 'pdf') {
     showPdf({
+      isShowPageNum,
       url,
       container: pdfContainerElem,
       watermark: isSpanWatermark ?  lastWatermark : undefined
     });
   } else if (['png', 'jpeg', 'jpg'].includes(type)) {
     showImg({
+      isShowPageNum,
       url,
       watermark: isSpanWatermark ? lastWatermark : undefined
     })
@@ -209,7 +211,7 @@ function getTextSize(text) {
 
 
 function showImg(props) {
-  const { url, watermark } = props;
+  const { isShowPageNum, url, watermark } = props;
 
   const imgContainerElem = document.querySelector('#img-container');
   const imgElem = document.createElement('img');
@@ -219,9 +221,16 @@ function showImg(props) {
 
   if (watermark) {
 
+    let content = watermark.content;
+
+    if (isShowPageNum) {
+      content = `1-1/${content}`;
+    }
+
     showWatermarkBySpan({
       container: document.body,
       ...watermark,
+      content,
       style: {
         bottom: '20px',
         right: '20px',
@@ -247,6 +256,7 @@ function css(elem, style) {
 
 function showPdf(props) {
   const {
+    isShowPageNum,
     url,
     container,
     watermark,
@@ -259,12 +269,21 @@ function showPdf(props) {
     const numPages = pdf.numPages;
 
     for (let index = 0; index < numPages; index++) {
-      renderPage(pdf, container, index + 1, watermark);
+
+      const pageNum = index + 1;
+
+      let content = watermark.content;
+
+      if (isShowPageNum) {
+        content = `${numPages}-${pageNum}/${content}`;
+      }
+
+      renderPage(pdf, container, pageNum, { ...watermark, content }, isShowPageNum);
     }
   });
 }
 
-function renderPage(pdf, container, pageNum, watermark) {
+function renderPage(pdf, container, pageNum, watermark, isShowPageNum) {
   pdf.getPage(pageNum)
   .then((page) => {
     const scale = 1.5;
