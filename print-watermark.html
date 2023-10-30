@@ -76,8 +76,8 @@ body {
   <div id="img-container"></div>
   <div id="watermark-container"></div>
 </div>
-<script src="http://dev.unpkg.b2bcsx.com/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
-<script src="http://dev.unpkg.b2bcsx.com/@uiw/watermark.js@1.0.0/dist/watermark.min.js"></script>
+<script src="http://unpkg.b2bcsx.com/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+<script src="http://unpkg.b2bcsx.com/@uiw/watermark.js@1.0.0/dist/watermark.min.js"></script>
 <script>
 
 init();
@@ -261,7 +261,7 @@ function showPdf(props) {
     watermark,
   } = props;
 
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'http://dev.unpkg.b2bcsx.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'http://unpkg.b2bcsx.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
   const loadingTask = pdfjsLib.getDocument(url);
 
   loadingTask.promise.then((pdf) => {
