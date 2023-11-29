@@ -82,6 +82,8 @@ body {
 
 init();
 
+window.addEventListener('afterprint', printCount);
+
 function init() {
   const printBtnEle = document.querySelector('#print_btn');
   const pdfContainerElem = document.querySelector('#pdf-container');
@@ -128,6 +130,52 @@ function init() {
   });
 
 }
+
+function printCount() {
+  const params = getParams();
+  const { callbackData } = params;
+  if (callbackData) {
+    let lastCallBackData = {};
+    let token;
+    try {
+      token = JSON.parse(localStorage.getItem('login-token'));
+    } catch (error) {}
+    if (!token) {
+      console.error('没有 token, 登录失效');
+      reLogin();
+    }
+
+    try {
+      lastCallBackData = JSON.parse(decodeURIComponent(callbackData));
+      const { url, options, ...data } = lastCallBackData;
+      if (!url) {
+        console.error("🚀 ~ file: print-watermark.html:105 ~ printCount ~ url不存在:", url, callbackData)
+        return ;
+      }
+
+      fetch(url, {
+        "headers": {
+          "login-token": token,
+        },
+        "body": data,
+        "method": "POST",
+        "mode": "cors",
+        "credentials": "omit",
+        ...options,
+      });
+    } catch (error) {
+      console.log("🚀 ~ file: printCount.ts:54 ~ printCount ~ error:", error, callbackData)
+    }
+  }
+}
+
+let reLogin = () => {
+  /* 重新登陆 */
+  let warning = false;
+  if (!DEBUG) {
+    window.location.href = `/?from=${encodeURIComponent(location.href)}`;
+  }
+};
 
 function getParams() {
   const url = new URL(location.href);
