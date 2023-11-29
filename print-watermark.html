@@ -155,16 +155,28 @@ function printCount() {
         return ;
       }
 
-      fetch(url, {
-        "headers": {
-          "login-token": token,
+
+      const raw = JSON.stringify(data);
+
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+            "login-token": token,
+            "Content-Type": "application/json"
         },
-        "body": data,
-        "method": "POST",
-        "mode": "cors",
-        "credentials": "omit",
-        ...options,
+        body: raw,
+      };
+
+      fetch(url, requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        console.log("🚀 ~ file: print-watermark.html:173 ~ printCount ~ result:", result)
+      })
+      .catch(error => {
+        console.log("🚀 ~ file: print-watermark.html:174 ~ printCount ~ error:", error)
+
       });
+
     } catch (error) {
       console.log("🚀 ~ file: printCount.ts:54 ~ printCount ~ error:", error, callbackData)
     }
