@@ -82,6 +82,8 @@ body {
 
 init();
 
+const params = getParams();
+
 window.addEventListener('afterprint', printCount);
 
 function init() {
@@ -132,7 +134,7 @@ function init() {
 }
 
 function printCount() {
-  const params = getParams();
+
   const { callbackData } = params;
   if (callbackData) {
     let lastCallBackData = {};
@@ -172,9 +174,7 @@ function printCount() {
 let reLogin = () => {
   /* 重新登陆 */
   let warning = false;
-  if (!DEBUG) {
-    window.location.href = `/?from=${encodeURIComponent(location.href)}`;
-  }
+  window.location.href = `/?from=${encodeURIComponent(location.href)}`;
 };
 
 function getParams() {
