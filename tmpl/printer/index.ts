@@ -1143,7 +1143,8 @@ export default View.extend({
         if (!stageOrders.includes(orderId)) {
           console.log('要插入了', orderId);
 
-          let currentIdx = stageOrders.findIndex(x => x === rawOrderId);
+          // let currentIdx = stageOrders.findIndex(x => x === rawOrderId);
+          let currentIdx = stageOrders.findLastIndex(x => x.split('-tax-')[0] === rawOrderId);
           if (currentIdx < 0) {
             console.log('额外拆出来的');
             currentIdx = newStages.length - 1;
