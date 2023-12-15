@@ -37,8 +37,8 @@ import { generateExcel, generateMergeExcel } from './excel';
 const host = {
   test: 'http://dev.api.b2bcsx.com:8000/maliang/',
   // dev: 'http://dev.api.b2bcsx.com:8000/maliang/',
+  dev: 'http://localhost:9000/',
   sit: 'http://sit.api.b2bcsx.com/maliang/',
-  dev: 'http://localhost:3000/',
   pre: 'http://pre.api.b2bcsx.com/maliang/',
 };
 
