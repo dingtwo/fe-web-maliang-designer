@@ -29,6 +29,7 @@ export class PreviewMock {
   }
 
   get mockOrder() {
+            //  sql模板的预览时在数据源接口时候写死的数据, 并不是通过单号请求, 因此直接在sql数据源接口中,判断preview为1时,直接返回mock数据
     switch (this.scene) {
       case '1':
       case '7':
