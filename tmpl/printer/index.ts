@@ -1226,14 +1226,16 @@ export default View.extend({
   },
   '@:{renderBatch}<click>'() {
 
-    renderBatchIndex ++;
     this.digest({
       renderBatchIndex,
     });
 
-    const win = window as any;
-    console.log("🚀 ~ file: index.ts:1231 ~ setTimeout ~ win.renderPdf:", win.renderPdf)
-    win.renderPdf(renderBatchIndex, renderBatchPageSize, renderBatchTotal);
+    setTimeout(() => {
+      const win = window as any;
+      console.log("🚀 ~ file: index.ts:1231 ~ setTimeout ~ win.renderPdf:", win.renderPdf)
+      win.renderPdf(renderBatchIndex, renderBatchPageSize, renderBatchTotal);
+      renderBatchIndex ++;
+    }, 1000); // 1s后出发 可能没重绘完
 
   },
   // '@:{lodop.setting}<click>'() {
