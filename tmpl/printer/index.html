@@ -43,7 +43,7 @@
   <!-- <button id="test-render-batch"  class="btn tc cursor-pointer btn-brand" mx-click="@:{renderBatch}()">分批{{=renderBatchIndex}}</button> -->
   {{each pages as item pageIndex last}}
   {{set page=getPageAttr(pageList, pageIndex)}}
-  {{=pageIndex}}
+  <!-- {{=pageIndex}} -->
 
   {{if renderBatchIndex == getRenderBatchIndex(pageIndex)}}
     <!-- 渲染：{{=pageIndex}} -->

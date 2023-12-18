@@ -182,7 +182,7 @@ let FormatList = [
 let DataCenter = {};
 let renderBatchTotal = 0;
 let renderBatchIndex = 0;
-let renderBatchPageSize = 2;
+let renderBatchPageSize = 10000;
 
 // 全局参数,为以后改成post传参准备，现在主持从puppeteer获取
 let GlobalParams = {};
