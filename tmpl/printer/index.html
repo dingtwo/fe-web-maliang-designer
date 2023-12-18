@@ -40,20 +40,26 @@
   {{else if sf=='rdPdf'}}
   <embed src="{{=rdPdf}}" class="wp100 pdf-ifm" type="application/pdf" />
   {{else}}
+  <!-- <button id="test-render-batch"  class="btn tc cursor-pointer btn-brand" mx-click="@:{renderBatch}()">分批{{=renderBatchIndex}}</button> -->
   {{each pages as item pageIndex last}}
   {{set page=getPageAttr(pageList, pageIndex)}}
-  <div class="designer-root pr page page-display overflow-hidden{{if !last}} page-break{{/if}}"
-    style="width:{{=page.width}}{{=page.unit}};height:{{=page.height}}{{=page.unit}};background:{{=page.background}};{{if !page.preformat&&page.backgroundImage}}background-image:url({{=page.backgroundImage}});background-repeat:{{=page.backgroundRepeat=='full'?'no-repeat':page.backgroundRepeat}};background-size:{{if page.backgroundRepeat=='full'}}100% 100%{{else}}{{=page.backgroundWidth}}{{=page.unit}} {{=page.backgroundHeight}}{{=page.unit}};background-position:{{=page.backgroundXOffset}}{{=page.unit}} {{=page.backgroundYOffset}}{{=page.unit}}{{/if}}{{/if}}">
-    {{if sf=='web'}}
-    {{each item as e}}
-    <mx-vframe src="../elements/{{=e.type}}/index" *props="{{#e.props}}" *unit="{{#page.unit}}" />
-    {{/each}}
-    {{else if sf=='image' && images}}
-    <img class="tag-img mwp100" src="{{=images[pageIndex]}}" />
-    {{else if sf=='rdImage' && rdImages}}
-    <img class="tag-img mwp100" src="{{=rdImages[pageIndex]}}" />
-    {{/if}}
-  </div>
+  {{=pageIndex}}
+
+  {{if renderBatchIndex == getRenderBatchIndex(pageIndex)}}
+    <!-- 渲染：{{=pageIndex}} -->
+    <div class="designer-root pr page page-display overflow-hidden{{if !last}} page-break{{/if}}"
+      style="width:{{=page.width}}{{=page.unit}};height:{{=page.height}}{{=page.unit}};background:{{=page.background}};{{if !page.preformat&&page.backgroundImage}}background-image:url({{=page.backgroundImage}});background-repeat:{{=page.backgroundRepeat=='full'?'no-repeat':page.backgroundRepeat}};background-size:{{if page.backgroundRepeat=='full'}}100% 100%{{else}}{{=page.backgroundWidth}}{{=page.unit}} {{=page.backgroundHeight}}{{=page.unit}};background-position:{{=page.backgroundXOffset}}{{=page.unit}} {{=page.backgroundYOffset}}{{=page.unit}}{{/if}}{{/if}}">
+      {{if sf=='web'}}
+      {{each item as e}}
+      <mx-vframe src="../elements/{{=e.type}}/index" *props="{{#e.props}}" *unit="{{#page.unit}}" />
+      {{/each}}
+      {{else if sf=='image' && images}}
+      <img class="tag-img mwp100" src="{{=images[pageIndex]}}" />
+      {{else if sf=='rdImage' && rdImages}}
+      <img class="tag-img mwp100" src="{{=rdImages[pageIndex]}}" />
+      {{/if}}
+    </div>
+  {{/if}}
   {{/each}}
   {{/if}}
   {{/if}}
