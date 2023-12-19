@@ -1804,7 +1804,9 @@ export default View.extend({
   '$win<render>'(e) {
     console.log('远程触发', e);
     const stages = Generic['@:{try.parse.json}'](e.json);
-    renderBatchPageSize = Generic['@:{try.parse.json}'](e.renderBatchPageSize);
+    if (e.renderBatchPageSize) {
+      renderBatchPageSize = Generic['@:{try.parse.json}'](e.renderBatchPageSize);
+    }
     GlobalParams['products'] = Generic['@:{try.parse.json}'](e.products);
     this['@:{render.page.by.json}'](stages);
   },
