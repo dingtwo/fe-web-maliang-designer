@@ -20,7 +20,7 @@ const ifPlanOrder = (orderCode: string) => /(PS|ZS|ZT)$/.test(orderCode.toUpperC
 
 export const printCount = () => {
   let { params } = parseUrl(location.href);
-  const { scene, orders, order, puppeteer } = params;
+  const { scene, orders, order, puppeteer, callbackData } = params;
   const orderCode = orders || order;
 
   /**
@@ -46,10 +46,20 @@ export const printCount = () => {
     entryType = '7';
   }
 
+  let lastCallBackData = {};
+  if (callbackData) {
+    try {
+      lastCallBackData = JSON.parse(decodeURIComponent(callbackData));
+    } catch (error) {
+      console.log("🚀 ~ file: printCount.ts:54 ~ printCount ~ error:", error, callbackData)
+
+    }
+  }
+
   service.all(
     {
       name: '@:{print.count}',
-      '@:{body}': JSON.stringify({ orderCodes: orderCodeList, entryType }),
+      '@:{body}': JSON.stringify({ orderCodes: orderCodeList, entryType, ...lastCallBackData }),
     },
     (err: { message: string }, bag) => {
       console.log('打印计数 err is', err);

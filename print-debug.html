@@ -23,10 +23,10 @@
             console.log('环境', window.RUN_CONFIG);
         designer.setup({
             rds:'//localhost:9988/',
-            getContentUrl:'//localhost:3000/template/findById',
+            getContentUrl:'//localhost:9000/template/findById',
             /** 批量打印 */
-            getMutiContentUrl:'//localhost:3000/template/batchFind',
-            getSqlContentUrl: '//localhost:3000/template/findSqlTeml',
+            getMutiContentUrl:'//localhost:9000/template/batchFind',
+            getSqlContentUrl: '//localhost:9000/template/findSqlTeml',
             collectPrintOrderTags: '//dev.api.b2bcsx.com:8000/wms/shippedorders/collectPrintOrderTags'
         });
         </script>
