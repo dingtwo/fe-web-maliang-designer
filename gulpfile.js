@@ -251,6 +251,10 @@ let terserOptions = {
       DEBUG: false,
     },
   },
+
+  keep_classnames: true,
+  keep_fnames: true,
+  keep_quoted_props: true,
   output: {
     ascii_only: true,
     comments: /^!/,
