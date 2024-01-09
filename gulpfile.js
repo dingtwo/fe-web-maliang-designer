@@ -246,14 +246,11 @@ let terserOptions = {
     drop_console: true,
     drop_debugger: true,
     keep_fargs: false,
-    keep_classnames: true,
-    keep_fnames: true,
     ecma: 2020,
     global_defs: {
       DEBUG: false,
     },
   },
-  mangle: false,
   output: {
     ascii_only: true,
     comments: /^!/,
