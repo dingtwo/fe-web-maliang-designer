@@ -82,6 +82,10 @@ body {
 
 init();
 
+const params = getParams();
+
+window.addEventListener('afterprint', printCount);
+
 function init() {
   const printBtnEle = document.querySelector('#print_btn');
   const pdfContainerElem = document.querySelector('#pdf-container');
@@ -128,6 +132,62 @@ function init() {
   });
 
 }
+
+function printCount() {
+
+  const { callbackData } = params;
+  if (callbackData) {
+    let lastCallBackData = {};
+    let token;
+    try {
+      token = JSON.parse(localStorage.getItem('login-token'));
+    } catch (error) {}
+    if (!token) {
+      console.error('没有 token, 登录失效');
+      reLogin();
+    }
+
+    try {
+      lastCallBackData = JSON.parse(decodeURIComponent(callbackData));
+      const { url, options, ...data } = lastCallBackData;
+      if (!url) {
+        console.error("🚀 ~ file: print-watermark.html:105 ~ printCount ~ url不存在:", url, callbackData)
+        return ;
+      }
+
+
+      const raw = JSON.stringify(data);
+
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+            "login-token": token,
+            "Content-Type": "application/json"
+        },
+        body: raw,
+      };
+
+      fetch(url, requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        console.log("🚀 ~ file: print-watermark.html:173 ~ printCount ~ result:", result)
+      })
+      .catch(error => {
+        console.log("🚀 ~ file: print-watermark.html:174 ~ printCount ~ error:", error)
+
+      });
+
+    } catch (error) {
+      console.log("🚀 ~ file: printCount.ts:54 ~ printCount ~ error:", error, callbackData)
+    }
+  }
+}
+
+let reLogin = () => {
+  /* 重新登陆 */
+  let warning = false;
+  window.location.href = `/?from=${encodeURIComponent(location.href)}`;
+};
 
 function getParams() {
   const url = new URL(location.href);
