@@ -27,7 +27,7 @@
     "dll": "node -v"
   },
   "devDependencies": {
-    "@csx/magix-composer": "^1.0.0",
+    "@csx/magix-composer": "1.0.1",
     "@types/lodash": "^4.14.173",
     "cross-env": "^7.0.3"
   }
