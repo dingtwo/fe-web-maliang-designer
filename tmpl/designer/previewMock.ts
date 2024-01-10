@@ -57,7 +57,7 @@ export class PreviewMock {
       case 'dev':
         return 'OM21082600000129PS';
       case 'sit':
-        return 'OM23032200000008PS';
+        return 'OM24010400001246PS';
       case 'pre':
         return 'OM23032200000033PS';
       case 'prod':
@@ -118,7 +118,7 @@ export class PreviewMock {
       case 'dev':
         return 'OM23032800000002PS';
       case 'sit':
-        return 'OM23032200000008PS';
+        return 'OM24010400001246PS';
       case 'pre':
         return 'OM23032200000033PS';
       case 'prod':
