@@ -37,6 +37,8 @@ export class PreviewMock {
       case '13':
       case '14':
         return this.mockOrder13();
+      case '16':
+        return this.mockOrder16();
       case '18':
         return this.mockOrder18();
       case '19':
@@ -76,6 +78,21 @@ export class PreviewMock {
         return 'JH230221000008';
       case 'prod':
         return 'JH230221000008';
+      default:
+        break;
+    }
+  }
+  // TODO: 生产的单子还得单独捞一下
+  private mockOrder16() {
+    switch (env) {
+      case 'dev':
+        return '101543';
+      case 'sit':
+        return '101543';
+      case 'pre':
+        return '101543';
+      case 'prod':
+        return '101543';
       default:
         break;
     }
