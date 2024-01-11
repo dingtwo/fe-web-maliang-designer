@@ -11,10 +11,10 @@
     nzh "^1.0.4"
     toformat "^2.0.0"
 
-"@csx/magix-composer@1.0.1":
-  version "1.0.1"
-  resolved "http://xnpm.b2bcsx.com/@csx%2fmagix-composer/-/magix-composer-1.0.1.tgz#90c7ad92a4379e6d3ffd07ad87ba352dc3cea0ff"
-  integrity sha512-hwVXZUivyghdHNDZolsgoAxWL2waVEHY5fm8uZ83yoMqZjfjcvPpoho65/nVbZtST5V2pY2+gX4xx+Q20kEF3Q==
+"@csx/magix-composer@^1.0.5-sit.0":
+  version "1.0.5-sit.0"
+  resolved "http://xnpm.b2bcsx.com/@csx%2fmagix-composer/-/magix-composer-1.0.5-sit.0.tgz#963c2d300f29e0ea80f23fb1705853aa08fd0fc9"
+  integrity sha512-I5DIH+y7AoqVA9ASxtBXOTNcHlX4uHKT0iyi1xfj8ye9P49w3r69SaQnpmyJwHbX/JcSwW83nPa1vJoB5DvmZg==
   dependencies:
     acorn "8.4.x"
     acorn-walk "8.1.x"
