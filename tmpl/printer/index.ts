@@ -37,8 +37,8 @@ import { generateExcel, generateMergeExcel } from './excel';
 const host = {
   test: 'http://dev.api.b2bcsx.com:8000/maliang/',
   // dev: 'http://dev.api.b2bcsx.com:8000/maliang/',
+  dev: 'http://localhost:9000/',
   sit: 'http://sit.api.b2bcsx.com/maliang/',
-  dev: 'http://localhost:3000/',
   pre: 'http://pre.api.b2bcsx.com/maliang/',
 };
 
@@ -180,6 +180,9 @@ let FormatList = [
  * 数据中心，用来控制分页
  */
 let DataCenter = {};
+let renderBatchTotal = 0;
+let renderBatchIndex = 0;
+let renderBatchPageSize = 10000;
 
 // 全局参数,为以后改成post传参准备，现在主持从puppeteer获取
 let GlobalParams = {};
@@ -381,6 +384,9 @@ export default View.extend({
     (window as any).getRenderStatus = () => {
       return this.get('renderStatus');
     };
+    (window as any).getRenderBatchTotal = () => {
+      return renderBatchTotal;
+    };
     // 打印完成之后，调用打印次数统计接口
     window.addEventListener('afterprint', printCount);
   },
@@ -395,6 +401,12 @@ export default View.extend({
       hasData: false,
       empty: true,
       sf: 'web',
+      renderBatchIndex,
+      renderBatchPageSize,
+      getRenderBatchIndex: (pageIndex: number) => {
+        const renderBatchIndex = Math.floor(pageIndex / renderBatchPageSize);
+        return renderBatchIndex;
+      }
     });
 
     /*
@@ -1076,7 +1088,11 @@ export default View.extend({
 
     Toast.show('等待页面生成...');
     console.log('dataCenter', DataCenter);
-    console.log('pages', pages);
+    console.log('总页数pages', pages, pagers);
+
+    renderBatchTotal = pages.length;
+    console.log("🚀 ~ file: index.ts:1094 ~ renderBatchTotal:", renderBatchTotal);
+
     await this.digest({
       renderStatus: 'pending',
       stage,
@@ -1087,6 +1103,7 @@ export default View.extend({
       pages,
       pageList: pageList,
       loading: false,
+      renderBatchTotal,
     });
     await lowTaskFinale(); //等待所有子组件任务完成
     await delay(500); //延迟等子组件
@@ -1207,6 +1224,20 @@ export default View.extend({
     }
 
     window.print();
+  },
+  '@:{renderBatch}<click>'() {
+
+    this.digest({
+      renderBatchIndex,
+    });
+
+    setTimeout(() => {
+      const win = window as any;
+      console.log("🚀 ~ file: index.ts:1231 ~ setTimeout ~ win.renderPdf:", win.renderPdf)
+      win.renderPdf(renderBatchIndex, renderBatchPageSize, renderBatchTotal);
+      renderBatchIndex ++;
+    }, 1000); // 1s后出发 可能没重绘完
+
   },
   // '@:{lodop.setting}<click>'() {
   //     this.mxDialog('@:./lodop/setting', {
@@ -1760,12 +1791,23 @@ export default View.extend({
     this['@:{render.page.by.json}'](Generic['@:{try.parse.json}'](data));
   },
   /**
+   * 通过window派发renderBatch事件
+   * @param e 渲染事件对象
+   */
+  '$win<renderBatch>'(e) {
+    this['@:{renderBatch}<click>']();
+
+  },
+  /**
    * 通过window派发render事件时，为rds提供的接口
    * @param e 渲染事件对象
    */
   '$win<render>'(e) {
     console.log('远程触发', e);
     const stages = Generic['@:{try.parse.json}'](e.json);
+    if (e.renderBatchPageSize) {
+      renderBatchPageSize = Generic['@:{try.parse.json}'](e.renderBatchPageSize);
+    }
     GlobalParams['products'] = Generic['@:{try.parse.json}'](e.products);
     this['@:{render.page.by.json}'](stages);
   },

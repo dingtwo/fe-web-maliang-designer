@@ -29,6 +29,7 @@ export class PreviewMock {
   }
 
   get mockOrder() {
+            //  sql模板的预览时在数据源接口时候写死的数据, 并不是通过单号请求, 因此直接在sql数据源接口中,判断preview为1时,直接返回mock数据
     switch (this.scene) {
       case '1':
       case '7':
@@ -36,6 +37,8 @@ export class PreviewMock {
       case '13':
       case '14':
         return this.mockOrder13();
+      case '16':
+        return this.mockOrder16();
       case '18':
         return this.mockOrder18();
       case '19':
@@ -54,7 +57,7 @@ export class PreviewMock {
       case 'dev':
         return 'OM21082600000129PS';
       case 'sit':
-        return 'OM23032200000008PS';
+        return 'OM24010400001246PS';
       case 'pre':
         return 'OM23032200000033PS';
       case 'prod':
@@ -75,6 +78,21 @@ export class PreviewMock {
         return 'JH230221000008';
       case 'prod':
         return 'JH230221000008';
+      default:
+        break;
+    }
+  }
+  // TODO: 生产的单子还得单独捞一下
+  private mockOrder16() {
+    switch (env) {
+      case 'dev':
+        return '101543';
+      case 'sit':
+        return '101543';
+      case 'pre':
+        return '101543';
+      case 'prod':
+        return '101543';
       default:
         break;
     }
@@ -100,7 +118,7 @@ export class PreviewMock {
       case 'dev':
         return 'OM23032800000002PS';
       case 'sit':
-        return 'OM23032200000008PS';
+        return 'OM24010400001246PS';
       case 'pre':
         return 'OM23032200000033PS';
       case 'prod':
