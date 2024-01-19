@@ -288,8 +288,12 @@ const fetchAllAPI = async apiMap => {
         templateId: _.first(_.last(order)),
         dataSourceId: _.last(_.last(order)),
       }));
+      try {
+        return await fetchItemApi(url, params);
+      } catch (error) {
+        reject(error);
+      }
 
-      return await fetchItemApi(url, params);
     });
 
     return Promise.all(promises).then(resolve).catch(reject);
