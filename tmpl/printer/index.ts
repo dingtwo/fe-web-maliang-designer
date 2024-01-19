@@ -390,7 +390,11 @@ export default View.extend({
     // 打印完成之后，调用打印次数统计接口
     window.addEventListener('afterprint', printCount);
   },
-
+  async setRenderStatusError() {
+    await this.digest({
+      renderStatus: 'error'
+    })
+  },
   async render() {
     /**
      * 先渲染界面
@@ -577,6 +581,7 @@ export default View.extend({
           console.log('打印模板', stages);
           this['@:{render.page.by.json}'](stages);
         } else {
+          this.setRenderStatusError();
           Toast.show(ex.message);
         }
       },
@@ -996,8 +1001,14 @@ export default View.extend({
     progress.start(apiMap.size);
     console.log('收集接口', apiMap);
 
-    //先加载数据
-    await fetchAllAPI(apiMap);
+    try {
+      //先加载数据
+      await fetchAllAPI(apiMap);
+    } catch (error) {
+      console.log("🚀 ~ fetchAllAPI error:", error);
+      await this.setRenderStatusError();
+    }
+
 
     this['@:{update.api.by.tax}'](apiMap);
     // 数据算完要算新的 stages;
