@@ -288,11 +288,8 @@ const fetchAllAPI = async apiMap => {
         templateId: _.first(_.last(order)),
         dataSourceId: _.last(_.last(order)),
       }));
-      try {
-        return await fetchItemApi(url, params);
-      } catch (error) {
-        reject(error);
-      }
+
+      return fetchItemApi(url, params);
 
     });
 
@@ -1011,6 +1008,7 @@ export default View.extend({
     } catch (error) {
       console.log("🚀 ~ fetchAllAPI error:", error);
       await this.setRenderStatusError();
+      throw error;
     }
 
 
