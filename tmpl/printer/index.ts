@@ -385,15 +385,19 @@ export default View.extend({
     (window as any).getRenderStatus = () => {
       return this.get('renderStatus');
     };
+    (window as any).getRenderMsg = () => {
+      return this.get('renderMsg');
+    };
     (window as any).getRenderBatchTotal = () => {
       return renderBatchTotal;
     };
     // 打印完成之后，调用打印次数统计接口
     window.addEventListener('afterprint', printCount);
   },
-  async setRenderStatusError() {
+  async setRenderStatusError(renderMsg: string) {
     await this.digest({
-      renderStatus: 'error'
+      renderStatus: 'error',
+      renderMsg,
     })
   },
   async render() {
@@ -582,7 +586,7 @@ export default View.extend({
           console.log('打印模板', stages);
           this['@:{render.page.by.json}'](stages);
         } else {
-          this.setRenderStatusError();
+          this.setRenderStatusError(ex.message);
           Toast.show(ex.message);
         }
       },
@@ -1007,7 +1011,7 @@ export default View.extend({
       await fetchAllAPI(apiMap);
     } catch (error) {
       console.log("🚀 ~ fetchAllAPI error:", error);
-      await this.setRenderStatusError();
+      await this.setRenderStatusError(error?.message);
       throw error;
     }
 
