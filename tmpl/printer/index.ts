@@ -289,7 +289,8 @@ const fetchAllAPI = async apiMap => {
         dataSourceId: _.last(_.last(order)),
       }));
 
-      return await fetchItemApi(url, params);
+      return fetchItemApi(url, params);
+
     });
 
     return Promise.all(promises).then(resolve).catch(reject);
@@ -384,13 +385,21 @@ export default View.extend({
     (window as any).getRenderStatus = () => {
       return this.get('renderStatus');
     };
+    (window as any).getRenderMsg = () => {
+      return this.get('renderMsg');
+    };
     (window as any).getRenderBatchTotal = () => {
       return renderBatchTotal;
     };
     // 打印完成之后，调用打印次数统计接口
     window.addEventListener('afterprint', printCount);
   },
-
+  async setRenderStatusError(renderMsg: string) {
+    await this.digest({
+      renderStatus: 'error',
+      renderMsg,
+    })
+  },
   async render() {
     /**
      * 先渲染界面
@@ -577,6 +586,7 @@ export default View.extend({
           console.log('打印模板', stages);
           this['@:{render.page.by.json}'](stages);
         } else {
+          this.setRenderStatusError(ex.message);
           Toast.show(ex.message);
         }
       },
@@ -996,8 +1006,15 @@ export default View.extend({
     progress.start(apiMap.size);
     console.log('收集接口', apiMap);
 
-    //先加载数据
-    await fetchAllAPI(apiMap);
+    try {
+      //先加载数据
+      await fetchAllAPI(apiMap);
+    } catch (error) {
+      console.log("🚀 ~ fetchAllAPI error:", error);
+      await this.setRenderStatusError(error?.message);
+      throw error;
+    }
+
 
     this['@:{update.api.by.tax}'](apiMap);
     // 数据算完要算新的 stages;
