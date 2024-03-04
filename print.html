@@ -74,8 +74,27 @@
                     d="M443.9 577.6c36.7 36.7 95.9 36.7 132.6 0 36.7-36.7 36.7-95.9 0-132.6-36.7-36.7-95.9-36.7-132.6 0-36.7 36.2-36.7 95.9 0 132.6zm0 0"
                     fill="#fa742b" />
             </svg></div>
-        <script type="text/javascript" src="dist/printer.js?v=202303062042"></script>
+        <script type="text/javascript" src="dist/printer.js?v=202403041649"></script>
         <script>
+
+            function getParams() {
+              const url = new URL(location.href);
+              const params = {};
+              url.searchParams.forEach((value, key) => {
+                try {
+                  params[key] = decodeURIComponent(value);
+                  if (key === 'watermark') {
+                    params[key] = JSON.parse(params[key]);
+                  }
+                } catch (error) {
+                  console.log("🚀 ~ url.searchParams.forEach ~ error:", error)
+                }
+              });
+
+              return params;
+            }
+
+            window.grayVersion = getParams('traceId') ? '1' : '';
 
             function getEnv() {
                 console.log('环境', window.RUN_CONFIG);
@@ -84,11 +103,11 @@
             }
 
             var host = {
-                'prod': 'http://api.b2bcsx.com/maliang',
-                'test': 'http://dev.api.b2bcsx.com:8000/maliang',
-                'sit': 'http://sit.api.b2bcsx.com/maliang',
-                'dev': 'http://dev.api.b2bcsx.com:8000/maliang',
-                'pre': 'http://pre.api.b2bcsx.com/maliang'
+                'prod': `http://api.b2bcsx.com/maliang${window.grayVersion}`,
+                'test': `http://dev.api.b2bcsx.com:8000/maliang${window.grayVersion}`,
+                'sit': `http://sit.api.b2bcsx.com/maliang${window.grayVersion}`,
+                'dev': `http://dev.api.b2bcsx.com:8000/maliang${window.grayVersion}`,
+                'pre': `http://pre.api.b2bcsx.com/maliang${window.grayVersion}`,
             }
             var wmsHost = {
                 'prod': 'http://api.b2bcsx.com/wms',
@@ -98,7 +117,7 @@
                 'pre': 'http://pre.api.b2bcsx.com/wms'
             }
             designer.setup({
-            version:'202303062042',
+            version:'202403041649',
                 rds: '//localhost:9988/',
                 getContentUrl: host[getEnv()] +'/template/findById',
                 /** 批量打印 */
