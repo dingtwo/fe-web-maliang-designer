@@ -94,7 +94,7 @@
               return params;
             }
 
-            window.grayVersion = getParams('traceId') ? '1' : '';
+            window.grayVersion = getParams().traceId ? '1' : '';
 
             function getEnv() {
                 console.log('环境', window.RUN_CONFIG);
