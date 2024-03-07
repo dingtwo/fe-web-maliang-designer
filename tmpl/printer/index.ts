@@ -1015,10 +1015,11 @@ export default View.extend({
       const hasData = (dataList as object[]).some(item => Object.keys(item).length);
       if (!hasData) {
         await this.setRenderStatusError('暂无数据');
+        throw new Error("暂无数据")
       }
     } catch (error) {
       console.log("🚀 ~ fetchAllAPI error:", error);
-      await this.setRenderStatusError(error?.message);
+      await this.setRenderStatusError(error?.message || error);
       throw error;
     }
 
