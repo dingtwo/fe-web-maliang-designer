@@ -1011,11 +1011,14 @@ export default View.extend({
       //先加载数据
       const dataList = await fetchAllAPI(apiMap);
       console.log("🚀 ~ dataList:", dataList)
-      // 检查所有数据是否为空
-      const hasData = (dataList as object[]).some(item => Object.keys(item).length);
-      if (!hasData) {
-        await this.setRenderStatusError('暂无数据');
-        throw new Error("暂无数据")
+
+      if ((window as any).grayVersion) {
+        // 检查所有数据是否为空
+        const hasData = (dataList as object[]).some(item => Object.keys(item).length);
+        if (!hasData) {
+          await this.setRenderStatusError('暂无数据');
+          throw new Error("暂无数据")
+        }
       }
     } catch (error) {
       console.log("🚀 ~ fetchAllAPI error:", error);
