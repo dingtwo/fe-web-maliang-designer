@@ -255,7 +255,7 @@ const fetchItemApi = async (api, params) => {
             delete dest['@:{loading}'];
           });
 
-          resolve(void 0);
+          resolve(data);
         }
       },
     );
@@ -1009,7 +1009,13 @@ export default View.extend({
 
     try {
       //先加载数据
-      await fetchAllAPI(apiMap);
+      const dataList = await fetchAllAPI(apiMap);
+      console.log("🚀 ~ dataList:", dataList)
+      // 检查所有数据是否为空
+      const hasData = (dataList as object[]).some(item => Object.keys(item).length);
+      if (!hasData) {
+        await this.setRenderStatusError('暂无数据');
+      }
     } catch (error) {
       console.log("🚀 ~ fetchAllAPI error:", error);
       await this.setRenderStatusError(error?.message);
