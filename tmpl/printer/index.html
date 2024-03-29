@@ -5,7 +5,7 @@
  * @LastEditTime: 2023-02-22 15:55:09
  * @LastEditors: zhanghao
 -->
-<div class="header flex align-items-center">
+<div class="header flex align-items-center" style="display:{{=onlyPreview ? 'none' : ''}}">
   {{if inner}}
   <button class="btn tc cursor-pointer mr10" mx-click="@:{open.with.id}()">独立使用打印页面-fixme</button>
   {{/if}}

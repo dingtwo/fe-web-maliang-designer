@@ -380,6 +380,7 @@ export default View.extend({
   init() {
     this.set({
       getPageAttr: getPageAttr,
+
     });
 
     // 获取渲染进度
@@ -402,6 +403,11 @@ export default View.extend({
     })
   },
   async render() {
+     /*
+    以下根据地址栏有无id来决定是否发送请求来获取某个id的具体内容
+    */
+    let { params } = parseUrl(location.href);
+
     /**
      * 先渲染界面
      */
@@ -411,6 +417,7 @@ export default View.extend({
       hasData: false,
       empty: true,
       sf: 'web',
+      onlyPreview: params.onlyPreview === '1' ? true : false,
       renderBatchIndex,
       renderBatchPageSize,
       getRenderBatchIndex: (pageIndex: number) => {
@@ -419,10 +426,6 @@ export default View.extend({
       }
     });
 
-    /*
-    以下根据地址栏有无id来决定是否发送请求来获取某个id的具体内容
-    */
-    let { params } = parseUrl(location.href);
 
     // 检查是不是预览环境，如果是，就不去请求查询模板接口
     if (params.preview === '1' || params.puppeteer === '1') {
