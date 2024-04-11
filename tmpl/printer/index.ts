@@ -559,6 +559,7 @@ export default View.extend({
     }
 
     let s = new Service();
+    // debugger;
 
     s.all(
       {
@@ -571,13 +572,31 @@ export default View.extend({
           //如果请求未有异常，则根据请求回来的数据进行渲染界面
           // excel 导出的模板
           const excelTemplates = _.filter(bag.get('data'), { type: 2 });
+          // debugger;
           // 马良打印的模板
           const maliangTemplates = _.filter(bag.get('data'), item => item.type !== 2);
           if (excelTemplates.length > 0) {
+            let { params: urlParams } = parseUrl(location.href);
+            const dataSourcePrams = excelTemplates.map(item => {
+              return {
+                templateId: item.id,
+                orderCode: item.orderCode,
+                dataSourceId: undefined, // TODO 未来支持excel 通过formatFun获取数据源
+              };
+            })
+//             dataSourceId
+// :
+// "-2"
+// orderCode
+// :
+// "OM24040100000312ZS,OM24040200000196ZS,OM24040200000428ZS-!"
+// templateId
+// :
+// "10"
             if (params.scene === '1') {
-              generateExcel(excelTemplates);
+              generateExcel({ params: dataSourcePrams, ...urlParams, ...GlobalParams, templates: excelTemplates});
             } else if (params.scene === '7') {
-              generateMergeExcel(excelTemplates);
+              generateMergeExcel({ params: dataSourcePrams, ...urlParams, ...GlobalParams, templates: excelTemplates});
             }
           }
 

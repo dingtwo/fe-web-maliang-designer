@@ -230,7 +230,7 @@ RDService.add([
   },
   {
     name: '@:{print.excel}',
-    '@:{method}': 'get',
+    '@:{method}': 'post',
     url: `${getHost()}/maliang/print/excel`,
     // url: `http://localhost:9000/print/excel`,
   },
