@@ -9,7 +9,7 @@ export const getExcel = params => {
   service.all(
     {
       name: '@:{print.excel}',
-      '@:{query}': params,
+      '@:{body}': JSON.stringify(params || {}),
     },
     (err: { message: string }, bag) => {
       if (err) {
@@ -29,7 +29,7 @@ export const getExcel = params => {
 
 export const generateExcel = templates => {
   console.log('excel 模板数据', templates);
-  getExcel({});
+  getExcel(templates);
   // _.map(templates, ({ id, orderCode }) => getExcel({ templateId: id, orderCode }));
 };
 
@@ -39,5 +39,5 @@ export const generateExcel = templates => {
  */
 export const generateMergeExcel = templates => {
   console.log('excel 模板数据', templates);
-  getExcel({});
+  getExcel(templates);
 };

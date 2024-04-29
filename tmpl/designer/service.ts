@@ -140,6 +140,9 @@ let RDService = Service.extend((bag, callback) => {
   if (body) {
     options.body = body;
   }
+
+
+  url = url.replace('/maliang/', `/maliang${window.grayVersion || ''}/`);
   //如果需要jsonp，则把上面的jsonp函数解除注释，在这里根据情况调用send或jsonp函数即可
   //对于jsonp，只有get方法，没有post方法，所以在jsonp里，会把body中的参数拼接到url里，超长会被截断，这里需要注意
   //所以优先使用fetch方法进行跨域请求
@@ -230,7 +233,7 @@ RDService.add([
   },
   {
     name: '@:{print.excel}',
-    '@:{method}': 'get',
+    '@:{method}': 'post',
     url: `${getHost()}/maliang/print/excel`,
     // url: `http://localhost:9000/print/excel`,
   },
