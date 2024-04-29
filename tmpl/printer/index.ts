@@ -577,7 +577,7 @@ export default View.extend({
           const maliangTemplates = _.filter(bag.get('data'), item => item.type !== 2);
           if (excelTemplates.length > 0) {
             let { params: urlParams } = parseUrl(location.href);
-            const dataSourcePrams = excelTemplates.map(item => {
+            const dataSourceParams = excelTemplates.map(item => {
               return {
                 templateId: item.id,
                 orderCode: item.orderCode,
@@ -594,9 +594,9 @@ export default View.extend({
 // :
 // "10"
             if (params.scene === '1') {
-              generateExcel({ params: dataSourcePrams, ...urlParams, ...GlobalParams, templates: excelTemplates});
+              generateExcel({ params: dataSourceParams, ...urlParams, ...GlobalParams, templates: excelTemplates});
             } else if (params.scene === '7') {
-              generateMergeExcel({ params: dataSourcePrams, ...urlParams, ...GlobalParams, templates: excelTemplates});
+              generateMergeExcel({ params: dataSourceParams, ...urlParams, ...GlobalParams, templates: excelTemplates});
             }
           }
 
