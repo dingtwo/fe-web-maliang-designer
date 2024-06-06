@@ -265,7 +265,8 @@ export default {
         const dateDataList = _.split(dateData, ',');
 
         const dateDataListFormat = _.map(dateDataList, item => dayjs(item, rulesText).format(rulesText));
-        return _.join(dateDataListFormat, ',');
+        const noRepeatDateDataListFormat = _.uniq(dateDataListFormat);
+        return _.join(noRepeatDateDataListFormat, ',');
       }
 
       return dayjs(dateData, rulesText).format(rulesText);
