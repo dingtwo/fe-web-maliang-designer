@@ -16,6 +16,7 @@ import {
   calcDate,
 } from './formatConfig';
 
+window.aa = { lodash: _, calc, nzhCn, dayjs };
 dayjs.extend(customParseFormat);
 
 let groups = [
@@ -228,7 +229,7 @@ export default {
           fnCache.set(key, fn);
         }
         try {
-          return fn(data, ...exts, { lodash: _, calc, nzhCn });
+          return fn(data, ...exts, { lodash: _, calc, nzhCn, dayjs });
         } catch (ex) {
           return ex.message;
         }
@@ -259,6 +260,14 @@ export default {
         _.filter(_.split(_.join(newParts, ''), '#'), item => item),
         ' ',
       );
+
+      if(dateData.includes(',')) {
+        const dateDataList = _.split(dateData, ',');
+
+        const dateDataListFormat = _.map(dateDataList, item => dayjs(item, rulesText).format(rulesText));
+        const noRepeatDateDataListFormat = _.uniq(dateDataListFormat);
+        return _.join(noRepeatDateDataListFormat, ',');
+      }
 
       return dayjs(dateData, rulesText).format(rulesText);
     } else if (prefix) {
