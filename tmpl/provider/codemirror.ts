@@ -2,7 +2,7 @@ import Runner from '../gallery/mx-runner/index';
 let loadingList = [];
 let state = 1;
 let rejectMsg = 'can not load codemirror library';
-let base = '//unpkg.b2bcsx.com/codemirror@5.65.16/lib/';
+let base = '//cdn.staticfile.net/codemirror/5.62.2/';
 let preloads = [base + 'codemirror.min.css', base + 'codemirror.min.js'];
 let loadResource = src => {
     return new Promise<void>(resolve => {
