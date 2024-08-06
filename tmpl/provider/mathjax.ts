@@ -1,4 +1,4 @@
-let dest = '//unpkg.com/mathjax@3.2.0/es5/tex-svg.js';
+let dest = '//lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/mathjax/3.2.0/es5/tex-svg.js';
 let loadingList = [];
 let state = 1;
 let rejectMsg = 'can not load mathjax library';
