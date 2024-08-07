@@ -2,7 +2,7 @@ import Runner from '../gallery/mx-runner/index';
 let loadingList = [];
 let state = 1;
 let rejectMsg = 'can not load map library';
-let base = 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.';
+let base = 'http://unpkg.b2bcsx.com/leaflet@1.7.1/dist/leaflet.';
 let preloads = [base + 'css', base + 'js'];
 let loadResource = src => {
     return new Promise<void>(resolve => {

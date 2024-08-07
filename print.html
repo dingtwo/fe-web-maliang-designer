@@ -74,7 +74,7 @@
                     d="M443.9 577.6c36.7 36.7 95.9 36.7 132.6 0 36.7-36.7 36.7-95.9 0-132.6-36.7-36.7-95.9-36.7-132.6 0-36.7 36.2-36.7 95.9 0 132.6zm0 0"
                     fill="#fa742b" />
             </svg></div>
-        <script type="text/javascript" src="dist/printer.js?v=202403041649"></script>
+        <script type="text/javascript" src="dist/printer.js?v=202408051549"></script>
         <script>
 
             function getParams() {
@@ -94,7 +94,11 @@
               return params;
             }
 
-            window.grayVersion = getParams().traceId ? '1' : '';
+            const params = getParams();
+            window.grayVersion = params.traceId ? '1' : '';
+            if (params.env) {
+              window.RUN_CONFIG.env = params.env;
+            }
 
             function getEnv() {
                 console.log('环境', window.RUN_CONFIG);
@@ -103,6 +107,11 @@
             }
 
             var host = {
+                'prodw': `https://wapi.freshfood.cn/maliang${window.grayVersion}`,
+                'testw': `https://tapi.freshfood.cn/maliang${window.grayVersion}`,
+                'devw': `https://tapi.freshfood.cn/maliang${window.grayVersion}`,
+                'sitw': `https://sitwapi.freshfood.cn/maliang${window.grayVersion}`,
+                'prew': `https://prewapi.freshfood.cn/maliang${window.grayVersion}`,
                 'prod': `http://api.b2bcsx.com/maliang${window.grayVersion}`,
                 'test': `http://dev.api.b2bcsx.com:8000/maliang${window.grayVersion}`,
                 'sit': `http://sit.api.b2bcsx.com/maliang${window.grayVersion}`,
@@ -110,6 +119,11 @@
                 'pre': `http://pre.api.b2bcsx.com/maliang${window.grayVersion}`,
             }
             var wmsHost = {
+                'prodw': 'https://wapi.freshfood.cn/wms',
+                'testw': 'https://tapi.freshfood.cn/wms',
+                'devw': 'https://tapi.freshfood.cn/wms',
+                'sitw': 'https://sitwapi.freshfood.cn/wms',
+                'prew': 'https://prewapi.freshfood.cn/wms',
                 'prod': 'http://api.b2bcsx.com/wms',
                 'test': 'http://dev.api.b2bcsx.com:8000/wms',
                 'sit': 'http://sit.api.b2bcsx.com/wms',
@@ -117,7 +131,7 @@
                 'pre': 'http://pre.api.b2bcsx.com/wms'
             }
             designer.setup({
-            version:'202403041649',
+            version:'202408051549',
                 rds: '//localhost:9988/',
                 getContentUrl: host[getEnv()] +'/template/findById',
                 /** 批量打印 */

@@ -35,9 +35,14 @@ import { generateExcel, generateMergeExcel } from './excel';
 
 // 各环境接口地址
 const host = {
+  testw: 'https://tapi.freshfood.cn/maliang/',
+  devw: 'https://tapi.freshfood.cn/maliang/',
+  // devw: 'http://localhost:9001/',
+  sitw: 'https://sitwapi.freshfood.cn/maliang/',
+  prew: 'https://prewapi.freshfood.cn/maliang/',
   test: 'http://dev.api.b2bcsx.com:8000/maliang/',
   // dev: 'http://dev.api.b2bcsx.com:8000/maliang/',
-  dev: 'http://localhost:9000/',
+  dev: 'http://localhost:9001/',
   sit: 'http://sit.api.b2bcsx.com/maliang/',
   pre: 'http://pre.api.b2bcsx.com/maliang/',
 };
@@ -214,15 +219,20 @@ const fetchItemApi = async (api, params) => {
     const s = new Service();
     // 在这做一次 url 的替换
     let reqUrl = api;
+    const win = window as any;
     // http://preapi.freshfood.cn/maliang/data-source/wms?isItems=1&id=1&v=202208251429&orders=OM22082500001531ZS%2COM22082500001553ZT%2COM22082500001546PS&scene=1&needSplitTag=1
-    if (window.RUN_CONFIG && window.RUN_CONFIG.env !== 'prod') {
-      const origin = host[window.RUN_CONFIG.env];
+    if (win.RUN_CONFIG && win.RUN_CONFIG.env !== 'prod') {
+      const origin = host[win.RUN_CONFIG.env];
       reqUrl = api.replace(/^http(s)?:\/\/(.*?)\/maliang\//, origin);
     }
-    if (window.RUN_CONFIG && window.RUN_CONFIG.env === 'prod') {
+    if (win.RUN_CONFIG && win.RUN_CONFIG.env === 'prod') {
       reqUrl = api.replace('api.freshfood.cn', 'api.b2bcsx.com');
     }
-    reqUrl = reqUrl.replace('/maliang/', `/maliang${window.grayVersion || ''}/`);
+    if (win.RUN_CONFIG?.env === 'prodw') {
+      reqUrl = api.replace(/https?:\/\/api\.freshfood\.cn/, 'https://wapi.freshfood.cn')
+                  .replace(/https?:\/\/api\.b2bcsx\.com/, 'https://wapi.freshfood.cn');
+    }
+    reqUrl = reqUrl.replace('/maliang/', `/maliang${win.grayVersion || ''}/`);
     s.all(
       {
         name: '@:{post.by.url}',

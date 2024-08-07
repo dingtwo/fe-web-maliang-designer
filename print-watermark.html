@@ -84,7 +84,7 @@ init();
 
 const params = getParams();
 
-window.addEventListener('afterprint', printCount);
+window.addEventListener('afterprint', confirmPrintTip);
 
 function init() {
   const printBtnEle = document.querySelector('#print_btn');
@@ -131,6 +131,55 @@ function init() {
     print();
   });
 
+}
+
+function confirmPrintTip() {
+  reConfirm({
+    title: "提示",//题目
+    text: "确认打印完成?"//题目内容
+  })
+    .then(function () {
+      printCount();
+    })
+    .catch(function () {
+      console.log('no print')
+    })
+}
+
+function reConfirm(obj) {
+  let { title, text } = obj
+  let confirmElem = document.createElement('div');
+  confirmElem.innerHTML = `
+    <div id="mask">
+    <div id="confirmBox">
+    <div id="confirmTitle">${title}</div>
+    <div id="confirmText">
+          ${text}
+    </div>
+    <div id="confirmButton">
+      <button>取消</button>
+      <button>确定</button>
+    </div>
+    </div>
+    </div>
+  `;
+  document.body.appendChild(confirmElem)
+  //渲染组件
+  let ConfirmPromise = new Promise((resolve, reject) => {
+    let bu = confirmElem.getElementsByTagName('button')
+    bu[0].addEventListener('click', function () {
+      document.body.removeChild(confirmElem)
+      //移除组件
+      reject()
+    })
+    bu[1].addEventListener('click', function () {
+      document.body.removeChild(confirmElem)
+      //移除组件
+      resolve()
+    })
+  })
+  //绑定点击事件
+  return ConfirmPromise;
 }
 
 function printCount() {
