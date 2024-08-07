@@ -1,4 +1,4 @@
-let dest = 'https://unpkg.freshfood.cn/mathjax@3.2.0/es5/tex-svg.js';
+let dest = 'http://unpkg.b2bcsx.com/mathjax@3.2.0/es5/tex-svg.js';
 let loadingList = [];
 let state = 1;
 let rejectMsg = 'can not load mathjax library';
