@@ -230,9 +230,13 @@ const fetchItemApi = async (api, params) => {
     }
     if (win.RUN_CONFIG?.env === 'prodw') {
       reqUrl = api.replace(/https?:\/\/api\.freshfood\.cn/, 'https://wapi.freshfood.cn')
-                  .replace(/https?:\/\/api\.b2bcsx\.com/, 'https://wapi.freshfood.cn')
-                  .replace(':80/', '/');
+                  .replace(/https?:\/\/api\.b2bcsx\.com/, 'https://wapi.freshfood.cn');
     }
+
+    if (/^https:\/\//.test(reqUrl)) {
+      reqUrl = reqUrl.replace(':80/', '/');
+    }
+
     reqUrl = reqUrl.replace('/maliang/', `/maliang${win.grayVersion || ''}/`);
     s.all(
       {
