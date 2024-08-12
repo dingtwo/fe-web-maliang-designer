@@ -195,6 +195,7 @@ export class PreviewMock {
   }
   private mockParams24(scene) {
     return {
+      ...this.baseParams,
       orders: this.mockOrder24(),
       scene,
       warehouseCode: 'W0A8',
