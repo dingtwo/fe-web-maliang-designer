@@ -116,11 +116,11 @@ export class PreviewMock {
   private mockOrder24() {
     switch (env) {
       case 'dev':
-        return 'POW0BR240808010766';
+        return 'POW0A7240809000240';
       case 'sit':
-        return 'POW0BR240808010766';
+        return 'POW0A7240809000240';
       case 'pre':
-        return 'POW0BR240808010766';
+        return 'POW0A8240809000397';
       case 'prod':
         return 'POW0BR240808010766';
       default:
