@@ -8,5 +8,5 @@ let baseUrl = DEBUG ? './print-debug.html' : './print.html';
  */
 export const getPreviewUrl = () => {
   let mock = new PreviewMock();
-  return toUrl(baseUrl, mock.mockParams);
+  return toUrl(baseUrl, {...mock.mockParams, traceId: 'mock-preview'});
 };

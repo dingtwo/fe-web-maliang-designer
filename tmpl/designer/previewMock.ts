@@ -113,6 +113,21 @@ export class PreviewMock {
     }
   }
 
+  private mockOrder24() {
+    switch (env) {
+      case 'dev':
+        return 'POW0A8240804000011';
+      case 'sit':
+        return 'POW0A8240804000011';
+      case 'pre':
+        return 'POW0A8240809000397';
+      case 'prod':
+        return 'POW0BR240808010766';
+      default:
+        break;
+    }
+  }
+
   private mockOrder13() {
     switch (env) {
       case 'dev':
@@ -139,6 +154,10 @@ export class PreviewMock {
         return this.mockParams18();
       case '19':
         return this.mockParams19();
+      case '24':
+        return this.mockParams24(24);
+      case '25':
+        return this.mockParams24(25);
       case '9':
       case '10':
       case '12':
@@ -171,6 +190,14 @@ export class PreviewMock {
     return {
       orders: this.mockOrder19(),
       scene: 19,
+      warehouseCode: 'W0A8',
+    };
+  }
+  private mockParams24(scene) {
+    return {
+      ...this.baseParams,
+      orders: this.mockOrder24(),
+      scene,
       warehouseCode: 'W0A8',
     };
   }
