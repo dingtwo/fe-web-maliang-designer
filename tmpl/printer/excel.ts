@@ -4,13 +4,25 @@ import Service from '../designer/service';
 import _ from '../provider/lodash.min.js';
 import { printCount } from './printCount';
 
+const { parseUrl, } = Magix;
+
 export const getExcel = params => {
   const service = new Service();
-  service.all(
+  const { params: urlParams } = parseUrl(location.href);
+
+  const methodType = urlParams.traceId ? 'post' : 'get';
+
+  let options = methodType === 'post' ?
     {
       name: '@:{print.excel}',
       '@:{body}': JSON.stringify(params || {}),
-    },
+    }: {
+      name: '@:{print.excelGet}',
+      '@:{query}': params,
+    };
+
+  service.all(
+    options,
     (err: { message: string }, bag) => {
       if (err) {
         console.log('excel 异常', `${err.message}`);
