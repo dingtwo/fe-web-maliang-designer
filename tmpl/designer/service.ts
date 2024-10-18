@@ -238,6 +238,12 @@ RDService.add([
     // url: `http://localhost:9000/print/excel`,
   },
   {
+    name: '@:{print.excelGet}',
+    '@:{method}': 'get',
+    url: `${getHost()}/maliang/print/excel`,
+    // url: `http://localhost:9000/print/excel`,
+  },
+  {
     name: '@:{get.format.fun}',
     '@:{method}': 'post',
     url: config('getFormatFunUrl'),
