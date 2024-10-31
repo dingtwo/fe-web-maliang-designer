@@ -583,8 +583,7 @@ export default View.extend({
         s.all(
         {
           name: '@:{get.fields}',
-        }, (err, bag, aa) => {
-          console.log("🚀 ~ aa:", aa)
+        }, (err, bag) => {
           if (err?.message) {
             console.log('有错误', err.message);
             if (
