@@ -58,7 +58,7 @@ let extractErrorAndData = ({ data: response, token }, url) => {
 let reLogin = () => {
   /* 重新登陆 */
   let warning = false;
-  if (!DEBUG) {
+  if (!DEBUG && location.hostname !== 'localhost') {
     window.location.href = `/?from=${encodeURIComponent(location.href)}`;
   }
 };
@@ -156,6 +156,7 @@ let RDService = Service.extend((bag, callback) => {
       console.log('响应', res);
       if (error) {
         callback({
+          ...res.data,
           message: error,
         });
       } else {

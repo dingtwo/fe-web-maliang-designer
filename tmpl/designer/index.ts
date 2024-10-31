@@ -586,42 +586,56 @@ export default View.extend({
         }, (err, bag) => {
           if (err?.message) {
             console.log('有错误', err.message);
-            /* 重新登陆 */
-            if (!DEBUG) {
-              window.location.href = `/?backUrl=${encodeURIComponent(location.href)}`;
-            } else {
-              let s = new Service();
-              this.confirm(
-                '登录过期,请重新登录,本地点击确定模拟登录',
-                () => {
-                  s.all(
-                    {
-                      name: '@:{post.login}',
-                      '@:{body}': JSON.stringify({
+            if (
+              err &&
+              err.code == 600207 ||
+              err.code == 600201 ||
+              err.code == 600230 ||
+              err.code == 400001001 ||
+              err.code == 160100005 ||
+              err.code == 160100008 ||
+              err.code == 160100009 ||
+              err.code == 160100010
+            ) {
+              /* 重新登陆 */
+              if (!DEBUG && location.hostname !== 'localhost') {
+                  window.location.href = `/?backUrl=${encodeURIComponent(location.href)}`;
+              } else {
+                let s = new Service();
+                this.confirm(
+                  '登录过期,请重新登录,本地点击确定模拟登录',
+                  () => {
+                    s.all(
+                      {
+                        name: '@:{post.login}',
+                        '@:{body}': JSON.stringify({
 
-                        password: 'Aa123456',
-                        username: '15600644622',
-                      }),
-                    },
-                    (err, bag) => {
-                      if (err) {
-                        console.error(err);
-                        return;
-                      }
-                      try {
-                        window.localStorage.setItem(
-                          'login-token',
-                          JSON.stringify(bag.get('token')),
-                        );
-                        window.location.reload();
-                      } catch (error) {}
-                      console.log('登录结果', bag.get('data'), bag.get('token'));
-                    },
-                  );
-                },
-                console.log,
-                '提示',
-              );
+                          password: 'Aa123456',
+                          username: '15600644622',
+                        }),
+                      },
+                      (err, bag) => {
+                        if (err) {
+                          console.error(err);
+                          return;
+                        }
+                        try {
+                          window.localStorage.setItem(
+                            'login-token',
+                            JSON.stringify(bag.get('token')),
+                          );
+                          window.location.reload();
+                        } catch (error) {}
+                        console.log('登录结果', bag.get('data'), bag.get('token'));
+                      },
+                    );
+                  },
+                  console.log,
+                  '提示',
+                );
+              }
+            } else {
+              this.alert(err?.message || '获取数据源失败');
             }
           }
           let dataSourceList = bag.get('data', []);
