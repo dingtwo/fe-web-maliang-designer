@@ -16,7 +16,7 @@ let { parseUrl } = Magix;
  * @param orderCode 订单号
  * @returns
  */
-const ifPlanOrder = (orderCode: string) => /(PS|ZS|ZT)$/.test(orderCode.toUpperCase());
+const ifPlanOrder = (orderCode: string) => /(PS|ZS|ZT|BS)$/.test(orderCode.toUpperCase());
 
 export const printCount = () => {
   let { params } = parseUrl(location.href);
