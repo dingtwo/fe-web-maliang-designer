@@ -225,7 +225,7 @@ const fetchItemApi = async (api, params) => {
       const origin = host[win.RUN_CONFIG.env];
       reqUrl = api.replace(/^http(s)?:\/\/(.*?)\/maliang\//, origin);
     }
-    if (win.RUN_CONFIG && win.RUN_CONFIG.env === 'prod') {
+    if (win.RUN_CONFIG && win.RUN_CONFIG.env === 'prod' && !api.includes('scwapi.freshfood.cn')) {
       reqUrl = api.replace('api.freshfood.cn', 'api.b2bcsx.com');
     }
     if (win.RUN_CONFIG?.env === 'prodw') {
