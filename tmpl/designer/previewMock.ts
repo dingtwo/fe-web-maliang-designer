@@ -103,11 +103,11 @@ export class PreviewMock {
       case 'dev':
         return 'BS230111000006';
       case 'sit':
-        return 'LY230110000003';
+        return 'BS250113001714';
       case 'pre':
-        return 'LY230213000001';
+        return 'BS241218000447';
       case 'prod':
-        return 'LY230329000038';
+        return 'BS250114000406';
       default:
         break;
     }
@@ -190,6 +190,7 @@ export class PreviewMock {
     return {
       orders: this.mockOrder19(),
       scene: 19,
+      type: 1,
       warehouseCode: 'W0A8',
     };
   }
