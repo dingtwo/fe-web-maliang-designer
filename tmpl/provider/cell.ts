@@ -7,7 +7,7 @@ export default {
     '@:{default.width}': 300,
     '@:{default.height}': 100,
     '@:{min.width}': 20,
-    '@:{min.height}': 20,
+    '@:{min.height}': 10, //单元格最小高度
     text: {
         textLetterspacing: 0,
         textForecolor: '#000000',
