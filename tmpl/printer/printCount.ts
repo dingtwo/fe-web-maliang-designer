@@ -28,7 +28,7 @@ export const printCount = () => {
    * 出库单和装车单需要计数
    * 马良自助打印: Number(puppeteer) === 1 不需要计数 , 因为计数是在跟客户端交互的时候触发的
    * */
-  const needPrintScenes = ['1', '7'];
+  const needPrintScenes = ['1', '7', '27'];
   console.log('判断orderCode-1111', orderCode)
   console.log('判断needPrintScenes.includes(scene)-2222', needPrintScenes.includes(scene) )
   console.log('判断puppeteer-3333', Number(puppeteer) === 1)
