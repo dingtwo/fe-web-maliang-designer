@@ -295,7 +295,7 @@ export default {
     bind.url = decodeURIComponent(bind.url);
     if (bind.url && dynamicCols && dataCenter[bind.url]) {
       let { '@:{error}': err, '@:{data}': list } = dataCenter[bind.url];
-      if (!err) {
+      if (!err && isArray(list) && list.length) {
         let anchorData = isArray(list) ? list[0] : list;
         let info;
         if (type == 'data-dtable') {
