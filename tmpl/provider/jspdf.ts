@@ -1,4 +1,4 @@
-let dest = '//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jspdf/2.3.1/jspdf.umd.min.js';
+let dest = '//test-img.freshfood.cn/jspdf/2.3.1/jspdf.umd.min.js';
 let loadingList = [];
 let state = 1;
 let rejectMsg = 'can not load jspdf library';
