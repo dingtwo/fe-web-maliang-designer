@@ -18,6 +18,7 @@
   "scripts": {
     "server": "anywhere -h localhost -p 8888",
     "server:sit": "cross-env NODE_ENV=sit anywhere -h localhost -p 8888 ",
+    "start:sit": "cross-env NODE_ENV=sit anywhere -h localhost -p 8888 ",
     "watch": "gulp watch",
     "dist": "gulp dist",
     "sit": "cross-env NODE_ENV=sit gulp dist",
