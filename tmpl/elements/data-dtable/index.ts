@@ -16,6 +16,19 @@ let firstToUppercase = str => {
 function getCellMeta(row, rowIndex, col, colIndex, list, cols) {
   // console.log("🚀 ~ getCellMeta ~ row, rowIndex, col, colIndex, list, cols:", row, rowIndex, col, colIndex, list, cols)
   // debugger;
+
+
+  if (col.colspan > 1 || col.rowspan > 1) {
+    return {
+      colSpan: col.colspan,
+
+      rowSpan: col.rowspan,
+      width: col.width,
+      height: col.height,
+      isMerge: false,
+    }
+  }
+
   const bindKey = col.bindKey;
   const metaData = row.$$props?.[bindKey];
   let colSpan = 1;
