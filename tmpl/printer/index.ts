@@ -42,7 +42,7 @@ const host = {
   prew: 'https://prewapi.freshfood.cn/maliang/',
   test: 'http://dev.api.b2bcsx.com:8000/maliang/',
   // dev: 'http://dev.api.b2bcsx.com:8000/maliang/',
-  dev: 'http://localhost:9001/',
+  dev: 'http://10.19.239.163:9000/',
   sit: 'http://sit.api.b2bcsx.com/maliang/',
   pre: 'http://pre.api.b2bcsx.com/maliang/',
 };
@@ -1049,14 +1049,15 @@ export default View.extend({
       const dataList = await fetchAllAPI(apiMap);
       console.log("🚀 ~ dataList:", dataList)
 
-      if ((window as any).grayVersion) {
+      // if ((window as any).grayVersion) {
         // 检查所有数据是否为空
         const hasData = (dataList as object[]).some(item => Object.keys(item).length);
         if (!hasData) {
-          await this.setRenderStatusError('暂无数据');
+          Toast.show('当前打印订单数据为空，请核实后重试');
+          await this.setRenderStatusError('暂无数据')
           throw new Error("暂无数据")
         }
-      }
+      // }
     } catch (error) {
       console.log("🚀 ~ fetchAllAPI error:", error);
       await this.setRenderStatusError(error?.message || error);
