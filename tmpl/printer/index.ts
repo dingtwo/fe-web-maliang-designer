@@ -42,7 +42,7 @@ const host = {
   prew: 'https://prewapi.freshfood.cn/maliang/',
   test: 'http://dev.api.b2bcsx.com:8000/maliang/',
   // dev: 'http://dev.api.b2bcsx.com:8000/maliang/',
-  dev: 'http://locahost:9000/',
+  dev: 'http://10.19.239.163:9000/',
   sit: 'http://sit.api.b2bcsx.com/maliang/',
   pre: 'http://pre.api.b2bcsx.com/maliang/',
 };
@@ -1053,7 +1053,7 @@ export default View.extend({
         // 检查所有数据是否为空
         const hasData = (dataList as object[]).some(item => Object.keys(item).length);
         if (!hasData) {
-          Toast.show('暂无数据');
+          Toast.show('当前打印订单数据为空，请核实后重试');
           await this.setRenderStatusError('暂无数据')
           throw new Error("暂无数据")
         }
