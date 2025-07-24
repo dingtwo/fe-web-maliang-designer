@@ -42,7 +42,7 @@ const host = {
   prew: 'https://prewapi.freshfood.cn/maliang/',
   test: 'http://dev.api.b2bcsx.com:8000/maliang/',
   // dev: 'http://dev.api.b2bcsx.com:8000/maliang/',
-  dev: 'http://10.19.239.163:9000/',
+  dev: 'http://locahost:9000/',
   sit: 'http://sit.api.b2bcsx.com/maliang/',
   pre: 'http://pre.api.b2bcsx.com/maliang/',
 };
