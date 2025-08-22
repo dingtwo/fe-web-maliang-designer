@@ -408,6 +408,9 @@ export default View.extend({
     (window as any).getRenderBatchTotal = () => {
       return renderBatchTotal;
     };
+    (window as any).getRenderErrorData = () => {
+      return this.get('errorData');
+    };
     // 打印完成之后，调用打印次数统计接口
     window.addEventListener('afterprint', printCount);
   },
@@ -415,6 +418,11 @@ export default View.extend({
     await this.digest({
       renderStatus: 'error',
       renderMsg,
+    })
+  },
+  async setRenderErrorData(errorData: any) {
+    await this.digest({
+      errorData,
     })
   },
   async render() {
@@ -1056,6 +1064,10 @@ export default View.extend({
           Toast.show('当前打印订单数据为空，请核实后重试');
           await this.setRenderStatusError('暂无数据')
           throw new Error("暂无数据")
+        }
+        const customEmptyData = _.chain(dataList as any[]).map(item => _.values(item)).flattenDeep().find(item => item.errorData).value();
+        if (customEmptyData) {
+          await this.setRenderErrorData(customEmptyData.errorData);
         }
       // }
     } catch (error) {
