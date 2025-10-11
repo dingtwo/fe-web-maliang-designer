@@ -17,7 +17,7 @@ import StageAlign from './stage-align';
 import StageElements from './stage-elements';
 import StageGeneric from './stage-generic';
 import ToJSON from './tojson';
-let { node, State, applyStyle, config, View, inside, mix, isFunction } = Magix;
+let { node, State, applyStyle, config, View, inside, mix, isFunction, parseUrl } = Magix;
 let Stage_Line = 1;
 let { random, max, round } = Math;
 let StagePadding = Const['@:{const#stage.padding}'];
@@ -32,10 +32,12 @@ let Fullscreens = ['requestFullscreen',
 export default View.extend({
     tmpl: '@:header.html',
     init() {
+       const { params, path } = parseUrl(window.location.href);
         this.set({
             help: Const['@:{const#shortcuts.dialog.and.help.icon}'],
             mini: State.get<number>('@:{global#provider.of.use.mini}'),
-            template: config('getTemplateUrl')
+            template: config('getTemplateUrl'),
+            previewUrl: `/print/template/preview?id=${params.id}&scene=${params.scene}&templateType=1`,
         });
         let watchKeypress = (e: Report.EventOfStageKeyboardPress) => {
             let {
