@@ -16,7 +16,7 @@ let calcAcc = (list, fromIndex, end, totalRow) => {
    * 以下是对总计行的各种求和、求平均进行计算
    */
   let totalData = {};
-  let keys = Object.keys(list[0]);
+  let keys = Object.keys(list[0] || {});
   end = min(end, list.length);
   for (let key of keys) {
     let sum = 0;
