@@ -224,6 +224,7 @@ let PList = [{
     key: 'textFontsize',
     type: Props["@:{eprops#number}"],
     min: 0,
+    max: 30,
     fixed: Const["@:{const#unit.fixed}"],
     step: Const["@:{const#unit.step}"],
     read: Transform["@:{transform#to.show.value}"],
