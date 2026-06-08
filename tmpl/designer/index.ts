@@ -409,7 +409,45 @@ export default View.extend({
               ) => {
                 if (ex) {
                   Toast.hide();
-                  this.alert(ex.message, null, '保存失败');
+                  if (ex.code === 161410022) {
+                    this.confirm(
+                      ex.message,
+                      () => {
+                          s.save(
+                            {
+                              name: '@:{save.content}',
+                              // '@:{body}': `stage=${ToJSON()}`,
+                              '@:{body}': JSON.stringify({ templateJSON: ToJSON(), forceSave: true }),
+                              '@:{query}': params,
+                            },
+                            (
+                              ex: {
+                                message: string;
+                              },
+                              bag,
+                            ) => {
+                              if (ex) {
+                                Toast.hide();
+                                this.alert(ex.message, null, '保存失败');
+                              } else {
+                                Toast.show('保存成功～', 2e3);
+                                this['@:{saved.id}'] = bag.get('data.id', '');
+                              }
+                              delete this['@:{saving}'];
+                              //如果配置的有onSuccessSave事件，则调用一下
+                              // let onSuccessSave = config<Function>('onSuccessSave');
+                              // if (onSuccessSave) {
+                              //     setTimeout(onSuccessSave, 2e3);
+                              // }
+                            },
+                          );
+                      },
+                      () => { console.log('保存取消') },
+                      '提示',
+                    );
+                  } else {
+                    this.alert(ex.message, null, '保存失败');
+                  }
                 } else {
                   Toast.show('保存成功～', 2e3);
                   this['@:{saved.id}'] = bag.get('data.id', '');
